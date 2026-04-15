@@ -1,0 +1,11 @@
+{
+  "timestamp": "2026-02-25 16:30:09",
+  "pregunta": "¿Cuan grande se puede hacer la rueda de intercambio?",
+  "respuesta_corta": "k=3 para MVP, k=4 con optimizaciones, k>=5 muy limitado",
+  "recomendaciones": {
+    "mvp": "k=2-3 exclusivamente",
+    "crecimiento": "k=4 con heuristicas",
+    "escala": "k=5-6 con ML",
+    "limite_absoluto": "k=7 (impractico)"
+  }
+}

@@ -1,0 +1,88 @@
+ANALISIS REALISTA - ESPECIFICIDAD DE ITEMS
+==========================================
+
+TENIAS RAZON ABSOLUTA.
+
+Mi error fue asumir que "compatible" = "match perfecto". En realidad:
+
+Usuario A QUIERE: Canon EOS R5, como nuevo, max 2,500 EUR
+Usuario B OFRECE: Canon EOS R5, buen estado, 2,300 EUR
+Usuario C OFRECE: Sony A7IV, como nuevo, 2,400 EUR
+
+A solo acepta de B (mismo modelo), no de C (modelo diferente).
+
+LA REALIDAD ES DURA:
+
+1. DENSIDAD REAL DE COMPATIBILIDAD:
+   - Wallapop/Vinted: 5-15% pares compatibles
+   - Treqe estimado: 3-10% (items especificos)
+
+2. PROBABILIDAD POR TAMAÑO DE RUEDA (100 usuarios, 8% densidad):
+
+   k=2 (intercambio directo):
+   - Pares compatibles: 396
+   - Usuarios emparejados: 792
+   - Cobertura: 79.2% (BUENA)
+
+   k=3 (intercambio circular A->B->C->A):
+   - Probabilidad por trio: 0.000512 (0.0512%)
+   - Trios compatibles: 0.8
+   - Usuarios emparejados: 2.5
+   - Cobertura: 2.5% (MUY BAJA)
+
+   k=4 (A->B->C->D->A):
+   - Probabilidad: 0.00004096 (0.004096%)
+   - Cuartetos compatibles: 0.0066
+   - Usuarios emparejados: 0.026
+   - Cobertura: 0.026% (PRACTICAMENTE CERO)
+
+CONCLUSIONES:
+
+1. k=2 es el UNICO realmente viable
+2. k=3 es marginal (2.5% cobertura)
+3. k>=4 es imposible en mundo real
+
+POR QUE PASA ESTO?
+
+Con densidad d=8%:
+- k=2: probabilidad = d = 8%
+- k=3: probabilidad = d^3 = 0.0512%
+- k=4: probabilidad = d^4 = 0.004096%
+
+Cada usuario adicional MULTIPLICA la dificultad por d (8%).
+
+IMPLICACIONES PARA TREQE:
+
+1. ENFOCARSE EN k=2 como core product
+2. k=3 como "feature de marketing" mas que funcional
+3. k>=4 no tiene sentido economico
+
+SOLUCIONES REALISTAS:
+
+1. Añadir flexibilidad:
+   - "¿Aceptarias 50 EUR extra por modelo similar?"
+   - Sistema de recomendaciones
+   - Categorias amplias, no modelos especificos
+
+2. Valorar k=3 solo para:
+   - Items genericos (libros, ropa basica)
+   - Usuarios muy flexibles
+   - Casos especiales
+
+IMPACTO ECONOMICO REALISTA:
+
+- k=2: 10-30% usuarios satisfechos -> VIABLE
+- k=3: 1-5% usuarios satisfechos -> MARGINAL  
+- k>=4: <1% usuarios satisfechos -> NO VIABLE
+
+VEREDICTO FINAL:
+
+TREQE DEBE ENFOCARSE EN k=2 (INTERCAMBIO DIRECTO).
+
+k=3 puede ser un "nice to have" para marketing, pero no el core.
+k>=4 es imposible con items especificos.
+
+Mi analisis anterior era optimista porque asumi "cualquier camara" = compatible.
+La realidad es "esta camara especifica" = compatible.
+
+¿Quieres que rediseñe el algoritmo para k=2 como core?

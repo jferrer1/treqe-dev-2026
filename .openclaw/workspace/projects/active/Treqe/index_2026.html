@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Treqe · Intercambio Circular 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+  <style>
+    /* ===== VARIABLES & RESET ===== */
+    :root {
+      /* Paleta Treqe 2026 */
+      --treqe-navy: #002B54;      /* Confianza, base */
+      --treqe-electric: #0056A3;  /* Tecnología */
+      --treqe-gold: #FFC658;      /* Optimismo, CTA */
+      --treqe-coral: #FF8B99;     /* Calidez, secondary */
+      --treqe-mint: #A7DBD8;      /* Sostenibilidad */
+      --treqe-lavender: #C694E1;  /* Creatividad */
+      --treqe-cream: #FFF5D1;     /* Fondo suave */
+
+      /* Funcionales */
+      --bg-dark: var(--treqe-navy);
+      --bg-light: var(--treqe-cream);
+      --text-dark: #343A40;
+      --text-light: #FFFFFF;
+      --border-radius: 16px;
+      --shadow: 0 8px 32px rgba(0, 43, 84, 0.08);
+      --shadow-lg: 0 20px 60px rgba(0, 43, 84, 0.12);
+      --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--text-dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+      background-color: var(--bg-light);
+    }
+
+    h1, h2, h3, h4 {
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); }
+    h2 { font-size: clamp(2rem, 4vw, 3.5rem); }
+    h3 { font-size: clamp(1.5rem, 3vw, 2.5rem); }
+
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    section {
+      padding: 100px 0;
+    }
+
+    /* ===== HEADER (HERO) ===== */
+    .hero-header {
+      background: linear-gradient(135deg, rgba(0, 43, 84, 0.95), rgba(0, 86, 163, 0.9)),
+                  url('treqe-girl-skate-real.png') center/cover no-repeat;
+      min-height: 100vh;
+      color: var(--text-light);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Navigation */
+    .nav-container {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      padding: 30px 60px;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+    }
+
+    .logo {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 2.5rem;
+      color: var(--text-light);
+      text-transform: lowercase;
+      letter-spacing: -0.03em;
+    }
+
+    .logo span {
+      color: var(--treqe-gold);
+    }
+
+    .nav-center {
+      display: flex;
+      gap: 40px;
+      justify-self: center;
+    }
+
+    .nav-center a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      opacity: 0.9;
+      transition: var(--transition);
+    }
+
+    .nav-center a:hover {
+      opacity: 1;
+      color: var(--treqe-gold);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      justify-self: end;
+    }
+
+    .search-pill {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 50px;
+      padding: 10px 24px;
+      font-size: 0.9rem;
+      color: var(--text-light);
+      font-weight: 300;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+    }
+
+    .hamburger span {
+      width: 25px;
+      height: 2px;
+      background: var(--text-light);
+      transition: var(--transition);
+    }
+
+    /* Hero Content */
+    .hero-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 24px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(3rem, 6vw, 5rem);
+      margin-bottom: 20px;
+      font-weight: 400;
+    }
+
+    .hero-title strong {
+      font-family: 'Montserrat', sans-serif;
+      font-style: normal;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      display: block;
+      margin-top: 10px;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+      margin-bottom: 60px;
+      opacity: 0.95;
+      max-width: 700px;
+      line-height: 1.5;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .btn {
+      padding: 18px 40px;
+      border-radius: 50px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: var(--transition);
+      border: none;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .btn-primary {
+      background: var(--treqe-gold);
+      color: var(--treqe-navy);
+    }
+
+    .btn-primary:hover {
+      background: var(--treqe-electric);
+      color: var(--text-light);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-light);
+      border: 2px solid var(--text-light);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-3px);
+      border-color: var(--treqe-gold);
+      color: var(--treqe-gold);
+    }
+
+    /* ===== SECTION: VALUE PROPOSITION ===== */
+    .value-section {
+      background: var(--bg-light);
+      position: relative;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    .section-subtitle {
+      font-size: 1.2rem;
+      color: var(--treqe-electric);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      color: var(--treqe-navy);
+    }
+
+    .value-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+    }
+
+    .value-card {
+      background: white;
+      border-radius: var(--border-radius);
+      padding: 40px 32px;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      text-align: center;
+    }
+
+    .value-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .value-icon {
+      font-size: 3.5rem;
+      margin-bottom: 24px;
+    }
+
+    .value-card h3 {
+      color: var(--treqe-navy);
+      margin-bottom: 16px;
+    }
+
+    .value-card p {
+      color: var(--text-dark);
+      opacity: 0.9;
+      font-size: 1.05rem;
+    }
+
+    /* ===== SECTION: HOW IT WORKS ===== */
+    .how-section {
+      background: var(--treqe-navy);
+      color: var(--text-light);
+    }
+
+    .how-section .section-title {
+      color: var(--text-light);
+    }
+
+    .steps-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      counter-reset: step-counter;
+    }
+
+    .step-card {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: var(--border-radius);
+      padding: 48px 32px;
+      flex: 1;
+      min-width: 280px;
+      max-width: 350px;
+      position: relative;
+      counter-increment: step-counter;
+      transition: var(--transition);
+    }
+
+    .step-card:hover {
+      background: rgba(255, 255, 255, 0.12);
+      transform: translateY(-5px);
+    }
+
+    .step-card::before {
+      content: counter(step-counter);
+      position: absolute;
+      top: -25px;
+      left: 32px;
+      background: var(--treqe-gold);
+      color: var(--treqe-navy);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+
+    .step-card h3 {
+      margin-bottom: 16px;
+      font-size: 1.8rem;
+    }
+
+    /* ===== SECTION: ALGORITHM ===== */
+    .algorithm-section {
+      background: var(--bg-light);
+    }
+
+    .algorithm-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .algorithm-visual {
+      background: linear-gradient(135deg, var(--treqe-mint), var(--treqe-lavender));
+      border-radius: var(--border-radius);
+      padding: 60px;
+      text-align: center;
+      color: var(--treqe-navy);
+      box-shadow: var(--shadow);
+    }
+
+    .algorithm-visual h3 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .algorithm-visual p {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .algorithm-content h3 {
+      color: var(--treqe-navy);
+      margin-bottom: 24px;
+    }
+
+    .algorithm-content ul {
+      list-style: none;
+      margin-top: 32px;
+    }
+
+    .algorithm-content li {
+      margin-bottom: 16px;
+      padding-left: 32px;
+      position: relative;
+    }
+
+    .algorithm-content li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--treqe-gold);
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    /* ===== SECTION: COMMUNITY ===== */
+    .community-section {
+      background: linear-gradient(135deg, var(--treqe-coral), var(--treqe-lavender));
+      color: var(--text-light);
+    }
+
+    .community-section .section-title {
+      color: var(--text-light);
+    }
+
+    .community-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px;
+    }
+
+    .community-card {
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: var(--border-radius);
+      padding: 48px 32px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      transition: var(--transition);
+    }
+
+    .community-card:hover {
+      background: rgba(255, 255, 255, 0.18);
+      transform: translateY(-5px);
+    }
+
+    .community-icon {
+      font-size: 3rem;
+      margin-bottom: 24px;
+    }
+
+    /* ===== CTA SECTION ===== */
+    .cta-section {
+      background: var(--treqe-navy);
+      color: var(--text-light);
+      text-align: center;
+      padding: 120px 0;
+    }
+
+    .cta-section h2 {
+      margin-bottom: 32px;
+    }
+
+    .cta-section p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 60px;
+      opacity: 0.9;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--text-dark);
+      color: var(--text-light);
+      padding: 80px 0 40px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 60px;
+      margin-bottom: 60px;
+    }
+
+    .footer-col h4 {
+      color: var(--treqe-gold);
+      margin-bottom: 24px;
+      font-size: 1.3rem;
+    }
+
+    .footer-col a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 12px;
+      transition: var(--transition);
+    }
+
+    .footer-col a:hover {
+      color: var(--treqe-gold);
+      padding-left: 8px;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 40px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .nav-container {
+        padding: 30px 40px;
+      }
+      .nav-center {
+        gap: 30px;
+      }
+      .algorithm-container {
+        grid-template-columns: 1fr;
+        gap: 60px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-container {
+        padding: 20px 24px;
+      }
+      .nav-center, .search-pill {
+        display: none;
+      }
+      .hero-content {
+        padding: 0 16px;
+      }
+      .cta-buttons {
+        flex-direction: column;
+        width: 100%;
+        max-width: 300px;
+      }
+      .btn {
+        width: 100%;
+      }
+      section {
+        padding: 80px 0;
+      }
+      .steps-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      .step-card {
+        max-width: 100%;
+      }
+    }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .floating {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <!-- Header / Hero -->
+  <header class="hero-header">
+    <nav class="nav-container">
+      <div class="logo">treqe<span>.</span></div>
+      <div class="nav-center">
+        <a href="#value">Cómo Funciona</a>
+        <a href="#algorithm">Algoritmo</a>
+        <a href="#community">Comunidad</a>
+        <a href="#download">Descargar</a>
+      </div>
+      <div class="nav-right">
+        <div class="search-pill">BUSCAR</div>
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </nav>
+
+    <div class="hero-content">
+      <h1 class="hero-title">
+        Intercambia lo que tienes<br>
+        <strong>POR LO QUE NECESITAS</strong>
+      </h1>
+      <p class="hero-subtitle">
+        Conectamos círculos de trueque multilaterales. Obtén lo que quieres sin vender primero, gracias a nuestro algoritmo k=3 optimizado.
+      </p>
+      <div class="cta-buttons">
+        <button class="btn btn-primary">Comenzar Intercambio</button>
+        <button class="btn btn-secondary">Ver Demo</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Value Proposition -->
+  <section id="value" class="value-section container">
+    <div class="section-header">
+      <p class="section-subtitle">Por qué Treqe 2026</p>
+      <h2 class="section-title">Trueque inteligente para el mundo real</h2>
+    </div>
+    <div class="value-grid">
+      <div class="value-card fade-in">
+        <div class="value-icon">🔄</div>
+        <h3>Intercambio Circular</h3>
+        <p>Supera el problema del trueque bilateral. Nuestro algoritmo conecta 3+ personas para multiplicar las posibilidades.</p>
+      </div>
+      <div class="value-card fade-in">
+        <div class="value-icon">⚡</div>
+        <h3>Rápido y Sin Esfuerzo</h3>
+        <p>Lista lo que tienes y lo que quieres. En 24 horas recibes intercambios sugeridos. Sin regateos, sin estrés.</p>
+      </div>
+      <div class="value-card fade-in">
+        <div class="value-icon">🛡️</div>
+        <h3>Confianza Total</h3>
+        <p>Sistema de reputación, seguros integrados y triple verificación. Intercambia con tranquilidad.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section id="how" class="how-section">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-subtitle">Proceso Simple</p>
+        <h2 class="section-title">Así funciona en 3 pasos</h2>
+      </div>
+      <div class="steps-container">
+        <div class="step-card fade-in">
+          <h3>Lista lo que tienes</h3>
+          <p>Sube fotos y describe lo que ofreces. También indica lo que te gustaría obtener a cambio.</p>
+        </div>
+        <div class="step-card fade-in">
+          <h3>Nuestro algoritmo busca</h3>
+          <p>Encuentra círculos de 3+ personas donde todos obtienen lo que quieren. K=3 óptimo para máxima eficiencia.</p>
+        </div>
+        <div class="step-card fade-in">
+          <h3>Intercambia y disfruta</h3>
+          <p>Acepta la propuesta, coordina envíos con nuestra ayuda, y recibe lo que buscabas. Comisión solo al éxito.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Algorithm -->
+  <section id="algorithm" class="algorithm-section container">
+    <div class="algorithm-container">
+      <div class="algorithm-visual floating">
+        <h3>k = 3</h3>
+        <p>Algoritmo óptimo para intercambio circular</p>
+        <p style="margin-top: 20px; font-size: 1rem;">Probabilidad de éxito: 20% vs 5% bilateral</p>
+      </div>
+      <div class="algorithm-content">
+        <h3>Matemática aplicada al trueque</h3>
+        <p>El problema del trueque bilateral es matemáticamente complejo (NP-Completo). Nuestra solución: círculos de 3 personas (k=3), el punto óptimo entre posibilidad computacional y valor creado.</p>
+        <ul>
+          <li><strong>4x más probabilidades</strong> que el trueque tradicional</li>
+          <li><strong>Escalable</strong> a miles de usuarios en tiempo real</li>
+          <li><strong>Transparente</strong> – mostramos cómo funciona</li>
+          <li><strong>Evolutivo</strong> – aprendemos de cada intercambio</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Community -->
+  <section id="community" class="community-section">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-subtitle">Más que una plataforma</p>
+        <h2 class="section-title">Una comunidad de intercambio</h2>
+      </div>
+      <div class="community-grid">
+        <div class="community-card fade-in">
+          <div class="community-icon">👥</div>
+          <h3>Reputación Social</h3>
+          <p>Tu puntuación refleja tu fiabilidad. Mejor reputación = mejores intercambios.</p>
+        </div>
+        <div class="community-card fade-in">
+          <div class="community-icon">🌱</div>
+          <h3>Sostenibilidad</h3>
+          <p>Reduce residuos, alarga la vida útil de los productos, consume de forma consciente.</p>
+        </div>
+        <div class="community-card fade-in">
+          <div class="community-icon">💬</div>
+          <h3>Conexiones Reales</h3>
+          <p>Conoce a personas con intereses similares. El trueque crea comunidad.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="download" class="cta-section">
+    <div class="container">
+      <h2>¿Listo para intercambiar de forma inteligente?</h2>
+      <p>Únete a los primeros 1.000 usuarios y disfruta de comisión 0% durante 6 meses. App móvil disponible para iOS y Android.</p>
+      <div class="cta-buttons">
+        <button class="btn btn-primary">Descargar para iOS</button>
+        <button class="btn btn-secondary">Descargar para Android</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>Treqe</h4>
+          <p>Intercambio circular inteligente. Conectamos lo que tienes con lo que necesitas, mediante algoritmos y comunidad.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Producto</h4>
+          <a href="#value">Cómo funciona</a>
+          <a href="#algorithm">Algoritmo k=3</a>
+          <a href="#community">Comunidad</a>
+          <a href="#">Precios</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="#">Términos y condiciones</a>
+          <a href="#">Política de privacidad</a>
+          <a href="#">Cookies</a>
+          <a href="#">Aviso legal</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contacto</h4>
+          <a href="mailto:hola@treqe.es">hola@treqe.es</a>
+          <a href="#">Twitter / X</a>
+          <a href="#">Instagram</a>
+          <a href="#">LinkedIn</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Treqe · Intercambio circular · k=3 optimal algorithm · Made with ❤️ & algorithms</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Fade-in on scroll
+    const fadeElements = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    fadeElements.forEach(el => observer.observe(el));
+
+    // Mobile menu toggle
+    const hamburger = document.querySelector('.hamburger');
+    const navCenter = document.querySelector('.nav-center');
+    const searchPill = document.querySelector('.search-pill');
+
+    hamburger.addEventListener('click', () => {
+      navCenter.style.display = navCenter.style.display === 'flex' ? 'none' : 'flex';
+      searchPill.style.display = searchPill.style.display === 'block' ? 'none' : 'block';
+    });
+
+    // Update year in footer
+    document.querySelector('footer .footer-bottom p').innerHTML = 
+      `© ${new Date().getFullYear()} Treqe · Intercambio circular · k=3 optimal algorithm · Made with ❤️ & algorithms`;
+  </script>
+</body>
+</html>

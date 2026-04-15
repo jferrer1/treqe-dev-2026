@@ -1,0 +1,18 @@
+============================================================
+INSTRUCCIONES DEMO TREQE
+============================================================
+
+USUARIOS:
+- ana_tech / password123
+- carlos_deportes / password123
+- beatriz_eco / password123
+
+INTERCAMBIO CONFIGURADO (k=3):
+1. Ana: iPhone 600 -> MacBook 800
+2. Carlos: MacBook 800 -> Bicicleta 400
+3. Beatriz: Bicicleta 400 -> iPhone 600
+
+PARA PROBAR:
+1. Cambiar DATABASE_URL en config.py a SQLite
+2. uvicorn src.main:app --reload
+3. Login y probar matching

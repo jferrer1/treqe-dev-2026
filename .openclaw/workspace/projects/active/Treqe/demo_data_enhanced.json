@@ -1,0 +1,580 @@
+{
+  "categories": [
+    {
+      "slug": "motor",
+      "name": "Motor",
+      "icon": "🚗",
+      "subcategories": [
+        "Coches",
+        "Motos",
+        "Furgonetas",
+        "Accesorios motor",
+        "Náutica",
+        "Caravanas y autocaravanas",
+        "Piezas y recambios",
+        "Neumáticos y llantas",
+        "Renting y leasing"
+      ],
+      "description": "Vehículos y accesorios de motor para intercambio circular."
+    },
+    {
+      "slug": "moda-accesorios",
+      "name": "Moda y Accesorios",
+      "icon": "👗",
+      "subcategories": [
+        "Ropa de mujer",
+        "Ropa de hombre",
+        "Calzado",
+        "Bolsos y carteras",
+        "Complementos",
+        "Ropa de marca",
+        "Ropa deportiva",
+        "Ropa vintage",
+        "Joyas y relojes",
+        "Gafas de sol"
+      ],
+      "description": "Moda sostenible y accesorios de segunda vida."
+    },
+    {
+      "slug": "tecnologia",
+      "name": "Tecnología",
+      "icon": "📱",
+      "subcategories": [
+        "Móviles y telefonía",
+        "Informática y electrónica",
+        "TV, Audio y Foto",
+        "Consolas y videojuegos",
+        "Drones y gadgets",
+        "Tablets y e-readers",
+        "Smartwatches y wearables",
+        "Componentes PC",
+        "Software y licencias"
+      ],
+      "description": "Tecnología con valor residual para intercambio inteligente."
+    },
+    {
+      "slug": "hogar-jardin",
+      "name": "Hogar y Jardín",
+      "icon": "🛋️",
+      "subcategories": [
+        "Muebles",
+        "Decoración",
+        "Electrodomésticos",
+        "Jardín y bricolaje",
+        "Menaje y cocina",
+        "Iluminación",
+        "Textil hogar",
+        "Herramientas",
+        "Piscinas y spa"
+      ],
+      "description": "Transforma tu hogar mediante intercambios circulares."
+    },
+    {
+      "slug": "deporte-ocio",
+      "name": "Deporte y Ocio",
+      "icon": "🚲",
+      "subcategories": [
+        "Bicicletas",
+        "Deportes fitness",
+        "Camping y senderismo",
+        "Pesca y caja",
+        "Artes marciales",
+        "Deportes acuáticos",
+        "Golf",
+        "Esquí y snowboard",
+        "Montañismo"
+      ],
+      "description": "Equipamiento deportivo para una vida activa sostenible."
+    },
+    {
+      "slug": "bebes-ninos",
+      "name": "Bebés y Niños",
+      "icon": "👶",
+      "subcategories": [
+        "Ropa y calzado infantil",
+        "Juguetes y juegos",
+        "Puericultura",
+        "Material educativo",
+        "Ocio infantil",
+        "Mobiliario infantil",
+        "Cochecitos y sillas",
+        "Seguridad infantil",
+        "Lactancia y alimentación"
+      ],
+      "description": "Productos infantiles con segunda vida útil."
+    },
+    {
+      "slug": "inmobiliaria",
+      "name": "Inmobiliaria",
+      "icon": "🏠",
+      "subcategories": [
+        "Alquiler de viviendas",
+        "Venta de viviendas",
+        "Alquiler de locales",
+        "Trasteros y garajes",
+        "Alquiler vacacional",
+        "Oficinas y despachos",
+        "Terrenos y solares",
+        "Compartir piso"
+      ],
+      "description": "Intercambios y trueques en el sector inmobiliario."
+    },
+    {
+      "slug": "servicios",
+      "name": "Servicios",
+      "icon": "🔧",
+      "subcategories": [
+        "Clases y formación",
+        "Reparaciones y mantenimiento",
+        "Diseño y creatividad",
+        "Consultoría profesional",
+        "Eventos y catering",
+        "Traducción y redacción",
+        "Cuidados y asistencia",
+        "Transporte y mudanzas",
+        "Marketing y SEO"
+      ],
+      "description": "Trueque de habilidades, tiempo y conocimiento."
+    },
+    {
+      "slug": "cultura-entretenimiento",
+      "name": "Cultura y Entretenimiento",
+      "icon": "📚",
+      "subcategories": [
+        "Cine, Libros y Música",
+        "Coleccionismo",
+        "Instrumentos musicales",
+        "Arte y antigüedades",
+        "Teatro y espectáculos",
+        "Museos y exposiciones",
+        "Video y fotografía",
+        "Board games y puzzles",
+        "Manualidades y hobbies"
+      ],
+      "description": "Cultura, arte y entretenimiento en intercambio circular."
+    },
+    {
+      "slug": "industria-profesional",
+      "name": "Industria y Profesional",
+      "icon": "🏭",
+      "subcategories": [
+        "Construcción y reformas",
+        "Industria y agricultura",
+        "Empleo",
+        "Logística y transporte",
+        "Maquinaria industrial",
+        "Equipos profesionales",
+        "Material de oficina",
+        "Energía y sostenibilidad",
+        "Investigación y desarrollo"
+      ],
+      "description": "Intercambios profesionales y empresariales."
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "Ana Martínez",
+      "city": "Madrid",
+      "reputation": 185,
+      "avatar": "👩",
+      "joined": "2026-03-15",
+      "exchangesCompleted": 7
+    },
+    {
+      "id": 2,
+      "name": "Carlos López",
+      "city": "Barcelona",
+      "reputation": 142,
+      "avatar": "👨",
+      "joined": "2026-02-28",
+      "exchangesCompleted": 4
+    },
+    {
+      "id": 3,
+      "name": "Beatriz García",
+      "city": "Valencia",
+      "reputation": 167,
+      "avatar": "👩",
+      "joined": "2026-03-22",
+      "exchangesCompleted": 6
+    },
+    {
+      "id": 4,
+      "name": "David Rodríguez",
+      "city": "Sevilla",
+      "reputation": 123,
+      "avatar": "👨",
+      "joined": "2026-04-01",
+      "exchangesCompleted": 2
+    },
+    {
+      "id": 5,
+      "name": "Elena Sánchez",
+      "city": "Bilbao",
+      "reputation": 198,
+      "avatar": "👩",
+      "joined": "2026-02-10",
+      "exchangesCompleted": 9
+    },
+    {
+      "id": 6,
+      "name": "Miguel Torres",
+      "city": "Málaga",
+      "reputation": 156,
+      "avatar": "👨",
+      "joined": "2026-03-05",
+      "exchangesCompleted": 5
+    },
+    {
+      "id": 7,
+      "name": "Laura Gómez",
+      "city": "Zaragoza",
+      "reputation": 178,
+      "avatar": "👩",
+      "joined": "2026-02-18",
+      "exchangesCompleted": 8
+    },
+    {
+      "id": 8,
+      "name": "Javier Ruiz",
+      "city": "Murcia",
+      "reputation": 134,
+      "avatar": "👨",
+      "joined": "2026-03-30",
+      "exchangesCompleted": 3
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "title": "iPhone 15 Pro 256GB",
+      "category": "tecnologia",
+      "subcategory": "Móviles y telefonía",
+      "value": 850,
+      "city": "Madrid",
+      "userId": 1,
+      "description": "Como nuevo, con cargador y funda original. 6 meses de garantía restante.",
+      "condition": "Como nuevo",
+      "wantedCategory": "motor",
+      "wantedSubcategory": "Coches",
+      "wantedValueRange": [500, 1200]
+    },
+    {
+      "id": 2,
+      "title": "Bicicleta Orbea Carpe 2024",
+      "category": "deporte-ocio",
+      "subcategory": "Bicicletas",
+      "value": 450,
+      "city": "Barcelona",
+      "userId": 2,
+      "description": "Bicicleta urbana, talla M, poco uso. Cambios Shimano, frenos de disco.",
+      "condition": "Buen estado",
+      "wantedCategory": "tecnologia",
+      "wantedSubcategory": "Consolas y videojuegos",
+      "wantedValueRange": [300, 600]
+    },
+    {
+      "id": 3,
+      "title": "Sofá Chesterfield vintage",
+      "category": "hogar-jardin",
+      "subcategory": "Muebles",
+      "value": 1200,
+      "city": "Valencia",
+      "userId": 3,
+      "description": "Sofá de cuero genuino, años 70, restaurado profesionalmente.",
+      "condition": "Restaurado",
+      "wantedCategory": "moda-accesorios",
+      "wantedSubcategory": "Ropa de marca",
+      "wantedValueRange": [800, 1500]
+    },
+    {
+      "id": 4,
+      "title": "Chaqueta Moncler",
+      "category": "moda-accesorios",
+      "subcategory": "Ropa de marca",
+      "value": 350,
+      "city": "Sevilla",
+      "userId": 4,
+      "description": "Chaqueta de plumas Moncler, talla L, temporada invierno 2025.",
+      "condition": "Excelente",
+      "wantedCategory": "deporte-ocio",
+      "wantedSubcategory": "Esquí y snowboard",
+      "wantedValueRange": [200, 500]
+    },
+    {
+      "id": 5,
+      "title": "PlayStation 5 + 3 juegos",
+      "category": "tecnologia",
+      "subcategory": "Consolas y videojuegos",
+      "value": 550,
+      "city": "Bilbao",
+      "userId": 5,
+      "description": "PS5 con 1TB, 3 juegos incluidos (Spider-Man 2, God of War, FIFA 26).",
+      "condition": "Como nuevo",
+      "wantedCategory": "hogar-jardin",
+      "wantedSubcategory": "Electrodomésticos",
+      "wantedValueRange": [400, 700]
+    },
+    {
+      "id": 6,
+      "title": "Coche Seat León 2020",
+      "category": "motor",
+      "subcategory": "Coches",
+      "value": 14500,
+      "city": "Madrid",
+      "userId": 6,
+      "description": "Seat León 1.5 TSI Style, 45.000 km, mantenimiento oficial, ITV recién pasada.",
+      "condition": "Muy buen estado",
+      "wantedCategory": "inmobiliaria",
+      "wantedSubcategory": "Alquiler de viviendas",
+      "wantedValueRange": [10000, 18000]
+    },
+    {
+      "id": 7,
+      "title": "MacBook Air M2 2023",
+      "category": "tecnologia",
+      "subcategory": "Informática y electrónica",
+      "value": 1100,
+      "city": "Barcelona",
+      "userId": 7,
+      "description": "MacBook Air M2, 16GB RAM, 512GB SSD, batería 95%, con estuche original.",
+      "condition": "Como nuevo",
+      "wantedCategory": "moda-accesorios",
+      "wantedSubcategory": "Joyas y relojes",
+      "wantedValueRange": [800, 1300]
+    },
+    {
+      "id": 8,
+      "title": "Mesa de comedor extensible",
+      "category": "hogar-jardin",
+      "subcategory": "Muebles",
+      "value": 450,
+      "city": "Valencia",
+      "userId": 8,
+      "description": "Mesa de roble macizo, para 6-8 personas, extensible a 2 metros.",
+      "condition": "Buen estado",
+      "wantedCategory": "deporte-ocio",
+      "wantedSubcategory": "Bicicletas",
+      "wantedValueRange": [300, 600]
+    },
+    {
+      "id": 9,
+      "title": "Zapatillas Nike Air Max 270",
+      "category": "moda-accesorios",
+      "subcategory": "Calzado",
+      "value": 90,
+      "city": "Sevilla",
+      "userId": 1,
+      "description": "Talla 42, usadas 2 veces, como nuevas. Caja original.",
+      "condition": "Como nuevo",
+      "wantedCategory": "cultura-entretenimiento",
+      "wantedSubcategory": "Cine, Libros y Música",
+      "wantedValueRange": [50, 120]
+    },
+    {
+      "id": 10,
+      "title": "Guitarra eléctrica Fender Stratocaster",
+      "category": "cultura-entretenimiento",
+      "subcategory": "Instrumentos musicales",
+      "value": 650,
+      "city": "Bilbao",
+      "userId": 2,
+      "description": "Fender Stratocaster Made in Mexico, con funda y amplificador pequeño.",
+      "condition": "Excelente",
+      "wantedCategory": "tecnologia",
+      "wantedSubcategory": "Tablets y e-readers",
+      "wantedValueRange": [500, 800]
+    },
+    {
+      "id": 11,
+      "title": "Taladro percutor Bosch",
+      "category": "hogar-jardin",
+      "subcategory": "Herramientas",
+      "value": 120,
+      "city": "Málaga",
+      "userId": 3,
+      "description": "Taladro percutor Bosch Professional, 2 baterías, cargador, maletín.",
+      "condition": "Buen estado",
+      "wantedCategory": "servicios",
+      "wantedSubcategory": "Reparaciones y mantenimiento",
+      "wantedValueRange": [80, 150]
+    },
+    {
+      "id": 12,
+      "title": "Colección de vinilos años 80",
+      "category": "cultura-entretenimiento",
+      "subcategory": "Cine, Libros y Música",
+      "value": 300,
+      "city": "Zaragoza",
+      "userId": 4,
+      "description": "25 vinilos originales de los 80s (Queen, Madonna, Michael Jackson, etc.).",
+      "condition": "Coleccionismo",
+      "wantedCategory": "moda-accesorios",
+      "wantedSubcategory": "Ropa vintage",
+      "wantedValueRange": [200, 400]
+    },
+    {
+      "id": 13,
+      "title": "Moto Yamaha MT-07 2021",
+      "category": "motor",
+      "subcategory": "Motos",
+      "value": 6200,
+      "city": "Murcia",
+      "userId": 5,
+      "description": "Yamaha MT-07, 12.000 km, revisión reciente, neumáticos nuevos.",
+      "condition": "Excelente",
+      "wantedCategory": "industria-profesional",
+      "wantedSubcategory": "Logística y transporte",
+      "wantedValueRange": [5000, 7500]
+    },
+    {
+      "id": 14,
+      "title": "Cuna convertible a cama",
+      "category": "bebes-ninos",
+      "subcategory": "Mobiliario infantil",
+      "value": 180,
+      "city": "Madrid",
+      "userId": 6,
+      "description": "Cuna de madera convertible a cama toddler, colchón incluido.",
+      "condition": "Muy buen estado",
+      "wantedCategory": "hogar-jardin",
+      "wantedSubcategory": "Decoración",
+      "wantedValueRange": [100, 250]
+    },
+    {
+      "id": 15,
+      "title": "Servicio de diseño gráfico",
+      "category": "servicios",
+      "subcategory": "Diseño y creatividad",
+      "value": 400,
+      "city": "Barcelona",
+      "userId": 7,
+      "description": "Pack de diseño: logo, tarjetas, redes sociales. 10 horas de trabajo.",
+      "condition": "Servicio",
+      "wantedCategory": "tecnologia",
+      "wantedSubcategory": "Software y licencias",
+      "wantedValueRange": [300, 500]
+    },
+    {
+      "id": 16,
+      "title": "Reloj Rolex Oyster Perpetual",
+      "category": "moda-accesorios",
+      "subcategory": "Joyas y relojes",
+      "value": 8500,
+      "city": "Valencia",
+      "userId": 8,
+      "description": "Rolex Oyster Perpetual 36mm, 2020, con caja y papeles.",
+      "condition": "Excelente",
+      "wantedCategory": "motor",
+      "wantedSubcategory": "Coches",
+      "wantedValueRange": [7000, 10000]
+    },
+    {
+      "id": 17,
+      "title": "Set de pesas ajustables",
+      "category": "deporte-ocio",
+      "subcategory": "Deportes fitness",
+      "value": 220,
+      "city": "Sevilla",
+      "userId": 1,
+      "description": "Set de pesas ajustables de 5 a 25 kg, rack incluido.",
+      "condition": "Como nuevo",
+      "wantedCategory": "hogar-jardin",
+      "wantedSubcategory": "Electrodomésticos",
+      "wantedValueRange": [150, 300]
+    },
+    {
+      "id": 18,
+      "title": "Alquiler apartamento centro",
+      "category": "inmobiliaria",
+      "subcategory": "Alquiler de viviendas",
+      "value": 900,
+      "city": "Bilbao",
+      "userId": 2,
+      "description": "Apartamento 2 habitaciones en centro, amueblado, 6 meses mínimo.",
+      "condition": "Servicio",
+      "wantedCategory": "servicios",
+      "wantedSubcategory": "Consultoría profesional",
+      "wantedValueRange": [800, 1200]
+    },
+    {
+      "id": 19,
+      "title": "Cámara Sony A7 III",
+      "category": "tecnologia",
+      "subcategory": "TV, Audio y Foto",
+      "value": 1400,
+      "city": "Málaga",
+      "userId": 3,
+      "description": "Cámara Sony A7 III con objetivo 28-70mm, 15.000 disparos.",
+      "condition": "Muy buen estado",
+      "wantedCategory": "cultura-entretenimiento",
+      "wantedSubcategory": "Video y fotografía",
+      "wantedValueRange": [1200, 1800]
+    },
+    {
+      "id": 20,
+      "title": "Máquina de coser industrial",
+      "category": "industria-profesional",
+      "subcategory": "Maquinaria industrial",
+      "value": 1200,
+      "city": "Zaragoza",
+      "userId": 4,
+      "description": "Máquina de coser industrial Juki, perfecta para talleres.",
+      "condition": "Profesional",
+      "wantedCategory": "servicios",
+      "wantedSubcategory": "Reparaciones y mantenimiento",
+      "wantedValueRange": [1000, 1500]
+    }
+  ],
+  "exchanges": [
+    {
+      "id": "ex1",
+      "type": "circular",
+      "k": 3,
+      "participants": [1, 2, 3],
+      "products": [1, 2, 3],
+      "status": "completed",
+      "valueCreated": 2650,
+      "description": "Ana (iPhone) → Carlos (Bici) → Beatriz (Sofá) → Ana"
+    },
+    {
+      "id": "ex2",
+      "type": "bilateral",
+      "k": 2,
+      "participants": [4, 5],
+      "products": [4, 5],
+      "status": "matching",
+      "valueCreated": 900,
+      "description": "David (Chaqueta) ↔ Elena (PS5) - En negociación"
+    },
+    {
+      "id": "ex3",
+      "type": "circular",
+      "k": 4,
+      "participants": [1, 2, 3, 4],
+      "products": [1, 2, 3, 4],
+      "status": "proposed",
+      "valueCreated": 2850,
+      "description": "Circular de 4 personas propuesto por algoritmo"
+    },
+    {
+      "id": "ex4",
+      "type": "circular",
+      "k": 5,
+      "participants": [6, 7, 8, 1, 2],
+      "products": [6, 7, 8, 9, 10],
+      "status": "completed",
+      "valueCreated": 18500,
+      "description": "Circular complejo de 5 personas con productos de alta gama"
+    }
+  ],
+  "stats": {
+    "totalUsers": 2850,
+    "totalExchanges": 642,
+    "averageK": 3.2,
+    "successRate": 89,
+    "valueCreated": 1258000,
+    "co2Saved": 28.7
+  }
+}

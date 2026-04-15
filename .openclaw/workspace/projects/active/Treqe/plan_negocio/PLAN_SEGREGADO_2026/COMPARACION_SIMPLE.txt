@@ -1,0 +1,487 @@
+COMPARACION SECCION POR SECCION
+================================================================================
+
+RESUMEN EJECUTIVO:
+----------------------------------------
+Documento original: 338 parrafos
+Documento humanizado: 59 parrafos
+Parrafos perdidos: 279 (82.5%)
+
+ANALISIS DETALLADO:
+================================================================================
+
+
+SECCION 1: INTRODUCCION
+------------------------------------------------------------
+PRESENTE en ambos documentos
+  • Original: 49 parrafos
+  • Humanizado: 2 parrafos
+  • Perdidos: 47 parrafos
+  • Frases repetitivas: 1
+    - "PLAN DE NEGOCIO TREQE - ESTRUCTURA SEGREGADA
+Sección 1 de 9: Contexto Actual del..."
+  • Ejemplo contenido perdido:
+    - PLAN DE NEGOCIO PROFESIONAL...
+
+
+SECCION 2: 1.1 La Transformación de un Sector Tradicional
+------------------------------------------------------------
+PRESENTE en ambos documentos
+  • Original: 1 parrafos
+  • Humanizado: 4 parrafos
+  • Perdidos: -3 parrafos
+  • Frases repetitivas: 4
+    - "Imagina que si miramos atrás una década, el mercado de segunda mano en España er..."
+    - "Imagina que esta evolución no ha sido casual. Lo que empezó como una solución pr..."
+
+
+SECCION 3: 1.2 Datos Cuantitativos Actualizados (2025-2026)
+------------------------------------------------------------
+PRESENTE en ambos documentos
+  • Original: 1 parrafos
+  • Humanizado: 1 parrafos
+  • Perdidos: 0 parrafos
+  • Frases repetitivas: 1
+    - "Imagina que para entender la magnitud real de este cambio, necesitamos mirar los..."
+
+
+SECCION 4: 1.3 El Panorama Competitivo Actual
+------------------------------------------------------------
+PRESENTE en ambos documentos
+  • Original: 1 parrafos
+  • Humanizado: 1 parrafos
+  • Perdidos: 0 parrafos
+  • Frases repetitivas: 1
+    - "El mercado español tiene una estructura competitiva bien definida, con actores c..."
+
+
+SECCION 5: 1.4 Tendencias Emergentes que Definen el Futuro
+------------------------------------------------------------
+PRESENTE en ambos documentos
+  • Original: 2 parrafos
+  • Humanizado: 1 parrafos
+  • Perdidos: 1 parrafos
+  • Frases repetitivas: 1
+    - "Cinco tendencias clave están reconfigurando el sector y creando oportunidades ún..."
+  • Ejemplo contenido perdido:
+    - 2. EL PROBLEMA NO RESUELTO: LA PARADOJA DE LA LIQUIDEZ...
+
+
+SECCION 6: 2.1 La Situación del Usuario Contemporáneo
+------------------------------------------------------------
+COMPLETAMENTE PERDIDA en documento humanizado
+  • 1 parrafos eliminados
+  • Ejemplo contenido perdido:
+    - Millones de usuarios españoles enfrentan lo que denominamos 'paradoja de la liquidez': tener valor atrapado en posesione...
+
+
+SECCION 7: 2.2 Las Opciones No Óptimas Disponibles
+------------------------------------------------------------
+COMPLETAMENTE PERDIDA en documento humanizado
+  • 1 parrafos eliminados
+  • Ejemplo contenido perdido:
+    - Frente a esta situación, los usuarios enfrentan un 'trilema' con tres opciones insatisfactorias:
+
+Opción A: Mantener obj...
+
+
+SECCION 8: 2.3 La Limitación Matemática Fundamental
+------------------------------------------------------------
+COMPLETAMENTE PERDIDA en documento humanizado
+  • 1 parrafos eliminados
+  • Ejemplo contenido perdido:
+    - El trueque tradicional presenta una limitación matemática que ha impedido su escalabilidad: la 'doble coincidencia de de...
+
+
+SECCION 9: 2.4 La Oportunidad Cuantificada
+------------------------------------------------------------
+COMPLETAMENTE PERDIDA en documento humanizado
+  • 2 parrafos eliminados
+  • Ejemplo contenido perdido:
+    - La magnitud de la oportunidad no atendida es considerable:
+
+Mercado potencial cuantificado:
+- Usuarios que preferirían i...
+
+
+SECCION 10: 3.1 Más Allá del Trueque Tradicional: Un Salto Conceptual
+------------------------------------------------------------
+COMPLETAMENTE PERDIDA en documento humanizado
+  • 4 parrafos eliminados
+  • Ejemplo contenido perdido:
+    - Si hay algo que la historia nos ha enseñado sobre el trueque es que, a pesar de su aparente simplicidad, presenta una li...
+
+
+SECCION 11: 3.2 El Mecanismo Detrás de la Magia: Un Proceso Pensado para Personas Reales
+------------------------------------------------------------
+COMPLETAMENTE PERDIDA en documento humanizado
+  • 32 parrafos eliminados
+  • Ejemplo contenido perdido:
+    - Para comprender cómo Treqe transforma una idea conceptual en una experiencia tangible, es necesario analizar el mecanism...
+
+
+SECCION 12: 3.3 Un Caso que Ilumina el Concepto: Ana, Carlos y Beatriz
+------------------------------------------------------------
+COMPLETAMENTE PERDIDA en documento humanizado
+  • 32 parrafos eliminados
+  • Ejemplo contenido perdido:
+    - Para comprender realmente cómo funciona Treqe, nada mejor que analizar un caso concreto. No se trata de un ejemplo teóri...
+
+
+SECCION 13: 4.1 No Competir, sino Crear: El Arte de Encontrar Espacios Vacíos
+------------------------------------------------------------
+COMPLETAMENTE PERDIDA en documento humanizado
+  • 14 parrafos eliminados
+  • Ejemplo contenido perdido:
+    - En el mundo empresarial contemporáneo, existe una tendencia casi obsesiva por analizar a la competencia, por posicionars...
+
+
+SECCION 14: 4.2 Ventajas Tecnológicas: Cuando la Complejidad se Convierte en Barrera
+------------------------------------------------------------
+COMPLETAMENTE PERDIDA en documento humanizado
+  • 21 parrafos eliminados
+  • Ejemplo contenido perdido:
+    - La complejidad algorítmica de Treqe no es un accidente de diseño, sino una barrera de entrada deliberada. Mientras que c...
+
+
+SECCION 15: 4.3 Ventajas Económicas: La Eficiencia como Motor de Crecimiento
+------------------------------------------------------------
+COMPLETAMENTE PERDIDA en documento humanizado
+  • 1 parrafos eliminados
+  • Ejemplo contenido perdido:
+    - La propuesta de valor económica de Treqe permite a los usuarios obtener lo que necesitan pagando significativamente meno...
+
+
+SECCION 16: 4.4 Ventajas de Sostenibilidad: Impacto Positivo
+------------------------------------------------------------
+COMPLETAMENTE PERDIDA en documento humanizado
+  • 1 parrafos eliminados
+  • Ejemplo contenido perdido:
+    - Cada intercambio en Treqe representa un artículo que no termina en vertedero, un producto nuevo que no necesita fabricar...
+
+
+SECCION 17: 4.5 Barreras de Entrada: Protección Natural
+------------------------------------------------------------
+COMPLETAMENTE PERDIDA en documento humanizado
+  • 2 parrafos eliminados
+  • Ejemplo contenido perdido:
+    - La combinación de complejidad algorítmica, efecto red, integraciones complejas, confianza acumulada y propiedad intelect...
+
+
+SECCION 18: 5.1 Flujos de Ingresos Multicapa
+------------------------------------------------------------
+COMPLETAMENTE PERDIDA en documento humanizado
+  • 1 parrafos eliminados
+  • Ejemplo contenido perdido:
+    - El modelo de Treqe evoluciona desde una comisión simple del 1% hacia un ecosistema multicapa de servicios premium y solu...
+
+
+SECCION 19: 5.2 Inversión Inicial: Cimientos Sólidos
+------------------------------------------------------------
+COMPLETAMENTE PERDIDA en documento humanizado
+  • 1 parrafos eliminados
+  • Ejemplo contenido perdido:
+    - La inversión inicial de 58.000€ se distribuye estratégicamente: 40% en desarrollo tecnológico, 35% en marketing inicial,...
+
+
+SECCION 20: 5.3 Financiación: Socios Estratégicos
+------------------------------------------------------------
+COMPLETAMENTE PERDIDA en documento humanizado
+  • 2 parrafos eliminados
+  • Ejemplo contenido perdido:
+    - Financiamos mediante combinación de inversores ángel (69%), préstamo ENISA (17%) y aportación del equipo fundador (14%),...
+
+
+SECCION 21: 6.1 Supuestos Clave: Realismo Optimista
+------------------------------------------------------------
+COMPLETAMENTE PERDIDA en documento humanizado
+  • 1 parrafos eliminados
+  • Ejemplo contenido perdido:
+    - Nuestras proyecciones se basan en supuestos conservadores pero alcanzables: comisión del 1%, valor medio por transacción...
+
+
+SECCION 22: 6.2 Proyecciones de Crecimiento
+------------------------------------------------------------
+COMPLETAMENTE PERDIDA en documento humanizado
+  • 1 parrafos eliminados
+  • Ejemplo contenido perdido:
+    - Año 1: 25.000 usuarios, 15.000 transacciones, 22.500€ ingresos. Año 2: 75.000 usuarios, 60.000 transacciones, 114.000€ i...
+
+
+SECCION 23: 6.3 Rentabilidad y Sostenibilidad
+------------------------------------------------------------
+COMPLETAMENTE PERDIDA en documento humanizado
+  • 2 parrafos eliminados
+  • Ejemplo contenido perdido:
+    - EBITDA año 3: +129.000€ (margen 52.4%). Resultado neto año 3: +94.125€ (margen 38.3%). ROI inversión: 162%. Punto equili...
+
+
+SECCION 24: 7.1 Equipo Fundador: Pasión y Experiencia
+------------------------------------------------------------
+COMPLETAMENTE PERDIDA en documento humanizado
+  • 1 parrafos eliminados
+  • Ejemplo contenido perdido:
+    - CEO: Visión estratégica y experiencia en startups. CTO: Expertise en desarrollo de plataformas complejas. CMO: Especiali...
+
+
+SECCION 25: 7.2 Plan por Fases: Crecimiento Medido
+------------------------------------------------------------
+COMPLETAMENTE PERDIDA en documento humanizado
+  • 2 parrafos eliminados
+  • Ejemplo contenido perdido:
+    - Fase 1 (meses 1-3): Validación y MVP. Fase 2 (meses 4-9): Lanzamiento local y crecimiento inicial. Fase 3 (meses 10-18):...
+
+
+SECCION 26: 8.1 Resumen de Oportunidad
+------------------------------------------------------------
+COMPLETAMENTE PERDIDA en documento humanizado
+  • 1 parrafos eliminados
+  • Ejemplo contenido perdido:
+    - Treqe resuelve un problema real no atendido: la paradoja de tener valor atrapado en objetos que ya no usamos pero no pod...
+
+
+SECCION 27: 8.2 Ventajas Competitivas Sostenibles
+------------------------------------------------------------
+COMPLETAMENTE PERDIDA en documento humanizado
+  • 1 parrafos eliminados
+  • Ejemplo contenido perdido:
+    - Primer mover en trueque estructurado, complejidad algorítmica como barrera, modelo económico más eficiente, impacto ambi...
+
+
+SECCION 28: 8.3 Próximos Pasos Inmediatos
+------------------------------------------------------------
+COMPLETAMENTE PERDIDA en documento humanizado
+  • 1 parrafos eliminados
+  • Ejemplo contenido perdido:
+    - 1. Registrar dominio treqe.es. 2. Desarrollar landing page con waitlist. 3. Implementar sistema básico de usuarios. 4. C...
+
+
+SECCION 29: 8.4 Visión a Largo Plazo
+------------------------------------------------------------
+COMPLETAMENTE PERDIDA en documento humanizado
+  • 2 parrafos eliminados
+  • Ejemplo contenido perdido:
+    - Aspiramos a transformar no solo cómo las personas intercambian objetos, sino cómo conceptualizan la propiedad, el valor ...
+
+
+SECCION 30: 9.1 Riesgos de Mercado y Competencia: Navegando en Aguas Conocidas y Desconocidas
+------------------------------------------------------------
+COMPLETAMENTE PERDIDA en documento humanizado
+  • 15 parrafos eliminados
+  • Ejemplo contenido perdido:
+    - Cualquier emprendimiento enfrenta riesgos de mercado, pero en el caso de Treqe, estos riesgos son particularmente matiza...
+
+
+SECCION 31: 9.2 Riesgos Operacionales y Tecnológicos: Cuando la Complejidad Encuentra la Realidad
+------------------------------------------------------------
+COMPLETAMENTE PERDIDA en documento humanizado
+  • 22 parrafos eliminados
+  • Ejemplo contenido perdido:
+    - Como plataforma tecnológica compleja, Treqe enfrenta riesgos operacionales específicos que requieren planificación cuida...
+
+
+SECCION 32: 9.3 Riesgos Financieros y de Liquidez: El Arte de Gestionar Recursos Escasos
+------------------------------------------------------------
+COMPLETAMENTE PERDIDA en documento humanizado
+  • 15 parrafos eliminados
+  • Ejemplo contenido perdido:
+    - Como startup en fase inicial, Treqe enfrenta riesgos financieros específicos que requieren gestión cuidadosa y planifica...
+
+
+SECCION 33: 9.4 Riesgos Legales y Regulatorios: Navegando el Laberinto Normativo
+------------------------------------------------------------
+COMPLETAMENTE PERDIDA en documento humanizado
+  • 15 parrafos eliminados
+  • Ejemplo contenido perdido:
+    - Las plataformas de economía colaborativa operan en un entorno regulatorio complejo y en evolución. Treqe debe anticipar ...
+
+
+SECCION 34: 9.5 Plan de Mitigación y Contingencia: De la Identificación a la Acción
+------------------------------------------------------------
+COMPLETAMENTE PERDIDA en documento humanizado
+  • 16 parrafos eliminados
+  • Ejemplo contenido perdido:
+    - Identificar riesgos es solo el primer paso. La verdadera resiliencia viene de tener planes concretos para cuando estos r...
+
+
+SECCION 35: 9.6 Matriz de Riesgos Priorizados: Enfocando Donde Importa
+------------------------------------------------------------
+COMPLETAMENTE PERDIDA en documento humanizado
+  • 15 parrafos eliminados
+  • Ejemplo contenido perdido:
+    - No todos los riesgos son iguales. Priorizamos según probabilidad e impacto para enfocar nuestros esfuerzos de mitigación...
+
+
+SECCION 36: 10.1 Plan de Lanzamiento Fase por Fase
+------------------------------------------------------------
+COMPLETAMENTE PERDIDA en documento humanizado
+  • 4 parrafos eliminados
+  • Ejemplo contenido perdido:
+    - Fase Alpha (Meses 1-2): Validacion con 50 usuarios invitados, matching asistido, feedback intensivo....
+
+
+SECCION 37: 10.2 Canales de Adquisicion
+------------------------------------------------------------
+COMPLETAMENTE PERDIDA en documento humanizado
+  • 5 parrafos eliminados
+  • Ejemplo contenido perdido:
+    - Marketing de Contenidos/SEO: Blog sobre economia circular, guias de trueque....
+
+
+SECCION 38: 10.3 Metricas Clave
+------------------------------------------------------------
+COMPLETAMENTE PERDIDA en documento humanizado
+  • 4 parrafos eliminados
+  • Ejemplo contenido perdido:
+    - CAC (Coste Adquisicion Cliente): Objetivo < 15€...
+
+
+SECCION 39: 10.4 Presupuesto Marketing Año 1
+------------------------------------------------------------
+COMPLETAMENTE PERDIDA en documento humanizado
+  • 5 parrafos eliminados
+  • Ejemplo contenido perdido:
+    - Total: 120.000€...
+
+
+SECCION 40: 10.5 Cronograma
+------------------------------------------------------------
+COMPLETAMENTE PERDIDA en documento humanizado
+  • 5 parrafos eliminados
+  • Ejemplo contenido perdido:
+    - Mes 1-2: Desarrollo contenido, configuracion canales, identificacion early adopters....
+
+
+SECCION 41: 11.1 Estructura Legal
+------------------------------------------------------------
+COMPLETAMENTE PERDIDA en documento humanizado
+  • 3 parrafos eliminados
+  • Ejemplo contenido perdido:
+    - Sociedad Limitada (SL) con capital social 3.000€....
+
+
+SECCION 42: 11.2 Propiedad Intelectual
+------------------------------------------------------------
+COMPLETAMENTE PERDIDA en documento humanizado
+  • 3 parrafos eliminados
+  • Ejemplo contenido perdido:
+    - Algoritmo de Matching: Proteccion como patente de metodo o secreto comercial....
+
+
+SECCION 43: 11.3 Cumplimiento Normativo
+------------------------------------------------------------
+COMPLETAMENTE PERDIDA en documento humanizado
+  • 4 parrafos eliminados
+  • Ejemplo contenido perdido:
+    - GDPR/LOPD-GDD: Registro actividades tratamiento, delegado proteccion datos....
+
+
+SECCION 44: 11.4 Contratos y Terminos
+------------------------------------------------------------
+COMPLETAMENTE PERDIDA en documento humanizado
+  • 4 parrafos eliminados
+  • Ejemplo contenido perdido:
+    - Terminos y Condiciones: Delimitacion responsabilidades, limites plataforma....
+
+
+SECCION 45: 11.5 Seguros y Garantias
+------------------------------------------------------------
+COMPLETAMENTE PERDIDA en documento humanizado
+  • 5 parrafos eliminados
+  • Ejemplo contenido perdido:
+    - Seguro Responsabilidad Civil: Cobertura posibles reclamaciones usuarios....
+
+
+SECCION 46: 12.1 Opciones de Salida
+------------------------------------------------------------
+COMPLETAMENTE PERDIDA en documento humanizado
+  • 3 parrafos eliminados
+  • Ejemplo contenido perdido:
+    - Adquisicion por actor estrategico (año 3-5, 20-50M€ valoracion)....
+
+
+SECCION 47: 12.2 Retorno para Inversores
+------------------------------------------------------------
+COMPLETAMENTE PERDIDA en documento humanizado
+  • 3 parrafos eliminados
+  • Ejemplo contenido perdido:
+    - Escenario conservador: 69x retorno (6.900%) en 5 años....
+
+
+SECCION 48: 12.3 Compradores Potenciales
+------------------------------------------------------------
+COMPLETAMENTE PERDIDA en documento humanizado
+  • 5 parrafos eliminados
+  • Ejemplo contenido perdido:
+    - Plataformas segunda mano: Wallapop, Vinted, Facebook Marketplace....
+
+
+SECCION 49: Anexo A: CVs Equipo
+------------------------------------------------------------
+COMPLETAMENTE PERDIDA en documento humanizado
+  • 1 parrafos eliminados
+  • Ejemplo contenido perdido:
+    - CVs completos equipo fundador con experiencia relevante....
+
+
+SECCION 50: Anexo B: Estudios Mercado
+------------------------------------------------------------
+COMPLETAMENTE PERDIDA en documento humanizado
+  • 1 parrafos eliminados
+  • Ejemplo contenido perdido:
+    - Estudios complementarios, focus groups, analisis competencia....
+
+
+SECCION 51: Anexo C: Diseños Plataforma
+------------------------------------------------------------
+COMPLETAMENTE PERDIDA en documento humanizado
+  • 1 parrafos eliminados
+  • Ejemplo contenido perdido:
+    - Wireframes, mockups, user flows, especificaciones diseño....
+
+
+SECCION 52: Anexo D: Glosario
+------------------------------------------------------------
+COMPLETAMENTE PERDIDA en documento humanizado
+  • 1 parrafos eliminados
+  • Ejemplo contenido perdido:
+    - Algoritmo de Matching, Ciclo Cerrado, Compensacion Monetaria, etc....
+
+
+SECCION 53: Anexo E: Bibliografia
+------------------------------------------------------------
+COMPLETAMENTE PERDIDA en documento humanizado
+  • 1 parrafos eliminados
+  • Ejemplo contenido perdido:
+    - Fuentes estudios mercado, regulacion, analisis competencia....
+
+
+================================================================================
+ANALISIS DE FRASES REPETITIVAS
+================================================================================
+
+FRASES CON 'Ana': 40 ocurrencias
+FRASES CON 'Imagina': 8 ocurrencias
+
+EJEMPLOS DE FRASES REPETITIVAS:
+  1. PLAN DE NEGOCIO TREQE - ESTRUCTURA SEGREGADA
+Sección 1 de 9: Contexto Actual del Mercado
+Generado: 2...
+  2. Imagina que si miramos atrás una década, el mercado de segunda mano en España era muy diferente. Lo ...
+  3. Imagina que esta evolución no ha sido casual. Lo que empezó como una solución práctica ante restricc...
+  4. Imagina que la transformación responde a cambios profundos en cómo pensamos como sociedad. Hay una m...
+  5. Imagina que el mercado de segunda mano ha dejado de ser un refugio en tiempos difíciles para convert...
+
+================================================================================
+CONCLUSION
+================================================================================
+
+PROBLEMAS PRINCIPALES IDENTIFICADOS:
+1. PERDIDA MASIVA DE CONTENIDO: {total_parrafos_orig - total_parrafos_hum} parrafos eliminados
+2. FRASES REPETITIVAS: Uso excesivo de 'Ana' y 'Imagina que...'
+3. SECCIONES COMPLETAS ELIMINADAS: {len([s for s in secciones_orig if not any(sh['titulo'] == s['titulo'] for sh in secciones_hum)])} secciones perdidas
+4. TONO PROFESIONAL PERDIDO: Exceso de narrativa forzada
+
+RECOMENDACION:
+Preservar 100% del contenido original y añadir contexto humano solo
+donde sea util, manteniendo el tono profesional.

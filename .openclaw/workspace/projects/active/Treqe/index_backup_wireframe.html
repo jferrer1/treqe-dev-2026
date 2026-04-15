@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Treqe Demo · Trueque Circular 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+  <style>
+    /* ===== VARIABLES & RESET ===== */
+    :root {
+      /* Paleta Treqe */
+      --treqe-navy: #002B54;
+      --treqe-electric: #0056A3;
+      --treqe-gold: #FFC658;
+      --treqe-coral: #FF8B99;
+      --treqe-mint: #A7DBD8;
+      --treqe-lavender: #C694E1;
+      --treqe-cream: #FFF5D1;
+      
+      --bg-dark: var(--treqe-navy);
+      --bg-light: var(--treqe-cream);
+      --text-dark: #343A40;
+      --text-light: #FFFFFF;
+      --border-radius: 16px;
+      --shadow: 0 8px 32px rgba(0, 43, 84, 0.08);
+      --shadow-lg: 0 20px 60px rgba(0, 43, 84, 0.12);
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--text-dark);
+      line-height: 1.6;
+      background-color: var(--bg-light);
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    h1 { font-size: clamp(2.5rem, 5vw, 4rem); }
+    h2 { font-size: clamp(2rem, 4vw, 3rem); }
+    h3 { font-size: clamp(1.5rem, 3vw, 2.2rem); }
+
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    section {
+      padding: 80px 0;
+    }
+
+    /* ===== HEADER & NAVIGATION ===== */
+    header {
+      background: var(--treqe-navy);
+      color: var(--text-light);
+      padding: 20px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0, 43, 84, 0.1);
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 2.2rem;
+      color: var(--text-light);
+      text-transform: lowercase;
+      letter-spacing: -0.03em;
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: var(--treqe-gold);
+    }
+
+    .nav-main {
+      display: flex;
+      gap: 40px;
+      position: relative;
+    }
+
+    .nav-item {
+      position: relative;
+    }
+
+    .nav-link {
+      color: var(--text-light);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 8px 12px;
+      border-radius: 4px;
+      transition: var(--transition);
+      opacity: 0.9;
+    }
+
+    .nav-link:hover {
+      opacity: 1;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--treqe-gold);
+    }
+
+    /* Mega menu for categories */
+    .mega-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 800px;
+      background: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-lg);
+      padding: 30px;
+      display: none;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      z-index: 1001;
+    }
+
+    .nav-item:hover .mega-menu {
+      display: grid;
+    }
+
+    .mega-category {
+      margin-bottom: 20px;
+    }
+
+    .mega-category h4 {
+      color: var(--treqe-navy);
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .mega-category ul {
+      list-style: none;
+    }
+
+    .mega-category li {
+      margin-bottom: 8px;
+    }
+
+    .mega-category a {
+      color: var(--text-dark);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: var(--transition);
+      padding: 4px 8px;
+      border-radius: 4px;
+      display: block;
+    }
+
+    .mega-category a:hover {
+      background: rgba(0, 43, 84, 0.05);
+      color: var(--treqe-electric);
+    }
+
+    /* Mobile menu toggle */
+    .mobile-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      cursor: pointer;
+    }
+
+    .mobile-toggle span {
+      width: 25px;
+      height: 2px;
+      background: var(--text-light);
+      transition: var(--transition);
+    }
+
+    /* ===== HERO SECTION ===== */
+    .hero {
+      background: linear-gradient(135deg, rgba(0, 43, 84, 0.95), rgba(0, 86, 163, 0.9));
+      color: var(--text-light);
+      padding: 120px 0;
+      text-align: center;
+    }
+
+    .hero h1 {
+      margin-bottom: 20px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.3rem;
+      max-width: 700px;
+      margin: 0 auto 40px;
+      opacity: 0.95;
+      line-height: 1.5;
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 60px;
+      flex-wrap: wrap;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--treqe-gold);
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      opacity: 0.8;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* ===== CATEGORIES GRID ===== */
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .category-card {
+      background: white;
+      border-radius: var(--border-radius);
+      padding: 30px;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .category-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .category-icon {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    .category-card h3 {
+      color: var(--treqe-navy);
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+    }
+
+    .subcategories {
+      margin-top: 15px;
+    }
+
+    .subcategory-tag {
+      display: inline-block;
+      background: rgba(0, 86, 163, 0.1);
+      color: var(--treqe-electric);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      margin: 0 6px 6px 0;
+    }
+
+    /* ===== PRODUCTS & FILTERS ===== */
+    .filters-container {
+      background: white;
+      border-radius: var(--border-radius);
+      padding: 25px;
+      margin-bottom: 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .filters-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      align-items: end;
+    }
+
+    .filter-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--treqe-navy);
+      font-size: 0.9rem;
+    }
+
+    select, input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.95rem;
+      background: white;
+    }
+
+    .toggle-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 24px;
+    }
+
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .toggle-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      border-radius: 24px;
+      transition: var(--transition);
+    }
+
+    .toggle-slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      border-radius: 50%;
+      transition: var(--transition);
+    }
+
+    input:checked + .toggle-slider {
+      background-color: var(--treqe-gold);
+    }
+
+    input:checked + .toggle-slider:before {
+      transform: translateX(26px);
+    }
+
+    .k-selector {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .k-button {
+      padding: 8px 16px;
+      border: 1px solid #ddd;
+      border-radius: 20px;
+      background: white;
+      cursor: pointer;
+      transition: var(--transition);
+      font-weight: 600;
+    }
+
+    .k-button.active {
+      background: var(--treqe-electric);
+      color: white;
+      border-color: var(--treqe-electric);
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .product-image {
+      height: 200px;
+      background: #f5f5f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: #ccc;
+    }
+
+    .product-info {
+      padding: 20px;
+    }
+
+    .product-category {
+      display: inline-block;
+      background: rgba(0, 86, 163, 0.1);
+      color: var(--treqe-electric);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      margin-bottom: 10px;
+    }
+
+    .product-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--treqe-navy);
+      margin: 10px 0;
+    }
+
+    .product-user {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px solid #eee;
+    }
+
+    .user-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--treqe-mint);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+
+    .user-reputation {
+      margin-left: auto;
+      font-weight: 600;
+      color: var(--treqe-gold);
+    }
+
+    /* ===== EXCHANGE VISUALIZATION ===== */
+    .exchange-section {
+      background: var(--treqe-navy);
+      color: var(--text-light);
+    }
+
+    .exchange-section h2 {
+      color: var(--text-light);
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .exchange-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .exchange-visual {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: var(--border-radius);
+      padding: 40px;
+      text-align: center;
+    }
+
+    .exchange-circle {
+      width: 300px;
+      height: 300px;
+      margin: 0 auto 30px;
+      position: relative;
+    }
+
+    .circle-node {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      background: var(--treqe-gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--treqe-navy);
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .circle-line {
+      position: absolute;
+      height: 2px;
+      background: var(--treqe-mint);
+      transform-origin: 0 0;
+    }
+
+    .exchange-info {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: var(--border-radius);
+      padding: 30px;
+    }
+
+    .exchange-meta {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .meta-item {
+      text-align: center;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--text-dark);
+      color: var(--text-light);
+      padding: 60px 0 30px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 50px;
+      margin-bottom: 50px;
+    }
+
+    .footer-col h4 {
+      color: var(--treqe-gold);
+      margin-bottom: 20px;
+      font-size: 1.2rem;
+    }
+
+    .footer-col a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 10px;
+      transition: var(--transition);
+    }
+
+    .footer-col a:hover {
+      color: var(--treqe-gold);
+      padding-left: 5px;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .nav-main {
+        gap: 20px;
+      }
+      .mega-menu {
+        width: 700px;
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .exchange-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+        gap: 20px;
+      }
+      .nav-main {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 20px;
+      }
+      .nav-main.active {
+        display: flex;
+      }
+      .nav-item {
+        width: 100%;
+      }
+      .mega-menu {
+        position: static;
+        width: 100%;
+        display: none;
+        margin-top: 10px;
+      }
+      .mobile-toggle {
+        display: flex;
+        position: absolute;
+        top: 20px;
+        right: 24px;
+      }
+      .hero {
+        padding: 80px 0;
+      }
+      .hero-stats {
+        gap: 20px;
+      }
+      .categories-grid {
+        grid-template-columns: 1fr;
+      }
+      .filters-row {
+        grid-template-columns: 1fr;
+      }
+      .exchange-circle {
+        width: 250px;
+        height: 250px;
+      }
+    }
+
+    /* ===== UTILITY ===== */
+    .btn {
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: var(--transition);
+      border: none;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .btn-primary {
+      background: var(--treqe-gold);
+      color: var(--treqe-navy);
+    }
+
+    .btn-primary:hover {
+      background: var(--treqe-electric);
+      color: var(--text-light);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-light);
+      border: 2px solid var(--text-light);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-subtitle {
+      font-size: 1.1rem;
+      color: var(--treqe-electric);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 15px;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 40px;
+      color: var(--treqe-electric);
+      font-size: 1.2rem;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container header-container">
+      <a href="#" class="logo">treqe<span>.</span></a>
+      
+      <div class="mobile-toggle" id="mobileToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <nav class="nav-main" id="navMain">
+        <div class="nav-item">
+          <a href="#categories" class="nav-link">Categorías</a>
+          <div class="mega-menu" id="categoriesMenu">
+            <!-- Filled by JavaScript -->
+          </div>
+        </div>
+        <a href="#how-it-works" class="nav-link">Cómo Funciona</a>
+        <a href="#exchange" class="nav-link">Trueque Circular</a>
+        <a href="#demo" class="nav-link">Demo</a>
+        <a href="#contact" class="nav-link">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <h1>Trueque circular en <span style="color: var(--treqe-gold)">todas las categorías</span></h1>
+      <p class="hero-subtitle">
+        Intercambia lo que tienes por lo que quieres, sin dinero obligatorio. Nuestro algoritmo encuentra círculos de trueque multilaterales (k=2, k=3, k=4...) en cualquier categoría Wallapop.
+      </p>
+      <button class="btn btn-primary" id="startDemo">Iniciar Demo</button>
+      
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-number" id="totalUsers">1,250</span>
+          <span class="stat-label">Trequeros activos</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" id="totalExchanges">342</span>
+          <span class="stat-label">Intercambios</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" id="averageK">2.8</span>
+          <span class="stat-label">k promedio</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" id="successRate">87%</span>
+          <span class="stat-label">Tasa éxito</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories -->
+  <section id="categories" class="container">
+    <div class="section-header">
+      <p class="section-subtitle">Todas las categorías Wallapop</p>
+      <h2>Trueque circular en 10 categorías principales</h2>
+      <p>Competimos en todas las categorías, con matching circular como diferencial.</p>
+    </div>
+    
+    <div class="categories-grid" id="categoriesGrid">
+      <!-- Filled by JavaScript -->
+    </div>
+  </section>
+
+  <!-- Products & Filters -->
+  <section id="demo" class="container">
+    <div class="section-header">
+      <p class="section-subtitle">Demo interactiva</p>
+      <h2>Simulador de trueque circular</h2>
+      <p>Filtra por categoría, subcategoría, y selecciona k mínimo (tamaño del círculo).</p>
+    </div>
+
+    <div class="filters-container">
+      <div class="filters-row">
+        <div class="filter-group">
+          <label>Categoría</label>
+          <select id="categoryFilter">
+            <option value="">Todas las categorías</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Subcategoría</label>
+          <select id="subcategoryFilter">
+            <option value="">Todas las subcategorías</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Tamaño del círculo (k mínimo)</label>
+          <div class="k-selector">
+            <button class="k-button active" data-k="2">k=2</button>
+            <button class="k-button" data-k="3">k=3</button>
+            <button class="k-button" data-k="4">k=4</button>
+            <button class="k-button" data-k="max">Máximo</button>
+          </div>
+        </div>
+        <div class="filter-group">
+          <div class="toggle-group">
+            <div class="toggle-switch">
+              <input type="checkbox" id="moneyToggle" checked>
+              <span class="toggle-slider"></span>
+            </div>
+            <label for="moneyToggle">Dinero opcional</label>
+          </div>
+          <p style="font-size: 0.85rem; margin-top: 5px; opacity: 0.7;">Aceptar dinero como complemento</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="products-grid" id="productsGrid">
+      <!-- Filled by JavaScript -->
+    </div>
+  </section>
+
+  <!-- Exchange Visualization -->
+  <section id="exchange" class="exchange-section">
+    <div class="container">
+      <h2>Visualización del algoritmo circular</h2>
+      
+      <div class="exchange-container">
+        <div class="exchange-visual">
+          <div class="exchange-circle" id="exchangeCircle">
+            <!-- Circle visualization drawn by JavaScript -->
+          </div>
+          <h3>Intercambio k=<span id="currentK">3</span></h3>
+          <p id="exchangeDescription">Ana (iPhone) → Carlos (Bici) → Beatriz (Sofá) → Ana</p>
+          <button class="btn btn-secondary" id="simulateMatching">Simular nuevo matching</button>
+        </div>
+        
+        <div class="exchange-info">
+          <h3>¿Cómo funciona el algoritmo?</h3>
+          <p>El sistema busca círculos de trueque multilaterales:</p>
+          <ul style="margin: 15px 0 15px 20px; opacity: 0.9;">
+            <li>Comienza con k=2 (bilateral)</li>
+            <li>Si no encuentra match, escala a k=3, k=4...</li>
+            <li>Máximo k determinado por tiempo computacional</li>
+            <li>Dinero aceptado como complemento opcional</li>
+          </ul>
+          
+          <div class="exchange-meta">
+            <div class="meta-item">
+              <div style="font-size: 1.5rem; font-weight: bold; color: var(--treqe-gold);">5%</div>
+              <div>Probabilidad k=2</div>
+            </div>
+            <div class="meta-item">
+              <div style="font-size: 1.5rem; font-weight: bold; color: var(--treqe-gold);">20%</div>
+              <div>Probabilidad k=3</div>
+            </div>
+            <div class="meta-item">
+              <div style="font-size: 1.5rem; font-weight: bold; color: var(--treqe-gold);">35%</div>
+              <div>Probabilidad k=4</div>
+            </div>
+            <div class="meta-item">
+              <div style="font-size: 1.5rem; font-weight: bold; color: var(--treqe-gold);">4x</div>
+              <div>Más probable que k=2</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4>Treqe</h4>
+          <p>Trueque circular en todas las categorías Wallapop. Algoritmo flexible (k=2 → k=n) con dinero opcional.</p>
+        </div>
+        <div>
+          <h4>Categorías</h4>
+          <a href="#categories">Motor</a>
+          <a href="#categories">Moda y Accesorios</a>
+          <a href="#categories">Tecnología</a>
+          <a href="#categories">Hogar y Jardín</a>
+        </div>
+        <div>
+          <h4>Algoritmo</h4>
+          <a href="#exchange">k=2 (bilateral)</a>
+          <a href="#exchange">k=3 (circular)</a>
+          <a href="#exchange">k=4+ (multilateral)</a>
+          <a href="#exchange">Dinero opcional</a>
+        </div>
+        <div>
+          <h4>Demo</h4>
+          <a href="#demo">Simulador</a>
+          <a href="#demo">Filtros</a>
+          <a href="#demo">Visualización</a>
+          <a href="#demo">Estadísticas</a>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>© 2026 Treqe · Trueque circular · Demo wireframe · Categorías completas Wallapop</p>
+        <p style="margin-top: 10px; font-size: 0.8rem;">Wireframe creado por el Cuarteto de Alto Rendimiento (DeepSeek + Kimi + MiniMax + Grok)</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Global data
+    let demoData = {};
+    let currentK = 3;
+    let currentExchange = 0;
+
+    // DOM Elements
+    const categoriesGrid = document.getElementById('categoriesGrid');
+    const categoriesMenu = document.getElementById('categoriesMenu');
+    const categoryFilter = document.getElementById('categoryFilter');
+    const subcategoryFilter = document.getElementById('subcategoryFilter');
+    const productsGrid = document.getElementById('productsGrid');
+    const exchangeCircle = document.getElementById('exchangeCircle');
+    const currentKElement = document.getElementById('currentK');
+    const exchangeDescription = document.getElementById('exchangeDescription');
+    const kButtons = document.querySelectorAll('.k-button');
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navMain = document.getElementById('navMain');
+    const startDemoBtn = document.getElementById('startDemo');
+    const simulateMatchingBtn = document.getElementById('simulateMatching');
+
+    // Load demo data
+    async function loadDemoData() {
+      try {
+        const response = await fetch('demo_data.json');
+        demoData = await response.json();
+        initializeApp();
+      } catch (error) {
+        console.error('Error loading demo data:', error);
+        // Fallback to inline data if fetch fails
+        demoData = window.demoDataFallback;
+        initializeApp();
+      }
+    }
+
+    // Initialize app
+    function initializeApp() {
+      updateStats();
+      renderCategories();
+      renderCategoryFilter();
+      renderProducts();
+      setupKSelector();
+      renderExchangeCircle();
+      setupEventListeners();
+    }
+
+    // Update hero stats
+    function updateStats() {
+      document.getElementById('totalUsers').textContent = demoData.stats.totalUsers.toLocaleString();
+      document.getElementById('totalExchanges').textContent = demoData.stats.totalExchanges.toLocaleString();
+      document.getElementById('averageK').textContent = demoData.stats.averageK;
+      document.getElementById('successRate').textContent = demoData.stats.successRate + '%';
+    }
+
+    // Render categories grid
+    function renderCategories() {
+      categoriesGrid.innerHTML = '';
+      categoriesMenu.innerHTML = '';
+      
+      const megaMenuColumns = [[], [], []];
+      
+      demoData.categories.forEach((category, index) => {
+        // Category card
+        const card = document.createElement('div');
+        card.className = 'category-card';
+        card.innerHTML = `
+          <div class="category-icon">${category.icon}</div>
+          <h3>${category.name}</h3>
+          <p>${category.description}</p>
+          <div class="subcategories">
+            ${category.subcategories.slice(0, 4).map(sub => 
+              `<span class="subcategory-tag">${sub}</span>`
+            ).join('')}
+            ${category.subcategories.length > 4 ? 
+              `<span class="subcategory-tag">+${category.subcategories.length - 4} más</span>` : ''
+            }
+          </div>
+        `;
+        card.addEventListener('click', () => {
+          categoryFilter.value = category.slug;
+          updateSubcategoryFilter();
+          filterProducts();
+        });
+        categoriesGrid.appendChild(card);
+
+        // Mega menu column
+        const colIndex = index % 3;
+        megaMenuColumns[colIndex].push(category);
+      });
+
+      // Build mega menu
+      megaMenuColumns.forEach(column => {
+        const colDiv = document.createElement('div');
+        colDiv.className = 'mega-category';
+        
+        column.forEach(category => {
+          colDiv.innerHTML += `
+            <h4>${category.icon} ${category.name}</h4>
+            <ul>
+              ${category.subcategories.map(sub => 
+                `<li><a href="#" data-category="${category.slug}" data-subcategory="${sub}">${sub}</a></li>`
+              ).join('')}
+            </ul>
+          `;
+        });
+        
+        categoriesMenu.appendChild(colDiv);
+      });
+
+      // Add event listeners to mega menu links
+      categoriesMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const category = link.getAttribute('data-category');
+          const subcategory = link.getAttribute('data-subcategory');
+          categoryFilter.value = category;
+          updateSubcategoryFilter();
+          subcategoryFilter.value = subcategory;
+          filterProducts();
+        });
+      });
+    }
+
+    // Render category filter dropdown
+    function renderCategoryFilter() {
+      categoryFilter.innerHTML = '<option value="">Todas las categorías</option>';
+      demoData.categories.forEach(category => {
+        const option = document.createElement('option');
+        option.value = category.slug;
+        option.textContent = `${category.icon} ${category.name}`;
+        categoryFilter.appendChild(option);
+      });
+    }
+
+    // Update subcategory filter based on selected category
+    function updateSubcategoryFilter() {
+      const selectedCategory = categoryFilter.value;
+      subcategoryFilter.innerHTML = '<option value="">Todas las subcategorías</option>';
+      
+      if (selectedCategory) {
+        const category = demoData.categories.find(c => c.slug === selectedCategory);
+        if (category) {
+          category.subcategories.forEach(sub => {
+            const option = document.createElement('option');
+            option.value = sub;
+            option.textContent = sub;
+            subcategoryFilter.appendChild(option);
+          });
+        }
+      }
+    }
+
+    // Render products
+    function renderProducts(products = demoData.products) {
+      productsGrid.innerHTML = '';
+      
+      if (products.length === 0) {
+        productsGrid.innerHTML = `
+          <div class="loading" style="grid-column: 1 / -1;">
+            <p>No hay productos que coincidan con los filtros seleccionados.</p>
+            <p>Intenta con un k menor o diferentes categorías.</p>
+          </div>
+        `;
+        return;
+      }
+      
+      products.forEach(product => {
+        const user = demoData.users.find(u => u.id === product.userId);
+        const category = demoData.categories.find(c => c.slug === product.category);
+        
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.innerHTML = `
+          <div class="product-image" style="background: ${getCategoryColor(product.category)}">
+            ${category ? category.icon : '📦'}
+          </div>
+          <div class="product-info">
+            <span class="product-category">${product.subcategory}</span>
+            <h3>${product.title}</h3>
+            <p>${product.description}</p>
+            <div class="product-value">${product.value}€</div>
+            <div style="font-size: 0.9rem; color: #666; margin-top: 10px;">
+              <strong>Busca:</strong> ${product.wantedCategory} (${product.wantedValueRange[0]}-${product.wantedValueRange[1]}€)
+            </div>
+            <div class="product-user">
+              <div class="user-avatar">${user ? user.avatar : '👤'}</div>
+              <div>
+                <div style="font-weight: 600;">${user ? user.name : 'Usuario'}</div>
+                <div style="font-size: 0.85rem; color: #888;">${product.city}</div>
+              </div>
+              <div class="user-reputation">${user ? user.reputation : '100'}★</div>
+            </div>
+          </div>
+        `;
+        productsGrid.appendChild(card);
+      });
+    }
+
+    // Filter products based on selected filters
+    function filterProducts() {
+      const selectedCategory = categoryFilter.value;
+      const selectedSubcategory = subcategoryFilter.value;
+      
+      let filteredProducts = demoData.products;
+      
+      if (selectedCategory) {
+        filteredProducts = filteredProducts.filter(p => p.category === selectedCategory);
+      }
+      
+      if (selectedSubcategory) {
+        filteredProducts = filteredProducts.filter(p => p.subcategory === selectedSubcategory);
+      }
+      
+      // Simulate k filtering
+      if (currentK === 2) {
+        // For k=2, show products with wanted categories that exist
+        filteredProducts = filteredProducts.filter(p => 
+          demoData.products.some(other => 
+            other.category === p.wantedCategory && 
+            other.id !== p.id
+          )
+        );
+      } else if (currentK === 3) {
+        // For k=3, filter to show products that could form triangles
+        filteredProducts = filteredProducts.slice(0, Math.min(6, filteredProducts.length));
+      }
+      
+      renderProducts(filteredProducts);
+    }
+
+    // Get color for category
+    function getCategoryColor(categorySlug) {
+      const colors = {
+        'motor': '#3B82F6',
+        'moda-accesorios': '#8B5CF6',
+        'tecnologia': '#10B981',
+        'hogar-jardin': '#F59E0B',
+        'deporte-ocio': '#EF4444',
+        'bebes-ninos': '#EC4899',
+        'inmobiliaria': '#6366F1',
+        'servicios': '#14B8A6',
+        'cultura-entretenimiento': '#F97316',
+        'industria-profesional': '#64748B'
+      };
+      return colors[categorySlug] || '#6B7280';
+    }
+
+    // Setup K selector
+    function setupKSelector() {
+      kButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          kButtons.forEach(btn => btn.classList.remove('active'));
+          button.classList.add('active');
+          currentK = button.getAttribute('data-k') === 'max' ? 4 : parseInt(button.getAttribute('data-k'));
+          currentKElement.textContent = currentK;
+          filterProducts();
+          renderExchangeCircle();
+        });
+      });
+    }
+
+    // Render exchange circle visualization
+    function renderExchangeCircle() {
+      exchangeCircle.innerHTML = '';
+      
+      const radius = 120;
+      const centerX = 150;
+      const centerY = 150;
+      const angleStep = (2 * Math.PI) / currentK;
+      
+      // Draw lines
+      for (let i = 0; i < currentK; i++) {
+        const angle1 = i * angleStep;
+        const angle2 = ((i + 1) % currentK) * angleStep;
+        
+        const x1 = centerX + radius * Math.cos(angle1);
+        const y1 = centerY + radius * Math.sin(angle1);
+        const x2 = centerX + radius * Math.cos(angle2);
+        const y2 = centerY + radius * Math.sin(angle2);
+        
+        const line = document.createElement('div');
+        line.className = 'circle-line';
+        line.style.width = `${Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2))}px`;
+        line.style.left = `${x1}px`;
+        line.style.top = `${y1}px`;
+        line.style.transform = `rotate(${Math.atan2(y2 - y1, x2 - x1)}rad)`;
+        exchangeCircle.appendChild(line);
+      }
+      
+      // Draw nodes
+      for (let i = 0; i < currentK; i++) {
+        const angle = i * angleStep;
+        const x = centerX + radius * Math.cos(angle);
+        const y = centerY + radius * Math.sin(angle);
+        
+        const node = document.createElement('div');
+        node.className = 'circle-node';
+        node.style.left = `${x - 30}px`;
+        node.style.top = `${y - 30}px`;
+        node.textContent = String.fromCharCode(65 + i); // A, B, C, ...
+        exchangeCircle.appendChild(node);
+      }
+      
+      // Update exchange description
+      const exchange = demoData.exchanges.find(e => e.k === currentK) || demoData.exchanges[0];
+      if (exchange) {
+        exchangeDescription.textContent = exchange.description;
+      }
+    }
+
+    // Simulate new matching
+    function simulateNewMatching() {
+      const exchanges = demoData.exchanges;
+      currentExchange = (currentExchange + 1) % exchanges.length;
+      const exchange = exchanges[currentExchange];
+      
+      currentK = exchange.k;
+      currentKElement.textContent = currentK;
+      
+      // Update K buttons
+      kButtons.forEach(button => {
+        const buttonK = button.getAttribute('data-k') === 'max' ? 4 : parseInt(button.getAttribute('data-k'));
+        button.classList.toggle('active', buttonK === currentK);
+      });
+      
+      exchangeDescription.textContent = exchange.description;
+      renderExchangeCircle();
+      filterProducts();
+    }
+
+    // Setup event listeners
+    function setupEventListeners() {
+      categoryFilter.addEventListener('change', () => {
+        updateSubcategoryFilter();
+        filterProducts();
+      });
+      
+      subcategoryFilter.addEventListener('change', filterProducts);
+      
+      mobileToggle.addEventListener('click', () => {
+        navMain.classList.toggle('active');
+      });
+      
+      startDemoBtn.addEventListener('click', () => {
+        document.getElementById('demo').scrollIntoView({ behavior: 'smooth' });
+        categoryFilter.value = '';
+        subcategoryFilter.value = '';
+        filterProducts();
+      });
+      
+      simulateMatchingBtn.addEventListener('click', simulateNewMatching);
+      
+      // Close mobile menu when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!navMain.contains(e.target) && !mobileToggle.contains(e.target)) {
+          navMain.classList.remove('active');
+        }
+      });
+    }
+
+    // Fallback data in case JSON fails to load
+    window.demoDataFallback = {
+      categories: [
+        {
+          slug: "motor",
+          name: "Motor",
+          icon: "🚗",
+          subcategories: ["Coches", "Motos", "Furgonetas", "Accesorios motor"],
+          description: "Vehículos y accesorios de motor para intercambio circular."
+        }
+      ],
+      products: [
+        {
+          id: 1,
+          title: "Producto de ejemplo",
+          category: "motor",
+          subcategory: "Coches",
+          value: 1000,
+          city: "Madrid",
+          userId: 1,
+          description: "Descripción del producto.",
+          image: "#",
+          condition: "Nuevo",
+          wantedCategory: "tecnologia",
+          wantedSubcategory: "Móviles y telefonía",
+          wantedValueRange: [800, 1200]
+        }
+      ],
+      exchanges: [
+        {
+          id: "ex1",
+          type: "circular",
+          k: 3,
+          participants: [1, 2, 3],
+          products: [1, 2, 3],
+          status: "completed",
+          valueCreated: 2650,
+          description: "Intercambio circular de ejemplo"
+        }
+      ],
+      stats: {
+        totalUsers: 1250,
+        totalExchanges: 342,
+        averageK: 2.8,
+        successRate: 87,
+        valueCreated: 425800,
+        co2Saved: 12.5
+      }
+    };
+
+    // Initialize when DOM is loaded
+    document.addEventListener('DOMContentLoaded', loadDemoData);
+  </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+DOCUMENTO CON EXPLICACIONES EXTENDIDAS
+Fecha: 2026-03-16 09:36:00
+Documento base: Plan_Negocio_Treqe_CORREGIDO_2026.docx
+Documento con explicaciones: Plan_Negocio_Treqe_CON_EXPLICACIONES_EXTENDIDAS_2026.docx
+
+ENFOQUE UTILIZADO:
+============================================================
+1. Se preservó INTACTO el documento base completo
+2. Las explicaciones extendidas se agregaron como APÉNDICE
+3. No se modificó NINGÚN contenido existente
+4. El apéndice contiene detalles técnicos profundizados
+5. Estructura original 100% preservada
+
+CONTENIDO DEL APÉNDICE:
+============================================================
+1. Sistema de Ofertas Estructuradas:
+   • Mecanismo de generación de ofertas
+   • Ejemplo práctico con 4 usuarios
+   • Ventajas cuantificadas vs. chat tradicional
+
+2. Sistema Combinado de Garantías:
+   • Fórmula de scoring detallada
+   • Ejemplo de cálculo
+   • 4 niveles de reputación con beneficios
+
+3. Arquitectura Optimizada:
+   • Flujo de 6 pasos del sistema
+   • Stack tecnológico completo
+   • Justificación API REST vs. WebSocket

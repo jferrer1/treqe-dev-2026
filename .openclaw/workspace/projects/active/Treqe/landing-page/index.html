@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treqe - Intercambios circulares imposibles, ahora posibles</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #10b981;
+            --dark: #1f2937;
+            --light: #f9fafb;
+            --gray: #6b7280;
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: #f8fafc;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            padding: 24px 0;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            background: var(--primary);
+            color: white;
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .cta-button {
+            background: var(--primary);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .cta-button:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            color: var(--dark);
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .button-primary {
+            background: var(--primary);
+            color: white;
+            padding: 16px 36px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+
+        .button-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .button-secondary {
+            background: white;
+            color: var(--primary);
+            padding: 16px 36px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            border: 2px solid var(--primary);
+            transition: all 0.3s;
+        }
+
+        .button-secondary:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Waitlist Section */
+        .waitlist {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .waitlist-content {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .waitlist h2 {
+            font-size: 40px;
+            margin-bottom: 16px;
+            color: var(--dark);
+        }
+
+        .waitlist p {
+            color: var(--gray);
+            margin-bottom: 40px;
+            font-size: 18px;
+        }
+
+        .waitlist-form {
+            background: var(--light);
+            padding: 40px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-button {
+            width: 100%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .form-button:hover {
+            background: var(--primary-dark);
+        }
+
+        .waitlist-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            color: var(--gray);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Problem Solution */
+        .problem-solution {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 40px;
+            margin-bottom: 60px;
+            color: var(--dark);
+        }
+
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .card.problem {
+            border-top: 6px solid #ef4444;
+        }
+
+        .card.solution {
+            border-top: 6px solid var(--secondary);
+        }
+
+        .card h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .card h3 i {
+            font-size: 24px;
+        }
+
+        .card.problem h3 {
+            color: #ef4444;
+        }
+
+        .card.solution h3 {
+            color: var(--secondary);
+        }
+
+        .card ul {
+            list-style: none;
+        }
+
+        .card li {
+            margin-bottom: 16px;
+            padding-left: 32px;
+            position: relative;
+        }
+
+        .card li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-size: 24px;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .step {
+            text-align: center;
+            padding: 30px;
+            background: var(--light);
+            border-radius: var(--radius);
+            transition: transform 0.3s;
+        }
+
+        .step:hover {
+            transform: translateY(-10px);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+
+        .step h4 {
+            font-size: 22px;
+            margin-bottom: 16px;
+            color: var(--dark);
+        }
+
+        /* Demo */
+        .demo {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+        }
+
+        .demo-content {
+            text-align: center;
+        }
+
+        .demo-visual {
+            background: white;
+            padding: 40px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-top: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .exchange-cycle {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .user-card {
+            background: var(--light);
+            padding: 20px;
+            border-radius: var(--radius);
+            text-align: center;
+            min-width: 200px;
+        }
+
+        .user-card h5 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .arrow {
+            font-size: 24px;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h4 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-section a {
+            color: #d1d5db;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #374151;
+            color: #9ca3af;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 40px;
+            }
+            
+            .comparison {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .waitlist-stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .exchange-cycle {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">T</div>
+                <span>Treqe</span>
+            </a>
+            <div class="nav-links">
+                <a href="#problem">El Problema</a>
+                <a href="#solution">La Solución</a>
+                <a href="#how">Cómo Funciona</a>
+                <a href="#demo">Demo</a>
+                <a href="#waitlist" class="cta-button">Lista de Espera</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Intercambios <span>imposibles</span>, ahora <span>posibles</span></h1>
+            <p>Treqe resuelve intercambios circulares de 3+ personas que son imposibles en el mercado tradicional. Conectamos lo que tienes con lo que quieres, aunque nadie más lo haga directamente.</p>
+            <div class="hero-buttons">
+                <a href="#waitlist" class="button-primary">
+                    <i class="fas fa-rocket"></i> Unirse a la Lista de Espera
+                </a>
+                <a href="#demo" class="button-secondary">
+                    <i class="fas fa-play-circle"></i> Ver Demo
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Waitlist Section -->
+    <section class="waitlist" id="waitlist">
+        <div class="container">
+            <div class="waitlist-content">
+                <h2>Sé de los primeros en usar Treqe</h2>
+                <p>Únete a nuestra lista de espera para acceso prioritario al lanzamiento beta. Los primeros 100 usuarios tendrán comisiones 0% durante 6 meses.</p>
+                
+                <div class="waitlist-form">
+                    <form id="waitlistForm">
+                        <div class="form-group">
+                            <label for="name">Nombre completo</label>
+                            <input type="text" id="name" name="name" placeholder="Tu nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="item">¿Qué artículo valioso tienes para intercambiar?</label>
+                            <input type="text" id="item" name="item" placeholder="Ej: iPhone 13, MacBook Air, Bicicleta de montaña..." required>
+                        </div>
+                        <button type="submit" class="form-button">
+                            <i class="fas fa-paper-plane"></i> Unirse a la Lista de Espera
+                        </button>
+                    </form>
+                    <p style="margin-top: 16px; font-size: 14px; color: var(--gray);">
+                        <i class="fas fa-lock"></i> Tu información está segura. No compartiremos tu email con terceros.
+                    </p>
+                </div>
+
+                <div class="waitlist-stats">
+                    <div class="stat">
+                        <div class="stat-number" id="waitlistCount">247</div>
+                        <div class="stat-label">Personas en lista</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">15x</div>
+                        <div class="stat-label">Más intercambios</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">0%</div>
+                        <div class="stat-label">Comisión early</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem & Solution -->
+    <section class="problem-solution" id="problem">
+        <div class="container">
+            <h2 class="section-title">El Problema vs Nuestra Solución</h2>
+            <div class="comparison">
+                <div class="card problem">
+                    <h3><i class="fas fa-times-circle"></i> Mercado Tradicional</h3>
+                    <ul>
+                        <li><strong>Solo intercambios 1:1</strong> (k=2)</li>
+                        <li><strong>5% probabilidad</strong> de encontrar intercambio</li>
+                        <li>Necesitas encontrar a alguien que QUIERA lo que tienes y TENGA lo que quieres</li>
+                        <li>Múltiples ventas/compras separadas</li>
+                        <li>Comisiones dobles (vender + comprar)</li>
+                        <li>Tiempo perdido buscando coincidencias perfectas
+                        <li><strong>Resultado:</strong> 95% de intercambios imposibles</li>
+                    </ul>
+                </div>
+                <div class="card solution" id="solution">
+                    <h3><i class="fas fa-check-circle"></i> Con Treqe</h3>
+                    <ul>
+                        <li><strong>Intercambios circulares 3+ personas</strong> (k=3, k=4, k=5...)</li>
+                        <li><strong>75% probabilidad</strong> de encontrar intercambio</li>
+                        <li>Encuentra ciclos completos: A→B→C→A</li>
+                        <li>Un solo intercambio gestionado</li>
+                        <li>Una comisión única (4-8%)</li>
+                        <li>Algoritmo encuentra coincidencias automáticamente</li>
+                        <li><strong>Resultado:</strong> 15x más intercambios posibles</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how">
+        <div class="container">
+            <h2 class="section-title">Cómo Funciona Treqe</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h4>Registra tu artículo</h4>
+                    <p>Sube foto, descripción y valor estimado del artículo que quieres intercambiar.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h4>Define lo que buscas</h4>
+                    <p>Especifica qué artículo quieres recibir a cambio y tu rango de valor aceptable.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h4>Nuestro algoritmo busca</h4>
+                    <p>Encuentra ciclos de intercambio con otras personas que formen un círculo completo.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h4>Intercambio gestionado</h4>
+                    <p>Coordinamos envíos, pagos de diferencias y garantías para todos los participantes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo -->
+    <section class="demo" id="demo">
+        <div class="container">
+            <div class="demo-content">
+                <h2 class="section-title">Ejemplo Práctico</h2>
+                <p>Este intercambio es <strong>imposible</strong> en el mercado tradicional pero <strong>posible</strong> con Treqe:</p>
+                
+                <div class="demo-visual">
+                    <div class="exchange-cycle">
+                        <div class="user-card">
+                            <h5>Ana</h5>
+                            <p><strong>Tiene:</strong> iPhone 13 (€600)</p>
+                            <p><strong>Quiere:</strong> MacBook Air</p>
+                        </div>
+                        <div class="arrow">→</div>
+                        <div class="user-card">
+                            <h5>Carlos</h5>
+                            <p><strong>Tiene:</strong> MacBook Air (€800)</p>
+                            <p><strong>Quiere:</strong> Bicicleta</p>
+                        </div>
+                        <div class="arrow">→</div>
+                        <div class="user-card">
+                            <h5>Beatriz</h5>
+                            <p><strong>Tiene:</strong> Bicicleta (€400)</p>
+                            <p><strong>Quiere:</strong> iPhone 13</p>
+                        </div>
+                        <div class="arrow">↻</div>
+                    </div>
+                    
+                    <div style="margin-top: 30px; padding: 20px; background: #f0f9ff; border-radius: 10px;">
+                        <h4 style="color: var(--primary); margin-bottom: 15px;">Resultado del intercambio:</h4>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                            <div style="background: white; padding: 15px; border-radius: 8px;">
+                                <p><strong>Ana:</strong> Recibe MacBook, paga €208 (€200 diferencia + €8 comisión 4%)</p>
+                            </div>
+                            <div style="background: white; padding: 15px; border-radius: 8px;">
+                                <p><strong>Carlos:</strong> Recibe Bicicleta + €376 (€400 diferencia - €24 comisión 6%)</p>
+                            </div>
+                            <div style="background: white; padding: 15px; border-radius: 8px;">
+                                <p><strong>Beatriz:</strong> Recibe iPhone, paga €212 (€200 diferencia + €12 comisión 6%)</p>
+                            </div>
+                        </div>
+                        <p style="margin-top: 15px; font-size: 14px; color: var(--gray);">
+                            <i class="fas fa-calculator"></i> Sistema económicamente cerrado: Total pagos (€420) = Total recepciones (€376) + Comisiones (€44)
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="waitlist" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white;">
+        <div class="container">
+            <div class="waitlist-content">
+                <h2 style="color: white;">¿Listo para intercambiar lo imposible?</h2>
+                <p style="color: rgba(255, 255, 255, 0.9);">Únete a la revolución del intercambio circular. Acceso beta limitado a los primeros 500 usuarios.</p>
+                
+                <div class="waitlist-form" style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);">
+                    <form id="finalWaitlistForm">
+                        <div class="form-group">
+                            <label for="finalEmail" style="color: white;">Tu email</label>
+                            <input type="email" id="finalEmail" name="email" placeholder="tu@email.com" required style="background: rgba(255, 255, 255, 0.9);">
+                        </div>
+                        <button type="submit" class="form-button" style="background: white; color: var(--primary);">
+                            <i class="fas fa-rocket"></i> Obtener Acceso Prioritario
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="waitlist-stats" style="color: white;">
+                    <div class="stat">
+                        <div class="stat-number" style="color: white;">500</div>
+                        <div class="stat-label" style="color: rgba(255, 255, 255, 0.8);">Plazas beta</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number" style="color: white;">0%</div>
+                        <div class="stat-label" style="color: rgba(255, 255, 255, 0.8);">Comisión 6 meses</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number" style="color: white;">Q2 2026</div>
+                        <div class="stat-label" style="color: rgba(255, 255, 255, 0.8);">Lanzamiento</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Treqe</h4>
+                    <p>Intercambios circulares imposibles, ahora posibles. Revolucionamos el mercado de segunda mano.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Enlaces</h4>
+                    <a href="#problem">El Problema</a>
+                    <a href="#solution">La Solución</a>
+                    <a href="#how">Cómo Funciona</a>
+                    <a href="#demo">Demo</a>
+                    <a href="#waitlist">Lista de Espera</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <a href="#">Términos de Servicio</a>
+                    <a href="#">Política de Privacidad</a>
+                    <a href="#">Garantías</a>
+                    <a href="#">Comisiones</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <a href="mailto:hola@treqe.es">hola@treqe.es</a>
+                    <a href="#">Twitter / X</a>
+                    <a href="#">LinkedIn</a>
+                    <a href="#">Instagram</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 Treqe. Todos los derechos reservados. Intercambios circulares revolucionarios.</p>
+                <p style="margin-top: 10px; font-size: 12px;">Esta es una landing page demo para el proyecto Treqe. El backend y algoritmo están completamente funcionales.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simular contador de lista de espera
+        let waitlistCount = 247;
+        const countElement = document.getElementById('waitlistCount');
+        
+        // Incrementar contador cada 30 segundos
+        setInterval(() => {
+            waitlistCount += Math.floor(Math.random() * 3) + 1;
+            countElement.textContent = waitlistCount;
+            
+            // Efecto visual
+            countElement.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                countElement.style.transform = 'scale(1)';
+            }, 300);
+        }, 30000);
+        
+        // Manejo de formularios
+        document.getElementById('waitlistForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const item = document.getElementById('item').value;
+            
+            // Simular envío
+            alert(`¡Gracias ${name}! Te has unido a la lista de espera de Treqe.\n\nRegistramos que quieres intercambiar: "${item}"\nTe contactaremos en ${email} cuando estemos listos.`);
+            
+            // Incrementar contador
+            waitlistCount += 1;
+            countElement.textContent = waitlistCount;
+            
+            // Limpiar formulario
+            this.reset();
+        });
+        
+        document.getElementById('finalWaitlistForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('finalEmail').value;
+            
+            // Simular envío
+            alert(`¡Excelente! Has solicitado acceso prioritario a la beta de Treqe.\n\nTe contactaremos en ${email} con los próximos pasos.\n\n#${waitlistCount + 1} en la lista de espera`);
+            
+            // Incrementar contador
+            waitlistCount += 1;
+            countElement.textContent = waitlistCount;
+            
+            // Limpiar formulario
+            this.reset();
+        });
+        
+        // Smooth scroll para enlaces internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Efecto de escritura en el hero
+        const heroTitle = document.querySelector('.hero h1');
+        const originalText = heroTitle.innerHTML;
+        heroTitle.innerHTML = '';
+        
+        let i = 0;
+        const typeWriter = () => {
+            if (i < originalText.length) {
+                heroTitle.innerHTML += originalText.charAt(i);
+                i++;
+                setTimeout(typeWriter, 30);
+            }
+        };
+        
+        // Iniciar efecto después de 500ms
+        setTimeout(typeWriter, 500);
+    </script>
+</body>
+</html>

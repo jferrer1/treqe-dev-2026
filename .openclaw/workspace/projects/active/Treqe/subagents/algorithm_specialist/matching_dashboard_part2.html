@@ -1,0 +1,415 @@
+510</div>
+                        <div class="metric-label">Valor realmente intercambiado</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">Valor/Usuario</div>
+                        <div class="metric-value">€170</div>
+                        <div class="metric-label">Mejor balance k=3</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card 5: Escalabilidad por Fase -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">🚀</div>
+                    <div>
+                        <div class="card-title">Roadmap de Escalabilidad</div>
+                        <div class="card-subtitle">Plan de crecimiento por fase de desarrollo</div>
+                    </div>
+                </div>
+                
+                <div class="metric-grid">
+                    <div class="metric">
+                        <div class="metric-label">MVP (0-6m)</div>
+                        <div class="metric-value">k=2-3</div>
+                        <div class="metric-label">Algoritmo exacto</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">Crecimiento (6-18m)</div>
+                        <div class="metric-value">k=2-4</div>
+                        <div class="metric-label">Heurísticas greedy</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">Escala (18-36m)</div>
+                        <div class="metric-value">k=2-5</div>
+                        <div class="metric-label">ML + aproximaciones</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">Plataforma (36m+)</div>
+                        <div class="metric-value">k=2-6</div>
+                        <div class="metric-label">Sistema híbrido</div>
+                    </div>
+                </div>
+                
+                <div class="recommendation">
+                    <div class="recommendation-title">📅 Timeline Realista</div>
+                    <div class="recommendation-text">
+                        <strong>MVP en 3-4 meses</strong> con k=2-3. k=4 solo después de optimizaciones y con menos de 500 usuarios.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card 6: Recomendaciones Técnicas -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">🎯</div>
+                    <div>
+                        <div class="card-title">Recomendaciones Técnicas</div>
+                        <div class="card-subtitle">Configuración óptima para implementación</div>
+                    </div>
+                </div>
+                
+                <div class="recommendation">
+                    <div class="recommendation-title">⚙️ Configuración MVP Recomendada</div>
+                    <div class="recommendation-text">
+                        <code style="display: block; background: #f3f4f6; padding: 10px; border-radius: 5px; margin: 10px 0; font-family: monospace;">
+{
+  "max_rueda_size": 3,
+  "algoritmo": "enhanced_matching (k=2-3)",
+  "complejidad": "O(n³) - manejable para <1000 usuarios",
+  "tiempo_objetivo": "<1s para 100 usuarios",
+  "cobertura": "Búsqueda exhaustiva para k=2-3",
+  "fallback": "Si no hay k=3, buscar k=2",
+  "exclusion": "No buscar k≥4 en MVP"
+}
+                        </code>
+                    </div>
+                </div>
+                
+                <div class="button-group">
+                    <button class="btn-primary" onclick="exportConfig()">📥 Exportar Configuración</button>
+                    <button class="btn-secondary" onclick="showCodeExample()">💻 Ver Código Ejemplo</button>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Dashboard de Monitoreo del Algoritmo Treqe • Generado automáticamente • Última actualización: <span id="currentTime"></span></p>
+            <p style="margin-top: 10px; font-size: 0.8rem; opacity: 0.7;">
+                Basado en análisis técnico ejecutado: complejidad NP-Completo, crecimiento factorial con k, valor óptimo en k=3
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Datos iniciales
+        let currentK = 3;
+        let currentUsers = 100;
+        let currentDensity = 30;
+        
+        // Datos de complejidad (combinaciones para 100 usuarios)
+        const complexityData = {
+            labels: ['k=2', 'k=3', 'k=4', 'k=5', 'k=6'],
+            datasets: [{
+                label: 'Combinaciones',
+                data: [4950, 161700, 3921225, 75287520, 1192052400],
+                backgroundColor: [
+                    'rgba(79, 70, 229, 0.7)',
+                    'rgba(79, 70, 229, 0.7)',
+                    'rgba(245, 158, 11, 0.7)',
+                    'rgba(239, 68, 68, 0.7)',
+                    'rgba(239, 68, 68, 0.7)'
+                ],
+                borderColor: [
+                    'rgb(79, 70, 229)',
+                    'rgb(79, 70, 229)',
+                    'rgb(245, 158, 11)',
+                    'rgb(239, 68, 68)',
+                    'rgb(239, 68, 68)'
+                ],
+                borderWidth: 2
+            }]
+        };
+        
+        // Datos de valor por tamaño k
+        const valueData = {
+            labels: ['k=2', 'k=3', 'k=4', 'k=5', 'k=6'],
+            datasets: [
+                {
+                    label: 'Valor Total',
+                    data: [400, 600, 800, 1000, 1200],
+                    backgroundColor: 'rgba(79, 70, 229, 0.3)',
+                    borderColor: 'rgb(79, 70, 229)',
+                    borderWidth: 2,
+                    type: 'bar'
+                },
+                {
+                    label: 'Valor Real (con eficiencia)',
+                    data: [400, 510, 560, 550, 480],
+                    backgroundColor: 'rgba(16, 185, 129, 0.3)',
+                    borderColor: 'rgb(16, 185, 129)',
+                    borderWidth: 2,
+                    type: 'line',
+                    tension: 0.4
+                }
+            ]
+        };
+        
+        // Inicializar gráficos
+        let complexityChart, valueChart;
+        
+        function initCharts() {
+            const complexityCtx = document.getElementById('complexityChart').getContext('2d');
+            complexityChart = new Chart(complexityCtx, {
+                type: 'bar',
+                data: complexityData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let value = context.raw;
+                                    if (value >= 1000000) {
+                                        return (value / 1000000).toFixed(1) + 'M combinaciones';
+                                    } else if (value >= 1000) {
+                                        return (value / 1000).toFixed(0) + 'K combinaciones';
+                                    } else {
+                                        return value + ' combinaciones';
+                                    }
+                                }
+                            }
+                        },
+                        datalabels: {
+                            color: '#1f2937',
+                            font: {
+                                weight: 'bold'
+                            },
+                            formatter: function(value, context) {
+                                if (value >= 1000000) {
+                                    return (value / 1000000).toFixed(1) + 'M';
+                                } else if (value >= 1000) {
+                                    return (value / 1000).toFixed(0) + 'K';
+                                } else {
+                                    return value;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            type: 'logarithmic',
+                            title: {
+                                display: true,
+                                text: 'Combinaciones (escala logarítmica)'
+                            },
+                            ticks: {
+                                callback: function(value) {
+                                    if (value >= 1000000) {
+                                        return (value / 1000000).toFixed(1) + 'M';
+                                    } else if (value >= 1000) {
+                                        return (value / 1000).toFixed(0) + 'K';
+                                    } else {
+                                        return value;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+            
+            const valueCtx = document.getElementById('valueChart').getContext('2d');
+            valueChart = new Chart(valueCtx, {
+                type: 'bar',
+                data: valueData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': €' + context.raw;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Valor (EUR)'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        // Actualizar valores de sliders
+        function updateSliderValues() {
+            document.getElementById('kValue').textContent = currentK;
+            document.getElementById('usersValue').textContent = currentUsers;
+            document.getElementById('densityValue').textContent = currentDensity + '%';
+            
+            // Actualizar sliders
+            document.getElementById('kSlider').value = currentK;
+            document.getElementById('usersSlider').value = currentUsers;
+            document.getElementById('densitySlider').value = currentDensity;
+        }
+        
+        // Generar visualización de rueda
+        function generateRuedaVisualization(k) {
+            const container = document.getElementById('ruedaContainer');
+            container.innerHTML = '';
+            
+            // Centro de la rueda
+            const center = document.createElement('div');
+            center.className = 'rueda-center';
+            center.textContent = k;
+            container.appendChild(center);
+            
+            // Usuarios alrededor
+            const radius = 120;
+            const angleStep = (2 * Math.PI) / k;
+            
+            for (let i = 0; i < k; i++) {
+                const angle = i * angleStep;
+                const x = radius * Math.cos(angle);
+                const y = radius * Math.sin(angle);
+                
+                const user = document.createElement('div');
+                user.className = 'rueda-user';
+                user.style.left = `calc(50% + ${x}px)`;
+                user.style.top = `calc(50% + ${y}px)`;
+                user.style.transform = `translate(-50%, -50%)`;
+                
+                // Icono según posición
+                const icons = ['👤', '👨', '👩', '🧑', '👵', '👴'];
+                user.innerHTML = `
+                    <div style="font-size: 1.5rem;">${icons[i % icons.length]}</div>
+                    <div class="rueda-user-name">Usuario ${i+1}</div>
+                `;
+                
+                container.appendChild(user);
+                
+                // Conexión al siguiente usuario
+                if (i < k - 1) {
+                    const nextAngle = (i + 1) * angleStep;
+                    const nextX = radius * Math.cos(nextAngle);
+                    const nextY = radius * Math.sin(nextAngle);
+                    
+                    const connection = document.createElement('div');
+                    connection.className = 'rueda-connection';
+                    
+                    // Calcular posición y rotación
+                    const centerX = (x + nextX) / 2;
+                    const centerY = (y + nextY) / 2;
+                    const length = Math.sqrt(Math.pow(nextX - x, 2) + Math.pow(nextY - y, 2));
+                    const rotation = Math.atan2(nextY - y, nextX - x) * (180 / Math.PI);
+                    
+                    connection.style.width = `${length}px`;
+                    connection.style.left = `calc(50% + ${centerX - length/2}px)`;
+                    connection.style.top = `calc(50% + ${centerY}px)`;
+                    connection.style.transform = `rotate(${rotation}deg)`;
+                    connection.style.transformOrigin = '0 0';
+                    
+                    container.appendChild(connection);
+                }
+            }
+            
+            // Conexión del último al primero (para cerrar el círculo)
+            if (k > 2) {
+                const firstAngle = 0;
+                const lastAngle = (k - 1) * angleStep;
+                
+                const firstX = radius * Math.cos(firstAngle);
+                const firstY = radius * Math.sin(firstAngle);
+                const lastX = radius * Math.cos(lastAngle);
+                const lastY = radius * Math.sin(lastAngle);
+                
+                const finalConnection = document.createElement('div');
+                finalConnection.className = 'rueda-connection';
+                
+                const centerX = (firstX + lastX) / 2;
+                const centerY = (firstY + lastY) / 2;
+                const length = Math.sqrt(Math.pow(firstX - lastX, 2) + Math.pow(firstY - lastY, 2));
+                const rotation = Math.atan2(firstY - lastY, firstX - lastX) * (180 / Math.PI);
+                
+                finalConnection.style.width = `${length}px`;
+                finalConnection.style.left = `calc(50% + ${centerX - length/2}px)`;
+                finalConnection.style.top = `calc(50% + ${centerY}px)`;
+                finalConnection.style.transform = `rotate(${rotation}deg)`;
+                finalConnection.style.transformOrigin = '0 0';
+                
+                container.appendChild(finalConnection);
+            }
+            
+            // Actualizar estado
+            const statusElement = document.getElementById('ruedaStatus');
+            statusElement.className = 'status-indicator ';
+            
+            if (k <= 3) {
+                statusElement.classList.add('status-good');
+                statusElement.textContent = 'ÓPTIMO';
+            } else if (k === 4) {
+                statusElement.classList.add('status-warning');
+                statusElement.textContent = 'ACEPTABLE';
+            } else {
+                statusElement.classList.add('status-bad');
+                statusElement.textContent = 'COMPLEJO';
+            }
+        }
+        
+        // Calcular métricas basadas en k
+        function calculateMetrics(k, users, density) {
+            // Datos base para k=3, 100 usuarios, 30% densidad
+            const baseMetrics = {
+                matchedUsers: 75, // porcentaje
+                valueExchanged: 510, // euros
+                executionTime: 1.6, // segundos
+                satisfaction: 85 // porcentaje
+            };
+            
+            // Ajustar por k
+            const kFactors = {
+                2: { matchedUsers: 0.8, valueExchanged: 0.78, executionTime: 0.01, satisfaction: 0.88 },
+                3: { matchedUsers: 1.0, valueExchanged: 1.0, executionTime: 1.0, satisfaction: 1.0 },
+                4: { matchedUsers: 1.15, valueExchanged: 1.1, executionTime: 100, satisfaction: 0.95 },
+                5: { matchedUsers: 1.25, valueExchanged: 1.08, executionTime: 10000, satisfaction: 0.85 },
+                6: { matchedUsers: 1.3, valueExchanged: 0.94, executionTime: 1000000, satisfaction: 0.7 }
+            };
+            
+            const factor = kFactors[k] || kFactors[3];
+            
+            // Ajustar por número de usuarios (logarítmico)
+            const userFactor = Math.log10(users) / 2; // 100 usuarios = factor 1
+            
+            // Ajustar por densidad
+            const densityFactor = density / 30;
+            
+            return {
+                matchedUsers: Math.round(baseMetrics.matchedUsers * factor.matchedUsers * densityFactor),
+                valueExchanged: Math.round(baseMetrics.valueExchanged * factor.valueExchanged * userFactor),
+                executionTime: (baseMetrics.executionTime * factor.executionTime * userFactor).toFixed(2),
+                satisfaction: Math.round(baseMetrics.satisfaction * factor.satisfaction * densityFactor)
+            };
+        }
+        
+        // Actualizar métricas en la UI
+        function updateMetrics() {
+            const metrics = calculateMetrics(currentK, currentUsers, currentDensity);
+            
+            document.getElementById('matchedUsers').textContent = metrics.matchedUsers + '%';
+            document.getElementById('valueExchanged').textContent = '€' + metrics.valueExchanged;
+            document.getElementById('executionTime').textContent = metrics.executionTime + 's';
+            document.getElementById('satisfaction').textContent = metrics.satisfaction + '%';
+            
+            // Actualizar cambios vs k=2
+            const metricsK2 = calculateMetrics(2, currentUsers, currentDensity);
+            
+            const matchedChange = ((metrics.matchedUsers - metricsK2.matchedUsers) / metricsK2.matchedUsers * 100).toFixed(0);
+            const valueChange = ((metrics.valueExchanged - metricsK2.valueExchanged) / metricsK2.valueExchanged * 100).toFixed(0);
+            const timeChange = ((parseFloat(metrics.executionTime) - parseFloat(metricsK2.executionTime)) / parseFloat(metricsK2.executionTime) * 100).toFixed(0);
+            const satisfactionChange = ((metrics.satisfaction - metricsK2.satisfaction) / metricsK2.satisfaction *

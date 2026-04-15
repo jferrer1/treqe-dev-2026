@@ -1,0 +1,36 @@
+{
+  "template_name": "Professional Business Plan Template",
+  "created": "2026-02-25T12:45:58.993305",
+  "purpose": "Treqe business plan professional formatting",
+  "styles": {
+    "heading1": {
+      "font": "Calibri Light",
+      "size": 16,
+      "color": "#2E74B5",
+      "bold": true
+    },
+    "heading2": {
+      "font": "Calibri",
+      "size": 14,
+      "color": "#2E74B5",
+      "bold": true
+    },
+    "heading3": {
+      "font": "Calibri",
+      "size": 12,
+      "color": "#1F4E79",
+      "bold": true
+    },
+    "normal": {
+      "font": "Calibri",
+      "size": 11,
+      "color": "#000000"
+    },
+    "emphasis": {
+      "font": "Calibri",
+      "size": 11,
+      "color": "#000000",
+      "italic": true
+    }
+  }
+}

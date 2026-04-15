@@ -1,0 +1,42 @@
+[build]
+  publish = "."
+  command = ""
+
+[build.environment]
+  NODE_VERSION = "18"
+
+# Redirección HTTP → HTTPS (Netlify lo hace automáticamente)
+# [[redirects]]
+#   from = "http://treqe.es/*"
+#   to = "https://treqe.es/:splat"
+#   status = 301
+#   force = true
+
+# [[redirects]]
+#   from = "http://www.treqe.es/*"
+#   to = "https://www.treqe.es/:splat"
+#   status = 301
+#   force = true
+
+# Elegir versión canónica (descomenta UNA de estas opciones):
+
+# OPCIÓN A: Redirigir www → no-www (recomendado para SEO)
+# [[redirects]]
+#   from = "https://www.treqe.es/*"
+#   to = "https://treqe.es/:splat"
+#   status = 301
+#   force = true
+
+# OPCIÓN B: Redirigir no-www → www (si prefieres www)
+# [[redirects]]
+#   from = "https://treqe.es/*"
+#   to = "https://www.treqe.es/:splat"
+#   status = 301
+#   force = true
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"

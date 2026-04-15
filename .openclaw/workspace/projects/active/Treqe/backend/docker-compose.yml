@@ -1,0 +1,104 @@
+version: '3.8'
+
+services:
+  # API Principal
+  api:
+    build: .
+    container_name: treqe-api
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://treqe:treqepass@postgres:5432/treqe_db
+      - REDIS_URL=redis://redis:6379/0
+      - SECRET_KEY=${SECRET_KEY:-dev-secret-key-change-in-production}
+      - ENVIRONMENT=development
+    volumes:
+      - ./src:/app/src
+      - ./logs:/app/logs
+    depends_on:
+      - postgres
+      - redis
+    command: uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload
+    restart: unless-stopped
+
+  # Worker para procesamiento matching
+  matching-worker:
+    build: .
+    container_name: treqe-matching-worker
+    environment:
+      - DATABASE_URL=postgresql://treqe:treqepass@postgres:5432/treqe_db
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+    volumes:
+      - ./src:/app/src
+    depends_on:
+      - postgres
+      - redis
+    command: celery -A src.tasks.celery_app worker -l info -Q matching -c 2
+    restart: unless-stopped
+
+  # Base de datos PostgreSQL
+  postgres:
+    image: postgres:15-alpine
+    container_name: treqe-postgres
+    environment:
+      - POSTGRES_USER=treqe
+      - POSTGRES_PASSWORD=treqepass
+      - POSTGRES_DB=treqe_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U treqe"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Redis para cache y colas
+  redis:
+    image: redis:7-alpine
+    container_name: treqe-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # PgAdmin (opcional, para desarrollo)
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: treqe-pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@treqe.com
+      - PGADMIN_DEFAULT_PASSWORD=admin123
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres
+    restart: unless-stopped
+
+  # Redis Commander (opcional, para desarrollo)
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    container_name: treqe-redis-commander
+    environment:
+      - REDIS_HOSTS=local:redis:6379
+    ports:
+      - "8081:8081"
+    depends_on:
+      - redis
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  redis_data:

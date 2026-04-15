@@ -1,0 +1,221 @@
+100).toFixed(0);
+            
+            document.querySelectorAll('.metric-change')[0].textContent = (matchedChange >= 0 ? '+' : '') + matchedChange + '% vs k=2';
+            document.querySelectorAll('.metric-change')[0].className = 'metric-change ' + (matchedChange >= 0 ? 'positive' : 'negative');
+            
+            document.querySelectorAll('.metric-change')[1].textContent = (valueChange >= 0 ? '+' : '') + valueChange + '% vs k=2';
+            document.querySelectorAll('.metric-change')[1].className = 'metric-change ' + (valueChange >= 0 ? 'positive' : 'negative');
+            
+            document.querySelectorAll('.metric-change')[2].textContent = (timeChange >= 0 ? '+' : '') + timeChange + '% vs k=2';
+            document.querySelectorAll('.metric-change')[2].className = 'metric-change ' + (timeChange >= 0 ? 'negative' : 'positive');
+            
+            document.querySelectorAll('.metric-change')[3].textContent = (satisfactionChange >= 0 ? '+' : '') + satisfactionChange + '% vs k=2';
+            document.querySelectorAll('.metric-change')[3].className = 'metric-change ' + (satisfactionChange >= 0 ? 'positive' : 'negative');
+        }
+        
+        // Ejecutar simulación
+        function runSimulation() {
+            // Obtener valores actuales
+            currentK = parseInt(document.getElementById('kSlider').value);
+            currentUsers = parseInt(document.getElementById('usersSlider').value);
+            currentDensity = parseInt(document.getElementById('densitySlider').value);
+            
+            updateSliderValues();
+            generateRuedaVisualization(currentK);
+            updateMetrics();
+            
+            // Mostrar notificación
+            showNotification(`Simulación ejecutada: k=${currentK}, ${currentUsers} usuarios, ${currentDensity}% densidad`);
+        }
+        
+        // Reiniciar simulación
+        function resetSimulation() {
+            currentK = 3;
+            currentUsers = 100;
+            currentDensity = 30;
+            
+            updateSliderValues();
+            generateRuedaVisualization(currentK);
+            updateMetrics();
+            
+            showNotification('Simulación reiniciada a valores por defecto');
+        }
+        
+        // Exportar configuración
+        function exportConfig() {
+            const config = {
+                max_rueda_size: currentK,
+                algoritmo: "enhanced_matching",
+                complejidad: `O(n^${currentK})`,
+                tiempo_objetivo: `<${calculateMetrics(currentK, currentUsers, currentDensity).executionTime}s para ${currentUsers} usuarios`,
+                cobertura: "Búsqueda exhaustiva",
+                usuarios_maximos: currentUsers,
+                densidad_preferencias: currentDensity + "%",
+                recomendacion: currentK <= 3 ? "ÓPTIMO para MVP" : currentK === 4 ? "ACEPTABLE con optimizaciones" : "COMPLEJO - considerar reducir k",
+                timestamp: new Date().toISOString()
+            };
+            
+            const configStr = JSON.stringify(config, null, 2);
+            const blob = new Blob([configStr], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `treqe_config_k${currentK}_${currentUsers}users.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            showNotification('Configuración exportada como JSON');
+        }
+        
+        // Mostrar ejemplo de código
+        function showCodeExample() {
+            const code = `# Algoritmo de matching para k=${currentK} usuarios
+
+def find_circular_matches(users, k=${currentK}):
+    """
+    Encuentra ruedas circulares de tamaño ${currentK}
+    Complejidad: O(n^${currentK}) - ${currentK <= 3 ? 'manejable' : 'complejo'}
+    """
+    matches = []
+    
+    # Búsqueda exhaustiva para k pequeño
+    if k <= 3:
+        # Algoritmo exacto para MVP
+        for i in range(len(users)):
+            for j in range(i+1, len(users)):
+                ${currentK >= 3 ? 'for k in range(j+1, len(users)):' : ''}
+                ${currentK >= 4 ? 'for l in range(k+1, len(users)):' : ''}
+                ${currentK >= 5 ? 'for m in range(l+1, len(users)):' : ''}
+                ${currentK >= 6 ? 'for n in range(m+1, len(users)):' : ''}
+                
+                # Verificar si forman una rueda
+                if check_circular_exchange(users[i], users[j]${currentK >= 3 ? ', users[k]' : ''}${currentK >= 4 ? ', users[l]' : ''}${currentK >= 5 ? ', users[m]' : ''}${currentK >= 6 ? ', users[n]' : ''}):
+                    matches.append({
+                        "participants": [users[i].id, users[j].id${currentK >= 3 ? ', users[k].id' : ''}${currentK >= 4 ? ', users[l].id' : ''}${currentK >= 5 ? ', users[m].id' : ''}${currentK >= 6 ? ', users[n].id' : ''}],
+                        "type": "circular",
+                        "size": ${currentK}
+                    })
+    
+    return matches
+
+# ${currentK <= 3 ? '✅ Este algoritmo es viable para MVP' : '⚠️ Este algoritmo puede ser muy lento para muchos usuarios'}`;
+            
+            alert(code);
+        }
+        
+        // Mostrar notificación
+        function showNotification(message) {
+            // Crear elemento de notificación
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(90deg, #4f46e5, #7c3aed);
+                color: white;
+                padding: 15px 25px;
+                border-radius: 10px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+                z-index: 1000;
+                font-weight: 600;
+                animation: slideIn 0.3s ease;
+            `;
+            
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            // Remover después de 3 segundos
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+        
+        // Actualizar hora actual
+        function updateCurrentTime() {
+            const now = new Date();
+            const options = { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            };
+            document.getElementById('currentTime').textContent = now.toLocaleDateString('es-ES', options);
+        }
+        
+        // Inicializar dashboard
+        function initDashboard() {
+            // Configurar event listeners para sliders
+            document.getElementById('kSlider').addEventListener('input', function() {
+                document.getElementById('kValue').textContent = this.value;
+            });
+            
+            document.getElementById('usersSlider').addEventListener('input', function() {
+                document.getElementById('usersValue').textContent = this.value;
+            });
+            
+            document.getElementById('densitySlider').addEventListener('input', function() {
+                document.getElementById('densityValue').textContent = this.value + '%';
+            });
+            
+            // Inicializar gráficos
+            initCharts();
+            
+            // Generar visualización inicial
+            generateRuedaVisualization(currentK);
+            updateMetrics();
+            updateCurrentTime();
+            
+            // Actualizar hora cada minuto
+            setInterval(updateCurrentTime, 60000);
+            
+            // Agregar estilos de animación
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideIn {
+                    from {
+                        transform: translateX(100%);
+                        opacity: 0;
+                    }
+                    to {
+                        transform: translateX(0);
+                        opacity: 1;
+                    }
+                }
+                
+                @keyframes slideOut {
+                    from {
+                        transform: translateX(0);
+                        opacity: 1;
+                    }
+                    to {
+                        transform: translateX(100%);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            console.log('Dashboard de Monitoreo Treqe inicializado');
+            console.log('Configuración recomendada: k=3 para MVP (óptimo balance valor/complejidad)');
+        }
+        
+        // Inicializar cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', initDashboard);
+        
+        // También inicializar si el DOM ya está listo
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initDashboard);
+        } else {
+            initDashboard();
+        }
+    </script>
+</body>
+</html>

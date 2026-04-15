@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treqe - Red de Intercambios Circulares</title>
+    <meta name="description" content="Transformamos intercambios imposibles en oportunidades circulares. Encuentra lo que necesitas dando lo que ya no usas.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Paleta única Treqe - Energía + Innovación */
+            --primary: #FF6B35;     /* Naranja energía */
+            --primary-dark: #E55A2B;
+            --secondary: #6C63FF;   /* Violeta innovación */
+            --secondary-light: #8A84FF;
+            --accent: #00D4AA;      /* Verde crecimiento */
+            --dark: #1A1A2E;        /* Azul noche */
+            --light: #F8F9FA;
+            --gray: #6C757D;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+            
+            /* Efectos */
+            --shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 20px 60px rgba(0, 0, 0, 0.15);
+            --radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--light);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            padding: 30px 0;
+            position: relative;
+            z-index: 100;
+        }
+        
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--dark);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-dot {
+            width: 12px;
+            height: 12px;
+            background: var(--gradient);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+        }
+        
+        /* Hero */
+        .hero {
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(108, 99, 255, 0.1) 0%, transparent 50%);
+            z-index: -1;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin-bottom: 40px;
+        }
+        
+        /* Waitlist */
+        .waitlist {
+            background: white;
+            padding: 50px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin: 60px 0;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .waitlist::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+        }
+        
+        .waitlist h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        input {
+            width: 100%;
+            padding: 18px 24px;
+            border: 2px solid #E9ECEF;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            transition: var(--transition);
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 18px 36px;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'Space Grotesk', sans-serif;
+            text-decoration: none;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        /* Simulation */
+        .simulation {
+            padding: 80px 0;
+            background: var(--dark);
+            color: white;
+            border-radius: var(--radius);
+            margin: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .simulation-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 50%, rgba(108, 99, 255, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 70% 50%, rgba(0, 212, 170, 0.2) 0%, transparent 50%);
+        }
+        
+        .simulation h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .simulation-viz {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin: 60px 0;
+        }
+        
+        .user-node {
+            width: 140px;
+            height: 140px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: var(--transition);
+        }
+        
+        .user-node:hover {
+            transform: scale(1.05);
+            border-color: var(--accent);
+        }
+        
+        .user-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .connection {
+            width: 60px;
+            height: 2px;
+            background: var(--accent);
+            position: relative;
+        }
+        
+        .connection::after {
+            content: '→';
+            position: absolute;
+            right: -15px;
+            top: -12px;
+            color: var(--accent);
+            font-size: 1.5rem;
+            animation: moveArrow 2s infinite;
+        }
+        
+        @keyframes moveArrow {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(5px); }
+        }
+        
+        /* Features */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 80px 0;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 40px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+        
+        .stat {
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 60px 0;
+            background: var(--dark);
+            color: white;
+            text-align: center;
+        }
+        
+        .domain-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .badge-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: blink 1.5s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .waitlist {
+                padding: 30px;
+            }
+            
+            .simulation-viz {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .connection {
+                width: 2px;
+                height: 40px;
+            }
+            
+            .connection::after {
+                content: '↓';
+                right: -8px;
+                top: auto;
+                bottom: -15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <a href="/" class="logo">
+                <span class="logo-dot"></span>
+                Treqe
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <h1>Red de Intercambios Circulares</h1>
+            <p class="hero-subtitle">
+                Transformamos intercambios imposibles en oportunidades circulares. 
+                Encuentra lo que necesitas dando lo que ya no usas.
+            </p>
+            
+            <div class="domain-badge">
+                <span class="badge-dot"></span>
+                <span>✅ Dominio activo: treqe.es</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Waitlist -->
+    <section class="container">
+        <div class="waitlist">
+            <h2>🚀 Sé de los primeros en probar Treqe</h2>
+            <p>Únete a la lista de espera y te notificaremos cuando lancemos la plataforma.</p>
+            
+            <form id="waitlistForm" style="margin-top: 30px;">
+                <div class="form-group">
+                    <input type="email" id="email" placeholder="tu@email.com" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="name" placeholder="Tu nombre (opcional)">
+                </div>
+                <button type="submit" class="btn">Notificarme al lanzar</button>
+            </form>
+            
+            <p style="margin-top: 20px; font-size: 0.9rem; color: var(--gray);">
+                Sin spam. Solo actualizaciones importantes del lanzamiento.
+            </p>
+        </div>
+    </section>
+
+    <!-- Simulation -->
+    <section class="simulation">
+        <div class="simulation-bg"></div>
+        <div class="container">
+            <h2>🎯 ¿Cómo funciona Treqe?</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 40px; opacity: 0.9;">
+                Ejemplo real de intercambio circular que transforma imposibles en posibles
+            </p>
+            
+            <div class="simulation-viz">
+                <div class="user-node">
+                    <div class="user-icon">👩‍💻</div>
+                    <h4>Ana</h4>
+                    <p style="font-size: 0.9rem; opacity: 0.8;">Tiene: iPhone 13</p>
+                    <p style="font-size: 0.9rem; opacity: 0.8;">Quiere: MacBook Air</p>
+                </div>
+                
+                <div class="connection"></div>
+                
+                <div class="user-node">
+                    <div class="user-icon">👨‍💻</div>
+                    <h4>Carlos</h4>
+                    <p style="font-size: 0.9rem; opacity: 0.8;">Tiene: MacBook Air</p>
+                    <p style="font-size: 0.9rem; opacity: 0.8;">Quiere: Bicicleta</p>
+                </div>
+                
+                <div class="connection"></div>
+                
+                <div class="user-node">
+                    <div class="user-icon">👩‍🌾</div>
+                    <h4>Beatriz</h4>
+                    <p style="font-size: 0.9rem; opacity: 0.8;">Tiene: Bicicleta</p>
+                    <p style="font-size: 0.9rem; opacity: 0.8;">Quiere: iPhone 13</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+                <p style="font-size: 1.1rem; margin-bottom: 20px;">
+                    <strong style="color: var(--accent);">Mercado tradicional:</strong> ❌ IMPOSIBLE (necesita coincidencia directa 1:1)
+                </p>
+                <p style="font-size: 1.1rem;">
+                    <strong style="color: var(--accent);">Con Treqe:</strong> ✅ POSIBLE (intercambio circular de 3 personas)
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="container">
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">🔄</div>
+                <h3>Intercambios Circulares</h3>
+                <p>Encuentra intercambios de 3 o más personas donde todos obtienen exactamente lo que quieren.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Algoritmo Inteligente</h3>
+                <p>Sistema de matching avanzado que encuentra combinaciones imposibles en mercados tradicionales.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>Transacciones Seguras</h3>
+                <p>Sistema de verificación y reputación para intercambios confiables y sin preocupaciones.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="container">
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number">5%</div>
+                <p>Probabilidad de intercambio en mercado tradicional (k=2)</p>
+            </div>
+            
+            <div class="stat">
+                <div class="stat-number">75%</div>
+                <p>Probabilidad con Treqe (k=6)</p>
+            </div>
+            
+            <div class="stat">
+                <div class="stat-number">15x</div>
+                <p>Transformación del mercado</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div style="margin-bottom: 30px;">
+                <a href="/" class="logo" style="color: white; margin-bottom: 20px; display: inline-block;">
+                    <span class="logo-dot"></span>
+                    Treqe
+                </a>
+            </div>
+            
+            <p style="margin-bottom: 20px; opacity: 0.8;">
+                Intercambios circulares inteligentes
+            </p>
+            
+            <p style="font-size: 0.9rem; opacity: 0.6; margin-bottom: 10px;">
+                © 2026 Treqe - treqe.es
+            </p>
+            
+            <p style="font-size: 0.8rem; opacity: 0.5;">
+                Esta es una landing page de pre-lanzamiento. El producto está en desarrollo activo.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Waitlist Form
+        document.getElementById('waitlistForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const name = document.getElementById('name').value || 'Usuario Treqe';
+            const button = this.querySelector('button');
+            const originalText = button.textContent;
+            
+            // Simulación de envío
+            button.textContent = 'Enviando...';
+            button.disabled = true;
+            
+            setTimeout(() => {
+                button.textContent = '✅ ¡Gracias!';
+                button.style.background = 'var(--accent)';
+                
+                // Mostrar mensaje de éxito
+                alert(`¡Gracias ${name}! Te notificaremos en ${email} cuando lancemos Treqe.`);
+                
+                // Reset después de 3 segundos
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.disabled = false;
+                    button.style.background = '';
+                    this.reset();
+                }, 3000);
+            }, 1500);
+        });
+        
+        // Animación de nodos
+        const userNodes = document.querySelectorAll('.user-node');
+        userNodes.forEach((node, index) => {
+            node.style.animationDelay = `${index * 0.5}s`;
+        });
+        
+        // Stats counter animation
+        const statNumbers = document.querySelectorAll('.stat-number');
+        const observerOptions = {
+            threshold: 0.5
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const stat = entry.target;
+                    const target = parseInt(stat.textContent);
+                    let current = 0;
+                    const increment = target / 50;
+                    
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            stat.textContent = target + (stat.textContent.includes('%') ? '%' : 'x');
+                            clearInterval(timer);
+                        } else {
+                            stat.textContent = Math.floor(current) + (stat.textContent.includes('%') ? '%' : 'x');
+                        }
+                    }, 30);
+                    
+                    observer.unobserve(stat);
+                }
+            });
+        }, observerOptions);
+        
+        statNumbers.forEach(stat => observer.observe(stat));
+    </script>
+</body>
+</html>
