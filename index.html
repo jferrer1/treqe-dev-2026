@@ -212,10 +212,17 @@
     }
 
     .logo-image {
-      height: 140px;
-      width: calc(140px * 200 / 55); /* Forzar ancho proporcional al SVG viewBox (200x55) */
+      height: 200px; /* +264% desde 55px original */
+      width: calc(200px * 200 / 55); /* = 727px (proporción 3.64:1) */
       display: block;
-      box-shadow: 0 0 0 2px #00ff00 !important; /* Borde verde temporal para verificación */
+      box-shadow: 0 8px 25px rgba(0, 35, 78, 0.15);
+      transform: scale(1.05);
+      transition: all 0.3s ease;
+    }
+    
+    .logo-image:hover {
+      transform: scale(1.08);
+      box-shadow: 0 12px 35px rgba(0, 35, 78, 0.25);
     }
 
     .logo-icon {
@@ -1440,15 +1447,15 @@
       }
 
       .logo-image {
-        height: 105px;
-        width: calc(105px * 200 / 55); /* Forzar ancho proporcional al SVG viewBox (200x55) */
-        box-shadow: 0 0 0 2px #00ff00 !important; /* Borde verde temporal para verificación */
-        transform: scaleX(1) !important;
-  -webkit-transform: scaleX(1) !important;
-  -moz-transform: scaleX(1) !important;
-  -ms-transform: scaleX(1) !important;
-  -o-transform: scaleX(1) !important;
-}
+        height: 150px; /* +173% desde 55px original */
+        width: calc(150px * 200 / 55); /* = 545px (proporción 3.64:1) */
+        box-shadow: 0 6px 20px rgba(0, 35, 78, 0.15);
+        transform: scale(1.05);
+        -webkit-transform: scale(1.05);
+        -moz-transform: scale(1.05);
+        -ms-transform: scale(1.05);
+        -o-transform: scale(1.05);
+      }
 
       .user-avatar-container {
         flex-shrink: 0;
@@ -1496,15 +1503,15 @@
       }
 
       .logo-image {
-        height: 80px;
-        width: calc(80px * 200 / 55); /* Forzar ancho proporcional al SVG viewBox (200x55) */
-        box-shadow: 0 0 0 2px #00ff00 !important; /* Borde verde temporal para verificación */
-        transform: scaleX(1) !important;
-  -webkit-transform: scaleX(1) !important;
-  -moz-transform: scaleX(1) !important;
-  -ms-transform: scaleX(1) !important;
-  -o-transform: scaleX(1) !important;
-}
+        height: 115px; /* +109% desde 55px original */
+        width: calc(115px * 200 / 55); /* = 418px (proporción 3.64:1) */
+        box-shadow: 0 4px 15px rgba(0, 35, 78, 0.15);
+        transform: scale(1.05);
+        -webkit-transform: scale(1.05);
+        -moz-transform: scale(1.05);
+        -ms-transform: scale(1.05);
+        -o-transform: scale(1.05);
+      }
 
       .hero {
         padding: 40px 20px;
