@@ -213,9 +213,9 @@
 
     .logo-image {
       height: 140px;
-      width: auto;
+      width: calc(140px * 200 / 55); /* Forzar ancho proporcional al SVG viewBox (200x55) */
       display: block;
-      border: 2px solid red !important; /* TEMPORAL para visualización */
+      box-shadow: 0 0 0 2px #00ff00 !important; /* Borde verde temporal para verificación */
     }
 
     .logo-icon {
@@ -1441,8 +1441,8 @@
 
       .logo-image {
         height: 105px;
-        border: 2px solid red !important; /* TEMPORAL para visualización */
-        
+        width: calc(105px * 200 / 55); /* Forzar ancho proporcional al SVG viewBox (200x55) */
+        box-shadow: 0 0 0 2px #00ff00 !important; /* Borde verde temporal para verificación */
         transform: scaleX(1) !important;
   -webkit-transform: scaleX(1) !important;
   -moz-transform: scaleX(1) !important;
@@ -1497,8 +1497,8 @@
 
       .logo-image {
         height: 80px;
-        border: 2px solid red !important; /* TEMPORAL para visualización */
-        
+        width: calc(80px * 200 / 55); /* Forzar ancho proporcional al SVG viewBox (200x55) */
+        box-shadow: 0 0 0 2px #00ff00 !important; /* Borde verde temporal para verificación */
         transform: scaleX(1) !important;
   -webkit-transform: scaleX(1) !important;
   -moz-transform: scaleX(1) !important;
