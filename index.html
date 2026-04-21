@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Treqe Â· Trueque Circular Gamificado</title>
+  <title>Treqe · Trueque Circular Gamificado</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Cormorant+Garamond:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
@@ -1304,7 +1304,7 @@
       .mobile-toggle {
         display: flex;
         position: fixed;
-        top: max(20px, env(safe-area-inset-top, 20px));
+        top: max(20px, env(safe-areínset-top, 20px));
         right: 20px;
         background: var(--surface-dark);
         border: 2px solid white;
@@ -3156,7 +3156,7 @@
               </button>
             </div>
             <button type="submit" class="search-submit" aria-label="Buscar">
-              <i class="fas fa-arrow-right"></i>
+              <i class="fas fárrow-right"></i>
             </button>
           </form>
           <div class="search-results" id="searchResults"></div>
@@ -3164,13 +3164,13 @@
 
         <div class="user-avatar-container">
           <button class="user-avatar" id="userAvatar" aria-label="MenÃº de usuario" title="MenÃº de usuario">
-            <i class="fas fa-user-circle"></i>
+            <i class="fas fúser-circle"></i>
           </button>
           <button class="dark-mode-toggle standalone" id="darkModeToggle" aria-label="Cambiar modo oscuro/claro" title="Cambiar tema">
             <i id="themeIcon" class="fas fa-sun"></i>
           </button>
           <div class="avatar-dropdown" id="avatarDropdown">
-            <a href="#profile" class="dropdown-item" onclick="switchView('profile')"><i class="fas fa-user"></i> Mi Perfil</a>
+            <a href="#profile" class="dropdown-item" onclick="switchView('profile')"><i class="fas fúser"></i> Mi Perfil</a>
             <a href="#profile" class="dropdown-item" onclick="switchView('profile'); loadNotifications();"><i class="fas fa-bell"></i> Notificaciones</a>
             <a href="#upload" class="dropdown-item" onclick="switchView('upload')"><i class="fas fa-plus-circle"></i> Subir Producto</a>
             <a href="#profile" class="dropdown-item" onclick="switchView('profile');"><i class="fas fa-heart"></i> Me gusta</a>
@@ -3235,7 +3235,7 @@
           <div class="section-title">
             <h2>Productos destacados</h2>
             <button class="btn btn-secondary" onclick="switchView('products')">
-              Ver todos <i class="fas fa-arrow-right"></i>
+              Ver todos <i class="fas fárrow-right"></i>
             </button>
           </div>
 
@@ -3249,7 +3249,7 @@
           <div class="section-title">
             <h2>Todas las categorÃ­as</h2>
             <button class="btn btn-secondary" onclick="switchView('categories')">
-              Ver todas <i class="fas fa-arrow-right"></i>
+              Ver todas <i class="fas fárrow-right"></i>
             </button>
           </div>
 
@@ -3366,7 +3366,7 @@
                 </ul>
                 
                 <p style="font-size: 0.9rem; color: #888; margin-top: 20px;">
-                  <i class="fas fa-info-circle"></i> Las estadÃ­sticas mostradas son para usuarios promedio. 
+                  <i class="fas fínfo-circle"></i> Las estadÃ­sticas mostradas son para usuarios promedio. 
                   Tu rendimiento real mejora con tu Score de ReputaciÃ³n.
                 </p>
               </div>
@@ -3487,7 +3487,7 @@
             <h3>Mis Badges</h3>
             <div style="display: flex; flex-wrap: wrap; gap: 15px; margin: 30px 0;">
               <div class="badge badge-xp" style="font-size: 1.1rem; padding: 12px 20px;">
-                <i class="fas fa-exchange-alt"></i> Primer Intercambio
+                <i class="fas féxchange-alt"></i> Primer Intercambio
               </div>
               <div class="badge badge-level" style="font-size: 1.1rem; padding: 12px 20px;">
                 <i class="fas fa-car"></i> Motor Master
@@ -3658,11 +3658,11 @@
               <h3>Lo que busca el vendedor</h3>
               <div class="wanted-info">
                 <div class="wanted-item">
-                  <i class="fas fa-exchange-alt"></i>
+                  <i class="fas féxchange-alt"></i>
                   <span id="wantedCategory">Motor Â· Coches</span>
                 </div>
                 <div class="wanted-item">
-                  <i class="fas fa-euro-sign"></i>
+                  <i class="fas féuro-sign"></i>
                   <span id="wantedValueRange">500-1200â‚¬</span>
                 </div>
               </div>
@@ -3674,7 +3674,7 @@
                 <i class="fas fa-handshake"></i> Lo quiero
               </button>
               <button class="btn-secondary btn-large" id="backButton" style="margin-left: 15px;">
-                <i class="fas fa-arrow-left"></i> Volver
+                <i class="fas fárrow-left"></i> Volver
               </button>
             </div>
           </div>
@@ -3707,14 +3707,14 @@
                   <select id="productCategory" required onchange="updateSubcategorySelect('productCategory', 'productSubcategory')">
                     <option value="">Selecciona una categorÃ­a</option>
                     <option value="motor">Motor</option>
-                    <option value="moda-accesorios">Moda y Accesorios</option>
+                    <option value="modáccesorios">Moda y Accesorios</option>
                     <option value="tecnologia">TecnologÃ­a</option>
                     <option value="hogar-jardin">Hogar y JardÃ­n</option>
                     <option value="deporte-ocio">Deporte y Ocio</option>
                     <option value="bebes-ninos">BebÃ©s y NiÃ±os</option>
                     <option value="inmobiliaria">Inmobiliaria</option>
                     <option value="servicios">Servicios</option>
-                    <option value="cultura-entretenimiento">Cultura y Entretenimiento</option>
+                    <option value="culturéntretenimiento">Cultura y Entretenimiento</option>
                     <option value="industria-profesional">Industria y Profesional</option>
                   </select>
                 </div>
@@ -3763,14 +3763,14 @@
                   <select id="wantedCategory" required onchange="updateSubcategorySelect('wantedCategory', 'wantedSubcategory')">
                     <option value="">Selecciona categorÃ­a deseada</option>
                     <option value="motor">Motor</option>
-                    <option value="moda-accesorios">Moda y Accesorios</option>
+                    <option value="modáccesorios">Moda y Accesorios</option>
                     <option value="tecnologia">TecnologÃ­a</option>
                     <option value="hogar-jardin">Hogar y JardÃ­n</option>
                     <option value="deporte-ocio">Deporte y Ocio</option>
                     <option value="bebes-ninos">BebÃ©s y NiÃ±os</option>
                     <option value="inmobiliaria">Inmobiliaria</option>
                     <option value="servicios">Servicios</option>
-                    <option value="cultura-entretenimiento">Cultura y Entretenimiento</option>
+                    <option value="culturéntretenimiento">Cultura y Entretenimiento</option>
                     <option value="industria-profesional">Industria y Profesional</option>
                   </select>
                 </div>
@@ -3807,7 +3807,7 @@
 
             <div style="margin-top: 50px; text-align: center;">
               <button type="submit" class="btn btn-primary" style="padding: 16px 40px; font-size: 1.1rem;">
-                <i class="fas fa-upload"></i> Subir producto
+                <i class="fas fúpload"></i> Subir producto
               </button>
               <button type="button" class="btn btn-secondary" onclick="switchView('products')" style="margin-left: 20px;">
                 Cancelar
@@ -3903,7 +3903,7 @@
         <div class="action-buttons">
           <div>
             <button class="btn-secondary btn-large" onclick="switchView('product-detail')">
-              <i class="fas fa-arrow-left"></i> Volver al producto
+              <i class="fas fárrow-left"></i> Volver al producto
             </button>
           </div>
           <div>
@@ -4706,14 +4706,14 @@
     function getCategoryColor(categorySlug) {
       const colors = {
         'motor': 'var(--royal)',
-        'moda-accesorios': 'var(--coral)',
+        'modáccesorios': 'var(--coral)',
         'tecnologia': 'var(--amber)',
         'hogar-jardin': 'var(--mint)',
         'deporte-ocio': 'var(--lavender)',
         'bebes-ninos': 'var(--coral)',
         'inmobiliaria': 'var(--royal)',
         'servicios': 'var(--mint)',
-        'cultura-entretenimiento': 'var(--amber)',
+        'culturéntretenimiento': 'var(--amber)',
         'industria-profesional': 'var(--navy)'
       };
       return colors[categorySlug] || 'var(--navy)';
@@ -5119,7 +5119,7 @@
           description: "VehÃ­culos y accesorios de motor para intercambio circular."
         },
         {
-          slug: "moda-accesorios",
+          slug: "modáccesorios",
           name: "Moda y Accesorios",
           icon: "ðŸ‘—",
           subcategories: ["Ropa de mujer", "Ropa de hombre", "Calzado", "Bolsos"],
@@ -5165,7 +5165,7 @@
           condition: "used",
           userId: 3,
           description: "SofÃ¡ de piel en perfecto estado, solo 2 aÃ±os de uso.",
-          wantedCategory: "moda-accesorios",
+          wantedCategory: "modáccesorios",
           wantedSubcategory: "Relojes",
           wantedValueRange: [800, 1500]
         },
@@ -5186,7 +5186,7 @@
         {
           id: 5,
           title: "Vestido de noche de diseÃ±ador",
-          category: "moda-accesorios",
+          category: "modáccesorios",
           subcategory: "Ropa de mujer",
           value: 280,
           city: "Sevilla",
