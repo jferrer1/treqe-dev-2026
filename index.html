@@ -3623,7 +3623,7 @@
                   </div>
                   <div class="seller-meta">
                     <span id="sellerLocation">Madrid</span>
-                    <span class="dot">â&euro;¢</span>
+                    <span class="dot">&middot;</span>
                     <span id="sellerMemberSince">Miembro desde 2025</span>
                   </div>
                 </div>
@@ -3855,7 +3855,7 @@
             </div>
             
             <div class="shipping-method" data-method="urgente" onclick="selectShippingMethod('urgente')">
-              <h4>âš&iexcl; Envío Urgente 24h</h4>
+              <h4>&iexcl; Envío Urgente 24h</h4>
               <div class="shipping-price">9,99 </div>
               <div class="shipping-details">
                 <p><strong>Entrega en 24 horas</strong></p>
@@ -3874,25 +3874,25 @@
           
           <div class="payment-options">
             <div class="payment-option" data-payment="card" onclick="selectPaymentMethod('card')">
-              <div class="payment-icon">ðŸ’³</div>
+              <div class="payment-icon">💳</div>
               <div><strong>Tarjeta</strong></div>
               <div style="font-size: 0.9rem; color: #666;">Visa, Mastercard, Amex</div>
             </div>
             
             <div class="payment-option" data-payment="paypal" onclick="selectPaymentMethod('paypal')">
-              <div class="payment-icon">ðŸ“±</div>
+              <div class="payment-icon">💰</div>
               <div><strong>PayPal</strong></div>
               <div style="font-size: 0.9rem; color: #666;">Pago rápido y seguro</div>
             </div>
             
             <div class="payment-option" data-payment="bizum" onclick="selectPaymentMethod('bizum')">
-              <div class="payment-icon">ðŸ’°</div>
+              <div class="payment-icon">💸</div>
               <div><strong>Bizum</strong></div>
               <div style="font-size: 0.9rem; color: #666;">Transferencia inmediata</div>
             </div>
             
             <div class="payment-option" data-payment="bitcoin" onclick="selectPaymentMethod('bitcoin')">
-              <div class="payment-icon">â‚&iquest;</div>
+              <div class="payment-icon">₿</div>
               <div><strong>Bitcoin</strong></div>
               <div style="font-size: 0.9rem; color: #666;">Pago con cripto, conversión automática</div>
             </div>
@@ -5679,7 +5679,7 @@
       localStorage.setItem('treqe-user-products', JSON.stringify(demoData.products));
 
       // Mostrar mensaje de éxito
-      alert(`âœ… Producto "${title}" subido con éxito.\n\nGanaste +10 XP por contribuir a la comunidad.\n\nAhora podrás verlo en la lista de productos.`);
+      alert(`✅ Producto "${title}" subido con éxito.\n\nGanaste +10 XP por contribuir a la comunidad.\n\nAhora podrás verlo en la lista de productos.`);
 
       // Resetear formulario
       document.getElementById('productForm').reset();
@@ -5806,7 +5806,7 @@
       localStorage.setItem('treqe-notifications', JSON.stringify(notifications));
       
       // Opcional: mostrar mensaje de rechazo
-      alert('âŒ Has rechazado el intercambio propuesto. Puedes seguir explorando productos.');
+      alert('❌ Has rechazado el intercambio propuesto. Puedes seguir explorando productos.');
       
       updateNotificationBadge();
       loadNotifications();
