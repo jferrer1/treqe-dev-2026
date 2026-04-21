@@ -7,7 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Cormorant+Garamond:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    /* ===== PALETA EXACTA SEGÃšN IMAGEN - MINIMALISTA ===== */
+    /* ===== PALETA EXACTA SEGíN IMAGEN - MINIMALISTA ===== */
     :root {
       /* Colores exactos de la paleta */
       --navy: #00234E;        /* Midnight Navy (Primary) */
@@ -2260,7 +2260,7 @@
       }
     }
 
-    /* ===== BOTÃ“N TOGGLE MODO OSCURO (OPCIONAL) ===== */
+    /* ===== BOTíN TOGGLE MODO OSCURO (OPCIONAL) ===== */
     .dark-mode-toggle {
       background: transparent;
       border: 1px solid var(--navy-light);
@@ -2291,7 +2291,7 @@
       }
     }
 
-    /* ===== CLASE PARA NAVEGACIÃ“N POR TECLADO ===== */
+    /* ===== CLASE PARA NAVEGACIíN POR TECLADO ===== */
     .keyboard-navigation button:focus,
     .keyboard-navigation a:focus,
     .keyboard-navigation input:focus,
@@ -2993,7 +2993,7 @@
       }
     }
 
-    /* ===== BARRA DE BÃšSQUEDA MINIMALISTA ===== */
+    /* ===== BARRA DE BíSQUEDA MINIMALISTA ===== */
     .search-container {
       justify-self: center;
       max-width: 600px;
@@ -3976,7 +3976,7 @@
     let currentProductId = null;
     let currentSearchQuery = '';
 
-    // ===== FUNCIONES DE NAVEGACIÃ“N =====
+    // ===== FUNCIONES DE NAVEGACIíN =====
     function switchView(viewId) {
       // Actualizar navegación solo si hay evento de clic en nav-link
       document.querySelectorAll('.nav-link').forEach(link => {
@@ -4363,7 +4363,7 @@
       observeNewRevealElements();
     }
 
-    // ===== GESTIÃ“N DE ME GUSTAS Y DETALLE =====
+    // ===== GESTIíN DE ME GUSTAS Y DETALLE =====
     function toggleLike(productId) {
       console.log('Toggle like para producto', productId);
       // Obtener lista actual de likes del localStorage
@@ -4719,7 +4719,7 @@
       return colors[categorySlug] || 'var(--navy)';
     }
 
-    // ===== INTERCAMBIO VISUALIZACIÃ“N =====
+    // ===== INTERCAMBIO VISUALIZACIíN =====
     function initExchangeVisualization() {
       const container = document.getElementById('exchangeCircle');
       if (!container) return;
@@ -5019,7 +5019,7 @@
       };
     }
 
-    // ===== CONFIGURACIÃ“N DE EVENTOS =====
+    // ===== CONFIGURACIíN DE EVENTOS =====
     function setupEventListeners() {
       // Menú móvil
       const mobileToggle = document.getElementById('mobileToggle');
@@ -5278,7 +5278,7 @@
       }
     };
 
-    // ===== INICIALIZACIÃ“N =====
+    // ===== INICIALIZACIíN =====
     document.addEventListener('DOMContentLoaded', () => {
       // Cargar datos y luego inicializar
       loadDemoData().then(() => {
@@ -5543,7 +5543,7 @@
       }
     }
 
-    // ===== BÃšSQUEDA DE PRODUCTOS =====
+    // ===== BíSQUEDA DE PRODUCTOS =====
     function handleSearch(event) {
       event.preventDefault();
       const searchInput = document.querySelector('.search-input');
@@ -5566,7 +5566,7 @@
       }
     }
 
-    // ===== GESTIÃ“N DE COOKIES =====
+    // ===== GESTIíN DE COOKIES =====
     function showCookieBanner() {
       const accepted = localStorage.getItem('treqe-cookies-accepted');
       if (!accepted) {
@@ -5889,7 +5889,7 @@
       badge.style.display = unreadCount > 0 ? 'inline-flex' : 'none';
     }
 
-    // ===== PROCESAR "LO QUIERO" (CON NOTIFICACIÃ“N) =====
+    // ===== PROCESAR "LO QUIERO" (CON NOTIFICACIíN) =====
     function processWantButton(productId) {
       // Buscar intercambio posible (k=2 â†’ k=3 â†’ ...)
       const match = findExchangeMatch(productId);
@@ -5997,7 +5997,7 @@
         switchView('profile');
       };
     }
-    // ===== SELECCIÃ“N MÃ‰TODO ENVÍO/PAGO =====
+    // ===== SELECCIíN MíTODO ENVÍO/PAGO =====
     function selectShippingMethod(method) {
       // Deseleccionar todos
       document.querySelectorAll('.shipping-method').forEach(el => {
