@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -3617,7 +3617,7 @@
                 <div class="seller-details">
                   <h4 id="sellerName">Ana García</h4>
                   <div class="seller-scoring" id="sellerScoring">
-                    <span class="stars">â˜…â˜…â˜…â˜…â˜…</span>
+                    <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
                     <span class="rating">4.8</span>
                     <span class="exchanges">(124 intercambios)</span>
                   </div>
@@ -3663,7 +3663,7 @@
                 </div>
                 <div class="wanted-item">
                   <i class="fas féuro-sign"></i>
-                  <span id="wantedValueRange">500-1200â‚¬</span>
+                  <span id="wantedValueRange">500-1200&euro;</span>
                 </div>
               </div>
             </div>
@@ -3727,7 +3727,7 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="productValue">Valor estimado (â‚¬) *</label>
+                  <label for="productValue">Valor estimado (&euro;) *</label>
                   <input type="number" id="productValue" min="0" max="1000000" placeholder="Ej: 850" required>
                 </div>
 
@@ -4449,7 +4449,7 @@
         const rating = 4.5 + (Math.random() * 0.5); // 4.5-5.0
         const exchanges = user.exchangesCompleted || Math.floor(Math.random() * 100) + 20;
         document.getElementById('sellerScoring').innerHTML = `
-          <span class="stars">${'â˜…'.repeat(5)}</span>
+          <span class="stars">${'&#9733;'.repeat(5)}</span>
           <span class="rating">${rating.toFixed(1)}</span>
           <span class="exchanges">(${exchanges} intercambios)</span>
         `;
