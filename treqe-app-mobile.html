@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Treqe · Intercambio Circular</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@800&family=Anton&family=Space+Grotesk:wght@500&family=Inter:wght@400;500&family=Bebas+Neue&family=Bungee&display=swap" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* ===== PALETA DE COLORES OBLIGATORIA ===== */
+    :root {
+      --primary: #FF6A00;      /* Naranja Gulf primario */
+      --secondary: #00B8B8;    /* Teal/Azul Patagonia secundario */
+      --accent: #E30613;       /* Rojo intenso acento */
+      --yellow: #FFB700;       /* Amarillo sol */
+      --black: #111111;        /* Negro profundo */
+      --cream: #F8F5F0;        /* Crema off-white fondo */
+      --gray: #2C2C2C;         /* Gris carbón */
+      
+      /* Tipografías exactas */
+      --font-heading: 'Oswald', 'Anton', sans-serif;
+      --font-subheading: 'Space Grotesk', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --font-accent: 'Bebas Neue', 'Bungee', sans-serif;
+      
+      /* Variables de diseño app */
+      --border-radius: 12px;
+      --shadow: 0 4px 12px rgba(17, 17, 17, 0.15);
+      --shadow-heavy: 0 8px 24px rgba(17, 17, 17, 0.25);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    /* ===== RESET Y BASE ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+    
+    html {
+      font-size: 16px;
+      height: 100%;
+    }
+    
+    body {
+      font-family: var(--font-body);
+      background-color: var(--black);
+      color: var(--cream);
+      line-height: 1.5;
+      height: 100%;
+      overflow-x: hidden;
+      position: relative;
+      padding-bottom: 80px; /* Espacio para tab bar */
+    }
+    
+    /* ===== APP CONTAINER ===== */
+    .app-container {
+      max-width: 480px;
+      margin: 0 auto;
+      min-height: 100vh;
+      background-color: var(--black);
+      position: relative;
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+    }
+    
+    /* ===== HEADER / APP BAR ===== */
+    .app-header {
+      background-color: var(--gray);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid var(--primary);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .logo {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+    }
+    
+    .logo-icon {
+      color: var(--yellow);
+      margin-right: 8px;
+      font-size: 1.5rem;
+    }
+    
+    .header-actions {
+      display: flex;
+      gap: 16px;
+    }
+    
+    .icon-btn {
+      background: none;
+      border: none;
+      color: var(--cream);
+      font-size: 1.2rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+    
+    .icon-btn:active {
+      background-color: rgba(255, 255, 255, 0.1);
+      transform: scale(0.95);
+    }
+    
+    /* ===== SEARCH BAR ===== */
+    .search-container {
+      padding: 16px 20px;
+      background-color: var(--gray);
+    }
+    
+    .search-bar {
+      display: flex;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      border: 1px solid rgba(255, 106, 0, 0.3);
+    }
+    
+    .search-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      padding: 14px 16px;
+      color: var(--cream);
+      font-family: var(--font-body);
+      font-size: 1rem;
+    }
+    
+    .search-input::placeholder {
+      color: rgba(248, 245, 240, 0.6);
+    }
+    
+    .search-btn {
+      background-color: var(--primary);
+      border: none;
+      color: var(--black);
+      font-family: var(--font-subheading);
+      font-weight: 500;
+      padding: 0 20px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .search-btn:active {
+      background-color: var(--yellow);
+    }
+    
+    /* ===== CATEGORIES GRID ===== */
+    .section-title {
+      font-family: var(--font-subheading);
+      font-size: 1.3rem;
+      color: var(--cream);
+      margin: 24px 20px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .see-all {
+      color: var(--secondary);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    
+    .see-all:active {
+      color: var(--primary);
+    }
+    
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      padding: 0 20px;
+      margin-bottom: 24px;
+    }
+    
+    .category-card {
+      background-color: var(--gray);
+      border-radius: var(--border-radius);
+      padding: 16px 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: var(--transition);
+      border: 1px solid transparent;
+    }
+    
+    .category-card:active {
+      border-color: var(--primary);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+    
+    .category-icon {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+    }
+    
+    .category-name {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      color: var(--cream);
+      font-weight: 500;
+    }
+    
+    /* ===== FEATURED LISTINGS ===== */
+    .listings-container {
+      padding: 0 20px;
+      margin-bottom: 24px;
+    }
+    
+    .listing-card {
+      background-color: var(--gray);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      margin-bottom: 16px;
+      border: 1px solid rgba(255, 106, 0, 0.2);
+      transition: var(--transition);
+    }
+    
+    .listing-card:active {
+      border-color: var(--primary);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-heavy);
+    }
+    
+    .listing-image {
+      width: 100%;
+      height: 180px;
+      background-color: var(--black);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--cream);
+      font-size: 3rem;
+    }
+    
+    .listing-info {
+      padding: 16px;
+    }
+    
+    .listing-title {
+      font-family: var(--font-subheading);
+      font-size: 1.1rem;
+      color: var(--cream);
+      margin-bottom: 8px;
+    }
+    
+    .listing-price {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+    
+    .listing-meta {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      color: rgba(248, 245, 240, 0.7);
+    }
+    
+    .listing-condition {
+      color: var(--secondary);
+    }
+    
+    /* ===== TREQEAR BUTTON ===== */
+    .treqear-btn {
+      background-color: var(--primary);
+      color: var(--black);
+      border: none;
+      border-radius: var(--border-radius);
+      padding: 16px 24px;
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      width: 100%;
+      margin: 20px;
+      max-width: calc(100% - 40px);
+      display: block;
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .treqear-btn:active {
+      background-color: var(--yellow);
+      transform: scale(0.98);
+    }
+    
+    .treqear-btn::after {
+      content: '↻';
+      position: absolute;
+      right: 20px;
+      font-size: 1.5rem;
+      animation: spin 2s linear infinite;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    /* ===== BOTTOM NAVIGATION ===== */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: var(--gray);
+      border-top: 2px solid var(--primary);
+      display: flex;
+      justify-content: space-around;
+      padding: 12px 0;
+      z-index: 1000;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: rgba(248, 245, 240, 0.6);
+      transition: var(--transition);
+      flex: 1;
+    }
+    
+    .nav-item:active {
+      color: var(--primary);
+      transform: scale(0.95);
+    }
+    
+    .nav-item.active {
+      color: var(--primary);
+    }
+    
+    .nav-icon {
+      font-size: 1.4rem;
+      margin-bottom: 4px;
+    }
+    
+    .nav-label {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 500;
+    }
+    
+    /* ===== PRODUCT PAGE (hidden by default) ===== */
+    .product-page {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: var(--black);
+      z-index: 2000;
+      overflow-y: auto;
+      padding-bottom: 80px;
+    }
+    
+    .product-header {
+      background-color: var(--gray);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid var(--primary);
+    }
+    
+    .back-btn {
+      background: none;
+      border: none;
+      color: var(--cream);
+      font-size: 1.2rem;
+    }
+    
+    .product-image {
+      width: 100%;
+      height: 300px;
+      background-color: var(--black);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--cream);
+      font-size: 4rem;
+    }
+    
+    .product-details {
+      padding: 20px;
+    }
+    
+    .product-title {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      color: var(--cream);
+      margin-bottom: 8px;
+    }
+    
+    .product-price {
+      font-family: var(--font-heading);
+      font-size: 2.2rem;
+      color: var(--primary);
+      margin-bottom: 16px;
+    }
+    
+    .product-description {
+      font-family: var(--font-body);
+      color: rgba(248, 245, 240, 0.8);
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+    
+    .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    
+    .spec-item {
+      background-color: var(--gray);
+      padding: 12px;
+      border-radius: 8px;
+    }
+    
+    .spec-label {
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      color: rgba(248, 245, 240, 0.6);
+      margin-bottom: 4px;
+    }
+    
+    .spec-value {
+      font-family: var(--font-subheading);
+      color: var(--cream);
+    }
+    
+    /* ===== MESSAGES PAGE ===== */
+    .messages-page {
+      display: none;
+      padding: 20px;
+    }
+    
+    .sell-fast-banner {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: var(--border-radius);
+      padding: 20px;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+    
+    .banner-title {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      color: var(--black);
+      margin-bottom: 8px;
+    }
+    
+    .banner-text {
+      font-family: var(--font-body);
+      color: rgba(17, 17, 17, 0.9);
+    }
+    
+    .chat-list {
+      margin-top: 20px;
+    }
+    
+    .chat-item {
+      background-color: var(--gray);
+      border-radius: var(--border-radius);
+      padding: 16px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      transition: var(--transition);
+    }
+    
+    .chat-item:active {
+      background-color: rgba(255, 106, 0, 0.1);
+    }
+    
+    .chat-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: var(--black);
+      margin-right: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--cream);
+      font-size: 1.5rem;
+    }
+    
+    .chat-info {
+      flex: 1;
+    }
+    
+    .chat-user {
+      font-family: var(--font-subheading);
+      color: var(--cream);
+      margin-bottom: 4px;
+    }
+    
+    .chat-preview {
+      font-family: var(--font-body);
+      color: rgba(248, 245, 240, 0.7);
+      font-size: 0.9rem;
+    }
+    
+    /* ===== PROFILE PAGE ===== */
+    .profile-page {
+      display: none;
+      padding: 20px;
+    }
+    
+    .profile-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    
+    .profile-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background-color: var(--gray);
+      margin: 0 auto 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--cream);
+      font-size: 2.5rem;
+      border: 3px solid var(--primary);
+    }
+    
+    .profile-name {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      color: var(--cream);
+      margin-bottom: 8px;
+    }
+    
+    .profile-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+    
+    .stat-card {
+      background-color: var(--gray);
+      border-radius: var(--border-radius);
+      padding: 16px;
+      text-align: center;
+    }
+    
+    .stat-value {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+    
+    .stat-label {
+      font-family: var(--font-body);
+      color: rgba(248, 245, 240, 0.7);
+      font-size: 0.85rem;
+    }
+    
+    .profile-menu {
+      background-color: var(--gray);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+    }
+    
+    .menu-item {
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      transition: var(--transition);
+    }
+    
+    .menu-item:active {
+      background-color: rgba(255, 106, 0, 0.1);
+    }
+    
+    .menu-item:last-child {
+      border-bottom: none;
+    }
+    
+    .menu-icon {
+      color: var(--primary);
+      font-size: 1.2rem;
+      margin-right: 16px;
+      width: 24px;
+      text-align: center;
+    }
+    
+    .menu-text {
+      font-family: var(--font-subheading);
+      color: var(--cream);
+      flex: 1;
+    }
+    
+    .menu-arrow {
+      color: rgba(248, 245, 240, 0.5);
+    }
+    
+    /* ===== UTILITY CLASSES ===== */
+    .hidden {
+      display: none !important;
+    }
+    
+    .visible {
+      display: block !important;
+    }
+    
+    .text-center {
+      text-align: center;
+    }
+    
+    .mt-1 { margin-top: 8px; }
+    .mt-2 { margin-top: 16px; }
+    .mt-3 { margin-top: 24px; }
+    .mb-1 { margin-bottom: 8px; }
+    .mb-2 { margin-bottom: 16px; }
+    .mb-3 { margin-bottom: 24px; }
+    
+    /* ===== RESPONSIVE ADJUSTMENTS ===== */
+    @media (max-width: 480px) {
+      .app-container {
+        max-width: 100%;
+      }
+      
+      .categories-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    
+    @media (max-width: 360px) {
+      .categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    
+    <!-- HEADER -->
+    <header class="app-header">
+      <div class="logo">
+        <span class="logo-icon">↻</span>
+        TREQE
+      </div>
+      <div class="header-actions">
+        <button class="icon-btn" id="notificationsBtn">
+          <i class="fas fa-bell"></i>
+        </button>
+        <button class="icon-btn" id="menuBtn">
+          <i class="fas fa-ellipsis-v"></i>
+        </button>
+      </div>
+    </header>
+    
+    <!-- SEARCH BAR -->
+    <div class="search-container">
+      <div class="search-bar">
+        <input type="text" class="search-input" placeholder="Busca productos, categorías...">
+        <button class="search-btn">BUSCAR</button>
+      </div>
+    </div>
+    
+    <!-- HOME PAGE CONTENT (default visible) -->
+    <div id="homePage" class="page-content">
+      
+      <!-- CATEGORIES SECTION -->
+      <h2 class="section-title">
+        Categorías
+        <a href="#" class="see-all">Ver todas</a>
+      </h2>
+      <div class="categories-grid" id="categoriesGrid">
+        <!-- Categories will be populated by JavaScript -->
+      </div>
+      
+      <!-- FEATURED LISTINGS -->
+      <h2 class="section-title">
+        Destacados
+        <a href="#" class="see-all">Ver todos</a>
+      </h2>
+      <div class="listings-container" id="listingsContainer">
+        <!-- Listings will be populated by JavaScript -->
+      </div>
+      
+      <!-- TREQEAR BUTTON -->
+      <button class="treqear-btn" id="treqearBtn">
+        TREQEAR
+      </button>
+      
+    </div>
+    
+    <!-- PRODUCT PAGE (hidden) -->
+    <div id="productPage" class="product-page">
+      <div class="product-header">
+        <button class="back-btn" id="productBackBtn">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <div class="logo">
+          <span class="logo-icon">↻</span>
+          TREQE
+        </div>
+        <button class="icon-btn">
+          <i class="fas fa-share-alt"></i>
+        </button>
+      </div>
+      
+      <div class="product-image" id="productImage">
+        <!-- Product image placeholder -->
+      </div>
+      
+      <div class="product-details">
+        <h1 class="product-title" id="productTitle">Product Title</h1>
+        <div class="product-price" id="productPrice">€0</div>
+        <p class="product-description" id="productDescription">Product description will appear here.</p>
+        
+        <div class="specs-grid">
+          <div class="spec-item">
+            <div class="spec-label">Categoría</div>
+            <div class="spec-value" id="productCategory">-</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Condición</div>
+            <div class="spec-value" id="productCondition">-</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Ubicación</div>
+            <div class="spec-value" id="productLocation">-</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Usuario</div>
+            <div class="spec-value" id="productUser">-</div>
+          </div>
+        </div>
+        
+        <button class="treqear-btn" id="treqearProductBtn">
+          TREQEAR ESTE PRODUCTO
+        </button>
+      </div>
+    </div>
+    
+    <!-- MESSAGES PAGE (hidden) -->
+    <div id="messagesPage" class="messages-page">
+      <div class="sell-fast-banner">
+        <h2 class="banner-title">¡Vende rápido!</h2>
+        <p class="banner-text">Publica tus productos y consigue intercambios en minutos.</p>
+      </div>
+      
+      <h2 class="section-title">Mensajes</h2>
+      <div class="chat-list" id="chatList">
+        <!-- Chats will be populated by JavaScript -->
+      </div>
+    </div>
+    
+    <!-- PROFILE PAGE (hidden) -->
+    <div id="profilePage" class="profile-page">
+      <div class="profile-header">
+        <div class="profile-avatar">
+          <i class="fas fa-user"></i>
+        </div>
+        <h1 class="profile-name" id="profileName">Usuario Treqe</h1>
+        <p class="text-center" style="color: rgba(248,245,240,0.7);">Miembro desde abril 2026</p>
+      </div>
+      
+      <div class="profile-stats">
+        <div class="stat-card">
+          <div class="stat-value" id="statForSale">0</div>
+          <div class="stat-label">En venta</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="statSold">0</div>
+          <div class="stat-label">Vendidos</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="statExchanges">0</div>
+          <div class="stat-label">Intercambios</div>
+        </div>
+      </div>
+      
+      <div class="profile-menu">
+        <a href="#" class="menu-item">
+          <div class="menu-icon">
+            <i class="fas fa-box"></i>
+          </div>
+          <div class="menu-text">Mis productos</div>
+          <div class="menu-arrow">
+            <i class="fas fa-chevron-right"></i>
+          </div>
+        </a>
+        <a href="#" class="menu-item">
+          <div class="menu-icon">
+            <i class="fas fa-heart"></i>
+          </div>
+          <div class="menu-text">Favoritos</div>
+          <div class="menu-arrow">
+            <i class="fas fa-chevron-right"></i>
+          </div>
+        </a>
+        <a href="#" class="menu-item">
+          <div class="menu-icon">
+            <i class="fas fa-cog"></i>
+          </div>
+          <div class="menu-text">Configuración</div>
+          <div class="menu-arrow">
+            <i class="fas fa-chevron-right"></i>
+          </div>
+        </a>
+        <a href="#" class="menu-item">
+          <div class="menu-icon">
+            <i class="fas fa-question-circle"></i>
+          </div>
+          <div class="menu-text">Ayuda y soporte</div>
+          <div class="menu-arrow">
+            <i class="fas fa-chevron-right"></i>
+          </div>
+        </a>
+        <a href="#" class="menu-item">
+          <div class="menu-icon">
+            <i class="fas fa-sign-out-alt"></i>
+          </div>
+          <div class="menu-text">Cerrar sesión</div>
+          <div class="menu-arrow">
+            <i class="fas fa-chevron-right"></i>
+          </div>
+        </a>
+      </div>
+    </div>
+    
+    <!-- BOTTOM NAVIGATION -->
+    <nav class="bottom-nav">
+      <a href="#" class="nav-item active" data-page="homePage">
+        <i class="fas fa-home nav-icon"></i>
+        <span class="nav-label">Inicio</span>
+      </a>
+      <a href="#" class="nav-item" data-page="searchPage" style="display:none;">
+        <i class="fas fa-search nav-icon"></i>
+        <span class="nav-label">Buscar</span>
+      </a>
+      <a href="#" class="nav-item" data-page="messagesPage">
+        <i class="fas fa-comments nav-icon"></i>
+        <span class="nav-label">Mensajes</span>
+      </a>
+      <a href="#" class="nav-item" data-page="profilePage">
+        <i class="fas fa-user nav-icon"></i>
+        <span class="nav-label">Perfil</span>
+      </a>
+    </nav>
+    
+  </div>
+  
+  <script>
+    // ===== DATOS DE DEMO (extract from original index.html) =====
+    const demoData = {
+      categories: [
+        { slug: "cars", name: "Cars", icon: "🚗", subcategories: ["Coches", "Furgonetas", "4x4", "Eléctricos", "Clásicos", "Deportivos", "Utilitarios"] },
+        { slug: "motorbike", name: "Motorbike", icon: "🏍️", subcategories: ["Motos", "Scooters", "Ciclomotores", "Accesorios moto", "Cascos", "Protecciones"] },
+        { slug: "motors-accessories", name: "Motors & accessories", icon: "🔧", subcategories: ["Car & van spare parts", "GPS & electronics", "Mechanical tools", "Motorbike and four-wheeler spare parts", "Others"] },
+        { slug: "fashion-accessories", name: "Fashion & accessories", icon: "👕", subcategories: ["Women", "Men", "Accessories", "Jewellery", "Beauty"] },
+        { slug: "real-estate", name: "Real Estate", icon: "🏠", subcategories: ["Pisos", "Casas", "Locales", "Garajes", "Terrenos", "Oficinas", "Trasteros"] },
+        { slug: "technology-electronics", name: "Technology & electronics", icon: "📱", subcategories: ["Image: TVs & projectors", "Sound: headphones & speakers", "Photography: cameras & drones", "Phones: mobiles & smartwatches", "Computing: computers & tablets", "Gaming: consoles & video games"] },
+        { slug: "sports-leisure", name: "Sports & leisure", icon: "⚽", subcategories: ["Basketball", "Crafts Arts & crafts", "Exercise bikes", "Fitness, running & yoga", "Golf", "Handball", "Mountain & ski", "Others sports"] },
+        { slug: "bikes", name: "Bikes", icon: "🚲", subcategories: ["Bike accessories", "Bike components & spare parts", "Bikes & tricycles", "Protective gear & clothing", "Others"] },
+        { slug: "home-garden", name: "Home & garden", icon: "🏡", subcategories: ["Furniture and organization", "Bathroom and accessories", "Kitchen", "Decoration and mirrors", "Garden, plants & tools", "Lighting", "Textiles & bedding", "Others"] },
+        { slug: "appliances", name: "Appliances", icon: "🧺", subcategories: ["Large appliances", "Small appliances", "Climate control", "Kitchen appliances", "Cleaning appliances", "Others"] },
+        { slug: "movies-books-music", name: "Movies, books & music", icon: "📚", subcategories: ["Books & magazines", "CDs, DVDs & Blu-rays", "Musical instruments", "Others"] },
+        { slug: "baby-child", name: "Baby & child", icon: "👶", subcategories: ["Prams & pushchairs", "High chairs & feeding", "Baby safety", "Baby furniture", "Baby clothing", "Toys 0-2 years", "Toys 3-5 years", "Toys 6+ years", "Educational toys", "Outdoor toys", "Toy vehicles", "Dolls & figures", "Others"] },
+        { slug: "collectibles-art", name: "Collectibles & Art", icon: "🎨", subcategories: ["Coins, bills & stamps", "Comics & graphic novels", "Figurines & models", "Trading cards", "Movie & TV memorabilia", "Music memorabilia", "Sports memorabilia", "Vintage advertising", "Antiques", "Paintings & prints", "Sculptures", "Photography", "Ceramics & glass", "Textile art", "Others"] },
+        { slug: "construction", name: "Construction", icon: "🏗️", subcategories: ["Bathroom", "Doors & windows", "Electrical", "Flooring", "Gardening & landscaping", "Hardware & tools", "Heating & plumbing", "Kitchen", "Lighting", "Others"] },
+        { slug: "agriculture-industrial", name: "Agriculture & industrial", icon: "🚜", subcategories: ["Agricultural machinery", "Industrial machinery", "Others"] },
+        { slug: "jobs", name: "Jobs", icon: "💼", subcategories: ["Full-time jobs", "Part-time jobs", "Others"] },
+        { slug: "services", name: "Services", icon: "🛠️", subcategories: ["Beauty & wellness", "Cleaning services", "Housework services", "Moving & transport", "Repairs", "Therapies & personal growth", "Others"] },
+        { slug: "other", name: "Other", icon: "📦", subcategories: ["Varios", "Sin categorizar", "Otros", "Miscelánea"] }
+      ],
+      products: [
+        {
+          id: 1,
+          title: "iPhone 15 Pro 256GB",
+          category: "technology-electronics",
+          subcategory: "Phones: mobiles & smartwatches",
+          value: 850,
+          city: "Madrid",
+          condition: "like-new",
+          userId: 1,
+          description: "Como nuevo, con cargador y funda original. 6 meses de garantía restante.",
+          wantedCategory: "cars",
+          wantedSubcategory: "Coches",
+          wantedValueRange: [500, 1200],
+          imageIcon: "📱"
+        },
+        {
+          id: 2,
+          title: "Bicicleta de montaña Orbea",
+          category: "bikes",
+          subcategory: "Bikes & tricycles",
+          value: 450,
+          city: "Barcelona",
+          condition: "used",
+          userId: 2,
+          description: "Bicicleta de montaña en buen estado, revisada recientemente.",
+          wantedCategory: "technology-electronics",
+          wantedSubcategory: "Computing: computers & tablets",
+          wantedValueRange: [300, 600],
+          imageIcon: "🚲"
+        },
+        {
+          id: 3,
+          title: "Sofá de piel negro",
+          category: "home-garden",
+          subcategory: "Furniture and organization",
+          value: 1200,
+          city: "Valencia",
+          condition: "used",
+          userId: 3,
+          description: "Sofá de piel en perfecto estado, solo 2 años de uso.",
+          wantedCategory: "fashion-accessories",
+          wantedSubcategory: "Accessories",
+          wantedValueRange: [800, 1500],
+          imageIcon: "🛋️"
+        },
+        {
+          id: 4,
+          title: "PlayStation 5 con 2 mandos",
+          category: "technology-electronics",
+          subcategory: "Gaming: consoles & video games",
+          value: 550,
+          city: "Madrid",
+          condition: "new",
+          userId: 4,
+          description: "Nueva, sin abrir, con garantía de 2 años.",
+          wantedCategory: "motors-accessories",
+          wantedSubcategory: "Car & van spare parts",
+          wantedValueRange: [400, 700],
+          imageIcon: "🎮"
+        },
+        {
+          id: 5,
+          title: "Vestido de noche de diseñador",
+          category: "fashion-accessories",
+          subcategory: "Women",
+          value: 280,
+          city: "Sevilla",
+          condition: "like-new",
+          userId: 5,
+          description: "Vestido usado solo una vez, talla M, marca premium.",
+          wantedCategory: "home-garden",
+          wantedSubcategory: "Decoration and mirrors",
+          wantedValueRange: [200, 400],
+          imageIcon: "👗"
+        }
+      ],
+      users: [
+        { id: 1, name: "Ana Martínez", avatar: "👩" },
+        { id: 2, name: "Carlos López", avatar: "👨" },
+        { id: 3, name: "María García", avatar: "👩" },
+        { id: 4, name: "David Fernández", avatar: "👨" },
+        { id: 5, name: "Laura Rodríguez", avatar: "👩" }
+      ]
+    };
+    
+    // ===== STATE MANAGEMENT =====
+    let currentPage = 'homePage';
+    let currentProduct = null;
+    
+    // ===== DOM ELEMENTS =====
+    const homePage = document.getElementById('homePage');
+    const productPage = document.getElementById('productPage');
+    const messagesPage = document.getElementById('messagesPage');
+    const profilePage = document.getElementById('profilePage');
+    const navItems = document.querySelectorAll('.nav-item');
+    const categoriesGrid = document.getElementById('categoriesGrid');
+    const listingsContainer = document.getElementById('listingsContainer');
+    const chatList = document.getElementById('chatList');
+    const treqearBtn = document.getElementById('treqearBtn');
+    const productBackBtn = document.getElementById('productBackBtn');
+    const treqearProductBtn = document.getElementById('treqearProductBtn');
+    
+    // ===== INITIALIZATION =====
+    document.addEventListener('DOMContentLoaded', function() {
+      // Populate categories
+      renderCategories();
+      
+      // Populate featured listings
+      renderListings();
+      
+      // Populate chats
+      renderChats();
+      
+      // Populate profile stats
+      updateProfileStats();
+      
+      // Setup event listeners
+      setupEventListeners();
+    });
+    
+    // ===== RENDER FUNCTIONS =====
+    function renderCategories() {
+      // Show first 8 categories
+      const categoriesToShow = demoData.categories.slice(0, 8);
+      
+      categoriesGrid.innerHTML = '';
+      categoriesToShow.forEach(category => {
+        const categoryCard = document.createElement('div');
+        categoryCard.className = 'category-card';
+        categoryCard.innerHTML = `
+          <div class="category-icon">${category.icon}</div>
+          <div class="category-name">${category.name}</div>
+        `;
+        categoryCard.addEventListener('click', () => {
+          alert(`Categoría: ${category.name}\nSubcategorías: ${category.subcategories.join(', ')}`);
+        });
+        categoriesGrid.appendChild(categoryCard);
+      });
+    }
+    
+    function renderListings() {
+      listingsContainer.innerHTML = '';
+      demoData.products.forEach(product => {
+        const user = demoData.users.find(u => u.id === product.userId) || demoData.users[0];
+        const category = demoData.categories.find(c => c.slug === product.category) || demoData.categories[0];
+        
+        const listingCard = document.createElement('div');
+        listingCard.className = 'listing-card';
+        listingCard.innerHTML = `
+          <div class="listing-image">
+            ${product.imageIcon || '📦'}
+          </div>
+          <div class="listing-info">
+            <h3 class="listing-title">${product.title}</h3>
+            <div class="listing-price">€${product.value}</div>
+            <div class="listing-meta">
+              <span class="listing-condition">${product.condition === 'new' ? 'Nuevo' : product.condition === 'like-new' ? 'Como nuevo' : 'Usado'}</span>
+              <span>${product.city}</span>
+            </div>
+          </div>
+        `;
+        
+        listingCard.addEventListener('click', () => {
+          openProductPage(product);
+        });
+        
+        listingsContainer.appendChild(listingCard);
+      });
+    }
+    
+    function renderChats() {
+      chatList.innerHTML = '';
+      
+      // Simulate chat data
+      const chats = [
+        { user: demoData.users[0], lastMessage: "¿Interesado en intercambiar?", time: "10:30" },
+        { user: demoData.users[1], lastMessage: "¡Me encanta tu producto!", time: "Ayer" },
+        { user: demoData.users[2], lastMessage: "Podemos acordar un encuentro", time: "2 días" },
+        { user: demoData.users[3], lastMessage: "¿Aceptarías €100 de diferencia?", time: "3 días" },
+        { user: demoData.users[4], lastMessage: "Mi producto está en perfecto estado", time: "1 sem" }
+      ];
+      
+      chats.forEach(chat => {
+        const chatItem = document.createElement('div');
+        chatItem.className = 'chat-item';
+        chatItem.innerHTML = `
+          <div class="chat-avatar">
+            ${chat.user.avatar}
+          </div>
+          <div class="chat-info">
+            <div class="chat-user">${chat.user.name}</div>
+            <div class="chat-preview">${chat.lastMessage}</div>
+          </div>
+          <div style="color: rgba(248,245,240,0.5); font-size: 0.8rem;">
+            ${chat.time}
+          </div>
+        `;
+        
+        chatItem.addEventListener('click', () => {
+          alert(`Abrir chat con ${chat.user.name}`);
+        });
+        
+        chatList.appendChild(chatItem);
+      });
+    }
+    
+    function updateProfileStats() {
+      document.getElementById('statForSale').textContent = '5';
+      document.getElementById('statSold').textContent = '12';
+      document.getElementById('statExchanges').textContent = '8';
+      document.getElementById('profileName').textContent = 'Usuario Treqe';
+    }
+    
+    // ===== PAGE NAVIGATION =====
+    function openProductPage(product) {
+      currentProduct = product;
+      
+      // Update product page content
+      document.getElementById('productImage').innerHTML = product.imageIcon || '📦';
+      document.getElementById('productTitle').textContent = product.title;
+      document.getElementById('productPrice').textContent = `€${product.value}`;
+      document.getElementById('productDescription').textContent = product.description;
+      
+      const category = demoData.categories.find(c => c.slug === product.category);
+      document.getElementById('productCategory').textContent = category ? category.name : '-';
+      
+      document.getElementById('productCondition').textContent = 
+        product.condition === 'new' ? 'Nuevo' : 
+        product.condition === 'like-new' ? 'Como nuevo' : 'Usado';
+      
+      document.getElementById('productLocation').textContent = product.city;
+      
+      const user = demoData.users.find(u => u.id === product.userId);
+      document.getElementById('productUser').textContent = user ? user.name : '-';
+      
+      // Show product page, hide others
+      showPage('productPage');
+    }
+    
+    function showPage(pageId) {
+      // Hide all pages
+      [homePage, productPage, messagesPage, profilePage].forEach(page => {
+        page.style.display = 'none';
+      });
+      
+      // Show selected page
+      document.getElementById(pageId).style.display = 'block';
+      
+      // Update navigation
+      navItems.forEach(item => {
+        item.classList.remove('active');
+        if (item.getAttribute('data-page') === pageId) {
+          item.classList.add('active');
+        }
+      });
+      
+      currentPage = pageId;
+    }
+    
+    // ===== EVENT LISTENERS =====
+    function setupEventListeners() {
+      // Navigation
+      navItems.forEach(item => {
+        item.addEventListener('click', function(e) {
+          e.preventDefault();
+          const pageId = this.getAttribute('data-page');
+          if (pageId) {
+            showPage(pageId);
+          }
+        });
+      });
+      
+      // Treqear button on home
+      treqearBtn.addEventListener('click', function() {
+        alert('¡Funcionalidad TREQEAR!\nAquí iría el formulario para crear un nuevo intercambio circular.');
+      });
+      
+      // Product page back button
+      productBackBtn.addEventListener('click', function() {
+        showPage('homePage');
+      });
+      
+      // Treqear button on product page
+      treqearProductBtn.addEventListener('click', function() {
+        if (currentProduct) {
+          alert(`¡Iniciar intercambio por: ${currentProduct.title}!\nValor: €${currentProduct.value}\nSe buscarán coincidencias en tus productos.`);
+        }
+      });
+      
+      // Search functionality
+      const searchInput = document.querySelector('.search-input');
+      const searchBtn = document.querySelector('.search-btn');
+      
+      searchBtn.addEventListener('click', function() {
+        const query = searchInput.value.trim();
+        if (query) {
+          alert(`Buscando: "${query}"\nEsta funcionalidad se integrará con el sistema de búsqueda de Treqe.`);
+        }
+      });
+      
+      searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          searchBtn.click();
+        }
+      });
+    }
+    
+    // ===== INITIAL RENDER =====
+    // Show home page by default
+    showPage('homePage');
+    
+  </script>
+</body>
+</html>
