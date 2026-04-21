@@ -3783,12 +3783,12 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="wantedMinValue">Valor mínimo aceptable (â‚¬) *</label>
+                  <label for="wantedMinValue">Valor mínimo aceptable () *</label>
                   <input type="number" id="wantedMinValue" min="0" max="1000000" placeholder="Ej: 500" required>
                 </div>
 
                 <div class="form-group">
-                  <label for="wantedMaxValue">Valor máximo aceptable (â‚¬) *</label>
+                  <label for="wantedMaxValue">Valor máximo aceptable () *</label>
                   <input type="number" id="wantedMaxValue" min="0" max="1000000" placeholder="Ej: 1200" required>
                 </div>
 
@@ -3847,19 +3847,19 @@
           <div class="shipping-methods">
             <div class="shipping-method" data-method="correos" onclick="selectShippingMethod('correos')">
               <h4>ðŸ“¦ Correos Estándar</h4>
-              <div class="shipping-price">4,99 â‚¬</div>
+              <div class="shipping-price">4,99 </div>
               <div class="shipping-details">
                 <p><strong>Entrega en 3-5 días laborables</strong></p>
-                <p>Cobertura básica, tracking incluido, seguro hasta 100â‚¬.</p>
+                <p>Cobertura básica, tracking incluido, seguro hasta 100.</p>
               </div>
             </div>
             
             <div class="shipping-method" data-method="urgente" onclick="selectShippingMethod('urgente')">
               <h4>âš&iexcl; Envío Urgente 24h</h4>
-              <div class="shipping-price">9,99 â‚¬</div>
+              <div class="shipping-price">9,99 </div>
               <div class="shipping-details">
                 <p><strong>Entrega en 24 horas</strong></p>
-                <p>Prioridad máxima, tracking en tiempo real, seguro hasta 500â‚¬.</p>
+                <p>Prioridad máxima, tracking en tiempo real, seguro hasta 500.</p>
               </div>
             </div>
             
@@ -4340,7 +4340,7 @@
             <span class="product-category">${product.subcategory}</span>
             <h3 class="product-title">${product.title}</h3>
             <p class="product-description">${product.description}</p>
-            <div class="product-value">${product.value}â‚¬</div>
+            <div class="product-value">${product.value}</div>
           </div>
         `;
 
@@ -4437,7 +4437,7 @@
       document.getElementById('detailCategory').textContent = category ? category.name : product.category;
       document.getElementById('detailTitle').textContent = product.title;
       document.getElementById('detailLocation').textContent = product.city || 'No especificada';
-      document.getElementById('detailPrice').textContent = product.value + 'â‚¬';
+      document.getElementById('detailPrice').textContent = product.value + '';
       document.getElementById('detailCondition').textContent = conditionLabel;
       document.getElementById('detailDescription').textContent = product.description;
       
@@ -4460,7 +4460,7 @@
       // Especificaciones
       document.getElementById('specCategory').textContent = category ? category.name : product.category;
       document.getElementById('specSubcategory').textContent = product.subcategory;
-      document.getElementById('specValue').textContent = product.value + 'â‚¬';
+      document.getElementById('specValue').textContent = product.value + '';
       document.getElementById('specCondition').textContent = conditionLabel;
       
       // Lo que busca el vendedor
@@ -4469,7 +4469,7 @@
         (wantedCategoryObj ? wantedCategoryObj.name : product.wantedCategory) + 
         ' &middot; ' + product.wantedSubcategory;
       document.getElementById('wantedValueRange').textContent = 
-        `${product.wantedValueRange[0]}-${product.wantedValueRange[1]}â‚¬`;
+        `${product.wantedValueRange[0]}-${product.wantedValueRange[1]}`;
       
       // Configurar corazón grande
       const heartButton = document.getElementById('detailHeartButton');
@@ -4584,7 +4584,7 @@
             </p>
             <div style="display: flex; justify-content: space-between; align-items: center;">
               <div class="product-value" style="font-size: 1.2rem; font-weight: bold; color: var(--navy);">
-                ${product.value}â‚¬
+                ${product.value}
               </div>
               ${conditionBadges}
             </div>
@@ -4680,7 +4680,7 @@
             </p>
             <div style="display: flex; justify-content: space-between; align-items: center;">
               <div class="product-value" style="font-size: 1.2rem; font-weight: bold; color: var(--navy);">
-                ${product.value}â‚¬
+                ${product.value}
               </div>
               ${conditionBadges}
             </div>
