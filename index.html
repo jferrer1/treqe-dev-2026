@@ -3706,16 +3706,24 @@
                   <label for="productCategory">Categoría *</label>
                   <select id="productCategory" required onchange="updateSubcategorySelect('productCategory', 'productSubcategory')">
                     <option value="">Selecciona una categoría</option>
-                    <option value="motor">Motor</option>
-                    <option value="modáccesorios">Moda y Accesorios</option>
-                    <option value="tecnologia">Tecnología</option>
-                    <option value="hogar-jardin">Hogar y Jardín</option>
-                    <option value="deporte-ocio">Deporte y Ocio</option>
-                    <option value="bebes-ninos">Bebés y Niños</option>
-                    <option value="inmobiliaria">Inmobiliaria</option>
-                    <option value="servicios">Servicios</option>
-                    <option value="culturéntretenimiento">Cultura y Entretenimiento</option>
-                    <option value="industria-profesional">Industria y Profesional</option>
+                    <option value="cars">🚗 Cars</option>
+                    <option value="motorbike">🏍️ Motorbike</option>
+                    <option value="motors-accessories">🔧 Motors & accessories</option>
+                    <option value="fashion-accessories">👕 Fashion & accessories</option>
+                    <option value="real-estate">🏠 Real Estate</option>
+                    <option value="technology-electronics">📱 Technology & electronics</option>
+                    <option value="sports-leisure">⚽ Sports & leisure</option>
+                    <option value="bikes">🚲 Bikes</option>
+                    <option value="home-garden">🏡 Home & garden</option>
+                    <option value="appliances">🧺 Appliances</option>
+                    <option value="movies-books-music">📚 Movies, books & music</option>
+                    <option value="baby-child">👶 Baby & child</option>
+                    <option value="collectibles-art">🎨 Collectibles & Art</option>
+                    <option value="construction">🏗️ Construction</option>
+                    <option value="agriculture-industrial">🚜 Agriculture & industrial</option>
+                    <option value="jobs">💼 Jobs</option>
+                    <option value="services">🛠️ Services</option>
+                    <option value="other">📦 Other</option>
                   </select>
                 </div>
 
@@ -3762,16 +3770,24 @@
                   <label for="wantedCategory">Categoría deseada *</label>
                   <select id="wantedCategory" required onchange="updateSubcategorySelect('wantedCategory', 'wantedSubcategory')">
                     <option value="">Selecciona categoría deseada</option>
-                    <option value="motor">Motor</option>
-                    <option value="modáccesorios">Moda y Accesorios</option>
-                    <option value="tecnologia">Tecnología</option>
-                    <option value="hogar-jardin">Hogar y Jardín</option>
-                    <option value="deporte-ocio">Deporte y Ocio</option>
-                    <option value="bebes-ninos">Bebés y Niños</option>
-                    <option value="inmobiliaria">Inmobiliaria</option>
-                    <option value="servicios">Servicios</option>
-                    <option value="culturéntretenimiento">Cultura y Entretenimiento</option>
-                    <option value="industria-profesional">Industria y Profesional</option>
+                    <option value="cars">🚗 Cars</option>
+                    <option value="motorbike">🏍️ Motorbike</option>
+                    <option value="motors-accessories">🔧 Motors & accessories</option>
+                    <option value="fashion-accessories">👕 Fashion & accessories</option>
+                    <option value="real-estate">🏠 Real Estate</option>
+                    <option value="technology-electronics">📱 Technology & electronics</option>
+                    <option value="sports-leisure">⚽ Sports & leisure</option>
+                    <option value="bikes">🚲 Bikes</option>
+                    <option value="home-garden">🏡 Home & garden</option>
+                    <option value="appliances">🧺 Appliances</option>
+                    <option value="movies-books-music">📚 Movies, books & music</option>
+                    <option value="baby-child">👶 Baby & child</option>
+                    <option value="collectibles-art">🎨 Collectibles & Art</option>
+                    <option value="construction">🏗️ Construction</option>
+                    <option value="agriculture-industrial">🚜 Agriculture & industrial</option>
+                    <option value="jobs">💼 Jobs</option>
+                    <option value="services">🛠️ Services</option>
+                    <option value="other">📦 Other</option>
                   </select>
                 </div>
 
@@ -5112,18 +5128,130 @@
     window.demoDataFallback = {
       categories: [
         {
-          slug: "motor",
-          name: "Motor",
-          icon: "ðŸš—",
-          subcategories: ["Coches", "Motos", "Furgonetas", "Accesorios motor"],
-          description: "Vehículos y accesorios de motor para intercambio circular."
+          slug: "cars",
+          name: "Cars",
+          icon: "🚗",
+          subcategories: ["Coches", "Furgonetas", "4x4", "Eléctricos", "Clásicos", "Deportivos", "Utilitarios"],
+          description: "Vehículos y coches para intercambio circular."
         },
         {
-          slug: "modáccesorios",
-          name: "Moda y Accesorios",
-          icon: "ðŸ‘—",
-          subcategories: ["Ropa de mujer", "Ropa de hombre", "Calzado", "Bolsos"],
+          slug: "motorbike",
+          name: "Motorbike",
+          icon: "🏍️",
+          subcategories: ["Motos", "Scooters", "Ciclomotores", "Accesorios moto", "Cascos", "Protecciones"],
+          description: "Motos, scooters y accesorios de dos ruedas."
+        },
+        {
+          slug: "motors-accessories",
+          name: "Motors & accessories",
+          icon: "🔧",
+          subcategories: ["Car & van spare parts", "GPS & electronics", "Mechanical tools", "Motorbike and four-wheeler spare parts", "Others"],
+          description: "Recambios, herramientas y accesorios de motor."
+        },
+        {
+          slug: "fashion-accessories",
+          name: "Fashion & accessories",
+          icon: "👕",
+          subcategories: ["Women", "Men", "Accessories", "Jewellery", "Beauty"],
           description: "Moda sostenible y accesorios de segunda vida."
+        },
+        {
+          slug: "real-estate",
+          name: "Real Estate",
+          icon: "🏠",
+          subcategories: ["Pisos", "Casas", "Locales", "Garajes", "Terrenos", "Oficinas", "Trasteros"],
+          description: "Inmuebles y propiedades para intercambio."
+        },
+        {
+          slug: "technology-electronics",
+          name: "Technology & electronics",
+          icon: "📱",
+          subcategories: ["Image: TVs & projectors", "Sound: headphones & speakers", "Photography: cameras & drones", "Phones: mobiles & smartwatches", "Computing: computers & tablets", "Gaming: consoles & video games"],
+          description: "Tecnología, electrónica y dispositivos inteligentes."
+        },
+        {
+          slug: "sports-leisure",
+          name: "Sports & leisure",
+          icon: "⚽",
+          subcategories: ["Basketball", "Crafts Arts & crafts", "Exercise bikes", "Fitness, running & yoga", "Golf", "Handball", "Mountain & ski", "Others sports"],
+          description: "Deporte, ocio y actividades al aire libre."
+        },
+        {
+          slug: "bikes",
+          name: "Bikes",
+          icon: "🚲",
+          subcategories: ["Bike accessories", "Bike components & spare parts", "Bikes & tricycles", "Protective gear & clothing", "Others"],
+          description: "Bicicletas, componentes y accesorios ciclistas."
+        },
+        {
+          slug: "home-garden",
+          name: "Home & garden",
+          icon: "🏡",
+          subcategories: ["Furniture and organization", "Bathroom and accessories", "Kitchen", "Decoration and mirrors", "Garden, plants & tools", "Lighting", "Textiles & bedding", "Others"],
+          description: "Hogar, jardín, decoración y muebles."
+        },
+        {
+          slug: "appliances",
+          name: "Appliances",
+          icon: "🧺",
+          subcategories: ["Large appliances", "Small appliances", "Climate control", "Kitchen appliances", "Cleaning appliances", "Others"],
+          description: "Electrodomésticos y grandes aparatos para el hogar."
+        },
+        {
+          slug: "movies-books-music",
+          name: "Movies, books & music",
+          icon: "📚",
+          subcategories: ["Books & magazines", "CDs, DVDs & Blu-rays", "Musical instruments", "Others"],
+          description: "Cine, libros, música y entretenimiento."
+        },
+        {
+          slug: "baby-child",
+          name: "Baby & child",
+          icon: "👶",
+          subcategories: ["Prams & pushchairs", "High chairs & feeding", "Baby safety", "Baby furniture", "Baby clothing", "Toys 0-2 years", "Toys 3-5 years", "Toys 6+ years", "Educational toys", "Outdoor toys", "Toy vehicles", "Dolls & figures", "Others"],
+          description: "Productos para bebés, niños y maternidad."
+        },
+        {
+          slug: "collectibles-art",
+          name: "Collectibles & Art",
+          icon: "🎨",
+          subcategories: ["Coins, bills & stamps", "Comics & graphic novels", "Figurines & models", "Trading cards", "Movie & TV memorabilia", "Music memorabilia", "Sports memorabilia", "Vintage advertising", "Antiques", "Paintings & prints", "Sculptures", "Photography", "Ceramics & glass", "Textile art", "Others"],
+          description: "Coleccionismo, arte y objetos de valor."
+        },
+        {
+          slug: "construction",
+          name: "Construction",
+          icon: "🏗️",
+          subcategories: ["Bathroom", "Doors & windows", "Electrical", "Flooring", "Gardening & landscaping", "Hardware & tools", "Heating & plumbing", "Kitchen", "Lighting", "Others"],
+          description: "Materiales, herramientas y maquinaria de construcción."
+        },
+        {
+          slug: "agriculture-industrial",
+          name: "Agriculture & industrial",
+          icon: "🚜",
+          subcategories: ["Agricultural machinery", "Industrial machinery", "Others"],
+          description: "Agricultura, industria y maquinaria pesada."
+        },
+        {
+          slug: "jobs",
+          name: "Jobs",
+          icon: "💼",
+          subcategories: ["Full-time jobs", "Part-time jobs", "Others"],
+          description: "Ofertas de empleo y servicios profesionales."
+        },
+        {
+          slug: "services",
+          name: "Services",
+          icon: "🛠️",
+          subcategories: ["Beauty & wellness", "Cleaning services", "Housework services", "Moving & transport", "Repairs", "Therapies & personal growth", "Others"],
+          description: "Servicios personales, profesionales y técnicos."
+        },
+        {
+          slug: "other",
+          name: "Other",
+          icon: "📦",
+          subcategories: ["Varios", "Sin categorizar", "Otros", "Miscelánea"],
+          description: "Otros productos y servicios no categorizados."
         }
       ],
       products: [
