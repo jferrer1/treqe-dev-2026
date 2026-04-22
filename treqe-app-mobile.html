@@ -708,65 +708,166 @@ body{font-family:Inter,sans-serif;background:#111111;color:#fff;line-height:1.4;
 var lk=new Set(JSON.parse(localStorage.getItem('treqe_likes') || '[]'));
 var dt={
   cats:[
-    {s:"clothing",n:"Ropa",i:"fa-tshirt",subs:[
-      {s:"clothing_tops",n:"Camisetas y tops"},
-      {s:"clothing_pants",n:"Pantalones"},
-      {s:"clothing_jackets",n:"Chaquetas y abrigos"},
-      {s:"clothing_dresses",n:"Vestidos"},
-      {s:"clothing_accessories",n:"Accesorios"}
+    // CATEGORÍAS PRINCIPALES WALLAPOP (exactas del sitemap)
+    {s:"cars",n:"Coches",i:"fa-car",subs:[
+      {s:"cars_sedan",n:"Turismos"},
+      {s:"cars_suv",n:"SUV y 4x4"},
+      {s:"cars_van",n:"Furgonetas"},
+      {s:"cars_electric",n:"Eléctricos"},
+      {s:"cars_classic",n:"Clásicos"},
+      {s:"cars_parts",n:"Recambios coches"}
     ]},
-    {s:"footwear",n:"Calzado",i:"fa-shoe-prints",subs:[
-      {s:"footwear_sneakers",n:"Zapatillas"},
-      {s:"footwear_shoes",n:"Zapatos"},
-      {s:"footwear_boots",n:"Botas"},
-      {s:"footwear_sandals",n:"Sandalias"}
+    {s:"motorcycles",n:"Motos",i:"fa-motorcycle",subs:[
+      {s:"moto_scooter",n:"Scooters"},
+      {s:"moto_street",n:"De carretera"},
+      {s:"moto_offroad",n:"Todo terreno"},
+      {s:"moto_electric",n:"Eléctricas"},
+      {s:"moto_parts",n:"Recambios motos"},
+      {s:"moto_accessories",n:"Accesorios moto"}
     ]},
-    {s:"watches",n:"Relojes",i:"fa-clock",subs:[
-      {s:"watches_sport",n:"Relojes deportivos"},
-      {s:"watches_luxury",n:"Relojes de lujo"},
-      {s:"watches_smart",n:"Relojes inteligentes"}
+    {s:"motor_accessories",n:"Motor y Accesorios",i:"fa-cogs",subs:[
+      {s:"motor_tires",n:"Neumáticos"},
+      {s:"motor_tools",n:"Herramientas"},
+      {s:"motor_oil",n:"Aceites y lubricantes"},
+      {s:"motor_batteries",n:"Baterías"},
+      {s:"motor_care",n:"Cuidado y limpieza"},
+      {s:"motor_electronics",n:"Electrónica del motor"}
     ]},
-    {s:"electronics",n:"Electrónica",i:"fa-mobile-alt",subs:[
-      {s:"electronics_phones",n:"Móviles y smartphones"},
-      {s:"electronics_computers",n:"Ordenadores y tablets"},
-      {s:"electronics_audio",n:"Audio y sonido"},
-      {s:"electronics_gaming",n:"Videojuegos y consolas"},
-      {s:"electronics_cameras",n:"Cámaras y fotografía"}
+    {s:"fashion",n:"Moda y Accesorios",i:"fa-tshirt",subs:[
+      {s:"fashion_clothing",n:"Ropa"},
+      {s:"fashion_footwear",n:"Calzado"},
+      {s:"fashion_watches",n:"Relojes"},
+      {s:"fashion_bags",n:"Bolsos y carteras"},
+      {s:"fashion_accessories",n:"Accesorios"},
+      {s:"fashion_jewelry",n:"Bisutería y joyería"}
     ]},
-    {s:"home",n:"Hogar",i:"fa-home",subs:[
-      {s:"home_furniture",n:"Muebles"},
-      {s:"home_decor",n:"Decoración"},
-      {s:"home_appliances",n:"Electrodomésticos"},
-      {s:"home_garden",n:"Jardín y exterior"}
+    {s:"realestate",n:"Inmobiliaria",i:"fa-building",subs:[
+      {s:"realestate_flats",n:"Pisos"},
+      {s:"realestate_houses",n:"Casas"},
+      {s:"realestate_offices",n:"Oficinas"},
+      {s:"realestate_garages",n:"Garajes"},
+      {s:"realestate_land",n:"Terrenos"},
+      {s:"realestate_transfers",n:"Traspasos"}
     ]},
-    {s:"sports",n:"Deporte",i:"fa-futbol",subs:[
+    {s:"technology",n:"Tecnología y electrónica",i:"fa-laptop",subs:[
+      {s:"tech_audio",n:"Audio y sonido"},
+      {s:"tech_cameras",n:"Cámaras y fotografía"},
+      {s:"tech_tv",n:"TV y proyectores"},
+      {s:"tech_components",n:"Componentes informáticos"},
+      {s:"tech_smart_home",n:"Domótica"},
+      {s:"tech_drones",n:"Drones"}
+    ]},
+    {s:"phones",n:"Móviles y Telefonía",i:"fa-mobile-alt",subs:[
+      {s:"phones_smartphones",n:"Smartphones"},
+      {s:"phones_tablets",n:"Tablets"},
+      {s:"phones_accessories",n:"Accesorios móviles"},
+      {s:"phones_smartwatches",n:"Smartwatches"},
+      {s:"phones_repair",n:"Reparación"},
+      {s:"phones_sim",n:"Tarjetas SIM"}
+    ]},
+    {s:"computers",n:"Informática",i:"fa-desktop",subs:[
+      {s:"comp_laptops",n:"Portátiles"},
+      {s:"comp_desktops",n:"Sobremesa"},
+      {s:"comp_monitors",n:"Monitores"},
+      {s:"comp_peripherals",n:"Periféricos"},
+      {s:"comp_software",n:"Software"},
+      {s:"comp_networking",n:"Redes"}
+    ]},
+    {s:"sports",n:"Deporte y Ocio",i:"fa-futbol",subs:[
       {s:"sports_cycling",n:"Ciclismo"},
       {s:"sports_fitness",n:"Fitness y gimnasio"},
       {s:"sports_team",n:"Deportes de equipo"},
-      {s:"sports_outdoor",n:"Deportes de aventura"}
+      {s:"sports_outdoor",n:"Deportes de aventura"},
+      {s:"sports_winter",n:"Deportes de invierno"},
+      {s:"sports_watersports",n:"Deportes acuáticos"}
     ]},
-    {s:"books",n:"Libros",i:"fa-book",subs:[
-      {s:"books_novels",n:"Novela y ficción"},
-      {s:"books_science",n:"Ciencia y tecnología"},
-      {s:"books_children",n:"Infantil y juvenil"},
-      {s:"books_cooking",n:"Cocina y gastronomía"}
+    {s:"bicycles",n:"Bicicletas",i:"fa-bicycle",subs:[
+      {s:"bikes_road",n:"Bicis de carretera"},
+      {s:"bikes_mtb",n:"MTB"},
+      {s:"bikes_urban",n:"Urbanas"},
+      {s:"bikes_kids",n:"Infantiles"},
+      {s:"bikes_parts",n:"Recambios"},
+      {s:"bikes_accessories",n:"Accesorios"}
     ]},
-    {s:"toys",n:"Juguetes",i:"fa-gamepad",subs:[
-      {s:"toys_educational",n:"Educativos"},
-      {s:"toys_figures",n:"Figuras y coleccionables"},
-      {s:"toys_puzzles",n:"Puzzles y juegos de mesa"},
-      {s:"toys_outdoor",n:"Juguetes de exterior"}
+    {s:"gaming",n:"Consolas y Videojuegos",i:"fa-gamepad",subs:[
+      {s:"gaming_consoles",n:"Consolas"},
+      {s:"gaming_games",n:"Juegos"},
+      {s:"gaming_accessories",n:"Accesorios"},
+      {s:"gaming_vr",n:"Realidad virtual"},
+      {s:"gaming_retro",n:"Retro"},
+      {s:"gaming_pc",n:"PC gaming"}
     ]},
-    {s:"music",n:"Música",i:"fa-music",subs:[
-      {s:"music_instruments",n:"Instrumentos musicales"},
-      {s:"music_vinyl",n:"Vinilos y CDs"},
-      {s:"music_equipment",n:"Equipos de sonido"}
+    {s:"home",n:"Hogar y Jardín",i:"fa-home",subs:[
+      {s:"home_furniture",n:"Muebles"},
+      {s:"home_decor",n:"Decoración"},
+      {s:"home_garden",n:"Jardín y exterior"},
+      {s:"home_kitchen",n:"Menaje de cocina"},
+      {s:"home_lighting",n:"Iluminación"},
+      {s:"home_textiles",n:"Textiles del hogar"}
     ]},
-    {s:"art",n:"Arte",i:"fa-palette",subs:[
-      {s:"art_painting",n:"Pintura y dibujo"},
-      {s:"art_sculpture",n:"Escultura"},
-      {s:"art_photography",n:"Fotografía"},
-      {s:"art_crafts",n:"Artesanía"}
+    {s:"appliances",n:"Electrodomésticos",i:"fa-blender",subs:[
+      {s:"appliances_kitchen",n:"Cocina"},
+      {s:"appliances_laundry",n:"Lavandería"},
+      {s:"appliances_climate",n:"Climatización"},
+      {s:"appliances_cleaning",n:"Limpieza"},
+      {s:"appliances_personal",n:"Cuidado personal"},
+      {s:"appliances_small",n:"Pequeño electrodoméstico"}
+    ]},
+    {s:"entertainment",n:"Cine, Libros y Música",i:"fa-film",subs:[
+      {s:"ent_books",n:"Libros"},
+      {s:"ent_music",n:"Música"},
+      {s:"ent_movies",n:"Películas y series"},
+      {s:"ent_instruments",n:"Instrumentos musicales"},
+      {s:"ent_vinyl",n:"Vinilos y CDs"},
+      {s:"ent_games",n:"Juegos de mesa"}
+    ]},
+    {s:"kids",n:"Niños y Bebés",i:"fa-baby",subs:[
+      {s:"kids_clothing",n:"Ropa infantil"},
+      {s:"kids_toys",n:"Juguetes"},
+      {s:"kids_babygear",n:"Puericultura"},
+      {s:"kids_education",n:"Educación"},
+      {s:"kids_strollers",n:"Carritos y sillas"},
+      {s:"kids_furniture",n:"Mobiliario infantil"}
+    ]},
+    {s:"collectibles",n:"Coleccionismo",i:"fa-star",subs:[
+      {s:"collect_coins",n:"Monedas"},
+      {s:"collect_stamps",n:"Sellos"},
+      {s:"collect_comics",n:"Cómics"},
+      {s:"collect_art",n:"Arte"},
+      {s:"collect_antiques",n:"Antigüedades"},
+      {s:"collect_memorabilia",n:"Memorabilia"}
+    ]},
+    {s:"construction",n:"Construcción y Reformas",i:"fa-tools",subs:[
+      {s:"constr_materials",n:"Materiales"},
+      {s:"constr_tools",n:"Herramientas"},
+      {s:"constr_plumbing",n:"Fontanería"},
+      {s:"constr_electric",n:"Electricidad"},
+      {s:"constr_painting",n:"Pintura"},
+      {s:"constr_flooring",n:"Suelos"}
+    ]},
+    {s:"industry",n:"Industria y Agricultura",i:"fa-industry",subs:[
+      {s:"industry_machinery",n:"Maquinaria"},
+      {s:"industry_agriculture",n:"Agricultura"},
+      {s:"industry_hardware",n:"Ferretería"},
+      {s:"industry_safety",n:"Seguridad laboral"},
+      {s:"industry_storage",n:"Almacenamiento"},
+      {s:"industry_packaging",n:"Envasado"}
+    ]},
+    {s:"jobs",n:"Empleo",i:"fa-briefcase",subs:[
+      {s:"jobs_offers",n:"Ofertas de empleo"},
+      {s:"jobs_cv",n:"Currículums"},
+      {s:"jobs_seeking",n:"Busco trabajo"},
+      {s:"jobs_temporary",n:"Temporal"},
+      {s:"jobs_remote",n:"Teletrabajo"},
+      {s:"jobs_internships",n:"Prácticas"}
+    ]},
+    {s:"services",n:"Servicios",i:"fa-concierge-bell",subs:[
+      {s:"services_moving",n:"Mudanzas"},
+      {s:"services_repairs",n:"Reparaciones"},
+      {s:"services_classes",n:"Clases"},
+      {s:"services_events",n:"Eventos"},
+      {s:"services_transport",n:"Transporte"},
+      {s:"services_cleaning",n:"Limpieza"}
     ]}
   ],
   users:[
@@ -777,12 +878,22 @@ var dt={
     {id:5,n:"Maria S.",c:"Bilbao"}
   ],
   items:[
-    {id:1,t:"G-SHOCK",u:"Mudmaster GWG-2000",p:280,cat:"watches",subcat:"watches_sport",co:"Como nuevo",ci:"Madrid",us:1,img:"https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=800&q=80",d:"G-Shock Mudmaster GWG-2000. Resistente a barro y polvo."},
-    {id:2,t:"PATAGONIA",u:"Down Sweater Jacket",p:120,cat:"clothing",subcat:"clothing_jackets",co:"Buen estado",ci:"Barcelona",us:2,img:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=800&q=80",d:"Chaqueta Patagonia Down Sweater, talla M."},
-    {id:3,t:"TREK",u:"Marlin 7 2023",p:420,cat:"sports",subcat:"sports_cycling",co:"Buen estado",ci:"Valencia",us:3,img:"https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=800&q=80",d:"Bicicleta Trek Marlin 7, talla M."},
-    {id:4,t:"FENDER",u:"Stratocaster Player",p:580,cat:"music",subcat:"music_instruments",co:"Como nuevo",ci:"Sevilla",us:4,img:"https://images.unsplash.com/photo-1564186763535-ebb21ef5277f?w=800&q=80",d:"Fender Stratocaster Player, sunburst."},
-    {id:5,t:"APPLE",u:"MacBook Air M2",p:890,cat:"electronics",subcat:"electronics_computers",co:"Como nuevo",ci:"Bilbao",us:5,img:"https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=800&q=80",d:"MacBook Air M2, 8GB RAM, 256GB SSD."},
-    {id:6,t:"SONY",u:"Alpha A7 III",p:1200,cat:"electronics",subcat:"electronics_cameras",co:"Como nuevo",ci:"Madrid",us:1,img:"https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800&q=80",d:"Sony A7 III con objetivo 28-70mm."}
+    {id:1,t:"G-SHOCK",u:"Mudmaster GWG-2000",p:280,cat:"fashion",subcat:"fashion_watches",co:"Como nuevo",ci:"Madrid",us:1,img:"https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=800&q=80",d:"G-Shock Mudmaster GWG-2000. Resistente a barro y polvo."},
+    {id:2,t:"PATAGONIA",u:"Down Sweater Jacket",p:120,cat:"fashion",subcat:"fashion_clothing",co:"Buen estado",ci:"Barcelona",us:2,img:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=800&q=80",d:"Chaqueta Patagonia Down Sweater, talla M."},
+    {id:3,t:"TREK",u:"Marlin 7 2023",p:420,cat:"bicycles",subcat:"bikes_mtb",co:"Buen estado",ci:"Valencia",us:3,img:"https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=800&q=80",d:"Bicicleta Trek Marlin 7, talla M."},
+    {id:4,t:"FENDER",u:"Stratocaster Player",p:580,cat:"entertainment",subcat:"ent_instruments",co:"Como nuevo",ci:"Sevilla",us:4,img:"https://images.unsplash.com/photo-1564186763535-ebb21ef5277f?w=800&q=80",d:"Fender Stratocaster Player, sunburst."},
+    {id:5,t:"APPLE",u:"MacBook Air M2",p:890,cat:"computers",subcat:"comp_laptops",co:"Como nuevo",ci:"Bilbao",us:5,img:"https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=800&q=80",d:"MacBook Air M2, 8GB RAM, 256GB SSD."},
+    {id:6,t:"SONY",u:"Alpha A7 III",p:1200,cat:"technology",subcat:"tech_cameras",co:"Como nuevo",ci:"Madrid",us:1,img:"https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800&q=80",d:"Sony A7 III con objetivo 28-70mm."},
+    {id:7,t:"SEAT",u:"León FR 1.5 TSI",p:18500,cat:"cars",subcat:"cars_sedan",co:"Buen estado",ci:"Barcelona",us:2,img:"https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=800&q=80",d:"Seat León FR 1.5 TSI, 150cv, 65.000km, full extras."},
+    {id:8,t:"YAMAHA",u:"MT-07 2022",p:6500,cat:"motorcycles",subcat:"moto_street",co:"Como nuevo",ci:"Madrid",us:1,img:"https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=800&q=80",d:"Yamaha MT-07 2022, 8.000km, ABS, color negro mate."},
+    {id:9,t:"BOSCH",u:"Lavadora Serie 6",p:320,cat:"appliances",subcat:"appliances_laundry",co:"Como nuevo",ci:"Valencia",us:3,img:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",d:"Lavadora Bosch Serie 6, 8kg, carga frontal, A+++."},
+    {id:10,t:"SAMSUNG",u:"Galaxy S23",p:580,cat:"phones",subcat:"phones_smartphones",co:"Como nuevo",ci:"Sevilla",us:4,img:"https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=800&q=80",d:"Samsung Galaxy S23, 256GB, color verde, con funda."},
+    {id:11,t:"MICHELIN",u:"Neumáticos 205/55 R16",p:280,cat:"motor_accessories",subcat:"motor_tires",co:"Nuevo",ci:"Bilbao",us:5,img:"https://images.unsplash.com/photo-1554744513-9d2afa8c6c9b?w=800&q=80",d:"4 neumáticos Michelin Pilot Sport 4, 205/55 R16."},
+    {id:12,t:"IKEA",u:"Sofá KIVIK",p:450,cat:"home",subcat:"home_furniture",co:"Buen estado",ci:"Madrid",us:1,img:"https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&q=80",d:"Sofá IKEA KIVIK, 3 plazas, color gris, poco uso."},
+    {id:13,t:"MONEDA",u:"Peseta 1957",p:25,cat:"collectibles",subcat:"collect_coins",co:"Excelente",ci:"Barcelona",us:2,img:"https://images.unsplash.com/photo-1581235720846-d5c8cbd1d7c2?w=800&q=80",d:"Peseta de 1957, excelente estado de conservación."},
+    {id:14,t:"CLASES",u:"Guitarra española",p:20,cat:"services",subcat:"services_classes",co:"Nuevo",ci:"Valencia",us:3,img:"https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=800&q=80",d:"Clases de guitarra española para principiantes."},
+    {id:15,t:"OFERTA",u:"Programador web",p:0,cat:"jobs",subcat:"jobs_offers",co:"Nuevo",ci:"Sevilla",us:4,img:"https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&q=80",d:"Oferta de empleo: programador web full-stack."},
+    {id:16,t:"PLAYSTATION",u:"PS5 + 2 juegos",p:420,cat:"gaming",subcat:"gaming_consoles",co:"Como nuevo",ci:"Bilbao",us:5,img:"https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=800&q=80",d:"PlayStation 5 con 2 juegos incluidos, poco uso."}
   ],
   notifs:[
     {tp:"mt",i:"fas fa-bullseye",t:"Match encontrado",x:"Tu G-SHOCK encaja en un circulo de 3 personas.",tm:"Hace 2 min",new:true},
