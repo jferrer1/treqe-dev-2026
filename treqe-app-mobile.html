@@ -330,7 +330,7 @@ body{font-family:Inter,sans-serif;background:#111111;color:#fff;line-height:1.4;
 <div class="hc">
 <h1>CAMBIA.<br>DESCUBRE.<br><span>TREQEA.</span></h1>
 <p>Dale una nueva aventura a lo que ya no usas</p>
-<button class="hb" onclick="sp('sp2')"><i class="fas fa-search"></i> EXPLORAR ARTICULOS</button>
+<button class="hb" onclick="sp('sp2')"><i class="fas fa-search"></i> EXPLORAR ARTÍCULOS</button>
 </div>
 </div>
 <div class="fg">
@@ -358,12 +358,12 @@ body{font-family:Inter,sans-serif;background:#111111;color:#fff;line-height:1.4;
 <div class="sw">
 <div class="sb">
 <i class="fas fa-search"></i>
-<input type="text" placeholder="Buscar articulos..." id="hsi">
+<input type="text" placeholder="Buscar artículos..." id="hsi">
 <button class="sf" id="hsb"><i class="fas fa-sliders-h"></i></button>
 </div>
 </div>
 <div class="sh">
-<h2>Categorias</h2>
+<h2>Categorías</h2>
 <span class="sa" id="sac">Ver todas</span>
 </div>
 <div class="cs">
@@ -375,26 +375,26 @@ body{font-family:Inter,sans-serif;background:#111111;color:#fff;line-height:1.4;
 </div>
 <div class="ps" id="fsl"></div>
 <div class="sc">
-<h3>TRUEQUEA<br>SIN DINERO</h3>
+<h3>TREQEA<br>SIN DINERO</h3>
 <div class="st">
 <div class="sn">1</div>
 <div class="sb2">
 <h4>Sube tu producto</h4>
-<p>Anade fotos, descripcion y valor estimado de intercambio.</p>
+<p>Añade fotos, descripción y valor estimado de intercambio.</p>
 </div>
 </div>
 <div class="st">
 <div class="sn">2</div>
 <div class="sb2">
 <h4>Encuentra matches</h4>
-<p>Nuestro algoritmo te conecta con circulos de intercambio ideales.</p>
+<p>Nuestro algoritmo te conecta con círculos de intercambio ideales.</p>
 </div>
 </div>
 <div class="st">
 <div class="sn">3</div>
 <div class="sb2">
 <h4>Acepta e intercambia</h4>
-<p>Recibe ofertas, negocia y coordina el envio directamente.</p>
+<p>Recibe ofertas, negocia y coordina el envío directamente.</p>
 </div>
 </div>
 <button class="cb" onclick="sp('slp')">COMENZAR AHORA</button>
@@ -404,15 +404,15 @@ body{font-family:Inter,sans-serif;background:#111111;color:#fff;line-height:1.4;
 <div class="sp">
 <div class="sb">
 <i class="fas fa-search"></i>
-<input type="text" placeholder="Buscar articulos..." id="spi">
+<input type="text" placeholder="Buscar artículos..." id="spi">
 </div>
 <div class="fr">
 <select class="fs2" id="fc">
-<option value="">Categoria</option>
+<option value="">Categoría</option>
 </select>
 <input type="number" class="fi2" id="fp" placeholder="E max">
 <select class="fs2" id="fco">
-<option value="">Condicion</option>
+<option value="">Condición</option>
 <option>Nuevo</option>
 <option>Como nuevo</option>
 <option>Buen estado</option>
@@ -789,7 +789,7 @@ function sd(id){
     dimg.style.display = 'none';
     dpe.style.display = 'block';
   }
-  document.getElementById('dsp').innerHTML='<div class="dsb"><div class="dsl">Estado</div><div class="dsv">'+it.co+'</div></div><div class="dsb"><div class="dsl">Categoria</div><div class="dsv">'+((dt.cats.find(function(c){return c.s===it.cat})||{}).n||'')+'</div></div><div class="dsb"><div class="dsl">Ubicacion</div><div class="dsv">'+it.ci+'</div></div><div class="dsb"><div class="dsl">Usuario</div><div class="dsv">'+((dt.users.find(function(u){return u.id===it.us})||{}).n||'')+'</div></div>';
+  document.getElementById('dsp').innerHTML='<div class="dsb"><div class="dsl">Estado</div><div class="dsv">'+it.co+'</div></div><div class="dsb"><div class="dsl">Categoría</div><div class="dsv">'+((dt.cats.find(function(c){return c.s===it.cat})||{}).n||'')+'</div></div><div class="dsb"><div class="dsl">Ubicación</div><div class="dsv">'+it.ci+'</div></div><div class="dsb"><div class="dsl">Usuario</div><div class="dsv">'+((dt.users.find(function(u){return u.id===it.us})||{}).n||'')+'</div></div>';
   document.getElementById('dlb').innerHTML=lk.has(id)?'<i class="fas fa-heart"></i>':'<i class="far fa-heart"></i>';
   document.getElementById('dpp').classList.add('on');
   document.getElementById('dpp').dataset.pid=id;
@@ -816,7 +816,7 @@ function fc(s){
   ps('');
 }
 function pf(){
-  document.getElementById('fc').innerHTML='<option value="">Categoria</option>'+dt.cats.map(function(c){
+  document.getElementById('fc').innerHTML='<option value="">Categoría</option>'+dt.cats.map(function(c){
     return '<option value="'+c.s+'">'+c.n+'</option>';
   }).join('');
 }
