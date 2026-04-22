@@ -13,7 +13,7 @@
 html{font-size:16px}
 body{font-family:Inter,sans-serif;background:#111111;color:#fff;line-height:1.4;overflow-x:hidden}
 .app{max-width:480px;margin:0 auto;min-height:100vh;background:#111111;position:relative;padding-bottom:80px}
-.hd{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;position:absolute;top:0;left:0;right:0;z-index:20}
+.hd{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;position:fixed;top:0;left:0;right:0;z-index:1000;background:#111111;border-bottom:1px solid #2C2C2C}
 .hd .lo{font-family:'Montserrat',sans-serif;font-weight:700;font-size:1.5rem;color:#2d7aff;letter-spacing:-0.075em;text-transform:lowercase;text-shadow:0 0 1px rgba(255,255,255,0.1)}
 .hd .ri{display:flex;gap:14px;align-items:center}
 .hd .ri button{background:none;border:none;color:rgba(255,255,255,0.7);font-size:1.1rem;width:32px;height:32px;display:flex;align-items:center;justify-content:center;position:relative;cursor:pointer}
@@ -81,7 +81,7 @@ body{font-family:Inter,sans-serif;background:#111111;color:#fff;line-height:1.4;
 .ni.sl .sc{width:48px;height:48px;background:#FF6A00;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;box-shadow:0 4px 12px rgba(255,92,0,0.3);transition:all .15s ease;border:none;cursor:pointer}
 .ni.sl .sc i{font-size:1.1rem}
 .ni.sl:active .sc{transform:scale(.9)}
-.pg2{display:none;padding-bottom:0}
+.pg2{display:none;padding-top:60px;padding-bottom:72px}
 .pg2.on{display:block}
 .sp{padding:16px 16px 24px}
 .sp .sb{margin-bottom:12px}
@@ -193,6 +193,125 @@ body{font-family:Inter,sans-serif;background:#111111;color:#fff;line-height:1.4;
 .exbottom{display:flex;justify-content:space-between;align-items:center}
 .exstatus{padding:4px 8px;border-radius:12px;font-size:.6rem;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
 .extime{font-size:.6rem;color:#757575}
+/* New pages */
+.myproducts-page, .favorites-page, .reputation-page, .settings-page {
+  padding: 16px;
+}
+.page-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 0;
+  margin-bottom: 16px;
+}
+.page-header h2 {
+  font-weight: 700;
+  font-size: .85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #fff;
+}
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  text-align: center;
+}
+.empty-state .icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #2C2C2C;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FF6A00;
+  margin-bottom: 16px;
+  font-size: 1.5rem;
+}
+.empty-state h3 {
+  font-weight: 800;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #fff;
+  margin-bottom: 6px;
+}
+.empty-state p {
+  font-size: .8rem;
+  color: #BDBDBD;
+  line-height: 1.4;
+  max-width: 280px;
+}
+.settings-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: #2C2C2C;
+  border-radius: 8px;
+  margin-bottom: 6px;
+  cursor: pointer;
+  transition: all .15s ease;
+}
+.settings-item:active {
+  background: #3C3C3C;
+}
+.settings-item .label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.settings-item span {
+  font-size: .8rem;
+  color: #fff;
+}
+.reputation-score {
+  background: #2C2C2C;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.reputation-score .score {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #FF6A00;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.reputation-score .label {
+  font-size: .7rem;
+  color: #BDBDBD;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.reputation-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.reputation-stat {
+  background: #2C2C2C;
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+}
+.reputation-stat .value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 4px;
+}
+.reputation-stat .label {
+  font-size: .6rem;
+  color: #BDBDBD;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
 </style>
 </head>
 <body>
@@ -376,6 +495,142 @@ body{font-family:Inter,sans-serif;background:#111111;color:#fff;line-height:1.4;
 </div>
 </div>
 </div>
+
+<!-- New profile pages -->
+<div id="myproducts" class="pg2">
+  <div class="myproducts-page">
+    <div class="page-header">
+      <button class="db" onclick="sp('prp')"><i class="fas fa-arrow-left"></i></button>
+      <h2>Mis productos</h2>
+    </div>
+    <div class="empty-state" id="myproducts-empty">
+      <div class="icon"><i class="fas fa-box"></i></div>
+      <h3>No tienes productos</h3>
+      <p>Aún no has subido ningún artículo para trueque. Sube tu primer producto y comienza a intercambiar.</p>
+      <button class="tb" style="margin-top:20px;" onclick="openCreateExchange()"><i class="fas fa-plus"></i> SUBIR PRODUCTO</button>
+    </div>
+    <div class="rg" id="myproducts-list" style="display:none;"></div>
+  </div>
+</div>
+
+<div id="favorites" class="pg2">
+  <div class="favorites-page">
+    <div class="page-header">
+      <button class="db" onclick="sp('prp')"><i class="fas fa-arrow-left"></i></button>
+      <h2>Favoritos</h2>
+    </div>
+    <div class="empty-state" id="favorites-empty">
+      <div class="icon"><i class="fas fa-heart"></i></div>
+      <h3>No tienes favoritos</h3>
+      <p>Haz clic en el corazón ❤️ en cualquier artículo para agregarlo a favoritos.</p>
+    </div>
+    <div class="rg" id="favorites-list" style="display:none;"></div>
+  </div>
+</div>
+
+<div id="reputation" class="pg2">
+  <div class="reputation-page">
+    <div class="page-header">
+      <button class="db" onclick="sp('prp')"><i class="fas fa-arrow-left"></i></button>
+      <h2>Reputación</h2>
+    </div>
+    <div class="reputation-score">
+      <div class="score">4.8</div>
+      <div class="label">Puntuación global</div>
+    </div>
+    <div class="reputation-stats">
+      <div class="reputation-stat">
+        <div class="value">7</div>
+        <div class="label">Intercambios</div>
+      </div>
+      <div class="reputation-stat">
+        <div class="value">2.3h</div>
+        <div class="label">Respuesta media</div>
+      </div>
+      <div class="reputation-stat">
+        <div class="value">100%</div>
+        <div class="label">Satisfacción</div>
+      </div>
+      <div class="reputation-stat">
+        <div class="value">18</div>
+        <div class="label">Artículos</div>
+      </div>
+    </div>
+    <div class="reputation-stats">
+      <div class="reputation-stat" style="grid-column: span 2;">
+        <div class="value">Mar 2026</div>
+        <div class="label">Miembro desde</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="settings" class="pg2">
+  <div class="settings-page">
+    <div class="page-header">
+      <button class="db" onclick="sp('prp')"><i class="fas fa-arrow-left"></i></button>
+      <h2>Configuración</h2>
+    </div>
+    <div class="settings-item" onclick="toggleSetting('notifications')">
+      <div class="label">
+        <i class="fas fa-bell"></i>
+        <span>Notificaciones</span>
+      </div>
+      <div class="toggle" id="notifications-toggle">
+        <i class="fas fa-toggle-on" style="color:#FF6A00;"></i>
+      </div>
+    </div>
+    <div class="settings-item" onclick="toggleSetting('privacy')">
+      <div class="label">
+        <i class="fas fa-lock"></i>
+        <span>Privacidad</span>
+      </div>
+      <div class="toggle">
+        <i class="fas fa-chevron-right" style="color:#757575;"></i>
+      </div>
+    </div>
+    <div class="settings-item" onclick="toggleSetting('language')">
+      <div class="label">
+        <i class="fas fa-globe"></i>
+        <span>Idioma</span>
+      </div>
+      <div class="toggle">
+        <span style="color:#BDBDBD;font-size:.7rem;">Español</span>
+      </div>
+    </div>
+    <div class="settings-item" onclick="toggleSetting('currency')">
+      <div class="label">
+        <i class="fas fa-euro-sign"></i>
+        <span>Moneda</span>
+      </div>
+      <div class="toggle">
+        <span style="color:#BDBDBD;font-size:.7rem;">Euro (€)</span>
+      </div>
+    </div>
+    <div class="settings-item" onclick="alert('Función en desarrollo')">
+      <div class="label">
+        <i class="fas fa-question-circle"></i>
+        <span>Ayuda y soporte</span>
+      </div>
+      <div class="toggle">
+        <i class="fas fa-chevron-right" style="color:#757575;"></i>
+      </div>
+    </div>
+    <div class="settings-item" onclick="alert('Función en desarrollo')">
+      <div class="label">
+        <i class="fas fa-file-alt"></i>
+        <span>Términos y condiciones</span>
+      </div>
+      <div class="toggle">
+        <i class="fas fa-chevron-right" style="color:#757575;"></i>
+      </div>
+    </div>
+    <button class="tb" style="margin-top:30px;background:#2C2C2C;color:#fff;" onclick="alert('Sesión cerrada')">
+      <i class="fas fa-sign-out-alt"></i> CERRAR SESIÓN
+    </button>
+  </div>
+</div>
+
 <div id="acp" class="pg2">
 <div class="lp">
 <div class="lh">
@@ -611,24 +866,59 @@ function openCreateExchange(){
   // En MVP real: sp('create'); mostrar formulario de selección de artículo + matching circular
 }
 function openMyProducts(){
-  alert('Mis productos: Aquí verás los artículos que has subido para trueque.\n\nEn MVP, podrás gestionar tus publicaciones, editar descripciones y ver propuestas de intercambio.');
+  sp('myproducts');
+  loadMyProducts();
 }
 function openFavorites(){
-  var favItems = dt.items.filter(function(it) { return lk.has(it.id); });
-  if (favItems.length === 0) {
-    alert('Aún no tienes artículos favoritos.\n\nHaz clic en el corazón ❤️ en cualquier artículo para agregarlo a favoritos.');
-  } else {
-    alert('Tienes ' + favItems.length + ' artículo(s) favorito(s):\n\n' + favItems.map(function(it) { return '• ' + it.t + ' - ' + it.u; }).join('\n') + '\n\nEn MVP, esta sección mostrará tus favoritos con notificaciones de disponibilidad.');
-  }
+  sp('favorites');
+  loadFavorites();
 }
 function openHistory(){
   sp('ep'); // Navega a la página de intercambios
 }
 function openReputation(){
-  alert('Sistema de reputación Treqe:\n\n• Puntuación: 4.8/5.0\n• Intercambios completados: 7\n• Tiempo medio respuesta: 2.3h\n• Miembro desde: Marzo 2026\n\nLa reputación es clave en trueque circular. Usuarios con alta reputación tienen prioridad en matching.');
+  sp('reputation');
 }
 function openSettings(){
-  alert('Configuración de cuenta:\n\n• Notificaciones: Activadas\n• Privacidad: Perfil público\n• Idioma: Español\n• Moneda: Euro (€)\n\nEn MVP, podrás personalizar tu experiencia y preferencias de intercambio.');
+  sp('settings');
+}
+function loadMyProducts() {
+  // Por ahora no hay productos del usuario, mostrar empty state
+  document.getElementById('myproducts-empty').style.display = 'flex';
+  document.getElementById('myproducts-list').style.display = 'none';
+}
+function loadFavorites() {
+  var favItems = dt.items.filter(function(it) { return lk.has(it.id); });
+  var emptyEl = document.getElementById('favorites-empty');
+  var listEl = document.getElementById('favorites-list');
+  
+  if (favItems.length === 0) {
+    emptyEl.style.display = 'flex';
+    listEl.style.display = 'none';
+  } else {
+    emptyEl.style.display = 'none';
+    listEl.style.display = 'grid';
+    listEl.innerHTML = favItems.map(rc).join('');
+  }
+}
+function toggleSetting(setting) {
+  if (setting === 'notifications') {
+    var toggleEl = document.getElementById('notifications-toggle');
+    var icon = toggleEl.querySelector('i');
+    if (icon.classList.contains('fa-toggle-on')) {
+      icon.classList.remove('fa-toggle-on');
+      icon.classList.add('fa-toggle-off');
+      icon.style.color = '#757575';
+      alert('Notificaciones desactivadas');
+    } else {
+      icon.classList.remove('fa-toggle-off');
+      icon.classList.add('fa-toggle-on');
+      icon.style.color = '#FF6A00';
+      alert('Notificaciones activadas');
+    }
+  } else {
+    alert('Configuración de ' + setting + ' en desarrollo');
+  }
 }
 function init(){
   rcat();
