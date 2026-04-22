@@ -201,7 +201,7 @@ body{font-family:Inter,sans-serif;background:#111111;color:#fff;line-height:1.4;
 <div class="lo" aria-label="treqe">treqe</div>
 <div class="ri">
 <button id="nbtn"><i class="far fa-bell"></i><span class="bd"></span></button>
-<button><i class="far fa-user-circle"></i></button>
+<button id="profileBtn" onclick="sp('prp')"><i class="far fa-user-circle"></i></button>
 </div>
 </div>
 <div id="hp" class="pg2 on">
@@ -353,23 +353,23 @@ body{font-family:Inter,sans-serif;background:#111111;color:#fff;line-height:1.4;
 </div>
 </div>
 <div class="pm">
-<div class="mr">
+<div class="mr" onclick="openMyProducts()">
 <div class="ml"><i class="fas fa-box"></i><span>Mis productos</span></div>
 <i class="fas fa-chevron-right ar"></i>
 </div>
-<div class="mr">
+<div class="mr" onclick="openFavorites()">
 <div class="ml"><i class="fas fa-heart"></i><span>Favoritos</span></div>
 <i class="fas fa-chevron-right ar"></i>
 </div>
-<div class="mr">
+<div class="mr" onclick="openHistory()">
 <div class="ml"><i class="fas fa-exchange-alt"></i><span>Historial</span></div>
 <i class="fas fa-chevron-right ar"></i>
 </div>
-<div class="mr">
+<div class="mr" onclick="openReputation()">
 <div class="ml"><i class="fas fa-award"></i><span>Reputacion</span></div>
 <i class="fas fa-chevron-right ar"></i>
 </div>
-<div class="mr">
+<div class="mr" onclick="openSettings()">
 <div class="ml"><i class="fas fa-cog"></i><span>Configuracion</span></div>
 <i class="fas fa-chevron-right ar"></i>
 </div>
@@ -609,6 +609,26 @@ function rac(){
 function openCreateExchange(){
   alert('Función de creación de intercambio circular (k=3).\n\nEn Treqe, intercambias artículos en círculos de 3 personas para maximizar valor y satisfacción.\n\nEsta funcionalidad se implementará en la versión MVP.');
   // En MVP real: sp('create'); mostrar formulario de selección de artículo + matching circular
+}
+function openMyProducts(){
+  alert('Mis productos: Aquí verás los artículos que has subido para trueque.\n\nEn MVP, podrás gestionar tus publicaciones, editar descripciones y ver propuestas de intercambio.');
+}
+function openFavorites(){
+  var favItems = dt.items.filter(function(it) { return lk.has(it.id); });
+  if (favItems.length === 0) {
+    alert('Aún no tienes artículos favoritos.\n\nHaz clic en el corazón ❤️ en cualquier artículo para agregarlo a favoritos.');
+  } else {
+    alert('Tienes ' + favItems.length + ' artículo(s) favorito(s):\n\n' + favItems.map(function(it) { return '• ' + it.t + ' - ' + it.u; }).join('\n') + '\n\nEn MVP, esta sección mostrará tus favoritos con notificaciones de disponibilidad.');
+  }
+}
+function openHistory(){
+  sp('ep'); // Navega a la página de intercambios
+}
+function openReputation(){
+  alert('Sistema de reputación Treqe:\n\n• Puntuación: 4.8/5.0\n• Intercambios completados: 7\n• Tiempo medio respuesta: 2.3h\n• Miembro desde: Marzo 2026\n\nLa reputación es clave en trueque circular. Usuarios con alta reputación tienen prioridad en matching.');
+}
+function openSettings(){
+  alert('Configuración de cuenta:\n\n• Notificaciones: Activadas\n• Privacidad: Perfil público\n• Idioma: Español\n• Moneda: Euro (€)\n\nEn MVP, podrás personalizar tu experiencia y preferencias de intercambio.');
 }
 function init(){
   rcat();
