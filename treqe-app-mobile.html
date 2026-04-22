@@ -11,26 +11,28 @@
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    /* ===== PALETA DE COLORES OBLIGATORIA ===== */
+    /* ===== PALETA DE COLORES ADVENTURE CORE ===== */
     :root {
-      --primary: #FF6A00;      /* Naranja Gulf primario */
-      --secondary: #00B8B8;    /* Teal/Azul Patagonia secundario */
-      --accent: #E30613;       /* Rojo intenso acento */
-      --yellow: #FFB700;       /* Amarillo sol */
-      --black: #111111;        /* Negro profundo */
-      --cream: #F8F5F0;        /* Crema off-white fondo */
-      --gray: #2C2C2C;         /* Gris carbón */
+      --primary: #FF4D01;      /* Naranja intenso ADVENTURE CORE */
+      --secondary: #1F9D82;    /* Verde azulado/Teal ADVENTURE CORE */
+      --accent: #111111;       /* Negro mate/carbono */
+      --bg-light: #F7F2EB;     /* Crema/hueso fondo principal */
+      --bg-dark: #111111;      /* Negro fondo secundario */
+      --text-primary: #111111; /* Texto principal negro */
+      --text-secondary: #8E8E93; /* Texto secundario gris */
+      --border-light: #E5E5E5; /* Bordes y divisores */
+      --white: #FFFFFF;        /* Blanco puro */
       
-      /* Tipografías exactas */
-      --font-heading: 'Oswald', 'Anton', sans-serif;
-      --font-subheading: 'Space Grotesk', sans-serif;
-      --font-body: 'Inter', sans-serif;
-      --font-accent: 'Bebas Neue', 'Bungee', sans-serif;
+      /* Tipografías ADVENTURE CORE */
+      --font-brand: 'Bebas Neue', 'Roboto Condensed', sans-serif;
+      --font-heading: 'Inter', 'Roboto', sans-serif;
+      --font-body: 'Inter', 'Roboto', sans-serif;
+      --font-accent: 'Bebas Neue', 'Roboto Condensed', sans-serif;
       
       /* Variables de diseño app */
       --border-radius: 12px;
-      --shadow: 0 4px 12px rgba(17, 17, 17, 0.15);
-      --shadow-heavy: 0 8px 24px rgba(17, 17, 17, 0.25);
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      --shadow-heavy: 0 8px 24px rgba(0, 0, 0, 0.15);
       --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     
@@ -49,8 +51,8 @@
     
     body {
       font-family: var(--font-body);
-      background-color: var(--black);
-      color: var(--cream);
+      background-color: var(--bg-light);
+      color: var(--text-primary);
       line-height: 1.5;
       height: 100%;
       overflow-x: hidden;
@@ -63,39 +65,40 @@
       max-width: 480px;
       margin: 0 auto;
       min-height: 100vh;
-      background-color: var(--black);
+      background-color: var(--bg-light);
       position: relative;
-      box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
     }
     
     /* ===== HEADER / APP BAR ===== */
     .app-header {
-      background-color: var(--gray);
+      background-color: var(--white);
       padding: 16px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-bottom: 2px solid var(--primary);
+      border-bottom: 1px solid var(--border-light);
       position: sticky;
       top: 0;
       z-index: 100;
     }
     
     .logo {
-      font-family: var(--font-heading);
-      font-size: 1.8rem;
-      font-weight: 800;
-      color: var(--primary);
-      letter-spacing: 1px;
+      font-family: var(--font-brand);
+      font-size: 2rem;
+      font-weight: 900;
+      font-style: italic;
+      color: var(--accent);
+      letter-spacing: -0.5px;
       text-transform: uppercase;
       display: flex;
       align-items: center;
     }
     
     .logo-icon {
-      color: var(--yellow);
+      color: var(--primary);
       margin-right: 8px;
-      font-size: 1.5rem;
+      font-size: 1.8rem;
     }
     
     .header-actions {
@@ -106,7 +109,7 @@
     .icon-btn {
       background: none;
       border: none;
-      color: var(--cream);
+      color: var(--text-primary);
       font-size: 1.2rem;
       width: 40px;
       height: 40px;
@@ -125,15 +128,16 @@
     /* ===== SEARCH BAR ===== */
     .search-container {
       padding: 16px 20px;
-      background-color: var(--gray);
+      background-color: var(--white);
+      border-bottom: 1px solid var(--border-light);
     }
     
     .search-bar {
       display: flex;
-      background-color: rgba(255, 255, 255, 0.1);
+      background-color: var(--bg-light);
       border-radius: var(--border-radius);
       overflow: hidden;
-      border: 1px solid rgba(255, 106, 0, 0.3);
+      border: 1px solid var(--border-light);
     }
     
     .search-input {
@@ -141,35 +145,37 @@
       background: transparent;
       border: none;
       padding: 14px 16px;
-      color: var(--cream);
+      color: var(--text-primary);
       font-family: var(--font-body);
       font-size: 1rem;
     }
     
     .search-input::placeholder {
-      color: rgba(248, 245, 240, 0.6);
+      color: var(--text-secondary);
     }
     
     .search-btn {
       background-color: var(--primary);
       border: none;
-      color: var(--black);
-      font-family: var(--font-subheading);
-      font-weight: 500;
+      color: var(--white);
+      font-family: var(--font-heading);
+      font-weight: 700;
       padding: 0 20px;
       cursor: pointer;
       transition: var(--transition);
+      text-transform: uppercase;
     }
     
     .search-btn:active {
-      background-color: var(--yellow);
+      background-color: var(--accent);
     }
     
     /* ===== CATEGORIES GRID ===== */
     .section-title {
-      font-family: var(--font-subheading);
+      font-family: var(--font-heading);
       font-size: 1.3rem;
-      color: var(--cream);
+      font-weight: 700;
+      color: var(--text-primary);
       margin: 24px 20px 16px;
       display: flex;
       align-items: center;
@@ -180,6 +186,7 @@
       color: var(--secondary);
       font-family: var(--font-body);
       font-size: 0.9rem;
+      font-weight: 500;
       text-decoration: none;
       transition: var(--transition);
     }
@@ -197,7 +204,7 @@
     }
     
     .category-card {
-      background-color: var(--gray);
+      background-color: var(--white);
       border-radius: var(--border-radius);
       padding: 16px 8px;
       display: flex;
@@ -205,13 +212,14 @@
       align-items: center;
       text-align: center;
       transition: var(--transition);
-      border: 1px solid transparent;
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow);
     }
     
     .category-card:active {
       border-color: var(--primary);
       transform: translateY(-4px);
-      box-shadow: var(--shadow);
+      box-shadow: var(--shadow-heavy);
     }
     
     .category-icon {
@@ -222,7 +230,7 @@
     .category-name {
       font-family: var(--font-body);
       font-size: 0.8rem;
-      color: var(--cream);
+      color: var(--text-primary);
       font-weight: 500;
     }
     
@@ -233,11 +241,12 @@
     }
     
     .listing-card {
-      background-color: var(--gray);
+      background-color: var(--white);
       border-radius: var(--border-radius);
       overflow: hidden;
       margin-bottom: 16px;
-      border: 1px solid rgba(255, 106, 0, 0.2);
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow);
       transition: var(--transition);
     }
     
@@ -250,11 +259,11 @@
     .listing-image {
       width: 100%;
       height: 180px;
-      background-color: var(--black);
+      background-color: var(--bg-light);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--cream);
+      color: var(--text-primary);
       font-size: 3rem;
     }
     
@@ -263,15 +272,17 @@
     }
     
     .listing-title {
-      font-family: var(--font-subheading);
+      font-family: var(--font-heading);
       font-size: 1.1rem;
-      color: var(--cream);
+      font-weight: 700;
+      color: var(--text-primary);
       margin-bottom: 8px;
     }
     
     .listing-price {
       font-family: var(--font-heading);
       font-size: 1.5rem;
+      font-weight: 800;
       color: var(--primary);
       margin-bottom: 12px;
     }
@@ -281,7 +292,7 @@
       justify-content: space-between;
       font-family: var(--font-body);
       font-size: 0.85rem;
-      color: rgba(248, 245, 240, 0.7);
+      color: var(--text-secondary);
     }
     
     .listing-condition {
@@ -291,12 +302,13 @@
     /* ===== TREQEAR BUTTON ===== */
     .treqear-btn {
       background-color: var(--primary);
-      color: var(--black);
+      color: var(--white);
       border: none;
       border-radius: var(--border-radius);
       padding: 16px 24px;
       font-family: var(--font-heading);
       font-size: 1.2rem;
+      font-weight: 700;
       letter-spacing: 1px;
       text-transform: uppercase;
       width: 100%;
@@ -310,7 +322,7 @@
     }
     
     .treqear-btn:active {
-      background-color: var(--yellow);
+      background-color: var(--accent);
       transform: scale(0.98);
     }
     
@@ -319,12 +331,6 @@
       position: absolute;
       right: 20px;
       font-size: 1.5rem;
-      animation: spin 2s linear infinite;
-    }
-    
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
     }
     
     /* ===== BOTTOM NAVIGATION ===== */
@@ -333,14 +339,15 @@
       bottom: 0;
       left: 0;
       right: 0;
-      background-color: var(--gray);
-      border-top: 2px solid var(--primary);
+      background-color: var(--white);
+      border-top: 1px solid var(--border-light);
       display: flex;
       justify-content: space-around;
       padding: 12px 0;
       z-index: 1000;
       max-width: 480px;
       margin: 0 auto;
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
     }
     
     .nav-item {
@@ -348,9 +355,10 @@
       flex-direction: column;
       align-items: center;
       text-decoration: none;
-      color: rgba(248, 245, 240, 0.6);
+      color: var(--text-secondary);
       transition: var(--transition);
       flex: 1;
+      position: relative;
     }
     
     .nav-item:active {
@@ -362,6 +370,28 @@
       color: var(--primary);
     }
     
+    .nav-item.sell {
+      color: var(--white);
+      background-color: var(--primary);
+      border-radius: 50%;
+      width: 56px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: -20px;
+      box-shadow: 0 4px 12px rgba(255, 77, 1, 0.3);
+    }
+    
+    .nav-item.sell .nav-icon {
+      font-size: 1.8rem;
+      margin-bottom: 0;
+    }
+    
+    .nav-item.sell .nav-label {
+      display: none;
+    }
+    
     .nav-icon {
       font-size: 1.4rem;
       margin-bottom: 4px;
@@ -371,6 +401,22 @@
       font-family: var(--font-body);
       font-size: 0.7rem;
       font-weight: 500;
+    }
+    
+    .notification-badge {
+      position: absolute;
+      top: -5px;
+      right: 10px;
+      background-color: var(--primary);
+      color: var(--white);
+      font-size: 0.6rem;
+      font-weight: 700;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     
     /* ===== PRODUCT PAGE (hidden by default) ===== */
@@ -471,7 +517,7 @@
     }
     
     .sell-fast-banner {
-      background: linear-gradient(135deg, var(--primary), var(--accent));
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
       border-radius: var(--border-radius);
       padding: 20px;
       margin-bottom: 24px;
@@ -481,59 +527,76 @@
     .banner-title {
       font-family: var(--font-heading);
       font-size: 1.5rem;
-      color: var(--black);
+      color: var(--white);
       margin-bottom: 8px;
     }
     
     .banner-text {
       font-family: var(--font-body);
-      color: rgba(17, 17, 17, 0.9);
+      color: rgba(255, 255, 255, 0.9);
     }
     
     .chat-list {
       margin-top: 20px;
     }
     
-    .chat-item {
-      background-color: var(--gray);
+    .notification-item {
+      background-color: var(--white);
       border-radius: var(--border-radius);
       padding: 16px;
       margin-bottom: 12px;
       display: flex;
       align-items: center;
       transition: var(--transition);
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow);
     }
     
-    .chat-item:active {
-      background-color: rgba(255, 106, 0, 0.1);
+    .notification-item:active {
+      border-color: var(--primary);
+      background-color: rgba(255, 77, 1, 0.05);
     }
     
-    .chat-avatar {
+    .notification-item.unread {
+      border-left: 4px solid var(--primary);
+    }
+    
+    .notification-item.accepted {
+      border-left: 4px solid var(--secondary);
+    }
+    
+    .notification-item.rejected {
+      border-left: 4px solid var(--text-secondary);
+      opacity: 0.7;
+    }
+    
+    .notification-icon {
       width: 50px;
       height: 50px;
       border-radius: 50%;
-      background-color: var(--black);
+      background-color: var(--bg-light);
       margin-right: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--cream);
+      color: var(--primary);
       font-size: 1.5rem;
     }
     
-    .chat-info {
+    .notification-info {
       flex: 1;
     }
     
-    .chat-user {
-      font-family: var(--font-subheading);
-      color: var(--cream);
+    .notification-title {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      color: var(--text-primary);
       margin-bottom: 4px;
     }
     
-    .chat-preview {
+    .notification-preview {
       font-family: var(--font-body);
-      color: rgba(248, 245, 240, 0.7);
+      color: var(--text-secondary);
       font-size: 0.9rem;
     }
     
@@ -672,6 +735,32 @@
         grid-template-columns: repeat(2, 1fr);
       }
     }
+    
+    /* ===== SEARCH & SELL PAGES ===== */
+    .search-page, .sell-page {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: var(--bg-light);
+      z-index: 2000;
+      overflow-y: auto;
+      padding-bottom: 80px;
+    }
+    
+    .form-card {
+      background-color: var(--white);
+      border-radius: var(--border-radius);
+      padding: 24px;
+      margin: 20px;
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow);
+    }
+    
+    .sell-form-container {
+      padding: 0 20px;
+    }
   </style>
 </head>
 <body>
@@ -686,6 +775,7 @@
       <div class="header-actions">
         <button class="icon-btn" id="notificationsBtn">
           <i class="fas fa-bell"></i>
+          <span class="notification-badge" style="position: absolute; top: 5px; right: 5px; background-color: var(--primary); color: var(--white); font-size: 0.6rem; font-weight: 700; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">3</span>
         </button>
         <button class="icon-btn" id="menuBtn">
           <i class="fas fa-ellipsis-v"></i>
@@ -781,12 +871,12 @@
     <!-- MESSAGES PAGE (hidden) -->
     <div id="messagesPage" class="messages-page">
       <div class="sell-fast-banner">
-        <h2 class="banner-title">¡Vende rápido!</h2>
-        <p class="banner-text">Publica tus productos y consigue intercambios en minutos.</p>
+        <h2 class="banner-title">¡Intercambios circulares!</h2>
+        <p class="banner-text">Acepta o rechaza propuestas de intercambio de 3 usuarios.</p>
       </div>
       
-      <h2 class="section-title">Mensajes</h2>
-      <div class="chat-list" id="chatList">
+      <h2 class="section-title">Notificaciones</h2>
+      <div class="notifications-list" id="notificationsList">
         <!-- Chats will be populated by JavaScript -->
       </div>
     </div>
@@ -871,19 +961,70 @@
         <i class="fas fa-home nav-icon"></i>
         <span class="nav-label">Inicio</span>
       </a>
-      <a href="#" class="nav-item" data-page="searchPage" style="display:none;">
+      <a href="#" class="nav-item" data-page="searchPage">
         <i class="fas fa-search nav-icon"></i>
         <span class="nav-label">Buscar</span>
       </a>
+      <a href="#" class="nav-item sell" data-page="sellPage">
+        <i class="fas fa-plus nav-icon"></i>
+        <span class="nav-label">Vender</span>
+      </a>
       <a href="#" class="nav-item" data-page="messagesPage">
-        <i class="fas fa-comments nav-icon"></i>
-        <span class="nav-label">Mensajes</span>
+        <i class="fas fa-bell nav-icon"></i>
+        <span class="nav-label">Notificaciones</span>
+        <span class="notification-badge">3</span>
       </a>
       <a href="#" class="nav-item" data-page="profilePage">
         <i class="fas fa-user nav-icon"></i>
         <span class="nav-label">Perfil</span>
       </a>
     </nav>
+    
+    <!-- SEARCH PAGE (hidden) -->
+    <div id="searchPage" class="search-page" style="display:none;">
+      <div class="app-header">
+        <button class="back-btn" id="searchBackBtn">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <div class="logo">
+          <span class="logo-icon">↻</span>
+          TREQE
+        </div>
+        <div></div>
+      </div>
+      <div class="search-container" style="border-bottom: none;">
+        <div class="search-bar">
+          <input type="text" class="search-input" id="searchPageInput" placeholder="Busca productos, categorías..." autofocus>
+          <button class="search-btn" id="searchPageBtn">BUSCAR</button>
+        </div>
+      </div>
+      <div class="listings-container" id="searchResults">
+        <!-- Results will appear here -->
+      </div>
+    </div>
+    
+    <!-- SELL PAGE (hidden) -->
+    <div id="sellPage" class="sell-page" style="display:none;">
+      <div class="app-header">
+        <button class="back-btn" id="sellBackBtn">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <div class="logo">
+          <span class="logo-icon">↻</span>
+          TREQE
+        </div>
+        <div></div>
+      </div>
+      <div class="sell-form-container">
+        <h2 class="section-title" style="margin: 20px;">Publicar producto</h2>
+        <div class="form-card">
+          <p style="text-align: center; color: var(--text-secondary); margin-bottom: 24px;">Esta funcionalidad está disponible en la versión web completa.</p>
+          <button class="treqear-btn" onclick="window.open('https://jferrer1.github.io/treqe-dev-2026/?v=16', '_blank')">
+            IR A VERSIÓN WEB
+          </button>
+        </div>
+      </div>
+    </div>
     
   </div>
   
@@ -1005,13 +1146,20 @@
     const productPage = document.getElementById('productPage');
     const messagesPage = document.getElementById('messagesPage');
     const profilePage = document.getElementById('profilePage');
+    const searchPage = document.getElementById('searchPage');
+    const sellPage = document.getElementById('sellPage');
     const navItems = document.querySelectorAll('.nav-item');
     const categoriesGrid = document.getElementById('categoriesGrid');
     const listingsContainer = document.getElementById('listingsContainer');
-    const chatList = document.getElementById('chatList');
+    const notificationsList = document.getElementById('notificationsList');
     const treqearBtn = document.getElementById('treqearBtn');
     const productBackBtn = document.getElementById('productBackBtn');
     const treqearProductBtn = document.getElementById('treqearProductBtn');
+    const searchBackBtn = document.getElementById('searchBackBtn');
+    const sellBackBtn = document.getElementById('sellBackBtn');
+    const searchPageInput = document.getElementById('searchPageInput');
+    const searchPageBtn = document.getElementById('searchPageBtn');
+    const searchResults = document.getElementById('searchResults');
     
     // ===== INITIALIZATION =====
     document.addEventListener('DOMContentLoaded', function() {
@@ -1021,8 +1169,8 @@
       // Populate featured listings
       renderListings();
       
-      // Populate chats
-      renderChats();
+      // Populate notifications
+      renderNotifications();
       
       // Populate profile stats
       updateProfileStats();
@@ -1081,39 +1229,91 @@
       });
     }
     
-    function renderChats() {
-      chatList.innerHTML = '';
+    function renderNotifications() {
+      if (!notificationsList) return;
+      notificationsList.innerHTML = '';
       
-      // Simulate chat data
-      const chats = [
-        { user: demoData.users[0], lastMessage: "¿Interesado en intercambiar?", time: "10:30" },
-        { user: demoData.users[1], lastMessage: "¡Me encanta tu producto!", time: "Ayer" },
-        { user: demoData.users[2], lastMessage: "Podemos acordar un encuentro", time: "2 días" },
-        { user: demoData.users[3], lastMessage: "¿Aceptarías €100 de diferencia?", time: "3 días" },
-        { user: demoData.users[4], lastMessage: "Mi producto está en perfecto estado", time: "1 sem" }
+      // Simulate circular exchange notifications (from original Treqe web)
+      const notifications = [
+        { 
+          id: 1,
+          type: 'match_found',
+          title: '¡Match circular encontrado!',
+          description: '3 usuarios coinciden: iPhone 15 Pro ↔ Bicicleta Orbea ↔ Sofá de piel',
+          time: 'Hace 10 min',
+          unread: true,
+          status: 'pending'
+        },
+        { 
+          id: 2,
+          type: 'exchange_accepted',
+          title: 'Intercambio aceptado',
+          description: 'Carlos López aceptó tu propuesta por PlayStation 5',
+          time: 'Ayer',
+          unread: false,
+          status: 'accepted'
+        },
+        { 
+          id: 3,
+          type: 'match_found',
+          title: 'Nuevo match posible',
+          description: '2 usuarios más necesarios para completar intercambio circular',
+          time: '2 días',
+          unread: false,
+          status: 'pending'
+        },
+        { 
+          id: 4,
+          type: 'exchange_rejected',
+          title: 'Intercambio rechazado',
+          description: 'María García rechazó tu oferta por Vestido de diseñador',
+          time: '3 días',
+          unread: false,
+          status: 'rejected'
+        },
+        { 
+          id: 5,
+          type: 'shipping_confirmed',
+          title: 'Envío confirmado',
+          description: 'Tu producto ha sido enviado. Código de seguimiento: TRQ-789456',
+          time: '1 sem',
+          unread: false,
+          status: 'accepted'
+        }
       ];
       
-      chats.forEach(chat => {
-        const chatItem = document.createElement('div');
-        chatItem.className = 'chat-item';
-        chatItem.innerHTML = `
-          <div class="chat-avatar">
-            ${chat.user.avatar}
+      notifications.forEach(notif => {
+        const notifItem = document.createElement('div');
+        notifItem.className = 'notification-item';
+        if (notif.unread) notifItem.classList.add('unread');
+        if (notif.status === 'accepted') notifItem.classList.add('accepted');
+        if (notif.status === 'rejected') notifItem.classList.add('rejected');
+        
+        // Icon based on type
+        let icon = '🔄';
+        if (notif.type === 'match_found') icon = '🎯';
+        if (notif.type === 'exchange_accepted') icon = '✅';
+        if (notif.type === 'exchange_rejected') icon = '❌';
+        if (notif.type === 'shipping_confirmed') icon = '🚚';
+        
+        notifItem.innerHTML = `
+          <div class="notification-icon">
+            ${icon}
           </div>
-          <div class="chat-info">
-            <div class="chat-user">${chat.user.name}</div>
-            <div class="chat-preview">${chat.lastMessage}</div>
+          <div class="notification-info">
+            <div class="notification-title">${notif.title}</div>
+            <div class="notification-preview">${notif.description}</div>
           </div>
-          <div style="color: rgba(248,245,240,0.5); font-size: 0.8rem;">
-            ${chat.time}
+          <div style="color: var(--text-secondary); font-size: 0.8rem;">
+            ${notif.time}
           </div>
         `;
         
-        chatItem.addEventListener('click', () => {
-          alert(`Abrir chat con ${chat.user.name}`);
+        notifItem.addEventListener('click', () => {
+          alert(`${notif.title}\n${notif.description}\n\nHaz clic en Aceptar/Rechazar en la web original para gestionar.`);
         });
         
-        chatList.appendChild(chatItem);
+        notificationsList.appendChild(notifItem);
       });
     }
     
@@ -1152,8 +1352,8 @@
     
     function showPage(pageId) {
       // Hide all pages
-      [homePage, productPage, messagesPage, profilePage].forEach(page => {
-        page.style.display = 'none';
+      [homePage, productPage, messagesPage, profilePage, searchPage, sellPage].forEach(page => {
+        if (page) page.style.display = 'none';
       });
       
       // Show selected page
@@ -1215,6 +1415,94 @@
         if (e.key === 'Enter') {
           searchBtn.click();
         }
+      });
+      
+      // Search page back button
+      if (searchBackBtn) {
+        searchBackBtn.addEventListener('click', function() {
+          showPage('homePage');
+        });
+      }
+      
+      // Sell page back button
+      if (sellBackBtn) {
+        sellBackBtn.addEventListener('click', function() {
+          showPage('homePage');
+        });
+      }
+      
+      // Search page functionality
+      if (searchPageBtn && searchPageInput) {
+        searchPageBtn.addEventListener('click', function() {
+          const query = searchPageInput.value.trim();
+          if (query) {
+            performSearch(query);
+          }
+        });
+        
+        searchPageInput.addEventListener('keypress', function(e) {
+          if (e.key === 'Enter') {
+            searchPageBtn.click();
+          }
+        });
+      }
+      
+      // Notifications button in header
+      if (notificationsBtn) {
+        notificationsBtn.addEventListener('click', function() {
+          showPage('messagesPage');
+        });
+      }
+    }
+    
+    // ===== SEARCH FUNCTION =====
+    function performSearch(query) {
+      if (!searchResults) return;
+      
+      // Simple search simulation
+      const results = demoData.products.filter(product => 
+        product.title.toLowerCase().includes(query.toLowerCase()) ||
+        product.description.toLowerCase().includes(query.toLowerCase())
+      );
+      
+      searchResults.innerHTML = '';
+      
+      if (results.length === 0) {
+        searchResults.innerHTML = `
+          <div class="text-center" style="padding: 40px 20px; color: var(--text-secondary);">
+            <i class="fas fa-search" style="font-size: 3rem; margin-bottom: 16px;"></i>
+            <h3 style="font-family: var(--font-heading); margin-bottom: 8px;">No se encontraron resultados</h3>
+            <p>Intenta con otras palabras clave.</p>
+          </div>
+        `;
+        return;
+      }
+      
+      results.forEach(product => {
+        const user = demoData.users.find(u => u.id === product.userId) || demoData.users[0];
+        const category = demoData.categories.find(c => c.slug === product.category) || demoData.categories[0];
+        
+        const listingCard = document.createElement('div');
+        listingCard.className = 'listing-card';
+        listingCard.innerHTML = `
+          <div class="listing-image">
+            ${product.imageIcon || '📦'}
+          </div>
+          <div class="listing-info">
+            <h3 class="listing-title">${product.title}</h3>
+            <div class="listing-price">€${product.value}</div>
+            <div class="listing-meta">
+              <span class="listing-condition">${product.condition === 'new' ? 'Nuevo' : product.condition === 'like-new' ? 'Como nuevo' : 'Usado'}</span>
+              <span>${product.city}</span>
+            </div>
+          </div>
+        `;
+        
+        listingCard.addEventListener('click', () => {
+          openProductPage(product);
+        });
+        
+        searchResults.appendChild(listingCard);
       });
     }
     
