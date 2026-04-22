@@ -6,7 +6,7 @@
 <title>treqe</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&family=Oswald:wght@400;500;600;700&family=Anton&family=Space+Grotesk:wght@300;400;500;600;700&family=Bebas+Neue&family=Bungee&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&family=Oswald:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -60,10 +60,10 @@ body{font-family:Inter,sans-serif;background:#111111;color:#fff;line-height:1.4;
 .pb{padding:10px 12px 14px}
 .pt{font-weight:700;font-size:.82rem;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:2px}
 .pu{font-family:'Space Grotesk',sans-serif;font-size:.68rem;color:#BDBDBD;margin-bottom:4px}
-.pg{font-family:'Bebas Neue',sans-serif;font-size:.68rem;font-weight:400;color:#FF6A00;margin-bottom:2px;letter-spacing:1px}
+.pg{font-family:'Space Grotesk',sans-serif;font-size:.68rem;font-weight:600;color:#FF6A00;margin-bottom:2px;letter-spacing:.5px;text-transform:uppercase}
 .pp{font-weight:600;font-size:.88rem;color:#fff;margin-top:2px}
 .sc{padding:0 16px 16px}
-.sc h3{font-family:'Anton',sans-serif;font-weight:400;font-size:1.5rem;text-transform:uppercase;color:#FF6A00;letter-spacing:-.5px;margin-bottom:20px;line-height:1.1}
+.sc h3{font-family:'Oswald',sans-serif;font-weight:600;font-size:1.5rem;text-transform:uppercase;color:#FF6A00;letter-spacing:-.5px;margin-bottom:20px;line-height:1.1}
 .st{display:flex;gap:14px;margin-bottom:20px;align-items:flex-start}
 .st .sn{width:30px;height:30px;border-radius:50%;border:1.5px solid rgba(255,255,255,0.4);display:flex;align-items:center;justify-content:center;font-weight:600;font-size:.8rem;color:#fff;flex-shrink:0;margin-top:2px}
 .st .sb2 h4{font-weight:700;font-size:.85rem;color:#fff;margin-bottom:4px}
@@ -85,11 +85,15 @@ body{font-family:Inter,sans-serif;background:#111111;color:#fff;line-height:1.4;
 .pg2.on{display:block}
 .sp{padding:16px 16px 24px}
 .sp .sb{margin-bottom:12px}
-.fr{display:flex;gap:8px;padding:4px 0 12px;overflow-x:auto;scrollbar-width:none}
+.fr{display:flex;flex-wrap:wrap;gap:8px;padding:4px 0 16px;margin-bottom:8px}
 .fr::-webkit-scrollbar{display:none}
-.fs2{background:#2C2C2C;border:1px solid #2C2C2C;border-radius:6px;padding:8px 10px;color:#fff;font-family:Inter,sans-serif;font-size:.72rem;min-width:80px}
+@media (max-width: 380px) {
+  .fr { gap: 6px; }
+  .fs2, .fi2, .fa2 { min-width: calc(50% - 10px); flex: 1 1 auto; }
+}
+.fs2{background:#2C2C2C;border:1px solid #2C2C2C;border-radius:6px;padding:8px 10px;color:#fff;font-family:Inter,sans-serif;font-size:.72rem;min-width:80px;flex:1 1 auto}
 .fs2 option{background:#2C2C2C}
-.fi2{background:#2C2C2C;border:1px solid #2C2C2C;border-radius:6px;padding:8px 10px;color:#fff;font-family:Inter,sans-serif;font-size:.72rem;width:70px}
+.fi2{background:#2C2C2C;border:1px solid #2C2C2C;border-radius:6px;padding:8px 10px;color:#fff;font-family:Inter,sans-serif;font-size:.72rem;flex:1 1 auto;min-width:70px}
 .fa2{background:#FF6A00;color:#fff;border:none;border-radius:6px;padding:8px 12px;font-family:Inter,sans-serif;font-weight:600;font-size:.68rem;cursor:pointer;white-space:nowrap}
 .fr2{background:#2C2C2C;color:#BDBDBD;border:1px solid #2C2C2C;border-radius:6px;padding:8px 12px;font-size:.68rem;cursor:pointer;white-space:nowrap}
 .rc{font-size:.72rem;color:#757575;padding:4px 0}
@@ -396,14 +400,14 @@ body{font-family:Inter,sans-serif;background:#111111;color:#fff;line-height:1.4;
 <div class="lo" aria-label="treqe">treqe</div>
 <button class="hi" id="dlb"><i class="far fa-heart"></i></button>
 </div>
-<div class="di"><span id="dpe"></span></div>
+<div class="di"><img id="dimg" src="" alt="" style="width:100%;height:100%;object-fit:cover;display:none;"><div id="dpe" style="font-size:4rem;"></div></div>
 <div class="dbo">
 <h1 class="dt" id="dpt"></h1>
 <div class="du" id="dpu"></div>
 <div class="dpr" id="dpr"></div>
 <div class="ds" id="dsp"></div>
 <p class="dd" id="ddd"></p>
-<button class="tb"><i class="fas fa-exchange-alt"></i> TREQEAR ESTE ARTICULO</button>
+<button class="tb"><i class="fas fa-exchange-alt"></i> TREQUEAR ESTE ARTÍCULO<br><small style="display:block;font-size:0.7em;margin-top:4px;opacity:0.9;">✓ Envíos protegidos incluidos</small></button>
 </div>
 </div>
 <nav class="bn">
@@ -415,7 +419,7 @@ body{font-family:Inter,sans-serif;background:#111111;color:#fff;line-height:1.4;
 <i class="fas fa-search nx"></i>
 <span class="nl">Buscar</span>
 </a>
-<a href="#" class="ni sl" data-p="slp">
+<a href="#" class="ni sl" onclick="openCreateExchange(); return false;">
 <div class="sc"><i class="fas fa-exchange-alt"></i></div>
 </a>
 <a href="#" class="ni" data-p="ep">
@@ -430,7 +434,7 @@ body{font-family:Inter,sans-serif;background:#111111;color:#fff;line-height:1.4;
 </nav>
 </div>
 <script>
-var lk=new Set();
+var lk=new Set(JSON.parse(localStorage.getItem('treqe_likes') || '[]'));
 var dt={
   cats:[
     {s:"clothing",n:"Ropa",i:"fa-tshirt"},
@@ -452,12 +456,12 @@ var dt={
     {id:5,n:"Maria S.",c:"Bilbao"}
   ],
   items:[
-    {id:1,t:"G-SHOCK",u:"Mudmaster GWG-2000",p:280,cat:"fashion",co:"Como nuevo",ci:"Madrid",us:1,e:"⌚",d:"G-Shock Mudmaster GWG-2000. Resistente a barro y polvo."},
-    {id:2,t:"PATAGONIA",u:"Down Sweater Jacket",p:120,cat:"fashion",co:"Buen estado",ci:"Barcelona",us:2,e:"🧥",d:"Chaqueta Patagonia Down Sweater, talla M."},
-    {id:3,t:"TREK",u:"Marlin 7 2023",p:420,cat:"sports",co:"Buen estado",ci:"Valencia",us:3,e:"🚲",d:"Bicicleta Trek Marlin 7, talla M."},
-    {id:4,t:"FENDER",u:"Stratocaster Player",p:580,cat:"music",co:"Como nuevo",ci:"Sevilla",us:4,e:"🎸",d:"Fender Stratocaster Player, sunburst."},
-    {id:5,t:"APPLE",u:"MacBook Air M2",p:890,cat:"electronics",co:"Como nuevo",ci:"Bilbao",us:5,e:"💻",d:"MacBook Air M2, 8GB RAM, 256GB SSD."},
-    {id:6,t:"SONY",u:"Alpha A7 III",p:1200,cat:"electronics",co:"Como nuevo",ci:"Madrid",us:1,e:"📷",d:"Sony A7 III con objetivo 28-70mm."}
+    {id:1,t:"G-SHOCK",u:"Mudmaster GWG-2000",p:280,cat:"watches",co:"Como nuevo",ci:"Madrid",us:1,img:"https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=800&q=80",d:"G-Shock Mudmaster GWG-2000. Resistente a barro y polvo."},
+    {id:2,t:"PATAGONIA",u:"Down Sweater Jacket",p:120,cat:"clothing",co:"Buen estado",ci:"Barcelona",us:2,img:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=800&q=80",d:"Chaqueta Patagonia Down Sweater, talla M."},
+    {id:3,t:"TREK",u:"Marlin 7 2023",p:420,cat:"sports",co:"Buen estado",ci:"Valencia",us:3,img:"https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=800&q=80",d:"Bicicleta Trek Marlin 7, talla M."},
+    {id:4,t:"FENDER",u:"Stratocaster Player",p:580,cat:"music",co:"Como nuevo",ci:"Sevilla",us:4,img:"https://images.unsplash.com/photo-1564186763535-ebb21ef5277f?w=800&q=80",d:"Fender Stratocaster Player, sunburst."},
+    {id:5,t:"APPLE",u:"MacBook Air M2",p:890,cat:"electronics",co:"Como nuevo",ci:"Bilbao",us:5,img:"https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=800&q=80",d:"MacBook Air M2, 8GB RAM, 256GB SSD."},
+    {id:6,t:"SONY",u:"Alpha A7 III",p:1200,cat:"electronics",co:"Como nuevo",ci:"Madrid",us:1,img:"https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800&q=80",d:"Sony A7 III con objetivo 28-70mm."}
   ],
   notifs:[
     {tp:"mt",i:"fas fa-bullseye",t:"Match encontrado",x:"Tu G-SHOCK encaja en un circulo de 3 personas.",tm:"Hace 2 min",new:true},
@@ -484,7 +488,8 @@ function sp(i){
 }
 function rc(it){
   var l=lk.has(it.id);
-  return '<div class="pc" onclick="sd('+it.id+')"><div class="pi"><span>'+it.e+'</span><button class="lb '+(l?'lk':'')+'" onclick="event.stopPropagation();tl('+it.id+',this)"><i class="'+(l?'fas':'far')+' fa-heart"></i></button></div><div class="pb"><div class="pt">'+it.t+'</div><div class="pu">'+it.u+'</div><div class="pg">TREQEAR</div><div class="pp">'+it.p+'€</div></div></div>';
+  var imgHtml = it.img ? '<img src="'+it.img+'" alt="'+it.t+'" loading="lazy" style="width:100%;height:100%;object-fit:cover;">' : '<span>'+it.e+'</span>';
+  return '<div class="pc" onclick="sd('+it.id+')"><div class="pi">'+imgHtml+'<button class="lb '+(l?'lk':'')+'" onclick="event.stopPropagation();tl('+it.id+',this)"><i class="'+(l?'fas':'far')+' fa-heart"></i></button></div><div class="pb"><div class="pt">'+it.t+'</div><div class="pu">'+it.u+'</div><div class="pg">TREQEAR</div><div class="pp">'+it.p+'€</div></div></div>';
 }
 function rcat(){
   document.getElementById('crl').innerHTML=dt.cats.map(function(c){
@@ -507,6 +512,8 @@ function tl(id,b){
     b.classList.add('lk');
     b.innerHTML='<i class="fas fa-heart"></i>';
   }
+  // Persistir en localStorage
+  localStorage.setItem('treqe_likes', JSON.stringify(Array.from(lk)));
 }
 function sd(id){
   var it=dt.items.find(function(i){return i.id===id});
@@ -515,7 +522,18 @@ function sd(id){
   document.getElementById('dpu').textContent=it.u;
   document.getElementById('dpr').textContent=it.p+'€';
   document.getElementById('ddd').textContent=it.d;
-  document.getElementById('dpe').textContent=it.e;
+  var dimg = document.getElementById('dimg');
+  var dpe = document.getElementById('dpe');
+  if (it.img) {
+    dimg.src = it.img;
+    dimg.alt = it.t;
+    dimg.style.display = 'block';
+    dpe.style.display = 'none';
+  } else {
+    dpe.textContent = it.e;
+    dimg.style.display = 'none';
+    dpe.style.display = 'block';
+  }
   document.getElementById('dsp').innerHTML='<div class="dsb"><div class="dsl">Estado</div><div class="dsv">'+it.co+'</div></div><div class="dsb"><div class="dsl">Categoria</div><div class="dsv">'+((dt.cats.find(function(c){return c.s===it.cat})||{}).n||'')+'</div></div><div class="dsb"><div class="dsl">Ubicacion</div><div class="dsv">'+it.ci+'</div></div><div class="dsb"><div class="dsl">Usuario</div><div class="dsv">'+((dt.users.find(function(u){return u.id===it.us})||{}).n||'')+'</div></div>';
   document.getElementById('dlb').innerHTML=lk.has(id)?'<i class="fas fa-heart"></i>':'<i class="far fa-heart"></i>';
   document.getElementById('dpp').classList.add('on');
@@ -587,6 +605,10 @@ function rac(){
   document.getElementById('acg').innerHTML=dt.cats.map(function(c){
     return '<div class="ac2" onclick="fc(\''+c.s+'\')"><div class="ai"><i class="fas '+c.i+'"></i></div><div class="an">'+c.n+'</div><div class="as">'+c.n+'</div></div>';
   }).join('');
+}
+function openCreateExchange(){
+  alert('Función de creación de intercambio circular (k=3).\n\nEn Treqe, intercambias artículos en círculos de 3 personas para maximizar valor y satisfacción.\n\nEsta funcionalidad se implementará en la versión MVP.');
+  // En MVP real: sp('create'); mostrar formulario de selección de artículo + matching circular
 }
 function init(){
   rcat();
