@@ -42,10 +42,9 @@ body{font-family:Inter,sans-serif;background:#111111;color:#fff;line-height:1.4;
 .sh{display:flex;align-items:center;justify-content:space-between;padding:16px 16px 10px}
 .sh h2{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.85rem;text-transform:uppercase;letter-spacing:1px;color:#fff}
 .sh .sa{color:#FF6A00;font-size:.72rem;font-weight:400;text-decoration:none;cursor:pointer}
-.cs{overflow:hidden;padding:4px 0 16px}
-.cr{display:flex;gap:16px;padding:0 16px;overflow-x:auto;scrollbar-width:none}
-.cr::-webkit-scrollbar{display:none}
-.ci{flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;min-width:48px}
+.cs{padding:4px 0 16px}
+.cr{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;padding:0 16px}
+.ci{display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;width:auto}
 .ci:active{transform:scale(.9)}
 .ci .cx i{font-size:1.2rem;color:#FFD700}
 .ci .cl{font-size:.62rem;color:#fff;text-align:center;white-space:nowrap}
@@ -106,16 +105,17 @@ body{font-family:Inter,sans-serif;background:#111111;color:#fff;line-height:1.4;
 .np .pt2{font-weight:700;font-size:.85rem;text-transform:uppercase;letter-spacing:1px;color:#fff;margin-bottom:16px}
 .nn{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid #2C2C2C}
 .nn:last-child{border-bottom:none}
-.nw{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;flex-shrink:0}
-.nw.mt{background:rgba(0,184,184,0.12);color:#00B8B8}
-.nw.ac3{background:rgba(76,175,80,0.12);color:#4CAF50}
-.nw.rj{background:rgba(244,67,54,0.12);color:#F44336}
-.nw.sh2{background:rgba(59,130,246,0.12);color:#3B82F6}
-.nw.pn{background:rgba(255,152,0,0.12);color:#FF9800}
+.nw{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.nw.mt{background:#00B8B8;color:#fff}
+.nw.ac3{background:#FF6A00;color:#fff}
+.nw.rj{background:#E30613;color:#fff}
+.nw.sh2{background:#00B8B8;color:#fff}
+.nw.pn{background:#FFB700;color:#fff}
 .nb{flex:1}
 .nt{font-weight:600;font-size:.78rem;color:#fff;margin-bottom:2px}
 .nx2{font-size:.68rem;color:#BDBDBD;line-height:1.4}
 .nm{font-size:.6rem;color:#757575;margin-top:4px}
+.nsect{font-family:'Space Grotesk',sans-serif;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:#FF6A00;padding:16px 0 8px;border-bottom:1px solid #2C2C2C;margin-bottom:8px}
 .ep{padding:16px 16px 24px}
 .ep .pt2{font-weight:700;font-size:.85rem;text-transform:uppercase;letter-spacing:1px;color:#fff;margin-bottom:16px}
 .ei{display:flex;gap:12px;padding:12px;background:#fff;border-radius:8px;margin-bottom:10px;cursor:pointer;transition:all .15s ease}
@@ -172,6 +172,23 @@ body{font-family:Inter,sans-serif;background:#111111;color:#fff;line-height:1.4;
 .ac2 .ai{font-size:1.3rem;color:#FFD700;margin-bottom:6px}
 .ac2 .an{font-weight:600;font-size:.75rem;color:#fff}
 .ac2 .as{font-size:.6rem;color:#757575;margin-top:2px}
+.etabs{display:flex;gap:4px;padding:0 16px 16px;overflow-x:auto;scrollbar-width:none}
+.etabs::-webkit-scrollbar{display:none}
+.etab{background:#2C2C2C;color:#BDBDBD;border:none;border-radius:20px;padding:8px 14px;font-family:'Space Grotesk',sans-serif;font-size:.7rem;font-weight:500;cursor:pointer;white-space:nowrap;transition:all .15s ease}
+.etab.active{background:#FF6A00;color:#fff}
+.etab:active{transform:scale(.95)}
+.exlist{padding:0 16px 24px}
+.exitem{display:flex;gap:12px;padding:14px;background:#2C2C2C;border-radius:12px;margin-bottom:10px;cursor:pointer;transition:all .15s ease}
+.exitem:active{transform:scale(.98)}
+.exicon{width:48px;height:48px;border-radius:8px;background:#111111;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0}
+.excontent{flex:1}
+.extop{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px}
+.extitle{font-weight:600;font-size:.8rem;color:#fff}
+.extrade{font-family:'Space Grotesk',sans-serif;font-size:.65rem;color:#FF6A00;letter-spacing:.5px}
+.exdesc{font-size:.7rem;color:#BDBDBD;margin-bottom:6px;line-height:1.4}
+.exbottom{display:flex;justify-content:space-between;align-items:center}
+.exstatus{padding:4px 8px;border-radius:12px;font-size:.6rem;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+.extime{font-size:.6rem;color:#757575}
 </style>
 </head>
 <body>
@@ -196,23 +213,23 @@ body{font-family:Inter,sans-serif;background:#111111;color:#fff;line-height:1.4;
 <div class="fg">
 <div class="fi">
 <div class="fc"><i class="fas fa-exchange-alt"></i></div>
-<h4>Intercambia</h4>
+<h4>TREQEA</h4>
 <p>Sin dinero</p>
 </div>
 <div class="fi">
-<div class="fc"><i class="fas fa-search"></i></div>
-<h4>Descubre</h4>
-<p>Productos unicos</p>
+<div class="fc"><i class="fas fa-shield-alt"></i></div>
+<h4>SEGURO</h4>
+<p>Protegido</p>
 </div>
 <div class="fi">
-<div class="fc"><i class="fas fa-recycle"></i></div>
-<h4>Reutiliza</h4>
+<div class="fc"><i class="fas fa-leaf"></i></div>
+<h4>SOSTENIBLE</h4>
 <p>Economia circular</p>
 </div>
 <div class="fi">
-<div class="fc"><i class="fas fa-compass"></i></div>
-<h4>Explora</h4>
-<p>Miles de articulos</p>
+<div class="fc"><i class="fas fa-users"></i></div>
+<h4>COMUNIDAD</h4>
+<p>Confianza</p>
 </div>
 </div>
 <div class="sw">
@@ -299,10 +316,16 @@ body{font-family:Inter,sans-serif;background:#111111;color:#fff;line-height:1.4;
 <div id="nfl"></div>
 </div>
 </div>
-<div id="exp" class="pg2">
+<div id="ep" class="pg2">
 <div class="ep">
 <div class="pt2">Mis intercambios</div>
-<div id="exl"></div>
+<div class="etabs">
+<button class="etab active" data-filter="all">Todos</button>
+<button class="etab" data-filter="sent">Enviados</button>
+<button class="etab" data-filter="received">Recibidos</button>
+<button class="etab" data-filter="history">Historial</button>
+</div>
+<div id="exl" class="exlist"></div>
 </div>
 </div>
 <div id="prp" class="pg2">
@@ -385,8 +408,8 @@ body{font-family:Inter,sans-serif;background:#111111;color:#fff;line-height:1.4;
 </div>
 <nav class="bn">
 <a href="#" class="ni ac2" data-p="hp">
-<i class="fas fa-compass nx"></i>
-<span class="nl">Explorar</span>
+<i class="fas fa-home nx"></i>
+<span class="nl">Inicio</span>
 </a>
 <a href="#" class="ni" data-p="sp2">
 <i class="fas fa-search nx"></i>
@@ -395,9 +418,9 @@ body{font-family:Inter,sans-serif;background:#111111;color:#fff;line-height:1.4;
 <a href="#" class="ni sl" data-p="slp">
 <div class="sc"><i class="fas fa-exchange-alt"></i></div>
 </a>
-<a href="#" class="ni" data-p="mp">
-<i class="far fa-bell nx"></i>
-<span class="nl">Avisos</span>
+<a href="#" class="ni" data-p="ep">
+<i class="fas fa-exchange-alt nx"></i>
+<span class="nl">Intercambios</span>
 <span class="bd"></span>
 </a>
 <a href="#" class="ni" data-p="prp">
@@ -410,16 +433,16 @@ body{font-family:Inter,sans-serif;background:#111111;color:#fff;line-height:1.4;
 var lk=new Set();
 var dt={
   cats:[
-    {s:"electronics",n:"Electronica",i:"fa-mobile-screen"},
-    {s:"vehicles",n:"Vehiculos",i:"fa-car"},
-    {s:"home",n:"Hogar",i:"fa-couch"},
-    {s:"fashion",n:"Moda",i:"fa-shirt"},
-    {s:"sports",n:"Deportes",i:"fa-futbol"},
+    {s:"clothing",n:"Ropa",i:"fa-tshirt"},
+    {s:"footwear",n:"Calzado",i:"fa-shoe-prints"},
+    {s:"watches",n:"Relojes",i:"fa-clock"},
+    {s:"electronics",n:"Electronica",i:"fa-mobile-alt"},
+    {s:"home",n:"Hogar",i:"fa-home"},
+    {s:"sports",n:"Deporte",i:"fa-futbol"},
     {s:"books",n:"Libros",i:"fa-book"},
     {s:"toys",n:"Juguetes",i:"fa-gamepad"},
-    {s:"music",n:"Musica",i:"fa-guitar"},
-    {s:"art",n:"Arte",i:"fa-palette"},
-    {s:"pets",n:"Mascotas",i:"fa-paw"}
+    {s:"music",n:"Musica",i:"fa-music"},
+    {s:"art",n:"Arte",i:"fa-palette"}
   ],
   users:[
     {id:1,n:"Laura M.",c:"Madrid"},
@@ -437,17 +460,17 @@ var dt={
     {id:6,t:"SONY",u:"Alpha A7 III",p:1200,cat:"electronics",co:"Como nuevo",ci:"Madrid",us:1,e:"📷",d:"Sony A7 III con objetivo 28-70mm."}
   ],
   notifs:[
-    {tp:"mt",i:"fas fa-bullseye",t:"Match encontrado",x:"Tu G-SHOCK encaja en un circulo de 3 personas.",tm:"Hace 2 min"},
-    {tp:"ac3",i:"fas fa-check-circle",t:"Intercambio aceptado",x:"Carlos R. acepto: Patagonia por G-SHOCK.",tm:"Hace 1 hora"},
-    {tp:"sh2",i:"fas fa-truck",t:"Envio confirmado",x:"Tu Fender fue enviada. Llega en 2-3 dias.",tm:"Hace 3 horas"},
-    {tp:"rj",i:"fas fa-times-circle",t:"Intercambio rechazado",x:"Ana G. rechazo tu propuesta.",tm:"Hace 1 dia"},
-    {tp:"pn",i:"fas fa-clock",t:"Respuesta pendiente",x:"Tu MacBook tiene una propuesta.",tm:"Hace 2 dias"}
+    {tp:"mt",i:"fas fa-bullseye",t:"Match encontrado",x:"Tu G-SHOCK encaja en un circulo de 3 personas.",tm:"Hace 2 min",new:true},
+    {tp:"ac3",i:"fas fa-check-circle",t:"Intercambio aceptado",x:"Carlos R. acepto: Patagonia por G-SHOCK.",tm:"Hace 1 hora",new:true},
+    {tp:"sh2",i:"fas fa-truck",t:"Envio confirmado",x:"Tu Fender fue enviada. Llega en 2-3 dias.",tm:"Hace 3 horas",new:false},
+    {tp:"rj",i:"fas fa-times-circle",t:"Intercambio rechazado",x:"Ana G. rechazo tu propuesta.",tm:"Hace 1 dia",new:false},
+    {tp:"pn",i:"fas fa-clock",t:"Respuesta pendiente",x:"Tu MacBook tiene una propuesta.",tm:"Hace 2 dias",new:false}
   ],
   exch:[
-    {id:1,t:"G-SHOCK -> Patagonia",st:"pending",e:"⌚"},
-    {id:2,t:"Trek -> Fender",st:"accepted",e:"🚲"},
-    {id:3,t:"MacBook -> Sony A7",st:"rejected",e:"💻"},
-    {id:4,t:"Fender -> G-SHOCK",st:"sh2",e:"🎸"}
+    {id:1,itemEmoji:"⌚",itemTitle:"G-SHOCK Mudmaster",tradeId:"#TRQ-2365",status:"sent",statusText:"Enviado",desc:"G-SHOCK → Patagonia",time:"Hace 2h",color:"#00B8B8"},
+    {id:2,itemEmoji:"🚲",itemTitle:"Trek Marlin 7",tradeId:"#TRQ-1892",status:"accepted",statusText:"Aceptado",desc:"Trek → Fender",time:"Hace 1 día",color:"#FF6A00"},
+    {id:3,itemEmoji:"💻",itemTitle:"MacBook Air M2",tradeId:"#TRQ-1543",status:"pending",statusText:"Pendiente",desc:"MacBook → Sony A7",time:"Hace 3 días",color:"#FFB700"},
+    {id:4,itemEmoji:"🎸",itemTitle:"Fender Stratocaster",tradeId:"#TRQ-0987",status:"rejected",statusText:"Rechazado",desc:"Fender → G-SHOCK",time:"Hace 5 días",color:"#E30613"}
   ]
 };
 function sp(i){
@@ -525,14 +548,40 @@ function pf(){
   }).join('');
 }
 function rn(){
-  document.getElementById('nfl').innerHTML=dt.notifs.map(function(n){
-    return '<div class="nn"><div class="nw '+n.tp+'"><i class="'+n.i+'"></i></div><div class="nb"><div class="nt">'+n.t+'</div><div class="nx2">'+n.x+'</div><div class="nm">'+n.tm+'</div></div></div>';
+  var newNotifs = dt.notifs.filter(n => n.new);
+  var oldNotifs = dt.notifs.filter(n => !n.new);
+  var html = '';
+  if (newNotifs.length > 0) {
+    html += '<div class="nsect">NUEVAS</div>';
+    html += newNotifs.map(function(n){
+      return '<div class="nn"><div class="nw '+n.tp+'"><i class="'+n.i+'"></i></div><div class="nb"><div class="nt">'+n.t+'</div><div class="nx2">'+n.x+'</div><div class="nm">'+n.tm+'</div></div></div>';
+    }).join('');
+  }
+  if (oldNotifs.length > 0) {
+    html += '<div class="nsect">ANTERIORES</div>';
+    html += oldNotifs.map(function(n){
+      return '<div class="nn"><div class="nw '+n.tp+'"><i class="'+n.i+'"></i></div><div class="nb"><div class="nt">'+n.t+'</div><div class="nx2">'+n.x+'</div><div class="nm">'+n.tm+'</div></div></div>';
+    }).join('');
+  }
+  document.getElementById('nfl').innerHTML = html;
+}
+function re(filter='all'){
+  var filtered = dt.exch;
+  if (filter === 'sent') filtered = dt.exch.filter(e => e.status === 'sent');
+  if (filter === 'received') filtered = dt.exch.filter(e => e.status === 'accepted' || e.status === 'pending');
+  if (filter === 'history') filtered = dt.exch.filter(e => e.status === 'rejected' || e.status === 'sent');
+  document.getElementById('exl').innerHTML=filtered.map(function(e){
+    return '<div class="exitem"><div class="exicon">'+e.itemEmoji+'</div><div class="excontent"><div class="extop"><div class="extitle">'+e.itemTitle+'</div><div class="extrade">'+e.tradeId+'</div></div><div class="exdesc">'+e.desc+'</div><div class="exbottom"><div class="exstatus" style="background:'+e.color+'20;color:'+e.color+'">'+e.statusText+'</div><div class="extime">'+e.time+'</div></div></div></div>';
   }).join('');
 }
-function re(){
-  document.getElementById('exl').innerHTML=dt.exch.map(function(e){
-    return '<div class="ei"><div class="et">'+e.e+'</div><div class="eb"><div class="ex">'+e.t+'</div><span class="spl '+e.st+'">'+(e.st==='pending'?'Pendiente':e.st==='accepted'?'Aceptado':e.st==='rejected'?'Rechazado':'En envio')+'</span></div></div>';
-  }).join('');
+function setupTabs(){
+  document.querySelectorAll('.etab').forEach(tab => {
+    tab.addEventListener('click', function(){
+      document.querySelectorAll('.etab').forEach(t => t.classList.remove('active'));
+      this.classList.add('active');
+      re(this.dataset.filter);
+    });
+  });
 }
 function rac(){
   document.getElementById('acg').innerHTML=dt.cats.map(function(c){
@@ -544,6 +593,7 @@ function init(){
   rfeat();
   rn();
   re();
+  setupTabs();
   pf();
   document.querySelectorAll('.ni').forEach(function(it){
     it.addEventListener('click',function(e){
