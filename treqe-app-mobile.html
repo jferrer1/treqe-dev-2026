@@ -1,555 +1,595 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Treqe · Intercambio Circular</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Oswald:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    :root {
-      --bg-primary: #0F172A;
-      --bg-secondary: #1E293B;
-      --bg-search: #020617;
-      --border-dark: #334155;
-      --border-light: #E2E8F0;
-      --orange: #F97316;
-      --orange-hover: #EA580C;
-      --orange-shadow: rgba(249,115,22,0.4);
-      --teal: #22D3EE;
-      --blue: #3B82F6;
-      --red-badge: #EF4444;
-      --green: #10B981;
-      --yellow: #F59E0B;
-      --card-bg: #FFFFFF;
-      --text-white: #FFFFFF;
-      --text-dark: #1E293B;
-      --text-secondary: #94A3B8;
-      --text-muted: #64748B;
-      --font-body: 'Inter', sans-serif;
-      --font-heading: 'Oswald', sans-serif;
-      --font-sub: 'Space Grotesk', sans-serif;
-      --radius-sm: 6px;
-      --radius-md: 12px;
-      --radius-lg: 16px;
-      --transition: all 0.2s ease;
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-    html { font-size: 16px; height: 100%; }
-    body { font-family: var(--font-body); background: var(--bg-primary); color: var(--text-white); line-height: 1.5; height: 100%; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
-    .app-container { max-width: 480px; margin: 0 auto; min-height: 100vh; background: var(--bg-primary); position: relative; }
-
-    .app-header { background: var(--bg-primary); padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
-    .logo-text { font-family: var(--font-body); font-weight: 700; font-size: 1.3rem; letter-spacing: -0.5px; background: linear-gradient(135deg, var(--teal), var(--blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .header-actions { display: flex; gap: 16px; align-items: center; }
-    .header-icon { background: none; border: none; color: var(--text-secondary); font-size: 1.15rem; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: var(--transition); position: relative; cursor: pointer; }
-    .header-icon:active { background: var(--bg-secondary); }
-    .badge { position: absolute; top: 0; right: 0; width: 16px; height: 16px; background: var(--red-badge); color: var(--text-white); font-size: 0.55rem; font-weight: 700; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid var(--bg-primary); }
-
-    .hero { position: relative; margin: 0 20px 24px; border-radius: var(--radius-lg); overflow: hidden; height: 200px; background: var(--bg-secondary); }
-    .hero-orange { position: absolute; top: 0; right: 0; width: 60%; height: 100%; background: var(--orange); clip-path: polygon(40% 0, 100% 0, 100% 100%, 0% 100%); opacity: 0.9; }
-    .hero-content { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 20px; z-index: 1; }
-    .hero-title { font-family: var(--font-heading); font-weight: 700; font-size: 1.6rem; text-transform: uppercase; letter-spacing: 3px; color: var(--text-white); line-height: 1.2; margin-bottom: 6px; }
-    .hero-title span { color: var(--orange); }
-    .hero-sub { font-size: 0.82rem; color: rgba(255,255,255,0.8); margin-bottom: 14px; }
-    .hero-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--orange); color: var(--text-white); border: none; padding: 10px 18px; border-radius: var(--radius-sm); font-family: var(--font-body); font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: var(--transition); width: fit-content; }
-    .hero-btn:active { background: var(--orange-hover); transform: scale(0.96); }
-
-    .search-wrap { padding: 0 20px; margin-bottom: 28px; }
-    .search-bar { display: flex; background: var(--bg-search); border-radius: var(--radius-md); border: 1px solid var(--border-dark); overflow: hidden; }
-    .search-bar input { flex: 1; background: transparent; border: none; padding: 12px 14px; color: var(--text-white); font-family: var(--font-body); font-size: 0.85rem; }
-    .search-bar input::placeholder { color: var(--text-secondary); }
-    .search-bar button { background: none; border: none; color: var(--text-secondary); padding: 0 14px; cursor: pointer; font-size: 0.95rem; }
-    .search-bar button:active { color: var(--orange); }
-
-    .section-head { display: flex; align-items: center; justify-content: space-between; padding: 0 20px; margin-bottom: 14px; }
-    .section-head h2 { font-family: var(--font-heading); font-weight: 700; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-white); }
-    .section-head .see-all { color: var(--orange); font-size: 0.75rem; font-weight: 500; text-decoration: none; cursor: pointer; }
-
-    .cat-section { background: var(--bg-secondary); padding: 20px 0; margin-bottom: 28px; }
-    .cat-scroll { display: flex; gap: 16px; padding: 0 20px; overflow-x: auto; scrollbar-width: none; }
-    .cat-scroll::-webkit-scrollbar { display: none; }
-    .cat-item { flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 8px; cursor: pointer; }
-    .cat-item:active { transform: scale(0.9); }
-    .cat-circle { width: 52px; height: 52px; border-radius: 50%; background: var(--bg-primary); border: 1px solid var(--border-dark); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; transition: var(--transition); }
-    .cat-item:active .cat-circle { border-color: var(--orange); }
-    .cat-label { font-size: 0.65rem; font-weight: 500; color: var(--text-secondary); text-align: center; max-width: 60px; line-height: 1.2; }
-
-    .products-scroll { display: flex; gap: 12px; padding: 0 20px; overflow-x: auto; margin-bottom: 28px; scrollbar-width: none; }
-    .products-scroll::-webkit-scrollbar { display: none; }
-    .product-card { flex-shrink: 0; width: 155px; background: var(--card-bg); border-radius: var(--radius-lg); overflow: hidden; cursor: pointer; transition: var(--transition); }
-    .product-card:active { transform: scale(0.96); }
-    .product-card-img { position: relative; width: 100%; aspect-ratio: 1/1; background: var(--bg-secondary); display: flex; align-items: center; justify-content: center; }
-    .product-card-img span { font-size: 2.5rem; }
-    .product-card .like-btn { position: absolute; top: 8px; right: 8px; width: 28px; height: 28px; border-radius: 50%; background: rgba(255,255,255,0.85); border: none; color: var(--text-muted); font-size: 0.8rem; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: var(--transition); backdrop-filter: blur(4px); }
-    .product-card .like-btn.liked { color: var(--orange); }
-    .product-card .like-btn:active { transform: scale(0.8); }
-    .product-card-body { padding: 10px 12px 12px; }
-    .product-card-brand { font-size: 0.65rem; font-weight: 600; color: var(--orange); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px; display: flex; align-items: center; gap: 4px; }
-    .product-card-brand i { font-size: 0.55rem; }
-    .product-card-title { font-size: 0.8rem; font-weight: 700; color: var(--text-dark); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 3px; }
-    .product-card-price { font-family: var(--font-heading); font-weight: 600; font-size: 0.95rem; color: var(--text-dark); }
-
-    .bottom-nav { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 480px; background: var(--card-bg); border-top: 1px solid var(--border-light); display: flex; align-items: flex-end; justify-content: space-around; padding: 0 8px; padding-bottom: max(8px, env(safe-area-inset-bottom)); z-index: 200; height: 64px; }
-    .nav-item { display: flex; flex-direction: column; align-items: center; gap: 2px; text-decoration: none; color: var(--text-muted); padding: 6px 10px; transition: var(--transition); position: relative; flex: 1; }
-    .nav-item.active { color: var(--orange); }
-    .nav-item:active { transform: scale(0.9); }
-    .nav-item .nav-icon { font-size: 1.15rem; }
-    .nav-item .nav-label { font-size: 0.55rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
-    .nav-item .badge { top: -2px; right: 50%; margin-right: -18px; width: 14px; height: 14px; font-size: 0.5rem; border-color: var(--card-bg); }
-    .nav-item.sell { position: relative; top: -18px; }
-    .nav-item.sell .sell-circle { width: 56px; height: 56px; background: var(--orange); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--text-white); font-size: 1.3rem; box-shadow: 0 10px 20px var(--orange-shadow); transition: var(--transition); }
-    .nav-item.sell:active .sell-circle { transform: scale(0.92); }
-    .nav-item.sell .nav-label { margin-top: 4px; color: var(--orange); }
-
-    .page { display: none; padding-bottom: 80px; min-height: calc(100vh - 60px); }
-    .page.active { display: block; }
-
-    .search-page { padding: 0 20px 100px; }
-    .search-page .search-bar { margin-bottom: 12px; }
-    .filters-row { display: flex; gap: 8px; padding: 8px 0 12px; overflow-x: auto; scrollbar-width: none; }
-    .filters-row::-webkit-scrollbar { display: none; }
-    .filter-select, .filter-input { background: var(--bg-search); border: 1px solid var(--border-dark); border-radius: var(--radius-sm); padding: 8px 12px; color: var(--text-white); font-family: var(--font-body); font-size: 0.78rem; min-width: 110px; }
-    .filter-select option { background: var(--bg-secondary); }
-    .filter-input { width: 75px; }
-    .filter-btn-apply { background: var(--orange); color: var(--text-white); border: none; border-radius: var(--radius-sm); padding: 8px 14px; font-family: var(--font-body); font-weight: 700; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; white-space: nowrap; }
-    .filter-btn-reset { background: var(--bg-secondary); color: var(--text-secondary); border: 1px solid var(--border-dark); border-radius: var(--radius-sm); padding: 8px 14px; font-size: 0.7rem; cursor: pointer; white-space: nowrap; }
-    .results-count { font-size: 0.75rem; color: var(--text-muted); padding: 8px 0; }
-    .results-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-    .results-grid .product-card { width: 100%; flex: none; }
-
-    .sell-page { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 60px 20px 100px; text-align: center; }
-    .sell-circle-big { width: 80px; height: 80px; border-radius: 50%; background: var(--orange); display: flex; align-items: center; justify-content: center; font-size: 2rem; color: var(--text-white); margin-bottom: 24px; box-shadow: 0 10px 25px var(--orange-shadow); }
-    .sell-page h2 { font-family: var(--font-heading); font-weight: 700; font-size: 1.4rem; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 8px; }
-    .sell-page p { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 28px; max-width: 260px; }
-
-    .notif-page { padding: 0 20px 100px; }
-    .notif-page .page-title { font-family: var(--font-heading); font-weight: 700; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; padding: 16px 0 12px; }
-    .notif-item { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--border-dark); }
-    .notif-item:last-child { border-bottom: none; }
-    .notif-icon-wrap { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0; }
-    .notif-icon-wrap.match { background: rgba(34,211,238,0.12); color: var(--teal); }
-    .notif-icon-wrap.accepted { background: rgba(16,185,129,0.12); color: var(--green); }
-    .notif-icon-wrap.rejected { background: rgba(239,68,68,0.12); color: var(--red-badge); }
-    .notif-icon-wrap.shipping { background: rgba(59,130,246,0.12); color: var(--blue); }
-    .notif-icon-wrap.pending { background: rgba(245,158,11,0.12); color: var(--yellow); }
-    .notif-body { flex: 1; }
-    .notif-title { font-family: var(--font-sub); font-weight: 600; font-size: 0.82rem; color: var(--text-white); margin-bottom: 2px; }
-    .notif-text { font-size: 0.75rem; color: var(--text-secondary); line-height: 1.4; }
-    .notif-time { font-size: 0.65rem; color: var(--text-muted); margin-top: 4px; }
-
-    .exchange-page { padding: 0 20px 100px; }
-    .exchange-page .page-title { font-family: var(--font-heading); font-weight: 700; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; padding: 16px 0 12px; }
-    .exchange-item { display: flex; gap: 14px; padding: 14px; background: var(--bg-secondary); border-radius: var(--radius-md); margin-bottom: 10px; border: 1px solid var(--border-dark); cursor: pointer; transition: var(--transition); }
-    .exchange-item:active { border-color: var(--text-muted); }
-    .exchange-thumb { width: 48px; height: 48px; border-radius: var(--radius-sm); background: var(--bg-primary); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
-    .exchange-body { flex: 1; display: flex; flex-direction: column; justify-content: center; }
-    .exchange-title { font-family: var(--font-sub); font-weight: 600; font-size: 0.82rem; color: var(--text-white); margin-bottom: 6px; }
-    .status-pill { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
-    .status-pill.pending { background: rgba(245,158,11,0.15); color: var(--yellow); }
-    .status-pill.accepted { background: rgba(16,185,129,0.15); color: var(--green); }
-    .status-pill.rejected { background: rgba(239,68,68,0.15); color: var(--red-badge); }
-    .status-pill.shipping { background: rgba(59,130,246,0.15); color: var(--blue); }
-
-    .profile-page { padding: 0 20px 100px; }
-    .profile-head { text-align: center; padding: 24px 0; }
-    .profile-avatar { width: 72px; height: 72px; border-radius: 50%; background: var(--bg-secondary); border: 3px solid var(--orange); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin: 0 auto 12px; }
-    .profile-name { font-family: var(--font-heading); font-weight: 700; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; }
-    .profile-stats { display: flex; justify-content: center; gap: 28px; margin-top: 14px; }
-    .stat-val { font-family: var(--font-heading); font-weight: 700; font-size: 1.2rem; color: var(--orange); }
-    .stat-lbl { font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
-    .profile-menu { margin-top: 12px; }
-    .menu-row { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; background: var(--bg-secondary); border-radius: var(--radius-sm); margin-bottom: 8px; border: 1px solid var(--border-dark); cursor: pointer; transition: var(--transition); }
-    .menu-row:active { border-color: var(--text-muted); }
-    .menu-row-left { display: flex; align-items: center; gap: 12px; }
-    .menu-row i { color: var(--text-secondary); font-size: 0.95rem; width: 18px; text-align: center; }
-    .menu-row span { font-size: 0.82rem; color: var(--text-white); }
-    .menu-row .arrow { color: var(--text-muted); font-size: 0.7rem; }
-
-    .detail-page { position: fixed; inset: 0; background: var(--bg-primary); z-index: 300; overflow-y: auto; display: none; }
-    .detail-page.active { display: block; }
-    .detail-header { position: sticky; top: 0; z-index: 10; background: var(--bg-primary); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border-dark); }
-    .detail-back { background: none; border: none; color: var(--text-white); font-size: 1.1rem; padding: 8px; cursor: pointer; }
-    .detail-img { width: 100%; height: 280px; background: var(--bg-secondary); display: flex; align-items: center; justify-content: center; }
-    .detail-img span { font-size: 4rem; }
-    .detail-body { padding: 20px; }
-    .detail-title { font-family: var(--font-heading); font-weight: 700; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
-    .detail-price { font-family: var(--font-heading); font-weight: 600; font-size: 1.4rem; color: var(--orange); margin-bottom: 18px; }
-    .detail-specs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 18px; }
-    .spec-box { background: var(--bg-secondary); border-radius: var(--radius-sm); padding: 12px; border: 1px solid var(--border-dark); }
-    .spec-label { font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 3px; }
-    .spec-val { font-size: 0.85rem; font-weight: 600; color: var(--text-white); }
-    .detail-desc { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 24px; }
-    .treqear-btn { width: 100%; padding: 16px; background: var(--orange); color: var(--text-white); border: none; border-radius: var(--radius-md); font-family: var(--font-body); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: var(--transition); display: flex; align-items: center; justify-content: center; gap: 10px; }
-    .treqear-btn:active { background: var(--orange-hover); transform: scale(0.98); }
-
-    .list-page { padding: 0 20px 100px; }
-    .list-head { display: flex; align-items: center; gap: 12px; padding: 14px 0; position: sticky; top: 0; background: var(--bg-primary); z-index: 10; border-bottom: 1px solid var(--border-dark); }
-    .list-head h2 { font-family: var(--font-heading); font-weight: 700; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; }
-    .all-cat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 16px 0; }
-    .all-cat-card { background: var(--bg-secondary); border-radius: var(--radius-md); padding: 14px; border: 1px solid var(--border-dark); cursor: pointer; transition: var(--transition); }
-    .all-cat-card:active { border-color: var(--orange); }
-    .all-cat-icon { font-size: 1.4rem; margin-bottom: 6px; }
-    .all-cat-name { font-family: var(--font-sub); font-weight: 600; font-size: 0.78rem; color: var(--text-white); margin-bottom: 3px; }
-    .all-cat-subs { font-size: 0.65rem; color: var(--text-muted); line-height: 1.3; }
-
-    .how-step { display: flex; gap: 16px; margin-bottom: 24px; align-items: flex-start; }
-    .step-num { width: 36px; height: 36px; border-radius: 50%; background: var(--orange); color: var(--text-white); display: flex; align-items: center; justify-content: center; font-family: var(--font-heading); font-weight: 700; font-size: 0.95rem; flex-shrink: 0; }
-    .step-body h4 { font-family: var(--font-heading); font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
-    .step-body p { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>treqear</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{font-size:16px}
+body{font-family:Inter,sans-serif;background:#121212;color:#fff;line-height:1.4;overflow-x:hidden}
+.app{max-width:480px;margin:0 auto;min-height:100vh;background:#121212;position:relative;padding-bottom:80px}
+.hd{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;position:absolute;top:0;left:0;right:0;z-index:20}
+.hd .lo{font-weight:300;font-size:1.5rem;color:#fff;letter-spacing:-.5px}
+.hd .ri{display:flex;gap:14px;align-items:center}
+.hd .ri button{background:none;border:none;color:rgba(255,255,255,0.7);font-size:1.1rem;width:32px;height:32px;display:flex;align-items:center;justify-content:center;position:relative;cursor:pointer}
+.hd .ri .bd{position:absolute;top:2px;right:2px;width:6px;height:6px;background:#FF5C00;border-radius:50%}
+.he{position:relative;height:380px;background:#1a1a1a;overflow:hidden}
+.he img{width:100%;height:100%;object-fit:cover;opacity:.6}
+.he .ov{position:absolute;bottom:0;right:0;width:65%;height:70%;background:#FF5C00;clip-path:polygon(0 88%,100% 0,100% 100%,0 100%);z-index:1}
+.he .hc{position:absolute;bottom:0;left:0;right:0;padding:30px 20px 28px;z-index:2}
+.he .hc h1{font-weight:900;font-size:2rem;line-height:1.1;letter-spacing:-.5px;color:#fff;margin-bottom:8px}
+.he .hc h1 span{color:#FF5C00}
+.he .hc p{font-size:.82rem;color:rgba(255,255,255,0.8);max-width:65%;margin-bottom:16px}
+.he .hc .hb{display:inline-flex;align-items:center;gap:8px;background:#FF5C00;color:#fff;border:none;padding:12px 24px;border-radius:8px;font-family:Inter,sans-serif;font-weight:700;font-size:.82rem;cursor:pointer;transition:all .15s ease}
+.he .hc .hb:active{transform:scale(.96);opacity:.9}
+.fg{display:grid;grid-template-columns:repeat(4,1fr);padding:20px 16px;gap:4px}
+.fi{text-align:center}
+.fi .fc{width:40px;height:40px;border-radius:50%;background:#2A2A2A;display:flex;align-items:center;justify-content:center;margin:0 auto 8px}
+.fi .fc i{font-size:.95rem;color:#fff;stroke-width:1}
+.fi h4{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#fff;margin-bottom:2px}
+.fi p{font-size:.55rem;color:#BDBDBD}
+.sw{padding:16px 16px 8px}
+.sw .sb{display:flex;align-items:center;background:#1E1E1E;border-radius:22px;height:44px;padding:0 16px;gap:8px}
+.sw .sb i{color:#757575;font-size:.85rem}
+.sw .sb input{flex:1;background:transparent;border:none;color:#fff;font-family:Inter,sans-serif;font-size:.85rem;outline:none}
+.sw .sb input::placeholder{color:#757575}
+.sw .sb .sf{background:none;border:none;color:#fff;font-size:.85rem;cursor:pointer;padding:4px}
+.sh{display:flex;align-items:center;justify-content:space-between;padding:16px 16px 10px}
+.sh h2{font-weight:700;font-size:.85rem;text-transform:uppercase;letter-spacing:1px;color:#fff}
+.sh .sa{color:#FF5C00;font-size:.72rem;font-weight:400;text-decoration:none;cursor:pointer}
+.cs{overflow:hidden;padding:4px 0 16px}
+.cr{display:flex;gap:16px;padding:0 16px;overflow-x:auto;scrollbar-width:none}
+.cr::-webkit-scrollbar{display:none}
+.ci{flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;min-width:48px}
+.ci:active{transform:scale(.9)}
+.ci .cx i{font-size:1.2rem;color:#FFD700}
+.ci .cl{font-size:.62rem;color:#fff;text-align:center;white-space:nowrap}
+.ps{display:flex;gap:12px;padding:0 16px;overflow-x:auto;scrollbar-width:none;margin-bottom:8px}
+.ps::-webkit-scrollbar{display:none}
+.pc{flex-shrink:0;width:170px;background:#1E1E1E;border-radius:12px;overflow:hidden;cursor:pointer;transition:all .15s ease}
+.pc:active{transform:scale(.96)}
+.pi{position:relative;width:100%;aspect-ratio:1/1;background:#2A2A2A;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.pi span{font-size:2.2rem}
+.pc .lb{position:absolute;top:8px;right:8px;width:28px;height:28px;border-radius:50%;background:transparent;border:1.5px solid rgba(255,255,255,0.6);color:rgba(255,255,255,0.6);font-size:.75rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .15s ease;z-index:1}
+.pc .lb.lk{background:#FF5C00;border-color:#FF5C00;color:#fff}
+.pc .lb:active{transform:scale(.8)}
+.pb{padding:10px 12px 14px}
+.pt{font-weight:700;font-size:.82rem;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:2px}
+.pu{font-size:.68rem;color:#BDBDBD;margin-bottom:4px}
+.pg{font-size:.68rem;font-weight:700;color:#FF5C00;margin-bottom:2px}
+.pp{font-weight:600;font-size:.88rem;color:#fff;margin-top:2px}
+.sc{padding:0 16px 16px}
+.sc h3{font-weight:900;font-size:1.5rem;text-transform:uppercase;color:#FF5C00;letter-spacing:-.5px;margin-bottom:20px;line-height:1.1}
+.st{display:flex;gap:14px;margin-bottom:20px;align-items:flex-start}
+.st .sn{width:30px;height:30px;border-radius:50%;border:1.5px solid rgba(255,255,255,0.4);display:flex;align-items:center;justify-content:center;font-weight:600;font-size:.8rem;color:#fff;flex-shrink:0;margin-top:2px}
+.st .sb2 h4{font-weight:700;font-size:.85rem;color:#fff;margin-bottom:4px}
+.st .sb2 p{font-size:.72rem;color:#BDBDBD;line-height:1.5}
+.sc .cb{width:100%;padding:16px;background:#FF5C00;color:#fff;border:none;border-radius:12px;font-family:Inter,sans-serif;font-weight:700;font-size:.9rem;cursor:pointer;transition:all .15s ease;margin-top:8px}
+.sc .cb:active{transform:scale(.97);opacity:.9}
+.bn{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;background:#000;border-top:1px solid #1E1E1E;display:flex;align-items:flex-start;justify-content:space-around;padding:6px 8px;padding-bottom:max(6px,env(safe-area-inset-bottom));z-index:200;height:72px}
+.ni{display:flex;flex-direction:column;align-items:center;gap:2px;text-decoration:none;color:#757575;padding:4px 0;transition:all .15s ease;position:relative;flex:1}
+.ni.ac2{color:#FF5C00}
+.ni:active{transform:scale(.9)}
+.ni .nx{font-size:1.2rem;font-weight:300}
+.ni .nl{font-size:.6rem;font-weight:400;color:inherit}
+.ni .bd{position:absolute;top:0;right:50%;margin-right:-16px;width:6px;height:6px;background:#FF5C00;border-radius:50%}
+.ni.sl{position:relative;top:-8px}
+.ni.sl .sc{width:48px;height:48px;background:#FF5C00;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;box-shadow:0 4px 12px rgba(255,92,0,0.3);transition:all .15s ease;border:none;cursor:pointer}
+.ni.sl .sc i{font-size:1.1rem}
+.ni.sl:active .sc{transform:scale(.9)}
+.pg2{display:none;padding-bottom:0}
+.pg2.on{display:block}
+.sp{padding:16px 16px 24px}
+.sp .sb{margin-bottom:12px}
+.fr{display:flex;gap:8px;padding:4px 0 12px;overflow-x:auto;scrollbar-width:none}
+.fr::-webkit-scrollbar{display:none}
+.fs2{background:#1E1E1E;border:1px solid #2A2A2A;border-radius:6px;padding:8px 10px;color:#fff;font-family:Inter,sans-serif;font-size:.72rem;min-width:80px}
+.fs2 option{background:#1E1E1E}
+.fi2{background:#1E1E1E;border:1px solid #2A2A2A;border-radius:6px;padding:8px 10px;color:#fff;font-family:Inter,sans-serif;font-size:.72rem;width:70px}
+.fa2{background:#FF5C00;color:#fff;border:none;border-radius:6px;padding:8px 12px;font-family:Inter,sans-serif;font-weight:600;font-size:.68rem;cursor:pointer;white-space:nowrap}
+.fr2{background:#1E1E1E;color:#BDBDBD;border:1px solid #2A2A2A;border-radius:6px;padding:8px 12px;font-size:.68rem;cursor:pointer;white-space:nowrap}
+.rc{font-size:.72rem;color:#757575;padding:4px 0}
+.rg{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:0 16px 24px}
+.rg .pc{width:100%;flex:none}
+.sl2{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 20px;text-align:center}
+.sl2 .scb{width:56px;height:56px;border-radius:50%;background:#FF5C00;display:flex;align-items:center;justify-content:center;color:#fff;margin-bottom:16px;box-shadow:0 4px 16px rgba(255,92,0,0.25)}
+.sl2 .scb i{font-size:1.3rem}
+.sl2 h2{font-weight:800;font-size:1.3rem;text-transform:uppercase;letter-spacing:1px;color:#fff;margin-bottom:6px}
+.sl2 p{font-size:.82rem;color:#BDBDBD;margin-bottom:20px;max-width:240px}
+.sl2 .hb{padding:12px 24px;border-radius:8px;background:#FF5C00;color:#fff;border:none;font-family:Inter,sans-serif;font-weight:700;font-size:.82rem;cursor:pointer}
+.np{padding:16px 16px 24px}
+.np .pt2{font-weight:700;font-size:.85rem;text-transform:uppercase;letter-spacing:1px;color:#fff;margin-bottom:16px}
+.nn{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid #1E1E1E}
+.nn:last-child{border-bottom:none}
+.nw{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;flex-shrink:0}
+.nw.mt{background:rgba(0,184,184,0.12);color:#00B8B8}
+.nw.ac3{background:rgba(76,175,80,0.12);color:#4CAF50}
+.nw.rj{background:rgba(244,67,54,0.12);color:#F44336}
+.nw.sh2{background:rgba(59,130,246,0.12);color:#3B82F6}
+.nw.pn{background:rgba(255,152,0,0.12);color:#FF9800}
+.nb{flex:1}
+.nt{font-weight:600;font-size:.78rem;color:#fff;margin-bottom:2px}
+.nx2{font-size:.68rem;color:#BDBDBD;line-height:1.4}
+.nm{font-size:.6rem;color:#757575;margin-top:4px}
+.ep{padding:16px 16px 24px}
+.ep .pt2{font-weight:700;font-size:.85rem;text-transform:uppercase;letter-spacing:1px;color:#fff;margin-bottom:16px}
+.ei{display:flex;gap:12px;padding:12px;background:#fff;border-radius:8px;margin-bottom:10px;cursor:pointer;transition:all .15s ease}
+.ei:active{transform:scale(.98)}
+.et{width:48px;height:48px;border-radius:6px;background:#F0F0F0;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.eb{flex:1;display:flex;flex-direction:column;justify-content:center}
+.ex{font-weight:600;font-size:.78rem;color:#111;margin-bottom:6px}
+.spl{display:inline-block;padding:3px 8px;border-radius:4px;font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#fff}
+.spl.pn{background:#FF9800}
+.spl.ac3{background:#4CAF50}
+.spl.rj{background:#F44336}
+.spl.sh2{background:#3B82F6}
+.prp{padding:16px 16px 24px}
+.ph{text-align:center;padding:20px 0}
+.pa{width:72px;height:72px;border-radius:50%;background:#2A2A2A;border:2px solid #FF5C00;display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin:0 auto 12px}
+.pn2{font-weight:800;font-size:1.1rem;text-transform:uppercase;letter-spacing:1px;color:#fff}
+.pst{display:flex;justify-content:center;gap:24px;margin-top:14px}
+.si{text-align:center}
+.sv{font-weight:700;font-size:1.1rem;color:#FF5C00}
+.sl3{font-size:.6rem;color:#BDBDBD;text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
+.pm{margin-top:8px}
+.mr{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:#1E1E1E;border-radius:8px;margin-bottom:6px;cursor:pointer;transition:all .15s ease}
+.mr:active{background:#2A2A2A}
+.ml{display:flex;align-items:center;gap:12px}
+.mr i{color:#BDBDBD;font-size:.85rem;width:18px;text-align:center}
+.mr span{font-size:.8rem;color:#fff}
+.mr .ar{color:#757575;font-size:.6rem}
+.dp{position:fixed;inset:0;background:#121212;z-index:300;overflow-y:auto;display:none}
+.dp.on{display:block}
+.dh{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:#121212}
+.db{background:none;border:none;color:#fff;font-size:1.1rem;padding:8px;cursor:pointer}
+.dh .lo{font-weight:300;font-size:1.2rem;color:#fff;letter-spacing:-.5px}
+.dh .hi{background:none;border:none;color:rgba(255,255,255,0.7);font-size:1rem;padding:8px;cursor:pointer}
+.di{width:100%;height:280px;background:#2A2A2A;display:flex;align-items:center;justify-content:center}
+.di span{font-size:4rem}
+.dbo{padding:20px;background:#1E1E1E;border-radius:12px 12px 0 0;margin-top:-12px;position:relative;z-index:1}
+.dt{font-weight:800;font-size:1.1rem;color:#fff;margin-bottom:4px}
+.du{font-size:.72rem;color:#BDBDBD;margin-bottom:4px}
+.dpr{font-weight:600;font-size:1.3rem;color:#fff;margin-bottom:16px}
+.ds{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:16px}
+.dsb{background:#2A2A2A;border-radius:6px;padding:10px}
+.dsl{font-size:.55rem;color:#757575;text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px}
+.dsv{font-size:.75rem;font-weight:600;color:#fff}
+.dd{font-size:.78rem;color:#BDBDBD;line-height:1.6;margin-bottom:20px}
+.tb{width:100%;padding:16px;background:#FF5C00;color:#fff;border:none;border-radius:8px;font-family:Inter,sans-serif;font-weight:700;font-size:.85rem;cursor:pointer;transition:all .15s ease;display:flex;align-items:center;justify-content:center;gap:8px}
+.tb:active{transform:scale(.98);opacity:.9}
+.lp{padding:0 16px 24px}
+.lh{display:flex;align-items:center;gap:12px;padding:14px 0}
+.lh .db{padding:0}
+.lh h2{font-weight:700;font-size:.85rem;text-transform:uppercase;letter-spacing:1px;color:#fff}
+.ag{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding:8px 0}
+.ac2{background:#1E1E1E;border-radius:8px;padding:14px;cursor:pointer;transition:all .15s ease}
+.ac2:active{background:#2A2A2A}
+.ac2 .ai{font-size:1.3rem;color:#FFD700;margin-bottom:6px}
+.ac2 .an{font-weight:600;font-size:.75rem;color:#fff}
+.ac2 .as{font-size:.6rem;color:#757575;margin-top:2px}
+</style>
 </head>
 <body>
-  <div class="app-container">
-    <header class="app-header">
-      <span class="logo-text">treqe</span>
-      <div class="header-actions">
-        <button class="header-icon" id="notificationsBtn"><i class="fas fa-bell"></i><span class="badge">3</span></button>
-        <button class="header-icon"><i class="fas fa-sliders-h"></i></button>
-      </div>
-    </header>
-
-    <div id="homePage" class="page active">
-      <div class="hero">
-        <div class="hero-orange"></div>
-        <div class="hero-content">
-          <h1 class="hero-title">CAMBIA. DESCUBRE. <span>TREQEA.</span></h1>
-          <p class="hero-sub">Tu marketplace de intercambio circular</p>
-          <button class="hero-btn" onclick="showPage('searchPage')"><i class="fas fa-compass"></i> Explorar Artículos</button>
-        </div>
-      </div>
-      <div class="search-wrap">
-        <div class="search-bar">
-          <input type="text" placeholder="Buscar artículos..." id="homeSearchInput">
-          <button id="homeSearchBtn"><i class="fas fa-search"></i></button>
-          <button onclick="showPage('searchPage')"><i class="fas fa-sliders-h"></i></button>
-        </div>
-      </div>
-      <div class="section-head"><h2>Categorías</h2><span class="see-all" id="seeAllCategoriesBtn">Ver todas</span></div>
-      <div class="cat-section"><div class="cat-scroll" id="categoriesScroll"></div></div>
-      <div class="section-head"><h2>Destacados</h2><span class="see-all" id="seeAllListingsBtn">Ver todos</span></div>
-      <div class="products-scroll" id="featuredScroll"></div>
-      <div class="section-head"><h2>¿Cómo Treqear?</h2></div>
-      <div style="padding:0 20px 20px">
-        <div class="how-step"><div class="step-num">1</div><div class="step-body"><h4>Sube tu producto</h4><p>Añade fotos, descripción y valor estimado. Visible para toda la comunidad.</p></div></div>
-        <div class="how-step"><div class="step-num">2</div><div class="step-body"><h4>Encuentra matches</h4><p>Nuestro algoritmo encuentra círculos de intercambio compatibles entre 3+ usuarios.</p></div></div>
-        <div class="how-step"><div class="step-num">3</div><div class="step-body"><h4>Acepta e intercambia</h4><p>Revisa las ofertas, acepta las que te interesen y coordina el envío de forma segura.</p></div></div>
-      </div>
-    </div>
-
-    <div id="searchPage" class="page">
-      <div class="search-page">
-        <div class="search-bar"><input type="text" placeholder="Buscar artículos..." id="searchPageInput"><button id="searchPageBtn"><i class="fas fa-search"></i></button></div>
-        <div class="filters-row">
-          <select class="filter-select" id="filterCategory"><option value="">Categoría</option></select>
-          <input type="number" class="filter-input" id="filterMaxPrice" placeholder="€ máx">
-          <select class="filter-select" id="filterCondition"><option value="">Condición</option><option>Nuevo</option><option>Como nuevo</option><option>Buen estado</option><option>Aceptable</option></select>
-          <input type="text" class="filter-input" id="filterLocation" placeholder="Ciudad" style="width:90px">
-          <button class="filter-btn-apply" id="filterApplyBtn">Aplicar</button>
-          <button class="filter-btn-reset" id="filterResetBtn">Limpiar</button>
-        </div>
-        <div class="results-count" id="searchResultsCount"></div>
-        <div class="results-grid" id="searchResultsGrid"></div>
-      </div>
-    </div>
-
-    <div id="sellPage" class="page">
-      <div class="sell-page">
-        <div class="sell-circle-big"><i class="fas fa-exchange-alt"></i></div>
-        <h2>Treqeá ahora</h2>
-        <p>Sube tu producto y encuentra intercambios circulares con la comunidad</p>
-        <button class="hero-btn" onclick="window.open('https://jferrer1.github.io/treqe-dev-2026/', '_blank')"><i class="fas fa-plus"></i> Publicar Producto</button>
-      </div>
-    </div>
-
-    <div id="messagesPage" class="page">
-      <div class="notif-page">
-        <div class="page-title">Notificaciones</div>
-        <div id="notificationsList"></div>
-      </div>
-    </div>
-
-    <div id="exchangesPage" class="page">
-      <div class="exchange-page">
-        <div class="page-title">Mis intercambios</div>
-        <div id="exchangesList"></div>
-      </div>
-    </div>
-
-    <div id="profilePage" class="page">
-      <div class="profile-page">
-        <div class="profile-head">
-          <div class="profile-avatar">👤</div>
-          <h3 class="profile-name">Explorador Treqe</h3>
-          <div class="profile-stats">
-            <div class="stat-item"><div class="stat-val">18</div><div class="stat-lbl">En venta</div></div>
-            <div class="stat-item"><div class="stat-val">7</div><div class="stat-lbl">Intercambios</div></div>
-            <div class="stat-item"><div class="stat-val">23</div><div class="stat-lbl">Likes</div></div>
-          </div>
-        </div>
-        <div class="profile-menu">
-          <div class="menu-row"><div class="menu-row-left"><i class="fas fa-box"></i><span>Mis productos</span></div><i class="fas fa-chevron-right arrow"></i></div>
-          <div class="menu-row"><div class="menu-row-left"><i class="fas fa-heart"></i><span>Favoritos</span></div><i class="fas fa-chevron-right arrow"></i></div>
-          <div class="menu-row"><div class="menu-row-left"><i class="fas fa-exchange-alt"></i><span>Historial de intercambios</span></div><i class="fas fa-chevron-right arrow"></i></div>
-          <div class="menu-row"><div class="menu-row-left"><i class="fas fa-award"></i><span>Reputación y logros</span></div><i class="fas fa-chevron-right arrow"></i></div>
-          <div class="menu-row"><div class="menu-row-left"><i class="fas fa-cog"></i><span>Configuración</span></div><i class="fas fa-chevron-right arrow"></i></div>
-          <div class="menu-row"><div class="menu-row-left"><i class="fas fa-question-circle"></i><span>Ayuda y soporte</span></div><i class="fas fa-chevron-right arrow"></i></div>
-        </div>
-      </div>
-    </div>
-
-    <div id="allCategoriesPage" class="page">
-      <div class="list-page">
-        <div class="list-head"><button class="detail-back" id="allCatBackBtn"><i class="fas fa-arrow-left"></i></button><h2>Todas las categorías</h2></div>
-        <div class="all-cat-grid" id="allCategoriesGrid"></div>
-      </div>
-    </div>
-
-    <div id="allListingsPage" class="page">
-      <div class="list-page">
-        <div class="list-head"><button class="detail-back" id="allListingsBackBtn"><i class="fas fa-arrow-left"></i></button><h2>Todos los productos</h2></div>
-        <div class="results-grid" id="allListingsGrid" style="margin-top:16px"></div>
-      </div>
-    </div>
-
-    <div class="detail-page" id="productPage">
-      <div class="detail-header">
-        <button class="detail-back" id="productBackBtn"><i class="fas fa-arrow-left"></i></button>
-        <span class="logo-text">treqe</span>
-        <button class="header-icon" id="productLikeBtn"><i class="far fa-heart"></i></button>
-      </div>
-      <div class="detail-img" id="productImageContainer"><span id="productEmoji"></span></div>
-      <div class="detail-body">
-        <h1 class="detail-title" id="productTitle"></h1>
-        <div class="detail-price" id="productPrice"></div>
-        <div class="detail-specs" id="productSpecs"></div>
-        <p class="detail-desc" id="productDescription"></p>
-        <button class="treqear-btn"><i class="fas fa-exchange-alt"></i> TREQEAR ESTE ARTÍCULO</button>
-      </div>
-    </div>
-
-    <nav class="bottom-nav">
-      <a href="#" class="nav-item active" data-page="homePage"><i class="fas fa-compass nav-icon"></i><span class="nav-label">Explorar</span></a>
-      <a href="#" class="nav-item" data-page="searchPage"><i class="fas fa-search nav-icon"></i><span class="nav-label">Buscar</span></a>
-      <a href="#" class="nav-item sell" data-page="sellPage"><div class="sell-circle"><i class="fas fa-exchange-alt"></i></div><span class="nav-label">Treqear</span></a>
-      <a href="#" class="nav-item" data-page="messagesPage"><i class="fas fa-bell nav-icon"></i><span class="nav-label">Avisos</span><span class="badge">3</span></a>
-      <a href="#" class="nav-item" data-page="profilePage"><i class="fas fa-user nav-icon"></i><span class="nav-label">Perfil</span></a>
-    </nav>
-  </div>
-
+<div class="app">
+<div class="hd">
+<div class="lo">treqear</div>
+<div class="ri">
+<button id="nbtn"><i class="far fa-bell"></i><span class="bd"></span></button>
+<button><i class="far fa-user-circle"></i></button>
+</div>
+</div>
+<div id="hp" class="pg2 on">
+<div class="he">
+<img src="https://images.unsplash.com/photo-1547514701-42782101795e?w=800&q=80" alt="off-road">
+<div class="ov"></div>
+<div class="hc">
+<h1>CAMBIA.<br>DESCUBRE.<br><span>TREQEA.</span></h1>
+<p>Dale una nueva aventura a lo que ya no usas</p>
+<button class="hb" onclick="sp('sp2')"><i class="fas fa-search"></i> EXPLORAR ARTICULOS</button>
+</div>
+</div>
+<div class="fg">
+<div class="fi">
+<div class="fc"><i class="fas fa-exchange-alt"></i></div>
+<h4>Intercambia</h4>
+<p>Sin dinero</p>
+</div>
+<div class="fi">
+<div class="fc"><i class="fas fa-search"></i></div>
+<h4>Descubre</h4>
+<p>Productos unicos</p>
+</div>
+<div class="fi">
+<div class="fc"><i class="fas fa-recycle"></i></div>
+<h4>Reutiliza</h4>
+<p>Economia circular</p>
+</div>
+<div class="fi">
+<div class="fc"><i class="fas fa-compass"></i></div>
+<h4>Explora</h4>
+<p>Miles de articulos</p>
+</div>
+</div>
+<div class="sw">
+<div class="sb">
+<i class="fas fa-search"></i>
+<input type="text" placeholder="Buscar articulos..." id="hsi">
+<button class="sf" id="hsb"><i class="fas fa-sliders-h"></i></button>
+</div>
+</div>
+<div class="sh">
+<h2>Categorias</h2>
+<span class="sa" id="sac">Ver todas</span>
+</div>
+<div class="cs">
+<div class="cr" id="crl"></div>
+</div>
+<div class="sh">
+<h2>Destacados</h2>
+<span class="sa" id="sal">Ver todos</span>
+</div>
+<div class="ps" id="fsl"></div>
+<div class="sc">
+<h3>TRUEQUEA<br>SIN DINERO</h3>
+<div class="st">
+<div class="sn">1</div>
+<div class="sb2">
+<h4>Sube tu producto</h4>
+<p>Anade fotos, descripcion y valor estimado de intercambio.</p>
+</div>
+</div>
+<div class="st">
+<div class="sn">2</div>
+<div class="sb2">
+<h4>Encuentra matches</h4>
+<p>Nuestro algoritmo te conecta con circulos de intercambio ideales.</p>
+</div>
+</div>
+<div class="st">
+<div class="sn">3</div>
+<div class="sb2">
+<h4>Acepta e intercambia</h4>
+<p>Recibe ofertas, negocia y coordina el envio directamente.</p>
+</div>
+</div>
+<button class="cb" onclick="sp('slp')">COMENZAR AHORA</button>
+</div>
+</div>
+<div id="sp2" class="pg2">
+<div class="sp">
+<div class="sb">
+<i class="fas fa-search"></i>
+<input type="text" placeholder="Buscar articulos..." id="spi">
+</div>
+<div class="fr">
+<select class="fs2" id="fc">
+<option value="">Categoria</option>
+</select>
+<input type="number" class="fi2" id="fp" placeholder="E max">
+<select class="fs2" id="fco">
+<option value="">Condicion</option>
+<option>Nuevo</option>
+<option>Como nuevo</option>
+<option>Buen estado</option>
+<option>Aceptable</option>
+</select>
+<input type="text" class="fi2" id="fl" placeholder="Ciudad" style="width:80px">
+<button class="fa2" id="fba">Filtrar</button>
+</div>
+<div class="rc" id="src"></div>
+</div>
+<div class="rg" id="srg"></div>
+</div>
+<div id="slp" class="pg2">
+<div class="sl2">
+<div class="scb"><i class="fas fa-exchange-alt"></i></div>
+<h2>Treqea ahora</h2>
+<p>Sube tu producto y encuentra intercambios circulares</p>
+<button class="hb">Publicar producto</button>
+</div>
+</div>
+<div id="mp" class="pg2">
+<div class="np">
+<div class="pt2">Notificaciones</div>
+<div id="nfl"></div>
+</div>
+</div>
+<div id="exp" class="pg2">
+<div class="ep">
+<div class="pt2">Mis intercambios</div>
+<div id="exl"></div>
+</div>
+</div>
+<div id="prp" class="pg2">
+<div class="prp">
+<div class="ph">
+<div class="pa">👤</div>
+<h3 class="pn2">Explorador Treqe</h3>
+<div class="pst">
+<div class="si">
+<div class="sv">18</div>
+<div class="sl3">En venta</div>
+</div>
+<div class="si">
+<div class="sv">7</div>
+<div class="sl3">Intercambios</div>
+</div>
+<div class="si">
+<div class="sv">23</div>
+<div class="sl3">Likes</div>
+</div>
+</div>
+</div>
+<div class="pm">
+<div class="mr">
+<div class="ml"><i class="fas fa-box"></i><span>Mis productos</span></div>
+<i class="fas fa-chevron-right ar"></i>
+</div>
+<div class="mr">
+<div class="ml"><i class="fas fa-heart"></i><span>Favoritos</span></div>
+<i class="fas fa-chevron-right ar"></i>
+</div>
+<div class="mr">
+<div class="ml"><i class="fas fa-exchange-alt"></i><span>Historial</span></div>
+<i class="fas fa-chevron-right ar"></i>
+</div>
+<div class="mr">
+<div class="ml"><i class="fas fa-award"></i><span>Reputacion</span></div>
+<i class="fas fa-chevron-right ar"></i>
+</div>
+<div class="mr">
+<div class="ml"><i class="fas fa-cog"></i><span>Configuracion</span></div>
+<i class="fas fa-chevron-right ar"></i>
+</div>
+</div>
+</div>
+</div>
+<div id="acp" class="pg2">
+<div class="lp">
+<div class="lh">
+<button class="db" id="acb"><i class="fas fa-arrow-left"></i></button>
+<h2>Todas las categorias</h2>
+</div>
+<div class="ag" id="acg"></div>
+</div>
+</div>
+<div id="alp" class="pg2">
+<div class="lp">
+<div class="lh">
+<button class="db" id="alb"><i class="fas fa-arrow-left"></i></button>
+<h2>Todos los productos</h2>
+</div>
+<div class="rg" id="alg" style="margin-top:12px;padding:0"></div>
+</div>
+</div>
+<div class="dp" id="dpp">
+<div class="dh">
+<button class="db" id="dpb"><i class="fas fa-arrow-left"></i></button>
+<div class="lo">treqear</div>
+<button class="hi" id="dlb"><i class="far fa-heart"></i></button>
+</div>
+<div class="di"><span id="dpe"></span></div>
+<div class="dbo">
+<h1 class="dt" id="dpt"></h1>
+<div class="du" id="dpu"></div>
+<div class="dpr" id="dpr"></div>
+<div class="ds" id="dsp"></div>
+<p class="dd" id="ddd"></p>
+<button class="tb"><i class="fas fa-exchange-alt"></i> TREQEAR ESTE ARTICULO</button>
+</div>
+</div>
+<nav class="bn">
+<a href="#" class="ni ac2" data-p="hp">
+<i class="fas fa-compass nx"></i>
+<span class="nl">Explorar</span>
+</a>
+<a href="#" class="ni" data-p="sp2">
+<i class="fas fa-search nx"></i>
+<span class="nl">Buscar</span>
+</a>
+<a href="#" class="ni sl" data-p="slp">
+<div class="sc"><i class="fas fa-exchange-alt"></i></div>
+</a>
+<a href="#" class="ni" data-p="mp">
+<i class="far fa-bell nx"></i>
+<span class="nl">Avisos</span>
+<span class="bd"></span>
+</a>
+<a href="#" class="ni" data-p="prp">
+<i class="far fa-user nx"></i>
+<span class="nl">Perfil</span>
+</a>
+</nav>
+</div>
 <script>
-const demoData = {
-  categories: [
-    { slug: "electronics", name: "Electrónica", icon: "📱", subcategories: ["Móviles", "Ordenadores", "Tablets", "Audio", "Cámaras", "Videojuegos"] },
-    { slug: "vehicles", name: "Vehículos", icon: "🚗", subcategories: ["Coches", "Motos", "Bicicletas", "Accesorios"] },
-    { slug: "home-garden", name: "Hogar y Jardín", icon: "🏡", subcategories: ["Muebles", "Decoración", "Jardín", "Cocina", "Baño"] },
-    { slug: "fashion", name: "Moda", icon: "👕", subcategories: ["Mujer", "Hombre", "Accesorios", "Zapatos", "Joyas"] },
-    { slug: "sports", name: "Deportes", icon: "⚽", subcategories: ["Fitness", "Ciclismo", "Montaña", "Natación", "Running"] },
-    { slug: "books-media", name: "Libros y Media", icon: "📚", subcategories: ["Libros", "Música", "Películas", "Cómics"] },
-    { slug: "toys-kids", name: "Juguetes", icon: "🧸", subcategories: ["Juguetes", "Ropa infantil", "Cochecitos", "Juegos"] },
-    { slug: "music-instruments", name: "Instrumentos", icon: "🎸", subcategories: ["Guitarras", "Teclados", "Baterías", "Viento"] },
-    { slug: "art-collectibles", name: "Arte y Colección", icon: "🎨", subcategories: ["Arte", "Coleccionismo", "Antigüedades"] },
-    { slug: "pets", name: "Mascotas", icon: "🐾", subcategories: ["Perros", "Gatos", "Accesorios", "Alimentación"] },
-    { slug: "garden-outdoor", name: "Jardín", icon: "🌿", subcategories: ["Plantas", "Herramientas", "Muebles jardín"] },
-    { slug: "office", name: "Oficina", icon: "💼", subcategories: ["Escritorios", "Sillas", "Material", "Tecnología"] },
-    { slug: "baby-maternity", name: "Bebé", icon: "👶", subcategories: ["Ropa", "Cochecitos", "Juguetes", "Alimentación"] },
-    { slug: "industry", name: "Industria", icon: "🏭", subcategories: ["Maquinaria", "Herramientas", "Material"] },
-    { slug: "services", name: "Servicios", icon: "🔧", subcategories: ["Reparaciones", "Clases", "Transporte"] },
-    { slug: "motorbike", name: "Motos", icon: "🏍️", subcategories: ["Motos", "Scooters", "Accesorios", "Cascos"] },
-    { slug: "real-estate", name: "Inmuebles", icon: "🏠", subcategories: ["Pisos", "Casas", "Garajes", "Trasteros"] },
-    { slug: "other", name: "Otros", icon: "📦", subcategories: ["Varios"] }
+var lk=new Set();
+var dt={
+  cats:[
+    {s:"electronics",n:"Electronica",i:"fa-mobile-screen"},
+    {s:"vehicles",n:"Vehiculos",i:"fa-car"},
+    {s:"home",n:"Hogar",i:"fa-couch"},
+    {s:"fashion",n:"Moda",i:"fa-shirt"},
+    {s:"sports",n:"Deportes",i:"fa-futbol"},
+    {s:"books",n:"Libros",i:"fa-book"},
+    {s:"toys",n:"Juguetes",i:"fa-gamepad"},
+    {s:"music",n:"Musica",i:"fa-guitar"},
+    {s:"art",n:"Arte",i:"fa-palette"},
+    {s:"pets",n:"Mascotas",i:"fa-paw"}
   ],
-  users: [
-    { id: 1, name: "Laura M.", avatar: "👩", city: "Madrid", rating: 4.8 },
-    { id: 2, name: "Carlos R.", avatar: "👨", city: "Barcelona", rating: 4.5 },
-    { id: 3, name: "Ana G.", avatar: "👩", city: "Valencia", rating: 4.9 },
-    { id: 4, name: "Pedro L.", avatar: "👨", city: "Sevilla", rating: 4.3 },
-    { id: 5, name: "María S.", avatar: "👩", city: "Bilbao", rating: 4.7 }
+  users:[
+    {id:1,n:"Laura M.",c:"Madrid"},
+    {id:2,n:"Carlos R.",c:"Barcelona"},
+    {id:3,n:"Ana G.",c:"Valencia"},
+    {id:4,n:"Pedro L.",c:"Sevilla"},
+    {id:5,n:"Maria S.",c:"Bilbao"}
   ],
-  listings: [
-    { id: 1, title: "iPhone 14 Pro", price: 750, category: "electronics", condition: "Como nuevo", city: "Madrid", user: 1, emoji: "📱", brand: "Apple", description: "iPhone 14 Pro 128GB, espacio negro. Batería al 94%. Incluye caja y cargador original." },
-    { id: 2, title: "Bicicleta Trek Marlin 7", price: 420, category: "sports", condition: "Buen estado", city: "Barcelona", user: 2, emoji: "🚲", brand: "Trek", description: "Bicicleta de montaña Trek Marlin 7, talla M. Cuadro aluminio, frenos hidráulicos." },
-    { id: 3, title: "Guitarra Fender Stratocaster", price: 580, category: "music-instruments", condition: "Como nuevo", city: "Valencia", user: 3, emoji: "🎸", brand: "Fender", description: "Fender Stratocaster Player Series, color sunburst. Perfecto estado, apenas usada." },
-    { id: 4, title: "MacBook Air M2", price: 890, category: "electronics", condition: "Como nuevo", city: "Sevilla", user: 4, emoji: "💻", brand: "Apple", description: "MacBook Air M2 2023, 8GB RAM, 256GB SSD. Color midnight. Con cargador MagSafe." },
-    { id: 5, title: "Chaqueta Patagonia Down", price: 120, category: "fashion", condition: "Buen estado", city: "Bilbao", user: 5, emoji: "🧥", brand: "Patagonia", description: "Chaqueta Patagonia Down Sweater, talla M. Color negro. Perfecta para montaña." },
-    { id: 6, title: "Cámara Sony A7 III", price: 1200, category: "electronics", condition: "Como nuevo", city: "Madrid", user: 1, emoji: "📷", brand: "Sony", description: "Sony A7 III con objetivo 28-70mm. Incluye batería extra y tarjeta SD 64GB." },
-    { id: 7, title: "Reloj Casio G-Shock", price: 65, category: "fashion", condition: "Nuevo", city: "Barcelona", user: 2, emoji: "⌚", brand: "Casio", description: "Casio G-Shock GA-2100, negro mate. Nuevo, con caja original." },
-    { id: 8, title: "Tienda de campaña MSR", price: 180, category: "sports", condition: "Buen estado", city: "Valencia", user: 3, emoji: "⛺", brand: "MSR", description: "MSR Hubba Hubba NX 2P. Ligera y resistente. Usada en 3 campings." },
-    { id: 9, title: "Patines Rollerblade", price: 85, category: "sports", condition: "Buen estado", city: "Sevilla", user: 4, emoji: "🛼", brand: "Rollerblade", description: "Rollerblade Zetrablade, talla 43. Con protecciones incluidas." },
-    { id: 10, title: "iPad Pro 11\"", price: 550, category: "electronics", condition: "Como nuevo", city: "Bilbao", user: 5, emoji: "📱", brand: "Apple", description: "iPad Pro 11 pulgadas, 128GB, WiFi. Con Apple Pencil 2ª gen." }
+  items:[
+    {id:1,t:"G-SHOCK",u:"Mudmaster GWG-2000",p:280,cat:"fashion",co:"Como nuevo",ci:"Madrid",us:1,e:"⌚",d:"G-Shock Mudmaster GWG-2000. Resistente a barro y polvo."},
+    {id:2,t:"PATAGONIA",u:"Down Sweater Jacket",p:120,cat:"fashion",co:"Buen estado",ci:"Barcelona",us:2,e:"🧥",d:"Chaqueta Patagonia Down Sweater, talla M."},
+    {id:3,t:"TREK",u:"Marlin 7 2023",p:420,cat:"sports",co:"Buen estado",ci:"Valencia",us:3,e:"🚲",d:"Bicicleta Trek Marlin 7, talla M."},
+    {id:4,t:"FENDER",u:"Stratocaster Player",p:580,cat:"music",co:"Como nuevo",ci:"Sevilla",us:4,e:"🎸",d:"Fender Stratocaster Player, sunburst."},
+    {id:5,t:"APPLE",u:"MacBook Air M2",p:890,cat:"electronics",co:"Como nuevo",ci:"Bilbao",us:5,e:"💻",d:"MacBook Air M2, 8GB RAM, 256GB SSD."},
+    {id:6,t:"SONY",u:"Alpha A7 III",p:1200,cat:"electronics",co:"Como nuevo",ci:"Madrid",us:1,e:"📷",d:"Sony A7 III con objetivo 28-70mm."}
   ],
-  notifications: [
-    { type: "match", icon: "fas fa-bullseye", title: "¡Match circular encontrado!", text: "Tu iPhone 14 Pro encaja en un círculo de 3 personas. Revisa la propuesta.", time: "Hace 2 min" },
-    { type: "accepted", icon: "fas fa-check-circle", title: "Intercambio aceptado", text: "Carlos R. ha aceptado tu propuesta: Bicicleta Trek ↔ Chaqueta Patagonia.", time: "Hace 1 hora" },
-    { type: "shipping", icon: "fas fa-truck", title: "Envío confirmado", text: "Tu guitarra Fender ha sido enviada. Llegará en 2-3 días laborables.", time: "Hace 3 horas" },
-    { type: "rejected", icon: "fas fa-times-circle", title: "Intercambio rechazado", text: "Ana G. ha rechazado tu propuesta. Puedes buscar otras opciones.", time: "Hace 1 día" },
-    { type: "pending", icon: "fas fa-clock", title: "Respuesta pendiente", text: "Tu MacBook Air M2 tiene una propuesta pendiente. Revisa los detalles.", time: "Hace 2 días" }
+  notifs:[
+    {tp:"mt",i:"fas fa-bullseye",t:"Match encontrado",x:"Tu G-SHOCK encaja en un circulo de 3 personas.",tm:"Hace 2 min"},
+    {tp:"ac3",i:"fas fa-check-circle",t:"Intercambio aceptado",x:"Carlos R. acepto: Patagonia por G-SHOCK.",tm:"Hace 1 hora"},
+    {tp:"sh2",i:"fas fa-truck",t:"Envio confirmado",x:"Tu Fender fue enviada. Llega en 2-3 dias.",tm:"Hace 3 horas"},
+    {tp:"rj",i:"fas fa-times-circle",t:"Intercambio rechazado",x:"Ana G. rechazo tu propuesta.",tm:"Hace 1 dia"},
+    {tp:"pn",i:"fas fa-clock",t:"Respuesta pendiente",x:"Tu MacBook tiene una propuesta.",tm:"Hace 2 dias"}
   ],
-  exchanges: [
-    { id: 1, title: "iPhone 14 Pro → Bicicleta Trek", status: "pending", emoji: "📱" },
-    { id: 2, title: "Chaqueta Patagonia → Guitarra Fender", status: "accepted", emoji: "🧥" },
-    { id: 3, title: "MacBook Air M2 → iPad Pro", status: "rejected", emoji: "💻" },
-    { id: 4, title: "Cámara Sony → Reloj G-Shock", status: "shipping", emoji: "📷" }
+  exch:[
+    {id:1,t:"G-SHOCK -> Patagonia",st:"pending",e:"⌚"},
+    {id:2,t:"Trek -> Fender",st:"accepted",e:"🚲"},
+    {id:3,t:"MacBook -> Sony A7",st:"rejected",e:"💻"},
+    {id:4,t:"Fender -> G-SHOCK",st:"sh2",e:"🎸"}
   ]
 };
-
-let likedItems = new Set();
-
-function showPage(id) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  const page = document.getElementById(id);
-  if (page) page.classList.add('active');
-  const nav = document.querySelector(`.nav-item[data-page="${id}"]`);
-  if (nav) nav.classList.add('active');
-  window.scrollTo(0, 0);
+function sp(i){
+  document.querySelectorAll('.pg2').forEach(function(p){p.classList.remove('on')});
+  document.querySelectorAll('.ni').forEach(function(n){n.classList.remove('ac2')});
+  var p=document.getElementById(i);
+  if(p)p.classList.add('on');
+  var n=document.querySelector('.ni[data-p="'+i+'"]');
+  if(n)n.classList.add('ac2');
+  window.scrollTo(0,0);
 }
-
-function renderCard(item) {
-  const user = demoData.users.find(u => u.id === item.user);
-  const liked = likedItems.has(item.id);
-  return `<div class="product-card" onclick="showProduct(${item.id})">
-    <div class="product-card-img">
-      <span>${item.emoji}</span>
-      <button class="like-btn ${liked ? 'liked' : ''}" onclick="event.stopPropagation(); toggleLike(${item.id}, this)"><i class="${liked ? 'fas' : 'far'} fa-heart"></i></button>
-    </div>
-    <div class="product-card-body">
-      <div class="product-card-brand"><i class="fas fa-exchange-alt"></i> ${item.brand || item.title.split(' ')[0]}</div>
-      <div class="product-card-title">${item.title}</div>
-      <div class="product-card-price">${item.price}€</div>
-    </div>
-  </div>`;
+function rc(it){
+  var l=lk.has(it.id);
+  return '<div class="pc" onclick="sd('+it.id+')"><div class="pi"><span>'+it.e+'</span><button class="lb '+(l?'lk':'')+'" onclick="event.stopPropagation();tl('+it.id+',this)"><i class="'+(l?'fas':'far')+' fa-heart"></i></button></div><div class="pb"><div class="pt">'+it.t+'</div><div class="pu">'+it.u+'</div><div class="pg">TREQEAR</div><div class="pp">'+it.p+'€</div></div></div>';
 }
-
-function renderCategories() {
-  document.getElementById('categoriesScroll').innerHTML = demoData.categories.slice(0, 10).map(c =>
-    `<div class="cat-item" onclick="filterByCategory('${c.slug}')"><div class="cat-circle">${c.icon}</div><span class="cat-label">${c.name}</span></div>`
-  ).join('');
+function rcat(){
+  document.getElementById('crl').innerHTML=dt.cats.map(function(c){
+    return '<div class="ci" onclick="fc(\''+c.s+'\')"><div class="cx"><i class="fas '+c.i+'"></i></div><span class="cl">'+c.n+'</span></div>';
+  }).join('');
 }
-
-function renderFeatured() {
-  document.getElementById('featuredScroll').innerHTML = demoData.listings.slice(0, 6).map(renderCard).join('');
+function rfeat(){
+  document.getElementById('fsl').innerHTML=dt.items.slice(0,6).map(rc).join('');
 }
-
-function renderListings(container, items) {
-  document.getElementById(container).innerHTML = items.map(renderCard).join('');
+function rl(cid,its){
+  document.getElementById(cid).innerHTML=its.map(rc).join('');
 }
-
-function toggleLike(id, btn) {
-  if (likedItems.has(id)) { likedItems.delete(id); btn.classList.remove('liked'); btn.innerHTML = '<i class="far fa-heart"></i>'; }
-  else { likedItems.add(id); btn.classList.add('liked'); btn.innerHTML = '<i class="fas fa-heart"></i>'; }
+function tl(id,b){
+  if(lk.has(id)){
+    lk.delete(id);
+    b.classList.remove('lk');
+    b.innerHTML='<i class="far fa-heart"></i>';
+  }else{
+    lk.add(id);
+    b.classList.add('lk');
+    b.innerHTML='<i class="fas fa-heart"></i>';
+  }
 }
-
-function showProduct(id) {
-  const item = demoData.listings.find(l => l.id === id);
-  if (!item) return;
-  const user = demoData.users.find(u => u.id === item.user);
-  document.getElementById('productTitle').textContent = item.title;
-  document.getElementById('productPrice').textContent = item.price + '€';
-  document.getElementById('productDescription').textContent = item.description;
-  document.getElementById('productEmoji').textContent = item.emoji;
-  document.getElementById('productSpecs').innerHTML = `
-    <div class="spec-box"><div class="spec-label">Estado</div><div class="spec-val">${item.condition}</div></div>
-    <div class="spec-box"><div class="spec-label">Categoría</div><div class="spec-val">${demoData.categories.find(c => c.slug === item.category)?.name || ''}</div></div>
-    <div class="spec-box"><div class="spec-label">Ubicación</div><div class="spec-val">${item.city}</div></div>
-    <div class="spec-box"><div class="spec-label">Usuario</div><div class="spec-val">${user ? user.name : ''}</div></div>`;
-  const liked = likedItems.has(id);
-  document.getElementById('productLikeBtn').innerHTML = `<i class="${liked ? 'fas' : 'far'} fa-heart"></i>`;
-  document.getElementById('productPage').classList.add('active');
-  document.getElementById('productPage').dataset.productId = id;
+function sd(id){
+  var it=dt.items.find(function(i){return i.id===id});
+  if(!it)return;
+  document.getElementById('dpt').textContent=it.t;
+  document.getElementById('dpu').textContent=it.u;
+  document.getElementById('dpr').textContent=it.p+'€';
+  document.getElementById('ddd').textContent=it.d;
+  document.getElementById('dpe').textContent=it.e;
+  document.getElementById('dsp').innerHTML='<div class="dsb"><div class="dsl">Estado</div><div class="dsv">'+it.co+'</div></div><div class="dsb"><div class="dsl">Categoria</div><div class="dsv">'+((dt.cats.find(function(c){return c.s===it.cat})||{}).n||'')+'</div></div><div class="dsb"><div class="dsl">Ubicacion</div><div class="dsv">'+it.ci+'</div></div><div class="dsb"><div class="dsl">Usuario</div><div class="dsv">'+((dt.users.find(function(u){return u.id===it.us})||{}).n||'')+'</div></div>';
+  document.getElementById('dlb').innerHTML=lk.has(id)?'<i class="fas fa-heart"></i>':'<i class="far fa-heart"></i>';
+  document.getElementById('dpp').classList.add('on');
+  document.getElementById('dpp').dataset.pid=id;
 }
-
-function performSearch(query) {
-  const cat = document.getElementById('filterCategory').value;
-  const maxP = document.getElementById('filterMaxPrice').value ? parseFloat(document.getElementById('filterMaxPrice').value) : Infinity;
-  const cond = document.getElementById('filterCondition').value;
-  const loc = document.getElementById('filterLocation').value.toLowerCase();
-  let results = demoData.listings.filter(item => {
-    const mQ = !query || item.title.toLowerCase().includes(query.toLowerCase()) || item.description.toLowerCase().includes(query.toLowerCase());
-    const mC = !cat || item.category === cat;
-    const mP = item.price <= maxP;
-    const mCo = !cond || item.condition === cond;
-    const mL = !loc || item.city.toLowerCase().includes(loc);
-    return mQ && mC && mP && mCo && mL;
+function ps(q){
+  var cat=document.getElementById('fc').value,
+      mp=document.getElementById('fp').value?parseFloat(document.getElementById('fp').value):Infinity,
+      co=document.getElementById('fco').value,
+      lo=document.getElementById('fl').value.toLowerCase();
+  var r=dt.items.filter(function(it){
+    var mq=!q||it.t.toLowerCase().includes(q.toLowerCase())||it.u.toLowerCase().includes(q.toLowerCase()),
+        mc=!cat||it.cat===cat,
+        mpr=it.p<=mp,
+        mco=!co||it.co===co,
+        ml=!lo||it.ci.toLowerCase().includes(lo);
+    return mq&&mc&&mpr&&mco&&ml;
   });
-  renderListings('searchResultsGrid', results);
-  document.getElementById('searchResultsCount').textContent = results.length > 0 ? `${results.length} resultado${results.length !== 1 ? 's' : ''}` : 'Sin resultados';
+  rl('srg',r);
+  document.getElementById('src').textContent=r.length?r.length+' resultado'+(r.length>1?'s':''):'Sin resultados';
 }
-
-function filterByCategory(slug) {
-  showPage('searchPage');
-  document.getElementById('filterCategory').value = slug;
-  performSearch('');
+function fc(s){
+  sp('sp2');
+  document.getElementById('fc').value=s;
+  ps('');
 }
-
-function populateFilters() {
-  document.getElementById('filterCategory').innerHTML = '<option value="">Categoría</option>' + demoData.categories.map(c => `<option value="${c.slug}">${c.icon} ${c.name}</option>`).join('');
+function pf(){
+  document.getElementById('fc').innerHTML='<option value="">Categoria</option>'+dt.cats.map(function(c){
+    return '<option value="'+c.s+'">'+c.n+'</option>';
+  }).join('');
 }
-
-function renderNotifications() {
-  document.getElementById('notificationsList').innerHTML = demoData.notifications.map(n =>
-    `<div class="notif-item"><div class="notif-icon-wrap ${n.type}"><i class="${n.icon}"></i></div><div class="notif-body"><div class="notif-title">${n.title}</div><div class="notif-text">${n.text}</div><div class="notif-time">${n.time}</div></div></div>`
-  ).join('');
+function rn(){
+  document.getElementById('nfl').innerHTML=dt.notifs.map(function(n){
+    return '<div class="nn"><div class="nw '+n.tp+'"><i class="'+n.i+'"></i></div><div class="nb"><div class="nt">'+n.t+'</div><div class="nx2">'+n.x+'</div><div class="nm">'+n.tm+'</div></div></div>';
+  }).join('');
 }
-
-function renderExchanges() {
-  document.getElementById('exchangesList').innerHTML = demoData.exchanges.map(e =>
-    `<div class="exchange-item"><div class="exchange-thumb">${e.emoji}</div><div class="exchange-body"><div class="exchange-title">${e.title}</div><span class="status-pill ${e.status}">${e.status === 'pending' ? 'Pendiente' : e.status === 'accepted' ? 'Aceptado' : e.status === 'rejected' ? 'Rechazado' : 'En envío'}</span></div></div>`
-  ).join('');
+function re(){
+  document.getElementById('exl').innerHTML=dt.exch.map(function(e){
+    return '<div class="ei"><div class="et">'+e.e+'</div><div class="eb"><div class="ex">'+e.t+'</div><span class="spl '+e.st+'">'+(e.st==='pending'?'Pendiente':e.st==='accepted'?'Aceptado':e.st==='rejected'?'Rechazado':'En envio')+'</span></div></div>';
+  }).join('');
 }
-
-function renderAllCategories() {
-  document.getElementById('allCategoriesGrid').innerHTML = demoData.categories.map(c =>
-    `<div class="all-cat-card" onclick="filterByCategory('${c.slug}')"><div class="all-cat-icon">${c.icon}</div><div class="all-cat-name">${c.name}</div><div class="all-cat-subs">${c.subcategories.slice(0, 4).join(' · ')}</div></div>`
-  ).join('');
+function rac(){
+  document.getElementById('acg').innerHTML=dt.cats.map(function(c){
+    return '<div class="ac2" onclick="fc(\''+c.s+'\')"><div class="ai"><i class="fas '+c.i+'"></i></div><div class="an">'+c.n+'</div><div class="as">'+c.n+'</div></div>';
+  }).join('');
 }
-
-function init() {
-  renderCategories();
-  renderFeatured();
-  renderNotifications();
-  renderExchanges();
-  populateFilters();
-
-  document.querySelectorAll('.nav-item').forEach(item => {
-    item.addEventListener('click', e => { e.preventDefault(); showPage(item.dataset.page); });
+function init(){
+  rcat();
+  rfeat();
+  rn();
+  re();
+  pf();
+  document.querySelectorAll('.ni').forEach(function(it){
+    it.addEventListener('click',function(e){
+      e.preventDefault();
+      sp(it.dataset.p);
+    });
   });
-
-  document.getElementById('homeSearchBtn').addEventListener('click', () => {
-    document.getElementById('searchPageInput').value = document.getElementById('homeSearchInput').value;
-    showPage('searchPage');
-    performSearch(document.getElementById('homeSearchInput').value.trim());
+  document.getElementById('hsb').addEventListener('click',function(){
+    document.getElementById('spi').value=document.getElementById('hsi').value;
+    sp('sp2');
+    ps(document.getElementById('hsi').value.trim());
   });
-  document.getElementById('homeSearchInput').addEventListener('keypress', e => { if (e.key === 'Enter') document.getElementById('homeSearchBtn').click(); });
-
-  document.getElementById('searchPageBtn').addEventListener('click', () => performSearch(document.getElementById('searchPageInput').value.trim()));
-  document.getElementById('searchPageInput').addEventListener('keypress', e => { if (e.key === 'Enter') performSearch(document.getElementById('searchPageInput').value.trim()); });
-
-  document.getElementById('filterApplyBtn').addEventListener('click', () => performSearch(document.getElementById('searchPageInput').value.trim()));
-  document.getElementById('filterResetBtn').addEventListener('click', () => {
-    document.getElementById('filterCategory').value = '';
-    document.getElementById('filterMaxPrice').value = '';
-    document.getElementById('filterCondition').value = '';
-    document.getElementById('filterLocation').value = '';
-    performSearch(document.getElementById('searchPageInput').value.trim());
+  document.getElementById('hsi').addEventListener('keypress',function(e){
+    if(e.key==='Enter')document.getElementById('hsb').click();
   });
-
-  document.getElementById('seeAllCategoriesBtn').addEventListener('click', () => { renderAllCategories(); showPage('allCategoriesPage'); });
-  document.getElementById('seeAllListingsBtn').addEventListener('click', () => { renderListings('allListingsGrid', demoData.listings); showPage('allListingsPage'); });
-
-  document.getElementById('allCatBackBtn').addEventListener('click', () => showPage('homePage'));
-  document.getElementById('allListingsBackBtn').addEventListener('click', () => showPage('homePage'));
-  document.getElementById('productBackBtn').addEventListener('click', () => document.getElementById('productPage').classList.remove('active'));
-  document.getElementById('notificationsBtn').addEventListener('click', () => showPage('messagesPage'));
-  document.getElementById('productLikeBtn').addEventListener('click', () => {
-    const id = parseInt(document.getElementById('productPage').dataset.productId);
-    if (likedItems.has(id)) { likedItems.delete(id); document.getElementById('productLikeBtn').innerHTML = '<i class="far fa-heart"></i>'; }
-    else { likedItems.add(id); document.getElementById('productLikeBtn').innerHTML = '<i class="fas fa-heart"></i>'; }
+  document.getElementById('spi').addEventListener('keypress',function(e){
+    if(e.key==='Enter')ps(document.getElementById('spi').value.trim());
+  });
+  document.getElementById('fba').addEventListener('click',function(){
+    ps(document.getElementById('spi').value.trim());
+  });
+  document.getElementById('sac').addEventListener('click',function(){
+    rac();
+    sp('acp');
+  });
+  document.getElementById('sal').addEventListener('click',function(){
+    rl('alg',dt.items);
+    sp('alp');
+  });
+  document.getElementById('acb').addEventListener('click',function(){sp('hp')});
+  document.getElementById('alb').addEventListener('click',function(){sp('hp')});
+  document.getElementById('dpb').addEventListener('click',function(){
+    document.getElementById('dpp').classList.remove('on');
+  });
+  document.getElementById('nbtn').addEventListener('click',function(){sp('mp')});
+  document.getElementById('dlb').addEventListener('click',function(){
+    var id=parseInt(document.getElementById('dpp').dataset.pid);
+    if(lk.has(id)){
+      lk.delete(id);
+      document.getElementById('dlb').innerHTML='<i class="far fa-heart"></i>';
+    }else{
+      lk.add(id);
+      document.getElementById('dlb').innerHTML='<i class="fas fa-heart"></i>';
+    }
   });
 }
-
 init();
 </script>
 </body>
