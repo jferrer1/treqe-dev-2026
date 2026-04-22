@@ -1,0 +1,1937 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Treqe Â· Intercambio Circular</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@800&family=Anton&family=Space+Grotesk:wght@500&family=Inter:wght@400;500&family=Bebas+Neue&family=Bungee&display=swap" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* ===== PALETA DE COLORES ADVENTURE CORE ===== */
+    :root {
+      --primary: #FF4D01;      /* Naranja intenso ADVENTURE CORE */
+      --secondary: #1F9D82;    /* Verde azulado/Teal ADVENTURE CORE */
+      --accent: #111111;       /* Negro mate/carbono */
+      --bg-light: #F7F2EB;     /* Crema/hueso fondo principal */
+      --bg-dark: #111111;      /* Negro fondo secundario */
+      --text-primary: #111111; /* Texto principal negro */
+      --text-secondary: #8E8E93; /* Texto secundario gris */
+      --border-light: #E5E5E5; /* Bordes y divisores */
+      --white: #FFFFFF;        /* Blanco puro */
+      
+      /* TipografÃ­as ADVENTURE CORE */
+      --font-brand: 'Bebas Neue', 'Roboto Condensed', sans-serif;
+      --font-heading: 'Inter', 'Roboto', sans-serif;
+      --font-body: 'Inter', 'Roboto', sans-serif;
+      --font-accent: 'Bebas Neue', 'Roboto Condensed', sans-serif;
+      
+      /* Variables de diseÃ±o app */
+      --border-radius: 12px;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      --shadow-heavy: 0 8px 24px rgba(0, 0, 0, 0.15);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    /* ===== RESET Y BASE ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+    
+    html {
+      font-size: 16px;
+      height: 100%;
+    }
+    
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-light);
+      color: var(--text-primary);
+      line-height: 1.5;
+      height: 100%;
+      overflow-x: hidden;
+      position: relative;
+      padding-bottom: 80px; /* Espacio para tab bar */
+    }
+    
+    /* ===== APP CONTAINER ===== */
+    .app-container {
+      max-width: 480px;
+      margin: 0 auto;
+      min-height: 100vh;
+      background-color: var(--bg-light);
+      position: relative;
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* ===== HEADER / APP BAR ===== */
+    .app-header {
+      background-color: var(--white);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-light);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      height: 40px; /* Altura consistente con botones */
+    }
+    
+    .logo-image {
+      height: 32px; /* Un poco mÃ¡s pequeÃ±o que el contenedor */
+      width: auto;
+      max-width: 120px; /* Ancho mÃ¡ximo para no desbordar */
+      object-fit: contain;
+    }
+    
+    .header-actions {
+      display: flex;
+      gap: 16px;
+    }
+    
+    .icon-btn {
+      background: none;
+      border: none;
+      color: var(--text-primary);
+      font-size: 1.2rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+    
+    .icon-btn:active {
+      background-color: rgba(255, 255, 255, 0.1);
+      transform: scale(0.95);
+    }
+    
+    /* ===== SEARCH BAR ===== */
+    .search-container {
+      padding: 16px 20px;
+      background-color: var(--white);
+      border-bottom: 1px solid var(--border-light);
+    }
+    
+    .search-bar {
+      display: flex;
+      background-color: var(--bg-light);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      border: 1px solid var(--border-light);
+    }
+    
+    .search-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      padding: 14px 16px;
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 1rem;
+    }
+    
+    .search-input::placeholder {
+      color: var(--text-secondary);
+    }
+    
+    .search-btn {
+      background-color: var(--primary);
+      border: none;
+      color: var(--white);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      padding: 0 20px;
+      cursor: pointer;
+      transition: var(--transition);
+      text-transform: uppercase;
+    }
+    
+    .search-btn:active {
+      background-color: var(--accent);
+    }
+    
+    /* ===== CATEGORIES GRID ===== */
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin: 24px 20px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .see-all {
+      color: var(--secondary);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    
+    .see-all:active {
+      color: var(--primary);
+    }
+    
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      padding: 0 20px;
+      margin-bottom: 24px;
+    }
+    
+    .category-card {
+      background-color: var(--white);
+      border-radius: var(--border-radius);
+      padding: 16px 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: var(--transition);
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow);
+    }
+    
+    .category-card:active {
+      border-color: var(--primary);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-heavy);
+    }
+    
+    .category-icon {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+    }
+    
+    .category-name {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+    
+    /* ===== PAGE CONTENT (to avoid bottom nav overlap) ===== */
+    .page-content {
+      padding-bottom: 100px; /* Enough space for bottom nav */
+    }
+    
+    /* ===== FEATURED LISTINGS ===== */
+    .listings-container {
+      padding: 0 20px;
+      margin-bottom: 24px;
+    }
+    
+    .listing-card {
+      background-color: var(--white);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      margin-bottom: 16px;
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+    
+    .listing-card:active {
+      border-color: var(--primary);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-heavy);
+    }
+    
+    .listing-image {
+      width: 100%;
+      height: 180px;
+      background-color: var(--bg-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-primary);
+      font-size: 3rem;
+      position: relative;
+    }
+    
+    .like-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background-color: rgba(255, 255, 255, 0.9);
+      border: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: var(--transition);
+      z-index: 10;
+    }
+    
+    .like-btn:hover, .like-btn:active {
+      background-color: var(--white);
+      color: var(--primary);
+      transform: scale(1.1);
+    }
+    
+    .like-btn.liked {
+      color: var(--primary);
+    }
+    
+    .like-btn.liked i {
+      color: var(--primary);
+    }
+    
+    .listing-info {
+      padding: 16px;
+    }
+    
+    .listing-title {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    
+    .listing-price {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+    
+    .listing-meta {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+    
+    .listing-condition {
+      color: var(--secondary);
+    }
+    
+    /* ===== TREQEAR BUTTON ===== */
+    .treqear-btn {
+      background-color: var(--primary);
+      color: var(--white);
+      border: none;
+      border-radius: var(--border-radius);
+      padding: 16px 24px;
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      width: 100%;
+      margin: 20px;
+      max-width: calc(100% - 40px);
+      display: block;
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .treqear-btn:active {
+      background-color: var(--accent);
+      transform: scale(0.98);
+    }
+    
+    .treqear-btn::after {
+      content: 'â†»';
+      position: absolute;
+      right: 20px;
+      font-size: 1.5rem;
+    }
+    
+    /* ===== BOTTOM NAVIGATION ===== */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: var(--white);
+      border-top: 1px solid var(--border-light);
+      display: flex;
+      justify-content: space-around;
+      padding: 12px 0;
+      z-index: 1000;
+      max-width: 480px;
+      margin: 0 auto;
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+    }
+    
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: var(--text-secondary);
+      transition: var(--transition);
+      flex: 1;
+      position: relative;
+    }
+    
+    .nav-item:active {
+      color: var(--primary);
+      transform: scale(0.95);
+    }
+    
+    .nav-item.active {
+      color: var(--primary);
+    }
+    
+    .nav-item.sell {
+      color: var(--white);
+      background-color: var(--primary);
+      border-radius: 50%;
+      width: 56px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: -20px;
+      box-shadow: 0 4px 12px rgba(255, 77, 1, 0.3);
+    }
+    
+    .nav-item.sell .nav-icon {
+      font-size: 1.8rem;
+      margin-bottom: 0;
+    }
+    
+    .nav-item.sell .nav-label {
+      display: none;
+    }
+    
+    .nav-icon {
+      font-size: 1.4rem;
+      margin-bottom: 4px;
+    }
+    
+    .nav-label {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 500;
+    }
+    
+    .notification-badge {
+      position: absolute;
+      top: -5px;
+      right: 10px;
+      background-color: var(--primary);
+      color: var(--white);
+      font-size: 0.6rem;
+      font-weight: 700;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    /* ===== PRODUCT PAGE (hidden by default) ===== */
+    .product-page {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: var(--black);
+      z-index: 2000;
+      overflow-y: auto;
+      padding-bottom: 100px;
+    }
+    
+    .product-header {
+      background-color: var(--gray);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid var(--primary);
+    }
+    
+    .back-btn {
+      background: none;
+      border: none;
+      color: var(--cream);
+      font-size: 1.2rem;
+    }
+    
+    .product-image {
+      width: 100%;
+      height: 300px;
+      background-color: var(--black);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--cream);
+      font-size: 4rem;
+    }
+    
+    .product-details {
+      padding: 20px;
+    }
+    
+    .product-title {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      color: var(--cream);
+      margin-bottom: 8px;
+    }
+    
+    .product-price {
+      font-family: var(--font-heading);
+      font-size: 2.2rem;
+      color: var(--primary);
+      margin-bottom: 16px;
+    }
+    
+    .product-description {
+      font-family: var(--font-body);
+      color: rgba(248, 245, 240, 0.8);
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+    
+    .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    
+    .spec-item {
+      background-color: var(--gray);
+      padding: 12px;
+      border-radius: 8px;
+    }
+    
+    .spec-label {
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      color: rgba(248, 245, 240, 0.6);
+      margin-bottom: 4px;
+    }
+    
+    .spec-value {
+      font-family: var(--font-subheading);
+      color: var(--cream);
+    }
+    
+    /* ===== MESSAGES PAGE ===== */
+    .messages-page {
+      display: none;
+      padding: 20px;
+    }
+    
+    .sell-fast-banner {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: var(--border-radius);
+      padding: 20px;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+    
+    .banner-title {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    
+    .banner-text {
+      font-family: var(--font-body);
+      color: rgba(255, 255, 255, 0.9);
+    }
+    
+    .chat-list {
+      margin-top: 20px;
+    }
+    
+    .notification-item {
+      background-color: var(--white);
+      border-radius: var(--border-radius);
+      padding: 16px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      transition: var(--transition);
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow);
+    }
+    
+    .notification-item:active {
+      border-color: var(--primary);
+      background-color: rgba(255, 77, 1, 0.05);
+    }
+    
+    .notification-item.unread {
+      border-left: 4px solid var(--primary);
+    }
+    
+    .notification-item.accepted {
+      border-left: 4px solid var(--secondary);
+    }
+    
+    .notification-item.rejected {
+      border-left: 4px solid var(--text-secondary);
+      opacity: 0.7;
+    }
+    
+    .notification-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: var(--bg-light);
+      margin-right: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      font-size: 1.5rem;
+    }
+    
+    .notification-info {
+      flex: 1;
+    }
+    
+    .notification-title {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+    
+    .notification-preview {
+      font-family: var(--font-body);
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+    
+    /* ===== PROFILE PAGE ===== */
+    .profile-page {
+      display: none;
+      padding: 20px;
+    }
+    
+    .profile-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    
+    .profile-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background-color: var(--gray);
+      margin: 0 auto 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--cream);
+      font-size: 2.5rem;
+      border: 3px solid var(--primary);
+    }
+    
+    .profile-name {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      color: var(--cream);
+      margin-bottom: 8px;
+    }
+    
+    .profile-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+    
+    .stat-card {
+      background-color: var(--gray);
+      border-radius: var(--border-radius);
+      padding: 16px;
+      text-align: center;
+    }
+    
+    .stat-value {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+    
+    .stat-label {
+      font-family: var(--font-body);
+      color: rgba(248, 245, 240, 0.7);
+      font-size: 0.85rem;
+    }
+    
+    .profile-menu {
+      background-color: var(--gray);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+    }
+    
+    .menu-item {
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      transition: var(--transition);
+    }
+    
+    .menu-item:active {
+      background-color: rgba(255, 106, 0, 0.1);
+    }
+    
+    .menu-item:last-child {
+      border-bottom: none;
+    }
+    
+    .menu-icon {
+      color: var(--primary);
+      font-size: 1.2rem;
+      margin-right: 16px;
+      width: 24px;
+      text-align: center;
+    }
+    
+    .menu-text {
+      font-family: var(--font-subheading);
+      color: var(--cream);
+      flex: 1;
+    }
+    
+    .menu-arrow {
+      color: rgba(248, 245, 240, 0.5);
+    }
+    
+    /* ===== UTILITY CLASSES ===== */
+    .hidden {
+      display: none !important;
+    }
+    
+    .visible {
+      display: block !important;
+    }
+    
+    .text-center {
+      text-align: center;
+    }
+    
+    .mt-1 { margin-top: 8px; }
+    .mt-2 { margin-top: 16px; }
+    .mt-3 { margin-top: 24px; }
+    .mb-1 { margin-bottom: 8px; }
+    .mb-2 { margin-bottom: 16px; }
+    .mb-3 { margin-bottom: 24px; }
+    
+    /* ===== RESPONSIVE ADJUSTMENTS ===== */
+    @media (max-width: 480px) {
+      .app-container {
+        max-width: 100%;
+      }
+      
+      .categories-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    
+    @media (max-width: 360px) {
+      .categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    /* ===== FILTERS ===== */
+    .filters-container {
+      background-color: var(--white);
+      margin: 0 20px 20px;
+      padding: 16px;
+      border-radius: var(--border-radius);
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow);
+    }
+    
+    .filter-row {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    
+    .filter-row:last-of-type {
+      margin-bottom: 16px;
+    }
+    
+    .filter-group {
+      flex: 1;
+      min-width: 0;
+    }
+    
+    .filter-label {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+    
+    .filter-select, .filter-input {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      background-color: var(--bg-light);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      outline: none;
+      transition: var(--transition);
+    }
+    
+    .filter-select:focus, .filter-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(255, 77, 1, 0.1);
+    }
+    
+    .filter-actions {
+      display: flex;
+      gap: 12px;
+    }
+    
+    .filter-apply-btn {
+      flex: 1;
+      background-color: var(--primary);
+      color: var(--white);
+      border: none;
+      border-radius: 8px;
+      padding: 12px;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .filter-apply-btn:active {
+      background-color: var(--accent);
+    }
+    
+    .filter-reset-btn {
+      flex: 0 0 auto;
+      background-color: var(--bg-light);
+      color: var(--text-secondary);
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .filter-reset-btn:active {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    
+    /* ===== SEARCH & SELL PAGES ===== */
+    .search-page, .sell-page, .list-page {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: var(--bg-light);
+      z-index: 2000;
+      overflow-y: auto;
+      padding-bottom: 100px;
+    }
+    
+    .form-card {
+      background-color: var(--white);
+      border-radius: var(--border-radius);
+      padding: 24px;
+      margin: 20px;
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow);
+    }
+    
+    .sell-form-container {
+      padding: 0 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    
+    <!-- HEADER -->
+    <header class="app-header">
+      <div class="logo">
+        <img src="treqe-logo-new.png" alt="Treqe" class="logo-image">
+      </div>
+      <div class="header-actions">
+        <button class="icon-btn" id="notificationsBtn">
+          <i class="fas fa-bell"></i>
+          <span class="notification-badge" style="position: absolute; top: 5px; right: 5px; background-color: var(--primary); color: var(--white); font-size: 0.6rem; font-weight: 700; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">3</span>
+        </button>
+        <button class="icon-btn" id="menuBtn">
+          <i class="fas fa-ellipsis-v"></i>
+        </button>
+      </div>
+    </header>
+    
+    <!-- SEARCH BAR -->
+    <div class="search-container">
+      <div class="search-bar">
+        <input type="text" class="search-input" placeholder="Busca productos, categorÃ­as...">
+        <button class="search-btn">BUSCAR</button>
+      </div>
+    </div>
+    
+    <!-- HOME PAGE CONTENT (default visible) -->
+    <div id="homePage" class="page-content">
+      
+      <!-- CATEGORIES SECTION -->
+      <h2 class="section-title">
+        CategorÃ­as
+        <a href="#" class="see-all" id="seeAllCategoriesBtn">Ver todas</a>
+      </h2>
+      <div class="categories-grid" id="categoriesGrid">
+        <!-- Categories will be populated by JavaScript -->
+      </div>
+      
+      <!-- FEATURED LISTINGS -->
+      <h2 class="section-title">
+        Destacados
+        <a href="#" class="see-all" id="seeAllListingsBtn">Ver todos</a>
+      </h2>
+      <div class="listings-container" id="listingsContainer">
+        <!-- Listings will be populated by JavaScript -->
+      </div>
+      
+      <!-- TREQEAR BUTTON -->
+      <button class="treqear-btn" id="treqearBtn">
+        TREQEAR
+      </button>
+      
+    </div>
+    
+    <!-- PRODUCT PAGE (hidden) -->
+    <div id="productPage" class="product-page">
+      <div class="product-header">
+        <button class="back-btn" id="productBackBtn">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <div class="logo">
+          <img src="treqe-logo-new.png" alt="Treqe" class="logo-image">
+        </div>
+        <button class="icon-btn">
+          <i class="fas fa-share-alt"></i>
+        </button>
+      </div>
+      
+      <div class="product-image" id="productImage">
+        <!-- Product image placeholder -->
+      </div>
+      
+      <div class="product-details">
+        <h1 class="product-title" id="productTitle">Product Title</h1>
+        <div class="product-price" id="productPrice">â‚¬0</div>
+        <p class="product-description" id="productDescription">Product description will appear here.</p>
+        
+        <div class="specs-grid">
+          <div class="spec-item">
+            <div class="spec-label">CategorÃ­a</div>
+            <div class="spec-value" id="productCategory">-</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">CondiciÃ³n</div>
+            <div class="spec-value" id="productCondition">-</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">UbicaciÃ³n</div>
+            <div class="spec-value" id="productLocation">-</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Usuario</div>
+            <div class="spec-value" id="productUser">-</div>
+          </div>
+        </div>
+        
+        <button class="treqear-btn" id="treqearProductBtn">
+          TREQEAR ESTE PRODUCTO
+        </button>
+      </div>
+    </div>
+    
+    <!-- MESSAGES PAGE (hidden) -->
+    <div id="messagesPage" class="messages-page">
+      <div class="sell-fast-banner">
+        <h2 class="banner-title">Â¡Intercambios circulares!</h2>
+        <p class="banner-text">Acepta o rechaza propuestas de intercambio de 3 usuarios.</p>
+      </div>
+      
+      <h2 class="section-title">Notificaciones</h2>
+      <div class="notifications-list" id="notificationsList">
+        <!-- Chats will be populated by JavaScript -->
+      </div>
+    </div>
+    
+    <!-- PROFILE PAGE (hidden) -->
+    <div id="profilePage" class="profile-page">
+      <div class="profile-header">
+        <div class="profile-avatar">
+          <i class="fas fa-user"></i>
+        </div>
+        <h1 class="profile-name" id="profileName">Usuario Treqe</h1>
+        <p class="text-center" style="color: rgba(248,245,240,0.7);">Miembro desde abril 2026</p>
+      </div>
+      
+      <div class="profile-stats">
+        <div class="stat-card">
+          <div class="stat-value" id="statForSale">0</div>
+          <div class="stat-label">En venta</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="statSold">0</div>
+          <div class="stat-label">Vendidos</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="statExchanges">0</div>
+          <div class="stat-label">Intercambios</div>
+        </div>
+      </div>
+      
+      <div class="profile-menu">
+        <a href="#" class="menu-item">
+          <div class="menu-icon">
+            <i class="fas fa-box"></i>
+          </div>
+          <div class="menu-text">Mis productos</div>
+          <div class="menu-arrow">
+            <i class="fas fa-chevron-right"></i>
+          </div>
+        </a>
+        <a href="#" class="menu-item">
+          <div class="menu-icon">
+            <i class="fas fa-heart"></i>
+          </div>
+          <div class="menu-text">Favoritos</div>
+          <div class="menu-arrow">
+            <i class="fas fa-chevron-right"></i>
+          </div>
+        </a>
+        <a href="#" class="menu-item">
+          <div class="menu-icon">
+            <i class="fas fa-cog"></i>
+          </div>
+          <div class="menu-text">ConfiguraciÃ³n</div>
+          <div class="menu-arrow">
+            <i class="fas fa-chevron-right"></i>
+          </div>
+        </a>
+        <a href="#" class="menu-item">
+          <div class="menu-icon">
+            <i class="fas fa-question-circle"></i>
+          </div>
+          <div class="menu-text">Ayuda y soporte</div>
+          <div class="menu-arrow">
+            <i class="fas fa-chevron-right"></i>
+          </div>
+        </a>
+        <a href="#" class="menu-item">
+          <div class="menu-icon">
+            <i class="fas fa-sign-out-alt"></i>
+          </div>
+          <div class="menu-text">Cerrar sesiÃ³n</div>
+          <div class="menu-arrow">
+            <i class="fas fa-chevron-right"></i>
+          </div>
+        </a>
+      </div>
+    </div>
+    
+    <!-- BOTTOM NAVIGATION -->
+    <nav class="bottom-nav">
+      <a href="#" class="nav-item active" data-page="homePage">
+        <i class="fas fa-home nav-icon"></i>
+        <span class="nav-label">Inicio</span>
+      </a>
+      <a href="#" class="nav-item" data-page="searchPage">
+        <i class="fas fa-search nav-icon"></i>
+        <span class="nav-label">Buscar</span>
+      </a>
+      <a href="#" class="nav-item sell" data-page="sellPage">
+        <i class="fas fa-plus nav-icon"></i>
+        <span class="nav-label">Vender</span>
+      </a>
+      <a href="#" class="nav-item" data-page="messagesPage">
+        <i class="fas fa-bell nav-icon"></i>
+        <span class="nav-label">Notificaciones</span>
+        <span class="notification-badge">3</span>
+      </a>
+      <a href="#" class="nav-item" data-page="profilePage">
+        <i class="fas fa-user nav-icon"></i>
+        <span class="nav-label">Perfil</span>
+      </a>
+    </nav>
+    
+    <!-- SEARCH PAGE (hidden) -->
+    <div id="searchPage" class="search-page" style="display:none;">
+      <div class="app-header">
+        <button class="back-btn" id="searchBackBtn">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <div class="logo">
+          <img src="treqe-logo-new.png" alt="Treqe" class="logo-image">
+        </div>
+        <div></div>
+      </div>
+      <div class="search-container" style="border-bottom: none;">
+        <div class="search-bar">
+          <input type="text" class="search-input" id="searchPageInput" placeholder="Busca productos, categorÃ­as..." autofocus>
+          <button class="search-btn" id="searchPageBtn">BUSCAR</button>
+        </div>
+      </div>
+      <!-- FILTERS -->
+      <div class="filters-container">
+        <div class="filter-row">
+          <div class="filter-group">
+            <label class="filter-label">CategorÃ­a</label>
+            <select class="filter-select" id="filterCategory">
+              <option value="">Todas</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label class="filter-label">Precio mÃ¡x.</label>
+            <input type="number" class="filter-input" id="filterMaxPrice" placeholder="â‚¬" min="0">
+          </div>
+        </div>
+        <div class="filter-row">
+          <div class="filter-group">
+            <label class="filter-label">CondiciÃ³n</label>
+            <select class="filter-select" id="filterCondition">
+              <option value="">Cualquiera</option>
+              <option value="new">Nuevo</option>
+              <option value="like-new">Como nuevo</option>
+              <option value="used">Usado</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label class="filter-label">UbicaciÃ³n</label>
+            <input type="text" class="filter-input" id="filterLocation" placeholder="Ciudad">
+          </div>
+        </div>
+        <div class="filter-actions">
+          <button class="filter-apply-btn" id="filterApplyBtn">APLICAR FILTROS</button>
+          <button class="filter-reset-btn" id="filterResetBtn">LIMPIAR</button>
+        </div>
+      </div>
+      <div class="listings-container" id="searchResults" style="margin-bottom: 80px;">
+        <!-- Results will appear here -->
+      </div>
+    </div>
+    
+    <!-- SELL PAGE (hidden) -->
+    <div id="sellPage" class="sell-page" style="display:none;">
+      <div class="app-header">
+        <button class="back-btn" id="sellBackBtn">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <div class="logo">
+          <img src="treqe-logo-new.png" alt="Treqe" class="logo-image">
+        </div>
+        <div></div>
+      </div>
+      <div class="sell-form-container">
+        <h2 class="section-title" style="margin: 20px;">Publicar producto</h2>
+        <div class="form-card">
+          <p style="text-align: center; color: var(--text-secondary); margin-bottom: 24px;">Esta funcionalidad estÃ¡ disponible en la versiÃ³n web completa.</p>
+          <button class="treqear-btn" onclick="window.open('https://jferrer1.github.io/treqe-dev-2026/?v=16', '_blank')">
+            IR A VERSIÃ“N WEB
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- ALL CATEGORIES PAGE (hidden) -->
+    <div id="allCategoriesPage" class="list-page" style="display:none;">
+      <div class="app-header">
+        <button class="back-btn" id="allCatBackBtn">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <div class="logo">
+          <img src="treqe-logo-new.png" alt="Treqe" class="logo-image">
+        </div>
+        <div></div>
+      </div>
+      <h2 class="section-title">Todas las categorÃ­as</h2>
+      <div class="categories-grid" id="allCategoriesGrid" style="grid-template-columns: repeat(2, 1fr); margin-bottom: 80px;">
+        <!-- All categories will be populated by JavaScript -->
+      </div>
+    </div>
+    
+    <!-- ALL LISTINGS PAGE (hidden) -->
+    <div id="allListingsPage" class="list-page" style="display:none;">
+      <div class="app-header">
+        <button class="back-btn" id="allListingsBackBtn">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <div class="logo">
+          <img src="treqe-logo-new.png" alt="Treqe" class="logo-image">
+        </div>
+        <div></div>
+      </div>
+      <h2 class="section-title">Todos los productos destacados</h2>
+      <div class="listings-container" id="allListingsContainer" style="margin-bottom: 80px;">
+        <!-- All listings will be populated by JavaScript -->
+      </div>
+    </div>
+    
+  </div>
+  
+  <script>
+    // ===== DATOS DE DEMO (extract from original index.html) =====
+    const demoData = {
+      categories: [
+        { slug: "cars", name: "Cars", icon: "ðŸš—", subcategories: ["Coches", "Furgonetas", "4x4", "ElÃ©ctricos", "ClÃ¡sicos", "Deportivos", "Utilitarios"] },
+        { slug: "motorbike", name: "Motorbike", icon: "ðŸï¸", subcategories: ["Motos", "Scooters", "Ciclomotores", "Accesorios moto", "Cascos", "Protecciones"] },
+        { slug: "motors-accessories", name: "Motors & accessories", icon: "ðŸ”§", subcategories: ["Car & van spare parts", "GPS & electronics", "Mechanical tools", "Motorbike and four-wheeler spare parts", "Others"] },
+        { slug: "fashion-accessories", name: "Fashion & accessories", icon: "ðŸ‘•", subcategories: ["Women", "Men", "Accessories", "Jewellery", "Beauty"] },
+        { slug: "real-estate", name: "Real Estate", icon: "ðŸ ", subcategories: ["Pisos", "Casas", "Locales", "Garajes", "Terrenos", "Oficinas", "Trasteros"] },
+        { slug: "technology-electronics", name: "Technology & electronics", icon: "ðŸ“±", subcategories: ["Image: TVs & projectors", "Sound: headphones & speakers", "Photography: cameras & drones", "Phones: mobiles & smartwatches", "Computing: computers & tablets", "Gaming: consoles & video games"] },
+        { slug: "sports-leisure", name: "Sports & leisure", icon: "âš½", subcategories: ["Basketball", "Crafts Arts & crafts", "Exercise bikes", "Fitness, running & yoga", "Golf", "Handball", "Mountain & ski", "Others sports"] },
+        { slug: "bikes", name: "Bikes", icon: "ðŸš²", subcategories: ["Bike accessories", "Bike components & spare parts", "Bikes & tricycles", "Protective gear & clothing", "Others"] },
+        { slug: "home-garden", name: "Home & garden", icon: "ðŸ¡", subcategories: ["Furniture and organization", "Bathroom and accessories", "Kitchen", "Decoration and mirrors", "Garden, plants & tools", "Lighting", "Textiles & bedding", "Others"] },
+        { slug: "appliances", name: "Appliances", icon: "ðŸ§º", subcategories: ["Large appliances", "Small appliances", "Climate control", "Kitchen appliances", "Cleaning appliances", "Others"] },
+        { slug: "movies-books-music", name: "Movies, books & music", icon: "ðŸ“š", subcategories: ["Books & magazines", "CDs, DVDs & Blu-rays", "Musical instruments", "Others"] },
+        { slug: "baby-child", name: "Baby & child", icon: "ðŸ‘¶", subcategories: ["Prams & pushchairs", "High chairs & feeding", "Baby safety", "Baby furniture", "Baby clothing", "Toys 0-2 years", "Toys 3-5 years", "Toys 6+ years", "Educational toys", "Outdoor toys", "Toy vehicles", "Dolls & figures", "Others"] },
+        { slug: "collectibles-art", name: "Collectibles & Art", icon: "ðŸŽ¨", subcategories: ["Coins, bills & stamps", "Comics & graphic novels", "Figurines & models", "Trading cards", "Movie & TV memorabilia", "Music memorabilia", "Sports memorabilia", "Vintage advertising", "Antiques", "Paintings & prints", "Sculptures", "Photography", "Ceramics & glass", "Textile art", "Others"] },
+        { slug: "construction", name: "Construction", icon: "ðŸ—ï¸", subcategories: ["Bathroom", "Doors & windows", "Electrical", "Flooring", "Gardening & landscaping", "Hardware & tools", "Heating & plumbing", "Kitchen", "Lighting", "Others"] },
+        { slug: "agriculture-industrial", name: "Agriculture & industrial", icon: "ðŸšœ", subcategories: ["Agricultural machinery", "Industrial machinery", "Others"] },
+        { slug: "jobs", name: "Jobs", icon: "ðŸ’¼", subcategories: ["Full-time jobs", "Part-time jobs", "Others"] },
+        { slug: "services", name: "Services", icon: "ðŸ› ï¸", subcategories: ["Beauty & wellness", "Cleaning services", "Housework services", "Moving & transport", "Repairs", "Therapies & personal growth", "Others"] },
+        { slug: "other", name: "Other", icon: "ðŸ“¦", subcategories: ["Varios", "Sin categorizar", "Otros", "MiscelÃ¡nea"] }
+      ],
+      products: [
+        {
+          id: 1,
+          title: "iPhone 15 Pro 256GB",
+          category: "technology-electronics",
+          subcategory: "Phones: mobiles & smartwatches",
+          value: 850,
+          city: "Madrid",
+          condition: "like-new",
+          userId: 1,
+          description: "Como nuevo, con cargador y funda original. 6 meses de garantÃ­a restante.",
+          wantedCategory: "cars",
+          wantedSubcategory: "Coches",
+          wantedValueRange: [500, 1200],
+          imageIcon: "ðŸ“±"
+        },
+        {
+          id: 2,
+          title: "Bicicleta de montaÃ±a Orbea",
+          category: "bikes",
+          subcategory: "Bikes & tricycles",
+          value: 450,
+          city: "Barcelona",
+          condition: "used",
+          userId: 2,
+          description: "Bicicleta de montaÃ±a en buen estado, revisada recientemente.",
+          wantedCategory: "technology-electronics",
+          wantedSubcategory: "Computing: computers & tablets",
+          wantedValueRange: [300, 600],
+          imageIcon: "ðŸš²"
+        },
+        {
+          id: 3,
+          title: "SofÃ¡ de piel negro",
+          category: "home-garden",
+          subcategory: "Furniture and organization",
+          value: 1200,
+          city: "Valencia",
+          condition: "used",
+          userId: 3,
+          description: "SofÃ¡ de piel en perfecto estado, solo 2 aÃ±os de uso.",
+          wantedCategory: "fashion-accessories",
+          wantedSubcategory: "Accessories",
+          wantedValueRange: [800, 1500],
+          imageIcon: "ðŸ›‹ï¸"
+        },
+        {
+          id: 4,
+          title: "PlayStation 5 con 2 mandos",
+          category: "technology-electronics",
+          subcategory: "Gaming: consoles & video games",
+          value: 550,
+          city: "Madrid",
+          condition: "new",
+          userId: 4,
+          description: "Nueva, sin abrir, con garantÃ­a de 2 aÃ±os.",
+          wantedCategory: "motors-accessories",
+          wantedSubcategory: "Car & van spare parts",
+          wantedValueRange: [400, 700],
+          imageIcon: "ðŸŽ®"
+        },
+        {
+          id: 5,
+          title: "Vestido de noche de diseÃ±ador",
+          category: "fashion-accessories",
+          subcategory: "Women",
+          value: 280,
+          city: "Sevilla",
+          condition: "like-new",
+          userId: 5,
+          description: "Vestido usado solo una vez, talla M, marca premium.",
+          wantedCategory: "home-garden",
+          wantedSubcategory: "Decoration and mirrors",
+          wantedValueRange: [200, 400],
+          imageIcon: "ðŸ‘—"
+        }
+      ],
+      users: [
+        { id: 1, name: "Ana MartÃ­nez", avatar: "ðŸ‘©" },
+        { id: 2, name: "Carlos LÃ³pez", avatar: "ðŸ‘¨" },
+        { id: 3, name: "MarÃ­a GarcÃ­a", avatar: "ðŸ‘©" },
+        { id: 4, name: "David FernÃ¡ndez", avatar: "ðŸ‘¨" },
+        { id: 5, name: "Laura RodrÃ­guez", avatar: "ðŸ‘©" }
+      ]
+    };
+    
+    // ===== STATE MANAGEMENT =====
+    let currentPage = 'homePage';
+    let currentProduct = null;
+    
+    // ===== DOM ELEMENTS =====
+    const homePage = document.getElementById('homePage');
+    const productPage = document.getElementById('productPage');
+    const messagesPage = document.getElementById('messagesPage');
+    const profilePage = document.getElementById('profilePage');
+    const searchPage = document.getElementById('searchPage');
+    const sellPage = document.getElementById('sellPage');
+    const navItems = document.querySelectorAll('.nav-item');
+    const categoriesGrid = document.getElementById('categoriesGrid');
+    const listingsContainer = document.getElementById('listingsContainer');
+    const notificationsList = document.getElementById('notificationsList');
+    const treqearBtn = document.getElementById('treqearBtn');
+    const productBackBtn = document.getElementById('productBackBtn');
+    const treqearProductBtn = document.getElementById('treqearProductBtn');
+    const searchBackBtn = document.getElementById('searchBackBtn');
+    const sellBackBtn = document.getElementById('sellBackBtn');
+    const searchPageInput = document.getElementById('searchPageInput');
+    const searchPageBtn = document.getElementById('searchPageBtn');
+    const searchResults = document.getElementById('searchResults');
+    const allCategoriesPage = document.getElementById('allCategoriesPage');
+    const allListingsPage = document.getElementById('allListingsPage');
+    const allCatBackBtn = document.getElementById('allCatBackBtn');
+    const allListingsBackBtn = document.getElementById('allListingsBackBtn');
+    const allCategoriesGrid = document.getElementById('allCategoriesGrid');
+    const allListingsContainer = document.getElementById('allListingsContainer');
+    const notificationsBtn = document.getElementById('notificationsBtn');
+    
+    // ===== INITIALIZATION =====
+    document.addEventListener('DOMContentLoaded', function() {
+      // Populate categories
+      renderCategories();
+      
+      // Populate featured listings
+      renderListings();
+      
+      // Populate notifications
+      renderNotifications();
+      
+      // Populate profile stats
+      updateProfileStats();
+      
+      // Populate filter category select
+      const filterCatSelect = document.getElementById('filterCategory');
+      if (filterCatSelect) {
+        demoData.categories.forEach(cat => {
+          const opt = document.createElement('option');
+          opt.value = cat.slug;
+          opt.textContent = cat.icon + ' ' + cat.name;
+          filterCatSelect.appendChild(opt);
+        });
+      }
+      
+      // Setup event listeners
+      setupEventListeners();
+    });
+    
+    // ===== RENDER FUNCTIONS =====
+    function renderCategories() {
+      // Show first 8 categories
+      const categoriesToShow = demoData.categories.slice(0, 8);
+      
+      categoriesGrid.innerHTML = '';
+      categoriesToShow.forEach(category => {
+        const categoryCard = document.createElement('div');
+        categoryCard.className = 'category-card';
+        categoryCard.innerHTML = `
+          <div class="category-icon">${category.icon}</div>
+          <div class="category-name">${category.name}</div>
+        `;
+        categoryCard.addEventListener('click', () => {
+          alert(`CategorÃ­a: ${category.name}\nSubcategorÃ­as: ${category.subcategories.join(', ')}`);
+        });
+        categoriesGrid.appendChild(categoryCard);
+      });
+    }
+    
+    function renderListings() {
+      listingsContainer.innerHTML = '';
+      demoData.products.forEach(product => {
+        const user = demoData.users.find(u => u.id === product.userId) || demoData.users[0];
+        const category = demoData.categories.find(c => c.slug === product.category) || demoData.categories[0];
+        
+        const listingCard = document.createElement('div');
+        listingCard.className = 'listing-card';
+        listingCard.innerHTML = `
+          <div class="listing-image">
+            ${product.imageIcon || 'ðŸ“¦'}
+            <button class="like-btn" data-product-id="${product.id}">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="listing-info">
+            <h3 class="listing-title">${product.title}</h3>
+            <div class="listing-price">â‚¬${product.value}</div>
+            <div class="listing-meta">
+              <span class="listing-condition">${product.condition === 'new' ? 'Nuevo' : product.condition === 'like-new' ? 'Como nuevo' : 'Usado'}</span>
+              <span>${product.city}</span>
+            </div>
+          </div>
+        `;
+        
+        listingCard.addEventListener('click', (e) => {
+          if (e.target.closest('.like-btn')) return;
+          openProductPage(product);
+        });
+        
+        // Like button functionality
+        const likeBtn = listingCard.querySelector('.like-btn');
+        likeBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          const icon = this.querySelector('i');
+          if (icon.classList.contains('far')) {
+            icon.classList.remove('far');
+            icon.classList.add('fas');
+            this.classList.add('liked');
+          } else {
+            icon.classList.remove('fas');
+            icon.classList.add('far');
+            this.classList.remove('liked');
+          }
+        });
+        
+        listingsContainer.appendChild(listingCard);
+      });
+    }
+    
+    function renderNotifications() {
+      if (!notificationsList) return;
+      notificationsList.innerHTML = '';
+      
+      // Simulate circular exchange notifications (from original Treqe web)
+      const notifications = [
+        { 
+          id: 1,
+          type: 'match_found',
+          title: 'Â¡Match circular encontrado!',
+          description: '3 usuarios coinciden: iPhone 15 Pro â†” Bicicleta Orbea â†” SofÃ¡ de piel',
+          time: 'Hace 10 min',
+          unread: true,
+          status: 'pending'
+        },
+        { 
+          id: 2,
+          type: 'exchange_accepted',
+          title: 'Intercambio aceptado',
+          description: 'Carlos LÃ³pez aceptÃ³ tu propuesta por PlayStation 5',
+          time: 'Ayer',
+          unread: false,
+          status: 'accepted'
+        },
+        { 
+          id: 3,
+          type: 'match_found',
+          title: 'Nuevo match posible',
+          description: '2 usuarios mÃ¡s necesarios para completar intercambio circular',
+          time: '2 dÃ­as',
+          unread: false,
+          status: 'pending'
+        },
+        { 
+          id: 4,
+          type: 'exchange_rejected',
+          title: 'Intercambio rechazado',
+          description: 'MarÃ­a GarcÃ­a rechazÃ³ tu oferta por Vestido de diseÃ±ador',
+          time: '3 dÃ­as',
+          unread: false,
+          status: 'rejected'
+        },
+        { 
+          id: 5,
+          type: 'shipping_confirmed',
+          title: 'EnvÃ­o confirmado',
+          description: 'Tu producto ha sido enviado. CÃ³digo de seguimiento: TRQ-789456',
+          time: '1 sem',
+          unread: false,
+          status: 'accepted'
+        }
+      ];
+      
+      notifications.forEach(notif => {
+        const notifItem = document.createElement('div');
+        notifItem.className = 'notification-item';
+        if (notif.unread) notifItem.classList.add('unread');
+        if (notif.status === 'accepted') notifItem.classList.add('accepted');
+        if (notif.status === 'rejected') notifItem.classList.add('rejected');
+        
+        // Icon based on type
+        let icon = 'ðŸ”„';
+        if (notif.type === 'match_found') icon = 'ðŸŽ¯';
+        if (notif.type === 'exchange_accepted') icon = 'âœ…';
+        if (notif.type === 'exchange_rejected') icon = 'âŒ';
+        if (notif.type === 'shipping_confirmed') icon = 'ðŸšš';
+        
+        notifItem.innerHTML = `
+          <div class="notification-icon">
+            ${icon}
+          </div>
+          <div class="notification-info">
+            <div class="notification-title">${notif.title}</div>
+            <div class="notification-preview">${notif.description}</div>
+          </div>
+          <div style="color: var(--text-secondary); font-size: 0.8rem;">
+            ${notif.time}
+          </div>
+        `;
+        
+        notifItem.addEventListener('click', () => {
+          alert(`${notif.title}\n${notif.description}\n\nHaz clic en Aceptar/Rechazar en la web original para gestionar.`);
+        });
+        
+        notificationsList.appendChild(notifItem);
+      });
+    }
+    
+    function updateProfileStats() {
+      document.getElementById('statForSale').textContent = '5';
+      document.getElementById('statSold').textContent = '12';
+      document.getElementById('statExchanges').textContent = '8';
+      document.getElementById('profileName').textContent = 'Usuario Treqe';
+    }
+    
+    // ===== PAGE NAVIGATION =====
+    function openProductPage(product) {
+      currentProduct = product;
+      
+      // Update product page content
+      document.getElementById('productImage').innerHTML = product.imageIcon || 'ðŸ“¦';
+      document.getElementById('productTitle').textContent = product.title;
+      document.getElementById('productPrice').textContent = `â‚¬${product.value}`;
+      document.getElementById('productDescription').textContent = product.description;
+      
+      const category = demoData.categories.find(c => c.slug === product.category);
+      document.getElementById('productCategory').textContent = category ? category.name : '-';
+      
+      document.getElementById('productCondition').textContent = 
+        product.condition === 'new' ? 'Nuevo' : 
+        product.condition === 'like-new' ? 'Como nuevo' : 'Usado';
+      
+      document.getElementById('productLocation').textContent = product.city;
+      
+      const user = demoData.users.find(u => u.id === product.userId);
+      document.getElementById('productUser').textContent = user ? user.name : '-';
+      
+      // Show product page, hide others
+      showPage('productPage');
+    }
+    
+    function showPage(pageId) {
+      // Hide all pages
+      [homePage, productPage, messagesPage, profilePage, searchPage, sellPage, allCategoriesPage, allListingsPage].forEach(page => {
+        if (page) page.style.display = 'none';
+      });
+      
+      // Show selected page
+      document.getElementById(pageId).style.display = 'block';
+      
+      // Update navigation
+      navItems.forEach(item => {
+        item.classList.remove('active');
+        if (item.getAttribute('data-page') === pageId) {
+          item.classList.add('active');
+        }
+      });
+      
+      currentPage = pageId;
+    }
+    
+    // ===== EVENT LISTENERS =====
+    function setupEventListeners() {
+      // Navigation
+      navItems.forEach(item => {
+        item.addEventListener('click', function(e) {
+          e.preventDefault();
+          const pageId = this.getAttribute('data-page');
+          if (pageId) {
+            showPage(pageId);
+          }
+        });
+      });
+      
+      // Treqear button on home
+      treqearBtn.addEventListener('click', function() {
+        alert('Â¡Funcionalidad TREQEAR!\nAquÃ­ irÃ­a el formulario para crear un nuevo intercambio circular.');
+      });
+      
+      // Product page back button
+      productBackBtn.addEventListener('click', function() {
+        showPage('homePage');
+      });
+      
+      // Treqear button on product page
+      treqearProductBtn.addEventListener('click', function() {
+        if (currentProduct) {
+          alert(`Â¡Iniciar intercambio por: ${currentProduct.title}!\nValor: â‚¬${currentProduct.value}\nSe buscarÃ¡n coincidencias en tus productos.`);
+        }
+      });
+      
+      // Search functionality - navigate to search page
+      const homeSearchInput = document.querySelector('.search-container .search-input');
+      const homeSearchBtn = document.querySelector('.search-container .search-btn');
+      
+      if (homeSearchBtn) {
+        homeSearchBtn.addEventListener('click', function() {
+          const query = homeSearchInput.value.trim();
+          if (searchPageInput) {
+            searchPageInput.value = query;
+          }
+          showPage('searchPage');
+          if (query) {
+            performSearch(query);
+          }
+        });
+      }
+      
+      if (homeSearchInput) {
+        homeSearchInput.addEventListener('keypress', function(e) {
+          if (e.key === 'Enter') {
+            homeSearchBtn.click();
+          }
+        });
+      }
+      
+      // Search page back button
+      if (searchBackBtn) {
+        searchBackBtn.addEventListener('click', function() {
+          showPage('homePage');
+        });
+      }
+      
+      // Sell page back button
+      if (sellBackBtn) {
+        sellBackBtn.addEventListener('click', function() {
+          showPage('homePage');
+        });
+      }
+      
+      // Search page functionality
+      if (searchPageBtn && searchPageInput) {
+        searchPageBtn.addEventListener('click', function() {
+          const query = searchPageInput.value.trim();
+          if (query) {
+            performSearch(query);
+          }
+        });
+        
+        searchPageInput.addEventListener('keypress', function(e) {
+          if (e.key === 'Enter') {
+            searchPageBtn.click();
+          }
+        });
+      }
+      
+      // Notifications button in header
+      if (notificationsBtn) {
+        notificationsBtn.addEventListener('click', function() {
+          showPage('messagesPage');
+        });
+      }
+      
+      // See all categories
+      const seeAllCatBtn = document.getElementById('seeAllCategoriesBtn');
+      if (seeAllCatBtn) {
+        seeAllCatBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          renderAllCategories();
+          showPage('allCategoriesPage');
+        });
+      }
+      
+      // See all listings
+      const seeAllListingsBtn = document.getElementById('seeAllListingsBtn');
+      if (seeAllListingsBtn) {
+        seeAllListingsBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          renderAllListings();
+          showPage('allListingsPage');
+        });
+      }
+      
+      // All categories back button
+      if (allCatBackBtn) {
+        allCatBackBtn.addEventListener('click', function() {
+          showPage('homePage');
+        });
+      }
+      
+      // All listings back button
+      if (allListingsBackBtn) {
+        allListingsBackBtn.addEventListener('click', function() {
+          showPage('homePage');
+        });
+      }
+      
+      // Filter apply button
+      const filterApplyBtn = document.getElementById('filterApplyBtn');
+      if (filterApplyBtn) {
+        filterApplyBtn.addEventListener('click', function() {
+          const query = searchPageInput ? searchPageInput.value.trim() : '';
+          performSearch(query);
+        });
+      }
+      
+      // Filter reset button
+      const filterResetBtn = document.getElementById('filterResetBtn');
+      if (filterResetBtn) {
+        filterResetBtn.addEventListener('click', function() {
+          // Reset all filters
+          const filterCategory = document.getElementById('filterCategory');
+          const filterMaxPrice = document.getElementById('filterMaxPrice');
+          const filterCondition = document.getElementById('filterCondition');
+          const filterLocation = document.getElementById('filterLocation');
+          if (filterCategory) filterCategory.value = '';
+          if (filterMaxPrice) filterMaxPrice.value = '';
+          if (filterCondition) filterCondition.value = '';
+          if (filterLocation) filterLocation.value = '';
+          if (searchPageInput) searchPageInput.value = '';
+          // Clear results
+          if (searchResults) searchResults.innerHTML = '';
+        });
+      }
+    }
+    
+    // ===== SEARCH FUNCTION =====
+    function performSearch(query) {
+      if (!searchResults) return;
+      
+      // Get filter values
+      const filterCategory = document.getElementById('filterCategory');
+      const filterMaxPrice = document.getElementById('filterMaxPrice');
+      const filterCondition = document.getElementById('filterCondition');
+      const filterLocation = document.getElementById('filterLocation');
+      
+      const catVal = filterCategory ? filterCategory.value : '';
+      const maxPrice = filterMaxPrice ? parseFloat(filterMaxPrice.value) || Infinity : Infinity;
+      const condVal = filterCondition ? filterCondition.value : '';
+      const locVal = filterLocation ? filterLocation.value.toLowerCase().trim() : '';
+      
+      // Filter with text + filters
+      let results = demoData.products.filter(product => {
+        // Text search
+        const matchesQuery = !query || 
+          product.title.toLowerCase().includes(query.toLowerCase()) ||
+          product.description.toLowerCase().includes(query.toLowerCase());
+        
+        // Category filter
+        const matchesCategory = !catVal || product.category === catVal || 
+          (product.wantedCategory && product.wantedCategory === catVal);
+        
+        // Price filter
+        const matchesPrice = product.value <= maxPrice;
+        
+        // Condition filter
+        const matchesCondition = !condVal || product.condition === condVal;
+        
+        // Location filter
+        const matchesLocation = !locVal || product.city.toLowerCase().includes(locVal);
+        
+        return matchesQuery && matchesCategory && matchesPrice && matchesCondition && matchesLocation;
+      });
+      
+      searchResults.innerHTML = '';
+      
+      if (results.length === 0) {
+        searchResults.innerHTML = `
+          <div class="text-center" style="padding: 40px 20px; color: var(--text-secondary);">
+            <i class="fas fa-search" style="font-size: 3rem; margin-bottom: 16px;"></i>
+            <h3 style="font-family: var(--font-heading); margin-bottom: 8px;">No se encontraron resultados</h3>
+            <p>Intenta con otras palabras clave o ajusta los filtros.</p>
+          </div>
+        `;
+        return;
+      }
+      
+      results.forEach(product => {
+        const user = demoData.users.find(u => u.id === product.userId) || demoData.users[0];
+        const category = demoData.categories.find(c => c.slug === product.category) || demoData.categories[0];
+        
+        const listingCard = document.createElement('div');
+        listingCard.className = 'listing-card';
+        listingCard.innerHTML = `
+          <div class="listing-image">
+            ${product.imageIcon || 'ðŸ“¦'}
+            <button class="like-btn" data-product-id="${product.id}">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="listing-info">
+            <h3 class="listing-title">${product.title}</h3>
+            <div class="listing-price">â‚¬${product.value}</div>
+            <div class="listing-meta">
+              <span class="listing-condition">${product.condition === 'new' ? 'Nuevo' : product.condition === 'like-new' ? 'Como nuevo' : 'Usado'}</span>
+              <span>${product.city}</span>
+            </div>
+          </div>
+        `;
+        
+        listingCard.addEventListener('click', (e) => {
+          if (e.target.closest('.like-btn')) return;
+          openProductPage(product);
+        });
+        
+        // Like button functionality
+        const likeBtn = listingCard.querySelector('.like-btn');
+        if (likeBtn) {
+          likeBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const icon = this.querySelector('i');
+            if (icon.classList.contains('far')) {
+              icon.classList.remove('far');
+              icon.classList.add('fas');
+              this.classList.add('liked');
+            } else {
+              icon.classList.remove('fas');
+              icon.classList.add('far');
+              this.classList.remove('liked');
+            }
+          });
+        }
+        
+        searchResults.appendChild(listingCard);
+      });
+    }
+    
+    // ===== ALL CATEGORIES RENDER =====
+    function renderAllCategories() {
+      if (!allCategoriesGrid) return;
+      allCategoriesGrid.innerHTML = '';
+      
+      demoData.categories.forEach(category => {
+        const categoryCard = document.createElement('div');
+        categoryCard.className = 'category-card';
+        categoryCard.innerHTML = `
+          <div class="category-icon">${category.icon}</div>
+          <div class="category-name">${category.name}</div>
+        `;
+        categoryCard.addEventListener('click', () => {
+          alert(`CategorÃ­a: ${category.name}\nSubcategorÃ­as: ${category.subcategories.join(', ')}`);
+        });
+        allCategoriesGrid.appendChild(categoryCard);
+      });
+    }
+    
+    // ===== ALL LISTINGS RENDER =====
+    function renderAllListings() {
+      if (!allListingsContainer) return;
+      allListingsContainer.innerHTML = '';
+      
+      demoData.products.forEach(product => {
+        const user = demoData.users.find(u => u.id === product.userId) || demoData.users[0];
+        const category = demoData.categories.find(c => c.slug === product.category) || demoData.categories[0];
+        
+        const listingCard = document.createElement('div');
+        listingCard.className = 'listing-card';
+        listingCard.innerHTML = `
+          <div class="listing-image">
+            ${product.imageIcon || 'ðŸ“¦'}
+            <button class="like-btn" data-product-id="${product.id}">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+          <div class="listing-info">
+            <h3 class="listing-title">${product.title}</h3>
+            <div class="listing-price">â‚¬${product.value}</div>
+            <div class="listing-meta">
+              <span class="listing-condition">${product.condition === 'new' ? 'Nuevo' : product.condition === 'like-new' ? 'Como nuevo' : 'Usado'}</span>
+              <span>${product.city}</span>
+            </div>
+          </div>
+        `;
+        
+        listingCard.addEventListener('click', (e) => {
+          if (e.target.closest('.like-btn')) return;
+          openProductPage(product);
+        });
+        
+        // Like button functionality
+        const likeBtn = listingCard.querySelector('.like-btn');
+        likeBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          const icon = this.querySelector('i');
+          if (icon.classList.contains('far')) {
+            icon.classList.remove('far');
+            icon.classList.add('fas');
+            this.classList.add('liked');
+          } else {
+            icon.classList.remove('fas');
+            icon.classList.add('far');
+            this.classList.remove('liked');
+          }
+        });
+        
+        allListingsContainer.appendChild(listingCard);
+      });
+    }
+    
+    // ===== INITIAL RENDER =====
+    // Show home page by default
+    showPage('homePage');
+    
+  </script>
+</body>
+</html>
