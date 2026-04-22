@@ -6,430 +6,340 @@
   <title>Treqe · Intercambio Circular</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Anton&family=Space+Grotesk:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Oswald:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --orange: #FF6A00;
-      --orange-hover: #E55F00;
-      --teal: #00B8B8;
-      --red: #E30613;
-      --yellow: #FFB700;
-      --black: #111111;
-      --dark: #1A1A1A;
-      --charcoal: #2C2C2C;
-      --dark-gray: #3A3A3A;
-      --cream: #F8F5F0;
-      --white: #FFFFFF;
-      --text-primary: #FFFFFF;
-      --text-secondary: #B0B0B0;
-      --text-muted: #808080;
-      --card-bg: #1E1E1E;
-      --card-border: #2A2A2A;
-      --input-bg: #252525;
-      --overlay: rgba(0,0,0,0.6);
-      --font-heading: 'Oswald', sans-serif;
-      --font-brand: 'Anton', sans-serif;
-      --font-sub: 'Space Grotesk', sans-serif;
+      --bg-primary: #0F172A;
+      --bg-secondary: #1E293B;
+      --bg-search: #020617;
+      --border-dark: #334155;
+      --border-light: #E2E8F0;
+      --orange: #F97316;
+      --orange-hover: #EA580C;
+      --orange-shadow: rgba(249,115,22,0.4);
+      --teal: #22D3EE;
+      --blue: #3B82F6;
+      --red-badge: #EF4444;
+      --green: #10B981;
+      --yellow: #F59E0B;
+      --card-bg: #FFFFFF;
+      --text-white: #FFFFFF;
+      --text-dark: #1E293B;
+      --text-secondary: #94A3B8;
+      --text-muted: #64748B;
       --font-body: 'Inter', sans-serif;
-      --font-accent: 'Bebas Neue', sans-serif;
-      --radius-sm: 8px;
+      --font-heading: 'Oswald', sans-serif;
+      --font-sub: 'Space Grotesk', sans-serif;
+      --radius-sm: 6px;
       --radius-md: 12px;
       --radius-lg: 16px;
-      --radius-xl: 24px;
-      --shadow: 0 2px 8px rgba(0,0,0,0.3);
-      --shadow-lg: 0 8px 24px rgba(0,0,0,0.5);
-      --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition: all 0.2s ease;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
     html { font-size: 16px; height: 100%; }
-    body { font-family: var(--font-body); background: var(--black); color: var(--text-primary); line-height: 1.5; height: 100%; overflow-x: hidden; }
-    .app-container { max-width: 480px; margin: 0 auto; min-height: 100vh; background: var(--black); position: relative; }
+    body { font-family: var(--font-body); background: var(--bg-primary); color: var(--text-white); line-height: 1.5; height: 100%; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    .app-container { max-width: 480px; margin: 0 auto; min-height: 100vh; background: var(--bg-primary); position: relative; }
 
-    /* HEADER */
-    .app-header { background: var(--black); padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--card-border); }
-    .logo { display: flex; align-items: center; gap: 8px; }
-    .logo img { height: 28px; width: auto; }
-    .logo-text { font-family: var(--font-brand); font-size: 1.6rem; color: var(--orange); letter-spacing: 2px; }
-    .header-actions { display: flex; gap: 12px; align-items: center; }
-    .icon-btn { background: none; border: none; color: var(--text-secondary); font-size: 1.1rem; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: var(--transition); position: relative; }
-    .icon-btn:active { background: var(--charcoal); transform: scale(0.92); }
-    .notification-badge { position: absolute; top: 2px; right: 2px; width: 16px; height: 16px; background: var(--red); color: var(--white); font-size: 0.6rem; font-weight: 700; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid var(--black); }
+    .app-header { background: var(--bg-primary); padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+    .logo-text { font-family: var(--font-body); font-weight: 700; font-size: 1.3rem; letter-spacing: -0.5px; background: linear-gradient(135deg, var(--teal), var(--blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .header-actions { display: flex; gap: 16px; align-items: center; }
+    .header-icon { background: none; border: none; color: var(--text-secondary); font-size: 1.15rem; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: var(--transition); position: relative; cursor: pointer; }
+    .header-icon:active { background: var(--bg-secondary); }
+    .badge { position: absolute; top: 0; right: 0; width: 16px; height: 16px; background: var(--red-badge); color: var(--text-white); font-size: 0.55rem; font-weight: 700; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid var(--bg-primary); }
 
-    /* SEARCH */
-    .search-container { padding: 12px 16px; background: var(--black); }
-    .search-bar { display: flex; background: var(--input-bg); border-radius: var(--radius-md); border: 1px solid var(--card-border); overflow: hidden; }
-    .search-input { flex: 1; background: transparent; border: none; padding: 12px 16px; color: var(--text-primary); font-family: var(--font-body); font-size: 0.9rem; }
-    .search-input::placeholder { color: var(--text-muted); }
-    .search-btn, .filter-btn { background: none; border: none; color: var(--text-secondary); padding: 0 14px; cursor: pointer; transition: var(--transition); }
-    .search-btn:hover, .filter-btn:hover { color: var(--orange); }
-
-    /* HERO */
-    .hero-banner { position: relative; height: 200px; margin: 0 16px 20px; border-radius: var(--radius-lg); overflow: hidden; background: linear-gradient(135deg, var(--charcoal) 0%, var(--black) 100%); display: flex; align-items: flex-end; padding: 20px; }
-    .hero-banner::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%); }
-    .hero-content { position: relative; z-index: 1; }
-    .hero-title { font-family: var(--font-heading); font-weight: 700; font-size: 1.5rem; text-transform: uppercase; letter-spacing: 3px; color: var(--white); margin-bottom: 4px; }
+    .hero { position: relative; margin: 0 20px 24px; border-radius: var(--radius-lg); overflow: hidden; height: 200px; background: var(--bg-secondary); }
+    .hero-orange { position: absolute; top: 0; right: 0; width: 60%; height: 100%; background: var(--orange); clip-path: polygon(40% 0, 100% 0, 100% 100%, 0% 100%); opacity: 0.9; }
+    .hero-content { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 20px; z-index: 1; }
+    .hero-title { font-family: var(--font-heading); font-weight: 700; font-size: 1.6rem; text-transform: uppercase; letter-spacing: 3px; color: var(--text-white); line-height: 1.2; margin-bottom: 6px; }
     .hero-title span { color: var(--orange); }
-    .hero-subtitle { font-family: var(--font-sub); font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 12px; }
-    .hero-cta { display: inline-flex; align-items: center; gap: 8px; background: var(--orange); color: var(--white); border: none; padding: 10px 20px; border-radius: var(--radius-sm); font-family: var(--font-heading); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: var(--transition); }
-    .hero-cta:active { background: var(--orange-hover); transform: scale(0.96); }
+    .hero-sub { font-size: 0.82rem; color: rgba(255,255,255,0.8); margin-bottom: 14px; }
+    .hero-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--orange); color: var(--text-white); border: none; padding: 10px 18px; border-radius: var(--radius-sm); font-family: var(--font-body); font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: var(--transition); width: fit-content; }
+    .hero-btn:active { background: var(--orange-hover); transform: scale(0.96); }
 
-    /* SECTIONS */
-    .section-header { display: flex; align-items: center; justify-content: space-between; padding: 0 16px; margin-bottom: 14px; }
-    .section-title { font-family: var(--font-heading); font-weight: 700; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-primary); }
-    .see-all { color: var(--orange); font-family: var(--font-sub); font-size: 0.8rem; font-weight: 500; text-decoration: none; cursor: pointer; }
+    .search-wrap { padding: 0 20px; margin-bottom: 28px; }
+    .search-bar { display: flex; background: var(--bg-search); border-radius: var(--radius-md); border: 1px solid var(--border-dark); overflow: hidden; }
+    .search-bar input { flex: 1; background: transparent; border: none; padding: 12px 14px; color: var(--text-white); font-family: var(--font-body); font-size: 0.85rem; }
+    .search-bar input::placeholder { color: var(--text-secondary); }
+    .search-bar button { background: none; border: none; color: var(--text-secondary); padding: 0 14px; cursor: pointer; font-size: 0.95rem; }
+    .search-bar button:active { color: var(--orange); }
 
-    /* CATEGORIES */
-    .categories-scroll { display: flex; gap: 12px; padding: 0 16px; overflow-x: auto; margin-bottom: 24px; scrollbar-width: none; }
-    .categories-scroll::-webkit-scrollbar { display: none; }
-    .category-chip { flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 6px; cursor: pointer; transition: var(--transition); }
-    .category-chip:active { transform: scale(0.92); }
-    .category-icon { width: 56px; height: 56px; border-radius: 50%; background: var(--card-bg); border: 1px solid var(--card-border); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; transition: var(--transition); }
-    .category-chip:active .category-icon { border-color: var(--orange); background: rgba(255,106,0,0.1); }
-    .category-name { font-family: var(--font-sub); font-size: 0.65rem; color: var(--text-secondary); text-align: center; max-width: 64px; line-height: 1.2; }
+    .section-head { display: flex; align-items: center; justify-content: space-between; padding: 0 20px; margin-bottom: 14px; }
+    .section-head h2 { font-family: var(--font-heading); font-weight: 700; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-white); }
+    .section-head .see-all { color: var(--orange); font-size: 0.75rem; font-weight: 500; text-decoration: none; cursor: pointer; }
 
-    /* PRODUCT CARDS */
-    .listings-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 0 16px; margin-bottom: 24px; }
-    .listing-card { background: var(--card-bg); border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--card-border); cursor: pointer; transition: var(--transition); }
-    .listing-card:active { transform: scale(0.97); border-color: var(--dark-gray); }
-    .listing-image { position: relative; height: 140px; background: var(--charcoal); overflow: hidden; }
-    .listing-image img { width: 100%; height: 100%; object-fit: cover; }
-    .listing-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; color: var(--text-muted); }
-    .like-btn { position: absolute; top: 8px; right: 8px; width: 32px; height: 32px; border-radius: 50%; background: rgba(0,0,0,0.5); border: none; color: var(--white); font-size: 0.9rem; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: var(--transition); backdrop-filter: blur(4px); }
-    .like-btn.liked { color: var(--orange); }
-    .like-btn:active { transform: scale(0.85); }
-    .listing-info { padding: 10px 12px; }
-    .listing-title { font-family: var(--font-body); font-weight: 500; font-size: 0.85rem; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 4px; }
-    .listing-price { font-family: var(--font-heading); font-weight: 600; font-size: 1rem; color: var(--orange); }
-    .listing-meta { font-size: 0.7rem; color: var(--text-muted); margin-top: 2px; }
+    .cat-section { background: var(--bg-secondary); padding: 20px 0; margin-bottom: 28px; }
+    .cat-scroll { display: flex; gap: 16px; padding: 0 20px; overflow-x: auto; scrollbar-width: none; }
+    .cat-scroll::-webkit-scrollbar { display: none; }
+    .cat-item { flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 8px; cursor: pointer; }
+    .cat-item:active { transform: scale(0.9); }
+    .cat-circle { width: 52px; height: 52px; border-radius: 50%; background: var(--bg-primary); border: 1px solid var(--border-dark); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; transition: var(--transition); }
+    .cat-item:active .cat-circle { border-color: var(--orange); }
+    .cat-label { font-size: 0.65rem; font-weight: 500; color: var(--text-secondary); text-align: center; max-width: 60px; line-height: 1.2; }
 
-    /* BOTTOM NAV */
-    .bottom-nav { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 480px; background: var(--black); border-top: 1px solid var(--card-border); display: flex; align-items: center; justify-content: space-around; padding: 6px 0; padding-bottom: env(safe-area-inset-bottom, 8px); z-index: 200; }
-    .nav-item { display: flex; flex-direction: column; align-items: center; gap: 2px; text-decoration: none; color: var(--text-muted); padding: 4px 12px; transition: var(--transition); position: relative; }
+    .products-scroll { display: flex; gap: 12px; padding: 0 20px; overflow-x: auto; margin-bottom: 28px; scrollbar-width: none; }
+    .products-scroll::-webkit-scrollbar { display: none; }
+    .product-card { flex-shrink: 0; width: 155px; background: var(--card-bg); border-radius: var(--radius-lg); overflow: hidden; cursor: pointer; transition: var(--transition); }
+    .product-card:active { transform: scale(0.96); }
+    .product-card-img { position: relative; width: 100%; aspect-ratio: 1/1; background: var(--bg-secondary); display: flex; align-items: center; justify-content: center; }
+    .product-card-img span { font-size: 2.5rem; }
+    .product-card .like-btn { position: absolute; top: 8px; right: 8px; width: 28px; height: 28px; border-radius: 50%; background: rgba(255,255,255,0.85); border: none; color: var(--text-muted); font-size: 0.8rem; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: var(--transition); backdrop-filter: blur(4px); }
+    .product-card .like-btn.liked { color: var(--orange); }
+    .product-card .like-btn:active { transform: scale(0.8); }
+    .product-card-body { padding: 10px 12px 12px; }
+    .product-card-brand { font-size: 0.65rem; font-weight: 600; color: var(--orange); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px; display: flex; align-items: center; gap: 4px; }
+    .product-card-brand i { font-size: 0.55rem; }
+    .product-card-title { font-size: 0.8rem; font-weight: 700; color: var(--text-dark); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 3px; }
+    .product-card-price { font-family: var(--font-heading); font-weight: 600; font-size: 0.95rem; color: var(--text-dark); }
+
+    .bottom-nav { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 480px; background: var(--card-bg); border-top: 1px solid var(--border-light); display: flex; align-items: flex-end; justify-content: space-around; padding: 0 8px; padding-bottom: max(8px, env(safe-area-inset-bottom)); z-index: 200; height: 64px; }
+    .nav-item { display: flex; flex-direction: column; align-items: center; gap: 2px; text-decoration: none; color: var(--text-muted); padding: 6px 10px; transition: var(--transition); position: relative; flex: 1; }
     .nav-item.active { color: var(--orange); }
     .nav-item:active { transform: scale(0.9); }
-    .nav-icon { font-size: 1.2rem; }
-    .nav-label { font-family: var(--font-sub); font-size: 0.6rem; font-weight: 500; letter-spacing: 0.5px; }
-    .nav-item.sell { position: relative; top: -12px; }
-    .nav-item.sell .nav-icon { width: 52px; height: 52px; background: var(--orange); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 1.4rem; box-shadow: 0 4px 16px rgba(255,106,0,0.4); }
-    .nav-item.sell .nav-label { color: var(--orange); margin-top: 2px; }
-    .nav-item .notification-badge { position: absolute; top: -2px; right: 4px; width: 14px; height: 14px; font-size: 0.55rem; }
+    .nav-item .nav-icon { font-size: 1.15rem; }
+    .nav-item .nav-label { font-size: 0.55rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+    .nav-item .badge { top: -2px; right: 50%; margin-right: -18px; width: 14px; height: 14px; font-size: 0.5rem; border-color: var(--card-bg); }
+    .nav-item.sell { position: relative; top: -18px; }
+    .nav-item.sell .sell-circle { width: 56px; height: 56px; background: var(--orange); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--text-white); font-size: 1.3rem; box-shadow: 0 10px 20px var(--orange-shadow); transition: var(--transition); }
+    .nav-item.sell:active .sell-circle { transform: scale(0.92); }
+    .nav-item.sell .nav-label { margin-top: 4px; color: var(--orange); }
 
-    /* PAGES */
-    .page { display: none; padding-bottom: 100px; min-height: calc(100vh - 60px); }
+    .page { display: none; padding-bottom: 80px; min-height: calc(100vh - 60px); }
     .page.active { display: block; }
 
-    /* PRODUCT PAGE */
-    .product-page { position: fixed; inset: 0; background: var(--black); z-index: 300; overflow-y: auto; display: none; }
-    .product-page.active { display: block; }
-    .product-header { position: sticky; top: 0; z-index: 10; background: var(--black); padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--card-border); }
-    .back-btn { background: none; border: none; color: var(--text-primary); font-size: 1.2rem; padding: 8px; cursor: pointer; }
-    .product-image-container { width: 100%; height: 300px; background: var(--charcoal); display: flex; align-items: center; justify-content: center; }
-    .product-image-container img { width: 100%; height: 100%; object-fit: cover; }
-    .product-image-placeholder { font-size: 4rem; color: var(--text-muted); }
-    .product-details { padding: 20px 16px; }
-    .product-title { font-family: var(--font-heading); font-weight: 700; font-size: 1.3rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
-    .product-price { font-family: var(--font-heading); font-weight: 600; font-size: 1.5rem; color: var(--orange); margin-bottom: 16px; }
-    .product-specs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 20px; }
-    .spec-item { background: var(--card-bg); border-radius: var(--radius-sm); padding: 12px; border: 1px solid var(--card-border); }
-    .spec-label { font-family: var(--font-sub); font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
-    .spec-value { font-family: var(--font-body); font-weight: 500; font-size: 0.9rem; color: var(--text-primary); }
-    .product-description { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 24px; }
-    .treqear-btn { width: 100%; padding: 16px; background: var(--orange); color: var(--white); border: none; border-radius: var(--radius-md); font-family: var(--font-heading); font-weight: 700; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: var(--transition); display: flex; align-items: center; justify-content: center; gap: 10px; }
+    .search-page { padding: 0 20px 100px; }
+    .search-page .search-bar { margin-bottom: 12px; }
+    .filters-row { display: flex; gap: 8px; padding: 8px 0 12px; overflow-x: auto; scrollbar-width: none; }
+    .filters-row::-webkit-scrollbar { display: none; }
+    .filter-select, .filter-input { background: var(--bg-search); border: 1px solid var(--border-dark); border-radius: var(--radius-sm); padding: 8px 12px; color: var(--text-white); font-family: var(--font-body); font-size: 0.78rem; min-width: 110px; }
+    .filter-select option { background: var(--bg-secondary); }
+    .filter-input { width: 75px; }
+    .filter-btn-apply { background: var(--orange); color: var(--text-white); border: none; border-radius: var(--radius-sm); padding: 8px 14px; font-family: var(--font-body); font-weight: 700; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; white-space: nowrap; }
+    .filter-btn-reset { background: var(--bg-secondary); color: var(--text-secondary); border: 1px solid var(--border-dark); border-radius: var(--radius-sm); padding: 8px 14px; font-size: 0.7rem; cursor: pointer; white-space: nowrap; }
+    .results-count { font-size: 0.75rem; color: var(--text-muted); padding: 8px 0; }
+    .results-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .results-grid .product-card { width: 100%; flex: none; }
+
+    .sell-page { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 60px 20px 100px; text-align: center; }
+    .sell-circle-big { width: 80px; height: 80px; border-radius: 50%; background: var(--orange); display: flex; align-items: center; justify-content: center; font-size: 2rem; color: var(--text-white); margin-bottom: 24px; box-shadow: 0 10px 25px var(--orange-shadow); }
+    .sell-page h2 { font-family: var(--font-heading); font-weight: 700; font-size: 1.4rem; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 8px; }
+    .sell-page p { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 28px; max-width: 260px; }
+
+    .notif-page { padding: 0 20px 100px; }
+    .notif-page .page-title { font-family: var(--font-heading); font-weight: 700; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; padding: 16px 0 12px; }
+    .notif-item { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--border-dark); }
+    .notif-item:last-child { border-bottom: none; }
+    .notif-icon-wrap { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0; }
+    .notif-icon-wrap.match { background: rgba(34,211,238,0.12); color: var(--teal); }
+    .notif-icon-wrap.accepted { background: rgba(16,185,129,0.12); color: var(--green); }
+    .notif-icon-wrap.rejected { background: rgba(239,68,68,0.12); color: var(--red-badge); }
+    .notif-icon-wrap.shipping { background: rgba(59,130,246,0.12); color: var(--blue); }
+    .notif-icon-wrap.pending { background: rgba(245,158,11,0.12); color: var(--yellow); }
+    .notif-body { flex: 1; }
+    .notif-title { font-family: var(--font-sub); font-weight: 600; font-size: 0.82rem; color: var(--text-white); margin-bottom: 2px; }
+    .notif-text { font-size: 0.75rem; color: var(--text-secondary); line-height: 1.4; }
+    .notif-time { font-size: 0.65rem; color: var(--text-muted); margin-top: 4px; }
+
+    .exchange-page { padding: 0 20px 100px; }
+    .exchange-page .page-title { font-family: var(--font-heading); font-weight: 700; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; padding: 16px 0 12px; }
+    .exchange-item { display: flex; gap: 14px; padding: 14px; background: var(--bg-secondary); border-radius: var(--radius-md); margin-bottom: 10px; border: 1px solid var(--border-dark); cursor: pointer; transition: var(--transition); }
+    .exchange-item:active { border-color: var(--text-muted); }
+    .exchange-thumb { width: 48px; height: 48px; border-radius: var(--radius-sm); background: var(--bg-primary); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
+    .exchange-body { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+    .exchange-title { font-family: var(--font-sub); font-weight: 600; font-size: 0.82rem; color: var(--text-white); margin-bottom: 6px; }
+    .status-pill { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+    .status-pill.pending { background: rgba(245,158,11,0.15); color: var(--yellow); }
+    .status-pill.accepted { background: rgba(16,185,129,0.15); color: var(--green); }
+    .status-pill.rejected { background: rgba(239,68,68,0.15); color: var(--red-badge); }
+    .status-pill.shipping { background: rgba(59,130,246,0.15); color: var(--blue); }
+
+    .profile-page { padding: 0 20px 100px; }
+    .profile-head { text-align: center; padding: 24px 0; }
+    .profile-avatar { width: 72px; height: 72px; border-radius: 50%; background: var(--bg-secondary); border: 3px solid var(--orange); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin: 0 auto 12px; }
+    .profile-name { font-family: var(--font-heading); font-weight: 700; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; }
+    .profile-stats { display: flex; justify-content: center; gap: 28px; margin-top: 14px; }
+    .stat-val { font-family: var(--font-heading); font-weight: 700; font-size: 1.2rem; color: var(--orange); }
+    .stat-lbl { font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+    .profile-menu { margin-top: 12px; }
+    .menu-row { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; background: var(--bg-secondary); border-radius: var(--radius-sm); margin-bottom: 8px; border: 1px solid var(--border-dark); cursor: pointer; transition: var(--transition); }
+    .menu-row:active { border-color: var(--text-muted); }
+    .menu-row-left { display: flex; align-items: center; gap: 12px; }
+    .menu-row i { color: var(--text-secondary); font-size: 0.95rem; width: 18px; text-align: center; }
+    .menu-row span { font-size: 0.82rem; color: var(--text-white); }
+    .menu-row .arrow { color: var(--text-muted); font-size: 0.7rem; }
+
+    .detail-page { position: fixed; inset: 0; background: var(--bg-primary); z-index: 300; overflow-y: auto; display: none; }
+    .detail-page.active { display: block; }
+    .detail-header { position: sticky; top: 0; z-index: 10; background: var(--bg-primary); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border-dark); }
+    .detail-back { background: none; border: none; color: var(--text-white); font-size: 1.1rem; padding: 8px; cursor: pointer; }
+    .detail-img { width: 100%; height: 280px; background: var(--bg-secondary); display: flex; align-items: center; justify-content: center; }
+    .detail-img span { font-size: 4rem; }
+    .detail-body { padding: 20px; }
+    .detail-title { font-family: var(--font-heading); font-weight: 700; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+    .detail-price { font-family: var(--font-heading); font-weight: 600; font-size: 1.4rem; color: var(--orange); margin-bottom: 18px; }
+    .detail-specs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 18px; }
+    .spec-box { background: var(--bg-secondary); border-radius: var(--radius-sm); padding: 12px; border: 1px solid var(--border-dark); }
+    .spec-label { font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 3px; }
+    .spec-val { font-size: 0.85rem; font-weight: 600; color: var(--text-white); }
+    .detail-desc { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 24px; }
+    .treqear-btn { width: 100%; padding: 16px; background: var(--orange); color: var(--text-white); border: none; border-radius: var(--radius-md); font-family: var(--font-body); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: var(--transition); display: flex; align-items: center; justify-content: center; gap: 10px; }
     .treqear-btn:active { background: var(--orange-hover); transform: scale(0.98); }
 
-    /* NOTIFICATIONS */
-    .notifications-page { padding: 16px; }
-    .notif-item { display: flex; gap: 12px; padding: 14px; background: var(--card-bg); border-radius: var(--radius-md); margin-bottom: 10px; border: 1px solid var(--card-border); }
-    .notif-icon { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
-    .notif-icon.match { background: rgba(0,184,184,0.15); color: var(--teal); }
-    .notif-icon.accepted { background: rgba(39,174,96,0.15); color: #27AE60; }
-    .notif-icon.rejected { background: rgba(227,6,19,0.15); color: var(--red); }
-    .notif-icon.shipping { background: rgba(52,152,219,0.15); color: #3498DB; }
-    .notif-icon.pending { background: rgba(255,183,0,0.15); color: var(--yellow); }
-    .notif-content { flex: 1; }
-    .notif-title { font-family: var(--font-sub); font-weight: 600; font-size: 0.85rem; color: var(--text-primary); margin-bottom: 2px; }
-    .notif-text { font-size: 0.78rem; color: var(--text-secondary); line-height: 1.4; }
-    .notif-time { font-size: 0.7rem; color: var(--text-muted); margin-top: 4px; }
+    .list-page { padding: 0 20px 100px; }
+    .list-head { display: flex; align-items: center; gap: 12px; padding: 14px 0; position: sticky; top: 0; background: var(--bg-primary); z-index: 10; border-bottom: 1px solid var(--border-dark); }
+    .list-head h2 { font-family: var(--font-heading); font-weight: 700; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; }
+    .all-cat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 16px 0; }
+    .all-cat-card { background: var(--bg-secondary); border-radius: var(--radius-md); padding: 14px; border: 1px solid var(--border-dark); cursor: pointer; transition: var(--transition); }
+    .all-cat-card:active { border-color: var(--orange); }
+    .all-cat-icon { font-size: 1.4rem; margin-bottom: 6px; }
+    .all-cat-name { font-family: var(--font-sub); font-weight: 600; font-size: 0.78rem; color: var(--text-white); margin-bottom: 3px; }
+    .all-cat-subs { font-size: 0.65rem; color: var(--text-muted); line-height: 1.3; }
 
-    /* PROFILE */
-    .profile-page { padding: 16px; }
-    .profile-header { text-align: center; padding: 20px 0; margin-bottom: 20px; }
-    .profile-avatar { width: 80px; height: 80px; border-radius: 50%; background: var(--charcoal); border: 3px solid var(--orange); display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 12px; }
-    .profile-name { font-family: var(--font-heading); font-weight: 700; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 1px; }
-    .profile-stats { display: flex; justify-content: center; gap: 24px; margin-top: 12px; }
-    .stat-item { text-align: center; }
-    .stat-value { font-family: var(--font-heading); font-weight: 700; font-size: 1.3rem; color: var(--orange); }
-    .stat-label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
-    .profile-menu { margin-top: 8px; }
-    .menu-item { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; background: var(--card-bg); border-radius: var(--radius-sm); margin-bottom: 8px; border: 1px solid var(--card-border); cursor: pointer; transition: var(--transition); }
-    .menu-item:active { border-color: var(--dark-gray); }
-    .menu-item-left { display: flex; align-items: center; gap: 12px; }
-    .menu-item i { color: var(--text-secondary); font-size: 1rem; width: 20px; text-align: center; }
-    .menu-item span { font-family: var(--font-sub); font-size: 0.85rem; color: var(--text-primary); }
-    .menu-item .arrow { color: var(--text-muted); font-size: 0.8rem; }
-
-    /* SEARCH PAGE */
-    .search-page { padding: 0 16px 100px; }
-    .search-page-header { padding: 12px 0; position: sticky; top: 0; background: var(--black); z-index: 10; }
-    .filters-row { display: flex; gap: 8px; padding: 10px 0; overflow-x: auto; scrollbar-width: none; }
-    .filters-row::-webkit-scrollbar { display: none; }
-    .filter-select, .filter-input { background: var(--input-bg); border: 1px solid var(--card-border); border-radius: var(--radius-sm); padding: 8px 12px; color: var(--text-primary); font-family: var(--font-sub); font-size: 0.8rem; min-width: 120px; }
-    .filter-select option { background: var(--charcoal); }
-    .filter-input { width: 80px; }
-    .filter-apply-btn { background: var(--orange); color: var(--white); border: none; border-radius: var(--radius-sm); padding: 8px 16px; font-family: var(--font-heading); font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; white-space: nowrap; }
-    .filter-reset-btn { background: var(--charcoal); color: var(--text-secondary); border: 1px solid var(--card-border); border-radius: var(--radius-sm); padding: 8px 16px; font-family: var(--font-sub); font-size: 0.75rem; cursor: pointer; white-space: nowrap; }
-    .search-results-count { font-family: var(--font-sub); font-size: 0.8rem; color: var(--text-muted); padding: 8px 0; }
-
-    /* SELL PAGE */
-    .sell-page { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 20px 100px; text-align: center; }
-    .sell-icon { width: 80px; height: 80px; border-radius: 50%; background: var(--orange); display: flex; align-items: center; justify-content: center; font-size: 2rem; color: var(--white); margin-bottom: 20px; }
-    .sell-title { font-family: var(--font-heading); font-weight: 700; font-size: 1.3rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
-    .sell-subtitle { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 24px; max-width: 280px; }
-    .sell-cta { background: var(--orange); color: var(--white); border: none; padding: 14px 32px; border-radius: var(--radius-md); font-family: var(--font-heading); font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: var(--transition); }
-    .sell-cta:active { background: var(--orange-hover); transform: scale(0.96); }
-
-    /* LIST PAGES */
-    .list-page { padding: 0 16px 100px; }
-    .list-page-header { display: flex; align-items: center; gap: 12px; padding: 12px 0; position: sticky; top: 0; background: var(--black); z-index: 10; border-bottom: 1px solid var(--card-border); }
-    .list-page-title { font-family: var(--font-heading); font-weight: 700; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; }
-    .all-categories-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 16px 0; }
-    .all-category-card { background: var(--card-bg); border-radius: var(--radius-md); padding: 14px; border: 1px solid var(--card-border); cursor: pointer; transition: var(--transition); }
-    .all-category-card:active { border-color: var(--orange); }
-    .all-category-icon { font-size: 1.5rem; margin-bottom: 6px; }
-    .all-category-name { font-family: var(--font-sub); font-weight: 600; font-size: 0.8rem; color: var(--text-primary); margin-bottom: 4px; }
-    .all-category-subs { font-size: 0.7rem; color: var(--text-muted); line-height: 1.3; }
-
-    /* HOW IT WORKS */
-    .how-it-works { padding: 20px 16px; }
-    .how-step { display: flex; gap: 16px; margin-bottom: 20px; align-items: flex-start; }
-    .step-number { width: 36px; height: 36px; border-radius: 50%; background: var(--orange); color: var(--white); display: flex; align-items: center; justify-content: center; font-family: var(--font-heading); font-weight: 700; font-size: 1rem; flex-shrink: 0; }
-    .step-content h4 { font-family: var(--font-heading); font-weight: 600; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
-    .step-content p { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.5; }
-
-    /* EXCHANGES */
-    .exchanges-page { padding: 16px; }
-    .exchange-item { display: flex; gap: 12px; padding: 14px; background: var(--card-bg); border-radius: var(--radius-md); margin-bottom: 10px; border: 1px solid var(--card-border); cursor: pointer; transition: var(--transition); }
-    .exchange-item:active { border-color: var(--dark-gray); }
-    .exchange-thumb { width: 48px; height: 48px; border-radius: var(--radius-sm); background: var(--charcoal); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
-    .exchange-info { flex: 1; }
-    .exchange-title { font-family: var(--font-sub); font-weight: 600; font-size: 0.85rem; color: var(--text-primary); margin-bottom: 4px; }
-    .exchange-status { display: inline-block; padding: 3px 10px; border-radius: 20px; font-family: var(--font-sub); font-size: 0.7rem; font-weight: 600; }
-    .status-pending { background: rgba(255,183,0,0.15); color: var(--yellow); }
-    .status-accepted { background: rgba(39,174,96,0.15); color: #27AE60; }
-    .status-rejected { background: rgba(227,6,19,0.15); color: var(--red); }
-    .status-shipping { background: rgba(52,152,219,0.15); color: #3498DB; }
+    .how-step { display: flex; gap: 16px; margin-bottom: 24px; align-items: flex-start; }
+    .step-num { width: 36px; height: 36px; border-radius: 50%; background: var(--orange); color: var(--text-white); display: flex; align-items: center; justify-content: center; font-family: var(--font-heading); font-weight: 700; font-size: 0.95rem; flex-shrink: 0; }
+    .step-body h4 { font-family: var(--font-heading); font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+    .step-body p { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5; }
   </style>
 </head>
 <body>
   <div class="app-container">
-    <!-- HEADER -->
     <header class="app-header">
-      <div class="logo">
-        <img src="treqe-logo-new.png" alt="Treqe" class="logo-image">
-      </div>
+      <span class="logo-text">treqe</span>
       <div class="header-actions">
-        <button class="icon-btn" id="notificationsBtn">
-          <i class="fas fa-bell"></i>
-          <span class="notification-badge">3</span>
-        </button>
+        <button class="header-icon" id="notificationsBtn"><i class="fas fa-bell"></i><span class="badge">3</span></button>
+        <button class="header-icon"><i class="fas fa-sliders-h"></i></button>
       </div>
     </header>
 
-    <!-- HOME PAGE -->
     <div id="homePage" class="page active">
-      <!-- HERO -->
-      <div class="hero-banner">
+      <div class="hero">
+        <div class="hero-orange"></div>
         <div class="hero-content">
-          <h1 class="hero-title">CAMBIA. <span>DESCUBRE.</span> TREQEA.</h1>
-          <p class="hero-subtitle">Tu marketplace de intercambio circular</p>
-          <button class="hero-cta" onclick="showPage('searchPage')">
-            <i class="fas fa-compass"></i> Explorar Artículos
-          </button>
+          <h1 class="hero-title">CAMBIA. DESCUBRE. <span>TREQEA.</span></h1>
+          <p class="hero-sub">Tu marketplace de intercambio circular</p>
+          <button class="hero-btn" onclick="showPage('searchPage')"><i class="fas fa-compass"></i> Explorar Artículos</button>
         </div>
       </div>
-
-      <!-- SEARCH -->
-      <div class="search-container">
+      <div class="search-wrap">
         <div class="search-bar">
-          <input type="text" class="search-input" placeholder="Buscar productos..." id="homeSearchInput">
-          <button class="search-btn" id="homeSearchBtn"><i class="fas fa-search"></i></button>
-          <button class="filter-btn" onclick="showPage('searchPage')"><i class="fas fa-sliders-h"></i></button>
+          <input type="text" placeholder="Buscar artículos..." id="homeSearchInput">
+          <button id="homeSearchBtn"><i class="fas fa-search"></i></button>
+          <button onclick="showPage('searchPage')"><i class="fas fa-sliders-h"></i></button>
         </div>
       </div>
-
-      <!-- CATEGORIES -->
-      <div class="section-header">
-        <h2 class="section-title">Categorías</h2>
-        <span class="see-all" id="seeAllCategoriesBtn">Ver todas</span>
-      </div>
-      <div class="categories-scroll" id="categoriesScroll"></div>
-
-      <!-- FEATURED -->
-      <div class="section-header">
-        <h2 class="section-title">Destacados</h2>
-        <span class="see-all" id="seeAllListingsBtn">Ver todos</span>
-      </div>
-      <div class="listings-grid" id="featuredGrid"></div>
-
-      <!-- HOW IT WORKS -->
-      <div class="section-header">
-        <h2 class="section-title">¿Cómo Treqear?</h2>
-      </div>
-      <div class="how-it-works">
-        <div class="how-step">
-          <div class="step-number">1</div>
-          <div class="step-content">
-            <h4>Sube tu producto</h4>
-            <p>Añade fotos, descripción y valor estimado. Tu producto se hace visible para toda la comunidad.</p>
-          </div>
-        </div>
-        <div class="how-step">
-          <div class="step-number">2</div>
-          <div class="step-content">
-            <h4>Encuentra matches</h4>
-            <p>Nuestro algoritmo encuentra círculos de intercambio compatibles entre 3+ usuarios automáticamente.</p>
-          </div>
-        </div>
-        <div class="how-step">
-          <div class="step-number">3</div>
-          <div class="step-content">
-            <h4>Acepta e intercambia</h4>
-            <p>Revisa las ofertas, acepta las que te interesen y coordina el envío de forma segura.</p>
-          </div>
-        </div>
+      <div class="section-head"><h2>Categorías</h2><span class="see-all" id="seeAllCategoriesBtn">Ver todas</span></div>
+      <div class="cat-section"><div class="cat-scroll" id="categoriesScroll"></div></div>
+      <div class="section-head"><h2>Destacados</h2><span class="see-all" id="seeAllListingsBtn">Ver todos</span></div>
+      <div class="products-scroll" id="featuredScroll"></div>
+      <div class="section-head"><h2>¿Cómo Treqear?</h2></div>
+      <div style="padding:0 20px 20px">
+        <div class="how-step"><div class="step-num">1</div><div class="step-body"><h4>Sube tu producto</h4><p>Añade fotos, descripción y valor estimado. Visible para toda la comunidad.</p></div></div>
+        <div class="how-step"><div class="step-num">2</div><div class="step-body"><h4>Encuentra matches</h4><p>Nuestro algoritmo encuentra círculos de intercambio compatibles entre 3+ usuarios.</p></div></div>
+        <div class="how-step"><div class="step-num">3</div><div class="step-body"><h4>Acepta e intercambia</h4><p>Revisa las ofertas, acepta las que te interesen y coordina el envío de forma segura.</p></div></div>
       </div>
     </div>
 
-    <!-- SEARCH PAGE -->
     <div id="searchPage" class="page">
-      <div class="search-page-header">
-        <div class="search-bar">
-          <input type="text" class="search-input" placeholder="Buscar productos..." id="searchPageInput">
-          <button class="search-btn" id="searchPageBtn"><i class="fas fa-search"></i></button>
-        </div>
+      <div class="search-page">
+        <div class="search-bar"><input type="text" placeholder="Buscar artículos..." id="searchPageInput"><button id="searchPageBtn"><i class="fas fa-search"></i></button></div>
         <div class="filters-row">
-          <select class="filter-select" id="filterCategory">
-            <option value="">Categoría</option>
-          </select>
+          <select class="filter-select" id="filterCategory"><option value="">Categoría</option></select>
           <input type="number" class="filter-input" id="filterMaxPrice" placeholder="€ máx">
-          <select class="filter-select" id="filterCondition">
-            <option value="">Condición</option>
-            <option value="Nuevo">Nuevo</option>
-            <option value="Como nuevo">Como nuevo</option>
-            <option value="Buen estado">Buen estado</option>
-            <option value="Aceptable">Aceptable</option>
-          </select>
-          <input type="text" class="filter-input" id="filterLocation" placeholder="Ciudad" style="width:100px">
-          <button class="filter-apply-btn" id="filterApplyBtn">Aplicar</button>
-          <button class="filter-reset-btn" id="filterResetBtn">Limpiar</button>
+          <select class="filter-select" id="filterCondition"><option value="">Condición</option><option>Nuevo</option><option>Como nuevo</option><option>Buen estado</option><option>Aceptable</option></select>
+          <input type="text" class="filter-input" id="filterLocation" placeholder="Ciudad" style="width:90px">
+          <button class="filter-btn-apply" id="filterApplyBtn">Aplicar</button>
+          <button class="filter-btn-reset" id="filterResetBtn">Limpiar</button>
         </div>
+        <div class="results-count" id="searchResultsCount"></div>
+        <div class="results-grid" id="searchResultsGrid"></div>
       </div>
-      <div class="search-results-count" id="searchResultsCount"></div>
-      <div class="listings-grid" id="searchResultsGrid"></div>
     </div>
 
-    <!-- SELL PAGE -->
     <div id="sellPage" class="page">
       <div class="sell-page">
-        <div class="sell-icon"><i class="fas fa-exchange-alt"></i></div>
-        <h2 class="sell-title">Treqeá ahora</h2>
-        <p class="sell-subtitle">Sube tu producto y encuentra intercambios circulares con la comunidad</p>
-        <button class="sell-cta" onclick="window.open('https://jferrer1.github.io/treqe-dev-2026/', '_blank')">
-          <i class="fas fa-plus"></i> Publicar Producto
-        </button>
+        <div class="sell-circle-big"><i class="fas fa-exchange-alt"></i></div>
+        <h2>Treqeá ahora</h2>
+        <p>Sube tu producto y encuentra intercambios circulares con la comunidad</p>
+        <button class="hero-btn" onclick="window.open('https://jferrer1.github.io/treqe-dev-2026/', '_blank')"><i class="fas fa-plus"></i> Publicar Producto</button>
       </div>
     </div>
 
-    <!-- NOTIFICATIONS PAGE -->
     <div id="messagesPage" class="page">
-      <div class="notifications-page" id="notificationsList"></div>
+      <div class="notif-page">
+        <div class="page-title">Notificaciones</div>
+        <div id="notificationsList"></div>
+      </div>
     </div>
 
-    <!-- EXCHANGES PAGE -->
     <div id="exchangesPage" class="page">
-      <div class="exchanges-page">
-        <div class="section-header" style="padding:0; margin-bottom:16px;">
-          <h2 class="section-title">Mis intercambios</h2>
-        </div>
+      <div class="exchange-page">
+        <div class="page-title">Mis intercambios</div>
         <div id="exchangesList"></div>
       </div>
     </div>
 
-    <!-- PROFILE PAGE -->
     <div id="profilePage" class="page">
       <div class="profile-page">
-        <div class="profile-header">
+        <div class="profile-head">
           <div class="profile-avatar">👤</div>
           <h3 class="profile-name">Explorador Treqe</h3>
           <div class="profile-stats">
-            <div class="stat-item"><div class="stat-value">18</div><div class="stat-label">En venta</div></div>
-            <div class="stat-item"><div class="stat-value">7</div><div class="stat-label">Intercambios</div></div>
-            <div class="stat-item"><div class="stat-value">23</div><div class="stat-label">Likes</div></div>
+            <div class="stat-item"><div class="stat-val">18</div><div class="stat-lbl">En venta</div></div>
+            <div class="stat-item"><div class="stat-val">7</div><div class="stat-lbl">Intercambios</div></div>
+            <div class="stat-item"><div class="stat-val">23</div><div class="stat-lbl">Likes</div></div>
           </div>
         </div>
         <div class="profile-menu">
-          <div class="menu-item"><div class="menu-item-left"><i class="fas fa-box"></i><span>Mis productos</span></div><i class="fas fa-chevron-right arrow"></i></div>
-          <div class="menu-item"><div class="menu-item-left"><i class="fas fa-heart"></i><span>Favoritos</span></div><i class="fas fa-chevron-right arrow"></i></div>
-          <div class="menu-item"><div class="menu-item-left"><i class="fas fa-exchange-alt"></i><span>Historial de intercambios</span></div><i class="fas fa-chevron-right arrow"></i></div>
-          <div class="menu-item"><div class="menu-item-left"><i class="fas fa-award"></i><span>Reputación y logros</span></div><i class="fas fa-chevron-right arrow"></i></div>
-          <div class="menu-item"><div class="menu-item-left"><i class="fas fa-cog"></i><span>Configuración</span></div><i class="fas fa-chevron-right arrow"></i></div>
-          <div class="menu-item"><div class="menu-item-left"><i class="fas fa-question-circle"></i><span>Ayuda y soporte</span></div><i class="fas fa-chevron-right arrow"></i></div>
+          <div class="menu-row"><div class="menu-row-left"><i class="fas fa-box"></i><span>Mis productos</span></div><i class="fas fa-chevron-right arrow"></i></div>
+          <div class="menu-row"><div class="menu-row-left"><i class="fas fa-heart"></i><span>Favoritos</span></div><i class="fas fa-chevron-right arrow"></i></div>
+          <div class="menu-row"><div class="menu-row-left"><i class="fas fa-exchange-alt"></i><span>Historial de intercambios</span></div><i class="fas fa-chevron-right arrow"></i></div>
+          <div class="menu-row"><div class="menu-row-left"><i class="fas fa-award"></i><span>Reputación y logros</span></div><i class="fas fa-chevron-right arrow"></i></div>
+          <div class="menu-row"><div class="menu-row-left"><i class="fas fa-cog"></i><span>Configuración</span></div><i class="fas fa-chevron-right arrow"></i></div>
+          <div class="menu-row"><div class="menu-row-left"><i class="fas fa-question-circle"></i><span>Ayuda y soporte</span></div><i class="fas fa-chevron-right arrow"></i></div>
         </div>
       </div>
     </div>
 
-    <!-- ALL CATEGORIES PAGE -->
     <div id="allCategoriesPage" class="page">
       <div class="list-page">
-        <div class="list-page-header">
-          <button class="back-btn" id="allCatBackBtn"><i class="fas fa-arrow-left"></i></button>
-          <h2 class="list-page-title">Todas las categorías</h2>
-        </div>
-        <div class="all-categories-grid" id="allCategoriesGrid"></div>
+        <div class="list-head"><button class="detail-back" id="allCatBackBtn"><i class="fas fa-arrow-left"></i></button><h2>Todas las categorías</h2></div>
+        <div class="all-cat-grid" id="allCategoriesGrid"></div>
       </div>
     </div>
 
-    <!-- ALL LISTINGS PAGE -->
     <div id="allListingsPage" class="page">
       <div class="list-page">
-        <div class="list-page-header">
-          <button class="back-btn" id="allListingsBackBtn"><i class="fas fa-arrow-left"></i></button>
-          <h2 class="list-page-title">Todos los productos</h2>
-        </div>
-        <div class="listings-grid" id="allListingsGrid" style="margin-top:16px"></div>
+        <div class="list-head"><button class="detail-back" id="allListingsBackBtn"><i class="fas fa-arrow-left"></i></button><h2>Todos los productos</h2></div>
+        <div class="results-grid" id="allListingsGrid" style="margin-top:16px"></div>
       </div>
     </div>
 
-    <!-- PRODUCT DETAIL PAGE -->
-    <div class="product-page" id="productPage">
-      <div class="product-header">
-        <button class="back-btn" id="productBackBtn"><i class="fas fa-arrow-left"></i></button>
-        <div class="logo"><span class="logo-text">TREQE</span></div>
-        <button class="icon-btn" id="productLikeBtn"><i class="far fa-heart"></i></button>
+    <div class="detail-page" id="productPage">
+      <div class="detail-header">
+        <button class="detail-back" id="productBackBtn"><i class="fas fa-arrow-left"></i></button>
+        <span class="logo-text">treqe</span>
+        <button class="header-icon" id="productLikeBtn"><i class="far fa-heart"></i></button>
       </div>
-      <div class="product-image-container" id="productImageContainer"></div>
-      <div class="product-details">
-        <h1 class="product-title" id="productTitle"></h1>
-        <div class="product-price" id="productPrice"></div>
-        <div class="product-specs" id="productSpecs"></div>
-        <p class="product-description" id="productDescription"></p>
+      <div class="detail-img" id="productImageContainer"><span id="productEmoji"></span></div>
+      <div class="detail-body">
+        <h1 class="detail-title" id="productTitle"></h1>
+        <div class="detail-price" id="productPrice"></div>
+        <div class="detail-specs" id="productSpecs"></div>
+        <p class="detail-desc" id="productDescription"></p>
         <button class="treqear-btn"><i class="fas fa-exchange-alt"></i> TREQEAR ESTE ARTÍCULO</button>
       </div>
     </div>
 
-    <!-- BOTTOM NAV -->
     <nav class="bottom-nav">
       <a href="#" class="nav-item active" data-page="homePage"><i class="fas fa-compass nav-icon"></i><span class="nav-label">Explorar</span></a>
       <a href="#" class="nav-item" data-page="searchPage"><i class="fas fa-search nav-icon"></i><span class="nav-label">Buscar</span></a>
-      <a href="#" class="nav-item sell" data-page="sellPage"><i class="fas fa-exchange-alt nav-icon"></i><span class="nav-label">Treqear</span></a>
-      <a href="#" class="nav-item" data-page="messagesPage"><i class="fas fa-bell nav-icon"></i><span class="nav-label">Avisos</span><span class="notification-badge">3</span></a>
+      <a href="#" class="nav-item sell" data-page="sellPage"><div class="sell-circle"><i class="fas fa-exchange-alt"></i></div><span class="nav-label">Treqear</span></a>
+      <a href="#" class="nav-item" data-page="messagesPage"><i class="fas fa-bell nav-icon"></i><span class="nav-label">Avisos</span><span class="badge">3</span></a>
       <a href="#" class="nav-item" data-page="profilePage"><i class="fas fa-user nav-icon"></i><span class="nav-label">Perfil</span></a>
     </nav>
   </div>
 
 <script>
-// ===== DEMO DATA =====
 const demoData = {
   categories: [
     { slug: "electronics", name: "Electrónica", icon: "📱", subcategories: ["Móviles", "Ordenadores", "Tablets", "Audio", "Cámaras", "Videojuegos"] },
@@ -438,18 +348,18 @@ const demoData = {
     { slug: "fashion", name: "Moda", icon: "👕", subcategories: ["Mujer", "Hombre", "Accesorios", "Zapatos", "Joyas"] },
     { slug: "sports", name: "Deportes", icon: "⚽", subcategories: ["Fitness", "Ciclismo", "Montaña", "Natación", "Running"] },
     { slug: "books-media", name: "Libros y Media", icon: "📚", subcategories: ["Libros", "Música", "Películas", "Cómics"] },
-    { slug: "toys-kids", name: "Juguetes e Infantil", icon: "🧸", subcategories: ["Juguetes", "Ropa infantil", "Cochecitos", "Juegos"] },
+    { slug: "toys-kids", name: "Juguetes", icon: "🧸", subcategories: ["Juguetes", "Ropa infantil", "Cochecitos", "Juegos"] },
     { slug: "music-instruments", name: "Instrumentos", icon: "🎸", subcategories: ["Guitarras", "Teclados", "Baterías", "Viento"] },
     { slug: "art-collectibles", name: "Arte y Colección", icon: "🎨", subcategories: ["Arte", "Coleccionismo", "Antigüedades"] },
     { slug: "pets", name: "Mascotas", icon: "🐾", subcategories: ["Perros", "Gatos", "Accesorios", "Alimentación"] },
-    { slug: "garden-outdoor", name: "Jardín y Exterior", icon: "🌿", subcategories: ["Plantas", "Herramientas", "Muebles jardín"] },
+    { slug: "garden-outdoor", name: "Jardín", icon: "🌿", subcategories: ["Plantas", "Herramientas", "Muebles jardín"] },
     { slug: "office", name: "Oficina", icon: "💼", subcategories: ["Escritorios", "Sillas", "Material", "Tecnología"] },
-    { slug: "baby-maternity", name: "Bebé y Maternidad", icon: "👶", subcategories: ["Ropa", "Cochecitos", "Juguetes", "Alimentación"] },
-    { slug: "industry-agriculture", name: "Industria y Agricultura", icon: "🏭", subcategories: ["Maquinaria", "Herramientas", "Material"] },
+    { slug: "baby-maternity", name: "Bebé", icon: "👶", subcategories: ["Ropa", "Cochecitos", "Juguetes", "Alimentación"] },
+    { slug: "industry", name: "Industria", icon: "🏭", subcategories: ["Maquinaria", "Herramientas", "Material"] },
     { slug: "services", name: "Servicios", icon: "🔧", subcategories: ["Reparaciones", "Clases", "Transporte"] },
-    { slug: "animals", name: "Animales", icon: "🐕", subcategories: ["Mascotas", "Accesorios", "Alimentación"] },
     { slug: "motorbike", name: "Motos", icon: "🏍️", subcategories: ["Motos", "Scooters", "Accesorios", "Cascos"] },
-    { slug: "real-estate", name: "Inmuebles", icon: "🏠", subcategories: ["Pisos", "Casas", "Garajes", "Trasteros"] }
+    { slug: "real-estate", name: "Inmuebles", icon: "🏠", subcategories: ["Pisos", "Casas", "Garajes", "Trasteros"] },
+    { slug: "other", name: "Otros", icon: "📦", subcategories: ["Varios"] }
   ],
   users: [
     { id: 1, name: "Laura M.", avatar: "👩", city: "Madrid", rating: 4.8 },
@@ -459,23 +369,23 @@ const demoData = {
     { id: 5, name: "María S.", avatar: "👩", city: "Bilbao", rating: 4.7 }
   ],
   listings: [
-    { id: 1, title: "iPhone 14 Pro", price: 750, category: "electronics", condition: "Como nuevo", city: "Madrid", user: 1, emoji: "📱", description: "iPhone 14 Pro 128GB, espacio negro. Batería al 94%. Incluye caja y cargador original." },
-    { id: 2, title: "Bicicleta Trek Marlin 7", price: 420, category: "sports", condition: "Buen estado", city: "Barcelona", user: 2, emoji: "🚲", description: "Bicicleta de montaña Trek Marlin 7, talla M. Cuadro aluminio, frenos hidráulicos." },
-    { id: 3, title: "Guitarra Fender Stratocaster", price: 580, category: "music-instruments", condition: "Como nuevo", city: "Valencia", user: 3, emoji: "🎸", description: "Fender Stratocaster Player Series, color sunburst. Perfecto estado, apenas usada." },
-    { id: 4, title: "MacBook Air M2", price: 890, category: "electronics", condition: "Como nuevo", city: "Sevilla", user: 4, emoji: "💻", description: "MacBook Air M2 2023, 8GB RAM, 256GB SSD. Color midnight. Con cargador MagSafe." },
-    { id: 5, title: "Chaqueta Patagonia Down", price: 120, category: "fashion", condition: "Buen estado", city: "Bilbao", user: 5, emoji: "🧥", description: "Chaqueta Patagonia Down Sweater, talla M. Color negro. Perfecta para montaña." },
-    { id: 6, title: "Cámara Sony A7 III", price: 1200, category: "electronics", condition: "Como nuevo", city: "Madrid", user: 1, emoji: "📷", description: "Sony A7 III con objetivo 28-70mm. Incluye batería extra y tarjeta SD 64GB." },
-    { id: 7, title: "Reloj Casio G-Shock", price: 65, category: "fashion", condition: "Nuevo", city: "Barcelona", user: 2, emoji: "⌚", description: "Casio G-Shock GA-2100, negro mate. Nuevo, con caja original." },
-    { id: 8, title: "Tienda de campaña MSR", price: 180, category: "sports", condition: "Buen estado", city: "Valencia", user: 3, emoji: "⛺", description: "MSR Hubba Hubba NX 2P. Ligera y resistente. Usada en 3 campings." },
-    { id: 9, title: "Patines Rollerblade", price: 85, category: "sports", condition: "Buen estado", city: "Sevilla", user: 4, emoji: "🛼", description: "Rollerblade Zetrablade, talla 43. Con protecciones incluidas." },
-    { id: 10, title: "iPad Pro 11\"", price: 550, category: "electronics", condition: "Como nuevo", city: "Bilbao", user: 5, emoji: "📱", description: "iPad Pro 11 pulgadas, 128GB, WiFi. Con Apple Pencil 2ª gen." }
+    { id: 1, title: "iPhone 14 Pro", price: 750, category: "electronics", condition: "Como nuevo", city: "Madrid", user: 1, emoji: "📱", brand: "Apple", description: "iPhone 14 Pro 128GB, espacio negro. Batería al 94%. Incluye caja y cargador original." },
+    { id: 2, title: "Bicicleta Trek Marlin 7", price: 420, category: "sports", condition: "Buen estado", city: "Barcelona", user: 2, emoji: "🚲", brand: "Trek", description: "Bicicleta de montaña Trek Marlin 7, talla M. Cuadro aluminio, frenos hidráulicos." },
+    { id: 3, title: "Guitarra Fender Stratocaster", price: 580, category: "music-instruments", condition: "Como nuevo", city: "Valencia", user: 3, emoji: "🎸", brand: "Fender", description: "Fender Stratocaster Player Series, color sunburst. Perfecto estado, apenas usada." },
+    { id: 4, title: "MacBook Air M2", price: 890, category: "electronics", condition: "Como nuevo", city: "Sevilla", user: 4, emoji: "💻", brand: "Apple", description: "MacBook Air M2 2023, 8GB RAM, 256GB SSD. Color midnight. Con cargador MagSafe." },
+    { id: 5, title: "Chaqueta Patagonia Down", price: 120, category: "fashion", condition: "Buen estado", city: "Bilbao", user: 5, emoji: "🧥", brand: "Patagonia", description: "Chaqueta Patagonia Down Sweater, talla M. Color negro. Perfecta para montaña." },
+    { id: 6, title: "Cámara Sony A7 III", price: 1200, category: "electronics", condition: "Como nuevo", city: "Madrid", user: 1, emoji: "📷", brand: "Sony", description: "Sony A7 III con objetivo 28-70mm. Incluye batería extra y tarjeta SD 64GB." },
+    { id: 7, title: "Reloj Casio G-Shock", price: 65, category: "fashion", condition: "Nuevo", city: "Barcelona", user: 2, emoji: "⌚", brand: "Casio", description: "Casio G-Shock GA-2100, negro mate. Nuevo, con caja original." },
+    { id: 8, title: "Tienda de campaña MSR", price: 180, category: "sports", condition: "Buen estado", city: "Valencia", user: 3, emoji: "⛺", brand: "MSR", description: "MSR Hubba Hubba NX 2P. Ligera y resistente. Usada en 3 campings." },
+    { id: 9, title: "Patines Rollerblade", price: 85, category: "sports", condition: "Buen estado", city: "Sevilla", user: 4, emoji: "🛼", brand: "Rollerblade", description: "Rollerblade Zetrablade, talla 43. Con protecciones incluidas." },
+    { id: 10, title: "iPad Pro 11\"", price: 550, category: "electronics", condition: "Como nuevo", city: "Bilbao", user: 5, emoji: "📱", brand: "Apple", description: "iPad Pro 11 pulgadas, 128GB, WiFi. Con Apple Pencil 2ª gen." }
   ],
   notifications: [
-    { type: "match_found", icon: "fas fa-bullseye", title: "¡Match circular encontrado!", text: "Tu iPhone 14 Pro encaja en un círculo de 3 personas. Revisa la propuesta.", time: "Hace 2 min" },
-    { type: "exchange_accepted", icon: "fas fa-check-circle", title: "Intercambio aceptado", text: "Carlos R. ha aceptado tu propuesta de intercambio: Bicicleta Trek ↔ Chaqueta Patagonia.", time: "Hace 1 hora" },
-    { type: "shipping_confirmed", icon: "fas fa-truck", title: "Envío confirmado", text: "Tu guitarra Fender ha sido enviada. Llegará en 2-3 días laborables.", time: "Hace 3 horas" },
-    { type: "exchange_rejected", icon: "fas fa-times-circle", title: "Intercambio rechazado", text: "Ana G. ha rechazado tu propuesta. Puedes buscar otras opciones.", time: "Hace 1 día" },
-    { type: "pending_response", icon: "fas fa-clock", title: "Respuesta pendiente", text: "Tu MacBook Air M2 tiene una propuesta pendiente. Revisa los detalles.", time: "Hace 2 días" }
+    { type: "match", icon: "fas fa-bullseye", title: "¡Match circular encontrado!", text: "Tu iPhone 14 Pro encaja en un círculo de 3 personas. Revisa la propuesta.", time: "Hace 2 min" },
+    { type: "accepted", icon: "fas fa-check-circle", title: "Intercambio aceptado", text: "Carlos R. ha aceptado tu propuesta: Bicicleta Trek ↔ Chaqueta Patagonia.", time: "Hace 1 hora" },
+    { type: "shipping", icon: "fas fa-truck", title: "Envío confirmado", text: "Tu guitarra Fender ha sido enviada. Llegará en 2-3 días laborables.", time: "Hace 3 horas" },
+    { type: "rejected", icon: "fas fa-times-circle", title: "Intercambio rechazado", text: "Ana G. ha rechazado tu propuesta. Puedes buscar otras opciones.", time: "Hace 1 día" },
+    { type: "pending", icon: "fas fa-clock", title: "Respuesta pendiente", text: "Tu MacBook Air M2 tiene una propuesta pendiente. Revisa los detalles.", time: "Hace 2 días" }
   ],
   exchanges: [
     { id: 1, title: "iPhone 14 Pro → Bicicleta Trek", status: "pending", emoji: "📱" },
@@ -485,100 +395,53 @@ const demoData = {
   ]
 };
 
-// ===== STATE =====
 let likedItems = new Set();
-let currentPage = "homePage";
 
-// ===== DOM ELEMENTS =====
-const homePage = document.getElementById('homePage');
-const productPage = document.getElementById('productPage');
-const messagesPage = document.getElementById('messagesPage');
-const profilePage = document.getElementById('profilePage');
-const searchPage = document.getElementById('searchPage');
-const sellPage = document.getElementById('sellPage');
-const exchangesPage = document.getElementById('exchangesPage');
-const allCategoriesPage = document.getElementById('allCategoriesPage');
-const allListingsPage = document.getElementById('allListingsPage');
-const notificationsBtn = document.getElementById('notificationsBtn');
-const categoriesScroll = document.getElementById('categoriesScroll');
-const featuredGrid = document.getElementById('featuredGrid');
-const searchResultsGrid = document.getElementById('searchResultsGrid');
-const searchPageInput = document.getElementById('searchPageInput');
-const filterCategory = document.getElementById('filterCategory');
-const filterMaxPrice = document.getElementById('filterMaxPrice');
-const filterCondition = document.getElementById('filterCondition');
-const filterLocation = document.getElementById('filterLocation');
-const filterApplyBtn = document.getElementById('filterApplyBtn');
-const filterResetBtn = document.getElementById('filterResetBtn');
-const seeAllCategoriesBtn = document.getElementById('seeAllCategoriesBtn');
-const seeAllListingsBtn = document.getElementById('seeAllListingsBtn');
-const allCatBackBtn = document.getElementById('allCatBackBtn');
-const allListingsBackBtn = document.getElementById('allListingsBackBtn');
-const productBackBtn = document.getElementById('productBackBtn');
-const productLikeBtn = document.getElementById('productLikeBtn');
-const homeSearchInput = document.getElementById('homeSearchInput');
-const homeSearchBtn = document.getElementById('homeSearchBtn');
-const searchPageBtn = document.getElementById('searchPageBtn');
-
-// ===== NAVIGATION =====
-function showPage(pageId) {
+function showPage(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  const page = document.getElementById(pageId);
+  const page = document.getElementById(id);
   if (page) page.classList.add('active');
-  const navItem = document.querySelector(`.nav-item[data-page="${pageId}"]`);
-  if (navItem) navItem.classList.add('active');
-  currentPage = pageId;
+  const nav = document.querySelector(`.nav-item[data-page="${id}"]`);
+  if (nav) nav.classList.add('active');
   window.scrollTo(0, 0);
 }
 
-// ===== RENDER CATEGORIES =====
-function renderCategories() {
-  categoriesScroll.innerHTML = demoData.categories.slice(0, 10).map(cat => `
-    <div class="category-chip" onclick="filterByCategory('${cat.slug}')">
-      <div class="category-icon">${cat.icon}</div>
-      <span class="category-name">${cat.name}</span>
+function renderCard(item) {
+  const user = demoData.users.find(u => u.id === item.user);
+  const liked = likedItems.has(item.id);
+  return `<div class="product-card" onclick="showProduct(${item.id})">
+    <div class="product-card-img">
+      <span>${item.emoji}</span>
+      <button class="like-btn ${liked ? 'liked' : ''}" onclick="event.stopPropagation(); toggleLike(${item.id}, this)"><i class="${liked ? 'fas' : 'far'} fa-heart"></i></button>
     </div>
-  `).join('');
+    <div class="product-card-body">
+      <div class="product-card-brand"><i class="fas fa-exchange-alt"></i> ${item.brand || item.title.split(' ')[0]}</div>
+      <div class="product-card-title">${item.title}</div>
+      <div class="product-card-price">${item.price}€</div>
+    </div>
+  </div>`;
 }
 
-// ===== RENDER LISTINGS =====
-function renderListings(container, listings) {
-  container.innerHTML = listings.map(item => {
-    const user = demoData.users.find(u => u.id === item.user);
-    const liked = likedItems.has(item.id);
-    return `
-      <div class="listing-card" onclick="showProduct(${item.id})">
-        <div class="listing-image">
-          <div class="listing-placeholder">${item.emoji}</div>
-          <button class="like-btn ${liked ? 'liked' : ''}" onclick="event.stopPropagation(); toggleLike(${item.id}, this)">
-            <i class="${liked ? 'fas' : 'far'} fa-heart"></i>
-          </button>
-        </div>
-        <div class="listing-info">
-          <div class="listing-title">${item.title}</div>
-          <div class="listing-price">${item.price}€</div>
-          <div class="listing-meta">${user ? user.city : ''} · ${item.condition}</div>
-        </div>
-      </div>
-    `;
-  }).join('');
+function renderCategories() {
+  document.getElementById('categoriesScroll').innerHTML = demoData.categories.slice(0, 10).map(c =>
+    `<div class="cat-item" onclick="filterByCategory('${c.slug}')"><div class="cat-circle">${c.icon}</div><span class="cat-label">${c.name}</span></div>`
+  ).join('');
 }
 
-// ===== TOGGLE LIKE =====
+function renderFeatured() {
+  document.getElementById('featuredScroll').innerHTML = demoData.listings.slice(0, 6).map(renderCard).join('');
+}
+
+function renderListings(container, items) {
+  document.getElementById(container).innerHTML = items.map(renderCard).join('');
+}
+
 function toggleLike(id, btn) {
-  if (likedItems.has(id)) {
-    likedItems.delete(id);
-    btn.classList.remove('liked');
-    btn.innerHTML = '<i class="far fa-heart"></i>';
-  } else {
-    likedItems.add(id);
-    btn.classList.add('liked');
-    btn.innerHTML = '<i class="fas fa-heart"></i>';
-  }
+  if (likedItems.has(id)) { likedItems.delete(id); btn.classList.remove('liked'); btn.innerHTML = '<i class="far fa-heart"></i>'; }
+  else { likedItems.add(id); btn.classList.add('liked'); btn.innerHTML = '<i class="fas fa-heart"></i>'; }
 }
 
-// ===== SHOW PRODUCT =====
 function showProduct(id) {
   const item = demoData.listings.find(l => l.id === id);
   if (!item) return;
@@ -586,160 +449,105 @@ function showProduct(id) {
   document.getElementById('productTitle').textContent = item.title;
   document.getElementById('productPrice').textContent = item.price + '€';
   document.getElementById('productDescription').textContent = item.description;
-  document.getElementById('productImageContainer').innerHTML = `<div class="product-image-placeholder">${item.emoji}</div>`;
+  document.getElementById('productEmoji').textContent = item.emoji;
   document.getElementById('productSpecs').innerHTML = `
-    <div class="spec-item"><div class="spec-label">Estado</div><div class="spec-value">${item.condition}</div></div>
-    <div class="spec-item"><div class="spec-label">Categoría</div><div class="spec-value">${demoData.categories.find(c => c.slug === item.category)?.name || ''}</div></div>
-    <div class="spec-item"><div class="spec-label">Ubicación</div><div class="spec-value">${item.city}</div></div>
-    <div class="spec-item"><div class="spec-label">Usuario</div><div class="spec-value">${user ? user.name : ''}</div></div>
-  `;
+    <div class="spec-box"><div class="spec-label">Estado</div><div class="spec-val">${item.condition}</div></div>
+    <div class="spec-box"><div class="spec-label">Categoría</div><div class="spec-val">${demoData.categories.find(c => c.slug === item.category)?.name || ''}</div></div>
+    <div class="spec-box"><div class="spec-label">Ubicación</div><div class="spec-val">${item.city}</div></div>
+    <div class="spec-box"><div class="spec-label">Usuario</div><div class="spec-val">${user ? user.name : ''}</div></div>`;
   const liked = likedItems.has(id);
-  productLikeBtn.innerHTML = `<i class="${liked ? 'fas' : 'far'} fa-heart"></i>`;
-  productPage.classList.add('active');
-  productPage.dataset.productId = id;
+  document.getElementById('productLikeBtn').innerHTML = `<i class="${liked ? 'fas' : 'far'} fa-heart"></i>`;
+  document.getElementById('productPage').classList.add('active');
+  document.getElementById('productPage').dataset.productId = id;
 }
 
-// ===== SEARCH =====
 function performSearch(query) {
-  const cat = filterCategory.value;
-  const maxPrice = filterMaxPrice.value ? parseFloat(filterMaxPrice.value) : Infinity;
-  const cond = filterCondition.value;
-  const loc = filterLocation.value.toLowerCase();
+  const cat = document.getElementById('filterCategory').value;
+  const maxP = document.getElementById('filterMaxPrice').value ? parseFloat(document.getElementById('filterMaxPrice').value) : Infinity;
+  const cond = document.getElementById('filterCondition').value;
+  const loc = document.getElementById('filterLocation').value.toLowerCase();
   let results = demoData.listings.filter(item => {
-    const matchQuery = !query || item.title.toLowerCase().includes(query.toLowerCase()) || item.description.toLowerCase().includes(query.toLowerCase());
-    const matchCat = !cat || item.category === cat;
-    const matchPrice = item.price <= maxPrice;
-    const matchCond = !cond || item.condition === cond;
-    const matchLoc = !loc || item.city.toLowerCase().includes(loc);
-    return matchQuery && matchCat && matchPrice && matchCond && matchLoc;
+    const mQ = !query || item.title.toLowerCase().includes(query.toLowerCase()) || item.description.toLowerCase().includes(query.toLowerCase());
+    const mC = !cat || item.category === cat;
+    const mP = item.price <= maxP;
+    const mCo = !cond || item.condition === cond;
+    const mL = !loc || item.city.toLowerCase().includes(loc);
+    return mQ && mC && mP && mCo && mL;
   });
-  renderListings(searchResultsGrid, results);
+  renderListings('searchResultsGrid', results);
   document.getElementById('searchResultsCount').textContent = results.length > 0 ? `${results.length} resultado${results.length !== 1 ? 's' : ''}` : 'Sin resultados';
 }
 
-// ===== FILTER BY CATEGORY =====
 function filterByCategory(slug) {
   showPage('searchPage');
-  filterCategory.value = slug;
+  document.getElementById('filterCategory').value = slug;
   performSearch('');
 }
 
-// ===== RENDER ALL CATEGORIES =====
-function renderAllCategories() {
-  document.getElementById('allCategoriesGrid').innerHTML = demoData.categories.map(cat => `
-    <div class="all-category-card" onclick="filterByCategory('${cat.slug}')">
-      <div class="all-category-icon">${cat.icon}</div>
-      <div class="all-category-name">${cat.name}</div>
-      <div class="all-category-subs">${cat.subcategories.slice(0, 4).join(' · ')}</div>
-    </div>
-  `).join('');
-}
-
-// ===== RENDER ALL LISTINGS =====
-function renderAllListings() {
-  renderListings(document.getElementById('allListingsGrid'), demoData.listings);
-}
-
-// ===== RENDER NOTIFICATIONS =====
-function renderNotifications() {
-  document.getElementById('notificationsList').innerHTML = demoData.notifications.map(n => `
-    <div class="notif-item">
-      <div class="notif-icon ${n.type}"><i class="${n.icon}"></i></div>
-      <div class="notif-content">
-        <div class="notif-title">${n.title}</div>
-        <div class="notif-text">${n.text}</div>
-        <div class="notif-time">${n.time}</div>
-      </div>
-    </div>
-  `).join('');
-}
-
-// ===== RENDER EXCHANGES =====
-function renderExchanges() {
-  document.getElementById('exchangesList').innerHTML = demoData.exchanges.map(e => `
-    <div class="exchange-item">
-      <div class="exchange-thumb">${e.emoji}</div>
-      <div class="exchange-info">
-        <div class="exchange-title">${e.title}</div>
-        <span class="exchange-status status-${e.status}">${e.status === 'pending' ? 'Pendiente' : e.status === 'accepted' ? 'Aceptado' : e.status === 'rejected' ? 'Rechazado' : 'En envío'}</span>
-      </div>
-    </div>
-  `).join('');
-}
-
-// ===== POPULATE FILTERS =====
 function populateFilters() {
-  filterCategory.innerHTML = '<option value="">Categoría</option>' + demoData.categories.map(c => `<option value="${c.slug}">${c.icon} ${c.name}</option>`).join('');
+  document.getElementById('filterCategory').innerHTML = '<option value="">Categoría</option>' + demoData.categories.map(c => `<option value="${c.slug}">${c.icon} ${c.name}</option>`).join('');
 }
 
-// ===== SETUP EVENT LISTENERS =====
-function setupEventListeners() {
-  // Bottom nav
-  document.querySelectorAll('.nav-item').forEach(item => {
-    item.addEventListener('click', (e) => {
-      e.preventDefault();
-      showPage(item.dataset.page);
-    });
-  });
-
-  // Home search
-  homeSearchBtn.addEventListener('click', () => {
-    const q = homeSearchInput.value.trim();
-    searchPageInput.value = q;
-    showPage('searchPage');
-    performSearch(q);
-  });
-  homeSearchInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') { homeSearchBtn.click(); }
-  });
-
-  // Search page
-  searchPageBtn.addEventListener('click', () => performSearch(searchPageInput.value.trim()));
-  searchPageInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') performSearch(searchPageInput.value.trim()); });
-
-  // Filters
-  filterApplyBtn.addEventListener('click', () => performSearch(searchPageInput.value.trim()));
-  filterResetBtn.addEventListener('click', () => {
-    filterCategory.value = '';
-    filterMaxPrice.value = '';
-    filterCondition.value = '';
-    filterLocation.value = '';
-    performSearch(searchPageInput.value.trim());
-  });
-
-  // See all
-  seeAllCategoriesBtn.addEventListener('click', () => { renderAllCategories(); showPage('allCategoriesPage'); });
-  seeAllListingsBtn.addEventListener('click', () => { renderAllListings(); showPage('allListingsPage'); });
-
-  // Back buttons
-  allCatBackBtn.addEventListener('click', () => showPage('homePage'));
-  allListingsBackBtn.addEventListener('click', () => showPage('homePage'));
-  productBackBtn.addEventListener('click', () => productPage.classList.remove('active'));
-
-  // Notifications
-  notificationsBtn.addEventListener('click', () => showPage('messagesPage'));
-
-  // Product like
-  productLikeBtn.addEventListener('click', () => {
-    const id = parseInt(productPage.dataset.productId);
-    if (likedItems.has(id)) {
-      likedItems.delete(id);
-      productLikeBtn.innerHTML = '<i class="far fa-heart"></i>';
-    } else {
-      likedItems.add(id);
-      productLikeBtn.innerHTML = '<i class="fas fa-heart"></i>';
-    }
-  });
+function renderNotifications() {
+  document.getElementById('notificationsList').innerHTML = demoData.notifications.map(n =>
+    `<div class="notif-item"><div class="notif-icon-wrap ${n.type}"><i class="${n.icon}"></i></div><div class="notif-body"><div class="notif-title">${n.title}</div><div class="notif-text">${n.text}</div><div class="notif-time">${n.time}</div></div></div>`
+  ).join('');
 }
 
-// ===== INIT =====
+function renderExchanges() {
+  document.getElementById('exchangesList').innerHTML = demoData.exchanges.map(e =>
+    `<div class="exchange-item"><div class="exchange-thumb">${e.emoji}</div><div class="exchange-body"><div class="exchange-title">${e.title}</div><span class="status-pill ${e.status}">${e.status === 'pending' ? 'Pendiente' : e.status === 'accepted' ? 'Aceptado' : e.status === 'rejected' ? 'Rechazado' : 'En envío'}</span></div></div>`
+  ).join('');
+}
+
+function renderAllCategories() {
+  document.getElementById('allCategoriesGrid').innerHTML = demoData.categories.map(c =>
+    `<div class="all-cat-card" onclick="filterByCategory('${c.slug}')"><div class="all-cat-icon">${c.icon}</div><div class="all-cat-name">${c.name}</div><div class="all-cat-subs">${c.subcategories.slice(0, 4).join(' · ')}</div></div>`
+  ).join('');
+}
+
 function init() {
   renderCategories();
-  renderListings(featuredGrid, demoData.listings.slice(0, 6));
+  renderFeatured();
   renderNotifications();
   renderExchanges();
   populateFilters();
-  setupEventListeners();
+
+  document.querySelectorAll('.nav-item').forEach(item => {
+    item.addEventListener('click', e => { e.preventDefault(); showPage(item.dataset.page); });
+  });
+
+  document.getElementById('homeSearchBtn').addEventListener('click', () => {
+    document.getElementById('searchPageInput').value = document.getElementById('homeSearchInput').value;
+    showPage('searchPage');
+    performSearch(document.getElementById('homeSearchInput').value.trim());
+  });
+  document.getElementById('homeSearchInput').addEventListener('keypress', e => { if (e.key === 'Enter') document.getElementById('homeSearchBtn').click(); });
+
+  document.getElementById('searchPageBtn').addEventListener('click', () => performSearch(document.getElementById('searchPageInput').value.trim()));
+  document.getElementById('searchPageInput').addEventListener('keypress', e => { if (e.key === 'Enter') performSearch(document.getElementById('searchPageInput').value.trim()); });
+
+  document.getElementById('filterApplyBtn').addEventListener('click', () => performSearch(document.getElementById('searchPageInput').value.trim()));
+  document.getElementById('filterResetBtn').addEventListener('click', () => {
+    document.getElementById('filterCategory').value = '';
+    document.getElementById('filterMaxPrice').value = '';
+    document.getElementById('filterCondition').value = '';
+    document.getElementById('filterLocation').value = '';
+    performSearch(document.getElementById('searchPageInput').value.trim());
+  });
+
+  document.getElementById('seeAllCategoriesBtn').addEventListener('click', () => { renderAllCategories(); showPage('allCategoriesPage'); });
+  document.getElementById('seeAllListingsBtn').addEventListener('click', () => { renderListings('allListingsGrid', demoData.listings); showPage('allListingsPage'); });
+
+  document.getElementById('allCatBackBtn').addEventListener('click', () => showPage('homePage'));
+  document.getElementById('allListingsBackBtn').addEventListener('click', () => showPage('homePage'));
+  document.getElementById('productBackBtn').addEventListener('click', () => document.getElementById('productPage').classList.remove('active'));
+  document.getElementById('notificationsBtn').addEventListener('click', () => showPage('messagesPage'));
+  document.getElementById('productLikeBtn').addEventListener('click', () => {
+    const id = parseInt(document.getElementById('productPage').dataset.productId);
+    if (likedItems.has(id)) { likedItems.delete(id); document.getElementById('productLikeBtn').innerHTML = '<i class="far fa-heart"></i>'; }
+    else { likedItems.add(id); document.getElementById('productLikeBtn').innerHTML = '<i class="fas fa-heart"></i>'; }
+  });
 }
 
 init();
