@@ -171,11 +171,24 @@ body{font-family:Inter,sans-serif;background:#111111;color:#fff;line-height:1.4;
 .lh .db{padding:0}
 .lh h2{font-weight:700;font-size:.85rem;text-transform:uppercase;letter-spacing:1px;color:#fff}
 .ag{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding:8px 0}
+.cat-header{grid-column:span 2;background:#1A1A1A;border-radius:8px;padding:12px 14px;margin-top:8px;border-left:3px solid #FF6A00}
+.cat-header:first-child{margin-top:0}
+.cat-header .cat-title{font-weight:700;font-size:.8rem;color:#fff;display:flex;align-items:center;gap:10px}
+.cat-header .cat-icon{color:#FFD700;font-size:1rem}
+.cat-header .cat-count{font-size:.6rem;color:#757575;margin-left:auto}
 .ac2{background:#2C2C2C;border-radius:8px;padding:14px;cursor:pointer;transition:all .15s ease}
 .ac2:active{background:#2C2C2C}
 .ac2 .ai{font-size:1.3rem;color:#FFD700;margin-bottom:6px}
 .ac2 .an{font-weight:600;font-size:.75rem;color:#fff}
 .ac2 .as{font-size:.6rem;color:#757575;margin-top:2px}
+/* Subcategorías */
+.subcat-list{margin-top:8px;padding-left:12px;border-left:1px solid #444;display:none}
+.ac2.expanded .subcat-list{display:block}
+.subcat-item{padding:8px 12px;background:#1A1A1A;border-radius:6px;margin-bottom:6px;cursor:pointer;transition:all .15s ease}
+.subcat-item:hover{background:#2C2C2C}
+.subcat-item .subcat-name{font-size:.7rem;color:#BDBDBD;font-weight:500}
+.subcat-item .subcat-desc{font-size:.6rem;color:#757575;margin-top:2px}
+.expand-toggle{position:absolute;top:14px;right:14px;color:#757575;font-size:.8rem;cursor:pointer}
 .etabs{display:flex;gap:4px;padding:0 16px 16px;overflow-x:auto;scrollbar-width:none}
 .etabs::-webkit-scrollbar{display:none}
 .etab{background:#2C2C2C;color:#BDBDBD;border:none;border-radius:20px;padding:8px 14px;font-family:'Space Grotesk',sans-serif;font-size:.7rem;font-weight:500;cursor:pointer;white-space:nowrap;transition:all .15s ease}
@@ -409,6 +422,9 @@ body{font-family:Inter,sans-serif;background:#111111;color:#fff;line-height:1.4;
 <div class="fr">
 <select class="fs2" id="fc">
 <option value="">Categoría</option>
+</select>
+<select class="fs2" id="fsc" style="display:none;">
+<option value="">Subcategoría</option>
 </select>
 <input type="number" class="fi2" id="fp" placeholder="E max">
 <select class="fs2" id="fco">
@@ -692,16 +708,66 @@ body{font-family:Inter,sans-serif;background:#111111;color:#fff;line-height:1.4;
 var lk=new Set(JSON.parse(localStorage.getItem('treqe_likes') || '[]'));
 var dt={
   cats:[
-    {s:"clothing",n:"Ropa",i:"fa-tshirt"},
-    {s:"footwear",n:"Calzado",i:"fa-shoe-prints"},
-    {s:"watches",n:"Relojes",i:"fa-clock"},
-    {s:"electronics",n:"Electronica",i:"fa-mobile-alt"},
-    {s:"home",n:"Hogar",i:"fa-home"},
-    {s:"sports",n:"Deporte",i:"fa-futbol"},
-    {s:"books",n:"Libros",i:"fa-book"},
-    {s:"toys",n:"Juguetes",i:"fa-gamepad"},
-    {s:"music",n:"Musica",i:"fa-music"},
-    {s:"art",n:"Arte",i:"fa-palette"}
+    {s:"clothing",n:"Ropa",i:"fa-tshirt",subs:[
+      {s:"clothing_tops",n:"Camisetas y tops"},
+      {s:"clothing_pants",n:"Pantalones"},
+      {s:"clothing_jackets",n:"Chaquetas y abrigos"},
+      {s:"clothing_dresses",n:"Vestidos"},
+      {s:"clothing_accessories",n:"Accesorios"}
+    ]},
+    {s:"footwear",n:"Calzado",i:"fa-shoe-prints",subs:[
+      {s:"footwear_sneakers",n:"Zapatillas"},
+      {s:"footwear_shoes",n:"Zapatos"},
+      {s:"footwear_boots",n:"Botas"},
+      {s:"footwear_sandals",n:"Sandalias"}
+    ]},
+    {s:"watches",n:"Relojes",i:"fa-clock",subs:[
+      {s:"watches_sport",n:"Relojes deportivos"},
+      {s:"watches_luxury",n:"Relojes de lujo"},
+      {s:"watches_smart",n:"Relojes inteligentes"}
+    ]},
+    {s:"electronics",n:"Electrónica",i:"fa-mobile-alt",subs:[
+      {s:"electronics_phones",n:"Móviles y smartphones"},
+      {s:"electronics_computers",n:"Ordenadores y tablets"},
+      {s:"electronics_audio",n:"Audio y sonido"},
+      {s:"electronics_gaming",n:"Videojuegos y consolas"},
+      {s:"electronics_cameras",n:"Cámaras y fotografía"}
+    ]},
+    {s:"home",n:"Hogar",i:"fa-home",subs:[
+      {s:"home_furniture",n:"Muebles"},
+      {s:"home_decor",n:"Decoración"},
+      {s:"home_appliances",n:"Electrodomésticos"},
+      {s:"home_garden",n:"Jardín y exterior"}
+    ]},
+    {s:"sports",n:"Deporte",i:"fa-futbol",subs:[
+      {s:"sports_cycling",n:"Ciclismo"},
+      {s:"sports_fitness",n:"Fitness y gimnasio"},
+      {s:"sports_team",n:"Deportes de equipo"},
+      {s:"sports_outdoor",n:"Deportes de aventura"}
+    ]},
+    {s:"books",n:"Libros",i:"fa-book",subs:[
+      {s:"books_novels",n:"Novela y ficción"},
+      {s:"books_science",n:"Ciencia y tecnología"},
+      {s:"books_children",n:"Infantil y juvenil"},
+      {s:"books_cooking",n:"Cocina y gastronomía"}
+    ]},
+    {s:"toys",n:"Juguetes",i:"fa-gamepad",subs:[
+      {s:"toys_educational",n:"Educativos"},
+      {s:"toys_figures",n:"Figuras y coleccionables"},
+      {s:"toys_puzzles",n:"Puzzles y juegos de mesa"},
+      {s:"toys_outdoor",n:"Juguetes de exterior"}
+    ]},
+    {s:"music",n:"Música",i:"fa-music",subs:[
+      {s:"music_instruments",n:"Instrumentos musicales"},
+      {s:"music_vinyl",n:"Vinilos y CDs"},
+      {s:"music_equipment",n:"Equipos de sonido"}
+    ]},
+    {s:"art",n:"Arte",i:"fa-palette",subs:[
+      {s:"art_painting",n:"Pintura y dibujo"},
+      {s:"art_sculpture",n:"Escultura"},
+      {s:"art_photography",n:"Fotografía"},
+      {s:"art_crafts",n:"Artesanía"}
+    ]}
   ],
   users:[
     {id:1,n:"Laura M.",c:"Madrid"},
@@ -711,12 +777,12 @@ var dt={
     {id:5,n:"Maria S.",c:"Bilbao"}
   ],
   items:[
-    {id:1,t:"G-SHOCK",u:"Mudmaster GWG-2000",p:280,cat:"watches",co:"Como nuevo",ci:"Madrid",us:1,img:"https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=800&q=80",d:"G-Shock Mudmaster GWG-2000. Resistente a barro y polvo."},
-    {id:2,t:"PATAGONIA",u:"Down Sweater Jacket",p:120,cat:"clothing",co:"Buen estado",ci:"Barcelona",us:2,img:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=800&q=80",d:"Chaqueta Patagonia Down Sweater, talla M."},
-    {id:3,t:"TREK",u:"Marlin 7 2023",p:420,cat:"sports",co:"Buen estado",ci:"Valencia",us:3,img:"https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=800&q=80",d:"Bicicleta Trek Marlin 7, talla M."},
-    {id:4,t:"FENDER",u:"Stratocaster Player",p:580,cat:"music",co:"Como nuevo",ci:"Sevilla",us:4,img:"https://images.unsplash.com/photo-1564186763535-ebb21ef5277f?w=800&q=80",d:"Fender Stratocaster Player, sunburst."},
-    {id:5,t:"APPLE",u:"MacBook Air M2",p:890,cat:"electronics",co:"Como nuevo",ci:"Bilbao",us:5,img:"https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=800&q=80",d:"MacBook Air M2, 8GB RAM, 256GB SSD."},
-    {id:6,t:"SONY",u:"Alpha A7 III",p:1200,cat:"electronics",co:"Como nuevo",ci:"Madrid",us:1,img:"https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800&q=80",d:"Sony A7 III con objetivo 28-70mm."}
+    {id:1,t:"G-SHOCK",u:"Mudmaster GWG-2000",p:280,cat:"watches",subcat:"watches_sport",co:"Como nuevo",ci:"Madrid",us:1,img:"https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=800&q=80",d:"G-Shock Mudmaster GWG-2000. Resistente a barro y polvo."},
+    {id:2,t:"PATAGONIA",u:"Down Sweater Jacket",p:120,cat:"clothing",subcat:"clothing_jackets",co:"Buen estado",ci:"Barcelona",us:2,img:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=800&q=80",d:"Chaqueta Patagonia Down Sweater, talla M."},
+    {id:3,t:"TREK",u:"Marlin 7 2023",p:420,cat:"sports",subcat:"sports_cycling",co:"Buen estado",ci:"Valencia",us:3,img:"https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=800&q=80",d:"Bicicleta Trek Marlin 7, talla M."},
+    {id:4,t:"FENDER",u:"Stratocaster Player",p:580,cat:"music",subcat:"music_instruments",co:"Como nuevo",ci:"Sevilla",us:4,img:"https://images.unsplash.com/photo-1564186763535-ebb21ef5277f?w=800&q=80",d:"Fender Stratocaster Player, sunburst."},
+    {id:5,t:"APPLE",u:"MacBook Air M2",p:890,cat:"electronics",subcat:"electronics_computers",co:"Como nuevo",ci:"Bilbao",us:5,img:"https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=800&q=80",d:"MacBook Air M2, 8GB RAM, 256GB SSD."},
+    {id:6,t:"SONY",u:"Alpha A7 III",p:1200,cat:"electronics",subcat:"electronics_cameras",co:"Como nuevo",ci:"Madrid",us:1,img:"https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800&q=80",d:"Sony A7 III con objetivo 28-70mm."}
   ],
   notifs:[
     {tp:"mt",i:"fas fa-bullseye",t:"Match encontrado",x:"Tu G-SHOCK encaja en un circulo de 3 personas.",tm:"Hace 2 min",new:true},
@@ -789,36 +855,73 @@ function sd(id){
     dimg.style.display = 'none';
     dpe.style.display = 'block';
   }
-  document.getElementById('dsp').innerHTML='<div class="dsb"><div class="dsl">Estado</div><div class="dsv">'+it.co+'</div></div><div class="dsb"><div class="dsl">Categoría</div><div class="dsv">'+((dt.cats.find(function(c){return c.s===it.cat})||{}).n||'')+'</div></div><div class="dsb"><div class="dsl">Ubicación</div><div class="dsv">'+it.ci+'</div></div><div class="dsb"><div class="dsl">Usuario</div><div class="dsv">'+((dt.users.find(function(u){return u.id===it.us})||{}).n||'')+'</div></div>';
+  var catObj = dt.cats.find(function(c){return c.s===it.cat}) || {};
+  var subcatObj = catObj.subs ? catObj.subs.find(function(s){return s.s===it.subcat}) : null;
+  var subcatHtml = subcatObj ? '<div class="dsb"><div class="dsl">Subcategoría</div><div class="dsv">'+subcatObj.n+'</div></div>' : '';
+  document.getElementById('dsp').innerHTML='<div class="dsb"><div class="dsl">Estado</div><div class="dsv">'+it.co+'</div></div><div class="dsb"><div class="dsl">Categoría</div><div class="dsv">'+(catObj.n||'')+'</div></div>'+subcatHtml+'<div class="dsb"><div class="dsl">Ubicación</div><div class="dsv">'+it.ci+'</div></div><div class="dsb"><div class="dsl">Usuario</div><div class="dsv">'+((dt.users.find(function(u){return u.id===it.us})||{}).n||'')+'</div></div>';
   document.getElementById('dlb').innerHTML=lk.has(id)?'<i class="fas fa-heart"></i>':'<i class="far fa-heart"></i>';
   document.getElementById('dpp').classList.add('on');
   document.getElementById('dpp').dataset.pid=id;
 }
 function ps(q){
   var cat=document.getElementById('fc').value,
+      subcat=document.getElementById('fsc').value,
       mp=document.getElementById('fp').value?parseFloat(document.getElementById('fp').value):Infinity,
       co=document.getElementById('fco').value,
       lo=document.getElementById('fl').value.toLowerCase();
   var r=dt.items.filter(function(it){
     var mq=!q||it.t.toLowerCase().includes(q.toLowerCase())||it.u.toLowerCase().includes(q.toLowerCase()),
         mc=!cat||it.cat===cat,
+        msc=!subcat||it.subcat===subcat,
         mpr=it.p<=mp,
         mco=!co||it.co===co,
         ml=!lo||it.ci.toLowerCase().includes(lo);
-    return mq&&mc&&mpr&&mco&&ml;
+    return mq&&mc&&msc&&mpr&&mco&&ml;
   });
   rl('srg',r);
   document.getElementById('src').textContent=r.length?r.length+' resultado'+(r.length>1?'s':''):'Sin resultados';
 }
-function fc(s){
+function fc(cat, subcat){
   sp('sp2');
-  document.getElementById('fc').value=s;
+  document.getElementById('fc').value=cat;
+  // Disparar cambio de categoría para cargar subcategorías
+  var event = new Event('change');
+  document.getElementById('fc').dispatchEvent(event);
+  if (subcat) {
+    document.getElementById('fsc').value=subcat;
+  }
   ps('');
 }
 function pf(){
   document.getElementById('fc').innerHTML='<option value="">Categoría</option>'+dt.cats.map(function(c){
     return '<option value="'+c.s+'">'+c.n+'</option>';
   }).join('');
+  // Event listener para cambio de categoría
+  document.getElementById('fc').addEventListener('change', function() {
+    var catKey = this.value;
+    var subcatSelect = document.getElementById('fsc');
+    if (catKey) {
+      var cat = dt.cats.find(function(c) { return c.s === catKey; });
+      if (cat && cat.subs && cat.subs.length > 0) {
+        subcatSelect.innerHTML = '<option value="">Subcategoría</option>' + cat.subs.map(function(s) {
+          return '<option value="' + s.s + '">' + s.n + '</option>';
+        }).join('');
+        subcatSelect.style.display = 'block';
+      } else {
+        subcatSelect.innerHTML = '<option value="">Subcategoría</option>';
+        subcatSelect.style.display = 'none';
+      }
+    } else {
+      subcatSelect.innerHTML = '<option value="">Subcategoría</option>';
+      subcatSelect.style.display = 'none';
+    }
+    // Disparar filtrado
+    ps(document.getElementById('spi').value.trim());
+  });
+  // Event listener para subcategoría
+  document.getElementById('fsc').addEventListener('change', function() {
+    ps(document.getElementById('spi').value.trim());
+  });
 }
 function rn(){
   var newNotifs = dt.notifs.filter(n => n.new);
@@ -857,9 +960,33 @@ function setupTabs(){
   });
 }
 function rac(){
-  document.getElementById('acg').innerHTML=dt.cats.map(function(c){
-    return '<div class="ac2" onclick="fc(\''+c.s+'\')"><div class="ai"><i class="fas '+c.i+'"></i></div><div class="an">'+c.n+'</div><div class="as">'+c.n+'</div></div>';
-  }).join('');
+  var html = '';
+  dt.cats.forEach(function(c) {
+    // Encabezado de categoría
+    html += '<div class="cat-header">';
+    html += '<div class="cat-title">';
+    html += '<i class="fas '+c.i+' cat-icon"></i>';
+    html += '<span>'+c.n+'</span>';
+    html += '<span class="cat-count">' + (c.subs ? c.subs.length : 0) + ' subcategorías</span>';
+    html += '</div>';
+    html += '</div>';
+    // Subcategorías
+    if (c.subs && c.subs.length > 0) {
+      c.subs.forEach(function(s) {
+        html += '<div class="subcat-item" onclick="fc(\''+c.s+'\',\''+s.s+'\')">';
+        html += '<div class="subcat-name">'+s.n+'</div>';
+        html += '<div class="subcat-desc">'+c.n+'</div>';
+        html += '</div>';
+      });
+    } else {
+      // Si no hay subcategorías, mostrar la categoría como elemento clickable
+      html += '<div class="subcat-item" onclick="fc(\''+c.s+'\')">';
+      html += '<div class="subcat-name">'+c.n+'</div>';
+      html += '<div class="subcat-desc">Categoría principal</div>';
+      html += '</div>';
+    }
+  });
+  document.getElementById('acg').innerHTML = html;
 }
 function openCreateExchange(){
   alert('Función de creación de intercambio circular (k=3).\n\nEn Treqe, intercambias artículos en círculos de 3 personas para maximizar valor y satisfacción.\n\nEsta funcionalidad se implementará en la versión MVP.');
