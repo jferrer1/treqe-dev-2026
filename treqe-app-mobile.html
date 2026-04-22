@@ -708,7 +708,7 @@ body{font-family:Inter,sans-serif;background:#111111;color:#fff;line-height:1.4;
 var lk=new Set(JSON.parse(localStorage.getItem('treqe_likes') || '[]'));
 var dt={
   cats:[
-    // CATEGORÍAS PRINCIPALES WALLAPOP (exactas del sitemap)
+    // CATEGORÍAS EXACTAS DE WALLAPOP (20 categorías principales)
     {s:"cars",n:"Coches",i:"fa-car",subs:[
       {s:"cars_sedan",n:"Turismos"},
       {s:"cars_suv",n:"SUV y 4x4"},
@@ -749,13 +749,13 @@ var dt={
       {s:"realestate_land",n:"Terrenos"},
       {s:"realestate_transfers",n:"Traspasos"}
     ]},
-    {s:"technology",n:"Tecnología y electrónica",i:"fa-laptop",subs:[
-      {s:"tech_audio",n:"Audio y sonido"},
-      {s:"tech_cameras",n:"Cámaras y fotografía"},
-      {s:"tech_tv",n:"TV y proyectores"},
-      {s:"tech_components",n:"Componentes informáticos"},
-      {s:"tech_smart_home",n:"Domótica"},
-      {s:"tech_drones",n:"Drones"}
+    {s:"tv_audio_photo",n:"TV, Audio y Foto",i:"fa-tv",subs:[
+      {s:"tv_tvs",n:"Televisores"},
+      {s:"tv_audio",n:"Audio y sonido"},
+      {s:"tv_photo",n:"Cámaras y fotografía"},
+      {s:"tv_projectors",n:"Proyectores"},
+      {s:"tv_home_cinema",n:"Cine en casa"},
+      {s:"tv_accessories",n:"Accesorios TV/Audio"}
     ]},
     {s:"phones",n:"Móviles y Telefonía",i:"fa-mobile-alt",subs:[
       {s:"phones_smartphones",n:"Smartphones"},
@@ -765,7 +765,7 @@ var dt={
       {s:"phones_repair",n:"Reparación"},
       {s:"phones_sim",n:"Tarjetas SIM"}
     ]},
-    {s:"computers",n:"Informática",i:"fa-desktop",subs:[
+    {s:"computers",n:"Informática y Electrónica",i:"fa-laptop",subs:[
       {s:"comp_laptops",n:"Portátiles"},
       {s:"comp_desktops",n:"Sobremesa"},
       {s:"comp_monitors",n:"Monitores"},
@@ -883,7 +883,7 @@ var dt={
     {id:3,t:"TREK",u:"Marlin 7 2023",p:420,cat:"bicycles",subcat:"bikes_mtb",co:"Buen estado",ci:"Valencia",us:3,img:"https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=800&q=80",d:"Bicicleta Trek Marlin 7, talla M."},
     {id:4,t:"FENDER",u:"Stratocaster Player",p:580,cat:"entertainment",subcat:"ent_instruments",co:"Como nuevo",ci:"Sevilla",us:4,img:"https://images.unsplash.com/photo-1564186763535-ebb21ef5277f?w=800&q=80",d:"Fender Stratocaster Player, sunburst."},
     {id:5,t:"APPLE",u:"MacBook Air M2",p:890,cat:"computers",subcat:"comp_laptops",co:"Como nuevo",ci:"Bilbao",us:5,img:"https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=800&q=80",d:"MacBook Air M2, 8GB RAM, 256GB SSD."},
-    {id:6,t:"SONY",u:"Alpha A7 III",p:1200,cat:"technology",subcat:"tech_cameras",co:"Como nuevo",ci:"Madrid",us:1,img:"https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800&q=80",d:"Sony A7 III con objetivo 28-70mm."},
+    {id:6,t:"SONY",u:"Alpha A7 III",p:1200,cat:"tv_audio_photo",subcat:"tv_photo",co:"Como nuevo",ci:"Madrid",us:1,img:"https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800&q=80",d:"Sony A7 III con objetivo 28-70mm."},
     {id:7,t:"SEAT",u:"León FR 1.5 TSI",p:18500,cat:"cars",subcat:"cars_sedan",co:"Buen estado",ci:"Barcelona",us:2,img:"https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=800&q=80",d:"Seat León FR 1.5 TSI, 150cv, 65.000km, full extras."},
     {id:8,t:"YAMAHA",u:"MT-07 2022",p:6500,cat:"motorcycles",subcat:"moto_street",co:"Como nuevo",ci:"Madrid",us:1,img:"https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=800&q=80",d:"Yamaha MT-07 2022, 8.000km, ABS, color negro mate."},
     {id:9,t:"BOSCH",u:"Lavadora Serie 6",p:320,cat:"appliances",subcat:"appliances_laundry",co:"Como nuevo",ci:"Valencia",us:3,img:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",d:"Lavadora Bosch Serie 6, 8kg, carga frontal, A+++."},
