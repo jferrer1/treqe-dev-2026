@@ -338,6 +338,81 @@ body{font-family:Inter,sans-serif;background:#111111;color:#fff;line-height:1.4;
     grid-template-columns: repeat(5, 1fr);
   }
 }
+
+/* Enhanced search interface */
+.sp .sb {
+  background: #2C2C2C;
+  border-radius: 24px;
+  height: 56px;
+  padding: 0 20px;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.sp .sb i {
+  color: #757575;
+  font-size: 1rem;
+}
+.sp .sb input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-family: Inter, sans-serif;
+  font-size: 1rem;
+  outline: none;
+}
+.sp .sb input::placeholder {
+  color: #757575;
+}
+.fr {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.fs2, .fi2 {
+  width: 100%;
+  background: #2C2C2C;
+  border: 1px solid #3C3C3C;
+  border-radius: 8px;
+  padding: 12px 14px;
+  color: #fff;
+  font-family: Inter, sans-serif;
+  font-size: 0.85rem;
+  box-sizing: border-box;
+}
+.fa2 {
+  background: #FF6A00;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 14px;
+  font-family: Inter, sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  width: 100%;
+  grid-column: span 2;
+}
+.fr2 {
+  background: #3C3C3C;
+  color: #BDBDBD;
+  border: 1px solid #3C3C3C;
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  width: 100%;
+  grid-column: span 2;
+}
+@media (max-width: 380px) {
+  .fr {
+    grid-template-columns: 1fr;
+  }
+  .fa2, .fr2 {
+    grid-column: span 1;
+  }
+}
 </style>
 </head>
 <body>
@@ -439,7 +514,8 @@ body{font-family:Inter,sans-serif;background:#111111;color:#fff;line-height:1.4;
 <select class="fs2" id="fsc" style="display:none;">
 <option value="">Subcategoría</option>
 </select>
-<input type="number" class="fi2" id="fp" placeholder="E max">
+<input type="number" class="fi2" id="fpmin" placeholder="Precio mínimo" min="0" step="0.01">
+<input type="number" class="fi2" id="fpmax" placeholder="Precio máximo" min="0" step="0.01">
 <select class="fs2" id="fco">
 <option value="">Condición</option>
 <option>Nuevo</option>
@@ -447,8 +523,9 @@ body{font-family:Inter,sans-serif;background:#111111;color:#fff;line-height:1.4;
 <option>Buen estado</option>
 <option>Aceptable</option>
 </select>
-<input type="text" class="fi2" id="fl" placeholder="Ciudad" style="width:80px">
+<input type="text" class="fi2" id="fl" placeholder="Ciudad o código postal">
 <button class="fa2" id="fba">Filtrar</button>
+<button class="fr2" id="fclear">Limpiar filtros</button>
 </div>
 <div class="rc" id="src"></div>
 </div>
@@ -990,14 +1067,15 @@ function sd(id){
 function ps(q){
   var cat=document.getElementById('fc').value,
       subcat=document.getElementById('fsc').value,
-      mp=document.getElementById('fp').value?parseFloat(document.getElementById('fp').value):Infinity,
+      minPrice=document.getElementById('fpmin').value?parseFloat(document.getElementById('fpmin').value):0,
+      maxPrice=document.getElementById('fpmax').value?parseFloat(document.getElementById('fpmax').value):Infinity,
       co=document.getElementById('fco').value,
       lo=document.getElementById('fl').value.toLowerCase();
   var r=dt.items.filter(function(it){
     var mq=!q||it.t.toLowerCase().includes(q.toLowerCase())||it.u.toLowerCase().includes(q.toLowerCase()),
         mc=!cat||it.cat===cat,
         msc=!subcat||it.subcat===subcat,
-        mpr=it.p<=mp,
+        mpr=it.p>=minPrice&&it.p<=maxPrice,
         mco=!co||it.co===co,
         ml=!lo||it.ci.toLowerCase().includes(lo);
     return mq&&mc&&msc&&mpr&&mco&&ml;
@@ -1197,6 +1275,16 @@ function init(){
   });
   document.getElementById('fba').addEventListener('click',function(){
     ps(document.getElementById('spi').value.trim());
+  });
+  document.getElementById('fclear').addEventListener('click',function(){
+    document.getElementById('fc').value='';
+    document.getElementById('fsc').value='';
+    document.getElementById('fpmin').value='';
+    document.getElementById('fpmax').value='';
+    document.getElementById('fco').value='';
+    document.getElementById('fl').value='';
+    document.getElementById('spi').value='';
+    ps('');
   });
   document.getElementById('sac').addEventListener('click',function(){
     rac();
