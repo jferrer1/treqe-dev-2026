@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>TREQE — Match encontrado</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #F8F6F0;
+      color: #1A1A1A;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+    a { text-decoration: none; color: inherit; }
+
+    :root {
+      --bg: #F8F6F0;
+      --text: #1A1A1A;
+      --text-secondary: #888888;
+      --text-tertiary: #B0B0B0;
+      --border: #E8E4DC;
+      --accent: #FF6A35;
+      --accent-hover: #E55A2B;
+      --success: #00B8B8;
+      --danger: #E74C3C;
+      --card-bg: #FFFFFF;
+      --shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+
+    /* ===== STATUS BAR ===== */
+    .status-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 20px 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      background: var(--bg);
+    }
+    .status-bar .time { font-weight: 700; color: var(--text); }
+    .status-bar .icons { display: flex; gap: 6px; font-size: 0.7rem; }
+
+    /* ===== DEMO NOTICE ===== */
+    .demo-notice {
+      text-align: center;
+      padding: 6px 16px;
+      font-size: 0.65rem;
+      color: var(--text-tertiary);
+      background: #F0EDE6;
+      letter-spacing: 0.3px;
+    }
+    .demo-notice i { margin-right: 4px; }
+
+    /* ===== SIMULATE APP BAR ===== */
+    .app-bar {
+      display: flex;
+      align-items: center;
+      padding: 8px 16px;
+      gap: 12px;
+      background: var(--bg);
+    }
+    .app-bar__logo {
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+    .app-bar__logo span { color: var(--accent); }
+    .app-bar__spacer { flex: 1; }
+    .app-bar button {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+    .app-bar button:active { background: var(--border); }
+
+    /* ===== NOTIFICATION BELL (demo trigger) ===== */
+    .notif-trigger-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 24px;
+      text-align: center;
+    }
+    .notif-trigger-area i {
+      font-size: 3rem;
+      color: var(--text-tertiary);
+      margin-bottom: 16px;
+      opacity: 0.4;
+    }
+    .notif-trigger-area h2 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .notif-trigger-area p {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      line-height: 1.5;
+      max-width: 280px;
+      margin-bottom: 24px;
+    }
+    .trigger-btn {
+      padding: 14px 32px;
+      background: var(--accent);
+      color: #FFF;
+      border-radius: 14px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      box-shadow: 0 4px 16px rgba(255,106,53,0.25);
+      transition: all 0.2s;
+    }
+    .trigger-btn:active { transform: scale(0.96); }
+
+    /* ===== NOTIFICATION OVERLAY ===== */
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(26,26,26,0.4);
+      z-index: 200;
+      align-items: flex-end;
+      justify-content: center;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+    .overlay.visible { display: flex; }
+
+    /* ===== NOTIFICATION SHEET ===== */
+    .notification-sheet {
+      width: 100%;
+      max-width: 500px;
+      background: var(--card-bg);
+      border-radius: 24px 24px 0 0;
+      padding: 0 24px 32px;
+      animation: sheetUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 -8px 30px rgba(0,0,0,0.08);
+    }
+    @keyframes sheetUp {
+      0% { transform: translateY(100%); }
+      100% { transform: translateY(0); }
+    }
+
+    /* ===== SHEET HANDLE ===== */
+    .sheet-handle {
+      display: flex;
+      justify-content: center;
+      padding: 10px 0 6px;
+    }
+    .sheet-handle span {
+      width: 36px;
+      height: 4px;
+      background: var(--border);
+      border-radius: 4px;
+    }
+
+    /* ===== CONFETTI CELEBRATION ===== */
+    .celebration {
+      text-align: center;
+      padding: 8px 0 12px;
+    }
+    .celebration__icon {
+      width: 64px;
+      height: 64px;
+      background: rgba(255,106,53,0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+      animation: bounce 1s ease infinite;
+    }
+    .celebration__icon i {
+      font-size: 1.8rem;
+      color: var(--accent);
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+    .celebration h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+    .celebration p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+
+    /* ===== ITEM COMPARISON ===== */
+    .item-compare {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 8px;
+      align-items: center;
+      margin: 16px 0;
+      padding: 16px;
+      background: var(--bg);
+      border-radius: 16px;
+    }
+    .item-compare__item {
+      text-align: center;
+    }
+    .item-compare__image {
+      width: 80px;
+      height: 80px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      margin: 0 auto 8px;
+    }
+    .item-compare__image.get { background: #2D2D2D; }
+    .item-compare__image.get i { color: rgba(255,255,255,0.25); }
+    .item-compare__image.give { background: #1A3A2A; }
+    .item-compare__image.give i { color: rgba(255,255,255,0.25); }
+    .item-compare__name {
+      font-size: 0.78rem;
+      font-weight: 500;
+    }
+    .item-compare__price {
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+      margin-top: 2px;
+      font-weight: 500;
+    }
+    .item-compare__arrow {
+      font-size: 1.5rem;
+      color: var(--accent);
+      padding: 0 4px;
+    }
+    .item-compare__labels {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 8px;
+      grid-column: 1 / -1;
+    }
+    .item-compare__labels span {
+      font-size: 0.62rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-tertiary);
+    }
+
+    /* ===== TRADE SUMMARY ===== */
+    .trade-summary {
+      padding: 4px 0 12px;
+    }
+    .trade-summary__row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      font-size: 0.88rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .trade-summary__row:last-child { border-bottom: none; }
+    .trade-summary__row .label { color: var(--text-secondary); }
+    .trade-summary__row .value { font-weight: 600; }
+    .trade-summary__row.total {
+      padding: 12px 0 4px;
+      font-size: 1rem;
+      border-bottom: none;
+    }
+    .trade-summary__row.total .label { font-weight: 600; color: var(--text); }
+    .trade-summary__row.total .value { font-size: 1.1rem; color: var(--accent); font-weight: 700; }
+
+    /* ===== TIMER ===== */
+    .timer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 0 16px;
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+    }
+    .timer i { color: var(--accent); font-size: 0.75rem; }
+    .timer strong {
+      color: var(--text);
+      font-weight: 600;
+      background: var(--bg);
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-size: 1rem;
+      letter-spacing: 1px;
+    }
+
+    /* ===== ACTION BUTTONS ===== */
+    .action-buttons {
+      display: flex;
+      gap: 10px;
+    }
+    .action-btn {
+      flex: 1;
+      padding: 16px;
+      border-radius: 14px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-align: center;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .action-btn:active { transform: scale(0.97); }
+    .action-btn--accept {
+      background: var(--accent);
+      color: #FFF;
+      box-shadow: 0 4px 16px rgba(255,106,53,0.25);
+    }
+    .action-btn--accept:active { background: var(--accent-hover); box-shadow: 0 2px 8px rgba(255,106,53,0.15); }
+    .action-btn--cancel {
+      background: var(--card-bg);
+      color: var(--text-secondary);
+      border: 1.5px solid var(--border);
+    }
+    .action-btn--cancel:active { background: #F5F3EE; color: var(--danger); border-color: var(--danger); }
+
+    /* ===== ACCEPTED STATE (after clicking accept) ===== */
+    .accepted-state {
+      display: none;
+      text-align: center;
+      padding: 24px 0 8px;
+    }
+    .accepted-state.visible { display: block; }
+    .accepted-state .check-icon {
+      width: 56px;
+      height: 56px;
+      background: var(--success);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+      animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .accepted-state .check-icon i { color: #FFF; font-size: 1.5rem; }
+    @keyframes popIn {
+      0% { transform: scale(0); }
+      100% { transform: scale(1); }
+    }
+    .accepted-state h3 { font-size: 1.15rem; font-weight: 600; margin-bottom: 4px; }
+    .accepted-state p { color: var(--text-secondary); font-size: 0.85rem; }
+    .accepted-state .next-btn {
+      margin-top: 20px;
+      padding: 14px 32px;
+      background: var(--accent);
+      color: #FFF;
+      border-radius: 14px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      box-shadow: 0 4px 16px rgba(255,106,53,0.25);
+    }
+    .accepted-state .next-btn:active { transform: scale(0.96); }
+
+    /* ===== CLOSE AREA (tap outside sheet) ===== */
+    .overlay-bg {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (min-width: 600px) {
+      .notification-sheet { border-radius: 24px; margin-bottom: 40px; }
+      .overlay { align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== DEMO NOTICE ===== -->
+  <div class="demo-notice"><i class="fas fa-paint-brush"></i> Prototipo — v6 Match — 23 Abr 2026</div>
+
+  <!-- ===== STATUS BAR ===== -->
+  <div class="status-bar">
+    <span class="time">15:25</span>
+    <span class="icons">
+      <i class="fas fa-signal"></i>
+      <i class="fas fa-wifi"></i>
+      <i class="fas fa-battery-three-quarters"></i>
+    </span>
+  </div>
+
+  <!-- ===== APP BAR (simulating being inside the app) ===== -->
+  <div class="app-bar">
+    <span class="app-bar__logo">treqe<span>.</span></span>
+    <span class="app-bar__spacer"></span>
+    <button onclick="alert('🔔 Notificaciones (demo)')"><i class="fas fa-bell"></i></button>
+    <button onclick="alert('👤 Perfil')"><i class="fas fa-user"></i></button>
+  </div>
+
+  <!-- ===== TRIGGER AREA ===== -->
+  <div class="notif-trigger-area">
+    <i class="fas fa-bell"></i>
+    <h2>Simulación de notificación</h2>
+    <p>Pulsa el botón para recibir una notificación de match encontrado, como si acabara de llegar.</p>
+    <button class="trigger-btn" onclick="showNotification()">
+      <i class="fas fa-bolt"></i> Recibir match
+    </button>
+  </div>
+
+  <!-- ===== OVERLAY ===== -->
+  <div class="overlay" id="overlay">
+    <div class="overlay-bg" onclick="hideNotification()"></div>
+
+    <div class="notification-sheet" id="notifSheet">
+
+      <!-- Handle -->
+      <div class="sheet-handle"><span></span></div>
+
+      <!-- CELEBRATION STATE -->
+      <div id="celebrationState">
+        <div class="celebration">
+          <div class="celebration__icon"><i class="fas fa-star"></i></div>
+          <h2>¡Enhorabuena!</h2>
+          <p>Hay una oportunidad para ti</p>
+        </div>
+
+        <!-- Item comparison -->
+        <div class="item-compare">
+          <div class="item-compare__item">
+            <div class="item-compare__image get">
+              <i class="fas fa-guitar"></i>
+            </div>
+            <div class="item-compare__name">Fender Stratocaster</div>
+            <div class="item-compare__price">580€</div>
+          </div>
+          <div class="item-compare__arrow"><i class="fas fa-arrow-right"></i></div>
+          <div class="item-compare__item">
+            <div class="item-compare__image give">
+              <i class="fas fa-bicycle"></i>
+            </div>
+            <div class="item-compare__name">Trek Marlin 7</div>
+            <div class="item-compare__price">420€</div>
+          </div>
+          <div class="item-compare__labels">
+            <span>Recibes</span>
+            <span style="visibility:hidden;">—</span>
+            <span>Ofreces</span>
+          </div>
+        </div>
+
+        <!-- Trade summary -->
+        <div class="trade-summary">
+          <div class="trade-summary__row">
+            <span class="label">Artículo solicitado</span>
+            <span class="value">🎸 580€</span>
+          </div>
+          <div class="trade-summary__row">
+            <span class="label">Tu artículo</span>
+            <span class="value">🚲 420€</span>
+          </div>
+          <div class="trade-summary__row total">
+            <span class="label">Diferencia a pagar</span>
+            <span class="value">+160€</span>
+          </div>
+        </div>
+
+        <!-- Timer -->
+        <div class="timer">
+          <i class="fas fa-hourglass-half"></i>
+          Tienes <strong>47:32:15</strong> para decidir
+        </div>
+
+        <!-- Actions -->
+        <div class="action-buttons" id="actionBtns">
+          <button class="action-btn action-btn--cancel" onclick="hideNotification()">
+            <i class="fas fa-times"></i> Cancelar
+          </button>
+          <button class="action-btn action-btn--accept" onclick="acceptMatch()">
+            <i class="fas fa-check"></i> Aceptar
+          </button>
+        </div>
+      </div>
+
+      <!-- ACCEPTED STATE -->
+      <div class="accepted-state" id="acceptedState">
+        <div class="check-icon"><i class="fas fa-check"></i></div>
+        <h3>Match aceptado</h3>
+        <p>El artículo se ha bloqueado para ti. Prepara tu envío.</p>
+        <button class="next-btn" onclick="hideNotification()">
+          <i class="fas fa-box"></i> Ver seguimiento
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    let isAccepted = false;
+
+    function showNotification() {
+      const overlay = document.getElementById('overlay');
+      overlay.classList.add('visible');
+      isAccepted = false;
+      document.getElementById('celebrationState').style.display = 'block';
+      document.getElementById('acceptedState').classList.remove('visible');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function hideNotification() {
+      document.getElementById('overlay').classList.remove('visible');
+      document.body.style.overflow = '';
+    }
+
+    function acceptMatch() {
+      if (isAccepted) return;
+      isAccepted = true;
+
+      // Hide celebration, show accepted
+      document.getElementById('celebrationState').style.display = 'none';
+      const acceptedState = document.getElementById('acceptedState');
+      acceptedState.classList.add('visible');
+
+      // Scroll to top of sheet to show accepted state
+      document.getElementById('notifSheet').scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Keyboard: Escape to close
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') hideNotification();
+    });
+
+    console.log('🎉 TREQE v6 — Match Notification');
+    console.log('🧪 Prototipo de diseño — 23 Abril 2026');
+  </script>
+</body>
+</html>
