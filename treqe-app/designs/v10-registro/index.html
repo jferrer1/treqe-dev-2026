@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>TREQE — Registro</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #F8F6F0;
+      color: #1A1A1A;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+    a { text-decoration: none; }
+    input { font-family: inherit; }
+
+    :root {
+      --bg: #F8F6F0;
+      --text: #1A1A1A;
+      --text-secondary: #888888;
+      --text-tertiary: #B0B0B0;
+      --border: #E8E4DC;
+      --accent: #FF6A35;
+      --accent-hover: #E55A2B;
+      --card-bg: #FFFFFF;
+      --shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+
+    /* ===== STATUS BAR ===== */
+    .status-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 20px 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      background: var(--bg);
+    }
+    .status-bar .time { font-weight: 700; color: var(--text); }
+    .status-bar .icons { display: flex; gap: 6px; font-size: 0.7rem; }
+
+    /* ===== DEMO ===== */
+    .demo-notice {
+      text-align: center;
+      padding: 6px 16px;
+      font-size: 0.65rem;
+      color: var(--text-tertiary);
+      background: #F0EDE6;
+      letter-spacing: 0.3px;
+    }
+    .demo-notice i { margin-right: 4px; }
+
+    /* ===== SPLASH CONTAINER ===== */
+    .auth-screen {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 24px 28px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .auth-screen::before {
+      content: '';
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: 0.03;
+      top: -100px;
+      right: -80px;
+    }
+    .auth-screen::after {
+      content: '';
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: 0.03;
+      bottom: -60px;
+      left: -60px;
+    }
+
+    /* ===== SKIP ===== */
+    .skip-link {
+      align-self: flex-end;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text-tertiary);
+      padding: 6px 12px;
+      border-radius: 8px;
+      transition: background 0.2s;
+      z-index: 2;
+    }
+    .skip-link:active { background: var(--border); }
+
+    /* ===== LOGO AREA ===== */
+    .auth-header {
+      text-align: center;
+      padding: 20px 0 32px;
+      z-index: 2;
+    }
+    .auth-header__logo {
+      width: 64px;
+      height: 64px;
+      background: var(--text);
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+    }
+    .auth-header__logo i { color: #FFF; font-size: 1.8rem; }
+    .auth-header__title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+    .auth-header__title span { color: var(--accent); }
+    .auth-header__sub {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      margin-top: 4px;
+      line-height: 1.5;
+    }
+
+    /* ===== SOCIAL BUTTONS ===== */
+    .social-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 2;
+    }
+    .social-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 16px;
+      border-radius: 14px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .social-btn:active { transform: scale(0.98); }
+
+    .social-btn--google {
+      background: var(--card-bg);
+      color: var(--text);
+      border: 1.5px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+    .social-btn--google:active { background: #F5F3EE; border-color: #CCC; }
+    .social-btn--google i { color: #4285F4; font-size: 1.2rem; }
+
+    .social-btn--apple {
+      background: #1A1A1A;
+      color: #FFF;
+    }
+    .social-btn--apple:active { background: #333; }
+    .social-btn--apple i { font-size: 1.3rem; }
+
+    /* ===== DIVIDER ===== */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 24px 0;
+      z-index: 2;
+    }
+    .divider__line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+    .divider__text {
+      font-size: 0.78rem;
+      color: var(--text-tertiary);
+      font-weight: 500;
+    }
+
+    /* ===== EMAIL BUTTON ===== */
+    .email-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 16px;
+      border-radius: 14px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      border: 1.5px dashed var(--border);
+      transition: all 0.2s;
+      z-index: 2;
+    }
+    .email-btn:active { border-color: var(--accent); color: var(--accent); background: rgba(255,106,53,0.04); }
+
+    /* ===== BOTTOM LINK ===== */
+    .auth-footer {
+      margin-top: auto;
+      text-align: center;
+      padding: 24px 0 0;
+      z-index: 2;
+    }
+    .auth-footer p {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+    }
+    .auth-footer a {
+      color: var(--accent);
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .auth-footer a:active { opacity: 0.7; }
+
+    .auth-footer__terms {
+      font-size: 0.68rem;
+      color: var(--text-tertiary);
+      margin-top: 12px;
+      line-height: 1.5;
+    }
+    .auth-footer__terms a { color: var(--text-tertiary); text-decoration: underline; }
+    .auth-footer__terms a:active { color: var(--text); }
+
+    /* ===== MANUAL FORM (hidden) ===== */
+    .manual-form {
+      display: none;
+      flex-direction: column;
+      gap: 14px;
+      z-index: 2;
+      animation: fadeUp 0.3s ease;
+    }
+    .manual-form.visible { display: flex; }
+    .manual-form.hidden { display: none; }
+
+    @keyframes fadeUp {
+      0% { opacity: 0; transform: translateY(8px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .manual-form input {
+      width: 100%;
+      padding: 16px;
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      font-size: 0.95rem;
+      color: var(--text);
+      background: var(--card-bg);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .manual-form input::placeholder { color: var(--text-tertiary); }
+    .manual-form input:focus { border-color: var(--accent); }
+
+    .manual-form .name-row {
+      display: flex;
+      gap: 10px;
+    }
+    .manual-form .name-row input { flex: 1; }
+
+    .manual-form .submit-btn {
+      padding: 16px;
+      background: var(--accent);
+      color: #FFF;
+      border-radius: 14px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      box-shadow: 0 4px 16px rgba(255,106,53,0.25);
+      transition: all 0.2s;
+    }
+    .manual-form .submit-btn:active { transform: scale(0.97); background: var(--accent-hover); }
+
+    .manual-form .back-btn {
+      font-size: 0.82rem;
+      color: var(--text-tertiary);
+      text-align: center;
+      padding: 8px;
+    }
+    .manual-form .back-btn:active { color: var(--text); }
+
+    /* ===== HIDE/SHOW TOGGLE ===== */
+    .social-view { display: flex; flex-direction: column; flex: 1; }
+    .social-view.hidden { display: none; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (min-width: 600px) {
+      .auth-screen { max-width: 420px; margin: 0 auto; padding: 40px 32px 48px; }
+    }
+
+    /* ===== PASSWORD TOGGLE ===== */
+    .input-wrap {
+      position: relative;
+    }
+    .input-wrap .toggle-pass {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-tertiary);
+      font-size: 0.85rem;
+      padding: 4px;
+    }
+    .input-wrap .toggle-pass:active { color: var(--text); }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NOTICE ===== -->
+  <div class="demo-notice"><i class="fas fa-paint-brush"></i> Prototipo — v10 Registro — 23 Abr 2026</div>
+
+  <!-- ===== STATUS BAR ===== -->
+  <div class="status-bar">
+    <span class="time">16:07</span>
+    <span class="icons">
+      <i class="fas fa-signal"></i>
+      <i class="fas fa-wifi"></i>
+      <i class="fas fa-battery-three-quarters"></i>
+    </span>
+  </div>
+
+  <!-- ===== AUTH SCREEN ===== -->
+  <div class="auth-screen">
+
+    <!-- ===== SKIP ===== -->
+    <button class="skip-link" id="skipBtn" onclick="alert('🏠 Ir al catálogo (demo)')">Saltar</button>
+
+    <!-- ===== SOCIAL VIEW ===== -->
+    <div class="social-view" id="socialView">
+
+      <!-- HEADER -->
+      <div class="auth-header">
+        <div class="auth-header__logo"><i class="fas fa-arrow-left-arrow-right"></i></div>
+        <div class="auth-header__title">treqe<span>.</span></div>
+        <div class="auth-header__sub">Crea tu cuenta para empezar a intercambiar</div>
+      </div>
+
+      <!-- SOCIAL BUTTONS -->
+      <div class="social-buttons">
+        <button class="social-btn social-btn--google" onclick="socialRegister('Google')">
+          <i class="fab fa-google"></i> Continúa con Google
+        </button>
+        <button class="social-btn social-btn--apple" onclick="socialRegister('Apple')">
+          <i class="fab fa-apple"></i> Continúa con Apple
+        </button>
+      </div>
+
+      <!-- DIVIDER -->
+      <div class="divider">
+        <span class="divider__line"></span>
+        <span class="divider__text">o</span>
+        <span class="divider__line"></span>
+      </div>
+
+      <!-- EMAIL OPTION -->
+      <button class="email-btn" onclick="showManual()">
+        <i class="fas fa-envelope"></i> Continuar con correo
+      </button>
+
+      <!-- FOOTER -->
+      <div class="auth-footer">
+        <p>¿Ya tienes cuenta? <a onclick="alert('📝 Inicio de sesión (demo)')">Inicia sesión</a></p>
+        <div class="auth-footer__terms">
+          Al continuar aceptas los <a onclick="alert('📜 Términos (demo)')">términos</a> y la <a onclick="alert('🔒 Privacidad (demo)')">política de privacidad</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== MANUAL FORM ===== -->
+    <div class="manual-form" id="manualForm">
+      <div class="auth-header" style="padding-bottom:16px;">
+        <div class="auth-header__title" style="font-size:1.3rem;">Crear cuenta</div>
+        <div class="auth-header__sub">Con tu correo electrónico</div>
+      </div>
+
+      <div class="name-row">
+        <input type="text" placeholder="Nombre" id="regName" value="Pepe">
+        <input type="text" placeholder="Apellidos" id="regLast" value="Martínez">
+      </div>
+      <input type="email" placeholder="Correo electrónico" id="regEmail" value="pepe@email.com">
+      
+      <div class="input-wrap">
+        <input type="password" placeholder="Contraseña" id="regPass" value="········">
+        <button class="toggle-pass" onclick="togglePass()"><i class="far fa-eye"></i></button>
+      </div>
+
+      <button class="submit-btn" onclick="alert('✅ Cuenta creada → Catálogo (demo)')">
+        <i class="fas fa-arrow-right"></i> Crear cuenta
+      </button>
+
+      <div class="divider" style="padding:12px 0;">
+        <span class="divider__line"></span>
+        <span class="divider__text">o</span>
+        <span class="divider__line"></span>
+      </div>
+
+      <div style="display:flex;gap:10px;">
+        <button class="social-btn social-btn--google" style="flex:1;padding:12px;" onclick="socialRegister('Google')">
+          <i class="fab fa-google"></i>
+        </button>
+        <button class="social-btn social-btn--apple" style="flex:1;padding:12px;" onclick="socialRegister('Apple')">
+          <i class="fab fa-apple"></i>
+        </button>
+      </div>
+
+      <button class="back-btn" onclick="hideManual()">
+        <i class="fas fa-chevron-left"></i> Volver
+      </button>
+    </div>
+
+  </div>
+
+  <script>
+    function socialRegister(provider) {
+      alert(`✅ Registro con ${provider} (demo)\n\nEn producción: OAuth redirect a ${provider}`);
+    }
+
+    function showManual() {
+      document.getElementById('socialView').classList.add('hidden');
+      document.getElementById('manualForm').classList.remove('hidden');
+      document.getElementById('manualForm').classList.add('visible');
+      document.getElementById('skipBtn').style.display = 'none';
+    }
+
+    function hideManual() {
+      document.getElementById('socialView').classList.remove('hidden');
+      document.getElementById('manualForm').classList.remove('visible');
+      document.getElementById('manualForm').classList.add('hidden');
+      document.getElementById('skipBtn').style.display = 'block';
+    }
+
+    function togglePass() {
+      const pass = document.getElementById('regPass');
+      pass.type = pass.type === 'password' ? 'text' : 'password';
+    }
+
+    console.log('📝 TREQE v10 — Registro / Login');
+    console.log('🧪 Prototipo de diseño — 23 Abril 2026');
+  </script>
+</body>
+</html>
