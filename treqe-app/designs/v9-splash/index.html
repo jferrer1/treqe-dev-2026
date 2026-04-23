@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>TREQE</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #F8F6F0;
+      color: #1A1A1A;
+      height: 100vh;
+      overflow: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    :root {
+      --bg: #F8F6F0;
+      --text: #1A1A1A;
+      --accent: #FF6A35;
+      --card-bg: #FFFFFF;
+    }
+
+    /* ===== SPLASH CONTAINER ===== */
+    .splash {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 32px;
+      background: var(--bg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ===== DECORATIVE CIRCLES ===== */
+    .splash::before,
+    .splash::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.04;
+    }
+    .splash::before {
+      width: 400px;
+      height: 400px;
+      background: var(--accent);
+      top: -120px;
+      right: -100px;
+    }
+    .splash::after {
+      width: 300px;
+      height: 300px;
+      background: var(--accent);
+      bottom: -80px;
+      left: -80px;
+    }
+
+    /* ===== LOGO ===== */
+    .logo-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .logo-icon {
+      width: 96px;
+      height: 96px;
+      background: var(--text);
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      animation: logoFloat 3s ease-in-out infinite;
+      position: relative;
+    }
+    .logo-icon::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 28px;
+      border: 2px solid var(--accent);
+      opacity: 0.15;
+      animation: ringPulse 3s ease-in-out infinite;
+    }
+    .logo-icon i {
+      font-size: 2.8rem;
+      color: #FFF;
+    }
+
+    @keyframes logoFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    @keyframes ringPulse {
+      0%, 100% { transform: scale(1); opacity: 0.15; }
+      50% { transform: scale(1.06); opacity: 0.3; }
+    }
+
+    .logo-text {
+      font-size: 2.8rem;
+      font-weight: 900;
+      letter-spacing: -2px;
+      color: var(--text);
+      line-height: 1;
+    }
+    .logo-text span { color: var(--accent); }
+
+    .logo-tagline {
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: rgba(26,26,26,0.4);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-top: 8px;
+    }
+
+    /* ===== LOADING BAR ===== */
+    .loading-wrap {
+      position: absolute;
+      bottom: 80px;
+      left: 32px;
+      right: 32px;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .loading-bar {
+      width: 100%;
+      max-width: 200px;
+      height: 3px;
+      background: #E8E4DC;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .loading-bar__fill {
+      height: 100%;
+      width: 0%;
+      background: var(--accent);
+      border-radius: 3px;
+      animation: loadFill 2.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+
+    @keyframes loadFill {
+      0% { width: 0%; }
+      40% { width: 35%; }
+      70% { width: 68%; }
+      100% { width: 100%; }
+    }
+
+    .loading-label {
+      font-size: 0.72rem;
+      color: var(--text);
+      opacity: 0.3;
+      font-weight: 400;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      animation: pulseText 2s ease-in-out infinite;
+    }
+
+    @keyframes pulseText {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.6; }
+    }
+
+    /* ===== DEMO BUTTON (to replay) ===== */
+    .demo-replay {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 10;
+      padding: 8px 14px;
+      font-size: 0.68rem;
+      color: #B0B0B0;
+      background: rgba(0,0,0,0.03);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s;
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .demo-replay:active { background: rgba(0,0,0,0.06); color: #888; }
+    .demo-replay i { font-size: 0.6rem; }
+
+    /* ===== DEMO TAG ===== */
+    .demo-tag {
+      position: absolute;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.55rem;
+      color: rgba(0,0,0,0.15);
+      z-index: 10;
+      white-space: nowrap;
+    }
+
+    /* ===== ANIMATION SEQUENCE ===== */
+    .logo-wrap {
+      animation: fadeScaleIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    }
+    .loading-wrap {
+      animation: fadeUp 0.6s ease 0.6s both;
+    }
+
+    @keyframes fadeScaleIn {
+      0% { opacity: 0; transform: scale(0.85); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+    @keyframes fadeUp {
+      0% { opacity: 0; transform: translateY(16px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== LOADING VARIANTS ===== */
+    .loading-variant {
+      font-size: 0.65rem;
+      color: rgba(26,26,26,0.2);
+      cursor: pointer;
+      transition: color 0.2s;
+      border: none;
+      background: none;
+      font-family: inherit;
+      margin-top: 4px;
+    }
+    .loading-variant:active { color: rgba(26,26,26,0.4); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (min-height: 700px) {
+      .logo-icon { width: 112px; height: 112px; border-radius: 28px; }
+      .logo-icon::after { border-radius: 32px; }
+      .logo-icon i { font-size: 3.2rem; }
+      .logo-text { font-size: 3.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="splash" id="splash">
+
+    <!-- ===== DEMO REPLAY ===== -->
+    <button class="demo-replay" onclick="replaySplash()">
+      <i class="fas fa-redo-alt"></i> Repetir
+    </button>
+
+    <!-- ===== LOGO ===== -->
+    <div class="logo-wrap" id="logoWrap">
+      <div class="logo-icon">
+        <i class="fas fa-arrow-left-arrow-right"></i>
+      </div>
+      <div class="logo-text">treqe<span>.</span></div>
+      <div class="logo-tagline">Intercambio circular</div>
+    </div>
+
+    <!-- ===== LOADING ===== -->
+    <div class="loading-wrap" id="loadingWrap">
+      <div class="loading-bar">
+        <div class="loading-bar__fill" id="loadFill"></div>
+      </div>
+      <div class="loading-label" id="loadLabel">Buscando oportunidades</div>
+      <button class="loading-variant" onclick="cycleLoadingText()">↻</button>
+    </div>
+
+    <!-- ===== DEMO TAG ===== -->
+    <span class="demo-tag"><i class="fas fa-paint-brush"></i> Prototipo — v9 Splash — 23 Abr 2026</span>
+  </div>
+
+  <script>
+    const loadingMessages = [
+      'Buscando oportunidades',
+      'Preparando tu catálogo',
+      'Conectando artículos',
+      'Afinando el algoritmo',
+      'Casi listo'
+    ];
+    let msgIndex = 0;
+
+    function cycleLoadingText() {
+      msgIndex = (msgIndex + 1) % loadingMessages.length;
+      document.getElementById('loadLabel').textContent = loadingMessages[msgIndex];
+    }
+
+    function replaySplash() {
+      // Reset
+      const fill = document.getElementById('loadFill');
+      fill.style.animation = 'none';
+      fill.offsetHeight; // force reflow
+      fill.style.animation = 'loadFill 2.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards';
+
+      const logoWrap = document.getElementById('logoWrap');
+      logoWrap.style.animation = 'none';
+      logoWrap.offsetHeight;
+      logoWrap.style.animation = 'fadeScaleIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both';
+
+      const loadingWrap = document.getElementById('loadingWrap');
+      loadingWrap.style.animation = 'none';
+      loadingWrap.offsetHeight;
+      loadingWrap.style.animation = 'fadeUp 0.6s ease 0.6s both';
+    }
+
+    // Auto-redirect after animation (demo)
+    setTimeout(() => {
+      // In real app: navigate to onboarded state or catalog
+      console.log('✅ Splash complete — redirecting to catalog');
+    }, 2800);
+
+    console.log('🚀 TREQE v9 — Splash Screen');
+    console.log('🧪 Prototipo de diseño — 23 Abril 2026');
+  </script>
+</body>
+</html>
