@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>TREQE — Mi perfil</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #F8F6F0;
+      color: #1A1A1A;
+      min-height: 100vh;
+      padding-bottom: 80px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+    a { text-decoration: none; color: inherit; }
+    input { font-family: inherit; font-size: inherit; }
+
+    :root {
+      --bg: #F8F6F0;
+      --text: #1A1A1A;
+      --text-secondary: #888888;
+      --text-tertiary: #B0B0B0;
+      --border: #E8E4DC;
+      --accent: #FF6A35;
+      --accent-hover: #E55A2B;
+      --success: #00B8B8;
+      --warning: #F5A623;
+      --card-bg: #FFFFFF;
+      --shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+
+    /* ===== STATUS BAR ===== */
+    .status-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 20px 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      background: var(--bg);
+    }
+    .status-bar .time { font-weight: 700; color: var(--text); }
+    .status-bar .icons { display: flex; gap: 6px; font-size: 0.7rem; }
+
+    /* ===== DEMO NOTICE ===== */
+    .demo-notice {
+      text-align: center;
+      padding: 6px 16px;
+      font-size: 0.65rem;
+      color: var(--text-tertiary);
+      background: #F0EDE6;
+      letter-spacing: 0.3px;
+    }
+    .demo-notice i { margin-right: 4px; }
+
+    /* ===== PROFILE HEADER ===== */
+    .profile-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 16px 4px;
+      background: var(--bg);
+    }
+    .profile-header button {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+      font-size: 1.1rem;
+      transition: background 0.2s;
+    }
+    .profile-header button:active { background: var(--border); }
+    .profile-header__title {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    /* ===== SCORING CARD ===== */
+    .scoring-card {
+      margin: 4px 16px 16px;
+      padding: 20px;
+      background: var(--card-bg);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+    }
+    .scoring-card__top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .scoring-card__label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .scoring-card__score {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.5px;
+    }
+    .scoring-card__score small {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-tertiary);
+    }
+    .scoring-card__bar {
+      width: 100%;
+      height: 6px;
+      background: #F0EDE6;
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+    .scoring-card__bar-fill {
+      height: 100%;
+      width: 82%;
+      background: linear-gradient(90deg, var(--accent), #FF8A5C);
+      border-radius: 6px;
+      transition: width 0.6s ease;
+    }
+    .scoring-card__info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+    }
+    .scoring-card__info .next-level {
+      color: var(--accent);
+      font-weight: 500;
+    }
+    .scoring-card__info button {
+      font-size: 0.72rem;
+      color: var(--text-tertiary);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .scoring-card__info button:active { color: var(--text); }
+
+    /* ===== SECTION ===== */
+    .section {
+      padding: 0 16px;
+      margin-bottom: 20px;
+    }
+    .section__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .section__title {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .section__action {
+      font-size: 0.75rem;
+      color: var(--accent);
+      font-weight: 500;
+    }
+    .section__action:active { opacity: 0.7; }
+
+    /* ===== MY ITEMS GRID ===== */
+    .my-items {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .my-item {
+      background: var(--card-bg);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      transition: transform 0.2s;
+      position: relative;
+    }
+    .my-item:active { transform: scale(0.97); }
+    .my-item__image {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+    }
+    .my-item:nth-child(1) .my-item__image { background: #1A3A2A; }
+    .my-item:nth-child(2) .my-item__image { background: #2D2D2D; }
+    .my-item:nth-child(3) .my-item__image { background: #3A2A1A; }
+    .my-item:nth-child(4) .my-item__image { background: #1A2A3A; }
+    .my-item:nth-child(5) .my-item__image { background: #2A1A2A; }
+    .my-item:nth-child(6) .my-item__image { background: #3A3A1A; }
+    .my-item .my-item__image i { color: rgba(255,255,255,0.25); }
+    .my-item__info {
+      padding: 8px 10px 10px;
+    }
+    .my-item__title {
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .my-item__price {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+    .my-item__status {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      font-size: 0.5rem;
+      font-weight: 700;
+      padding: 3px 7px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+    .my-item__status.active {
+      background: var(--success);
+      color: #FFF;
+    }
+    .my-item__status.pending {
+      background: var(--warning);
+      color: #FFF;
+    }
+
+    /* ===== ACTIVITY FEED ===== */
+    .activity-feed {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .activity-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px;
+      background: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s;
+      cursor: pointer;
+    }
+    .activity-item:active { transform: scale(0.98); }
+    .activity-item__icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .activity-item__icon.done { background: rgba(0,184,184,0.1); color: var(--success); }
+    .activity-item__icon.pending { background: rgba(255,106,53,0.1); color: var(--accent); }
+    .activity-item__icon.waiting { background: rgba(245,166,35,0.1); color: var(--warning); }
+    .activity-item__content {
+      flex: 1;
+      min-width: 0;
+    }
+    .activity-item__title {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .activity-item__meta {
+      font-size: 0.7rem;
+      color: var(--text-tertiary);
+      margin-top: 2px;
+    }
+    .activity-item__status-badge {
+      font-size: 0.65rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 20px;
+      flex-shrink: 0;
+    }
+    .activity-item__status-badge.done {
+      background: rgba(0,184,184,0.1);
+      color: var(--success);
+    }
+    .activity-item__status-badge.pending {
+      background: rgba(255,106,53,0.1);
+      color: var(--accent);
+    }
+    .activity-item__status-badge.waiting {
+      background: rgba(245,166,35,0.1);
+      color: var(--warning);
+    }
+
+    /* ===== STATS ROW ===== */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .stat-card {
+      background: var(--card-bg);
+      border-radius: 14px;
+      padding: 16px 12px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+    .stat-card__number {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.5px;
+    }
+    .stat-card__label {
+      font-size: 0.68rem;
+      color: var(--text-tertiary);
+      font-weight: 500;
+      margin-top: 2px;
+    }
+    .stat-card__number.accent { color: var(--accent); }
+    .stat-card__number.success { color: var(--success); }
+
+    /* ===== EMPTY STATE ===== */
+    .empty-state {
+      text-align: center;
+      padding: 32px 16px;
+      color: var(--text-tertiary);
+    }
+    .empty-state i {
+      font-size: 2.5rem;
+      margin-bottom: 12px;
+      opacity: 0.4;
+    }
+    .empty-state p {
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+
+    /* ===== BOTTOM NAV ===== */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      height: 72px;
+      padding-bottom: 12px;
+      z-index: 100;
+    }
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      font-size: 0.65rem;
+      font-weight: 500;
+      color: var(--text-tertiary);
+      transition: color 0.2s;
+      padding: 4px 16px;
+      position: relative;
+    }
+    .nav-item i { font-size: 1.3rem; }
+    .nav-item.active { color: var(--accent); }
+    .nav-item.nav-add .nav-add-btn {
+      width: 52px;
+      height: 52px;
+      background: var(--accent);
+      color: #FFFFFF;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      box-shadow: 0 4px 16px rgba(255,106,53,0.3);
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      top: -12px;
+    }
+    .nav-item.nav-add .nav-add-btn:active {
+      transform: scale(0.92);
+      box-shadow: 0 2px 8px rgba(255,106,53,0.2);
+    }
+    .nav-item .nav-badge {
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      position: absolute;
+      top: 2px;
+      right: 12px;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (min-width: 600px) {
+      .scoring-card { margin: 8px 24px 20px; padding: 24px; }
+      .section { padding: 0 24px; }
+      .my-items { grid-template-columns: repeat(4, 1fr); }
+      .stats-row { grid-template-columns: repeat(3, 1fr); max-width: 400px; }
+      .profile-wrap { max-width: 640px; margin: 0 auto; }
+    }
+    @media (min-width: 1024px) {
+      .profile-wrap { max-width: 720px; }
+      .my-items { grid-template-columns: repeat(4, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== DEMO NOTICE ===== -->
+  <div class="demo-notice"><i class="fas fa-paint-brush"></i> Prototipo de diseño — v4 Perfil — 23 Abril 2026</div>
+
+  <!-- ===== STATUS BAR ===== -->
+  <div class="status-bar">
+    <span class="time">15:16</span>
+    <span class="icons">
+      <i class="fas fa-signal"></i>
+      <i class="fas fa-wifi"></i>
+      <i class="fas fa-battery-three-quarters"></i>
+    </span>
+  </div>
+
+  <!-- ===== PROFILE HEADER ===== -->
+  <div class="profile-header">
+    <button onclick="history.back()" aria-label="Atrás"><i class="fas fa-chevron-left"></i></button>
+    <span class="profile-header__title">Mi perfil</span>
+    <button aria-label="Ajustes" onclick="alert('⚙️ Ajustes (demo)')"><i class="fas fa-cog"></i></button>
+  </div>
+
+  <div class="profile-wrap">
+
+    <!-- ===== SCORING CARD ===== -->
+    <div class="scoring-card">
+      <div class="scoring-card__top">
+        <span class="scoring-card__label">Scoring</span>
+        <span class="scoring-card__score">82 <small>/ 100</small></span>
+      </div>
+      <div class="scoring-card__bar">
+        <div class="scoring-card__bar-fill" id="scoreFill" style="width:82%"></div>
+      </div>
+      <div class="scoring-card__info">
+        <span>+5 al completar intercambio</span>
+        <span class="next-level">95 para nivel Avanzado</span>
+      </div>
+    </div>
+
+    <!-- ===== STATS ROW ===== -->
+    <div class="section">
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-card__number success">12</div>
+          <div class="stat-card__label">intercambios</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__number">6</div>
+          <div class="stat-card__label">artículos</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__number accent">1</div>
+          <div class="stat-card__label">mes en Treqe</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== MY ITEMS ===== -->
+    <div class="section">
+      <div class="section__header">
+        <span class="section__title">Mis artículos</span>
+        <button class="section__action" onclick="alert('📱 Ir a subir artículo')"><i class="fas fa-plus"></i> Añadir</button>
+      </div>
+      <div class="my-items">
+        <div class="my-item" onclick="alert('🚲 Trek Marlin 7')">
+          <div class="my-item__image"><i class="fas fa-bicycle"></i></div>
+          <div class="my-item__info">
+            <div class="my-item__title">Trek Marlin 7</div>
+            <div class="my-item__price">420€</div>
+          </div>
+          <span class="my-item__status active">Activo</span>
+        </div>
+        <div class="my-item" onclick="alert('🎧 AirPods Max')">
+          <div class="my-item__image"><i class="fas fa-headphones"></i></div>
+          <div class="my-item__info">
+            <div class="my-item__title">AirPods Max</div>
+            <div class="my-item__price">380€</div>
+          </div>
+          <span class="my-item__status active">Activo</span>
+        </div>
+        <div class="my-item" onclick="alert('⌚ G-SHOCK Mudmaster')">
+          <div class="my-item__image"><i class="fas fa-clock"></i></div>
+          <div class="my-item__info">
+            <div class="my-item__title">G-SHOCK Mudmaster</div>
+            <div class="my-item__price">250€</div>
+          </div>
+          <span class="my-item__status active">Activo</span>
+        </div>
+        <div class="my-item" onclick="alert('🔌 Cargador USB-C')">
+          <div class="my-item__image"><i class="fas fa-plug"></i></div>
+          <div class="my-item__info">
+            <div class="my-item__title">Cargador USB-C 65W</div>
+            <div class="my-item__price">25€</div>
+          </div>
+          <span class="my-item__status pending">Cambio</span>
+        </div>
+        <div class="my-item" onclick="alert('📱 iPhone 12')">
+          <div class="my-item__image"><i class="fas fa-mobile-alt"></i></div>
+          <div class="my-item__info">
+            <div class="my-item__title">iPhone 12 128GB</div>
+            <div class="my-item__price">350€</div>
+          </div>
+          <span class="my-item__status pending">Cambio</span>
+        </div>
+        <div class="my-item" onclick="alert('🎸 Bajo Ibanez')">
+          <div class="my-item__image"><i class="fas fa-guitar"></i></div>
+          <div class="my-item__info">
+            <div class="my-item__title">Bajo Ibanez GSR200</div>
+            <div class="my-item__price">180€</div>
+          </div>
+          <span class="my-item__status active">Activo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== ACTIVITY ===== -->
+    <div class="section">
+      <div class="section__header">
+        <span class="section__title">Actividad</span>
+      </div>
+
+      <div class="activity-feed">
+        <div class="activity-item" onclick="alert('Ver detalle del intercambio')">
+          <div class="activity-item__icon pending">
+            <i class="fas fa-exchange-alt"></i>
+          </div>
+          <div class="activity-item__content">
+            <div class="activity-item__title">🎸 Fender Stratocaster</div>
+            <div class="activity-item__meta">Hoy · Pendiente de match</div>
+          </div>
+          <span class="activity-item__status-badge pending">Buscando</span>
+        </div>
+
+        <div class="activity-item" onclick="alert('Ver seguimiento')">
+          <div class="activity-item__icon waiting">
+            <i class="fas fa-box"></i>
+          </div>
+          <div class="activity-item__content">
+            <div class="activity-item__title">📷 Canon EOS R</div>
+            <div class="activity-item__meta">Ayer · Match aceptado</div>
+          </div>
+          <span class="activity-item__status-badge waiting">En envío</span>
+        </div>
+
+        <div class="activity-item" onclick="alert('Ver completado')">
+          <div class="activity-item__icon done">
+            <i class="fas fa-check"></i>
+          </div>
+          <div class="activity-item__content">
+            <div class="activity-item__title">🚲 Trek Marlin 7 → 🎧 AirPods Max</div>
+            <div class="activity-item__meta">Hace 3 días · Completado</div>
+          </div>
+          <span class="activity-item__status-badge done">✓ Hecho</span>
+        </div>
+
+        <div class="activity-item" onclick="alert('Ver completado')">
+          <div class="activity-item__icon done">
+            <i class="fas fa-check"></i>
+          </div>
+          <div class="activity-item__content">
+            <div class="activity-item__title">⌚ G-SHOCK → 📱 iPhone 12</div>
+            <div class="activity-item__meta">Hace 1 semana · Completado</div>
+          </div>
+          <span class="activity-item__status-badge done">✓ Hecho</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ===== BOTTOM NAV ===== -->
+  <nav class="bottom-nav">
+    <button class="nav-item" onclick="alert('📱 Catálogo')">
+      <i class="fas fa-search"></i>
+    </button>
+    <button class="nav-item nav-add" onclick="alert('➕ Subir artículo')">
+      <div class="nav-add-btn"><i class="fas fa-plus"></i></div>
+    </button>
+    <button class="nav-item active" onclick="alert('👤 Perfil (activo)')">
+      <i class="fas fa-user"></i>
+      <span class="nav-badge"></span>
+    </button>
+  </nav>
+
+  <script>
+    // Scoring bar animation on scroll
+    const scoreFill = document.getElementById('scoreFill');
+    let score = 82;
+
+    function animateScore() {
+      scoreFill.style.transition = 'width 0.6s ease';
+    }
+
+    // Click scoring card to increment (demo gamification)
+    document.querySelector('.scoring-card').addEventListener('click', function(e) {
+      if (e.target.tagName === 'BUTTON') return; // ignore link clicks
+      score = Math.min(100, score + 1);
+      scoreFill.style.width = score + '%';
+      this.querySelector('.scoring-card__score').innerHTML = score + ' <small>/ 100</small>';
+      this.querySelector('.scoring-card__info').innerHTML = `
+        <span>Has ganado <strong>+1</strong> por actividad</span>
+        <span class="next-level">${100 - score} para nivel Avanzado</span>
+      `;
+    });
+
+    console.log('👤 TREQE v4 — Perfil');
+    console.log('🧪 Prototipo de diseño — 23 Abril 2026');
+  </script>
+</body>
+</html>
