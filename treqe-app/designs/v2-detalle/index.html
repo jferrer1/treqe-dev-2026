@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>TREQE — Fender Stratocaster</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #F8F6F0;
+      color: #1A1A1A;
+      min-height: 100vh;
+      padding-bottom: 80px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    img { max-width: 100%; display: block; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+    a { text-decoration: none; color: inherit; }
+    input, select { font-family: inherit; font-size: inherit; }
+
+    /* ===== COLORS ===== */
+    :root {
+      --bg: #F8F6F0;
+      --text: #1A1A1A;
+      --text-secondary: #888888;
+      --text-tertiary: #B0B0B0;
+      --border: #E8E4DC;
+      --accent: #FF6A35;
+      --accent-hover: #E55A2B;
+      --success: #00B8B8;
+      --card-bg: #FFFFFF;
+      --shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+
+    /* ===== STATUS BAR ===== */
+    .status-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 20px 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      background: var(--bg);
+    }
+    .status-bar .time { font-weight: 700; color: var(--text); }
+    .status-bar .icons { display: flex; gap: 6px; font-size: 0.7rem; }
+
+    /* ===== DEMO NOTICE ===== */
+    .demo-notice {
+      text-align: center;
+      padding: 6px 16px;
+      font-size: 0.65rem;
+      color: var(--text-tertiary);
+      background: #F0EDE6;
+      letter-spacing: 0.3px;
+    }
+    .demo-notice i { margin-right: 4px; }
+
+    /* ===== DETAIL HEADER ===== */
+    .detail-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 8px 4px;
+      background: var(--bg);
+    }
+    .detail-header button {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+      font-size: 1.1rem;
+      transition: background 0.2s;
+    }
+    .detail-header button:active { background: var(--border); }
+    .detail-header .back-btn i { font-size: 1.2rem; }
+    .detail-header .wish-btn { color: var(--text-tertiary); }
+    .detail-header .wish-btn.liked { color: var(--accent); }
+
+    /* ===== GALLERY ===== */
+    .gallery {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      background: #2D2D2D;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .gallery .main-icon {
+      font-size: 5rem;
+      color: rgba(255,255,255,0.15);
+    }
+    .gallery .gallery-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(0,0,0,0.5);
+      color: #FFF;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 20px;
+      backdrop-filter: blur(4px);
+    }
+    .gallery .gallery-dots {
+      position: absolute;
+      bottom: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 6px;
+    }
+    .gallery .gallery-dots span {
+      width: 6px;
+      height: 6px;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.35);
+      transition: all 0.3s;
+    }
+    .gallery .gallery-dots span.active {
+      width: 18px;
+      background: #FFFFFF;
+    }
+
+    /* ===== ITEM INFO ===== */
+    .item-info {
+      background: var(--card-bg);
+      border-radius: 20px 20px 0 0;
+      margin-top: -20px;
+      position: relative;
+      z-index: 2;
+      padding: 20px 20px 0;
+    }
+    .item-breadcrumb {
+      font-size: 0.72rem;
+      color: var(--text-tertiary);
+      font-weight: 500;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .item-breadcrumb i { font-size: 0.5rem; }
+    .item-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.25;
+      margin-bottom: 6px;
+      letter-spacing: -0.3px;
+    }
+    .item-price {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+    .item-price small {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      letter-spacing: 0;
+    }
+
+    /* ===== ITEM DETAILS ROW ===== */
+    .item-details {
+      display: flex;
+      gap: 16px;
+      padding: 14px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .item-detail {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+    .item-detail i {
+      width: 16px;
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--text-tertiary);
+    }
+
+    /* ===== BUY OPTIONS ===== */
+    .buy-options {
+      padding: 20px 0;
+    }
+    .buy-option {
+      width: 100%;
+      padding: 16px 20px;
+      border-radius: 14px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-align: center;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .buy-option:active { transform: scale(0.98); }
+
+    .buy-option--cash {
+      background: var(--card-bg);
+      border: 1.5px solid var(--border);
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+    .buy-option--cash:active {
+      background: #F5F3EE;
+    }
+    .buy-option--cash small {
+      font-weight: 400;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    .buy-option--trade {
+      background: var(--accent);
+      color: #FFFFFF;
+      box-shadow: 0 4px 16px rgba(255,106,53,0.25);
+    }
+    .buy-option--trade:active {
+      background: var(--accent-hover);
+      box-shadow: 0 2px 8px rgba(255,106,53,0.15);
+    }
+
+    /* ===== TRADE SUMMARY ===== */
+    .trade-summary {
+      background: #F8F6F0;
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-top: 12px;
+      display: none;
+    }
+    .trade-summary.visible { display: block; }
+    .trade-summary__title {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+    .trade-summary__row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 0;
+      font-size: 0.88rem;
+    }
+    .trade-summary__row .label {
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .trade-summary__row .value {
+      font-weight: 600;
+    }
+    .trade-summary__row .value.positive { color: var(--success); }
+    .trade-summary__row .value.negative { color: var(--text); }
+    .trade-summary__divider {
+      height: 1px;
+      background: var(--border);
+      margin: 6px 0;
+    }
+    .trade-summary__total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 8px;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+    .trade-summary__total .value { color: var(--accent); }
+
+    /* ===== YOUR ITEMS (horizontal scroll) ===== */
+    .your-items {
+      padding: 0 0 12px;
+    }
+    .your-items__title {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .your-items__title span {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--text-tertiary);
+    }
+    .your-items__scroll {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding-bottom: 4px;
+    }
+    .your-items__scroll::-webkit-scrollbar { display: none; }
+    .your-item-card {
+      flex-shrink: 0;
+      width: 120px;
+      background: var(--card-bg);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .your-item-card:active { transform: scale(0.96); }
+    .your-item-card.selected {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px rgba(255,106,53,0.15);
+    }
+    .your-item-card__image {
+      aspect-ratio: 1;
+      background: #F0EDE6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-tertiary);
+      opacity: 0.6;
+      font-size: 1.5rem;
+    }
+    .your-item-card:nth-child(1) .your-item-card__image { background: #1A3A2A; }
+    .your-item-card:nth-child(2) .your-item-card__image { background: #2A1A3A; }
+    .your-item-card:nth-child(3) .your-item-card__image { background: #3A2A1A; }
+    .your-item-card .your-item-card__image i { color: rgba(255,255,255,0.3); }
+    .your-item-card__info {
+      padding: 8px 10px;
+    }
+    .your-item-card__title {
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .your-item-card__price {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+    .your-item-card .check-badge {
+      display: none;
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      width: 20px;
+      height: 20px;
+      background: var(--accent);
+      border-radius: 50%;
+      align-items: center;
+      justify-content: center;
+      color: #FFF;
+      font-size: 0.6rem;
+    }
+    .your-item-card.selected .check-badge { display: flex; }
+
+    /* ===== BOTTOM NAV ===== */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      height: 72px;
+      padding-bottom: 12px;
+      z-index: 100;
+    }
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      font-size: 0.65rem;
+      font-weight: 500;
+      color: var(--text-tertiary);
+      transition: color 0.2s;
+      padding: 4px 16px;
+      position: relative;
+    }
+    .nav-item i { font-size: 1.3rem; }
+    .nav-item.active { color: var(--accent); }
+    .nav-item.nav-add .nav-add-btn {
+      width: 52px;
+      height: 52px;
+      background: var(--accent);
+      color: #FFFFFF;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      box-shadow: 0 4px 16px rgba(255,106,53,0.3);
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      top: -12px;
+    }
+    .nav-item.nav-add .nav-add-btn:active {
+      transform: scale(0.92);
+      box-shadow: 0 2px 8px rgba(255,106,53,0.2);
+    }
+    .nav-item .nav-badge {
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      position: absolute;
+      top: 2px;
+      right: 12px;
+    }
+
+    /* ===== SCORING MINI ===== */
+    .scoring-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.72rem;
+      color: var(--text-tertiary);
+      font-weight: 500;
+      padding: 6px 12px;
+      background: var(--bg);
+      border-radius: 20px;
+      margin-top: 8px;
+    }
+    .scoring-tag strong { color: var(--text); font-weight: 600; }
+    .scoring-tag .bar {
+      width: 40px;
+      height: 3px;
+      background: var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .scoring-tag .bar-fill {
+      height: 100%;
+      width: 82%;
+      background: var(--accent);
+      border-radius: 3px;
+    }
+
+    /* ===== DESCRIPTION ===== */
+    .item-desc {
+      margin-top: 8px;
+      padding: 12px 0 8px;
+      border-top: 1px solid var(--border);
+    }
+    .item-desc__title {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+    .item-desc__text {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (min-width: 600px) {
+      .gallery { aspect-ratio: 16 / 9; max-height: 400px; }
+      .item-info { max-width: 600px; margin: -20px auto 0; }
+      .buy-options { max-width: 400px; margin: 0 auto; }
+      .your-items { max-width: 600px; margin: 0 auto; }
+      .item-desc { max-width: 600px; margin: 0 auto; }
+      .scoring-tag { margin-left: 20px; }
+    }
+    @media (min-width: 1024px) {
+      body { padding-bottom: 0; }
+      .detail-layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        max-width: 1000px;
+        margin: 0 auto;
+        gap: 0;
+        background: var(--card-bg);
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        margin-top: 12px;
+      }
+      .gallery {
+        aspect-ratio: 1;
+        max-height: none;
+        border-radius: 0;
+      }
+      .item-info {
+        border-radius: 0;
+        margin-top: 0;
+        padding: 32px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .buy-options { max-width: 100%; }
+      .demo-notice { max-width: 1000px; margin: 0 auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== DEMO NOTICE ===== -->
+  <div class="demo-notice"><i class="fas fa-paint-brush"></i> Prototipo de diseño — v2 Detalle — 23 Abril 2026</div>
+
+  <!-- ===== STATUS BAR ===== -->
+  <div class="status-bar">
+    <span class="time">15:03</span>
+    <span class="icons">
+      <i class="fas fa-signal"></i>
+      <i class="fas fa-wifi"></i>
+      <i class="fas fa-battery-three-quarters"></i>
+    </span>
+  </div>
+
+  <!-- ===== DETAIL HEADER ===== -->
+  <div class="detail-header">
+    <button class="back-btn" onclick="history.back()" aria-label="Atrás"><i class="fas fa-chevron-left"></i></button>
+    <button class="wish-btn" id="wishBtn" onclick="toggleWish()" aria-label="Guardar">
+      <i class="far fa-heart" id="wishIcon"></i>
+    </button>
+  </div>
+
+  <!-- ===== DESKTOP LAYOUT WRAPPER ===== -->
+  <div class="detail-layout">
+
+    <!-- ===== GALLERY ===== -->
+    <div class="gallery">
+      <i class="fas fa-guitar main-icon"></i>
+      <span class="gallery-badge"><i class="fas fa-camera"></i> 1/3</span>
+      <div class="gallery-dots">
+        <span class="active"></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+
+    <!-- ===== RIGHT PANEL ===== -->
+    <div class="item-info">
+
+      <!-- Breadcrumb -->
+      <div>
+        <div class="item-breadcrumb">
+          Música <i class="fas fa-chevron-right"></i> Guitarras
+        </div>
+
+        <!-- Title -->
+        <h1 class="item-title">Fender Stratocaster · Muy buen estado</h1>
+
+        <!-- Price -->
+        <div class="item-price">580 <small>€</small></div>
+
+        <!-- Details row -->
+        <div class="item-details">
+          <span class="item-detail"><i class="fas fa-check-circle"></i> Buen estado</span>
+          <span class="item-detail"><i class="fas fa-map-pin"></i> Barcelona</span>
+          <span class="item-detail"><i class="fas fa-calendar"></i> 2021</span>
+        </div>
+
+        <!-- Description -->
+        <div class="item-desc">
+          <div class="item-desc__title">Descripción</div>
+          <div class="item-desc__text">
+            Fender Stratocaster Made in Mexico, serie Player. Color sunburst, cuerpo de aliso, mástil de arce. Incluye funda original y correa. Pequeña marca en la cejilla, por lo demás impecable.
+          </div>
+        </div>
+      </div>
+
+      <!-- Buy Section -->
+      <div>
+        <!-- Option 1: Cash -->
+        <div class="buy-options">
+          <button class="buy-option buy-option--cash" onclick="alert('💳 Compra directa: 580€')">
+            <i class="fas fa-credit-card"></i> Comprar por 580€ <small>con tarjeta</small>
+          </button>
+
+          <!-- Option 2: Trade toggle -->
+          <button class="buy-option buy-option--trade" id="tradeToggle" onclick="toggleTrade()">
+            <i class="fas fa-exchange-alt"></i> Solicitar con trueque
+          </button>
+        </div>
+
+        <!-- Trade Summary (hidden by default) -->
+        <div class="trade-summary" id="tradeSummary">
+          <div class="trade-summary__title">Tu oferta</div>
+
+          <!-- Your items selector -->
+          <div class="your-items">
+            <div class="your-items__title">
+              <i class="fas fa-box"></i> Tus artículos <span>(selecciona uno)</span>
+            </div>
+            <div class="your-items__scroll">
+              <div class="your-item-card selected" onclick="selectItem(this, '🚲 Trek Marlin 7', 420)">
+                <div class="your-item-card__image" style="position:relative;">
+                  <i class="fas fa-bicycle"></i>
+                  <span class="check-badge"><i class="fas fa-check"></i></span>
+                </div>
+                <div class="your-item-card__info">
+                  <div class="your-item-card__title">Trek Marlin 7</div>
+                  <div class="your-item-card__price">420€</div>
+                </div>
+              </div>
+              <div class="your-item-card" onclick="selectItem(this, '🎧 AirPods Max', 380)">
+                <div class="your-item-card__image" style="position:relative;">
+                  <i class="fas fa-headphones"></i>
+                  <span class="check-badge"><i class="fas fa-check"></i></span>
+                </div>
+                <div class="your-item-card__info">
+                  <div class="your-item-card__title">AirPods Max</div>
+                  <div class="your-item-card__price">380€</div>
+                </div>
+              </div>
+              <div class="your-item-card" onclick="selectItem(this, '⌚ G-SHOCK', 250)">
+                <div class="your-item-card__image" style="position:relative;">
+                  <i class="fas fa-clock"></i>
+                  <span class="check-badge"><i class="fas fa-check"></i></span>
+                </div>
+                <div class="your-item-card__info">
+                  <div class="your-item-card__title">G-SHOCK Mudmaster</div>
+                  <div class="your-item-card__price">250€</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Summary lines -->
+          <div class="trade-summary__row">
+            <span class="label"><i class="fas fa-arrow-up"></i> Artículo solicitado</span>
+            <span class="value">🎸 580€</span>
+          </div>
+          <div class="trade-summary__row">
+            <span class="label"><i class="fas fa-arrow-down"></i> Tu artículo</span>
+            <span class="value" id="yourItemValue">🚲 420€</span>
+          </div>
+          <div class="trade-summary__divider"></div>
+          <div class="trade-summary__total">
+            <span>Diferencia a pagar</span>
+            <span class="value positive" id="diffValue">+ 160€</span>
+          </div>
+
+          <!-- Confirm button -->
+          <button class="buy-option buy-option--trade" style="margin-top:16px;" onclick="alert('✨ Solicitud enviada ✓')">
+            <i class="fas fa-paper-plane"></i> Enviar solicitud
+          </button>
+        </div>
+
+        <!-- Scoring -->
+        <div class="scoring-tag">
+          <div class="bar"><div class="bar-fill"></div></div>
+          Scoring <strong>82</strong>
+          <i class="fas fa-info-circle" style="font-size:0.6rem;cursor:pointer;" onclick="alert('A más scoring, más prioridad para conseguir artículos populares')"></i>
+        </div>
+      </div>
+
+    </div><!-- /item-info -->
+  </div><!-- /detail-layout -->
+
+  <!-- ===== BOTTOM NAV ===== -->
+  <nav class="bottom-nav">
+    <button class="nav-item" onclick="alert('📱 Catálogo')">
+      <i class="fas fa-search"></i>
+    </button>
+    <button class="nav-item nav-add" onclick="alert('➕ Subir artículo')">
+      <div class="nav-add-btn"><i class="fas fa-plus"></i></div>
+    </button>
+    <button class="nav-item active" onclick="alert('👤 Este es el detalle')">
+      <i class="fas fa-eye"></i>
+      <span class="nav-badge"></span>
+    </button>
+  </nav>
+
+  <script>
+    // Wishlist toggle
+    function toggleWish() {
+      const btn = document.getElementById('wishBtn');
+      const icon = document.getElementById('wishIcon');
+      btn.classList.toggle('liked');
+      if (btn.classList.contains('liked')) {
+        icon.className = 'fas fa-heart';
+      } else {
+        icon.className = 'far fa-heart';
+      }
+    }
+
+    // Trade summary toggle
+    function toggleTrade() {
+      const summary = document.getElementById('tradeSummary');
+      summary.classList.toggle('visible');
+      // Scroll to it smoothly
+      if (summary.classList.contains('visible')) {
+        setTimeout(() => summary.scrollIntoView({ behavior: 'smooth', block: 'center' }), 100);
+      }
+      // Update button text
+      document.getElementById('tradeToggle').innerHTML = summary.classList.contains('visible')
+        ? '<i class="fas fa-chevron-up"></i> Ocultar oferta'
+        : '<i class="fas fa-exchange-alt"></i> Solicitar con trueque';
+    }
+
+    // Select your item
+    function selectItem(el, name, price) {
+      // Deselect all
+      document.querySelectorAll('.your-item-card').forEach(c => c.classList.remove('selected'));
+      // Select this one
+      el.classList.add('selected');
+      // Update summary
+      document.getElementById('yourItemValue').textContent = name + ' ' + price + '€';
+      const diff = 580 - price;
+      const diffEl = document.getElementById('diffValue');
+      if (diff > 0) {
+        diffEl.textContent = '+ ' + diff + '€';
+        diffEl.className = 'value positive';
+      } else if (diff < 0) {
+        diffEl.textContent = '- ' + Math.abs(diff) + '€ (te pagan)';
+        diffEl.className = 'value negative';
+      } else {
+        diffEl.textContent = '0€ (intercambio exacto)';
+        diffEl.className = 'value';
+      }
+    }
+
+    console.log('🎸 TREQE v2 — Detalle artículo');
+    console.log('🧪 Prototipo de diseño — 23 Abril 2026');
+  </script>
+</body>
+</html>
