@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>TREQE — Subir artículo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #F8F6F0;
+      color: #1A1A1A;
+      min-height: 100vh;
+      padding-bottom: 80px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+    a { text-decoration: none; color: inherit; }
+    input, select, textarea { font-family: inherit; font-size: inherit; }
+
+    :root {
+      --bg: #F8F6F0;
+      --text: #1A1A1A;
+      --text-secondary: #888888;
+      --text-tertiary: #B0B0B0;
+      --border: #E8E4DC;
+      --accent: #FF6A35;
+      --accent-hover: #E55A2B;
+      --success: #00B8B8;
+      --card-bg: #FFFFFF;
+      --shadow: 0 2px 12px rgba(0,0,0,0.06);
+      --focus-ring: 0 0 0 3px rgba(255,106,53,0.12);
+    }
+
+    /* ===== STATUS BAR ===== */
+    .status-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 20px 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      background: var(--bg);
+    }
+    .status-bar .time { font-weight: 700; color: var(--text); }
+    .status-bar .icons { display: flex; gap: 6px; font-size: 0.7rem; }
+
+    /* ===== DEMO NOTICE ===== */
+    .demo-notice {
+      text-align: center;
+      padding: 6px 16px;
+      font-size: 0.65rem;
+      color: var(--text-tertiary);
+      background: #F0EDE6;
+      letter-spacing: 0.3px;
+    }
+    .demo-notice i { margin-right: 4px; }
+
+    /* ===== FORM HEADER ===== */
+    .form-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 16px 4px;
+      background: var(--bg);
+    }
+    .form-header button {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+      font-size: 1.1rem;
+      transition: background 0.2s;
+    }
+    .form-header button:active { background: var(--border); }
+    .form-header__title {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    /* ===== FORM ===== */
+    .form-wrap {
+      padding: 8px 16px 24px;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    /* ===== PHOTO UPLOAD ===== */
+    .photo-section {
+      margin-bottom: 20px;
+    }
+    .photo-section__label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+    .photo-slot {
+      aspect-ratio: 1;
+      border-radius: 12px;
+      border: 1.5px dashed var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-tertiary);
+      font-size: 0.65rem;
+      gap: 4px;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: transparent;
+      position: relative;
+    }
+    .photo-slot:active {
+      background: var(--border);
+      transform: scale(0.96);
+    }
+    .photo-slot i { font-size: 1.4rem; }
+    .photo-slot.has-image {
+      border-style: solid;
+      border-color: var(--border);
+      background-size: cover;
+      background-position: center;
+      cursor: default;
+    }
+    .photo-slot.has-image .placeholder-content { display: none; }
+    .photo-slot.primary {
+      border-color: var(--accent);
+      border-style: solid;
+    }
+    .photo-slot.primary.has-image {
+      box-shadow: 0 0 0 2px rgba(255,106,53,0.2);
+    }
+    .photo-slot .photo-remove {
+      display: none;
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      width: 22px;
+      height: 22px;
+      background: rgba(0,0,0,0.5);
+      border-radius: 50%;
+      color: #FFF;
+      font-size: 0.55rem;
+      align-items: center;
+      justify-content: center;
+    }
+    .photo-slot.has-image .photo-remove { display: flex; }
+    .photo-slot .photo-badge {
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      background: var(--accent);
+      color: #FFF;
+      font-size: 0.55rem;
+      font-weight: 700;
+      width: 18px;
+      height: 18px;
+      border-radius: 6px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+    .photo-slot.has-image .photo-badge { display: flex; }
+
+    /* ===== FORM GROUP ===== */
+    .form-group {
+      margin-bottom: 18px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .form-group label .optional {
+      font-weight: 400;
+      color: var(--text-tertiary);
+      font-size: 0.72rem;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group .custom-select {
+      width: 100%;
+      padding: 14px 16px;
+      background: var(--card-bg);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      font-size: 0.92rem;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--accent);
+      box-shadow: var(--focus-ring);
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: var(--text-tertiary);
+    }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 80px;
+      line-height: 1.5;
+    }
+
+    /* ===== CUSTOM SELECT ===== */
+    .select-wrap {
+      position: relative;
+    }
+    .select-wrap select {
+      width: 100%;
+      padding: 14px 16px;
+      background: var(--card-bg);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      font-size: 0.92rem;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      -webkit-appearance: none;
+      appearance: none;
+      cursor: pointer;
+      padding-right: 40px;
+    }
+    .select-wrap select:focus {
+      border-color: var(--accent);
+      box-shadow: var(--focus-ring);
+    }
+    .select-wrap select:invalid { color: var(--text-tertiary); }
+    .select-wrap select option { color: var(--text); }
+    .select-wrap::after {
+      content: '\f078';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-tertiary);
+      font-size: 0.7rem;
+      pointer-events: none;
+    }
+
+    /* ===== CATEGORY PICKER (two-tier) ===== */
+    .category-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    /* ===== PRICE INPUT ===== */
+    .price-wrap {
+      position: relative;
+    }
+    .price-wrap input {
+      padding-left: 32px;
+    }
+    .price-wrap .currency-symbol {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: var(--text-tertiary);
+      pointer-events: none;
+    }
+
+    /* ===== CONDITION ROW ===== */
+    .condition-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+    .condition-option {
+      padding: 12px 6px;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      text-align: center;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      background: var(--card-bg);
+      transition: all 0.2s;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+    .condition-option i {
+      font-size: 1rem;
+      color: var(--text-tertiary);
+    }
+    .condition-option:active {
+      transform: scale(0.96);
+    }
+    .condition-option.selected {
+      border-color: var(--accent);
+      background: rgba(255,106,53,0.06);
+      color: var(--accent);
+    }
+    .condition-option.selected i { color: var(--accent); }
+
+    /* ===== SUBMIT BUTTON ===== */
+    .submit-btn {
+      width: 100%;
+      padding: 16px;
+      background: var(--accent);
+      color: #FFFFFF;
+      border-radius: 14px;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: all 0.2s;
+      box-shadow: 0 4px 16px rgba(255,106,53,0.25);
+      margin-top: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .submit-btn:active {
+      transform: scale(0.98);
+      background: var(--accent-hover);
+      box-shadow: 0 2px 8px rgba(255,106,53,0.15);
+    }
+    .submit-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    /* ===== BOTTOM NAV ===== */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      height: 72px;
+      padding-bottom: 12px;
+      z-index: 100;
+    }
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      font-size: 0.65rem;
+      font-weight: 500;
+      color: var(--text-tertiary);
+      transition: color 0.2s;
+      padding: 4px 16px;
+      position: relative;
+    }
+    .nav-item i { font-size: 1.3rem; }
+    .nav-item.active { color: var(--accent); }
+    .nav-item.nav-add .nav-add-btn {
+      width: 52px;
+      height: 52px;
+      background: var(--accent);
+      color: #FFFFFF;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      box-shadow: 0 4px 16px rgba(255,106,53,0.3);
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      top: -12px;
+    }
+    .nav-item.nav-add .nav-add-btn:active {
+      transform: scale(0.92);
+      box-shadow: 0 2px 8px rgba(255,106,53,0.2);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (min-width: 600px) {
+      .form-wrap {
+        padding: 16px 24px 32px;
+        background: var(--card-bg);
+        border-radius: 20px;
+        box-shadow: var(--shadow);
+        margin-top: 12px;
+      }
+      .photo-grid {
+        grid-template-columns: repeat(5, 1fr);
+      }
+    }
+    @media (min-width: 1024px) {
+      .form-wrap {
+        max-width: 640px;
+        padding: 24px 32px;
+      }
+    }
+
+    /* ===== SUCCESS STATE ===== */
+    .success-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(248,246,240,0.95);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .success-overlay.visible { display: flex; }
+    .success-overlay .check {
+      width: 72px;
+      height: 72px;
+      background: var(--success);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFF;
+      font-size: 2rem;
+      animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    @keyframes popIn {
+      0% { transform: scale(0); }
+      100% { transform: scale(1); }
+    }
+    .success-overlay h2 {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+    .success-overlay p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== SUCCESS OVERLAY ===== -->
+  <div class="success-overlay" id="successOverlay">
+    <div class="check"><i class="fas fa-check"></i></div>
+    <h2>Artículo publicado</h2>
+    <p>Ya está disponible en el catálogo</p>
+    <button onclick="document.getElementById('successOverlay').classList.remove('visible')"
+            style="margin-top:12px;color:var(--accent);font-weight:600;font-size:0.9rem;">
+      <i class="fas fa-arrow-left"></i> Seguir editando
+    </button>
+  </div>
+
+  <!-- ===== DEMO NOTICE ===== -->
+  <div class="demo-notice"><i class="fas fa-paint-brush"></i> Prototipo de diseño — v3 Subir — 23 Abril 2026</div>
+
+  <!-- ===== STATUS BAR ===== -->
+  <div class="status-bar">
+    <span class="time">15:11</span>
+    <span class="icons">
+      <i class="fas fa-signal"></i>
+      <i class="fas fa-wifi"></i>
+      <i class="fas fa-battery-three-quarters"></i>
+    </span>
+  </div>
+
+  <!-- ===== FORM HEADER ===== -->
+  <div class="form-header">
+    <button onclick="history.back()" aria-label="Atrás"><i class="fas fa-times"></i></button>
+    <span class="form-header__title">Nuevo artículo</span>
+    <button aria-label="Ayuda" onclick="alert('Sube un artículo para conseguir crédito en Treqe')" style="color:var(--text-tertiary);font-size:0.9rem;">
+      <i class="fas fa-question-circle"></i>
+    </button>
+  </div>
+
+  <!-- ===== FORM ===== -->
+  <form class="form-wrap" id="submitForm" onsubmit="return handleSubmit(event)">
+
+    <!-- Photos -->
+    <div class="photo-section">
+      <div class="photo-section__label"><i class="fas fa-camera"></i> Fotos <span style="font-weight:400;text-transform:none;letter-spacing:0;">(mín. 1, máx. 5)</span></div>
+      <div class="photo-grid" id="photoGrid">
+        <div class="photo-slot primary" onclick="addPhoto(this)" id="slot0">
+          <div class="placeholder-content" style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+            <i class="fas fa-camera"></i>
+            <span>Principal</span>
+          </div>
+        </div>
+        <div class="photo-slot" onclick="addPhoto(this)" id="slot1">
+          <div class="placeholder-content" style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+            <i class="fas fa-plus"></i>
+            <span>Añadir</span>
+          </div>
+        </div>
+        <div class="photo-slot" onclick="addPhoto(this)" id="slot2">
+          <div class="placeholder-content" style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+            <i class="fas fa-plus"></i>
+            <span>Añadir</span>
+          </div>
+        </div>
+        <div class="photo-slot" onclick="addPhoto(this)" id="slot3">
+          <div class="placeholder-content" style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+            <i class="fas fa-plus"></i>
+            <span>Añadir</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Title -->
+    <div class="form-group">
+      <label for="title">Título del artículo</label>
+      <input type="text" id="title" placeholder="Ej. Fender Stratocaster Player Series" required>
+    </div>
+
+    <!-- Category (two-tier) -->
+    <div class="form-group">
+      <label for="mainCat">Categoría</label>
+      <div class="category-row">
+        <div class="select-wrap">
+          <select id="mainCat" required onchange="updateSubcats()">
+            <option value="" disabled selected>Categoría</option>
+            <option value="electronica">Electrónica</option>
+            <option value="moda">Moda</option>
+            <option value="deporte">Deporte</option>
+            <option value="musica">Música</option>
+            <option value="libros">Libros</option>
+            <option value="videojuegos">Videojuegos</option>
+            <option value="fotografia">Fotografía</option>
+            <option value="hogar">Hogar</option>
+            <option value="juguetes">Juguetes</option>
+            <option value="coleccionismo">Coleccionismo</option>
+          </select>
+        </div>
+        <div class="select-wrap">
+          <select id="subCat" required>
+            <option value="" disabled selected>Subcategoría</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Condition (visual pill selector) -->
+    <div class="form-group">
+      <label>Estado</label>
+      <div class="condition-row" id="conditionRow">
+        <div class="condition-option" data-value="nuevo" onclick="selectCondition(this)">
+          <i class="fas fa-tag"></i>
+          Nuevo
+        </div>
+        <div class="condition-option selected" data-value="como-nuevo" onclick="selectCondition(this)">
+          <i class="fas fa-star"></i>
+          Como nuevo
+        </div>
+        <div class="condition-option" data-value="bueno" onclick="selectCondition(this)">
+          <i class="fas fa-check"></i>
+          Bueno
+        </div>
+        <div class="condition-option" data-value="aceptable" onclick="selectCondition(this)">
+          <i class="fas fa-undo"></i>
+          Aceptable
+        </div>
+      </div>
+    </div>
+
+    <!-- Price -->
+    <div class="form-group">
+      <label for="price">Precio <span class="optional">(tú pones el valor)</span></label>
+      <div class="price-wrap">
+        <span class="currency-symbol">€</span>
+        <input type="number" id="price" placeholder="0" min="1" step="1" required>
+      </div>
+    </div>
+
+    <!-- Description -->
+    <div class="form-group">
+      <label for="desc">Descripción <span class="optional">(opcional)</span></label>
+      <textarea id="desc" placeholder="Describe el estado, año, accesorios incluidos..."></textarea>
+    </div>
+
+    <!-- Submit -->
+    <button type="submit" class="submit-btn" id="submitBtn">
+      <i class="fas fa-cloud-upload-alt"></i> Publicar artículo
+    </button>
+
+  </form>
+
+  <!-- ===== BOTTOM NAV ===== -->
+  <nav class="bottom-nav">
+    <button class="nav-item" onclick="alert('📱 Catálogo')">
+      <i class="fas fa-search"></i>
+    </button>
+    <button class="nav-item nav-add active" onclick="alert('➕ Subir artículo (activo)')">
+      <div class="nav-add-btn"><i class="fas fa-plus"></i></div>
+    </button>
+    <button class="nav-item" onclick="alert('👤 Perfil')">
+      <i class="fas fa-user"></i>
+    </button>
+  </nav>
+
+  <script>
+    // ===== PHOTO UPLOAD SIMULATION =====
+    let photoCount = 0;
+    const colors = ['#2D2D2D', '#3A2A1A', '#1A2A3A', '#2A1A2A', '#1A3A2A'];
+    const icons = ['fa-guitar', 'fa-headphones', 'fa-mobile-alt', 'fa-camera', 'fa-bicycle'];
+
+    function addPhoto(slot) {
+      if (photoCount >= 5) return;
+      photoCount++;
+
+      // Simulate adding a photo
+      slot.classList.add('has-image');
+      slot.style.background = colors[photoCount - 1];
+      slot.innerHTML = `
+        <i class="fas ${icons[photoCount - 1]}" style="color:rgba(255,255,255,0.2);font-size:1.6rem;"></i>
+        <span class="photo-badge">${photoCount}</span>
+        <span class="photo-remove" onclick="event.stopPropagation(); removePhoto(this, ${photoCount - 1})">
+          <i class="fas fa-times"></i>
+        </span>
+      `;
+
+      if (photoCount < 5) {
+        // Enable next slot
+        document.getElementById(`slot${photoCount}`).style.display = 'flex';
+      }
+      if (photoCount === 1) {
+        slot.classList.add('primary');
+      }
+      updateSubmitState();
+    }
+
+    function removePhoto(btn, index) {
+      const slot = btn.closest('.photo-slot');
+      slot.classList.remove('has-image');
+      slot.style.background = '';
+      slot.innerHTML = `
+        <div class="placeholder-content" style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+          <i class="fas fa-plus"></i>
+          <span>Añadir</span>
+        </div>
+      `;
+      slot.onclick = function() { addPhoto(this); };
+      photoCount--;
+
+      // Re-number remaining
+      let idx = 1;
+      document.querySelectorAll('.photo-slot.has-image').forEach(s => {
+        const badge = s.querySelector('.photo-badge');
+        if (badge) badge.textContent = idx++;
+      });
+      updateSubmitState();
+    }
+
+    function updateSubmitState() {
+      const btn = document.getElementById('submitBtn');
+      const title = document.getElementById('title').value.trim();
+      const price = document.getElementById('price').value;
+      btn.disabled = photoCount === 0 || !title || !price;
+      if (btn.disabled) btn.title = 'Necesitas al menos 1 foto, título y precio';
+      else btn.title = '';
+    }
+
+    // ===== CONDITION SELECTOR =====
+    function selectCondition(el) {
+      document.querySelectorAll('.condition-option').forEach(c => c.classList.remove('selected'));
+      el.classList.add('selected');
+    }
+
+    // ===== SUBCATEGORY SYSTEM =====
+    const subcategories = {
+      electronica: ['Móviles', 'Portátiles', 'Tablets', 'Smartwatches', 'Auriculares', 'Altavoces', 'Monitores', 'Componentes PC'],
+      moda: ['Camisetas', 'Chaquetas', 'Zapatillas', 'Bolsos', 'Relojes', 'Gafas', 'Joyas', 'Complementos'],
+      deporte: ['Bicicletas', 'Fitness', 'Running', 'Escalada', 'Natación', 'Esquí', 'Camping', 'Equipamiento'],
+      musica: ['Guitarras', 'Teclados', 'Batería', 'Equipo de sonido', 'Vinilos', 'Instrumentos de viento', 'Pedales', 'Micrófonos'],
+      libros: ['Novela', 'Ensayo', 'Cómic', 'Poesía', 'Infantil', 'Técnico', 'Autoayuda', 'Arte'],
+      videojuegos: ['PS5', 'Xbox', 'Nintendo Switch', 'PC', 'VR', 'Accesorios', 'Retro', 'Merchandising'],
+      fotografia: ['Cámaras', 'Objetivos', 'Flashes', 'Trípodes', 'Bolsos', 'Filtros', 'Iluminación', 'Drones'],
+      hogar: ['Muebles', 'Decoración', 'Cocina', 'Jardín', 'Herramientas', 'Iluminación', 'Textil', 'Electrodomésticos'],
+      juguetes: ['Construcción', 'Figuras', 'Puzzles', 'Coches', 'Muñecas', 'Juegos de mesa', 'Educativos', 'Peluches'],
+      coleccionismo: ['Monedas', 'Sellos', 'Figuras', 'Cromos', 'Cómics', 'Cartas', 'Minerales', 'Antigüedades']
+    };
+
+    function updateSubcats() {
+      const main = document.getElementById('mainCat').value;
+      const sub = document.getElementById('subCat');
+      sub.innerHTML = '<option value="" disabled selected>Subcategoría</option>';
+      if (main && subcategories[main]) {
+        subcategories[main].forEach(s => {
+          const opt = document.createElement('option');
+          opt.value = s.toLowerCase().replace(/\s+/g, '-');
+          opt.textContent = s;
+          sub.appendChild(opt);
+        });
+      }
+    }
+
+    // Initial: populate first default subcategories
+    updateSubcats();
+
+    // ===== FORM SUBMIT =====
+    function handleSubmit(e) {
+      e.preventDefault();
+      const title = document.getElementById('title').value.trim();
+      const price = document.getElementById('price').value;
+      if (photoCount === 0 || !title || !price) return false;
+
+      // Show success overlay
+      document.getElementById('successOverlay').classList.add('visible');
+      return false;
+    }
+
+    // ===== REAL-TIME VALIDATION =====
+    document.getElementById('title').addEventListener('input', updateSubmitState);
+    document.getElementById('price').addEventListener('input', updateSubmitState);
+
+    console.log('📸 TREQE v3 — Subir artículo');
+    console.log('🧪 Prototipo de diseño — 23 Abril 2026');
+  </script>
+</body>
+</html>
