@@ -42,8 +42,8 @@ body{font-family:Inter,sans-serif;background:#111111;color:#fff;line-height:1.4;
 .sh{display:flex;align-items:center;justify-content:space-between;padding:16px 16px 10px}
 .sh h2{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.85rem;text-transform:uppercase;letter-spacing:1px;color:#fff}
 .sh .sa{color:#FF6A00;font-size:.72rem;font-weight:400;text-decoration:none;cursor:pointer}
-.cs{padding:4px 0 16px}
-.cr{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;padding:0 16px}
+.cs{padding:4px 0 16px;overflow-x:hidden;width:100%}
+.cr{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:0 16px;width:100%;box-sizing:border-box}
 .ci{display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;width:auto}
 .ci:active{transform:scale(.9)}
 .ci .cx i{font-size:1.2rem;color:#FFD700}
@@ -324,6 +324,19 @@ body{font-family:Inter,sans-serif;background:#111111;color:#fff;line-height:1.4;
   color: #BDBDBD;
   text-transform: uppercase;
   letter-spacing: .5px;
+}
+
+/* Responsive categories grid */
+@media (max-width: 380px) {
+  .cr {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+}
+@media (min-width: 480px) {
+  .cr {
+    grid-template-columns: repeat(5, 1fr);
+  }
 }
 </style>
 </head>
