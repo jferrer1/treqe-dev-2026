@@ -486,6 +486,97 @@
       </div>
     </div>
 
+    <!-- ===== LIKED ITEMS ===== -->
+    <div class="section">
+      <div class="section__header">
+        <span class="section__title"><i class="fas fa-heart" style="color:var(--accent);margin-right:6px;"></i>Me gustan</span>
+        <button class="section__action" onclick="alert('Ver todos los favoritos')">Ver todo</button>
+      </div>
+      <div class="my-items">
+        <div class="my-item" onclick="alert('🎸 Fender Stratocaster')">
+          <div class="my-item__image"><i class="fas fa-guitar"></i></div>
+          <div class="my-item__info">
+            <div class="my-item__title">Fender Stratocaster</div>
+            <div class="my-item__price">580€</div>
+          </div>
+        </div>
+        <div class="my-item" onclick="alert('📷 Canon EOS R')">
+          <div class="my-item__image"><i class="fas fa-camera"></i></div>
+          <div class="my-item__info">
+            <div class="my-item__title">Canon EOS R</div>
+            <div class="my-item__price">1.200€</div>
+          </div>
+        </div>
+        <div class="my-item" onclick="alert('🎮 PS5')">
+          <div class="my-item__image"><i class="fas fa-gamepad"></i></div>
+          <div class="my-item__info">
+            <div class="my-item__title">PlayStation 5</div>
+            <div class="my-item__price">450€</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== TRADE REQUESTS ===== -->
+    <div class="section">
+      <div class="section__header">
+        <span class="section__title"><i class="fas fa-exchange-alt" style="color:var(--success);margin-right:6px;"></i>Solicitudes de trueque</span>
+        <button class="section__action" onclick="alert('Ver todas las solicitudes')">Ver todo</button>
+      </div>
+      <div class="activity-feed">
+        <div class="activity-item" onclick="alert('Ver solicitud')">
+          <div class="activity-item__icon pending">
+            <i class="fas fa-exchange-alt"></i>
+          </div>
+          <div class="activity-item__content">
+            <div class="activity-item__title">🎸 Fender Stratocaster</div>
+            <div class="activity-item__meta">Ofrecido: 🚲 Trek Marlin 7 + 160€</div>
+          </div>
+          <span class="activity-item__status-badge pending">Pendiente</span>
+        </div>
+        <div class="activity-item" onclick="alert('Ver solicitud')">
+          <div class="activity-item__icon waiting">
+            <i class="fas fa-exchange-alt"></i>
+          </div>
+          <div class="activity-item__content">
+            <div class="activity-item__title">📷 Canon EOS R</div>
+            <div class="activity-item__meta">Ofrecido: 🎧 AirPods Max + 820€</div>
+          </div>
+          <span class="activity-item__status-badge waiting">Enviada</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== ORDERS ===== -->
+    <div class="section">
+      <div class="section__header">
+        <span class="section__title"><i class="fas fa-shopping-bag" style="color:var(--accent);margin-right:6px;"></i>Mis pedidos</span>
+        <button class="section__action" onclick="alert('Ver historial de pedidos')">Ver todo</button>
+      </div>
+      <div class="activity-feed">
+        <div class="activity-item" onclick="alert('Ver pedido')">
+          <div class="activity-item__icon waiting">
+            <i class="fas fa-box"></i>
+          </div>
+          <div class="activity-item__content">
+            <div class="activity-item__title">📷 Canon EOS R (compra directa)</div>
+            <div class="activity-item__meta">1.200€ · En preparación</div>
+          </div>
+          <span class="activity-item__status-badge waiting">En curso</span>
+        </div>
+        <div class="activity-item" onclick="alert('Ver pedido')">
+          <div class="activity-item__icon done">
+            <i class="fas fa-check"></i>
+          </div>
+          <div class="activity-item__content">
+            <div class="activity-item__title">🎧 AirPods Max (trueque)</div>
+            <div class="activity-item__meta">Intercambiado por ⌚ G-SHOCK</div>
+          </div>
+          <span class="activity-item__status-badge done">Completado</span>
+        </div>
+      </div>
+    </div>
+
     <!-- ===== MY ITEMS ===== -->
     <div class="section">
       <div class="section__header">
@@ -547,7 +638,7 @@
     <!-- ===== ACTIVITY ===== -->
     <div class="section">
       <div class="section__header">
-        <span class="section__title">Actividad</span>
+        <span class="section__title"><i class="fas fa-bell" style="color:var(--text-tertiary);margin-right:6px;"></i>Notificaciones</span>
       </div>
 
       <div class="activity-feed">
