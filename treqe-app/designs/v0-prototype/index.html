@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -4036,7 +4036,7 @@ body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; back
   <div class="auth-screen">
 
     <!-- ===== SKIP ===== -->
-    <button class="skip-link" id="skipBtn" onclick="alert('🏠 Ir al catálogo (demo)')">Saltar</button>
+    <button class="skip-link" id="skipBtn" onclick="goTo('catalogo');return false;">Saltar</button>
 
     <!-- ===== SOCIAL VIEW ===== -->
     <div class="social-view" id="socialView">
@@ -4072,9 +4072,9 @@ body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; back
 
       <!-- FOOTER -->
       <div class="auth-footer">
-        <p>¿Ya tienes cuenta? <a onclick="alert('📝 Inicio de sesión (demo)')">Inicia sesión</a></p>
+        <p>¿Ya tienes cuenta? <a onclick="goTo('catalogo');return false;">Inicia sesión</a></p>
         <div class="auth-footer__terms">
-          Al continuar aceptas los <a onclick="alert('📜 Términos (demo)')">términos</a> y la <a onclick="alert('🔒 Privacidad (demo)')">política de privacidad</a>
+          Al continuar aceptas los <a onclick="alert('Términos - demo');return false;">términos</a> y la <a onclick="alert('Privacidad - demo');return false;">política de privacidad</a>
         </div>
       </div>
     </div>
@@ -4097,7 +4097,7 @@ body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; back
         <button class="toggle-pass" onclick="togglePass()"><i class="far fa-eye"></i></button>
       </div>
 
-      <button class="submit-btn" onclick="alert('✅ Cuenta creada → Catálogo (demo)')">
+      <button class="submit-btn" onclick="goTo('catalogo');return false;">
         <i class="fas fa-arrow-right"></i> Crear cuenta
       </button>
 
@@ -4124,7 +4124,7 @@ body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; back
   </div>
 
   <script>
-    function socialRegister(provider) {
+    function socialRegister(provider){ goTo('catalogo'); } function _socialRegister(provider) {
       alert(`✅ Registro con ${provider} (demo)\n\nEn producción: OAuth redirect a ${provider}`);
     }
 
@@ -5883,7 +5883,64 @@ function handleCta() {
 }
 
 console.log('TREQE Prototipo v1');
-</script>
-
-</body>
+/* Additional wiring */
+document.addEventListener('DOMContentLoaded', function() {
+  // Registro -> Catalogo: submit button
+  var submit = document.querySelector('#screen-registro .submit-btn');
+  if (submit) submit.setAttribute('onclick', 'goTo("catalogo"); return false;');
+  
+  // Registro -> Catalogo: skip button
+  var skip = document.querySelector('#screen-registro .skip-link');
+  if (skip) skip.setAttribute('onclick', 'goTo("catalogo"); return false;');
+  
+  // Registro -> Catalogo: social buttons
+  document.querySelectorAll('#screen-registro .social-btn').forEach(function(b) {
+    b.setAttribute('onclick', 'goTo("catalogo"); return false;');
+  });
+  
+  // Registro -> Catalogo: "Inicia sesion" link  
+  document.querySelectorAll('#screen-registro .auth-footer a').forEach(function(b) {
+    b.setAttribute('onclick', 'goTo("catalogo"); return false;');
+  });
+  
+  // Catalogo -> Detalle: product cards
+  document.querySelectorAll('#screen-catalogo [class*="card"],[class*="producto"]').forEach(function(el) {
+    if (!el.closest('header')) {
+      el.style.cursor = 'pointer';
+      el.addEventListener('click', function() { goTo("detalle"); });
+    }
+  });
+  
+  // Catalogo -> Perfil: "Hola" text button
+  document.querySelectorAll('#screen-catalogo [onclick*="perfil"]').forEach(function(b) {
+    b.setAttribute('onclick', 'goTo("perfil"); return false;');
+  });
+  
+  // Perfil -> Ajustes
+  document.querySelectorAll('#screen-perfil [onclick*="ajustes"],[onclick*="Ajustes"],[onclick*="settings"]').forEach(function(b) {
+    b.setAttribute('onclick', 'goTo("ajustes"); return false;');
+  });
+  
+  // Subir -> Publicar -> Catalogo
+  document.querySelectorAll('#screen-subir [onclick*="publicar"],[onclick*="Publicar"],[onclick*="publish"]').forEach(function(b) {
+    b.setAttribute('onclick', 'goTo("catalogo"); return false;');
+  });
+  
+  // Detalle -> Match (proponer intercambio)
+  document.querySelectorAll('#screen-detalle .trade-btn, #screen-detalle [onclick*="trade"], #screen-detalle [onclick*="offer"]').forEach(function(b) {
+    b.setAttribute('onclick', 'goTo("match"); return false;');
+  });
+  
+  // Match -> Accept -> Seguimiento
+  document.querySelectorAll('#screen-match .primary-btn, #screen-match [onclick*="accept"], #screen-match [onclick*="aceptar"]').forEach(function(b) {
+    b.setAttribute('onclick', 'goTo("seguimiento"); return false;');
+  });
+  
+  // Match -> Close/Reject -> Catalogo
+  document.querySelectorAll('#screen-match [onclick*="close"], #screen-match [onclick*="reject"]').forEach(function(b) {
+    b.setAttribute('onclick', 'goTo("catalogo"); return false;');
+  });
+  
+  console.log('Additional wiring complete');
+});</script></body>
 </html>
