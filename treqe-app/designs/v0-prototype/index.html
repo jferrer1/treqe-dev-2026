@@ -11,28 +11,17 @@
     body { font-family: 'Inter', sans-serif; background: #1A1A1A; height: 100vh; overflow: hidden; -webkit-font-smoothing: antialiased; }
 
     .phone {
-      width: 100%;
-      max-width: 390px;
-      height: 100vh;
-      margin: 0 auto;
-      background: #000;
-      position: relative;
-      overflow: hidden;
+      width: 100%; max-width: 390px; height: 100vh;
+      margin: 0 auto; background: #000; position: relative; overflow: hidden;
     }
     @media (min-width: 430px) {
       .phone { height: 844px; margin: 20px auto; border-radius: 44px; box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
       body { display: flex; align-items: center; justify-content: center; }
     }
 
-    iframe {
-      width: 100%;
-      height: calc(100% - 50px);
-      border: none;
-      display: block;
-      background: #F8F6F0;
-    }
+    iframe { width: 100%; height: calc(100% - 50px); border: none; display: block; background: #F8F6F0; }
 
-    /* Loading */
+    /* Loading overlay */
     .loader {
       position: absolute; top: 0; left: 0; right: 0; bottom: 50px;
       display: flex; align-items: center; justify-content: center;
@@ -42,41 +31,44 @@
     .loader .spinner { width: 32px; height: 32px; border: 3px solid #E8E4DC; border-top-color: #FF6A35; border-radius: 50%; animation: spin 0.8s linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* Floating nav button */
-    .nav-float {
-      position: absolute; top: 8px; right: 8px; z-index: 20;
-      display: flex; gap: 6px;
+    /* Big clear navigation banner at the top */
+    .nav-banner {
+      position: absolute; top: 0; left: 0; right: 0; z-index: 20;
+      background: linear-gradient(180deg, rgba(0,0,0,0.85) 0%, transparent 100%);
+      padding: 10px 12px 24px;
+      display: flex; align-items: center; gap: 8px;
     }
-    .nav-float button {
-      font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 600;
-      padding: 7px 14px; border-radius: 20px; border: none; cursor: pointer;
-      background: rgba(0,0,0,0.75); color: #FFF; backdrop-filter: blur(8px);
+    .nav-banner button {
+      font-family: 'Inter', sans-serif; font-size: 0.78rem; font-weight: 600;
+      padding: 8px 16px; border-radius: 20px; border: none; cursor: pointer;
       transition: all 0.15s; -webkit-tap-highlight-color: transparent;
     }
-    .nav-float button:active { transform: scale(0.93); opacity: 0.8; }
-    .nav-float .next-btn { background: #FF6A35; }
-    .nav-float .home-btn { }
+    .nav-banner button:active { transform: scale(0.93); }
+    .nav-banner .btn-back {
+      background: transparent; color: #FFF; padding: 8px 6px;
+    }
+    .nav-banner .btn-home {
+      background: rgba(255,255,255,0.2); color: #FFF; padding: 8px 10px;
+    }
+    .nav-banner .btn-next {
+      background: #FF6A35; color: #FFF; margin-left: auto;
+      box-shadow: 0 2px 12px rgba(255,106,53,0.4);
+    }
+    .nav-banner .screen-label {
+      font-size: 0.65rem; color: rgba(255,255,255,0.6); font-weight: 500;
+      background: rgba(255,255,255,0.1); padding: 3px 10px; border-radius: 12px;
+    }
+    .nav-banner .btn-back i { font-size: 1.1rem; }
 
     /* Bottom bar */
     .bottom-bar {
       position: absolute; bottom: 0; left: 0; right: 0; height: 50px;
       background: #FFF; border-top: 1px solid #E8E4DC;
-      display: flex; align-items: center; padding: 0 12px; z-index: 10;
+      display: flex; align-items: center; justify-content: center; z-index: 10;
     }
-    .bottom-bar .screen-name {
-      font-size: 0.75rem; font-weight: 500; color: #B0B0B0;
-      text-align: center; flex: 1;
+    .bottom-bar span {
+      font-size: 0.7rem; color: #B0B0B0;
     }
-    .bottom-bar .screen-name strong { color: #666; }
-    .bottom-btn {
-      font-family: 'Inter', sans-serif; font-size: 0.78rem; font-weight: 500;
-      padding: 6px 12px; border-radius: 8px; border: none; cursor: pointer;
-      background: none; color: #888; transition: all 0.15s;
-      display: flex; align-items: center; gap: 4px;
-    }
-    .bottom-btn:active { background: #F0EDE6; color: #555; }
-    .bottom-btn i { font-size: 0.9rem; }
-    .bottom-btn-home { min-width: 36px; justify-content: center; }
 
     @media (min-width: 430px) {
       .bottom-bar { border-radius: 0 0 44px 44px; }
@@ -87,10 +79,12 @@
   <div class="phone">
     <div class="loader" id="loader"><div class="spinner"></div></div>
 
-    <!-- Floating nav -->
-    <div class="nav-float" id="navFloat">
-      <button class="home-btn" onclick="navHome()">🏠</button>
-      <button class="next-btn" id="nextBtn" onclick="navNext()">Siguiente →</button>
+    <!-- Navigation banner at top -->
+    <div class="nav-banner" id="navBanner">
+      <button class="btn-back" onclick="navBack()"><i class="fas fa-chevron-left"></i></button>
+      <button class="btn-home" onclick="navHome()"><i class="fas fa-home"></i></button>
+      <span class="screen-label" id="screenLabel">Splash</span>
+      <button class="btn-next" id="btnNext" onclick="navNext()">Siguiente →</button>
     </div>
 
     <!-- Screen iframe -->
@@ -98,9 +92,7 @@
 
     <!-- Bottom bar -->
     <div class="bottom-bar">
-      <button class="bottom-btn" onclick="navBack()"><i class="fas fa-chevron-left"></i> Volver</button>
-      <div class="screen-name" id="screenName">Splash <strong id="screenIdDisplay">splash</strong></div>
-      <button class="bottom-btn bottom-btn-home" onclick="navHome()"><i class="fas fa-home"></i></button>
+      <span>TREQE — Prototipo Navegable</span>
     </div>
   </div>
 
@@ -113,7 +105,7 @@
       'detalle':      { path: '../v2-detalle/',           name: 'Detalle',        next: 'match',      timer: 0 },
       'match':        { path: '../v6-match-notification/',name: 'Match!',         next: 'seguimiento',timer: 0 },
       'seguimiento':  { path: '../v7-seguimiento/',       name: 'Seguimiento',    next: 'catalogo',   timer: 0 },
-      'subir':        { path: '../v3-subir/',             name: 'Subir artículo', next: 'catalogo',   timer: 0 },
+      'subir':        { path: '../v3-subir/',             name: 'Subir',          next: 'catalogo',   timer: 0 },
       'perfil':       { path: '../v4-perfil/',            name: 'Mi perfil',      next: 'ajustes',    timer: 0 },
       'ajustes':      { path: '../v8-ajustes/',           name: 'Ajustes',        next: 'catalogo',   timer: 0 },
     };
@@ -136,8 +128,16 @@
       loader.classList.remove('hidden');
       frame.src = screen.path;
 
-      document.getElementById('screenName').innerHTML = screen.name + ' <strong id="screenIdDisplay">' + screenId + '</strong>';
-      document.getElementById('nextBtn').textContent = '→ ' + (screen.next ? SCREENS[screen.next].name : 'Inicio');
+      // Update banner
+      document.getElementById('screenLabel').textContent = screen.name;
+      var nextBtn = document.getElementById('btnNext');
+      if (screen.next) {
+        var nextName = SCREENS[screen.next] ? SCREENS[screen.next].name : screen.next;
+        nextBtn.textContent = '→ ' + nextName;
+        nextBtn.style.display = 'block';
+      } else {
+        nextBtn.style.display = 'none';
+      }
 
       if (screen.timer > 0) {
         autoTimer = setTimeout(function() { goTo(screen.next); }, screen.timer);
@@ -146,65 +146,6 @@
 
     function onFrameLoad() {
       loader.classList.add('hidden');
-      // Inject nav bridge into iframe after it loads
-      try {
-        injectClickBridge(frame.contentDocument || frame.contentWindow.document);
-      } catch(e) {
-        // Cross-origin - just use parent nav buttons
-      }
-    }
-
-    function injectClickBridge(doc) {
-      // Map: current screen -> rules for which buttons go where
-      var rules = {
-        'registro': [
-          { sel: '.submit-btn, .skip-link, .social-btn, .auth-footer a, [onclick*="Inicia"]', target: 'catalogo' },
-        ],
-        'catalogo': [
-          { sel: '.card, [class*="product"], [class*="item"], [onclick*="alert"]', target: 'detalle', exclude: '[class*="cat"]' },
-          { sel: '[onclick*="perfil"], [onclick*="profile"]', target: 'perfil' },
-          { sel: '[onclick*="subir"], [onclick*="upload"], [onclick*="add"]', target: 'subir' },
-        ],
-        'detalle': [
-          { sel: '[onclick*="trade"], [onclick*="offer"], [onclick*="intercambio"], [onclick*="proponer"]', target: 'match' },
-        ],
-        'match': [
-          { sel: '[onclick*="accept"], [onclick*="aceptar"], .primary-btn', target: 'seguimiento' },
-          { sel: '[onclick*="close"], [onclick*="reject"], [onclick*="rechazar"], [onclick*="hide"]', target: 'catalogo' },
-        ],
-        'subir': [
-          { sel: '.submit-btn, [onclick*="publicar"], [onclick*="publish"]', target: 'catalogo' },
-        ],
-        'perfil': [
-          { sel: '[onclick*="ajustes"], [onclick*="settings"]', target: 'ajustes' },
-        ],
-      };
-
-      var screenRules = rules[currentScreen];
-      if (!screenRules) return;
-
-      screenRules.forEach(function(rule) {
-        var els = doc.querySelectorAll(rule.sel);
-        els.forEach(function(el) {
-          // Skip excluded elements
-          if (rule.exclude && el.matches(rule.exclude)) return;
-          el.style.cursor = 'pointer';
-          el.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            parent.goTo(rule.target);
-          });
-        });
-      });
-
-      // Also rewrite socialRegister for registro
-      if (currentScreen === 'registro') {
-        var old = doc.querySelector('script');
-        // Just override global function: create new script
-        var s = doc.createElement('script');
-        s.textContent = 'function socialRegister(p){ window.top.goTo("catalogo"); } function showManual(){} function hideManual(){}';
-        doc.body.appendChild(s);
-      }
     }
 
     function navBack() {
@@ -225,7 +166,6 @@
     }
 
     window.goTo = goTo;
-    window.onFrameLoad = onFrameLoad;
   </script>
 </body>
 </html>
