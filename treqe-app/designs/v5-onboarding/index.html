@@ -113,27 +113,14 @@
 
     /* ===== ILLUSTRATION IMAGE ===== */
     .ill-img {
-      width: 120px;
-      height: 120px;
-      object-fit: contain;
-      margin: 0 auto 6px;
-      display: block;
-    }
-    .ill-bg {
-      width: 120px;
-      height: 120px;
+      width: 130px;
+      height: 130px;
+      object-fit: cover;
       border-radius: 50%;
+      margin: 0 auto 8px;
+      display: block;
       background: #FFF;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 6px;
       box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-    }
-    .ill-bg img {
-      width: 90%;
-      height: 90%;
-      object-fit: contain;
     }
     .ill-item-name {
       font-size: 0.72rem;
@@ -169,21 +156,13 @@
 
     /* ===== SINGLE ILLUSTRATION SLIDE ===== */
     .single-ill {
-      width: 180px;
-      height: 180px;
-      margin-bottom: 20px;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #FFF;
+      width: 190px;
+      height: 190px;
+      object-fit: cover;
       border-radius: 50%;
+      background: #FFF;
       box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-    }
-    .single-ill img {
-      width: 82%;
-      height: 82%;
-      object-fit: contain;
+      margin-bottom: 20px;
     }
 
     /* ===== BRAND BADGE ===== */
@@ -294,14 +273,12 @@
 
     /* ===== RESPONSIVE ===== */
     @media (min-height: 700px) {
-      .ill-img, .ill-bg { width: 140px; height: 140px; }
+      .ill-img, .single-ill { width: 150px; height: 150px; }
       .ba-item { width: 150px; }
-      .single-ill { width: 200px; height: 200px; }
     }
     @media (min-height: 800px) {
-      .ill-img, .ill-bg { width: 160px; height: 160px; }
+      .ill-img, .single-ill { width: 170px; height: 170px; }
       .ba-item { width: 170px; }
-      .single-ill { width: 220px; height: 220px; }
     }
     @media (min-width: 600px) {
       .slide { max-width: 480px; margin: 0 auto; }
@@ -323,17 +300,13 @@
           <div class="ba-wrap">
             <div class="ba-item">
               <div class="label before">ANTES TENÍA</div>
-              <div class="ill-bg">
-                <img src="../../assets/illustrations/bici.jpg" alt="Bicicleta" class="ill-img">
-              </div>
+              <img src="../../assets/illustrations/bici.png" alt="Bicicleta" class="ill-img">
               <div class="ill-item-name">bici estática</div>
             </div>
             <div class="ba-arrow"><i class="fas fa-arrow-right"></i></div>
             <div class="ba-item">
               <div class="label after">AHORA TENGO</div>
-              <div class="ill-bg">
-                <img src="../../assets/illustrations/guitarra.jpg" alt="Guitarra" class="ill-img">
-              </div>
+              <img src="../../assets/illustrations/guitarra.png" alt="Guitarra" class="ill-img">
               <div class="ill-item-name">guitarra eléctrica</div>
             </div>
           </div>
@@ -348,9 +321,7 @@
 
         <!-- ===== SLIDE 2: TÚ PONES EL PRECIO ===== -->
         <div class="slide" data-index="1">
-          <div class="single-ill">
-            <img src="../../assets/illustrations/guitarra.jpg" alt="Tasación justa">
-          </div>
+          <img src="../../assets/illustrations/guitarra.png" alt="Tasación justa" class="single-ill">
           <h1>
             <span class="big">Tú pones el <span>precio</span></span>
           </h1>
@@ -364,17 +335,13 @@
           <div class="ba-wrap">
             <div class="ba-item">
               <div class="label before">ANTES TENÍA</div>
-              <div class="ill-bg">
-                <img src="../../assets/illustrations/bici.jpg" alt="Objeto en desuso" class="ill-img">
-              </div>
+              <img src="../../assets/illustrations/bici.png" alt="Objeto en desuso" class="ill-img">
               <div class="ill-item-name">un sofá</div>
             </div>
             <div class="ba-arrow"><i class="fas fa-arrow-right"></i></div>
             <div class="ba-item">
               <div class="label after">AHORA TENGO</div>
-              <div class="ill-bg">
-                <img src="../../assets/illustrations/guitarra.jpg" alt="Algo mejor" class="ill-img">
-              </div>
+              <img src="../../assets/illustrations/guitarra.png" alt="Algo mejor" class="ill-img">
               <div class="ill-item-name">este portátil</div>
             </div>
           </div>
