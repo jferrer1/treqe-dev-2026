@@ -81,22 +81,24 @@
     .ba-wrap {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 0;
       margin-bottom: 24px;
       width: 100%;
       max-width: 340px;
+      justify-content: center;
     }
     .ba-item {
-      flex: 1;
+      flex: none;
       text-align: center;
+      width: 130px;
     }
     .ba-item .label {
-      font-size: 0.6rem;
+      font-size: 0.55rem;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 1.5px;
       color: var(--text-tertiary);
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
     .ba-item .label.before { color: #C0B8A8; }
     .ba-item .label.after { color: var(--accent); }
@@ -104,66 +106,110 @@
       font-size: 1.2rem;
       color: var(--accent);
       flex-shrink: 0;
-      opacity: 0.5;
+      opacity: 0.4;
+      margin: 0 4px;
+      margin-top: -20px;
     }
 
-    /* ===== ILLUSTRATION CANVAS ===== */
-    .ill-canvas {
-      width: 140px;
-      height: 140px;
-      margin: 0 auto 8px;
-      position: relative;
+    /* ===== ILLUSTRATION IMAGE ===== */
+    .ill-img {
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      margin: 0 auto 6px;
+      display: block;
     }
-    .ill-canvas svg {
-      width: 100%;
-      height: 100%;
+    .ill-bg {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: #FFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 6px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    }
+    .ill-bg img {
+      width: 90%;
+      height: 90%;
+      object-fit: contain;
     }
     .ill-item-name {
-      font-size: 0.75rem;
-      font-weight: 600;
+      font-size: 0.72rem;
+      font-weight: 500;
       color: var(--text-secondary);
-      margin-top: 4px;
+      margin-top: 2px;
     }
 
     /* ===== SLIDE TEXT ===== */
     .slide h1 {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: 600;
       text-align: center;
       line-height: 1.4;
       margin-bottom: 8px;
       color: var(--text);
+      padding: 0 16px;
     }
     .slide h1 .big {
-      font-size: 1.4rem;
+      font-size: 1.35rem;
       font-weight: 800;
       display: block;
       letter-spacing: -0.3px;
     }
     .slide h1 .big span { color: var(--accent); }
     .slide p {
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       color: var(--text-secondary);
       text-align: center;
       line-height: 1.5;
-      max-width: 300px;
+      max-width: 290px;
     }
 
-    /* ===== SINGLE ILLUSTRATION SLIDE (slides 2,3) ===== */
+    /* ===== SINGLE ILLUSTRATION SLIDE ===== */
     .single-ill {
-      width: 200px;
-      height: 200px;
+      width: 180px;
+      height: 180px;
       margin-bottom: 20px;
       position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #FFF;
+      border-radius: 50%;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
     }
-    .single-ill svg { width: 100%; height: 100%; }
+    .single-ill img {
+      width: 82%;
+      height: 82%;
+      object-fit: contain;
+    }
+
+    /* ===== BRAND BADGE ===== */
+    .brand-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 20px;
+      opacity: 0.5;
+    }
+    .brand-badge img {
+      height: 18px;
+    }
+    .brand-badge span {
+      font-size: 0.65rem;
+      font-weight: 500;
+      color: var(--text-tertiary);
+      letter-spacing: 0.5px;
+    }
 
     /* ===== DOTS ===== */
     .dots {
       display: flex;
       gap: 8px;
       justify-content: center;
-      padding: 16px 16px 12px;
+      padding: 12px 16px 10px;
     }
     .dot {
       width: 8px;
@@ -180,7 +226,7 @@
 
     /* ===== CTA ===== */
     .cta-bottom {
-      padding: 0 32px 32px;
+      padding: 0 32px 28px;
       display: flex;
       flex-direction: column;
       gap: 10px;
@@ -210,6 +256,7 @@
       transition: color 0.2s;
     }
     .cta-secondary:active { color: var(--text); }
+    .cta-secondary.hidden { display: none; }
 
     /* ===== DEMO ===== */
     .demo-tag {
@@ -218,7 +265,7 @@
       left: 50%;
       transform: translateX(-50%);
       font-size: 0.55rem;
-      color: rgba(0,0,0,0.12);
+      color: rgba(0,0,0,0.10);
       z-index: 5;
       white-space: nowrap;
     }
@@ -239,16 +286,21 @@
       0% { opacity: 0; transform: scale(0.7); }
       100% { opacity: 1; transform: scale(1); }
     }
-    .slide.active-anim .ill-canvas,
+    .slide.active-anim .ba-wrap,
     .slide.active-anim .single-ill {
       animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      opacity: 0;
     }
-    .slide.active-anim .ba-wrap { animation: fadeUp 0.4s ease 0.1s forwards; opacity: 0; }
-    .slide.active-anim .ba-arrow { animation: fadeUp 0.3s ease 0.3s forwards; opacity: 0; }
 
     /* ===== RESPONSIVE ===== */
     @media (min-height: 700px) {
-      .ill-canvas { width: 160px; height: 160px; }
+      .ill-img, .ill-bg { width: 140px; height: 140px; }
+      .ba-item { width: 150px; }
+      .single-ill { width: 200px; height: 200px; }
+    }
+    @media (min-height: 800px) {
+      .ill-img, .ill-bg { width: 160px; height: 160px; }
+      .ba-item { width: 170px; }
       .single-ill { width: 220px; height: 220px; }
     }
     @media (min-width: 600px) {
@@ -266,60 +318,21 @@
     <div class="slides">
       <div class="slides-inner" id="slidesInner">
 
-        <!-- ===== SLIDE 1: ANTES / AHORA ===== -->
+        <!-- ===== SLIDE 1: ANTES TENÍA / AHORA TENGO ===== -->
         <div class="slide" data-index="0">
           <div class="ba-wrap">
             <div class="ba-item">
               <div class="label before">ANTES TENÍA</div>
-              <div class="ill-canvas">
-                <svg viewBox="0 0 140 140" fill="none">
-                  <!-- Bicicleta estática (bike) - colorful illustration -->
-                  <!-- Base/frame -->
-                  <ellipse cx="70" cy="95" rx="38" ry="10" fill="#E8E4DC"/>
-                  <!-- Rueda trasera -->
-                  <circle cx="42" cy="78" r="18" stroke="#FF6A35" stroke-width="3.5" fill="#FFF5E8"/>
-                  <circle cx="42" cy="78" r="4" fill="#FF6A35"/>
-                  <!-- Rueda delantera -->
-                  <circle cx="98" cy="78" r="18" stroke="#00B8B8" stroke-width="3.5" fill="#E8FFF8"/>
-                  <circle cx="98" cy="78" r="4" fill="#00B8B8"/>
-                  <!-- Frame -->
-                  <line x1="42" y1="78" x2="65" y2="48" stroke="#1A1A1A" stroke-width="3" stroke-linecap="round"/>
-                  <line x1="98" y1="78" x2="75" y2="48" stroke="#1A1A1A" stroke-width="3" stroke-linecap="round"/>
-                  <line x1="42" y1="78" x2="98" y2="78" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round"/>
-                  <!-- Asiento -->
-                  <rect x="58" y="43" width="14" height="5" rx="3" fill="#1A1A1A"/>
-                  <!-- Manillar -->
-                  <line x1="75" y1="48" x2="75" y2="38" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round"/>
-                  <line x1="68" y1="38" x2="82" y2="38" stroke="#1A1A1A" stroke-width="3" stroke-linecap="round"/>
-                  <!-- Pedales -->
-                  <rect x="62" y="80" width="16" height="4" rx="2" fill="#FF6A35" opacity="0.5"/>
-                </svg>
+              <div class="ill-bg">
+                <img src="../../assets/illustrations/bici.jpg" alt="Bicicleta" class="ill-img">
               </div>
               <div class="ill-item-name">bici estática</div>
             </div>
             <div class="ba-arrow"><i class="fas fa-arrow-right"></i></div>
             <div class="ba-item">
               <div class="label after">AHORA TENGO</div>
-              <div class="ill-canvas">
-                <svg viewBox="0 0 140 140" fill="none">
-                  <!-- Guitarra eléctrica -->
-                  <!-- Cuerpo -->
-                  <path d="M52 40 Q58 24 70 22 Q82 24 88 40 L90 58 Q92 72 90 85 Q88 98 82 108 Q78 114 70 118 Q62 114 58 108 Q52 98 50 85 Q48 72 50 58 Z" fill="#FF6A35" opacity="0.85"/>
-                  <!-- Brazo/mástil -->
-                  <rect x="66" y="8" width="8" height="30" rx="3" fill="#1A1A1A"/>
-                  <!-- Clavijero -->
-                  <rect x="64" y="4" width="12" height="6" rx="2" fill="#888"/>
-                  <circle cx="67" cy="7" r="1.5" fill="#111"/>
-                  <circle cx="73" cy="7" r="1.5" fill="#111"/>
-                  <!-- Cuerdas -->
-                  <line x1="68" y1="12" x2="55" y2="80" stroke="#FFF" stroke-width="0.6" opacity="0.6"/>
-                  <line x1="72" y1="12" x2="72" y2="80" stroke="#FFF" stroke-width="0.6" opacity="0.6"/>
-                  <!-- Pastillas -->
-                  <rect x="58" y="46" width="24" height="4" rx="2" fill="#1A1A1A" opacity="0.6"/>
-                  <rect x="58" y="58" width="24" height="4" rx="2" fill="#1A1A1A" opacity="0.6"/>
-                  <!-- Puerto/cable -->
-                  <circle cx="70" cy="72" r="3" fill="#1A1A1A"/>
-                </svg>
+              <div class="ill-bg">
+                <img src="../../assets/illustrations/guitarra.jpg" alt="Guitarra" class="ill-img">
               </div>
               <div class="ill-item-name">guitarra eléctrica</div>
             </div>
@@ -336,31 +349,7 @@
         <!-- ===== SLIDE 2: TÚ PONES EL PRECIO ===== -->
         <div class="slide" data-index="1">
           <div class="single-ill">
-            <svg viewBox="0 0 200 200" fill="none">
-              <!-- Cámara de fotos - illustration -->
-              <!-- Cuerpo -->
-              <rect x="45" y="65" width="110" height="75" rx="10" fill="#1A1A1A"/>
-              <rect x="50" y="70" width="100" height="60" rx="6" fill="#333"/>
-              <!-- Visor -->
-              <rect x="55" y="75" width="90" height="50" rx="4" fill="#111"/>
-              <rect x="60" y="80" width="80" height="40" rx="3" fill="#1A1A1A"/>
-              <!-- Lente -->
-              <circle cx="100" cy="100" r="20" fill="#2A2A2A"/>
-              <circle cx="100" cy="100" r="12" fill="#3A3A3A"/>
-              <circle cx="100" cy="100" r="5" fill="#00B8B8" opacity="0.6"/>
-              <!-- Flash -->
-              <rect x="68" y="62" width="20" height="8" rx="3" fill="#FF6A35"/>
-              <!-- Botón -->
-              <circle cx="130" cy="62" r="6" fill="#888"/>
-              <!-- Etiqueta de precio -->
-              <g transform="translate(110, 28)">
-                <path d="M0 10 L10 0 L40 0 L50 10 L40 20 L10 20 Z" fill="#FF6A35"/>
-                <rect x="8" y="2" width="34" height="16" rx="3" fill="#FF6A35"/>
-                <text x="25" y="14" font-size="9" font-weight="700" fill="#FFF" text-anchor="middle" font-family="Inter">250€</text>
-              </g>
-              <!-- Flecha señalando -->
-              <line x1="105" y1="28" x2="105" y2="58" stroke="#FF6A35" stroke-width="2.5" stroke-dasharray="4 3" opacity="0.5"/>
-            </svg>
+            <img src="../../assets/illustrations/guitarra.jpg" alt="Tasación justa">
           </div>
           <h1>
             <span class="big">Tú pones el <span>precio</span></span>
@@ -375,50 +364,16 @@
           <div class="ba-wrap">
             <div class="ba-item">
               <div class="label before">ANTES TENÍA</div>
-              <div class="ill-canvas">
-                <svg viewBox="0 0 140 140" fill="none">
-                  <!-- Sofá -->
-                  <!-- Respaldo -->
-                  <path d="M25 60 Q25 42 35 38 L105 38 Q115 42 115 60 L115 95 L25 95 Z" fill="#00B8B8" opacity="0.75"/>
-                  <!-- Base asiento -->
-                  <rect x="25" y="75" width="90" height="20" rx="4" fill="#1A1A1A" opacity="0.8"/>
-                  <!-- Cojines -->
-                  <rect x="32" y="66" width="34" height="12" rx="4" fill="#E8E4DC"/>
-                  <rect x="74" y="66" width="34" height="12" rx="4" fill="#E8E4DC"/>
-                  <!-- Patas -->
-                  <rect x="35" y="95" width="5" height="10" rx="2" fill="#888"/>
-                  <rect x="100" y="95" width="5" height="10" rx="2" fill="#888"/>
-                  <!-- Etiqueta -->
-                  <g transform="translate(140, 120)">
-                    <line x1="-80" y1="-50" x2="-80" y2="-70" stroke="#FF6A35" stroke-width="2" stroke-dasharray="4 2"/>
-                  </g>
-                </svg>
+              <div class="ill-bg">
+                <img src="../../assets/illustrations/bici.jpg" alt="Objeto en desuso" class="ill-img">
               </div>
               <div class="ill-item-name">un sofá</div>
             </div>
             <div class="ba-arrow"><i class="fas fa-arrow-right"></i></div>
             <div class="ba-item">
               <div class="label after">AHORA TENGO</div>
-              <div class="ill-canvas">
-                <svg viewBox="0 0 140 140" fill="none">
-                  <!-- Portátil -->
-                  <!-- Base/teclado -->
-                  <rect x="22" y="68" width="96" height="56" rx="6" fill="#1A1A1A"/>
-                  <rect x="28" y="74" width="84" height="38" rx="4" fill="#2A2A2A"/>
-                  <!-- Teclas (simplificado) -->
-                  <rect x="32" y="78" width="76" height="16" rx="2" fill="#3A3A3A"/>
-                  <!-- Trackpad -->
-                  <rect x="50" y="98" width="40" height="10" rx="3" fill="#3A3A3A"/>
-                  <!-- Pantalla -->
-                  <rect x="20" y="12" width="100" height="58" rx="6" fill="#1A1A1A"/>
-                  <rect x="26" y="18" width="88" height="46" rx="3" fill="#222"/>
-                  <!-- Contenido pantalla -->
-                  <rect x="34" y="26" width="30" height="4" rx="2" fill="#FF6A35" opacity="0.5"/>
-                  <rect x="34" y="34" width="60" height="3" rx="1.5" fill="#555"/>
-                  <rect x="34" y="40" width="45" height="3" rx="1.5" fill="#555"/>
-                  <rect x="34" y="46" width="55" height="3" rx="1.5" fill="#555"/>
-                  <circle cx="110" cy="12" r="4" fill="#00B8B8" opacity="0.6"/>
-                </svg>
+              <div class="ill-bg">
+                <img src="../../assets/illustrations/guitarra.jpg" alt="Algo mejor" class="ill-img">
               </div>
               <div class="ill-item-name">este portátil</div>
             </div>
@@ -453,7 +408,7 @@
     </div>
   </div>
 
-  <span class="demo-tag"><i class="fas fa-paint-brush"></i> Prototipo — v5 Onboarding (rediseñado) — 24 Abr 2026</span>
+  <span class="demo-tag"><i class="fas fa-paint-brush"></i> Prototipo — v5 Onboarding (imágenes reales del PDF) — 24 Abr 2026</span>
 
   <script>
     let currentSlide = 0;
@@ -499,12 +454,12 @@
         ctaBtn.innerHTML = '<i class="fas fa-eye"></i> ¡Ver catálogo!';
         skipBtn.style.opacity = '0';
         skipBtn.style.pointerEvents = 'none';
-        ctaSecondary.style.display = 'none';
+        ctaSecondary.classList.add('hidden');
       } else {
         ctaBtn.innerHTML = '<i class="fas fa-arrow-right"></i> Siguiente';
         skipBtn.style.opacity = '1';
         skipBtn.style.pointerEvents = 'auto';
-        ctaSecondary.style.display = 'block';
+        ctaSecondary.classList.remove('hidden');
       }
 
       // Animate current slide
@@ -537,7 +492,7 @@
       document.querySelectorAll('.slide')[0].classList.add('active-anim');
     }, 200);
 
-    console.log('🎨 TREQE v5 — Onboarding (rediseñado con ilustraciones del PDF)');
+    console.log('🎨 TREQE v5 — Onboarding (ilustraciones reales del PDF de marca)');
     console.log('🧪 24 Abril 2026');
   </script>
 </body>
