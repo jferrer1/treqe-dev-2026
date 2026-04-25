@@ -19,11 +19,11 @@
       body { display: flex; align-items: center; justify-content: center; }
     }
 
-    iframe { width: 100%; height: calc(100% - 50px); border: none; display: block; background: #F8F6F0; }
+    iframe { width: 100%; height: calc(100% - 60px); border: none; display: block; background: #F8F6F0; margin-top: 60px; }
 
     /* Loading overlay */
     .loader {
-      position: absolute; top: 0; left: 0; right: 0; bottom: 50px;
+      position: absolute; top: 60px; left: 0; right: 0; bottom: 0;
       display: flex; align-items: center; justify-content: center;
       background: #F8F6F0; z-index: 5; transition: opacity 0.3s;
     }
@@ -31,117 +31,145 @@
     .loader .spinner { width: 32px; height: 32px; border: 3px solid #E8E4DC; border-top-color: #FF6A35; border-radius: 50%; animation: spin 0.8s linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* Big clear navigation banner at the top */
-    .nav-banner {
-      position: absolute; top: 0; left: 0; right: 0; z-index: 20;
-      background: linear-gradient(180deg, rgba(0,0,0,0.85) 0%, transparent 100%);
-      padding: 10px 12px 24px;
-      display: flex; align-items: center; gap: 8px;
+    /* Navigation bar */
+    .nav-bar {
+      position: absolute; top: 0; left: 0; right: 0; height: 60px;
+      background: #1A1A1A; z-index: 20; display: flex; align-items: center;
+      padding: 0 12px; gap: 8px; border-bottom: 1px solid #333;
     }
-    .nav-banner button {
-      font-family: 'Inter', sans-serif; font-size: 0.78rem; font-weight: 600;
-      padding: 8px 16px; border-radius: 20px; border: none; cursor: pointer;
-      transition: all 0.15s; -webkit-tap-highlight-color: transparent;
+    .nav-bar .logo {
+      font-size: 1.1rem; font-weight: 800; color: #FFF; letter-spacing: -0.5px;
     }
-    .nav-banner button:active { transform: scale(0.93); }
-    .nav-banner .btn-back {
-      background: transparent; color: #FFF; padding: 8px 6px;
+    .nav-bar .logo span { color: #FF6A35; }
+    .nav-bar .nav-select {
+      flex: 1; padding: 8px 12px; border-radius: 8px; border: 1px solid #444;
+      background: #2A2A2A; color: #FFF; font-size: 0.85rem; font-family: inherit;
+      cursor: pointer; outline: none;
     }
-    .nav-banner .btn-home {
-      background: rgba(255,255,255,0.2); color: #FFF; padding: 8px 10px;
+    .nav-bar .nav-select option { background: #2A2A2A; color: #FFF; }
+    .nav-bar .nav-btn {
+      width: 36px; height: 36px; border-radius: 8px; border: none;
+      background: #333; color: #FFF; font-size: 0.9rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.15s;
     }
-    .nav-banner .btn-next {
-      background: #FF6A35; color: #FFF; margin-left: auto;
-      box-shadow: 0 2px 12px rgba(255,106,53,0.4);
-    }
-    .nav-banner .screen-label {
-      font-size: 0.65rem; color: rgba(255,255,255,0.6); font-weight: 500;
-      background: rgba(255,255,255,0.1); padding: 3px 10px; border-radius: 12px;
-    }
-    .nav-banner .btn-back i { font-size: 1.1rem; }
+    .nav-bar .nav-btn:hover { background: #444; }
+    .nav-bar .nav-btn:active { transform: scale(0.95); }
+    .nav-bar .nav-btn.primary { background: #FF6A35; }
+    .nav-bar .nav-btn.primary:hover { background: #E55A2B; }
 
-    /* Bottom bar */
-    .bottom-bar {
-      position: absolute; bottom: 0; left: 0; right: 0; height: 50px;
-      background: #FFF; border-top: 1px solid #E8E4DC;
-      display: flex; align-items: center; justify-content: center; z-index: 10;
+    /* Quick actions */
+    .quick-actions {
+      position: absolute; top: 60px; left: 0; right: 0;
+      background: #2A2A2A; padding: 8px 12px; display: flex; gap: 8px;
+      overflow-x: auto; z-index: 15; border-bottom: 1px solid #333;
+      scrollbar-width: none;
     }
-    .bottom-bar span {
-      font-size: 0.7rem; color: #B0B0B0;
+    .quick-actions::-webkit-scrollbar { display: none; }
+    .quick-actions button {
+      flex-shrink: 0; padding: 6px 14px; border-radius: 16px;
+      border: 1px solid #444; background: #1A1A1A; color: #AAA;
+      font-size: 0.75rem; font-weight: 500; cursor: pointer; white-space: nowrap;
+      transition: all 0.15s;
     }
+    .quick-actions button:hover { background: #333; color: #FFF; }
+    .quick-actions button.active { background: #FF6A35; color: #FFF; border-color: #FF6A35; }
+
+    /* Info bar */
+    .info-bar {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 28px;
+      background: #111; display: flex; align-items: center; justify-content: center;
+      gap: 16px; font-size: 0.65rem; color: #666; z-index: 10;
+    }
+    .info-bar span { display: flex; align-items: center; gap: 4px; }
+    .info-bar i { font-size: 0.6rem; }
 
     @media (min-width: 430px) {
-      .bottom-bar { border-radius: 0 0 44px 44px; }
+      .info-bar { border-radius: 0 0 44px 44px; }
     }
   </style>
 </head>
 <body>
   <div class="phone">
-    <div class="loader" id="loader"><div class="spinner"></div></div>
-
-    <!-- Navigation banner at top -->
-    <div class="nav-banner" id="navBanner">
-      <button class="btn-back" onclick="navBack()"><i class="fas fa-chevron-left"></i></button>
-      <button class="btn-home" onclick="navHome()"><i class="fas fa-home"></i></button>
-      <span class="screen-label" id="screenLabel">Splash</span>
-      <button class="btn-next" id="btnNext" onclick="navNext()">Siguiente →</button>
+    <!-- Navigation bar -->
+    <div class="nav-bar">
+      <span class="logo">treqe<span>.</span></span>
+      <select class="nav-select" id="screenSelect" onchange="goTo(this.value)">
+        <option value="splash">🚀 Splash</option>
+        <option value="onboarding">📱 Onboarding</option>
+        <option value="registro">📝 Registro</option>
+        <option value="catalogo" selected>🔍 Catálogo</option>
+        <option value="detalle">📦 Detalle</option>
+        <option value="subir">⬆️ Subir</option>
+        <option value="perfil">👤 Perfil</option>
+        <option value="ajustes">⚙️ Ajustes</option>
+        <option value="match">💱 Match</option>
+        <option value="seguimiento">📍 Seguimiento</option>
+      </select>
+      <button class="nav-btn" onclick="navBack()" title="Volver"><i class="fas fa-arrow-left"></i></button>
+      <button class="nav-btn primary" onclick="refreshFrame()" title="Recargar"><i class="fas fa-sync-alt"></i></button>
     </div>
 
-    <!-- Screen iframe -->
-    <iframe id="screenFrame" src="../v9-splash/" onload="onFrameLoad()"></iframe>
+    <!-- Quick actions -->
+    <div class="quick-actions" id="quickActions">
+      <button onclick="goTo('catalogo')" class="active" id="btn-catalogo">Catálogo</button>
+      <button onclick="goTo('perfil')" id="btn-perfil">Perfil</button>
+      <button onclick="goTo('subir')" id="btn-subir">Subir</button>
+      <button onclick="goTo('detalle')" id="btn-detalle">Detalle</button>
+      <button onclick="goTo('match')" id="btn-match">Match</button>
+      <button onclick="goTo('ajustes')" id="btn-ajustes">Ajustes</button>
+    </div>
 
-    <!-- Bottom bar -->
-    <div class="bottom-bar">
-      <span>TREQE — Prototipo Navegable</span>
+    <!-- Loading -->
+    <div class="loader" id="loader"><div class="spinner"></div></div>
+
+    <!-- Screen iframe -->
+    <iframe id="screenFrame" src="../v1-catalogo/" onload="onFrameLoad()"></iframe>
+
+    <!-- Info bar -->
+    <div class="info-bar">
+      <span><i class="fas fa-mouse-pointer"></i> Click en pantalla para interactuar</span>
+      <span><i class="fas fa-code-branch"></i> v0-prototype</span>
     </div>
   </div>
 
   <script>
     var SCREENS = {
-      'splash':       { path: '../v9-splash/',           name: 'Splash',         next: 'onboarding', timer: 3500 },
-      'onboarding':   { path: '../v5-onboarding/',        name: 'Onboarding',     next: 'registro',   timer: 0 },
-      'registro':     { path: '../v10-registro/',         name: 'Registro',       next: 'catalogo',   timer: 0 },
-      'catalogo':     { path: '../v1-catalogo/',          name: 'Catálogo',       next: 'detalle',    timer: 0 },
-      'detalle':      { path: '../v2-detalle/',           name: 'Detalle',        next: 'match',      timer: 0 },
-      'match':        { path: '../v6-match-notification/',name: 'Match!',         next: 'seguimiento',timer: 0 },
-      'seguimiento':  { path: '../v7-seguimiento/',       name: 'Seguimiento',    next: 'catalogo',   timer: 0 },
-      'subir':        { path: '../v3-subir/',             name: 'Subir',          next: 'catalogo',   timer: 0 },
-      'perfil':       { path: '../v4-perfil/',            name: 'Mi perfil',      next: 'ajustes',    timer: 0 },
-      'ajustes':      { path: '../v8-ajustes/',           name: 'Ajustes',        next: 'catalogo',   timer: 0 },
+      'splash':       { path: '../v9-splash/',            name: 'Splash' },
+      'onboarding':   { path: '../v5-onboarding/',        name: 'Onboarding' },
+      'registro':     { path: '../v10-registro/',         name: 'Registro' },
+      'catalogo':     { path: '../v1-catalogo/',          name: 'Catálogo' },
+      'detalle':      { path: '../v2-detalle/',           name: 'Detalle' },
+      'subir':        { path: '../v3-subir/',             name: 'Subir' },
+      'perfil':       { path: '../v4-perfil/',            name: 'Perfil' },
+      'match':        { path: '../v6-match-notification/',name: 'Match' },
+      'seguimiento':  { path: '../v7-seguimiento/',       name: 'Seguimiento' },
+      'ajustes':      { path: '../v8-ajustes/',           name: 'Ajustes' },
     };
 
-    var currentScreen = 'splash';
+    var currentScreen = 'catalogo';
     var frame = document.getElementById('screenFrame');
     var loader = document.getElementById('loader');
-    var autoTimer = null;
-    var navHistory = ['splash'];
+    var navHistory = ['catalogo'];
 
-    function goTo(screenId, addHist) {
+    function goTo(screenId) {
       var screen = SCREENS[screenId];
       if (!screen) return;
 
-      if (autoTimer) { clearTimeout(autoTimer); autoTimer = null; }
-
       currentScreen = screenId;
-      if (addHist !== false) { navHistory.push(screenId); }
+      navHistory.push(screenId);
 
+      // Update select
+      document.getElementById('screenSelect').value = screenId;
+
+      // Update quick actions
+      document.querySelectorAll('.quick-actions button').forEach(btn => btn.classList.remove('active'));
+      var activeBtn = document.getElementById('btn-' + screenId);
+      if (activeBtn) activeBtn.classList.add('active');
+
+      // Show loader and change src
       loader.classList.remove('hidden');
       frame.src = screen.path;
-
-      // Update banner
-      document.getElementById('screenLabel').textContent = screen.name;
-      var nextBtn = document.getElementById('btnNext');
-      if (screen.next) {
-        var nextName = SCREENS[screen.next] ? SCREENS[screen.next].name : screen.next;
-        nextBtn.textContent = '→ ' + nextName;
-        nextBtn.style.display = 'block';
-      } else {
-        nextBtn.style.display = 'none';
-      }
-
-      if (screen.timer > 0) {
-        autoTimer = setTimeout(function() { goTo(screen.next); }, screen.timer);
-      }
     }
 
     function onFrameLoad() {
@@ -151,18 +179,15 @@
     function navBack() {
       if (navHistory.length > 1) {
         navHistory.pop();
-        goTo(navHistory[navHistory.length - 1], false);
+        var prev = navHistory[navHistory.length - 1];
+        goTo(prev);
+        navHistory.pop(); // Prevent duplicate entry
       }
     }
 
-    function navNext() {
-      var screen = SCREENS[currentScreen];
-      if (screen && screen.next) goTo(screen.next);
-    }
-
-    function navHome() {
-      navHistory.push('catalogo');
-      goTo('catalogo');
+    function refreshFrame() {
+      loader.classList.remove('hidden');
+      frame.src = frame.src;
     }
 
     window.goTo = goTo;
