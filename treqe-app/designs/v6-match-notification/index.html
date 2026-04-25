@@ -339,6 +339,12 @@
       border: 1.5px solid var(--border);
     }
     .action-btn--cancel:active { background: #F5F3EE; color: var(--danger); border-color: var(--danger); }
+    .action-btn--reject {
+      background: var(--card-bg);
+      color: var(--text-secondary);
+      border: 1.5px solid var(--border);
+    }
+    .action-btn--reject:active { background: #F5F3EE; color: var(--danger); border-color: var(--danger); }
 
     /* ===== ACCEPTED STATE (after clicking accept) ===== */
     .accepted-state {
@@ -376,6 +382,69 @@
       box-shadow: 0 4px 16px rgba(255,106,53,0.25);
     }
     .accepted-state .next-btn:active { transform: scale(0.96); }
+
+    /* ===== PARTICIPANTS STATUS ===== */
+    .participants-status {
+      background: var(--bg);
+      border-radius: 16px;
+      padding: 16px;
+      margin: 16px 0;
+    }
+    .participant-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .participant-row:last-child { border-bottom: none; }
+    .participant-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+    .participant-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .participant-name {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .participant-item {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+    }
+    .participant-status {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .status-accepted {
+      background: rgba(0,184,184,0.15);
+      color: var(--success);
+    }
+    .status-pending {
+      background: rgba(255,106,53,0.15);
+      color: var(--accent);
+    }
+    .status-rejected {
+      background: rgba(231,76,60,0.15);
+      color: var(--danger);
+    }
 
     /* ===== CLOSE AREA (tap outside sheet) ===== */
     .overlay-bg {
@@ -484,13 +553,42 @@
         <!-- Timer -->
         <div class="timer">
           <i class="fas fa-hourglass-half"></i>
-          Tienes <strong>47:32:15</strong> para decidir
+          Tienes <strong id="countdown">23:59:59</strong> para decidir
+        </div>
+
+        <!-- Participants Status (shown after accepting) -->
+        <div class="participants-status" id="participantsStatus" style="display:none;">
+          <h4 style="font-size:0.85rem;font-weight:600;margin-bottom:12px;color:var(--text);">Estado del círculo</h4>
+          <div class="participant-row">
+            <div class="participant-avatar">T</div>
+            <div class="participant-info">
+              <span class="participant-name">Tú</span>
+              <span class="participant-item">Trek Marlin 7</span>
+            </div>
+            <div class="participant-status status-accepted"><i class="fas fa-check"></i> Aceptado</div>
+          </div>
+          <div class="participant-row">
+            <div class="participant-avatar">A</div>
+            <div class="participant-info">
+              <span class="participant-name">Ana</span>
+              <span class="participant-item">Fender Stratocaster</span>
+            </div>
+            <div class="participant-status status-pending"><i class="fas fa-clock"></i> Pendiente</div>
+          </div>
+          <div class="participant-row">
+            <div class="participant-avatar">B</div>
+            <div class="participant-info">
+              <span class="participant-name">Bruno</span>
+              <span class="participant-item">Cámara Canon</span>
+            </div>
+            <div class="participant-status status-pending"><i class="fas fa-clock"></i> Pendiente</div>
+          </div>
         </div>
 
         <!-- Actions -->
         <div class="action-buttons" id="actionBtns">
-          <button class="action-btn action-btn--cancel" onclick="hideNotification()">
-            <i class="fas fa-times"></i> Cancelar
+          <button class="action-btn action-btn--reject" onclick="rejectMatch()">
+            <i class="fas fa-times"></i> Rechazar
           </button>
           <button class="action-btn action-btn--accept" onclick="acceptMatch()">
             <i class="fas fa-check"></i> Aceptar
@@ -501,10 +599,55 @@
       <!-- ACCEPTED STATE -->
       <div class="accepted-state" id="acceptedState">
         <div class="check-icon"><i class="fas fa-check"></i></div>
-        <h3>Match aceptado</h3>
-        <p>El artículo se ha bloqueado para ti. Prepara tu envío.</p>
-        <button class="next-btn" onclick="hideNotification()">
-          <i class="fas fa-box"></i> Ver seguimiento
+        <h3>¡Has aceptado!</h3>
+        <p>Esperando confirmación de Ana y Bruno...</p>
+        
+        <!-- Timer still visible -->
+        <div class="timer" style="margin-top:16px;">
+          <i class="fas fa-hourglass-half"></i>
+          Expira en <strong id="countdownAccepted">23:45:12</strong>
+        </div>
+
+        <!-- Participants -->
+        <div class="participants-status" style="margin-top:20px;text-align:left;">
+          <div class="participant-row">
+            <div class="participant-avatar" style="background:var(--success);color:#FFF;">T</div>
+            <div class="participant-info">
+              <span class="participant-name">Tú</span>
+              <span class="participant-item">Trek Marlin 7</span>
+            </div>
+            <div class="participant-status status-accepted"><i class="fas fa-check"></i></div>
+          </div>
+          <div class="participant-row">
+            <div class="participant-avatar">A</div>
+            <div class="participant-info">
+              <span class="participant-name">Ana</span>
+              <span class="participant-item">Fender Stratocaster</span>
+            </div>
+            <div class="participant-status status-pending"><i class="fas fa-clock"></i></div>
+          </div>
+          <div class="participant-row">
+            <div class="participant-avatar">B</div>
+            <div class="participant-info">
+              <span class="participant-name">Bruno</span>
+              <span class="participant-item">Cámara Canon</span>
+            </div>
+            <div class="participant-status status-pending"><i class="fas fa-clock"></i></div>
+          </div>
+        </div>
+
+        <button class="next-btn" onclick="hideNotification()" style="margin-top:24px;">
+          Entendido
+        </button>
+      </div>
+
+      <!-- REJECTED STATE -->
+      <div class="rejected-state" id="rejectedState" style="display:none;text-align:center;padding:24px 0;">
+        <div class="check-icon" style="background:var(--text-tertiary);"><i class="fas fa-times" style="color:#FFF;"></i></div>
+        <h3>Match rechazado</h3>
+        <p>Tu artículo vuelve a estar disponible para otros trueques.</p>
+        <button class="next-btn" onclick="hideNotification()" style="background:var(--text-secondary);">
+          Entendido
         </button>
       </div>
 
@@ -535,11 +678,48 @@
       // Hide celebration, show accepted
       document.getElementById('celebrationState').style.display = 'none';
       const acceptedState = document.getElementById('acceptedState');
-      acceptedState.classList.add('visible');
+      acceptedState.style.display = 'block';
 
       // Scroll to top of sheet to show accepted state
       document.getElementById('notifSheet').scrollTo({ top: 0, behavior: 'smooth' });
     }
+
+    function rejectMatch() {
+      // Hide celebration, show rejected
+      document.getElementById('celebrationState').style.display = 'none';
+      const rejectedState = document.getElementById('rejectedState');
+      rejectedState.style.display = 'block';
+
+      // Scroll to top
+      document.getElementById('notifSheet').scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Simple countdown simulation
+    function updateCountdown() {
+      const countdownEl = document.getElementById('countdown');
+      const countdownAcceptedEl = document.getElementById('countdownAccepted');
+      
+      // Parse current time
+      let [h, m, s] = countdownEl.textContent.split(':').map(Number);
+      
+      // Decrement
+      s--;
+      if (s < 0) { s = 59; m--; }
+      if (m < 0) { m = 59; h--; }
+      if (h < 0) { h = 23; m = 59; s = 59; }
+      
+      // Format
+      const timeStr = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+      countdownEl.textContent = timeStr;
+      if (countdownAcceptedEl) countdownAcceptedEl.textContent = timeStr;
+    }
+
+    // Update every second when overlay is visible
+    setInterval(() => {
+      if (document.getElementById('overlay').classList.contains('visible')) {
+        updateCountdown();
+      }
+    }, 1000);
 
     // Keyboard: Escape to close
     document.addEventListener('keydown', (e) => {
