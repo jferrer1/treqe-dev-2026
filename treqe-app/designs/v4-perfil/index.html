@@ -517,6 +517,36 @@
       </div>
     </div>
 
+    <!-- ===== MY MATCHES ===== -->
+    <div class="section">
+      <div class="section__header">
+        <span class="section__title"><i class="fas fa-star" style="color:var(--accent);margin-right:6px;"></i>Mis Matches</span>
+        <button class="section__action" onclick="goToMatches()">Ver todo</button>
+      </div>
+      <div class="activity-feed">
+        <div class="activity-item" onclick="goToMatchDetail()" style="border-left: 3px solid var(--accent);">
+          <div class="activity-item__icon pending" style="background: rgba(255,106,53,0.15);">
+            <i class="fas fa-star"></i>
+          </div>
+          <div class="activity-item__content">
+            <div class="activity-item__title">🎸 Fender Stratocaster</div>
+            <div class="activity-item__meta">Tu 🚲 Trek Marlin 7 + 160€ · 23h restantes</div>
+          </div>
+          <span class="activity-item__status-badge pending">Decidir</span>
+        </div>
+        <div class="activity-item" onclick="alert('Match en progreso')">
+          <div class="activity-item__icon waiting">
+            <i class="fas fa-hourglass-half"></i>
+          </div>
+          <div class="activity-item__content">
+            <div class="activity-item__title">📷 Canon EOS R</div>
+            <div class="activity-item__meta">Esperando confirmación de Ana · 18h</div>
+          </div>
+          <span class="activity-item__status-badge waiting">En curso</span>
+        </div>
+      </div>
+    </div>
+
     <!-- ===== TRADE REQUESTS ===== -->
     <div class="section">
       <div class="section__header">
@@ -724,6 +754,14 @@
         <span class="next-level">${100 - score} para nivel Avanzado</span>
       `;
     });
+
+    function goToMatches() {
+      window.parent.location.href = '../v12-mis-matches/';
+    }
+
+    function goToMatchDetail() {
+      window.parent.location.href = '../v6-match-notification/';
+    }
 
     console.log('👤 TREQE v4 — Perfil');
     console.log('🧪 Prototipo de diseño — 23 Abril 2026');

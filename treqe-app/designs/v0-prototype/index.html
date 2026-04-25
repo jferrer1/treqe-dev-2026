@@ -102,9 +102,11 @@
         <option value="detalle">📦 Detalle</option>
         <option value="subir">⬆️ Subir</option>
         <option value="perfil">👤 Perfil</option>
-        <option value="ajustes">⚙️ Ajustes</option>
+        <option value="notificaciones">🔔 Notificaciones</option>
+        <option value="matches">⭐ Mis Matches</option>
         <option value="match">💱 Match</option>
         <option value="seguimiento">📍 Seguimiento</option>
+        <option value="ajustes">⚙️ Ajustes</option>
       </select>
       <button class="nav-btn" onclick="navBack()" title="Volver"><i class="fas fa-arrow-left"></i></button>
       <button class="nav-btn primary" onclick="refreshFrame()" title="Recargar"><i class="fas fa-sync-alt"></i></button>
@@ -114,10 +116,10 @@
     <div class="quick-actions" id="quickActions">
       <button onclick="goTo('catalogo')" class="active" id="btn-catalogo">Catálogo</button>
       <button onclick="goTo('perfil')" id="btn-perfil">Perfil</button>
+      <button onclick="goTo('notificaciones')" id="btn-notificaciones">Notifs</button>
+      <button onclick="goTo('matches')" id="btn-matches">Matches</button>
       <button onclick="goTo('subir')" id="btn-subir">Subir</button>
-      <button onclick="goTo('detalle')" id="btn-detalle">Detalle</button>
       <button onclick="goTo('match')" id="btn-match">Match</button>
-      <button onclick="goTo('ajustes')" id="btn-ajustes">Ajustes</button>
     </div>
 
     <!-- Loading -->
@@ -135,16 +137,18 @@
 
   <script>
     var SCREENS = {
-      'splash':       { path: '../v9-splash/',            name: 'Splash' },
-      'onboarding':   { path: '../v5-onboarding/',        name: 'Onboarding' },
-      'registro':     { path: '../v10-registro/',         name: 'Registro' },
-      'catalogo':     { path: '../v1-catalogo/',          name: 'Catálogo' },
-      'detalle':      { path: '../v2-detalle/',           name: 'Detalle' },
-      'subir':        { path: '../v3-subir/',             name: 'Subir' },
-      'perfil':       { path: '../v4-perfil/',            name: 'Perfil' },
-      'match':        { path: '../v6-match-notification/',name: 'Match' },
-      'seguimiento':  { path: '../v7-seguimiento/',       name: 'Seguimiento' },
-      'ajustes':      { path: '../v8-ajustes/',           name: 'Ajustes' },
+      'splash':         { path: '../v9-splash/',              name: 'Splash' },
+      'onboarding':     { path: '../v5-onboarding/',          name: 'Onboarding' },
+      'registro':       { path: '../v10-registro/',           name: 'Registro' },
+      'catalogo':       { path: '../v1-catalogo/',            name: 'Catálogo' },
+      'detalle':        { path: '../v2-detalle/',             name: 'Detalle' },
+      'subir':          { path: '../v3-subir/',               name: 'Subir' },
+      'perfil':         { path: '../v4-perfil/',              name: 'Perfil' },
+      'notificaciones': { path: '../v11-notificaciones/',     name: 'Notificaciones' },
+      'matches':        { path: '../v12-mis-matches/',        name: 'Mis Matches' },
+      'match':          { path: '../v6-match-notification/',  name: 'Match' },
+      'seguimiento':    { path: '../v7-seguimiento/',         name: 'Seguimiento' },
+      'ajustes':        { path: '../v8-ajustes/',             name: 'Ajustes' },
     };
 
     var currentScreen = 'catalogo';

@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>TREQE — Mis Matches</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #F8F6F0;
+      color: #1A1A1A;
+      min-height: 100vh;
+      padding-bottom: 80px;
+      -webkit-font-smoothing: antialiased;
+    }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+    /* ===== COLORS ===== */
+    :root {
+      --bg: #F8F6F0;
+      --text: #1A1A1A;
+      --text-secondary: #888888;
+      --text-tertiary: #B0B0B0;
+      --border: #E8E4DC;
+      --accent: #FF6A35;
+      --accent-hover: #E55A2B;
+      --success: #00B8B8;
+      --warning: #F5A623;
+      --danger: #E74C3C;
+      --card-bg: #FFFFFF;
+      --shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+
+    /* ===== STATUS BAR ===== */
+    .status-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 20px 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      background: var(--bg);
+    }
+    .status-bar .time { font-weight: 700; color: var(--text); }
+    .status-bar .icons { display: flex; gap: 6px; font-size: 0.7rem; }
+
+    /* ===== HEADER ===== */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px 16px;
+      background: var(--bg);
+    }
+    .header__left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .header__back {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+      font-size: 1.1rem;
+      transition: background 0.2s;
+    }
+    .header__back:active { background: var(--border); }
+    .header__title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .header__count {
+      font-size: 0.75rem;
+      color: var(--text-tertiary);
+      font-weight: 500;
+      margin-left: 8px;
+    }
+
+    /* ===== TABS ===== */
+    .tabs {
+      display: flex;
+      gap: 8px;
+      padding: 0 16px 16px;
+      background: var(--bg);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .tabs::-webkit-scrollbar { display: none; }
+    .tab {
+      flex-shrink: 0;
+      padding: 10px 18px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      transition: all 0.2s;
+    }
+    .tab:active { background: var(--border); }
+    .tab.active {
+      background: var(--accent);
+      color: #FFF;
+      border-color: var(--accent);
+    }
+    .tab .count {
+      background: rgba(0,0,0,0.1);
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 0.7rem;
+      margin-left: 4px;
+    }
+    .tab.active .count { background: rgba(255,255,255,0.2); }
+
+    /* ===== MATCH CARD ===== */
+    .match-list {
+      padding: 0 16px;
+    }
+    .match-card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .match-card:active { transform: scale(0.98); }
+    .match-card.pending { border-left: 4px solid var(--accent); }
+    .match-card.waiting { border-left: 4px solid var(--warning); }
+    .match-card.completed { border-left: 4px solid var(--success); }
+
+    .match-card__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 16px;
+    }
+    .match-card__status {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 20px;
+    }
+    .match-card__status.pending {
+      background: rgba(255,106,53,0.1);
+      color: var(--accent);
+    }
+    .match-card__status.waiting {
+      background: rgba(245,166,35,0.1);
+      color: var(--warning);
+    }
+    .match-card__status.completed {
+      background: rgba(0,184,184,0.1);
+      color: var(--success);
+    }
+    .match-card__time {
+      font-size: 0.7rem;
+      color: var(--text-tertiary);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .match-card__time.urgent {
+      color: var(--danger);
+      font-weight: 600;
+    }
+
+    /* ===== ITEM COMPARISON ===== */
+    .item-compare {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 12px;
+      align-items: center;
+      padding: 16px;
+      background: var(--bg);
+      border-radius: 16px;
+      margin-bottom: 16px;
+    }
+    .item-compare__item {
+      text-align: center;
+    }
+    .item-compare__image {
+      width: 70px;
+      height: 70px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      margin: 0 auto 10px;
+    }
+    .item-compare__image.get { background: #2D2D2D; color: rgba(255,255,255,0.3); }
+    .item-compare__image.give { background: #1A3A2A; color: rgba(255,255,255,0.3); }
+    .item-compare__name {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .item-compare__price {
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+      margin-top: 2px;
+      font-weight: 500;
+    }
+    .item-compare__arrow {
+      font-size: 1.3rem;
+      color: var(--accent);
+    }
+
+    /* ===== PARTICIPANTS ===== */
+    .participants {
+      margin-bottom: 16px;
+    }
+    .participants__title {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+    .participant-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .participant-row:last-child { border-bottom: none; }
+    .participant-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+    .participant-avatar.you { background: var(--accent); color: #FFF; }
+    .participant-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .participant-name {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+    .participant-item {
+      font-size: 0.7rem;
+      color: var(--text-tertiary);
+    }
+    .participant-status {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .participant-status.accepted {
+      background: rgba(0,184,184,0.1);
+      color: var(--success);
+    }
+    .participant-status.pending {
+      background: rgba(255,106,53,0.1);
+      color: var(--accent);
+    }
+    .participant-status.rejected {
+      background: rgba(231,76,60,0.1);
+      color: var(--danger);
+    }
+
+    /* ===== ACTION BUTTONS ===== */
+    .action-buttons {
+      display: flex;
+      gap: 10px;
+    }
+    .action-btn {
+      flex: 1;
+      padding: 14px;
+      border-radius: 14px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-align: center;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .action-btn:active { transform: scale(0.97); }
+    .action-btn--primary {
+      background: var(--accent);
+      color: #FFF;
+      box-shadow: 0 4px 16px rgba(255,106,53,0.25);
+    }
+    .action-btn--secondary {
+      background: var(--bg);
+      color: var(--text-secondary);
+      border: 1.5px solid var(--border);
+    }
+    .action-btn--secondary:active { color: var(--danger); border-color: var(--danger); }
+
+    /* ===== COMPLETED STATE ===== */
+    .completed-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      background: rgba(0,184,184,0.05);
+      border-radius: 12px;
+      margin-bottom: 12px;
+    }
+    .completed-info__icon {
+      width: 40px;
+      height: 40px;
+      background: var(--success);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFF;
+      font-size: 1rem;
+    }
+    .completed-info__text {
+      flex: 1;
+    }
+    .completed-info__title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .completed-info__meta {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+
+    /* ===== EMPTY STATE ===== */
+    .empty-state {
+      text-align: center;
+      padding: 80px 32px;
+      color: var(--text-tertiary);
+    }
+    .empty-state i {
+      font-size: 4rem;
+      margin-bottom: 20px;
+      opacity: 0.3;
+    }
+    .empty-state h3 {
+      font-size: 1.1rem;
+      color: var(--text);
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+    .empty-state p {
+      font-size: 0.85rem;
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+    .empty-state__btn {
+      padding: 14px 28px;
+      background: var(--accent);
+      color: #FFF;
+      border-radius: 14px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    /* ===== BOTTOM NAV ===== */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(16px);
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      height: 72px;
+      padding-bottom: 12px;
+      z-index: 100;
+    }
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      font-size: 0.65rem;
+      font-weight: 500;
+      color: var(--text-tertiary);
+      transition: color 0.2s;
+      padding: 4px 16px;
+    }
+    .nav-item i { font-size: 1.3rem; }
+    .nav-item.active { color: var(--accent); }
+
+    /* ===== DEMO NOTICE ===== */
+    .demo-notice {
+      text-align: center;
+      padding: 6px 16px;
+      font-size: 0.65rem;
+      color: var(--text-tertiary);
+      background: #F0EDE6;
+      letter-spacing: 0.3px;
+    }
+    .demo-notice i { margin-right: 4px; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (min-width: 600px) {
+      .header, .tabs, .match-list { max-width: 600px; margin: 0 auto; }
+      .match-list { padding: 0 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== DEMO NOTICE ===== -->
+  <div class="demo-notice"><i class="fas fa-paint-brush"></i> Prototipo — v12 Mis Matches — 25 Abr 2026</div>
+
+  <!-- ===== STATUS BAR ===== -->
+  <div class="status-bar">
+    <span class="time">15:45</span>
+    <span class="icons">
+      <i class="fas fa-signal"></i>
+      <i class="fas fa-wifi"></i>
+      <i class="fas fa-battery-three-quarters"></i>
+    </span>
+  </div>
+
+  <!-- ===== HEADER ===== -->
+  <div class="header">
+    <div class="header__left">
+      <button class="header__back" onclick="goBack()">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <h1 class="header__title">Mis Matches</h1>
+      <span class="header__count">3 activos</span>
+    </div>
+  </div>
+
+  <!-- ===== TABS ===== -->
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab(this, 'active')">
+      Activos <span class="count">2</span>
+    </button>
+    <button class="tab" onclick="switchTab(this, 'pending')">
+      Pendientes <span class="count">1</span>
+    </button>
+    <button class="tab" onclick="switchTab(this, 'completed')">
+      Completados
+    </button>
+  </div>
+
+  <!-- ===== MATCH LIST ===== -->
+  <div class="match-list" id="matchList">
+
+    <!-- MATCH 1: PENDING DECISION -->
+    <div class="match-card pending" onclick="goToMatchDetail()">
+      <div class="match-card__header">
+        <div class="match-card__status pending">
+          <i class="fas fa-star"></i> Match encontrado
+        </div>
+        <div class="match-card__time urgent">
+          <i class="fas fa-hourglass-half"></i> 23:45:12
+        </div>
+      </div>
+
+      <div class="item-compare">
+        <div class="item-compare__item">
+          <div class="item-compare__image get">
+            <i class="fas fa-guitar"></i>
+          </div>
+          <div class="item-compare__name">Fender Stratocaster</div>
+          <div class="item-compare__price">580€</div>
+        </div>
+        <div class="item-compare__arrow"><i class="fas fa-arrow-right"></i></div>
+        <div class="item-compare__item">
+          <div class="item-compare__image give">
+            <i class="fas fa-bicycle"></i>
+          </div>
+          <div class="item-compare__name">Trek Marlin 7</div>
+          <div class="item-compare__price">420€ + 160€</div>
+        </div>
+      </div>
+
+      <div class="participants">
+        <div class="participants__title">Estado del círculo</div>
+        <div class="participant-row">
+          <div class="participant-avatar you">T</div>
+          <div class="participant-info">
+            <span class="participant-name">Tú</span>
+            <span class="participant-item">Trek Marlin 7</span>
+          </div>
+          <div class="participant-status pending"><i class="fas fa-clock"></i> Decidir</div>
+        </div>
+        <div class="participant-row">
+          <div class="participant-avatar">A</div>
+          <div class="participant-info">
+            <span class="participant-name">Ana</span>
+            <span class="participant-item">Fender Stratocaster</span>
+          </div>
+          <div class="participant-status accepted"><i class="fas fa-check"></i> Confirmado</div>
+        </div>
+        <div class="participant-row">
+          <div class="participant-avatar">B</div>
+          <div class="participant-info">
+            <span class="participant-name">Bruno</span>
+            <span class="participant-item">Cámara Canon</span>
+          </div>
+          <div class="participant-status pending"><i class="fas fa-clock"></i> Pendiente</div>
+        </div>
+      </div>
+
+      <div class="action-buttons">
+        <button class="action-btn action-btn--secondary" onclick="event.stopPropagation(); rejectMatch()">
+          <i class="fas fa-times"></i> Rechazar
+        </button>
+        <button class="action-btn action-btn--primary" onclick="event.stopPropagation(); acceptMatch()">
+          <i class="fas fa-check"></i> Aceptar
+        </button>
+      </div>
+    </div>
+
+    <!-- MATCH 2: WAITING FOR OTHERS -->
+    <div class="match-card waiting" onclick="alert('Ver detalle del match')">
+      <div class="match-card__header">
+        <div class="match-card__status waiting">
+          <i class="fas fa-hourglass-half"></i> Esperando confirmación
+        </div>
+        <div class="match-card__time">
+          <i class="fas fa-clock"></i> 18:32:05
+        </div>
+      </div>
+
+      <div class="item-compare">
+        <div class="item-compare__item">
+          <div class="item-compare__image get" style="background: #1A2A3A;">
+            <i class="fas fa-camera"></i>
+          </div>
+          <div class="item-compare__name">Canon EOS R</div>
+          <div class="item-compare__price">1.200€</div>
+        </div>
+        <div class="item-compare__arrow"><i class="fas fa-arrow-right"></i></div>
+        <div class="item-compare__item">
+          <div class="item-compare__image give" style="background: #2A1A2A;">
+            <i class="fas fa-headphones"></i>
+          </div>
+          <div class="item-compare__name">AirPods Max</div>
+          <div class="item-compare__price">380€ + 820€</div>
+        </div>
+      </div>
+
+      <div class="participants">
+        <div class="participants__title">Estado del círculo</div>
+        <div class="participant-row">
+          <div class="participant-avatar you" style="background: var(--success);">T</div>
+          <div class="participant-info">
+            <span class="participant-name">Tú</span>
+            <span class="participant-item">AirPods Max</span>
+          </div>
+          <div class="participant-status accepted"><i class="fas fa-check"></i> Aceptado</div>
+        </div>
+        <div class="participant-row">
+          <div class="participant-avatar">A</div>
+          <div class="participant-info">
+            <span class="participant-name">Ana</span>
+            <span class="participant-item">Canon EOS R</span>
+          </div>
+          <div class="participant-status accepted"><i class="fas fa-check"></i> Aceptado</div>
+        </div>
+        <div class="participant-row">
+          <div class="participant-avatar">C</div>
+          <div class="participant-info">
+            <span class="participant-name">Carlos</span>
+            <span class="participant-item">MacBook Air</span>
+          </div>
+          <div class="participant-status pending"><i class="fas fa-clock"></i> Pendiente</div>
+        </div>
+      </div>
+
+      <div class="action-buttons">
+        <button class="action-btn action-btn--secondary" style="flex: 0.4;" onclick="event.stopPropagation(); alert('Cancelar match')">
+          Cancelar
+        </button>
+        <button class="action-btn action-btn--primary" style="flex: 0.6; background: var(--warning);" onclick="event.stopPropagation(); alert('Enviar recordatorio')">
+          <i class="fas fa-bell"></i> Recordar
+        </button>
+      </div>
+    </div>
+
+    <!-- MATCH 3: COMPLETED -->
+    <div class="match-card completed" onclick="alert('Ver detalle completado')">
+      <div class="match-card__header">
+        <div class="match-card__status completed">
+          <i class="fas fa-check-double"></i> Completado
+        </div>
+        <div class="match-card__time">
+          Hace 3 días
+        </div>
+      </div>
+
+      <div class="completed-info">
+        <div class="completed-info__icon">
+          <i class="fas fa-check"></i>
+        </div>
+        <div class="completed-info__text">
+          <div class="completed-info__title">Intercambio finalizado</div>
+          <div class="completed-info__meta">Trek Marlin 7 ↔ AirPods Max · 12 Abr 2026</div>
+        </div>
+      </div>
+
+      <div class="item-compare" style="margin-bottom: 0; opacity: 0.7;">
+        <div class="item-compare__item">
+          <div class="item-compare__image get" style="background: #1A3A2A;">
+            <i class="fas fa-headphones"></i>
+          </div>
+          <div class="item-compare__name">AirPods Max</div>
+          <div class="item-compare__price">380€</div>
+        </div>
+        <div class="item-compare__arrow"><i class="fas fa-check"></i></div>
+        <div class="item-compare__item">
+          <div class="item-compare__image give" style="background: #1A3A2A;">
+            <i class="fas fa-bicycle"></i>
+          </div>
+          <div class="item-compare__name">Trek Marlin 7</div>
+          <div class="item-compare__price">420€</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ===== BOTTOM NAV ===== -->
+  <nav class="bottom-nav">
+    <button class="nav-item" onclick="goToCatalog()">
+      <i class="fas fa-search"></i>
+    </button>
+    <button class="nav-item" onclick="alert('➕ Subir artículo')">
+      <i class="fas fa-plus-circle" style="font-size:1.5rem;color:var(--accent);"></i>
+    </button>
+    <button class="nav-item" onclick="goToProfile()">
+      <i class="fas fa-user"></i>
+    </button>
+  </nav>
+
+  <script>
+    function goBack() {
+      window.parent.location.href = '../v4-perfil/';
+    }
+
+    function goToCatalog() {
+      window.parent.location.href = '../v1-catalogo/';
+    }
+
+    function goToProfile() {
+      window.parent.location.href = '../v4-perfil/';
+    }
+
+    function goToMatchDetail() {
+      window.parent.location.href = '../v6-match-notification/';
+    }
+
+    function switchTab(tab, filter) {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      console.log('Filter:', filter);
+    }
+
+    function acceptMatch() {
+      alert('✅ Has aceptado el match\n\nEsperando confirmación de los demás participantes...');
+    }
+
+    function rejectMatch() {
+      if (confirm('¿Seguro que quieres rechazar este match? Tu artículo volverá a estar disponible.')) {
+        alert('Match rechazado. Tu artículo está disponible para nuevos trueques.');
+      }
+    }
+
+    console.log('⭐ TREQE v12 — Mis Matches');
+    console.log('🧪 Prototipo de diseño — 25 Abril 2026');
+  </script>
+</body>
+</html>
