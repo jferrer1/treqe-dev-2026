@@ -243,89 +243,117 @@
       box-shadow: 0 2px 8px rgba(255,106,53,0.15);
     }
 
-    /* ===== TRADE SUMMARY ===== */
-    .trade-summary {
-      background: #F8F6F0;
-      border-radius: 12px;
-      padding: 14px 16px;
-      margin-top: 12px;
+    /* ===== MODAL OVERLAY ===== */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(4px);
+      z-index: 200;
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+    }
+    .modal-overlay.visible {
+      display: flex;
+    }
+
+    /* ===== TRADE MODAL ===== */
+    .trade-modal {
+      background: var(--card-bg);
+      border-radius: 24px 24px 0 0;
+      width: 100%;
+      max-height: 85vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      animation: slideUp 0.3s ease;
+    }
+    @keyframes slideUp {
+      from { transform: translateY(100%); }
+      to { transform: translateY(0); }
+    }
+
+    .trade-modal__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .trade-modal__title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .trade-modal__close {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+      font-size: 1rem;
+    }
+
+    .trade-modal__content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+    }
+
+    /* ===== STEP INDICATOR ===== */
+    .step-indicator {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .step-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--border);
+      transition: all 0.3s;
+    }
+    .step-dot.active {
+      background: var(--accent);
+      width: 24px;
+      border-radius: 4px;
+    }
+
+    /* ===== STEP 1: SELECT ITEM ===== */
+    .step-1, .step-2 {
       display: none;
     }
-    .trade-summary.visible { display: block; }
-    .trade-summary__title {
-      font-size: 0.72rem;
-      font-weight: 600;
-      color: var(--text-tertiary);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 10px;
+    .step-1.visible, .step-2.visible {
+      display: block;
     }
-    .trade-summary__row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 6px 0;
-      font-size: 0.88rem;
-    }
-    .trade-summary__row .label {
-      color: var(--text-secondary);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .trade-summary__row .value {
-      font-weight: 600;
-    }
-    .trade-summary__row .value.positive { color: var(--success); }
-    .trade-summary__row .value.negative { color: var(--text); }
-    .trade-summary__divider {
-      height: 1px;
-      background: var(--border);
-      margin: 6px 0;
-    }
-    .trade-summary__total {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-top: 8px;
-      font-size: 1rem;
-      font-weight: 700;
-    }
-    .trade-summary__total .value { color: var(--accent); }
 
-    /* ===== YOUR ITEMS (horizontal scroll) ===== */
-    .your-items {
-      padding: 0 0 12px;
-    }
-    .your-items__title {
-      font-size: 0.82rem;
+    .select-item__title {
+      font-size: 0.9rem;
       font-weight: 600;
       color: var(--text);
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
+      margin-bottom: 16px;
+      text-align: center;
     }
-    .your-items__title span {
-      font-size: 0.72rem;
-      font-weight: 400;
-      color: var(--text-tertiary);
+
+    .your-items-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 20px;
     }
-    .your-items__scroll {
-      display: flex;
-      gap: 10px;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-      padding-bottom: 4px;
-    }
-    .your-items__scroll::-webkit-scrollbar { display: none; }
     .your-item-card {
-      flex-shrink: 0;
-      width: 120px;
-      background: var(--card-bg);
-      border: 1.5px solid var(--border);
-      border-radius: 12px;
+      background: var(--bg);
+      border: 2px solid transparent;
+      border-radius: 16px;
       overflow: hidden;
       cursor: pointer;
       transition: all 0.2s;
@@ -333,54 +361,186 @@
     .your-item-card:active { transform: scale(0.96); }
     .your-item-card.selected {
       border-color: var(--accent);
-      box-shadow: 0 0 0 2px rgba(255,106,53,0.15);
+      box-shadow: 0 0 0 3px rgba(255,106,53,0.1);
     }
     .your-item-card__image {
       aspect-ratio: 1;
-      background: #F0EDE6;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--text-tertiary);
-      opacity: 0.6;
-      font-size: 1.5rem;
+      font-size: 2.5rem;
+      color: rgba(255,255,255,0.4);
+      position: relative;
     }
     .your-item-card:nth-child(1) .your-item-card__image { background: #1A3A2A; }
     .your-item-card:nth-child(2) .your-item-card__image { background: #2A1A3A; }
     .your-item-card:nth-child(3) .your-item-card__image { background: #3A2A1A; }
-    .your-item-card .your-item-card__image i { color: rgba(255,255,255,0.3); }
+    .your-item-card:nth-child(4) .your-item-card__image { background: #1A2A3A; }
+    .your-item-card .check-icon {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 24px;
+      height: 24px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      color: #FFF;
+      font-size: 0.7rem;
+    }
+    .your-item-card.selected .check-icon { display: flex; }
     .your-item-card__info {
-      padding: 8px 10px;
+      padding: 12px;
     }
     .your-item-card__title {
-      font-size: 0.7rem;
-      font-weight: 500;
+      font-size: 0.8rem;
+      font-weight: 600;
       color: var(--text);
+      margin-bottom: 4px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
     .your-item-card__price {
-      font-size: 0.7rem;
-      font-weight: 600;
-      color: var(--text-secondary);
-      margin-top: 2px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent);
     }
-    .your-item-card .check-badge {
-      display: none;
-      position: absolute;
-      top: 6px;
-      right: 6px;
-      width: 20px;
-      height: 20px;
-      background: var(--accent);
+
+    /* ===== STEP 2: CONFIRM ===== */
+    .trade-confirm__header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .trade-confirm__icon {
+      width: 64px;
+      height: 64px;
+      background: linear-gradient(135deg, var(--accent), #FF8F5A);
       border-radius: 50%;
+      display: flex;
       align-items: center;
       justify-content: center;
+      margin: 0 auto 16px;
+      font-size: 1.8rem;
       color: #FFF;
-      font-size: 0.6rem;
     }
-    .your-item-card.selected .check-badge { display: flex; }
+    .trade-confirm__title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .trade-confirm__subtitle {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    .trade-comparison {
+      background: var(--bg);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .trade-comparison__row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .trade-comparison__item {
+      flex: 1;
+      text-align: center;
+    }
+    .trade-comparison__icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin: 0 auto 8px;
+    }
+    .trade-comparison__icon.get { background: #2D2D2D; color: rgba(255,255,255,0.6); }
+    .trade-comparison__icon.give { background: var(--accent); color: #FFF; }
+    .trade-comparison__label {
+      font-size: 0.7rem;
+      color: var(--text-tertiary);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+    .trade-comparison__name {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+    .trade-comparison__price {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .trade-comparison__arrow {
+      font-size: 1.2rem;
+      color: var(--text-tertiary);
+    }
+
+    .trade-difference {
+      background: #FFF;
+      border-radius: 12px;
+      padding: 16px;
+      margin-top: 16px;
+      text-align: center;
+      border: 1.5px dashed var(--border);
+    }
+    .trade-difference__label {
+      font-size: 0.75rem;
+      color: var(--text-tertiary);
+      margin-bottom: 4px;
+    }
+    .trade-difference__value {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+    .trade-difference__value.positive { color: var(--success); }
+    .trade-difference__value.negative { color: var(--accent); }
+
+    /* ===== MODAL FOOTER ===== */
+    .trade-modal__footer {
+      padding: 16px 20px 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      gap: 12px;
+    }
+    .trade-modal__footer .btn-secondary {
+      flex: 1;
+      padding: 14px 20px;
+      border-radius: 12px;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    .trade-modal__footer .btn-primary {
+      flex: 2;
+      padding: 14px 20px;
+      border-radius: 12px;
+      background: var(--accent);
+      color: #FFF;
+      font-size: 0.9rem;
+      font-weight: 600;
+      box-shadow: 0 4px 16px rgba(255,106,53,0.25);
+    }
+    .trade-modal__footer .btn-primary:disabled {
+      background: var(--border);
+      color: var(--text-tertiary);
+      box-shadow: none;
+      cursor: not-allowed;
+    }
 
     /* ===== BOTTOM NAV ===== */
     .bottom-nav {
@@ -442,7 +602,7 @@
       right: 12px;
     }
 
-    /* ===== SCORING MINI ===== */
+    /* ===== SCORING ===== */
     .scoring-tag {
       display: inline-flex;
       align-items: center;
@@ -490,14 +650,65 @@
       line-height: 1.5;
     }
 
+    /* ===== SUCCESS MESSAGE ===== */
+    .success-message {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.9);
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 32px;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      z-index: 300;
+      display: none;
+      opacity: 0;
+      transition: all 0.3s;
+    }
+    .success-message.visible {
+      display: block;
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    .success-message__icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #00B8B8, #00D4D4);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 2rem;
+      color: #FFF;
+    }
+    .success-message__title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .success-message__text {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+    }
+    .success-message__btn {
+      padding: 12px 32px;
+      border-radius: 12px;
+      background: var(--accent);
+      color: #FFF;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
     /* ===== RESPONSIVE ===== */
     @media (min-width: 600px) {
       .gallery { aspect-ratio: 16 / 9; max-height: 400px; }
       .item-info { max-width: 600px; margin: -20px auto 0; }
       .buy-options { max-width: 400px; margin: 0 auto; }
-      .your-items { max-width: 600px; margin: 0 auto; }
-      .item-desc { max-width: 600px; margin: 0 auto; }
-      .scoring-tag { margin-left: 20px; }
+      .your-items-grid { grid-template-columns: repeat(3, 1fr); }
     }
     @media (min-width: 1024px) {
       body { padding-bottom: 0; }
@@ -528,13 +739,14 @@
       }
       .buy-options { max-width: 100%; }
       .demo-notice { max-width: 1000px; margin: 0 auto; }
+      .trade-modal { max-width: 500px; margin: 0 auto; border-radius: 24px; max-height: 90vh; }
     }
   </style>
 </head>
 <body>
 
   <!-- ===== DEMO NOTICE ===== -->
-  <div class="demo-notice"><i class="fas fa-paint-brush"></i> Prototipo de diseño — v2 Detalle — 23 Abril 2026</div>
+  <div class="demo-notice"><i class="fas fa-paint-brush"></i> Prototipo de diseño — v2 Detalle — 25 Abril 2026</div>
 
   <!-- ===== STATUS BAR ===== -->
   <div class="status-bar">
@@ -601,79 +813,14 @@
 
       <!-- Buy Section -->
       <div>
-        <!-- Option 1: Cash -->
         <div class="buy-options">
           <button class="buy-option buy-option--cash" onclick="alert('💳 Compra directa: 580€')">
             <i class="fas fa-credit-card"></i> Comprar por 580€ <small>con tarjeta</small>
           </button>
 
-          <!-- Option 2: Trade toggle -->
-          <button class="buy-option buy-option--trade" id="tradeToggle" onclick="toggleTrade()">
+          <!-- Trade button opens modal -->
+          <button class="buy-option buy-option--trade" onclick="openTradeModal()">
             <i class="fas fa-exchange-alt"></i> Solicitar con trueque
-          </button>
-        </div>
-
-        <!-- Trade Summary (hidden by default) -->
-        <div class="trade-summary" id="tradeSummary">
-          <div class="trade-summary__title">Tu oferta</div>
-
-          <!-- Your items selector -->
-          <div class="your-items">
-            <div class="your-items__title">
-              <i class="fas fa-box"></i> Tus artículos <span>(selecciona uno)</span>
-            </div>
-            <div class="your-items__scroll">
-              <div class="your-item-card selected" onclick="selectItem(this, '🚲 Trek Marlin 7', 420)">
-                <div class="your-item-card__image" style="position:relative;">
-                  <i class="fas fa-bicycle"></i>
-                  <span class="check-badge"><i class="fas fa-check"></i></span>
-                </div>
-                <div class="your-item-card__info">
-                  <div class="your-item-card__title">Trek Marlin 7</div>
-                  <div class="your-item-card__price">420€</div>
-                </div>
-              </div>
-              <div class="your-item-card" onclick="selectItem(this, '🎧 AirPods Max', 380)">
-                <div class="your-item-card__image" style="position:relative;">
-                  <i class="fas fa-headphones"></i>
-                  <span class="check-badge"><i class="fas fa-check"></i></span>
-                </div>
-                <div class="your-item-card__info">
-                  <div class="your-item-card__title">AirPods Max</div>
-                  <div class="your-item-card__price">380€</div>
-                </div>
-              </div>
-              <div class="your-item-card" onclick="selectItem(this, '⌚ G-SHOCK', 250)">
-                <div class="your-item-card__image" style="position:relative;">
-                  <i class="fas fa-clock"></i>
-                  <span class="check-badge"><i class="fas fa-check"></i></span>
-                </div>
-                <div class="your-item-card__info">
-                  <div class="your-item-card__title">G-SHOCK Mudmaster</div>
-                  <div class="your-item-card__price">250€</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Summary lines -->
-          <div class="trade-summary__row">
-            <span class="label"><i class="fas fa-arrow-up"></i> Artículo solicitado</span>
-            <span class="value">🎸 580€</span>
-          </div>
-          <div class="trade-summary__row">
-            <span class="label"><i class="fas fa-arrow-down"></i> Tu artículo</span>
-            <span class="value" id="yourItemValue">🚲 420€</span>
-          </div>
-          <div class="trade-summary__divider"></div>
-          <div class="trade-summary__total">
-            <span>Diferencia a pagar</span>
-            <span class="value positive" id="diffValue">+ 160€</span>
-          </div>
-
-          <!-- Confirm button -->
-          <button class="buy-option buy-option--trade" style="margin-top:16px;" onclick="alert('✨ Solicitud enviada ✓')">
-            <i class="fas fa-paper-plane"></i> Enviar solicitud
           </button>
         </div>
 
@@ -687,6 +834,128 @@
 
     </div><!-- /item-info -->
   </div><!-- /detail-layout -->
+
+  <!-- ===== TRADE MODAL ===== -->
+  <div class="modal-overlay" id="tradeModal" onclick="closeTradeModal(event)">
+    <div class="trade-modal" onclick="event.stopPropagation()">
+
+      <!-- Header -->
+      <div class="trade-modal__header">
+        <span class="trade-modal__title">Solicitar trueque</span>
+        <button class="trade-modal__close" onclick="closeTradeModal()"><i class="fas fa-times"></i></button>
+      </div>
+
+      <!-- Content -->
+      <div class="trade-modal__content">
+
+        <!-- Step Indicator -->
+        <div class="step-indicator">
+          <div class="step-dot active" id="step1Dot"></div>
+          <div class="step-dot" id="step2Dot"></div>
+        </div>
+
+        <!-- STEP 1: Select Your Item -->
+        <div class="step-1 visible" id="step1">
+          <div class="select-item__title">Selecciona qué artículo quieres treqear</div>
+
+          <div class="your-items-grid">
+            <div class="your-item-card" onclick="selectItem(this, 'Trek Marlin 7', 420, 'fa-bicycle')" data-name="Trek Marlin 7" data-price="420">
+              <div class="your-item-card__image">
+                <i class="fas fa-bicycle"></i>
+                <span class="check-icon"><i class="fas fa-check"></i></span>
+              </div>
+              <div class="your-item-card__info">
+                <div class="your-item-card__title">Trek Marlin 7</div>
+                <div class="your-item-card__price">420 €</div>
+              </div>
+            </div>
+
+            <div class="your-item-card" onclick="selectItem(this, 'AirPods Max', 380, 'fa-headphones')" data-name="AirPods Max" data-price="380">
+              <div class="your-item-card__image">
+                <i class="fas fa-headphones"></i>
+                <span class="check-icon"><i class="fas fa-check"></i></span>
+              </div>
+              <div class="your-item-card__info">
+                <div class="your-item-card__title">AirPods Max</div>
+                <div class="your-item-card__price">380 €</div>
+              </div>
+            </div>
+
+            <div class="your-item-card" onclick="selectItem(this, 'G-SHOCK Mudmaster', 250, 'fa-clock')" data-name="G-SHOCK Mudmaster" data-price="250">
+              <div class="your-item-card__image">
+                <i class="fas fa-clock"></i>
+                <span class="check-icon"><i class="fas fa-check"></i></span>
+              </div>
+              <div class="your-item-card__info">
+                <div class="your-item-card__title">G-SHOCK Mudmaster</div>
+                <div class="your-item-card__price">250 €</div>
+              </div>
+            </div>
+
+            <div class="your-item-card" onclick="selectItem(this, 'Nintendo Switch', 280, 'fa-gamepad')" data-name="Nintendo Switch" data-price="280">
+              <div class="your-item-card__image">
+                <i class="fas fa-gamepad"></i>
+                <span class="check-icon"><i class="fas fa-check"></i></span>
+              </div>
+              <div class="your-item-card__info">
+                <div class="your-item-card__title">Nintendo Switch</div>
+                <div class="your-item-card__price">280 €</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 2: Confirm Trade -->
+        <div class="step-2" id="step2">
+          <div class="trade-confirm__header">
+            <div class="trade-confirm__icon"><i class="fas fa-handshake"></i></div>
+            <div class="trade-confirm__title">Confirma tu trueque</div>
+            <div class="trade-confirm__subtitle">Revisa los detalles antes de enviar</div>
+          </div>
+
+          <div class="trade-comparison">
+            <div class="trade-comparison__row">
+              <div class="trade-comparison__item">
+                <div class="trade-comparison__icon get"><i class="fas fa-guitar"></i></div>
+                <div class="trade-comparison__label">Recibes</div>
+                <div class="trade-comparison__name">Fender Stratocaster</div>
+                <div class="trade-comparison__price">580 €</div>
+              </div>
+              <div class="trade-comparison__arrow"><i class="fas fa-exchange-alt"></i></div>
+              <div class="trade-comparison__item">
+                <div class="trade-comparison__icon give"><i class="fas" id="confirmIcon"></i></div>
+                <div class="trade-comparison__label">Das</div>
+                <div class="trade-comparison__name" id="confirmName">-</div>
+                <div class="trade-comparison__price" id="confirmPrice">-</div>
+              </div>
+            </div>
+
+            <div class="trade-difference">
+              <div class="trade-difference__label">Diferencia a pagar</div>
+              <div class="trade-difference__value" id="diffValue">-</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer -->
+      <div class="trade-modal__footer">
+        <button class="btn-secondary" id="backBtn" onclick="goToStep(1)" style="display:none;">Atrás</button>
+        <button class="btn-primary" id="nextBtn" onclick="goToStep(2)" disabled>Continuar</button>
+        <button class="btn-primary" id="sendBtn" onclick="sendTradeRequest()" style="display:none;">Enviar solicitud</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== SUCCESS MESSAGE ===== -->
+  <div class="success-message" id="successMessage">
+    <div class="success-message__icon"><i class="fas fa-check"></i></div>
+    <div class="success-message__title">¡Solicitud enviada!</div>
+    <div class="success-message__text">El vendedor recibirá tu propuesta de trueque</div>
+    <button class="success-message__btn" onclick="closeSuccess()">Entendido</button>
+  </div>
 
   <!-- ===== BOTTOM NAV ===== -->
   <nav class="bottom-nav">
@@ -703,56 +972,94 @@
   </nav>
 
   <script>
+    // Selected item state
+    let selectedItem = null;
+    const targetPrice = 580;
+
     // Wishlist toggle
     function toggleWish() {
       const btn = document.getElementById('wishBtn');
       const icon = document.getElementById('wishIcon');
       btn.classList.toggle('liked');
-      if (btn.classList.contains('liked')) {
-        icon.className = 'fas fa-heart';
-      } else {
-        icon.className = 'far fa-heart';
+      icon.className = btn.classList.contains('liked') ? 'fas fa-heart' : 'far fa-heart';
+    }
+
+    // Modal functions
+    function openTradeModal() {
+      document.getElementById('tradeModal').classList.add('visible');
+      document.body.style.overflow = 'hidden';
+      goToStep(1);
+    }
+
+    function closeTradeModal(e) {
+      if (!e || e.target === document.getElementById('tradeModal')) {
+        document.getElementById('tradeModal').classList.remove('visible');
+        document.body.style.overflow = '';
+        selectedItem = null;
+        document.querySelectorAll('.your-item-card').forEach(c => c.classList.remove('selected'));
+        document.getElementById('nextBtn').disabled = true;
       }
     }
 
-    // Trade summary toggle
-    function toggleTrade() {
-      const summary = document.getElementById('tradeSummary');
-      summary.classList.toggle('visible');
-      // Scroll to it smoothly
-      if (summary.classList.contains('visible')) {
-        setTimeout(() => summary.scrollIntoView({ behavior: 'smooth', block: 'center' }), 100);
+    // Step navigation
+    function goToStep(step) {
+      document.getElementById('step1').classList.toggle('visible', step === 1);
+      document.getElementById('step2').classList.toggle('visible', step === 2);
+      document.getElementById('step1Dot').classList.toggle('active', step === 1);
+      document.getElementById('step2Dot').classList.toggle('active', step === 2);
+
+      document.getElementById('backBtn').style.display = step === 1 ? 'none' : 'block';
+      document.getElementById('nextBtn').style.display = step === 1 ? 'block' : 'none';
+      document.getElementById('sendBtn').style.display = step === 2 ? 'block' : 'none';
+
+      if (step === 2 && selectedItem) {
+        updateConfirmView();
       }
-      // Update button text
-      document.getElementById('tradeToggle').innerHTML = summary.classList.contains('visible')
-        ? '<i class="fas fa-chevron-up"></i> Ocultar oferta'
-        : '<i class="fas fa-exchange-alt"></i> Solicitar con trueque';
     }
 
-    // Select your item
-    function selectItem(el, name, price) {
-      // Deselect all
+    // Item selection
+    function selectItem(el, name, price, icon) {
       document.querySelectorAll('.your-item-card').forEach(c => c.classList.remove('selected'));
-      // Select this one
       el.classList.add('selected');
-      // Update summary
-      document.getElementById('yourItemValue').textContent = name + ' ' + price + '€';
-      const diff = 580 - price;
+      selectedItem = { name, price, icon };
+      document.getElementById('nextBtn').disabled = false;
+    }
+
+    // Update confirmation view
+    function updateConfirmView() {
+      if (!selectedItem) return;
+
+      document.getElementById('confirmIcon').className = 'fas fa-' + selectedItem.icon;
+      document.getElementById('confirmName').textContent = selectedItem.name;
+      document.getElementById('confirmPrice').textContent = selectedItem.price + ' €';
+
+      const diff = targetPrice - selectedItem.price;
       const diffEl = document.getElementById('diffValue');
+
       if (diff > 0) {
-        diffEl.textContent = '+ ' + diff + '€';
-        diffEl.className = 'value positive';
+        diffEl.textContent = '+ ' + diff + ' €';
+        diffEl.className = 'trade-difference__value positive';
       } else if (diff < 0) {
-        diffEl.textContent = '- ' + Math.abs(diff) + '€ (te pagan)';
-        diffEl.className = 'value negative';
+        diffEl.textContent = '- ' + Math.abs(diff) + ' € (te pagan)';
+        diffEl.className = 'trade-difference__value negative';
       } else {
-        diffEl.textContent = '0€ (intercambio exacto)';
-        diffEl.className = 'value';
+        diffEl.textContent = '0 € (intercambio exacto)';
+        diffEl.className = 'trade-difference__value';
       }
+    }
+
+    // Send trade request
+    function sendTradeRequest() {
+      closeTradeModal();
+      document.getElementById('successMessage').classList.add('visible');
+    }
+
+    function closeSuccess() {
+      document.getElementById('successMessage').classList.remove('visible');
     }
 
     console.log('🎸 TREQE v2 — Detalle artículo');
-    console.log('🧪 Prototipo de diseño — 23 Abril 2026');
+    console.log('🧪 Prototipo de diseño — 25 Abril 2026');
   </script>
 </body>
 </html>
