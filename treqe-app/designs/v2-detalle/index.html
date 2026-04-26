@@ -746,11 +746,10 @@
 <body>
 
   <!-- ===== DEMO NOTICE ===== -->
-  <div class="demo-notice"><i class="fas fa-paint-brush"></i> Prototipo de diseño — v2 Detalle — 25 Abril 2026</div>
+  <div class="demo-notice"><i class="fas fa-flask"></i> Treqe Prototype — v2 Detalle — Apr 2026</div>
 
   <!-- ===== STATUS BAR ===== -->
   <div class="status-bar">
-    <span class="time">15:03</span>
     <span class="icons">
       <i class="fas fa-signal"></i>
       <i class="fas fa-wifi"></i>
@@ -793,7 +792,7 @@
         <h1 class="item-title">Fender Stratocaster · Muy buen estado</h1>
 
         <!-- Price -->
-        <div class="item-price">580 <small>€</small></div>
+        <div class="item-price">€580</div>
 
         <!-- Details row -->
         <div class="item-details">
@@ -899,7 +898,7 @@
               </div>
               <div class="your-item-card__info">
                 <div class="your-item-card__title">Nintendo Switch</div>
-                <div class="your-item-card__price">280 €</div>
+                <div class="your-item-card__price">€280</div>
               </div>
             </div>
           </div>
@@ -919,7 +918,7 @@
                 <div class="trade-comparison__icon get"><i class="fas fa-guitar"></i></div>
                 <div class="trade-comparison__label">Recibes</div>
                 <div class="trade-comparison__name">Fender Stratocaster</div>
-                <div class="trade-comparison__price">580 €</div>
+                <div class="trade-comparison__price">€580</div>
               </div>
               <div class="trade-comparison__arrow"><i class="fas fa-exchange-alt"></i></div>
               <div class="trade-comparison__item">
@@ -959,15 +958,24 @@
 
   <!-- ===== BOTTOM NAV ===== -->
   <nav class="bottom-nav">
-    <button class="nav-item" onclick="alert('📱 Catálogo')">
-      <i class="fas fa-search"></i>
+    <button class="nav-item" onclick="goToHome()">
+      <i class="fas fa-home"></i>
+      <span>Inicio</span>
     </button>
-    <button class="nav-item nav-add" onclick="alert('➕ Subir artículo')">
+    <button class="nav-item" onclick="goToSearch()">
+      <i class="fas fa-search"></i>
+      <span>Buscar</span>
+    </button>
+    <button class="nav-item nav-add" onclick="goToUpload()">
       <div class="nav-add-btn"><i class="fas fa-plus"></i></div>
     </button>
-    <button class="nav-item active" onclick="alert('👤 Este es el detalle')">
-      <i class="fas fa-eye"></i>
-      <span class="nav-badge"></span>
+    <button class="nav-item" onclick="goToMatches()">
+      <i class="fas fa-star"></i>
+      <span>Matches</span>
+    </button>
+    <button class="nav-item" onclick="goToProfile()">
+      <i class="fas fa-user"></i>
+      <span>Perfil</span>
     </button>
   </nav>
 
@@ -1040,10 +1048,10 @@
         diffEl.textContent = '+ ' + diff + ' €';
         diffEl.className = 'trade-difference__value positive';
       } else if (diff < 0) {
-        diffEl.textContent = '- ' + Math.abs(diff) + ' € (te pagan)';
+        diffEl.textContent = '- €' + Math.abs(diff) + ' (te pagan)';
         diffEl.className = 'trade-difference__value negative';
       } else {
-        diffEl.textContent = '0 € (intercambio exacto)';
+        diffEl.textContent = '€0 (intercambio exacto)';
         diffEl.className = 'trade-difference__value';
       }
     }
@@ -1058,8 +1066,29 @@
       document.getElementById('successMessage').classList.remove('visible');
     }
 
+    // Navigation functions
+    function goToHome() {
+      window.parent.location.href = '../v1-catalogo/';
+    }
+
+    function goToSearch() {
+      window.parent.location.href = '../v1-catalogo/';
+    }
+
+    function goToUpload() {
+      window.parent.location.href = '../v3-subir/';
+    }
+
+    function goToMatches() {
+      window.parent.location.href = '../v12-mis-matches/';
+    }
+
+    function goToProfile() {
+      window.parent.location.href = '../v4-perfil/';
+    }
+
     console.log('🎸 TREQE v2 — Detalle artículo');
-    console.log('🧪 Prototipo de diseño — 25 Abril 2026');
+    console.log('🧪 Treqe Prototype — Apr 2026');
   </script>
 </body>
 </html>

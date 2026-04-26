@@ -562,11 +562,10 @@
 <body>
 
   <!-- ===== DEMO NOTICE ===== -->
-  <div class="demo-notice"><i class="fas fa-paint-brush"></i> Prototipo de diseño — v1 Catálogo — 23 Abril 2026</div>
+  <div class="demo-notice"><i class="fas fa-flask"></i> Treqe Prototype — v1 Catálogo — Apr 2026</div>
 
   <!-- ===== STATUS BAR ===== -->
   <div class="status-bar">
-    <span class="time">14:53</span>
     <span class="icons">
       <i class="fas fa-signal"></i>
       <i class="fas fa-wifi"></i>
@@ -639,7 +638,7 @@
           <i class="far fa-heart"></i>
         </button>
         <i class="fas fa-guitar placeholder-icon white"></i>
-        <span class="price-tag">580€</span>
+        <span class="price-tag">€580</span>
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Fender Stratocaster · Muy buen estado</div>
@@ -709,7 +708,7 @@
           <i class="far fa-heart"></i>
         </button>
         <i class="fas fa-laptop placeholder-icon white"></i>
-        <span class="price-tag">920€</span>
+        <span class="price-tag">€920</span>
       </div>
       <div class="item-card__info">
         <div class="item-card__title">MacBook Air M3 · 16GB · 512GB · Medianoche</div>
@@ -723,7 +722,7 @@
           <i class="far fa-heart"></i>
         </button>
         <i class="fas fa-motorcycle placeholder-icon white"></i>
-        <span class="price-tag">320€</span>
+        <span class="price-tag">€320</span>
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Casco Shoei NXR2 · Talla M · Carbono</div>
@@ -737,7 +736,7 @@
           <i class="far fa-heart"></i>
         </button>
         <i class="fas fa-bicycle placeholder-icon white"></i>
-        <span class="price-tag">420€</span>
+        <span class="price-tag">€420</span>
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Trek Marlin 7 · Mtb · Talla L · 2023</div>
@@ -751,7 +750,7 @@
           <i class="far fa-heart"></i>
         </button>
         <i class="fas fa-headphones placeholder-icon white"></i>
-        <span class="price-tag">380€</span>
+        <span class="price-tag">€380</span>
       </div>
       <div class="item-card__info">
         <div class="item-card__title">AirPods Max · Azul cielo · Como nuevos</div>
@@ -765,7 +764,7 @@
           <i class="far fa-heart"></i>
         </button>
         <i class="fas fa-guitar placeholder-icon white"></i>
-        <span class="price-tag">620€</span>
+        <span class="price-tag">€620</span>
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Bajo Fender Jazz Bass · Sunrise · 2019</div>
@@ -779,7 +778,7 @@
           <i class="far fa-heart"></i>
         </button>
         <i class="fas fa-mobile-alt placeholder-icon white"></i>
-        <span class="price-tag">720€</span>
+        <span class="price-tag">€720</span>
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Samsung Galaxy S25 Ultra · 512GB · Titanium</div>
@@ -793,7 +792,7 @@
           <i class="far fa-heart"></i>
         </button>
         <i class="fas fa-apple-alt placeholder-icon white"></i>
-        <span class="price-tag">550€</span>
+        <span class="price-tag">€550</span>
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Apple Watch Ultra 2 · Naranja · 49mm</div>
@@ -817,15 +816,24 @@
 
   <!-- ===== BOTTOM NAV ===== -->
   <nav class="bottom-nav">
-    <button class="nav-item active" onclick="alert('Catálogo (activo)')">
-      <i class="fas fa-search"></i>
+    <button class="nav-item active" onclick="goToHome()">
+      <i class="fas fa-home"></i>
+      <span>Inicio</span>
     </button>
-    <button class="nav-item nav-add" onclick="alert('➕ Subir artículo')">
+    <button class="nav-item" onclick="goToSearch()">
+      <i class="fas fa-search"></i>
+      <span>Buscar</span>
+    </button>
+    <button class="nav-item nav-add" onclick="goToUpload()">
       <div class="nav-add-btn"><i class="fas fa-plus"></i></div>
+    </button>
+    <button class="nav-item" onclick="goToMatches()">
+      <i class="fas fa-star"></i>
+      <span>Matches</span>
     </button>
     <button class="nav-item" onclick="goToProfile()">
       <i class="fas fa-user"></i>
-      <span class="nav-badge"></span>
+      <span>Perfil</span>
     </button>
   </nav>
 
@@ -876,8 +884,8 @@
       document.getElementById('matchBanner').classList.remove('show');
     }
 
+    // Navigation functions
     function goToNotifs() {
-      // Navigate to notifications
       window.parent.location.href = '../v11-notificaciones/';
     }
 
@@ -885,8 +893,24 @@
       window.parent.location.href = '../v4-perfil/';
     }
 
+    function goToHome() {
+      window.parent.location.href = '../v1-catalogo/';
+    }
+
+    function goToSearch() {
+      window.parent.location.href = '../v1-catalogo/';
+    }
+
+    function goToUpload() {
+      window.parent.location.href = '../v3-subir/';
+    }
+
+    function goToMatches() {
+      window.parent.location.href = '../v12-mis-matches/';
+    }
+
     console.log('📱 TREQE v1 — Catálogo');
-    console.log('🧪 Prototipo de diseño — 23 Abril 2026');
+    console.log('🧪 Treqe Prototype — Apr 2026');
   </script>
 </body>
 </html>

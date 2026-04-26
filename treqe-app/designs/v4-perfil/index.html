@@ -432,11 +432,10 @@
 <body>
 
   <!-- ===== DEMO NOTICE ===== -->
-  <div class="demo-notice"><i class="fas fa-paint-brush"></i> Prototipo de diseño — v4 Perfil — 23 Abril 2026</div>
+  <div class="demo-notice"><i class="fas fa-flask"></i> Treqe Prototype — v4 Perfil — Apr 2026</div>
 
   <!-- ===== STATUS BAR ===== -->
   <div class="status-bar">
-    <span class="time">15:16</span>
     <span class="icons">
       <i class="fas fa-signal"></i>
       <i class="fas fa-wifi"></i>
@@ -618,7 +617,7 @@
           <div class="my-item__image"><i class="fas fa-bicycle"></i></div>
           <div class="my-item__info">
             <div class="my-item__title">Trek Marlin 7</div>
-            <div class="my-item__price">420€</div>
+            <div class="my-item__price">€420</div>
           </div>
           <span class="my-item__status active">Activo</span>
         </div>
@@ -626,7 +625,7 @@
           <div class="my-item__image"><i class="fas fa-headphones"></i></div>
           <div class="my-item__info">
             <div class="my-item__title">AirPods Max</div>
-            <div class="my-item__price">380€</div>
+            <div class="my-item__price">€380</div>
           </div>
           <span class="my-item__status active">Activo</span>
         </div>
@@ -634,7 +633,7 @@
           <div class="my-item__image"><i class="fas fa-clock"></i></div>
           <div class="my-item__info">
             <div class="my-item__title">G-SHOCK Mudmaster</div>
-            <div class="my-item__price">250€</div>
+            <div class="my-item__price">€250</div>
           </div>
           <span class="my-item__status active">Activo</span>
         </div>
@@ -642,7 +641,7 @@
           <div class="my-item__image"><i class="fas fa-plug"></i></div>
           <div class="my-item__info">
             <div class="my-item__title">Cargador USB-C 65W</div>
-            <div class="my-item__price">25€</div>
+            <div class="my-item__price">€25</div>
           </div>
           <span class="my-item__status pending">Cambio</span>
         </div>
@@ -722,15 +721,24 @@
 
   <!-- ===== BOTTOM NAV ===== -->
   <nav class="bottom-nav">
-    <button class="nav-item" onclick="alert('📱 Catálogo')">
-      <i class="fas fa-search"></i>
+    <button class="nav-item" onclick="goToHome()">
+      <i class="fas fa-home"></i>
+      <span>Inicio</span>
     </button>
-    <button class="nav-item nav-add" onclick="alert('➕ Subir artículo')">
+    <button class="nav-item" onclick="goToSearch()">
+      <i class="fas fa-search"></i>
+      <span>Buscar</span>
+    </button>
+    <button class="nav-item nav-add" onclick="goToUpload()">
       <div class="nav-add-btn"><i class="fas fa-plus"></i></div>
+    </button>
+    <button class="nav-item" onclick="goToMatches()">
+      <i class="fas fa-star"></i>
+      <span>Matches</span>
     </button>
     <button class="nav-item active" onclick="alert('👤 Perfil (activo)')">
       <i class="fas fa-user"></i>
-      <span class="nav-badge"></span>
+      <span>Perfil</span>
     </button>
   </nav>
 
@@ -763,8 +771,20 @@
       window.parent.location.href = '../v6-match-notification/';
     }
 
+    function goToHome() {
+      window.parent.location.href = '../v1-catalogo/';
+    }
+
+    function goToSearch() {
+      window.parent.location.href = '../v1-catalogo/';
+    }
+
+    function goToUpload() {
+      window.parent.location.href = '../v3-subir/';
+    }
+
     console.log('👤 TREQE v4 — Perfil');
-    console.log('🧪 Prototipo de diseño — 23 Abril 2026');
+    console.log('🧪 Treqe Prototype — Apr 2026');
   </script>
 </body>
 </html>

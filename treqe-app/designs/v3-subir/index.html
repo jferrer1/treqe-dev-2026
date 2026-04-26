@@ -324,6 +324,102 @@
     }
     .condition-option.selected i { color: var(--accent); }
 
+    /* ===== PREVIEW MODAL ===== */
+    .preview-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--bg);
+      z-index: 300;
+      overflow-y: auto;
+    }
+    .preview-modal.visible { display: block; }
+    .preview-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      background: var(--card-bg);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .preview-back {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+      font-size: 1.1rem;
+    }
+    .preview-back:active { background: var(--border); }
+    .preview-title {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+    .preview-image {
+      aspect-ratio: 1;
+      background: var(--border);
+    }
+    .preview-info {
+      padding: 20px 16px;
+    }
+    .preview-price {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .preview-name {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .preview-meta {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+    .preview-desc {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .preview-actions {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 16px;
+      background: var(--card-bg);
+      border-top: 1px solid var(--border);
+      display: flex;
+      gap: 12px;
+    }
+    .preview-btn {
+      flex: 1;
+      padding: 16px;
+      border-radius: 14px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-align: center;
+      transition: all 0.2s;
+    }
+    .preview-btn--secondary {
+      background: var(--bg);
+      color: var(--text-secondary);
+      border: 1.5px solid var(--border);
+    }
+    .preview-btn--primary {
+      background: var(--accent);
+      color: #FFF;
+      box-shadow: 0 4px 16px rgba(255,106,53,0.25);
+    }
+
     /* ===== SUBMIT BUTTON ===== */
     .submit-btn {
       width: 100%;
@@ -464,23 +560,50 @@
 </head>
 <body>
 
+  <!-- ===== PREVIEW MODAL ===== -->
+  <div class="preview-modal" id="previewModal">
+    <div class="preview-content">
+      <div class="preview-header">
+        <button onclick="closePreview()" class="preview-back"><i class="fas fa-arrow-left"></i></button>
+        <span class="preview-title">Vista previa</span>
+        <span></span>
+      </div>
+      <div class="preview-body">
+        <div class="preview-image" id="previewImage" style="background: #2D2D2D; display: flex; align-items: center; justify-content: center;">
+          <i class="fas fa-guitar" style="font-size: 4rem; color: rgba(255,255,255,0.2);"></i>
+        </div>
+        <div class="preview-info">
+          <div class="preview-price" id="previewPrice">€0</div>
+          <h3 class="preview-name" id="previewName">Título del artículo</h3>
+          <div class="preview-meta">
+            <span id="previewCondition">Como nuevo</span> · <span id="previewCategory">Categoría</span>
+          </div>
+          <p class="preview-desc" id="previewDesc">Descripción del artículo...</p>
+        </div>
+      </div>
+      <div class="preview-actions">
+        <button onclick="closePreview()" class="preview-btn preview-btn--secondary">Editar</button>
+        <button onclick="confirmPublish()" class="preview-btn preview-btn--primary"><i class="fas fa-check"></i> Publicar</button>
+      </div>
+    </div>
+  </div>
+
   <!-- ===== SUCCESS OVERLAY ===== -->
   <div class="success-overlay" id="successOverlay">
     <div class="check"><i class="fas fa-check"></i></div>
     <h2>Artículo publicado</h2>
     <p>Ya está disponible en el catálogo</p>
-    <button onclick="document.getElementById('successOverlay').classList.remove('visible')"
-            style="margin-top:12px;color:var(--accent);font-weight:600;font-size:0.9rem;">
-      <i class="fas fa-arrow-left"></i> Seguir editando
+    <button onclick="goToCatalog()"
+            style="margin-top:12px;padding:12px 24px;background:var(--accent);color:#FFF;border-radius:10px;font-weight:600;">
+      <i class="fas fa-search"></i> Ver en catálogo
     </button>
   </div>
 
   <!-- ===== DEMO NOTICE ===== -->
-  <div class="demo-notice"><i class="fas fa-paint-brush"></i> Prototipo de diseño — v3 Subir — 23 Abril 2026</div>
+  <div class="demo-notice"><i class="fas fa-flask"></i> Treqe Prototype — v3 Subir — Apr 2026</div>
 
   <!-- ===== STATUS BAR ===== -->
   <div class="status-bar">
-    <span class="time">15:11</span>
     <span class="icons">
       <i class="fas fa-signal"></i>
       <i class="fas fa-wifi"></i>
@@ -602,23 +725,39 @@
       <textarea id="desc" placeholder="Describe el estado, año, accesorios incluidos..."></textarea>
     </div>
 
-    <!-- Submit -->
-    <button type="submit" class="submit-btn" id="submitBtn">
-      <i class="fas fa-cloud-upload-alt"></i> Publicar artículo
-    </button>
+    <!-- Preview & Submit -->
+    <div style="display: flex; gap: 12px; margin-top: 8px;">
+      <button type="button" class="submit-btn" style="flex: 1; background: var(--bg); color: var(--text); border: 1.5px solid var(--border); box-shadow: none;" onclick="showPreview()">
+        <i class="fas fa-eye"></i> Vista previa
+      </button>
+      <button type="submit" class="submit-btn" id="submitBtn" style="flex: 2;">
+        <i class="fas fa-cloud-upload-alt"></i> Publicar
+      </button>
+    </div>
 
   </form>
 
   <!-- ===== BOTTOM NAV ===== -->
   <nav class="bottom-nav">
-    <button class="nav-item" onclick="alert('📱 Catálogo')">
+    <button class="nav-item" onclick="goToHome()">
+      <i class="fas fa-home"></i>
+      <span>Inicio</span>
+    </button>
+    <button class="nav-item" onclick="goToSearch()">
       <i class="fas fa-search"></i>
+      <span>Buscar</span>
     </button>
     <button class="nav-item nav-add active" onclick="alert('➕ Subir artículo (activo)')">
       <div class="nav-add-btn"><i class="fas fa-plus"></i></div>
+      <span style="margin-top:2px;">Subir</span>
     </button>
-    <button class="nav-item" onclick="alert('👤 Perfil')">
+    <button class="nav-item" onclick="goToMatches()">
+      <i class="fas fa-star"></i>
+      <span>Matches</span>
+    </button>
+    <button class="nav-item" onclick="goToProfile()">
       <i class="fas fa-user"></i>
+      <span>Perfil</span>
     </button>
   </nav>
 
@@ -724,13 +863,55 @@
     // ===== FORM SUBMIT =====
     function handleSubmit(e) {
       e.preventDefault();
-      const title = document.getElementById('title').value.trim();
-      const price = document.getElementById('price').value;
-      if (photoCount === 0 || !title || !price) return false;
-
-      // Show success overlay
-      document.getElementById('successOverlay').classList.add('visible');
+      showPreview();
       return false;
+    }
+
+    // ===== PREVIEW FUNCTIONS =====
+    function showPreview() {
+      const title = document.getElementById('title').value.trim() || 'Título del artículo';
+      const price = document.getElementById('price').value || '0';
+      const desc = document.getElementById('desc').value.trim() || 'Sin descripción';
+      const condition = document.querySelector('.condition-option.selected')?.textContent.trim() || 'Como nuevo';
+      const mainCat = document.getElementById('mainCat').options[document.getElementById('mainCat').selectedIndex]?.text || 'Categoría';
+
+      document.getElementById('previewName').textContent = title;
+      document.getElementById('previewPrice').textContent = '€' + price;
+      document.getElementById('previewDesc').textContent = desc;
+      document.getElementById('previewCondition').textContent = condition;
+      document.getElementById('previewCategory').textContent = mainCat;
+
+      document.getElementById('previewModal').classList.add('visible');
+    }
+
+    function closePreview() {
+      document.getElementById('previewModal').classList.remove('visible');
+    }
+
+    function confirmPublish() {
+      document.getElementById('previewModal').classList.remove('visible');
+      document.getElementById('successOverlay').classList.add('visible');
+    }
+
+    // ===== NAVIGATION =====
+    function goToHome() {
+      window.parent.location.href = '../v1-catalogo/';
+    }
+
+    function goToSearch() {
+      window.parent.location.href = '../v1-catalogo/';
+    }
+
+    function goToMatches() {
+      window.parent.location.href = '../v12-mis-matches/';
+    }
+
+    function goToProfile() {
+      window.parent.location.href = '../v4-perfil/';
+    }
+
+    function goToCatalog() {
+      window.parent.location.href = '../v1-catalogo/';
     }
 
     // ===== REAL-TIME VALIDATION =====
