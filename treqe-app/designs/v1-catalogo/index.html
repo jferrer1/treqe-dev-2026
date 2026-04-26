@@ -550,6 +550,53 @@
     }
     .demo-notice i { margin-right: 4px; }
 
+    /* ===== EMPTY STATE ===== */
+    .empty-state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 24px;
+      text-align: center;
+    }
+    .empty-state__icon {
+      width: 80px;
+      height: 80px;
+      background: rgba(0,0,0,0.05);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: var(--text-tertiary);
+      margin-bottom: 20px;
+    }
+    .empty-state__title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .empty-state__text {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+      max-width: 280px;
+    }
+    .empty-state__btn {
+      padding: 12px 20px;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .empty-state__btn:active { transform: scale(0.98); }
+
     /* ===== RESPONSIVE TOUCH ===== */
     @media (max-width: 380px) {
       .catalog { gap: 8px; padding: 0 8px 12px; }
@@ -802,6 +849,16 @@
 
   </div>
 
+  <!-- ===== EMPTY STATE (hidden by default) ===== -->
+  <div class="empty-state" id="emptyState" style="display: none;">
+    <div class="empty-state__icon"><i class="fas fa-search"></i></div>
+    <div class="empty-state__title">No encontramos resultados</div>
+    <div class="empty-state__text">Prueba con otros términos o filtros diferentes</div>
+    <button class="empty-state__btn" onclick="clearSearch()">
+      <i class="fas fa-times"></i> Limpiar búsqueda
+    </button>
+  </div>
+
   <!-- ===== FLOATING MATCH BANNER ===== -->
   <div class="match-banner" id="matchBanner">
     <div class="match-banner__icon"><i class="fas fa-star"></i></div>
@@ -882,6 +939,46 @@
 
     function closeBanner() {
       document.getElementById('matchBanner').classList.remove('show');
+    }
+
+    // ===== SEARCH FUNCTIONALITY =====
+    const searchInput = document.getElementById('searchInput');
+    const catalog = document.getElementById('catalog');
+    const emptyState = document.getElementById('emptyState');
+    const items = document.querySelectorAll('.item-card');
+
+    searchInput.addEventListener('input', function() {
+      const query = this.value.toLowerCase().trim();
+      let visibleCount = 0;
+
+      items.forEach(item => {
+        const title = item.querySelector('.item-card__title').textContent.toLowerCase();
+        const meta = item.querySelector('.item-card__meta').textContent.toLowerCase();
+        
+        if (title.includes(query) || meta.includes(query)) {
+          item.style.display = '';
+          visibleCount++;
+        } else {
+          item.style.display = 'none';
+        }
+      });
+
+      // Show/hide empty state
+      if (visibleCount === 0 && query.length > 0) {
+        emptyState.style.display = 'flex';
+        catalog.style.display = 'none';
+      } else {
+        emptyState.style.display = 'none';
+        catalog.style.display = 'grid';
+      }
+    });
+
+    function clearSearch() {
+      searchInput.value = '';
+      items.forEach(item => item.style.display = '');
+      emptyState.style.display = 'none';
+      catalog.style.display = 'grid';
+      searchInput.focus();
     }
 
     // Navigation functions
