@@ -730,6 +730,106 @@
       color: var(--text);
     }
 
+    /* ===== ACTIVE FILTERS BAR ===== */
+    .active-filters {
+      display: none;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+    .active-filters.visible { display: flex; }
+    .active-filters::-webkit-scrollbar { display: none; }
+    .active-filter {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      background: var(--accent);
+      color: #FFF;
+      border-radius: 16px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .active-filter button {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      color: #FFF;
+      font-size: 0.6rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .clear-all-filters {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      text-decoration: underline;
+      white-space: nowrap;
+      flex-shrink: 0;
+      padding: 6px 8px;
+    }
+
+    /* ===== FILTER MODAL IMPROVEMENTS ===== */
+    .filter-price-input {
+      position: relative;
+      flex: 1;
+    }
+    .filter-price-symbol {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-tertiary);
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+    .filter-input--price {
+      padding-left: 22px !important;
+      font-size: 0.85rem !important;
+    }
+    .filter-range-separator {
+      color: var(--text-tertiary);
+      font-weight: 500;
+      padding: 0 4px;
+    }
+    .filter-quick-prices {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+    .filter-quick-btn {
+      padding: 6px 10px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: all 0.2s;
+    }
+    .filter-quick-btn:active, .filter-quick-btn.active {
+      background: var(--accent);
+      color: #FFF;
+      border-color: var(--accent);
+    }
+    .filter-chips--sort {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+    .filter-chip {
+      text-align: center;
+    }
+
     /* ===== RESPONSIVE TOUCH ===== */
     @media (max-width: 380px) {
       .catalog { gap: 8px; padding: 0 8px 12px; }
@@ -1156,12 +1256,144 @@
       }
     }
 
+    // Subcategorías por categoría
+    const subcategories = {
+      electronica: ['Móviles', 'Portátiles', 'Tablets', 'Cámaras', 'Audio', 'Consolas', 'Accesorios'],
+      moda: ['Ropa hombre', 'Ropa mujer', 'Zapatos', 'Bolsos', 'Relojes', 'Joyería', 'Vintage'],
+      deporte: ['Bicicletas', 'Fitness', 'Running', 'Natación', 'Fútbol', 'Padel', 'Camping'],
+      musica: ['Guitarras', 'Baterías', 'Teclados', 'Vinilos', 'Equipos DJ', 'Instrumentos viento'],
+      hogar: ['Muebles', 'Decoración', 'Electrodomésticos', 'Jardín', 'Bricolaje', 'Lámparas'],
+      libros: ['Novelas', 'Cómics', 'Académicos', 'Infantil', 'Idiomas', 'Arte']
+    };
+
+    function updateSubcategories() {
+      const category = document.getElementById('categorySelect').value;
+      const subGroup = document.getElementById('subcategoryGroup');
+      const subSelect = document.getElementById('subcategorySelect');
+      
+      if (category && subcategories[category]) {
+        subGroup.style.display = 'block';
+        subSelect.innerHTML = '<option value="">Todas</option>' + 
+          subcategories[category].map(sub => `<option value="${sub.toLowerCase().replace(/ /g, '-')}">${sub}</option>`).join('');
+      } else {
+        subGroup.style.display = 'none';
+        subSelect.innerHTML = '<option value="">Todas</option>';
+      }
+    }
+
+    function setPriceRange(min, max) {
+      document.getElementById('priceMin').value = min || '';
+      document.getElementById('priceMax').value = max || '';
+      // Visual feedback
+      document.querySelectorAll('.filter-quick-btn').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+    }
+
+    // Sort chips selection
+    document.addEventListener('click', function(e) {
+      if (e.target.classList.contains('filter-chip') && e.target.closest('.filter-chips--sort')) {
+        e.target.closest('.filter-chips--sort').querySelectorAll('.filter-chip').forEach(chip => chip.classList.remove('active'));
+        e.target.classList.add('active');
+      }
+    });
+
+    // Condition chips
+    document.addEventListener('click', function(e) {
+      if (e.target.classList.contains('filter-chip') && !e.target.closest('.filter-chips--sort')) {
+        if (e.target.dataset.condition) {
+          e.target.closest('.filter-chips').querySelectorAll('.filter-chip').forEach(chip => chip.classList.remove('active'));
+          e.target.classList.add('active');
+        }
+      }
+    });
+
     function applyFilters() {
       closeFilters();
-      // In a real app, this would filter the catalog
-      alert('Filtros aplicados (demo)');
+      
+      // Get filter values
+      const sort = document.querySelector('.filter-chips--sort .filter-chip.active')?.dataset.sort || 'relevance';
+      const category = document.getElementById('categorySelect').value;
+      const subcategory = document.getElementById('subcategorySelect').value;
+      const priceMin = document.getElementById('priceMin').value;
+      const priceMax = document.getElementById('priceMax').value;
+      const location = document.getElementById('locationSelect').value;
+      const condition = document.querySelector('[data-condition].active')?.dataset.condition || 'any';
+      
+      // Show active filters bar
+      const activeFiltersEl = document.getElementById('activeFilters');
+      let filtersHTML = '';
+      
+      if (category) filtersHTML += `<div class="active-filter" data-filter="category"><span>${document.getElementById('categorySelect').options[document.getElementById('categorySelect').selectedIndex].text}</span><button onclick="removeFilter('category')"><i class="fas fa-times"></i></button></div>`;
+      if (subcategory) filtersHTML += `<div class="active-filter" data-filter="subcategory"><span>${document.getElementById('subcategorySelect').options[document.getElementById('subcategorySelect').selectedIndex].text}</span><button onclick="removeFilter('subcategory')"><i class="fas fa-times"></i></button></div>`;
+      if (priceMin || priceMax) filtersHTML += `<div class="active-filter" data-filter="price"><span>€${priceMin || 0} - €${priceMax || '∞'}</span><button onclick="removeFilter('price')"><i class="fas fa-times"></i></button></div>`;
+      if (location) filtersHTML += `<div class="active-filter" data-filter="location"><span>${document.getElementById('locationSelect').options[document.getElementById('locationSelect').selectedIndex].text}</span><button onclick="removeFilter('location')"><i class="fas fa-times"></i></button></div>`;
+      if (condition !== 'any') filtersHTML += `<div class="active-filter" data-filter="condition"><span>${document.querySelector('[data-condition].active').textContent}</span><button onclick="removeFilter('condition')"><i class="fas fa-times"></i></button></div>`;
+      
+      if (filtersHTML) {
+        activeFiltersEl.innerHTML = filtersHTML + '<button class="clear-all-filters" onclick="clearAllFilters()">Limpiar todo</button>';
+        activeFiltersEl.classList.add('visible');
+      } else {
+        activeFiltersEl.classList.remove('visible');
+      }
+      
+      console.log('Filtros aplicados:', { sort, category, subcategory, priceMin, priceMax, location, condition });
+    }
+
+    function removeFilter(filterType) {
+      // Reset the corresponding filter
+      if (filterType === 'category') {
+        document.getElementById('categorySelect').value = '';
+        updateSubcategories();
+      }
+      if (filterType === 'subcategory') document.getElementById('subcategorySelect').value = '';
+      if (filterType === 'price') {
+        document.getElementById('priceMin').value = '';
+        document.getElementById('priceMax').value = '';
+        document.querySelectorAll('.filter-quick-btn').forEach(btn => btn.classList.remove('active'));
+      }
+      if (filterType === 'location') document.getElementById('locationSelect').value = '';
+      if (filterType === 'condition') {
+        document.querySelectorAll('[data-condition]').forEach(chip => chip.classList.remove('active'));
+        document.querySelector('[data-condition="any"]').classList.add('active');
+      }
+      
+      // Re-apply filters
+      applyFilters();
+    }
+
+    function clearAllFilters() {
+      document.getElementById('categorySelect').value = '';
+      updateSubcategories();
+      document.getElementById('priceMin').value = '';
+      document.getElementById('priceMax').value = '';
+      document.getElementById('locationSelect').value = '';
+      document.querySelectorAll('.filter-quick-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('[data-condition]').forEach(chip => chip.classList.remove('active'));
+      document.querySelector('[data-condition="any"]').classList.add('active');
+      document.querySelectorAll('.filter-chips--sort .filter-chip').forEach(chip => chip.classList.remove('active'));
+      document.querySelector('[data-sort="relevance"]').classList.add('active');
+      
+      document.getElementById('activeFilters').classList.remove('visible');
+      closeFilters();
+    }
+
+    function resetFilters() {
+      clearAllFilters();
     }
   </script>
+
+  <!-- ===== ACTIVE FILTERS BAR ===== -->
+  <div class="active-filters" id="activeFilters" style="display: none;">
+    <div class="active-filter" data-filter="price">
+      <span>€0 - €500</span>
+      <button onclick="removeFilter('price')"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="active-filter" data-filter="location">
+      <span>Madrid</span>
+      <button onclick="removeFilter('location')"><i class="fas fa-times"></i></button>
+    </div>
+    <button class="clear-all-filters" onclick="clearAllFilters()">Limpiar todo</button>
+  </div>
 
   <!-- ===== FILTER MODAL ===== -->
   <div class="filter-modal-overlay" id="filterModal" onclick="closeFilters()">
@@ -1171,17 +1403,61 @@
         <button onclick="closeFilters()"><i class="fas fa-times"></i></button>
       </div>
       <div class="filter-modal__content">
+        <!-- Ordenar -->
         <div class="filter-group">
-          <div class="filter-group__title">Precio</div>
-          <div class="filter-range">
-            <input type="number" placeholder="Min" class="filter-input">
-            <span>—</span>
-            <input type="number" placeholder="Max" class="filter-input">
+          <div class="filter-group__title">Ordenar por</div>
+          <div class="filter-chips filter-chips--sort">
+            <button class="filter-chip active" data-sort="relevance">Relevancia</button>
+            <button class="filter-chip" data-sort="price-asc">Precio ↑</button>
+            <button class="filter-chip" data-sort="price-desc">Precio ↓</button>
+            <button class="filter-chip" data-sort="newest">Más reciente</button>
           </div>
         </div>
+        <!-- Categoría -->
+        <div class="filter-group">
+          <div class="filter-group__title">Categoría</div>
+          <select class="filter-select" id="categorySelect" onchange="updateSubcategories()">
+            <option value="">Todas</option>
+            <option value="electronica">Electrónica</option>
+            <option value="moda">Moda</option>
+            <option value="deporte">Deporte</option>
+            <option value="musica">Música</option>
+            <option value="hogar">Hogar</option>
+            <option value="libros">Libros</option>
+          </select>
+        </div>
+        <!-- Subcategoría -->
+        <div class="filter-group" id="subcategoryGroup" style="display: none;">
+          <div class="filter-group__title">Subcategoría</div>
+          <select class="filter-select" id="subcategorySelect">
+            <option value="">Todas</option>
+          </select>
+        </div>
+        <!-- Precio -->
+        <div class="filter-group">
+          <div class="filter-group__title">Precio (€)</div>
+          <div class="filter-range">
+            <div class="filter-price-input">
+              <span class="filter-price-symbol">€</span>
+              <input type="number" placeholder="0" class="filter-input filter-input--price" id="priceMin" min="0">
+            </div>
+            <span class="filter-range-separator">—</span>
+            <div class="filter-price-input">
+              <span class="filter-price-symbol">€</span>
+              <input type="number" placeholder="Max" class="filter-input filter-input--price" id="priceMax" min="0">
+            </div>
+          </div>
+          <div class="filter-quick-prices">
+            <button class="filter-quick-btn" onclick="setPriceRange(0, 50)">Hasta €50</button>
+            <button class="filter-quick-btn" onclick="setPriceRange(50, 200)">€50-200</button>
+            <button class="filter-quick-btn" onclick="setPriceRange(200, 500)">€200-500</button>
+            <button class="filter-quick-btn" onclick="setPriceRange(500, null)">+€500</button>
+          </div>
+        </div>
+        <!-- Ubicación -->
         <div class="filter-group">
           <div class="filter-group__title">Ubicación</div>
-          <select class="filter-select">
+          <select class="filter-select" id="locationSelect">
             <option value="">Todas las ciudades</option>
             <option value="barcelona">Barcelona</option>
             <option value="madrid">Madrid</option>
@@ -1190,20 +1466,21 @@
             <option value="bilbao">Bilbao</option>
           </select>
         </div>
+        <!-- Condición -->
         <div class="filter-group">
           <div class="filter-group__title">Condición</div>
           <div class="filter-chips">
-            <button class="filter-chip active">Cualquiera</button>
-            <button class="filter-chip">Nuevo</button>
-            <button class="filter-chip">Como nuevo</button>
-            <button class="filter-chip">Buen estado</button>
-            <button class="filter-chip">Usado</button>
+            <button class="filter-chip active" data-condition="any">Cualquiera</button>
+            <button class="filter-chip" data-condition="new">Nuevo</button>
+            <button class="filter-chip" data-condition="like-new">Como nuevo</button>
+            <button class="filter-chip" data-condition="good">Buen estado</button>
+            <button class="filter-chip" data-condition="used">Usado</button>
           </div>
         </div>
       </div>
       <div class="filter-modal__footer">
-        <button class="filter-btn filter-btn--secondary" onclick="closeFilters()">Cancelar</button>
-        <button class="filter-btn filter-btn--primary" onclick="applyFilters()">Aplicar</button>
+        <button class="filter-btn filter-btn--secondary" onclick="resetFilters()">Restablecer</button>
+        <button class="filter-btn filter-btn--primary" onclick="applyFilters()">Aplicar (12 resultados)</button>
       </div>
     </div>
   </div>
