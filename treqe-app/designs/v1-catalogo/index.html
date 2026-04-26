@@ -865,6 +865,11 @@
     </div>
   </div>
 
+  <!-- ===== ACTIVE FILTERS BAR (debajo del buscador) ===== -->
+  <div class="active-filters" id="activeFilters">
+    <!-- Se llena dinámicamente al aplicar filtros -->
+  </div>
+
   <!-- ===== CATEGORY CHIPS ===== -->
   <div class="categories" id="categories">
     <button class="category-chip active"><i class="fas fa-th-large"></i> Todas</button>
@@ -875,14 +880,6 @@
     <button class="category-chip"><i class="fas fa-book"></i> Libros</button>
     <button class="category-chip"><i class="fas fa-gamepad"></i> Videojuegos</button>
     <button class="category-chip"><i class="fas fa-camera"></i> Fotografía</button>
-  </div>
-
-  <!-- ===== SORT / FILTER BAR ===== -->
-  <div class="filter-bar">
-    <button class="filter-pill"><i class="fas fa-arrow-down-wide-short"></i> Más relevantes</button>
-    <button class="filter-pill"><i class="fas fa-euro-sign"></i> Precio</button>
-    <button class="filter-pill"><i class="fas fa-location-dot"></i> Cerca de ti</button>
-    <button class="filter-pill"><span class="count">12</span><i class="fas fa-exchange-alt"></i> Trueque</button>
   </div>
 
   <!-- ===== SCORING MINI ===== -->
@@ -1381,19 +1378,6 @@
       clearAllFilters();
     }
   </script>
-
-  <!-- ===== ACTIVE FILTERS BAR ===== -->
-  <div class="active-filters" id="activeFilters" style="display: none;">
-    <div class="active-filter" data-filter="price">
-      <span>€0 - €500</span>
-      <button onclick="removeFilter('price')"><i class="fas fa-times"></i></button>
-    </div>
-    <div class="active-filter" data-filter="location">
-      <span>Madrid</span>
-      <button onclick="removeFilter('location')"><i class="fas fa-times"></i></button>
-    </div>
-    <button class="clear-all-filters" onclick="clearAllFilters()">Limpiar todo</button>
-  </div>
 
   <!-- ===== FILTER MODAL ===== -->
   <div class="filter-modal-overlay" id="filterModal" onclick="closeFilters()">
