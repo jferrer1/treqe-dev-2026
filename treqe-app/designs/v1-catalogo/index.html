@@ -1211,7 +1211,6 @@
       const subcategory = document.getElementById('subcategorySelect').value;
       const priceMin = document.getElementById('priceMin').value;
       const priceMax = document.getElementById('priceMax').value;
-      const location = document.getElementById('locationSelect').value;
       const condition = document.querySelector('[data-condition].active')?.dataset.condition || 'any';
       
       // Show active filters bar
@@ -1221,7 +1220,6 @@
       if (category) filtersHTML += `<div class="active-filter" data-filter="category"><span>${document.getElementById('categorySelect').options[document.getElementById('categorySelect').selectedIndex].text}</span><button onclick="removeFilter('category')"><i class="fas fa-times"></i></button></div>`;
       if (subcategory) filtersHTML += `<div class="active-filter" data-filter="subcategory"><span>${document.getElementById('subcategorySelect').options[document.getElementById('subcategorySelect').selectedIndex].text}</span><button onclick="removeFilter('subcategory')"><i class="fas fa-times"></i></button></div>`;
       if (priceMin || priceMax) filtersHTML += `<div class="active-filter" data-filter="price"><span>€${priceMin || 0} - €${priceMax || '∞'}</span><button onclick="removeFilter('price')"><i class="fas fa-times"></i></button></div>`;
-      if (location) filtersHTML += `<div class="active-filter" data-filter="location"><span>${document.getElementById('locationSelect').options[document.getElementById('locationSelect').selectedIndex].text}</span><button onclick="removeFilter('location')"><i class="fas fa-times"></i></button></div>`;
       if (condition !== 'any') filtersHTML += `<div class="active-filter" data-filter="condition"><span>${document.querySelector('[data-condition].active').textContent}</span><button onclick="removeFilter('condition')"><i class="fas fa-times"></i></button></div>`;
       
       if (filtersHTML) {
@@ -1246,7 +1244,6 @@
         document.getElementById('priceMax').value = '';
         document.querySelectorAll('.filter-quick-btn').forEach(btn => btn.classList.remove('active'));
       }
-      if (filterType === 'location') document.getElementById('locationSelect').value = '';
       if (filterType === 'condition') {
         document.querySelectorAll('[data-condition]').forEach(chip => chip.classList.remove('active'));
         document.querySelector('[data-condition="any"]').classList.add('active');
@@ -1261,7 +1258,6 @@
       updateSubcategories();
       document.getElementById('priceMin').value = '';
       document.getElementById('priceMax').value = '';
-      document.getElementById('locationSelect').value = '';
       document.querySelectorAll('.filter-quick-btn').forEach(btn => btn.classList.remove('active'));
       document.querySelectorAll('[data-condition]').forEach(chip => chip.classList.remove('active'));
       document.querySelector('[data-condition="any"]').classList.add('active');
@@ -1335,18 +1331,6 @@
             <button class="filter-quick-btn" onclick="setPriceRange(200, 500)">€200-500</button>
             <button class="filter-quick-btn" onclick="setPriceRange(500, null)">+€500</button>
           </div>
-        </div>
-        <!-- Ubicación -->
-        <div class="filter-group">
-          <div class="filter-group__title">Ubicación</div>
-          <select class="filter-select" id="locationSelect">
-            <option value="">Todas las ciudades</option>
-            <option value="barcelona">Barcelona</option>
-            <option value="madrid">Madrid</option>
-            <option value="valencia">Valencia</option>
-            <option value="sevilla">Sevilla</option>
-            <option value="bilbao">Bilbao</option>
-          </select>
         </div>
         <!-- Condición -->
         <div class="filter-group">
