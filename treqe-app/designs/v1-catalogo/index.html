@@ -597,6 +597,130 @@
     }
     .empty-state__btn:active { transform: scale(0.98); }
 
+    /* ===== FILTER MODAL ===== */
+    .filter-modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(4px);
+      z-index: 200;
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+    }
+    .filter-modal-overlay.visible {
+      display: flex;
+    }
+    .filter-modal {
+      background: var(--card-bg);
+      border-radius: 24px 24px 0 0;
+      width: 100%;
+      max-height: 80vh;
+      overflow: hidden;
+      animation: slideUp 0.3s ease;
+    }
+    @keyframes slideUp {
+      from { transform: translateY(100%); }
+      to { transform: translateY(0); }
+    }
+    .filter-modal__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .filter-modal__title {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+    .filter-modal__header button {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+    }
+    .filter-modal__content {
+      padding: 20px;
+      max-height: 60vh;
+      overflow-y: auto;
+    }
+    .filter-group {
+      margin-bottom: 20px;
+    }
+    .filter-group__title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+    .filter-range {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .filter-input {
+      flex: 1;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 0.9rem;
+    }
+    .filter-select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 0.9rem;
+      background: var(--card-bg);
+    }
+    .filter-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .filter-chip {
+      padding: 8px 16px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      font-size: 0.8rem;
+      background: var(--card-bg);
+      transition: all 0.2s;
+    }
+    .filter-chip.active {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+    .filter-modal__footer {
+      display: flex;
+      gap: 12px;
+      padding: 20px;
+      border-top: 1px solid var(--border);
+    }
+    .filter-btn {
+      flex: 1;
+      padding: 14px;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    .filter-btn--primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    .filter-btn--secondary {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+
     /* ===== RESPONSIVE TOUCH ===== */
     @media (max-width: 380px) {
       .catalog { gap: 8px; padding: 0 8px 12px; }
@@ -632,7 +756,7 @@
         <i class="fas fa-bell"></i>
         <span class="notification-badge">1</span>
       </button>
-      <button aria-label="Filtros" onclick="alert('Filtros (demo)')">
+      <button aria-label="Filtros" onclick="openFilters()">
         <i class="fas fa-sliders-h"></i>
       </button>
     </div>
@@ -1008,6 +1132,76 @@
 
     console.log('📱 TREQE v1 — Catálogo');
     console.log('🧪 Treqe Prototype — Apr 2026');
+
+    // ===== ADVANCED SEARCH FILTERS =====
+    function openFilters() {
+      const modal = document.getElementById('filterModal');
+      if (modal) {
+        modal.classList.add('visible');
+        document.body.style.overflow = 'hidden';
+      } else {
+        alert('Filtros disponibles en versión completa');
+      }
+    }
+
+    function closeFilters() {
+      const modal = document.getElementById('filterModal');
+      if (modal) {
+        modal.classList.remove('visible');
+        document.body.style.overflow = '';
+      }
+    }
+
+    function applyFilters() {
+      closeFilters();
+      // In a real app, this would filter the catalog
+      alert('Filtros aplicados (demo)');
+    }
   </script>
+
+  <!-- ===== FILTER MODAL ===== -->
+  <div class="filter-modal-overlay" id="filterModal" onclick="closeFilters()">
+    <div class="filter-modal" onclick="event.stopPropagation()">
+      <div class="filter-modal__header">
+        <span class="filter-modal__title">Filtros</span>
+        <button onclick="closeFilters()"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="filter-modal__content">
+        <div class="filter-group">
+          <div class="filter-group__title">Precio</div>
+          <div class="filter-range">
+            <input type="number" placeholder="Min" class="filter-input">
+            <span>—</span>
+            <input type="number" placeholder="Max" class="filter-input">
+          </div>
+        </div>
+        <div class="filter-group">
+          <div class="filter-group__title">Ubicación</div>
+          <select class="filter-select">
+            <option value="">Todas las ciudades</option>
+            <option value="barcelona">Barcelona</option>
+            <option value="madrid">Madrid</option>
+            <option value="valencia">Valencia</option>
+            <option value="sevilla">Sevilla</option>
+            <option value="bilbao">Bilbao</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <div class="filter-group__title">Condición</div>
+          <div class="filter-chips">
+            <button class="filter-chip active">Cualquiera</button>
+            <button class="filter-chip">Nuevo</button>
+            <button class="filter-chip">Como nuevo</button>
+            <button class="filter-chip">Buen estado</button>
+            <button class="filter-chip">Usado</button>
+          </div>
+        </div>
+      </div>
+      <div class="filter-modal__footer">
+        <button class="filter-btn filter-btn--secondary" onclick="closeFilters()">Cancelar</button>
+        <button class="filter-btn filter-btn--primary" onclick="applyFilters()">Aplicar</button>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
