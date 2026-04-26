@@ -97,13 +97,22 @@
       height: 100%;
     }
     .search-bar input::placeholder { color: var(--text-tertiary); }
-    .header-actions {
+    .search-bar__filter {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
       display: flex;
       align-items: center;
-      gap: 8px;
-      flex-shrink: 0;
+      justify-content: center;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      background: transparent;
+      margin-left: 4px;
     }
-    .header-actions button {
+    .search-bar__filter:active { background: var(--border); }
+    /* Notification Badge */
+    .notification-btn {
+      position: relative;
       width: 36px;
       height: 36px;
       border-radius: 10px;
@@ -112,13 +121,10 @@
       justify-content: center;
       color: var(--text-secondary);
       font-size: 1rem;
-      transition: background 0.2s;
-      position: relative;
+      background: transparent;
+      flex-shrink: 0;
     }
-    .header-actions button:active { background: var(--border); }
-    
-    /* Notification Badge */
-    .notification-btn { position: relative; }
+    .notification-btn:active { background: var(--border); }
     .notification-badge {
       position: absolute;
       top: 0px;
@@ -753,16 +759,14 @@
     <div class="search-bar">
       <i class="fas fa-search"></i>
       <input type="text" placeholder="Buscar artículos..." id="searchInput">
-    </div>
-    <div class="header-actions">
-      <button class="notification-btn" aria-label="Notificaciones" onclick="goToNotifs()">
-        <i class="fas fa-bell"></i>
-        <span class="notification-badge">1</span>
-      </button>
-      <button aria-label="Filtros" onclick="openFilters()">
+      <button class="search-bar__filter" aria-label="Filtros" onclick="openFilters()">
         <i class="fas fa-sliders-h"></i>
       </button>
     </div>
+    <button class="notification-btn" aria-label="Notificaciones" onclick="goToNotifs()">
+      <i class="fas fa-bell"></i>
+      <span class="notification-badge">1</span>
+    </button>
   </div>
 
   <!-- ===== CATEGORY CHIPS ===== -->
