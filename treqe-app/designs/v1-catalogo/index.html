@@ -204,39 +204,6 @@
     }
     .match-banner__close:active { background: rgba(255,255,255,0.3); }
 
-    /* ===== CATEGORY CHIPS ===== */
-    .categories {
-      display: flex;
-      gap: 8px;
-      padding: 0 16px 12px;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-    }
-    .categories::-webkit-scrollbar { display: none; }
-    .category-chip {
-      flex-shrink: 0;
-      padding: 8px 16px;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: 500;
-      background: #FFFFFF;
-      border: 1px solid var(--border);
-      color: var(--text-secondary);
-      transition: all 0.2s;
-      white-space: nowrap;
-    }
-    .category-chip:active {
-      background: var(--border);
-      transform: scale(0.96);
-    }
-    .category-chip.active {
-      background: var(--accent);
-      color: #FFFFFF;
-      border-color: var(--accent);
-    }
-    .category-chip i { margin-right: 6px; font-size: 0.75rem; }
-
     /* ===== SECTION TITLE ===== */
     .section-title {
       display: flex;
@@ -424,38 +391,6 @@
       right: 12px;
     }
 
-    /* ===== SCORING MINI ===== */
-    .scoring-mini {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 4px 16px 14px;
-    }
-    .scoring-mini__bar {
-      flex: 1;
-      height: 4px;
-      background: var(--border);
-      border-radius: 4px;
-      overflow: hidden;
-      max-width: 120px;
-    }
-    .scoring-mini__bar-fill {
-      height: 100%;
-      width: 82%;
-      background: var(--accent);
-      border-radius: 4px;
-      transition: width 0.6s ease;
-    }
-    .scoring-mini__text {
-      font-size: 0.72rem;
-      color: var(--text-tertiary);
-      font-weight: 500;
-    }
-    .scoring-mini__text strong {
-      color: var(--text);
-      font-weight: 600;
-    }
-
     /* ===== TABLET / DESKTOP ===== */
     @media (min-width: 600px) {
       .catalog {
@@ -464,9 +399,7 @@
         padding: 0 24px 24px;
       }
       .header { padding: 12px 24px 16px; }
-      .categories { padding: 0 24px 16px; }
       .section-title { padding: 8px 24px 14px; }
-      .scoring-mini { padding: 6px 24px 16px; }
       .status-bar { padding: 10px 28px 6px; }
     }
     @media (min-width: 1024px) {
@@ -478,9 +411,7 @@
         padding: 0 32px 32px;
       }
       .header { max-width: 1200px; margin: 0 auto; padding: 16px 32px 20px; }
-      .categories { max-width: 1200px; margin: 0 auto; padding: 0 32px 20px; }
       .section-title { max-width: 1200px; margin: 0 auto; padding: 10px 32px 16px; }
-      .scoring-mini { max-width: 1200px; margin: 0 auto; padding: 8px 32px 20px; }
     }
 
     /* ===== SORT / FILTER BAR ===== */
@@ -870,30 +801,6 @@
     <!-- Se llena dinámicamente al aplicar filtros -->
   </div>
 
-  <!-- ===== CATEGORY CHIPS ===== -->
-  <div class="categories" id="categories">
-    <button class="category-chip active"><i class="fas fa-th-large"></i> Todas</button>
-    <button class="category-chip"><i class="fas fa-mobile-alt"></i> Electrónica</button>
-    <button class="category-chip"><i class="fas fa-tshirt"></i> Moda</button>
-    <button class="category-chip"><i class="fas fa-bicycle"></i> Deporte</button>
-    <button class="category-chip"><i class="fas fa-guitar"></i> Música</button>
-    <button class="category-chip"><i class="fas fa-book"></i> Libros</button>
-    <button class="category-chip"><i class="fas fa-gamepad"></i> Videojuegos</button>
-    <button class="category-chip"><i class="fas fa-camera"></i> Fotografía</button>
-  </div>
-
-  <!-- ===== SCORING MINI ===== -->
-  <div class="scoring-mini">
-    <div class="scoring-mini__bar">
-      <div class="scoring-mini__bar-fill" style="width: 82%;"></div>
-    </div>
-    <div class="scoring-mini__text scoring-info" tabindex="0">
-      <strong>82</strong>/100
-      <span class="tooltip">A más scoring, más prioridad para conseguir artículos populares</span>
-      <i class="fas fa-info-circle" style="font-size:0.65rem;color:var(--text-tertiary);margin-left:2px;"></i>
-    </div>
-  </div>
-
   <!-- ===== SECTION TITLE ===== -->
   <div class="section-title">
     <h2>Descubrir</h2>
@@ -1146,15 +1053,6 @@
     });
     document.getElementById('searchInput').addEventListener('blur', function() {
       if (!this.value) this.closest('.search-bar').style.borderColor = 'var(--border)';
-    });
-
-    // Simulate scoring update on click
-    document.querySelector('.scoring-mini').addEventListener('click', function() {
-      const fill = this.querySelector('.scoring-mini__bar-fill');
-      const score = this.querySelector('strong');
-      const newScore = Math.min(100, parseInt(score.textContent) + 2);
-      score.textContent = newScore;
-      fill.style.width = newScore + '%';
     });
 
     // Show match banner after 2 seconds
