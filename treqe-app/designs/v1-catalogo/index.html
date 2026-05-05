@@ -830,6 +830,14 @@
     <button class="filter-pill" data-category="musica" onclick="filterByCategory('musica')"><i class="fas fa-music"></i> Música <span class="count" id="count-musica">0</span></button>
     <button class="filter-pill" data-category="hogar" onclick="filterByCategory('hogar')"><i class="fas fa-home"></i> Hogar <span class="count" id="count-hogar">0</span></button>
     <button class="filter-pill" data-category="libros" onclick="filterByCategory('libros')"><i class="fas fa-book"></i> Libros <span class="count" id="count-libros">0</span></button>
+    <button class="filter-pill" data-category="motor" onclick="filterByCategory('motor')"><i class="fas fa-car"></i> Motor <span class="count" id="count-motor">0</span></button>
+    <button class="filter-pill" data-category="bicicletas" onclick="filterByCategory('bicicletas')"><i class="fas fa-bicycle"></i> Bicis <span class="count" id="count-bicicletas">0</span></button>
+    <button class="filter-pill" data-category="electrodomesticos" onclick="filterByCategory('electrodomesticos')"><i class="fas fa-blender"></i> Electrodomésticos <span class="count" id="count-electrodomesticos">0</span></button>
+    <button class="filter-pill" data-category="bebes" onclick="filterByCategory('bebes')"><i class="fas fa-baby"></i> Bebés <span class="count" id="count-bebes">0</span></button>
+    <button class="filter-pill" data-category="coleccionismo" onclick="filterByCategory('coleccionismo')"><i class="fas fa-gem"></i> Coleccionismo <span class="count" id="count-coleccionismo">0</span></button>
+    <button class="filter-pill" data-category="inmuebles" onclick="filterByCategory('inmuebles')"><i class="fas fa-building"></i> Inmuebles <span class="count" id="count-inmuebles">0</span></button>
+    <button class="filter-pill" data-category="servicios" onclick="filterByCategory('servicios')"><i class="fas fa-concierge-bell"></i> Servicios <span class="count" id="count-servicios">0</span></button>
+    <button class="filter-pill" data-category="otros" onclick="filterByCategory('otros')"><i class="fas fa-ellipsis-h"></i> Otros <span class="count" id="count-otros">0</span></button>
   </div>
 
   <!-- ===== SECTION TITLE ===== -->
@@ -1398,14 +1406,25 @@
       }
     }
 
-    // Subcategorías por categoría
+    // Subcategorías por categoría (desde API Wallapop)
     const subcategories = {
-      electronica: ['Móviles', 'Portátiles', 'Tablets', 'Cámaras', 'Audio', 'Consolas', 'Accesorios'],
-      moda: ['Ropa hombre', 'Ropa mujer', 'Zapatos', 'Bolsos', 'Relojes', 'Joyería', 'Vintage'],
-      deporte: ['Bicicletas', 'Fitness', 'Running', 'Natación', 'Fútbol', 'Padel', 'Camping'],
-      musica: ['Guitarras', 'Baterías', 'Teclados', 'Vinilos', 'Equipos DJ', 'Instrumentos viento'],
-      hogar: ['Muebles', 'Decoración', 'Electrodomésticos', 'Jardín', 'Bricolaje', 'Lámparas'],
-      libros: ['Novelas', 'Cómics', 'Académicos', 'Infantil', 'Idiomas', 'Arte']
+      electronica: ['Móviles', 'Portátiles', 'Tablets', 'Cámaras', 'Audio', 'Consolas', 'Accesorios', 'TV y Proyectores', 'Smartwatches', 'Componentes PC', 'Periféricos'],
+      moda: ['Ropa hombre', 'Ropa mujer', 'Zapatos', 'Bolsos', 'Relojes', 'Joyería', 'Vintage', 'Accesorios', 'Belleza'],
+      deporte: ['Bicicletas', 'Fitness', 'Running', 'Natación', 'Fútbol', 'Padel', 'Camping', 'Montaña y Ski', 'Baloncesto', 'Golf', 'Yoga', 'Pesas', 'Patines'],
+      musica: ['Guitarras', 'Baterías', 'Teclados', 'Vinilos', 'Equipos DJ', 'Instrumentos viento', 'Micrófonos', 'Partituras'],
+      hogar: ['Muebles', 'Decoración', 'Electrodomésticos', 'Jardín', 'Bricolaje', 'Lámparas', 'Cocina', 'Baño', 'Textiles', 'Mascotas', 'Calefacción'],
+      libros: ['Novelas', 'Cómics', 'Académicos', 'Infantil', 'Idiomas', 'Arte', 'Revistas', 'Ensayo'],
+      motor: ['Coches', 'Motos', 'Recambios coche', 'Recambios moto', 'GPS', 'Herramientas', 'Neumáticos', 'Accesorios'],
+      inmuebles: ['Pisos', 'Casas', 'Garajes', 'Locales', 'Terrenos', 'Oficinas', 'Habitaciones'],
+      bicicletas: ['Bicis montaña', 'Bicis carretera', 'Bicis eléctricas', 'Cascos', 'Componentes', 'Accesorios', 'Ropa ciclismo'],
+      electrodomesticos: ['Cocina', 'Lavandería', 'Climatización', 'Pequeño electro', 'Aspiradoras', 'Recambios'],
+      bebes: ['Ropa bebé', 'Juguetes', 'Carritos', 'Sillas coche', 'Cunas', 'Alimentación', 'Seguridad', 'Maternidad'],
+      coleccionismo: ['Antigüedades', 'Monedas', 'Sellos', 'Cromos', 'Figuras', 'Pósters', 'Postales'],
+      construccion: ['Puertas', 'Ventanas', 'Suelos', 'Pintura', 'Ferretería', 'Andamios', 'Electricidad', 'Baños'],
+      industria: ['Agricultura', 'Maquinaria', 'Herramientas', 'Recambios', 'Tractores'],
+      empleo: ['Ofertas empleo', 'Busco empleo'],
+      servicios: ['Clases', 'Limpieza', 'Mudanzas', 'Reparaciones', 'Canguros', 'Terapias', 'Fontanería', 'Electricista'],
+      otros: ['Varios']
     };
 
     function updateSubcategories() {
@@ -1605,6 +1624,17 @@
             <option value="musica">Música</option>
             <option value="hogar">Hogar</option>
             <option value="libros">Libros</option>
+            <option value="motor">Motor</option>
+            <option value="inmuebles">Inmuebles</option>
+            <option value="bicicletas">Bicicletas</option>
+            <option value="electrodomesticos">Electrodomésticos</option>
+            <option value="bebes">Bebés y niños</option>
+            <option value="coleccionismo">Coleccionismo</option>
+            <option value="construccion">Construcción</option>
+            <option value="industria">Industria</option>
+            <option value="empleo">Empleo</option>
+            <option value="servicios">Servicios</option>
+            <option value="otros">Otros</option>
           </select>
         </div>
         <!-- Subcategoría -->
