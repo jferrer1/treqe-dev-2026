@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -420,6 +420,28 @@
     }
     .nav-item i { font-size: 1.3rem; }
     .nav-item.active { color: var(--accent); }
+    .nav-item.active i { transform: scale(1.05); }
+    .nav-item.nav-add {
+      position: relative;
+      top: -12px;
+    }
+    .nav-item.nav-add .nav-add-btn {
+      width: 52px;
+      height: 52px;
+      background: var(--accent);
+      color: #FFFFFF;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      box-shadow: 0 4px 16px rgba(255,106,53,0.3);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .nav-item.nav-add .nav-add-btn:active {
+      transform: scale(0.92);
+      box-shadow: 0 2px 8px rgba(255,106,53,0.2);
+    }
 
     /* ===== DEMO NOTICE ===== */
     .demo-notice {
