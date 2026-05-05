@@ -1060,21 +1060,22 @@
 
   <!-- ===== BOTTOM NAV ===== -->
   
+  
   <nav class="bottom-nav">
-    <button class="nav-item" onclick="goToHome()">
-      <i class="fas fa-home"></i>
-      <span>Inicio</span>
-    </button>
-    <button class="nav-item" onclick="goToSearch()">
+    <button class="nav-item" onclick="goToDiscover()">
       <i class="fas fa-search"></i>
-      <span>Buscar</span>
+      <span>Descubrir</span>
+    </button>
+    <button class="nav-item" onclick="goToTrades()">
+      <i class="fas fa-exchange-alt"></i>
+      <span>Mis trueques</span>
     </button>
     <button class="nav-item nav-add" onclick="goToUpload()">
       <div class="nav-add-btn"><i class="fas fa-plus"></i></div>
     </button>
-    <button class="nav-item" onclick="goToMatches()">
-      <i class="fas fa-bell"></i>
-      <span>Notificaciones</span>
+    <button class="nav-item" onclick="goToInbox()">
+      <i class="fas fa-inbox"></i>
+      <span>Buzon</span>
       <span class="nav-badge"></span>
     </button>
     <button class="nav-item" onclick="goToProfile()">
@@ -1309,6 +1310,12 @@
 
     console.log('🎸 TREQE v2 — Detalle artículo');
     console.log('🧪 Treqe Prototype — Apr 2026');
-  </script>
+  
+    function goToDiscover() { window.parent.location.href = '../v1-catalogo/'; }
+    function goToTrades() { window.parent.location.href = '../v12-mis-matches/'; }
+    function goToInbox() { window.parent.location.href = '../v11-notificaciones/'; }
+    function goToUpload() { window.parent.location.href = '../v3-subir/'; }
+    function goToProfile() { window.parent.location.href = '../v4-perfil/'; }
+    function goToDetail(id) { window.parent.location.href = '../v2-detalle/?id=' + id; }</script>
 </body>
 </html>

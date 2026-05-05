@@ -36,6 +36,175 @@
       --shadow: 0 2px 12px rgba(0,0,0,0.06);
     }
 
+
+    /* ===== INBOX DASHBOARD ===== */
+    .inbox-stats {
+      display: flex;
+      gap: 8px;
+      padding: 4px 16px 12px;
+    }
+    .inbox-stat {
+      flex: 1;
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 14px 10px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+    .inbox-stat__num {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .inbox-stat__label {
+      font-size: 0.7rem;
+      color: var(--text-tertiary);
+      margin-top: 2px;
+    }
+    .inbox-tabs {
+      display: flex;
+      gap: 4px;
+      padding: 0 16px 12px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .inbox-tabs::-webkit-scrollbar { display: none; }
+    .inbox-tab {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .inbox-tab.active {
+      background: var(--accent);
+      color: #FFF;
+      border-color: var(--accent);
+    }
+    .inbox-tab i { font-size: 0.75rem; }
+    .inbox-content {
+      padding: 0 16px 16px;
+    }
+    .inbox-section {
+      display: none;
+    }
+    .inbox-section.active {
+      display: block;
+    }
+    .inbox-item {
+      display: flex;
+      gap: 12px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .inbox-item:last-child { border-bottom: none; }
+    .inbox-item__icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1rem;
+    }
+    .inbox-item__body { flex: 1; min-width: 0; }
+    .inbox-item__title {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 3px;
+    }
+    .inbox-item__text {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+    .inbox-item__meta {
+      font-size: 0.65rem;
+      color: var(--text-tertiary);
+      margin-top: 4px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .inbox-item__action {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-tertiary);
+      font-size: 0.85rem;
+      flex-shrink: 0;
+      margin-top: 4px;
+    }
+    .inbox-item__action:active {
+      background: var(--border);
+      color: var(--text);
+    }
+    .reply-form {
+      padding: 0 16px 16px;
+    }
+    .reply-form__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .reply-form__header button {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-tertiary);
+    }
+    .reply-form__textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-family: inherit;
+      resize: vertical;
+      background: var(--card-bg);
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+    .reply-form__textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .reply-form__btn {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      background: var(--accent);
+      color: #FFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .reply-form__btn:active { opacity: 0.9; }
+
+
     /* ===== STATUS BAR ===== */
     .status-bar {
       display: flex;
@@ -324,191 +493,179 @@
   <!-- ===== DEMO NOTICE ===== -->
   <div class="demo-notice"><i class="fas fa-paint-brush"></i> Prototipo — v11 Notificaciones — 25 Abr 2026</div>
 
-  <!-- ===== STATUS BAR ===== -->
-  <div class="status-bar">
-    <span class="time">15:32</span>
-    <span class="icons">
-      <i class="fas fa-signal"></i>
-      <i class="fas fa-wifi"></i>
-      <i class="fas fa-battery-three-quarters"></i>
-    </span>
-  </div>
 
-  <!-- ===== HEADER ===== -->
-  <div class="header">
-    <div class="header__left">
-      <button class="header__back" onclick="goBack()">
-        <i class="fas fa-chevron-left"></i>
-      </button>
-      <h1 class="header__title">Notificaciones</h1>
+  <!-- ===== DASHBOARD STATS ===== -->
+  <div class="inbox-stats">
+    <div class="inbox-stat">
+      <div class="inbox-stat__num">3</div>
+      <div class="inbox-stat__label">Consultas</div>
     </div>
-    <div class="header__actions">
-      <button class="header__btn" onclick="markAllRead()">Marcar leídas</button>
+    <div class="inbox-stat">
+      <div class="inbox-stat__num">2</div>
+      <div class="inbox-stat__label">Trueques</div>
+    </div>
+    <div class="inbox-stat">
+      <div class="inbox-stat__num">5</div>
+      <div class="inbox-stat__label">Recomendados</div>
     </div>
   </div>
 
-  <!-- ===== TABS ===== -->
-  <div class="tabs">
-    <button class="tab active" onclick="switchTab(this, 'all')">
-      <i class="fas fa-inbox"></i> Todas <span class="badge">3</span>
+  <!-- ===== INBOX TABS ===== -->
+  <div class="inbox-tabs">
+    <button class="inbox-tab active" data-tab="consultas" onclick="switchInboxTab('consultas')">
+      <i class="fas fa-question-circle"></i> Consultas
     </button>
-    <button class="tab" onclick="switchTab(this, 'matches')">
-      <i class="fas fa-star"></i> Matches
+    <button class="inbox-tab" data-tab="trueques" onclick="switchInboxTab('trueques')">
+      <i class="fas fa-exchange-alt"></i> Trueques
     </button>
-    <button class="tab" onclick="switchTab(this, 'messages')">
-      <i class="fas fa-comment"></i> Mensajes
+    <button class="inbox-tab" data-tab="recomendados" onclick="switchInboxTab('recomendados')">
+      <i class="fas fa-star"></i> Recomendados
     </button>
-    <button class="tab" onclick="switchTab(this, 'system')">
-      <i class="fas fa-cog"></i> Sistema
+    <button class="inbox-tab" data-tab="actividad" onclick="switchInboxTab('actividad')">
+      <i class="fas fa-chart-line"></i> Actividad
     </button>
   </div>
 
-  <!-- ===== NOTIFICATION LIST ===== -->
-  <div class="notif-list" id="notifList">
+  <!-- ===== INBOX CONTENT ===== -->
+  <div class="inbox-content">
+    <!-- CONSULTAS -->
+    <div class="inbox-section active" id="tab-consultas">
+      <div class="inbox-item">
+        <div class="inbox-item__icon" style="background: #FFF3ED;"><i class="fas fa-user" style="color:var(--accent);"></i></div>
+        <div class="inbox-item__body">
+          <div class="inbox-item__title">Alguien preguntó por tu Fender Stratocaster</div>
+          <div class="inbox-item__text">"Buenas, ¿tiene algún defecto la guitarra? ¿Aceptas envío a Valencia?"</div>
+          <div class="inbox-item__meta"><i class="far fa-clock"></i> Hace 15 min</div>
+        </div>
+        <button class="inbox-item__action" onclick="showReplyForm(this)"><i class="fas fa-reply"></i></button>
+      </div>
+      <div class="inbox-item">
+        <div class="inbox-item__icon" style="background: #FFF3ED;"><i class="fas fa-user" style="color:var(--accent);"></i></div>
+        <div class="inbox-item__body">
+          <div class="inbox-item__title">Alguien preguntó por tu Trek Marlin 7</div>
+          <div class="inbox-item__text">"¿La bicicleta tiene aún la garantía? ¿Cuántos km tiene?"</div>
+          <div class="inbox-item__meta"><i class="far fa-clock"></i> Hace 2 h</div>
+        </div>
+        <button class="inbox-item__action" onclick="showReplyForm(this)"><i class="fas fa-reply"></i></button>
+      </div>
+      <div class="inbox-item">
+        <div class="inbox-item__icon" style="background: #FFF3ED;"><i class="fas fa-user" style="color:var(--accent);"></i></div>
+        <div class="inbox-item__body">
+          <div class="inbox-item__title">Alguien preguntó por tu MacBook Air M3</div>
+          <div class="inbox-item__text">"Hola, ¿cuántas horas de uso tiene aproximadamente?"</div>
+          <div class="inbox-item__meta"><i class="far fa-clock"></i> Hace 1 d</div>
+        </div>
+        <button class="inbox-item__action" onclick="showReplyForm(this)"><i class="fas fa-reply"></i></button>
+      </div>
+    </div>
     
-    <!-- MATCH NOTIFICATION -->
-    <div class="notif-item unread" onclick="goToMatch()">
-      <div class="notif-item__icon match">
-        <i class="fas fa-star"></i>
+    <!-- TRUEQUES -->
+    <div class="inbox-section" id="tab-trueques">
+      <div class="inbox-item">
+        <div class="inbox-item__icon" style="background: #E8F8F5;"><i class="fas fa-retweet" style="color:var(--success);"></i></div>
+        <div class="inbox-item__body">
+          <div class="inbox-item__title">Propuesta de trueque recibida</div>
+          <div class="inbox-item__text">iPhone 15 Pro ↔ PlayStation 5 · Valoración: 890€ ↔ 480€</div>
+          <div class="inbox-item__meta"><i class="far fa-clock"></i> Hace 1 h · Pendiente</div>
+        </div>
+        <button class="inbox-item__action" onclick="goToTrades()"><i class="fas fa-arrow-right"></i></button>
       </div>
-      <div class="notif-item__content">
-        <div class="notif-item__title">
-          <span class="notif-item__dot"></span>
-          ¡Match encontrado!
+      <div class="inbox-item">
+        <div class="inbox-item__icon" style="background: #FEF9E7;"><i class="fas fa-check-circle" style="color:var(--warning);"></i></div>
+        <div class="inbox-item__body">
+          <div class="inbox-item__title">Trueque aceptado: Canon EOS R ↔ AirPods Max</div>
+          <div class="inbox-item__text">Ambos confirmaron. Solo falta coordinar el envío.</div>
+          <div class="inbox-item__meta"><i class="far fa-clock"></i> Hace 1 d · En progreso</div>
         </div>
-        <div class="notif-item__text">
-          Hay una oportunidad de trueque: <strong>Fender Stratocaster</strong> por tu <strong>Trek Marlin 7</strong> + 160€
-        </div>
-        <div class="notif-item__meta">
-          <span class="notif-item__time">Hace 5 min</span>
-          <span class="notif-item__action">Ver match →</span>
-        </div>
-      </div>
-      <div class="notif-item__arrow">
-        <i class="fas fa-chevron-right"></i>
-      </div>
-    </div>
-
-    <!-- MESSAGE NOTIFICATION -->
-    <div class="notif-item unread" onclick="alert('Abrir conversación')">
-      <div class="notif-item__icon message">
-        <i class="fas fa-comment"></i>
-      </div>
-      <div class="notif-item__content">
-        <div class="notif-item__title">
-          <span class="notif-item__dot"></span>
-          Ana te ha enviado un mensaje
-        </div>
-        <div class="notif-item__text">
-          "¿Podrías enviarme más fotos de la bici? Me interesa mucho el trueque"
-        </div>
-        <div class="notif-item__meta">
-          <span class="notif-item__time">Hace 45 min</span>
-          <span class="notif-item__action">Responder →</span>
-        </div>
-      </div>
-      <div class="notif-item__arrow">
-        <i class="fas fa-chevron-right"></i>
+        <button class="inbox-item__action" onclick="goToTrades()"><i class="fas fa-arrow-right"></i></button>
       </div>
     </div>
-
-    <!-- MATCH ACCEPTED -->
-    <div class="notif-item unread" onclick="alert('Ver detalle del intercambio')">
-      <div class="notif-item__icon success">
-        <i class="fas fa-check"></i>
+    
+    <!-- RECOMENDADOS -->
+    <div class="inbox-section" id="tab-recomendados">
+      <div class="inbox-item">
+        <div class="inbox-item__icon" style="background: #E8EAF6;"><i class="fas fa-lightbulb" style="color:#5C6BC0;"></i></div>
+        <div class="inbox-item__body">
+          <div class="inbox-item__title">A alguien le interesa tu PlayStation 5</div>
+          <div class="inbox-item__text">Tiene un iPhone 15 Pro que encaja con tus gustos · Match potencial 92%</div>
+          <div class="inbox-item__meta">Ver perfil del interesado</div>
+        </div>
+        <button class="inbox-item__action" onclick="goToDiscover()"><i class="fas fa-eye"></i></button>
       </div>
-      <div class="notif-item__content">
-        <div class="notif-item__title">
-          <span class="notif-item__dot"></span>
-          ¡Match confirmado!
+      <div class="inbox-item">
+        <div class="inbox-item__icon" style="background: #E8EAF6;"><i class="fas fa-fire" style="color:#5C6BC0;"></i></div>
+        <div class="inbox-item__body">
+          <div class="inbox-item__title">Artículo popular cerca de ti</div>
+          <div class="inbox-item__text">Bicicleta Trek Marlin 7 · 15 personas lo han visto hoy</div>
+          <div class="inbox-item__meta">En Granada · Hace 3 h</div>
         </div>
-        <div class="notif-item__text">
-          Ana ha aceptado el trueque. El círculo está completo y listo para el envío.
-        </div>
-        <div class="notif-item__meta">
-          <span class="notif-item__time">Hace 2 horas</span>
-          <span class="notif-item__action">Ver detalles →</span>
-        </div>
+        <button class="inbox-item__action" onclick="goToDiscover()"><i class="fas fa-eye"></i></button>
       </div>
-      <div class="notif-item__arrow">
-        <i class="fas fa-chevron-right"></i>
+      <div class="inbox-item">
+        <div class="inbox-item__icon" style="background: #E8EAF6;"><i class="fas fa-magic" style="color:#5C6BC0;"></i></div>
+        <div class="inbox-item__body">
+          <div class="inbox-item__title">Basado en tu Fender Stratocaster</div>
+          <div class="inbox-item__text">A otros usuarios con guitarras también les interesa: Amplificador Vox AC15, Pedalera Boss</div>
+          <div class="inbox-item__meta">2 artículos recomendados</div>
+        </div>
+        <button class="inbox-item__action" onclick="goToDiscover()"><i class="fas fa-eye"></i></button>
       </div>
     </div>
-
-    <!-- SYSTEM NOTIFICATION -->
-    <div class="notif-item" onclick="alert('Ver información de scoring')">
-      <div class="notif-item__icon system">
-        <i class="fas fa-chart-line"></i>
+    
+    <!-- ACTIVIDAD -->
+    <div class="inbox-section" id="tab-actividad">
+      <div class="inbox-item">
+        <div class="inbox-item__icon" style="background: #F0EDE6;"><i class="fas fa-heart" style="color:var(--text-secondary);"></i></div>
+        <div class="inbox-item__body">
+          <div class="inbox-item__title">A 3 personas les gusta tu Fender Stratocaster</div>
+          <div class="inbox-item__text">Tu artículo tiene buena acogida en la comunidad</div>
+          <div class="inbox-item__meta">Hace 30 min</div>
+        </div>
       </div>
-      <div class="notif-item__content">
-        <div class="notif-item__title">
-          Tu scoring ha subido
+      <div class="inbox-item">
+        <div class="inbox-item__icon" style="background: #F0EDE6;"><i class="fas fa-eye" style="color:var(--text-secondary);"></i></div>
+        <div class="inbox-item__body">
+          <div class="inbox-item__title">Tu MacBook Air M3 ha tenido 45 visitas hoy</div>
+          <div class="inbox-item__text">Está en el top 10% de artículos más vistos de la categoría</div>
+          <div class="inbox-item__meta">Hace 2 h</div>
         </div>
-        <div class="notif-item__text">
-          Has ganado <strong>+5 puntos</strong> por completar tu perfil. ¡Sigue así!
-        </div>
-        <div class="notif-item__meta">
-          <span class="notif-item__time">Hace 1 día</span>
+      </div>
+      <div class="inbox-item">
+        <div class="inbox-item__icon" style="background: #F0EDE6;"><i class="fas fa-clock" style="color:var(--text-secondary);"></i></div>
+        <div class="inbox-item__body">
+          <div class="inbox-item__title">Trueque completado: Casco Shoei ↔ G-SHOCK</div>
+          <div class="inbox-item__text">¡Valora tu experiencia! Tu reputación subirá al hacerlo.</div>
+          <div class="inbox-item__meta">Hace 3 d · Pendiente de valoración</div>
         </div>
       </div>
     </div>
-
-    <!-- WARNING NOTIFICATION -->
-    <div class="notif-item" onclick="alert('Ver detalle del match')">
-      <div class="notif-item__icon warning">
-        <i class="fas fa-hourglass-half"></i>
-      </div>
-      <div class="notif-item__content">
-        <div class="notif-item__title">
-          Match a punto de expirar
-        </div>
-        <div class="notif-item__text">
-          Quedan <strong>2 horas</strong> para decidir sobre el trueque de Canon EOS R.
-        </div>
-        <div class="notif-item__meta">
-          <span class="notif-item__time">Hace 1 día</span>
-          <span class="notif-item__action">Decidir ahora →</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- OLDER NOTIFICATIONS -->
-    <div class="notif-item" onclick="alert('Ver intercambio completado')">
-      <div class="notif-item__icon success">
-        <i class="fas fa-check-double"></i>
-      </div>
-      <div class="notif-item__content">
-        <div class="notif-item__title">
-          Intercambio completado
-        </div>
-        <div class="notif-item__text">
-          El trueque de <strong>Trek Marlin 7</strong> por <strong>AirPods Max</strong> se ha completado exitosamente.
-        </div>
-        <div class="notif-item__meta">
-          <span class="notif-item__time">Hace 3 días</span>
-        </div>
-      </div>
-    </div>
-
   </div>
 
-  <!-- ===== BOTTOM NAV ===== -->
-  
-  <nav class="bottom-nav">
-    <button class="nav-item" onclick="goToHome()">
-      <i class="fas fa-home"></i>
-      <span>Inicio</span>
-    </button>
-    <button class="nav-item" onclick="goToSearch()">
+  <!-- ===== REPLY FORM (hidden, appears on click) ===== -->
+  <div class="reply-form" id="replyForm" style="display:none;">
+    <div class="reply-form__header">
+      <span>Responder consulta</span>
+      <button onclick="closeReplyForm()"><i class="fas fa-times"></i></button>
+    </div>
+    <textarea class="reply-form__textarea" placeholder="Escribe tu respuesta (se enviará de forma anónima)..." rows="3"></textarea>
+    <button class="reply-form__btn" onclick="sendReply()"><i class="fas fa-paper-plane"></i> Enviar respuesta</button>
+  </div>
+
+<nav class="bottom-nav">
+    <button class="nav-item" onclick="goToDiscover()">
       <i class="fas fa-search"></i>
-      <span>Buscar</span>
+      <span>Descubrir</span>
+    </button>
+    <button class="nav-item" onclick="goToTrades()">
+      <i class="fas fa-exchange-alt"></i>
+      <span>Mis trueques</span>
     </button>
     <button class="nav-item nav-add" onclick="goToUpload()">
       <div class="nav-add-btn"><i class="fas fa-plus"></i></div>
     </button>
-    <button class="nav-item active" onclick="goToMatches()">
-      <i class="fas fa-bell"></i>
-      <span>Notificaciones</span>
+    <button class="nav-item active" onclick="goToInbox()">
+      <i class="fas fa-inbox"></i>
+      <span>Buzon</span>
       <span class="nav-badge"></span>
     </button>
     <button class="nav-item" onclick="goToProfile()">
@@ -556,6 +713,41 @@
     function goToNotifs() { window.parent.location.href = '../v11-notificaciones/'; }
     function goToProfile() { window.parent.location.href = '../v4-perfil/'; }
     function goToCatalog() { window.parent.location.href = '../v1-catalogo/'; }
-    function goToDetail(id) { window.parent.location.href = '../v2-detalle/?id=' + id; }</script>
+    function goToDetail(id) { window.parent.location.href = '../v2-detalle/?id=' + id; }
+    function goToDiscover() { window.parent.location.href = '../v1-catalogo/'; }
+    function goToTrades() { window.parent.location.href = '../v12-mis-matches/'; }
+    function goToInbox() { window.parent.location.href = '../v11-notificaciones/'; }
+    function goToUpload() { window.parent.location.href = '../v3-subir/'; }
+    function goToProfile() { window.parent.location.href = '../v4-perfil/'; }
+    function goToDetail(id) { window.parent.location.href = '../v2-detalle/?id=' + id; }
+    function switchInboxTab(tab) {
+      document.querySelectorAll('.inbox-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.inbox-section').forEach(s => s.classList.remove('active'));
+      document.querySelector(`.inbox-tab[data-tab="${tab}"]`).classList.add('active');
+      document.getElementById(`tab-${tab}`).classList.add('active');
+    }
+    function showReplyForm(btn) {
+      const form = document.getElementById('replyForm');
+      form.style.display = 'block';
+      form.querySelector('textarea').focus();
+      form.scrollIntoView({ behavior: 'smooth' });
+    }
+    function closeReplyForm() {
+      document.getElementById('replyForm').style.display = 'none';
+    }
+    function sendReply() {
+      const ta = document.querySelector('.reply-form__textarea');
+      if (!ta.value.trim()) return;
+      const btn = document.querySelector('.reply-form__btn');
+      btn.innerHTML = '<i class="fas fa-check"></i> Respuesta enviada';
+      btn.style.background = 'var(--success)';
+      setTimeout(() => {
+        btn.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar respuesta';
+        btn.style.background = '';
+        ta.value = '';
+        document.getElementById('replyForm').style.display = 'none';
+      }, 2000);
+    }
+</script>
 </body>
 </html>
