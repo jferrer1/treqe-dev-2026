@@ -326,6 +326,26 @@
     .item-card:nth-child(10) .item-card__image { background: #2A3A2A; }
     .item-card:nth-child(11) .item-card__image { background: #3A1A1A; }
     .item-card:nth-child(12) .item-card__image { background: #1A3A3A; }
+    .item-card:nth-child(13) .item-card__image { background: #2D3D2D; }
+    .item-card:nth-child(14) .item-card__image { background: #3A2A2A; }
+    .item-card:nth-child(15) .item-card__image { background: #1A3A1A; }
+    .item-card:nth-child(16) .item-card__image { background: #2A2A1A; }
+    .item-card:nth-child(17) .item-card__image { background: #2A3A1A; }
+    .item-card:nth-child(18) .item-card__image { background: #3A1A2A; }
+    .item-card:nth-child(19) .item-card__image { background: #1A1A3A; }
+    .item-card:nth-child(20) .item-card__image { background: #3A3A2A; }
+    .item-card:nth-child(21) .item-card__image { background: #1A2A1A; }
+    .item-card:nth-child(22) .item-card__image { background: #2D1A2A; }
+    .item-card:nth-child(23) .item-card__image { background: #3A3A3A; }
+    .item-card:nth-child(24) .item-card__image { background: #2A1A1A; }
+    .item-card:nth-child(25) .item-card__image { background: #1A2A2A; }
+    .item-card:nth-child(26) .item-card__image { background: #2D2A3A; }
+    .item-card:nth-child(27) .item-card__image { background: #3A2D1A; }
+    .item-card:nth-child(28) .item-card__image { background: #1A1A1A; }
+    .item-card:nth-child(29) .item-card__image { background: #2A3D2A; }
+    .item-card:nth-child(30) .item-card__image { background: #3A1A3A; }
+    .item-card:nth-child(31) .item-card__image { background: #1A3D3A; }
+    .item-card:nth-child(32) .item-card__image { background: #2D2A1A; }
     .item-card .placeholder-icon.white { color: rgba(255,255,255,0.3); }
 
     /* ===== BOTTOM NAV ===== */
@@ -801,20 +821,30 @@
     <!-- Se llena dinámicamente al aplicar filtros -->
   </div>
 
+  <!-- ===== CATEGORY CHIPS ===== -->
+  <div class="filter-bar">
+    <button class="filter-pill active" data-category="all" onclick="filterByCategory('all')"><i class="fas fa-th-large"></i> Todas</button>
+    <button class="filter-pill" data-category="electronica" onclick="filterByCategory('electronica')"><i class="fas fa-microchip"></i> Electrónica <span class="count" id="count-electronica">0</span></button>
+    <button class="filter-pill" data-category="moda" onclick="filterByCategory('moda')"><i class="fas fa-tshirt"></i> Moda <span class="count" id="count-moda">0</span></button>
+    <button class="filter-pill" data-category="deporte" onclick="filterByCategory('deporte')"><i class="fas fa-running"></i> Deporte <span class="count" id="count-deporte">0</span></button>
+    <button class="filter-pill" data-category="musica" onclick="filterByCategory('musica')"><i class="fas fa-music"></i> Música <span class="count" id="count-musica">0</span></button>
+    <button class="filter-pill" data-category="hogar" onclick="filterByCategory('hogar')"><i class="fas fa-home"></i> Hogar <span class="count" id="count-hogar">0</span></button>
+    <button class="filter-pill" data-category="libros" onclick="filterByCategory('libros')"><i class="fas fa-book"></i> Libros <span class="count" id="count-libros">0</span></button>
+  </div>
+
   <!-- ===== SECTION TITLE ===== -->
   <div class="section-title">
     <h2>Descubrir</h2>
-    <span>48 artículos</span>
+    <span id="articleCount">32 artículos</span>
   </div>
 
   <!-- ===== CATALOG GRID ===== -->
   <div class="catalog" id="catalog">
 
-    <div class="item-card" onclick="alert('🎸 Fender Stratocaster')">
+    <!-- Item 1 -->
+    <div class="item-card" data-category="musica" data-price="580" onclick="alert('🎸 Fender Stratocaster')">
       <div class="item-card__image">
-        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');">
-          <i class="far fa-heart"></i>
-        </button>
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
         <i class="fas fa-guitar placeholder-icon white"></i>
         <span class="price-tag">€580</span>
       </div>
@@ -823,12 +853,10 @@
         <div class="item-card__meta"><i class="fas fa-map-pin"></i> Barcelona</div>
       </div>
     </div>
-
-    <div class="item-card" onclick="alert('⌚ G-SHOCK Mudmaster')">
+    <!-- Item 2 -->
+    <div class="item-card" data-category="moda" data-price="250" onclick="alert('⌚ G-SHOCK Mudmaster')">
       <div class="item-card__image">
-        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');">
-          <i class="far fa-heart"></i>
-        </button>
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
         <i class="fas fa-clock placeholder-icon white"></i>
         <span class="price-tag">€250</span>
       </div>
@@ -837,12 +865,10 @@
         <div class="item-card__meta"><i class="fas fa-map-pin"></i> Madrid</div>
       </div>
     </div>
-
-    <div class="item-card" onclick="alert('📱 iPhone 15 Pro')">
+    <!-- Item 3 -->
+    <div class="item-card" data-category="electronica" data-price="890" onclick="alert('📱 iPhone 15 Pro')">
       <div class="item-card__image">
-        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');">
-          <i class="far fa-heart"></i>
-        </button>
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
         <i class="fas fa-mobile-alt placeholder-icon white"></i>
         <span class="price-tag">€890</span>
       </div>
@@ -851,12 +877,10 @@
         <div class="item-card__meta"><i class="fas fa-map-pin"></i> Valencia</div>
       </div>
     </div>
-
-    <div class="item-card" onclick="alert('🎮 PlayStation 5')">
+    <!-- Item 4 -->
+    <div class="item-card" data-category="electronica" data-price="480" onclick="alert('🎮 PlayStation 5')">
       <div class="item-card__image">
-        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');">
-          <i class="far fa-heart"></i>
-        </button>
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
         <i class="fas fa-gamepad placeholder-icon white"></i>
         <span class="price-tag">€480</span>
       </div>
@@ -865,12 +889,10 @@
         <div class="item-card__meta"><i class="fas fa-map-pin"></i> Málaga</div>
       </div>
     </div>
-
-    <div class="item-card" onclick="alert('📷 Cámara Canon EOS R')">
+    <!-- Item 5 -->
+    <div class="item-card" data-category="electronica" data-price="650" onclick="alert('📷 Cámara Canon EOS R')">
       <div class="item-card__image">
-        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');">
-          <i class="far fa-heart"></i>
-        </button>
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
         <i class="fas fa-camera placeholder-icon white"></i>
         <span class="price-tag">€650</span>
       </div>
@@ -879,12 +901,10 @@
         <div class="item-card__meta"><i class="fas fa-map-pin"></i> Sevilla</div>
       </div>
     </div>
-
-    <div class="item-card" onclick="alert('💻 MacBook Air M3')">
+    <!-- Item 6 -->
+    <div class="item-card" data-category="electronica" data-price="920" onclick="alert('💻 MacBook Air M3')">
       <div class="item-card__image">
-        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');">
-          <i class="far fa-heart"></i>
-        </button>
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
         <i class="fas fa-laptop placeholder-icon white"></i>
         <span class="price-tag">€920</span>
       </div>
@@ -893,12 +913,10 @@
         <div class="item-card__meta"><i class="fas fa-map-pin"></i> Bilbao</div>
       </div>
     </div>
-
-    <div class="item-card" onclick="alert('🏍️ Casco Shoei NXR2')">
+    <!-- Item 7 -->
+    <div class="item-card" data-category="deporte" data-price="320" onclick="alert('🏍️ Casco Shoei NXR2')">
       <div class="item-card__image">
-        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');">
-          <i class="far fa-heart"></i>
-        </button>
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
         <i class="fas fa-motorcycle placeholder-icon white"></i>
         <span class="price-tag">€320</span>
       </div>
@@ -907,12 +925,10 @@
         <div class="item-card__meta"><i class="fas fa-map-pin"></i> Zaragoza</div>
       </div>
     </div>
-
-    <div class="item-card" onclick="alert('🚲 Trek Marlin 7')">
+    <!-- Item 8 -->
+    <div class="item-card" data-category="deporte" data-price="420" onclick="alert('🚲 Trek Marlin 7')">
       <div class="item-card__image">
-        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');">
-          <i class="far fa-heart"></i>
-        </button>
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
         <i class="fas fa-bicycle placeholder-icon white"></i>
         <span class="price-tag">€420</span>
       </div>
@@ -921,12 +937,10 @@
         <div class="item-card__meta"><i class="fas fa-map-pin"></i> Granada</div>
       </div>
     </div>
-
-    <div class="item-card" onclick="alert('🎧 AirPods Max')">
+    <!-- Item 9 -->
+    <div class="item-card" data-category="electronica" data-price="380" onclick="alert('🎧 AirPods Max')">
       <div class="item-card__image">
-        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');">
-          <i class="far fa-heart"></i>
-        </button>
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
         <i class="fas fa-headphones placeholder-icon white"></i>
         <span class="price-tag">€380</span>
       </div>
@@ -935,12 +949,10 @@
         <div class="item-card__meta"><i class="fas fa-map-pin"></i> Madrid</div>
       </div>
     </div>
-
-    <div class="item-card" onclick="alert('🎸 Bajo Fender Jazz')">
+    <!-- Item 10 -->
+    <div class="item-card" data-category="musica" data-price="620" onclick="alert('🎸 Bajo Fender Jazz')">
       <div class="item-card__image">
-        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');">
-          <i class="far fa-heart"></i>
-        </button>
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
         <i class="fas fa-guitar placeholder-icon white"></i>
         <span class="price-tag">€620</span>
       </div>
@@ -949,12 +961,10 @@
         <div class="item-card__meta"><i class="fas fa-map-pin"></i> Barcelona</div>
       </div>
     </div>
-
-    <div class="item-card" onclick="alert('📱 Samsung Galaxy S25')">
+    <!-- Item 11 -->
+    <div class="item-card" data-category="electronica" data-price="720" onclick="alert('📱 Samsung Galaxy S25')">
       <div class="item-card__image">
-        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');">
-          <i class="far fa-heart"></i>
-        </button>
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
         <i class="fas fa-mobile-alt placeholder-icon white"></i>
         <span class="price-tag">€720</span>
       </div>
@@ -963,18 +973,256 @@
         <div class="item-card__meta"><i class="fas fa-map-pin"></i> Alicante</div>
       </div>
     </div>
-
-    <div class="item-card" onclick="alert('⌚ Apple Watch Ultra 2')">
+    <!-- Item 12 -->
+    <div class="item-card" data-category="electronica" data-price="550" onclick="alert('⌚ Apple Watch Ultra 2')">
       <div class="item-card__image">
-        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');">
-          <i class="far fa-heart"></i>
-        </button>
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
         <i class="fas fa-apple-alt placeholder-icon white"></i>
         <span class="price-tag">€550</span>
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Apple Watch Ultra 2 · Naranja · 49mm</div>
         <div class="item-card__meta"><i class="fas fa-map-pin"></i> Valencia</div>
+      </div>
+    </div>
+    <!-- Item 13 -->
+    <div class="item-card" data-category="hogar" data-price="180" onclick="alert('🛋️ Sofá IKEA Kivik')">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-couch placeholder-icon white"></i>
+        <span class="price-tag">€180</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Sofá IKEA Kivik · 3 plazas · Gris claro</div>
+        <div class="item-card__meta"><i class="fas fa-map-pin"></i> Madrid</div>
+      </div>
+    </div>
+    <!-- Item 14 -->
+    <div class="item-card" data-category="hogar" data-price="85" onclick="alert('☕ Cafetera Nespresso')">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-coffee placeholder-icon white"></i>
+        <span class="price-tag">€85</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Nespresso Vertuo Next · Plata · Poco uso</div>
+        <div class="item-card__meta"><i class="fas fa-map-pin"></i> Barcelona</div>
+      </div>
+    </div>
+    <!-- Item 15 -->
+    <div class="item-card" data-category="hogar" data-price="45" onclick="alert('💡 Lámpara IKEA')">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-lightbulb placeholder-icon white"></i>
+        <span class="price-tag">€45</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Lámpara de pie IKEA · Nordviken · Blanca</div>
+        <div class="item-card__meta"><i class="fas fa-map-pin"></i> Valencia</div>
+      </div>
+    </div>
+    <!-- Item 16 -->
+    <div class="item-card" data-category="electronica" data-price="95" onclick="alert('📖 Kindle Paperwhite')">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-tablet-alt placeholder-icon white"></i>
+        <span class="price-tag">€95</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Kindle Paperwhite · 11ª gen · 32GB · Sin marcas</div>
+        <div class="item-card__meta"><i class="fas fa-map-pin"></i> Madrid</div>
+      </div>
+    </div>
+    <!-- Item 17 -->
+    <div class="item-card" data-category="moda" data-price="55" onclick="alert('🎒 Mochila The North Face')">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-shopping-bag placeholder-icon white"></i>
+        <span class="price-tag">€55</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Mochila The North Face · Borealis · Negra</div>
+        <div class="item-card__meta"><i class="fas fa-map-pin"></i> Barcelona</div>
+      </div>
+    </div>
+    <!-- Item 18 -->
+    <div class="item-card" data-category="moda" data-price="75" onclick="alert('👟 Nike Air Max')">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-shoe-prints placeholder-icon white"></i>
+        <span class="price-tag">€75</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Nike Air Max 90 · Talla 42 · Muy buen estado</div>
+        <div class="item-card__meta"><i class="fas fa-map-pin"></i> Madrid</div>
+      </div>
+    </div>
+    <!-- Item 19 -->
+    <div class="item-card" data-category="deporte" data-price="120" onclick="alert('🏓 Palas de pádel')">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-table-tennis placeholder-icon white"></i>
+        <span class="price-tag">€120</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Palas Bullpadel · Pack 2 uds. · Usadas 3 meses</div>
+        <div class="item-card__meta"><i class="fas fa-map-pin"></i> Málaga</div>
+      </div>
+    </div>
+    <!-- Item 20 -->
+    <div class="item-card" data-category="deporte" data-price="65" onclick="alert('🏋️ Set pesas')">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-dumbbell placeholder-icon white"></i>
+        <span class="price-tag">€65</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Set pesas 20kg · Con mancuernas · Hierro fundido</div>
+        <div class="item-card__meta"><i class="fas fa-map-pin"></i> Bilbao</div>
+      </div>
+    </div>
+    <!-- Item 21 -->
+    <div class="item-card" data-category="musica" data-price="210" onclick="alert('🎸 Guitarra Yamaha')">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-guitar placeholder-icon white"></i>
+        <span class="price-tag">€210</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Guitarra acústica Yamaha F310 · Clásica · 6 cuerdas</div>
+        <div class="item-card__meta"><i class="fas fa-map-pin"></i> Valencia</div>
+      </div>
+    </div>
+    <!-- Item 22 -->
+    <div class="item-card" data-category="musica" data-price="120" onclick="alert('🎵 Vinilos Beatles')">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-compact-disc placeholder-icon white"></i>
+        <span class="price-tag">€120</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Vinilos Beatles · Colección 5 LP · Edición original</div>
+        <div class="item-card__meta"><i class="fas fa-map-pin"></i> Barcelona</div>
+      </div>
+    </div>
+    <!-- Item 23 -->
+    <div class="item-card" data-category="musica" data-price="650" onclick="alert('🥁 Batería Roland')">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-drum placeholder-icon white"></i>
+        <span class="price-tag">€650</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Batería electrónica Roland TD-1DMK · Completa</div>
+        <div class="item-card__meta"><i class="fas fa-map-pin"></i> Madrid</div>
+      </div>
+    </div>
+    <!-- Item 24 -->
+    <div class="item-card" data-category="libros" data-price="12" onclick="alert('📚 Cien años de soledad')">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-book placeholder-icon white"></i>
+        <span class="price-tag">€12</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Cien años de soledad · Gabriel García Márquez · Tapa dura</div>
+        <div class="item-card__meta"><i class="fas fa-map-pin"></i> Sevilla</div>
+      </div>
+    </div>
+    <!-- Item 25 -->
+    <div class="item-card" data-category="libros" data-price="45" onclick="alert('📕 Colección Harry Potter')">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-book-open placeholder-icon white"></i>
+        <span class="price-tag">€45</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Harry Potter · 7 libros · Tapa blanda · Casi nuevos</div>
+        <div class="item-card__meta"><i class="fas fa-map-pin"></i> Granada</div>
+      </div>
+    </div>
+    <!-- Item 26 -->
+    <div class="item-card" data-category="electronica" data-price="280" onclick="alert('🎮 Nintendo Switch OLED')">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-gamepad placeholder-icon white"></i>
+        <span class="price-tag">€280</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Nintendo Switch OLED · Blanco · Como nueva</div>
+        <div class="item-card__meta"><i class="fas fa-map-pin"></i> Zaragoza</div>
+      </div>
+    </div>
+    <!-- Item 27 -->
+    <div class="item-card" data-category="electronica" data-price="85" onclick="alert('⌨️ Teclado Logitech')">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-keyboard placeholder-icon white"></i>
+        <span class="price-tag">€85</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Logitech MX Mechanical · Inalámbrico · Táctil</div>
+        <div class="item-card__meta"><i class="fas fa-map-pin"></i> Alicante</div>
+      </div>
+    </div>
+    <!-- Item 28 -->
+    <div class="item-card" data-category="moda" data-price="35" onclick="alert('👗 Vestido Zara')">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-female placeholder-icon white"></i>
+        <span class="price-tag">€35</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Vestido Zara · Talla S · Floral · Puesto 2 veces</div>
+        <div class="item-card__meta"><i class="fas fa-map-pin"></i> Madrid</div>
+      </div>
+    </div>
+    <!-- Item 29 -->
+    <div class="item-card" data-category="deporte" data-price="55" onclick="alert('⛸️ Patines en línea')">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-skating placeholder-icon white"></i>
+        <span class="price-tag">€55</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Patines en línea · Talla 42 · Ajustables · Poco uso</div>
+        <div class="item-card__meta"><i class="fas fa-map-pin"></i> Barcelona</div>
+      </div>
+    </div>
+    <!-- Item 30 -->
+    <div class="item-card" data-category="hogar" data-price="150" onclick="alert('🪑 Silla IKEA Markus')">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-chair placeholder-icon white"></i>
+        <span class="price-tag">€150</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Silla oficina IKEA Markus · Negro · Muy cuidada</div>
+        <div class="item-card__meta"><i class="fas fa-map-pin"></i> Valencia</div>
+      </div>
+    </div>
+    <!-- Item 31 -->
+    <div class="item-card" data-category="libros" data-price="120" onclick="alert('📖 Enciclopedia Salvat')">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-book placeholder-icon white"></i>
+        <span class="price-tag">€120</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Enciclopedia Salvat · 12 tomos · Completa · 2005</div>
+        <div class="item-card__meta"><i class="fas fa-map-pin"></i> Málaga</div>
+      </div>
+    </div>
+    <!-- Item 32 -->
+    <div class="item-card" data-category="libros" data-price="25" onclick="alert('🦇 Batman Year One')">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-book-open placeholder-icon white"></i>
+        <span class="price-tag">€25</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Batman Year One · Frank Miller · Edición Deluxe</div>
+        <div class="item-card__meta"><i class="fas fa-map-pin"></i> Bilbao</div>
       </div>
     </div>
 
@@ -1028,57 +1276,62 @@
 
   <!-- ===== JAVASCRIPT ===== -->
   <script>
-    // Category chip interaction
-    document.querySelectorAll('.category-chip').forEach(chip => {
-      chip.addEventListener('click', function() {
-        document.querySelectorAll('.category-chip').forEach(c => c.classList.remove('active'));
-        this.classList.add('active');
-        // Scroll into view with offset
-        this.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-      });
-    });
-
-    // Filter pill interaction
-    document.querySelectorAll('.filter-pill').forEach(pill => {
-      pill.addEventListener('click', function() {
-        document.querySelectorAll('.filter-pill').forEach(p => p.style.borderColor = 'var(--border)');
-        this.style.borderColor = 'var(--accent)';
-        this.style.color = 'var(--accent)';
-      });
-    });
-
-    // Search bar: highlight on focus
-    document.getElementById('searchInput').addEventListener('focus', function() {
-      this.closest('.search-bar').style.borderColor = 'var(--accent)';
-    });
-    document.getElementById('searchInput').addEventListener('blur', function() {
-      if (!this.value) this.closest('.search-bar').style.borderColor = 'var(--border)';
-    });
-
-    // Show match banner after 2 seconds
-    setTimeout(() => {
-      document.getElementById('matchBanner').classList.add('show');
-    }, 2000);
-
-    function closeBanner() {
-      document.getElementById('matchBanner').classList.remove('show');
-    }
-
-    // ===== SEARCH FUNCTIONALITY =====
+    // ===== STATE =====
     const searchInput = document.getElementById('searchInput');
     const catalog = document.getElementById('catalog');
     const emptyState = document.getElementById('emptyState');
     const items = document.querySelectorAll('.item-card');
+    let activeCategory = 'all';
 
-    searchInput.addEventListener('input', function() {
-      const query = this.value.toLowerCase().trim();
+    // ===== CATEGORY COUNTS =====
+    function updateItemCounts() {
+      const counts = {};
+      items.forEach(item => {
+        const cat = item.dataset.category || 'all';
+        counts[cat] = (counts[cat] || 0) + 1;
+      });
+      document.querySelectorAll('.filter-pill .count').forEach(el => {
+        const cat = el.closest('.filter-pill')?.dataset.category;
+        if (cat && cat !== 'all' && counts[cat] !== undefined) {
+          el.textContent = counts[cat];
+        }
+      });
+    }
+
+    function updateArticleCount() {
+      let visible = 0;
+      items.forEach(item => {
+        if (item.style.display !== 'none') visible++;
+      });
+      document.getElementById('articleCount').textContent = visible + ' artículos';
+    }
+
+    // ===== FILTER BY CATEGORY (chips) =====
+    function filterByCategory(category) {
+      activeCategory = category;
+      
+      // Update pill styles
+      document.querySelectorAll('.filter-pill').forEach(p => {
+        p.classList.toggle('active', p.dataset.category === category);
+      });
+      
+      applyCurrentFilters();
+    }
+
+    // ===== APPLY ALL FILTERS (search + category) =====
+    function applyCurrentFilters() {
+      const query = searchInput.value.toLowerCase().trim();
       let visibleCount = 0;
 
       items.forEach(item => {
+        const cat = item.dataset.category || '';
         const title = item.querySelector('.item-card__title').textContent.toLowerCase();
         const meta = item.querySelector('.item-card__meta').textContent.toLowerCase();
         
-        if (title.includes(query) || meta.includes(query)) {
+        const matchesCategory = activeCategory === 'all' || cat === activeCategory;
+        const matchesSearch = !query || title.includes(query) || meta.includes(query);
+        
+        if (matchesCategory && matchesSearch) {
           item.style.display = '';
           visibleCount++;
         } else {
@@ -1087,52 +1340,46 @@
       });
 
       // Show/hide empty state
-      if (visibleCount === 0 && query.length > 0) {
+      if (visibleCount === 0) {
         emptyState.style.display = 'flex';
         catalog.style.display = 'none';
       } else {
         emptyState.style.display = 'none';
         catalog.style.display = 'grid';
       }
-    });
+      
+      updateArticleCount();
+    }
+
+    // ===== SEARCH =====
+    searchInput.addEventListener('input', applyCurrentFilters);
 
     function clearSearch() {
       searchInput.value = '';
-      items.forEach(item => item.style.display = '');
-      emptyState.style.display = 'none';
-      catalog.style.display = 'grid';
+      applyCurrentFilters();
       searchInput.focus();
     }
 
-    // Navigation functions
-    function goToNotifs() {
-      window.parent.location.href = '../v11-notificaciones/';
+    // ===== MATCH BANNER =====
+    setTimeout(() => {
+      document.getElementById('matchBanner').classList.add('show');
+    }, 2000);
+
+    function closeBanner() {
+      document.getElementById('matchBanner').classList.remove('show');
     }
 
-    function goToProfile() {
-      window.parent.location.href = '../v4-perfil/';
-    }
+    // ===== NAVIGATION =====
+    function goToNotifs() { window.parent.location.href = '../v11-notificaciones/'; }
+    function goToProfile() { window.parent.location.href = '../v4-perfil/'; }
+    function goToHome() { window.parent.location.href = '../v1-catalogo/'; }
+    function goToSearch() { window.parent.location.href = '../v1-catalogo/'; }
+    function goToUpload() { window.parent.location.href = '../v3-subir/'; }
+    function goToMatches() { window.parent.location.href = '../v12-mis-matches/'; }
 
-    function goToHome() {
-      window.parent.location.href = '../v1-catalogo/';
-    }
+    console.log('📱 TREQE v1 — Catálogo · 32 productos demo');
 
-    function goToSearch() {
-      window.parent.location.href = '../v1-catalogo/';
-    }
-
-    function goToUpload() {
-      window.parent.location.href = '../v3-subir/';
-    }
-
-    function goToMatches() {
-      window.parent.location.href = '../v12-mis-matches/';
-    }
-
-    console.log('📱 TREQE v1 — Catálogo');
-    console.log('🧪 Treqe Prototype — Apr 2026');
-
-    // ===== ADVANCED SEARCH FILTERS =====
+    // ===== ADVANCED SEARCH FILTERS (modal) =====
     function openFilters() {
       const modal = document.getElementById('filterModal');
       if (modal) {
@@ -1176,12 +1423,12 @@
       }
     }
 
-    function setPriceRange(min, max) {
+    function setPriceRange(min, max, el) {
+      if (!el) return;
       document.getElementById('priceMin').value = min || '';
       document.getElementById('priceMax').value = max || '';
-      // Visual feedback
       document.querySelectorAll('.filter-quick-btn').forEach(btn => btn.classList.remove('active'));
-      event.target.classList.add('active');
+      el.classList.add('active');
     }
 
     // Sort chips selection
@@ -1202,24 +1449,63 @@
       }
     });
 
+    function getVisibleCount() {
+      let count = 0;
+      items.forEach(item => { if (item.style.display !== 'none') count++; });
+      return count;
+    }
+
     function applyFilters() {
       closeFilters();
       
-      // Get filter values
-      const sort = document.querySelector('.filter-chips--sort .filter-chip.active')?.dataset.sort || 'relevance';
+      // Sync: reset pills to "Todas" when modal is used
+      activeCategory = 'all';
+      document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+      document.querySelector('.filter-pill[data-category="all"]').classList.add('active');
+      
       const category = document.getElementById('categorySelect').value;
-      const subcategory = document.getElementById('subcategorySelect').value;
-      const priceMin = document.getElementById('priceMin').value;
-      const priceMax = document.getElementById('priceMax').value;
+      const priceMin = parseFloat(document.getElementById('priceMin').value) || 0;
+      const priceMax = parseFloat(document.getElementById('priceMax').value) || Infinity;
       const condition = document.querySelector('[data-condition].active')?.dataset.condition || 'any';
+      const query = searchInput.value.toLowerCase().trim();
+      
+      // --- Apply all modal filters + search to items ---
+      let visibleCount = 0;
+      items.forEach(item => {
+        const itemPrice = parseFloat(item.dataset.price) || 0;
+        const itemCat = item.dataset.category || '';
+        const title = item.querySelector('.item-card__title').textContent.toLowerCase();
+        const meta = item.querySelector('.item-card__meta').textContent.toLowerCase();
+        
+        const matchesCategory = !category || itemCat === category;
+        const matchesPrice = itemPrice >= priceMin && itemPrice <= priceMax;
+        const matchesSearch = !query || title.includes(query) || meta.includes(query);
+        
+        if (matchesCategory && matchesPrice && matchesSearch) {
+          item.style.display = '';
+          visibleCount++;
+        } else {
+          item.style.display = 'none';
+        }
+      });
+      
+      // Show/hide empty state
+      if (visibleCount === 0) {
+        emptyState.style.display = 'flex';
+        catalog.style.display = 'none';
+      } else {
+        emptyState.style.display = 'none';
+        catalog.style.display = 'grid';
+      }
+      
+      updateArticleCount();
       
       // Show active filters bar
       const activeFiltersEl = document.getElementById('activeFilters');
       let filtersHTML = '';
       
       if (category) filtersHTML += `<div class="active-filter" data-filter="category"><span>${document.getElementById('categorySelect').options[document.getElementById('categorySelect').selectedIndex].text}</span><button onclick="removeFilter('category')"><i class="fas fa-times"></i></button></div>`;
-      if (subcategory) filtersHTML += `<div class="active-filter" data-filter="subcategory"><span>${document.getElementById('subcategorySelect').options[document.getElementById('subcategorySelect').selectedIndex].text}</span><button onclick="removeFilter('subcategory')"><i class="fas fa-times"></i></button></div>`;
-      if (priceMin || priceMax) filtersHTML += `<div class="active-filter" data-filter="price"><span>€${priceMin || 0} - €${priceMax || '∞'}</span><button onclick="removeFilter('price')"><i class="fas fa-times"></i></button></div>`;
+      if (priceMin > 0 || priceMax < Infinity) filtersHTML += `<div class="active-filter" data-filter="price"><span>€${priceMin || 0} - €${priceMax === Infinity ? '∞' : priceMax}</span><button onclick="removeFilter('price')"><i class="fas fa-times"></i></button></div>`;
       if (condition !== 'any') filtersHTML += `<div class="active-filter" data-filter="condition"><span>${document.querySelector('[data-condition].active').textContent}</span><button onclick="removeFilter('condition')"><i class="fas fa-times"></i></button></div>`;
       
       if (filtersHTML) {
@@ -1229,16 +1515,14 @@
         activeFiltersEl.classList.remove('visible');
       }
       
-      console.log('Filtros aplicados:', { sort, category, subcategory, priceMin, priceMax, location, condition });
+      console.log('Filtros aplicados:', { category, priceMin, priceMax, condition, resultados: getVisibleCount() });
     }
 
     function removeFilter(filterType) {
-      // Reset the corresponding filter
       if (filterType === 'category') {
         document.getElementById('categorySelect').value = '';
         updateSubcategories();
       }
-      if (filterType === 'subcategory') document.getElementById('subcategorySelect').value = '';
       if (filterType === 'price') {
         document.getElementById('priceMin').value = '';
         document.getElementById('priceMax').value = '';
@@ -1248,8 +1532,6 @@
         document.querySelectorAll('[data-condition]').forEach(chip => chip.classList.remove('active'));
         document.querySelector('[data-condition="any"]').classList.add('active');
       }
-      
-      // Re-apply filters
       applyFilters();
     }
 
@@ -1264,13 +1546,26 @@
       document.querySelectorAll('.filter-chips--sort .filter-chip').forEach(chip => chip.classList.remove('active'));
       document.querySelector('[data-sort="relevance"]').classList.add('active');
       
+      // Reset items visibility completely
+      items.forEach(item => item.style.display = '');
+      
       document.getElementById('activeFilters').classList.remove('visible');
       closeFilters();
+      
+      // Re-apply category pills + search
+      activeCategory = 'all';
+      document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+      document.querySelector('.filter-pill[data-category="all"]').classList.add('active');
+      applyCurrentFilters();
     }
 
     function resetFilters() {
       clearAllFilters();
     }
+
+    // ===== INIT =====
+    updateItemCounts();
+    updateArticleCount();
   </script>
 
   <!-- ===== FILTER MODAL ===== -->
@@ -1326,10 +1621,10 @@
             </div>
           </div>
           <div class="filter-quick-prices">
-            <button class="filter-quick-btn" onclick="setPriceRange(0, 50)">Hasta €50</button>
-            <button class="filter-quick-btn" onclick="setPriceRange(50, 200)">€50-200</button>
-            <button class="filter-quick-btn" onclick="setPriceRange(200, 500)">€200-500</button>
-            <button class="filter-quick-btn" onclick="setPriceRange(500, null)">+€500</button>
+            <button class="filter-quick-btn" onclick="setPriceRange(0, 50, this)">Hasta €50</button>
+            <button class="filter-quick-btn" onclick="setPriceRange(50, 200, this)">€50-200</button>
+            <button class="filter-quick-btn" onclick="setPriceRange(200, 500, this)">€200-500</button>
+            <button class="filter-quick-btn" onclick="setPriceRange(500, null, this)">+€500</button>
           </div>
         </div>
         <!-- Condición -->
@@ -1346,7 +1641,7 @@
       </div>
       <div class="filter-modal__footer">
         <button class="filter-btn filter-btn--secondary" onclick="resetFilters()">Restablecer</button>
-        <button class="filter-btn filter-btn--primary" onclick="applyFilters()">Aplicar (12 resultados)</button>
+        <button class="filter-btn filter-btn--primary" onclick="applyFilters()">Aplicar filtros</button>
       </div>
     </div>
   </div>
