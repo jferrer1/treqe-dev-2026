@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -275,6 +275,110 @@
     .modal-overlay.visible {
       display: flex;
     }
+
+        /* ===== INFO REQUEST ===== */
+    .info-request {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+    .info-request__title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+    .info-request__title i { color: var(--accent); margin-right: 6px; }
+    .info-request__textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-family: inherit;
+      resize: vertical;
+      background: var(--card-bg);
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+    .info-request__textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(255,106,53,0.1);
+    }
+    .info-request__btn {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+    .info-request__btn:active {
+      background: var(--accent);
+      color: #FFF;
+      border-color: var(--accent);
+    }
+    .info-request__btn i { font-size: 0.9rem; }
+
+    /* ===== INFO REQUEST ===== */
+    .info-request {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+    .info-request__title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+    .info-request__title i { color: var(--accent); margin-right: 6px; }
+    .info-request__textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-family: inherit;
+      resize: vertical;
+      background: var(--card-bg);
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+    .info-request__textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(255,106,53,0.1);
+    }
+    .info-request__btn {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+    .info-request__btn:active {
+      background: var(--accent);
+      color: #FFF;
+      border-color: var(--accent);
+    }
+    .info-request__btn i { font-size: 0.9rem; }
 
     /* ===== TRADE MODAL ===== */
     .trade-modal {
@@ -617,34 +721,6 @@
       right: 12px;
     }
 
-    /* ===== SCORING ===== */
-    .scoring-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.72rem;
-      color: var(--text-tertiary);
-      font-weight: 500;
-      padding: 6px 12px;
-      background: var(--bg);
-      border-radius: 20px;
-      margin-top: 8px;
-    }
-    .scoring-tag strong { color: var(--text); font-weight: 600; }
-    .scoring-tag .bar {
-      width: 40px;
-      height: 3px;
-      background: var(--border);
-      border-radius: 3px;
-      overflow: hidden;
-    }
-    .scoring-tag .bar-fill {
-      height: 100%;
-      width: 82%;
-      background: var(--accent);
-      border-radius: 3px;
-    }
-
     /* ===== DESCRIPTION ===== */
     .item-desc {
       margin-top: 8px;
@@ -822,7 +898,6 @@
         <!-- Details row -->
         <div class="item-details">
           <span class="item-detail"><i class="fas fa-check-circle"></i> Buen estado</span>
-          <span class="item-detail"><i class="fas fa-map-pin"></i> Barcelona</span>
           <span class="item-detail"><i class="fas fa-calendar"></i> 2021</span>
         </div>
 
@@ -848,11 +923,13 @@
           </button>
         </div>
 
-        <!-- Scoring -->
-        <div class="scoring-tag">
-          <div class="bar"><div class="bar-fill"></div></div>
-          Scoring <strong>82</strong>
-          <i class="fas fa-info-circle" style="font-size:0.6rem;cursor:pointer;" onclick="alert('A más scoring, más prioridad para conseguir artículos populares')"></i>
+        <!-- Info request -->
+        <div class="info-request">
+          <div class="info-request__title"><i class="fas fa-question-circle"></i> Solicitar información</div>
+          <textarea class="info-request__textarea" placeholder="Ej: ¿Tiene algún defecto? ¿Aceptas envío?..." rows="2"></textarea>
+          <button class="info-request__btn" onclick="sendInfoRequest()">
+            <i class="fas fa-paper-plane"></i> Enviar consulta
+          </button>
         </div>
       </div>
 
@@ -1035,6 +1112,34 @@
         document.getElementById('nextBtn').disabled = true;
       }
     }
+    function sendInfoRequest() {
+      const textarea = document.querySelector('.info-request__textarea');
+      const msg = textarea.value.trim();
+      if (!msg) {
+        textarea.style.borderColor = '#E74C3C';
+        textarea.focus();
+        return;
+      }
+      textarea.style.borderColor = '';
+      const btn = document.querySelector('.info-request__btn');
+      btn.innerHTML = '<i class="fas fa-check"></i> Consulta enviada';
+      btn.style.background = 'var(--success)';
+      btn.style.color = '#FFF';
+      btn.style.borderColor = 'var(--success)';
+      btn.disabled = true;
+      textarea.disabled = true;
+      console.log('Enquiry sent to seller:', msg);
+      setTimeout(() => {
+        btn.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar consulta';
+        btn.style.background = '';
+        btn.style.color = '';
+        btn.style.borderColor = '';
+        btn.disabled = false;
+        textarea.disabled = false;
+        textarea.value = '';
+      }, 3000);
+    }
+
 
     // Step navigation
     function goToStep(step) {
