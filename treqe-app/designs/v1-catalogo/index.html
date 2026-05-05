@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>TREQE â€” CatÃ¡logo</title>
+  <title>TREQE — Catálogo</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
@@ -793,7 +793,7 @@
 <body>
 
   <!-- ===== DEMO NOTICE ===== -->
-  <div class="demo-notice"><i class="fas fa-flask"></i> Treqe Prototype â€” v1 CatÃ¡logo â€” Apr 2026</div>
+  <div class="demo-notice"><i class="fas fa-flask"></i> Treqe Prototype — v1 Catálogo — Apr 2026</div>
 
   <!-- ===== STATUS BAR ===== -->
   <div class="status-bar">
@@ -809,7 +809,7 @@
     <div class="logo">treqe<span>.</span></div>
     <div class="search-bar">
       <i class="fas fa-search"></i>
-      <input type="text" placeholder="Buscar artÃ­culos..." id="searchInput">
+      <input type="text" placeholder="Buscar artículos..." id="searchInput">
       <button class="search-bar__filter" aria-label="Filtros" onclick="openFilters()">
         <i class="fas fa-sliders-h"></i>
       </button>
@@ -818,22 +818,22 @@
 
   <!-- ===== ACTIVE FILTERS BAR (debajo del buscador) ===== -->
   <div class="active-filters" id="activeFilters">
-    <!-- Se llena dinÃ¡micamente al aplicar filtros -->
+    <!-- Se llena dinámicamente al aplicar filtros -->
   </div>
 
   <!-- ===== CATEGORY CHIPS ===== -->
   <div class="filter-bar">
     <button class="filter-pill active" data-category="all" onclick="filterByCategory('all')"><i class="fas fa-th-large"></i> Todas</button>
-    <button class="filter-pill" data-category="electronica" onclick="filterByCategory('electronica')"><i class="fas fa-microchip"></i> ElectrÃ³nica <span class="count" id="count-electronica">0</span></button>
+    <button class="filter-pill" data-category="electronica" onclick="filterByCategory('electronica')"><i class="fas fa-microchip"></i> Electrónica <span class="count" id="count-electronica">0</span></button>
     <button class="filter-pill" data-category="moda" onclick="filterByCategory('moda')"><i class="fas fa-tshirt"></i> Moda <span class="count" id="count-moda">0</span></button>
     <button class="filter-pill" data-category="deporte" onclick="filterByCategory('deporte')"><i class="fas fa-running"></i> Deporte <span class="count" id="count-deporte">0</span></button>
-    <button class="filter-pill" data-category="musica" onclick="filterByCategory('musica')"><i class="fas fa-music"></i> MÃºsica <span class="count" id="count-musica">0</span></button>
+    <button class="filter-pill" data-category="musica" onclick="filterByCategory('musica')"><i class="fas fa-music"></i> Música <span class="count" id="count-musica">0</span></button>
     <button class="filter-pill" data-category="hogar" onclick="filterByCategory('hogar')"><i class="fas fa-home"></i> Hogar <span class="count" id="count-hogar">0</span></button>
     <button class="filter-pill" data-category="libros" onclick="filterByCategory('libros')"><i class="fas fa-book"></i> Libros <span class="count" id="count-libros">0</span></button>
     <button class="filter-pill" data-category="motor" onclick="filterByCategory('motor')"><i class="fas fa-car"></i> Motor <span class="count" id="count-motor">0</span></button>
     <button class="filter-pill" data-category="bicicletas" onclick="filterByCategory('bicicletas')"><i class="fas fa-bicycle"></i> Bicis <span class="count" id="count-bicicletas">0</span></button>
-    <button class="filter-pill" data-category="electrodomesticos" onclick="filterByCategory('electrodomesticos')"><i class="fas fa-blender"></i> ElectrodomÃ©sticos <span class="count" id="count-electrodomesticos">0</span></button>
-    <button class="filter-pill" data-category="bebes" onclick="filterByCategory('bebes')"><i class="fas fa-baby"></i> BebÃ©s <span class="count" id="count-bebes">0</span></button>
+    <button class="filter-pill" data-category="electrodomesticos" onclick="filterByCategory('electrodomesticos')"><i class="fas fa-blender"></i> Electrodomésticos <span class="count" id="count-electrodomesticos">0</span></button>
+    <button class="filter-pill" data-category="bebes" onclick="filterByCategory('bebes')"><i class="fas fa-baby"></i> Bebés <span class="count" id="count-bebes">0</span></button>
     <button class="filter-pill" data-category="coleccionismo" onclick="filterByCategory('coleccionismo')"><i class="fas fa-gem"></i> Coleccionismo <span class="count" id="count-coleccionismo">0</span></button>
     <button class="filter-pill" data-category="inmuebles" onclick="filterByCategory('inmuebles')"><i class="fas fa-building"></i> Inmuebles <span class="count" id="count-inmuebles">0</span></button>
     <button class="filter-pill" data-category="servicios" onclick="filterByCategory('servicios')"><i class="fas fa-concierge-bell"></i> Servicios <span class="count" id="count-servicios">0</span></button>
@@ -843,393 +843,393 @@
   <!-- ===== SECTION TITLE ===== -->
   <div class="section-title">
     <h2>Descubrir</h2>
-    <span id="articleCount">32 artÃ­culos</span>
+    <span id="articleCount">32 artículos</span>
   </div>
 
   <!-- ===== CATALOG GRID ===== -->
   <div class="catalog" id="catalog">
 
     <!-- Item 1 -->
-    <div class="item-card" data-category="musica" data-subcategory="guitarras" data-price="580" onclick="goToDetail(1)">
+    <div class="item-card" data-category="musica" data-subcategory="guitarras" data-price="580" onclick="alert('🎸 Fender Stratocaster')">
       <div class="item-card__image">
         <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
         <i class="fas fa-guitar placeholder-icon white"></i>
-        <span class="price-tag">â‚¬580</span>
+        <span class="price-tag">€580</span>
       </div>
       <div class="item-card__info">
-        <div class="item-card__title">Fender Stratocaster Â· Muy buen estado</div>
+        <div class="item-card__title">Fender Stratocaster · Muy buen estado</div>
         <div class="item-card__meta"><i class="fas fa-map-pin"></i> Barcelona</div>
       </div>
     </div>
     <!-- Item 2 -->
-    <div class="item-card" data-category="moda" data-subcategory="relojes" data-price="250" onclick="goToDetail(2)">
+    <div class="item-card" data-category="moda" data-subcategory="relojes" data-price="250" onclick="alert('⌚ G-SHOCK Mudmaster')">
       <div class="item-card__image">
         <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
         <i class="fas fa-clock placeholder-icon white"></i>
-        <span class="price-tag">â‚¬250</span>
+        <span class="price-tag">€250</span>
       </div>
       <div class="item-card__info">
-        <div class="item-card__title">G-SHOCK Mudmaster Â· EdiciÃ³n limitada</div>
+        <div class="item-card__title">G-SHOCK Mudmaster · Edición limitada</div>
         <div class="item-card__meta"><i class="fas fa-map-pin"></i> Madrid</div>
       </div>
     </div>
     <!-- Item 3 -->
-    <div class="item-card" data-category="electronica" data-subcategory="moviles" data-price="890" onclick="goToDetail(3)">
+    <div class="item-card" data-category="electronica" data-subcategory="moviles" data-price="890" onclick="alert('📱 iPhone 15 Pro')">
       <div class="item-card__image">
         <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
         <i class="fas fa-mobile-alt placeholder-icon white"></i>
-        <span class="price-tag">â‚¬890</span>
+        <span class="price-tag">€890</span>
       </div>
       <div class="item-card__info">
-        <div class="item-card__title">iPhone 15 Pro Â· 256GB Â· Titanio natural</div>
+        <div class="item-card__title">iPhone 15 Pro · 256GB · Titanio natural</div>
         <div class="item-card__meta"><i class="fas fa-map-pin"></i> Valencia</div>
       </div>
     </div>
     <!-- Item 4 -->
-    <div class="item-card" data-category="electronica" data-subcategory="consolas" data-price="480" onclick="goToDetail(4)">
+    <div class="item-card" data-category="electronica" data-subcategory="consolas" data-price="480" onclick="alert('🎮 PlayStation 5')">
       <div class="item-card__image">
         <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
         <i class="fas fa-gamepad placeholder-icon white"></i>
-        <span class="price-tag">â‚¬480</span>
+        <span class="price-tag">€480</span>
       </div>
       <div class="item-card__info">
-        <div class="item-card__title">PlayStation 5 Â· EdiciÃ³n digital Â· 2 mandos</div>
-        <div class="item-card__meta"><i class="fas fa-map-pin"></i> MÃ¡laga</div>
+        <div class="item-card__title">PlayStation 5 · Edición digital · 2 mandos</div>
+        <div class="item-card__meta"><i class="fas fa-map-pin"></i> Málaga</div>
       </div>
     </div>
     <!-- Item 5 -->
-    <div class="item-card" data-category="electronica" data-subcategory="camaras" data-price="650" onclick="goToDetail(5)">
+    <div class="item-card" data-category="electronica" data-subcategory="camaras" data-price="650" onclick="alert('📷 Cámara Canon EOS R')">
       <div class="item-card__image">
         <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
         <i class="fas fa-camera placeholder-icon white"></i>
-        <span class="price-tag">â‚¬650</span>
+        <span class="price-tag">€650</span>
       </div>
       <div class="item-card__info">
-        <div class="item-card__title">Canon EOS R Â· Objetivo 24-70mm Â· Como nueva</div>
+        <div class="item-card__title">Canon EOS R · Objetivo 24-70mm · Como nueva</div>
         <div class="item-card__meta"><i class="fas fa-map-pin"></i> Sevilla</div>
       </div>
     </div>
     <!-- Item 6 -->
-    <div class="item-card" data-category="electronica" data-subcategory="portatiles" data-price="920" onclick="goToDetail(6)">
+    <div class="item-card" data-category="electronica" data-subcategory="portatiles" data-price="920" onclick="alert('💻 MacBook Air M3')">
       <div class="item-card__image">
         <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
         <i class="fas fa-laptop placeholder-icon white"></i>
-        <span class="price-tag">â‚¬920</span>
+        <span class="price-tag">€920</span>
       </div>
       <div class="item-card__info">
-        <div class="item-card__title">MacBook Air M3 Â· 16GB Â· 512GB Â· Medianoche</div>
+        <div class="item-card__title">MacBook Air M3 · 16GB · 512GB · Medianoche</div>
         <div class="item-card__meta"><i class="fas fa-map-pin"></i> Bilbao</div>
       </div>
     </div>
     <!-- Item 7 -->
-    <div class="item-card" data-category="deporte" data-subcategory="fitness" data-price="320" onclick="goToDetail(7)">
+    <div class="item-card" data-category="deporte" data-subcategory="fitness" data-price="320" onclick="alert('🏍️ Casco Shoei NXR2')">
       <div class="item-card__image">
         <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
         <i class="fas fa-motorcycle placeholder-icon white"></i>
-        <span class="price-tag">â‚¬320</span>
+        <span class="price-tag">€320</span>
       </div>
       <div class="item-card__info">
-        <div class="item-card__title">Casco Shoei NXR2 Â· Talla M Â· Carbono</div>
+        <div class="item-card__title">Casco Shoei NXR2 · Talla M · Carbono</div>
         <div class="item-card__meta"><i class="fas fa-map-pin"></i> Zaragoza</div>
       </div>
     </div>
     <!-- Item 8 -->
-    <div class="item-card" data-category="deporte" data-subcategory="bicicletas" data-price="420" onclick="goToDetail(8)">
+    <div class="item-card" data-category="deporte" data-subcategory="bicicletas" data-price="420" onclick="alert('🚲 Trek Marlin 7')">
       <div class="item-card__image">
         <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
         <i class="fas fa-bicycle placeholder-icon white"></i>
-        <span class="price-tag">â‚¬420</span>
+        <span class="price-tag">€420</span>
       </div>
       <div class="item-card__info">
-        <div class="item-card__title">Trek Marlin 7 Â· Mtb Â· Talla L Â· 2023</div>
+        <div class="item-card__title">Trek Marlin 7 · Mtb · Talla L · 2023</div>
         <div class="item-card__meta"><i class="fas fa-map-pin"></i> Granada</div>
       </div>
     </div>
     <!-- Item 9 -->
-    <div class="item-card" data-category="electronica" data-subcategory="audio" data-price="380" onclick="goToDetail(9)">
+    <div class="item-card" data-category="electronica" data-subcategory="audio" data-price="380" onclick="alert('🎧 AirPods Max')">
       <div class="item-card__image">
         <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
         <i class="fas fa-headphones placeholder-icon white"></i>
-        <span class="price-tag">â‚¬380</span>
+        <span class="price-tag">€380</span>
       </div>
       <div class="item-card__info">
-        <div class="item-card__title">AirPods Max Â· Azul cielo Â· Como nuevos</div>
+        <div class="item-card__title">AirPods Max · Azul cielo · Como nuevos</div>
         <div class="item-card__meta"><i class="fas fa-map-pin"></i> Madrid</div>
       </div>
     </div>
     <!-- Item 10 -->
-    <div class="item-card" data-category="musica" data-subcategory="guitarras" data-price="620" onclick="goToDetail(10)">
+    <div class="item-card" data-category="musica" data-subcategory="guitarras" data-price="620" onclick="alert('🎸 Bajo Fender Jazz')">
       <div class="item-card__image">
         <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
         <i class="fas fa-guitar placeholder-icon white"></i>
-        <span class="price-tag">â‚¬620</span>
+        <span class="price-tag">€620</span>
       </div>
       <div class="item-card__info">
-        <div class="item-card__title">Bajo Fender Jazz Bass Â· Sunrise Â· 2019</div>
+        <div class="item-card__title">Bajo Fender Jazz Bass · Sunrise · 2019</div>
         <div class="item-card__meta"><i class="fas fa-map-pin"></i> Barcelona</div>
       </div>
     </div>
     <!-- Item 11 -->
-    <div class="item-card" data-category="electronica" data-subcategory="moviles" data-price="720" onclick="goToDetail(11)">
+    <div class="item-card" data-category="electronica" data-subcategory="moviles" data-price="720" onclick="alert('📱 Samsung Galaxy S25')">
       <div class="item-card__image">
         <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
         <i class="fas fa-mobile-alt placeholder-icon white"></i>
-        <span class="price-tag">â‚¬720</span>
+        <span class="price-tag">€720</span>
       </div>
       <div class="item-card__info">
-        <div class="item-card__title">Samsung Galaxy S25 Ultra Â· 512GB Â· Titanium</div>
+        <div class="item-card__title">Samsung Galaxy S25 Ultra · 512GB · Titanium</div>
         <div class="item-card__meta"><i class="fas fa-map-pin"></i> Alicante</div>
       </div>
     </div>
     <!-- Item 12 -->
-    <div class="item-card" data-category="electronica" data-subcategory="accesorios" data-price="550" onclick="goToDetail(12)">
+    <div class="item-card" data-category="electronica" data-subcategory="accesorios" data-price="550" onclick="alert('⌚ Apple Watch Ultra 2')">
       <div class="item-card__image">
         <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
         <i class="fas fa-apple-alt placeholder-icon white"></i>
-        <span class="price-tag">â‚¬550</span>
+        <span class="price-tag">€550</span>
       </div>
       <div class="item-card__info">
-        <div class="item-card__title">Apple Watch Ultra 2 Â· Naranja Â· 49mm</div>
+        <div class="item-card__title">Apple Watch Ultra 2 · Naranja · 49mm</div>
         <div class="item-card__meta"><i class="fas fa-map-pin"></i> Valencia</div>
       </div>
     </div>
     <!-- Item 13 -->
-    <div class="item-card" data-category="hogar" data-subcategory="muebles" data-price="180" onclick="goToDetail(13)">
+    <div class="item-card" data-category="hogar" data-subcategory="muebles" data-price="180" onclick="alert('🛋️ Sofá IKEA Kivik')">
       <div class="item-card__image">
         <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
         <i class="fas fa-couch placeholder-icon white"></i>
-        <span class="price-tag">â‚¬180</span>
+        <span class="price-tag">€180</span>
       </div>
       <div class="item-card__info">
-        <div class="item-card__title">SofÃ¡ IKEA Kivik Â· 3 plazas Â· Gris claro</div>
+        <div class="item-card__title">Sofá IKEA Kivik · 3 plazas · Gris claro</div>
         <div class="item-card__meta"><i class="fas fa-map-pin"></i> Madrid</div>
       </div>
     </div>
     <!-- Item 14 -->
-    <div class="item-card" data-category="hogar" data-subcategory="electrodomesticos" data-price="85" onclick="goToDetail(14)">
+    <div class="item-card" data-category="hogar" data-subcategory="electrodomesticos" data-price="85" onclick="alert('☕ Cafetera Nespresso')">
       <div class="item-card__image">
         <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
         <i class="fas fa-coffee placeholder-icon white"></i>
-        <span class="price-tag">â‚¬85</span>
+        <span class="price-tag">€85</span>
       </div>
       <div class="item-card__info">
-        <div class="item-card__title">Nespresso Vertuo Next Â· Plata Â· Poco uso</div>
+        <div class="item-card__title">Nespresso Vertuo Next · Plata · Poco uso</div>
         <div class="item-card__meta"><i class="fas fa-map-pin"></i> Barcelona</div>
       </div>
     </div>
     <!-- Item 15 -->
-    <div class="item-card" data-category="hogar" data-subcategory="lamparas" data-price="45" onclick="goToDetail(15)">
+    <div class="item-card" data-category="hogar" data-subcategory="lamparas" data-price="45" onclick="alert('💡 Lámpara IKEA')">
       <div class="item-card__image">
         <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
         <i class="fas fa-lightbulb placeholder-icon white"></i>
-        <span class="price-tag">â‚¬45</span>
+        <span class="price-tag">€45</span>
       </div>
       <div class="item-card__info">
-        <div class="item-card__title">LÃ¡mpara de pie IKEA Â· Nordviken Â· Blanca</div>
+        <div class="item-card__title">Lámpara de pie IKEA · Nordviken · Blanca</div>
         <div class="item-card__meta"><i class="fas fa-map-pin"></i> Valencia</div>
       </div>
     </div>
     <!-- Item 16 -->
-    <div class="item-card" data-category="electronica" data-subcategory="tablets" data-price="95" onclick="goToDetail(16)">
+    <div class="item-card" data-category="electronica" data-subcategory="tablets" data-price="95" onclick="alert('📖 Kindle Paperwhite')">
       <div class="item-card__image">
         <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
         <i class="fas fa-tablet-alt placeholder-icon white"></i>
-        <span class="price-tag">â‚¬95</span>
+        <span class="price-tag">€95</span>
       </div>
       <div class="item-card__info">
-        <div class="item-card__title">Kindle Paperwhite Â· 11Âª gen Â· 32GB Â· Sin marcas</div>
+        <div class="item-card__title">Kindle Paperwhite · 11ª gen · 32GB · Sin marcas</div>
         <div class="item-card__meta"><i class="fas fa-map-pin"></i> Madrid</div>
       </div>
     </div>
     <!-- Item 17 -->
-    <div class="item-card" data-category="moda" data-subcategory="bolsos" data-price="55" onclick="goToDetail(17)">
+    <div class="item-card" data-category="moda" data-subcategory="bolsos" data-price="55" onclick="alert('🎒 Mochila The North Face')">
       <div class="item-card__image">
         <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
         <i class="fas fa-shopping-bag placeholder-icon white"></i>
-        <span class="price-tag">â‚¬55</span>
+        <span class="price-tag">€55</span>
       </div>
       <div class="item-card__info">
-        <div class="item-card__title">Mochila The North Face Â· Borealis Â· Negra</div>
+        <div class="item-card__title">Mochila The North Face · Borealis · Negra</div>
         <div class="item-card__meta"><i class="fas fa-map-pin"></i> Barcelona</div>
       </div>
     </div>
     <!-- Item 18 -->
-    <div class="item-card" data-category="moda" data-subcategory="zapatos" data-price="75" onclick="goToDetail(18)">
+    <div class="item-card" data-category="moda" data-subcategory="zapatos" data-price="75" onclick="alert('👟 Nike Air Max')">
       <div class="item-card__image">
         <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
         <i class="fas fa-shoe-prints placeholder-icon white"></i>
-        <span class="price-tag">â‚¬75</span>
+        <span class="price-tag">€75</span>
       </div>
       <div class="item-card__info">
-        <div class="item-card__title">Nike Air Max 90 Â· Talla 42 Â· Muy buen estado</div>
+        <div class="item-card__title">Nike Air Max 90 · Talla 42 · Muy buen estado</div>
         <div class="item-card__meta"><i class="fas fa-map-pin"></i> Madrid</div>
       </div>
     </div>
     <!-- Item 19 -->
-    <div class="item-card" data-category="deporte" data-subcategory="padel" data-price="120" onclick="goToDetail(19)">
+    <div class="item-card" data-category="deporte" data-subcategory="padel" data-price="120" onclick="alert('🏓 Palas de pádel')">
       <div class="item-card__image">
         <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
         <i class="fas fa-table-tennis placeholder-icon white"></i>
-        <span class="price-tag">â‚¬120</span>
+        <span class="price-tag">€120</span>
       </div>
       <div class="item-card__info">
-        <div class="item-card__title">Palas Bullpadel Â· Pack 2 uds. Â· Usadas 3 meses</div>
-        <div class="item-card__meta"><i class="fas fa-map-pin"></i> MÃ¡laga</div>
+        <div class="item-card__title">Palas Bullpadel · Pack 2 uds. · Usadas 3 meses</div>
+        <div class="item-card__meta"><i class="fas fa-map-pin"></i> Málaga</div>
       </div>
     </div>
     <!-- Item 20 -->
-    <div class="item-card" data-category="deporte" data-subcategory="fitness" data-price="65" onclick="goToDetail(20)">
+    <div class="item-card" data-category="deporte" data-subcategory="fitness" data-price="65" onclick="alert('🏋️ Set pesas')">
       <div class="item-card__image">
         <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
         <i class="fas fa-dumbbell placeholder-icon white"></i>
-        <span class="price-tag">â‚¬65</span>
+        <span class="price-tag">€65</span>
       </div>
       <div class="item-card__info">
-        <div class="item-card__title">Set pesas 20kg Â· Con mancuernas Â· Hierro fundido</div>
+        <div class="item-card__title">Set pesas 20kg · Con mancuernas · Hierro fundido</div>
         <div class="item-card__meta"><i class="fas fa-map-pin"></i> Bilbao</div>
       </div>
     </div>
     <!-- Item 21 -->
-    <div class="item-card" data-category="musica" data-subcategory="guitarras" data-price="210" onclick="goToDetail(21)">
+    <div class="item-card" data-category="musica" data-subcategory="guitarras" data-price="210" onclick="alert('🎸 Guitarra Yamaha')">
       <div class="item-card__image">
         <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
         <i class="fas fa-guitar placeholder-icon white"></i>
-        <span class="price-tag">â‚¬210</span>
+        <span class="price-tag">€210</span>
       </div>
       <div class="item-card__info">
-        <div class="item-card__title">Guitarra acÃºstica Yamaha F310 Â· ClÃ¡sica Â· 6 cuerdas</div>
+        <div class="item-card__title">Guitarra acústica Yamaha F310 · Clásica · 6 cuerdas</div>
         <div class="item-card__meta"><i class="fas fa-map-pin"></i> Valencia</div>
       </div>
     </div>
     <!-- Item 22 -->
-    <div class="item-card" data-category="musica" data-subcategory="vinilos" data-price="120" onclick="goToDetail(22)">
+    <div class="item-card" data-category="musica" data-subcategory="vinilos" data-price="120" onclick="alert('🎵 Vinilos Beatles')">
       <div class="item-card__image">
         <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
         <i class="fas fa-compact-disc placeholder-icon white"></i>
-        <span class="price-tag">â‚¬120</span>
+        <span class="price-tag">€120</span>
       </div>
       <div class="item-card__info">
-        <div class="item-card__title">Vinilos Beatles Â· ColecciÃ³n 5 LP Â· EdiciÃ³n original</div>
+        <div class="item-card__title">Vinilos Beatles · Colección 5 LP · Edición original</div>
         <div class="item-card__meta"><i class="fas fa-map-pin"></i> Barcelona</div>
       </div>
     </div>
     <!-- Item 23 -->
-    <div class="item-card" data-category="musica" data-subcategory="baterias" data-price="650" onclick="goToDetail(23)">
+    <div class="item-card" data-category="musica" data-subcategory="baterias" data-price="650" onclick="alert('🥁 Batería Roland')">
       <div class="item-card__image">
         <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
         <i class="fas fa-drum placeholder-icon white"></i>
-        <span class="price-tag">â‚¬650</span>
+        <span class="price-tag">€650</span>
       </div>
       <div class="item-card__info">
-        <div class="item-card__title">BaterÃ­a electrÃ³nica Roland TD-1DMK Â· Completa</div>
+        <div class="item-card__title">Batería electrónica Roland TD-1DMK · Completa</div>
         <div class="item-card__meta"><i class="fas fa-map-pin"></i> Madrid</div>
       </div>
     </div>
     <!-- Item 24 -->
-    <div class="item-card" data-category="libros" data-subcategory="novelas" data-price="12" onclick="goToDetail(24)">
+    <div class="item-card" data-category="libros" data-subcategory="novelas" data-price="12" onclick="alert('📚 Cien años de soledad')">
       <div class="item-card__image">
         <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
         <i class="fas fa-book placeholder-icon white"></i>
-        <span class="price-tag">â‚¬12</span>
+        <span class="price-tag">€12</span>
       </div>
       <div class="item-card__info">
-        <div class="item-card__title">Cien aÃ±os de soledad Â· Gabriel GarcÃ­a MÃ¡rquez Â· Tapa dura</div>
+        <div class="item-card__title">Cien años de soledad · Gabriel García Márquez · Tapa dura</div>
         <div class="item-card__meta"><i class="fas fa-map-pin"></i> Sevilla</div>
       </div>
     </div>
     <!-- Item 25 -->
-    <div class="item-card" data-category="libros" data-subcategory="novelas" data-price="45" onclick="goToDetail(25)">
+    <div class="item-card" data-category="libros" data-subcategory="novelas" data-price="45" onclick="alert('📕 Colección Harry Potter')">
       <div class="item-card__image">
         <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
         <i class="fas fa-book-open placeholder-icon white"></i>
-        <span class="price-tag">â‚¬45</span>
+        <span class="price-tag">€45</span>
       </div>
       <div class="item-card__info">
-        <div class="item-card__title">Harry Potter Â· 7 libros Â· Tapa blanda Â· Casi nuevos</div>
+        <div class="item-card__title">Harry Potter · 7 libros · Tapa blanda · Casi nuevos</div>
         <div class="item-card__meta"><i class="fas fa-map-pin"></i> Granada</div>
       </div>
     </div>
     <!-- Item 26 -->
-    <div class="item-card" data-category="electronica" data-subcategory="consolas" data-price="280" onclick="goToDetail(26)">
+    <div class="item-card" data-category="electronica" data-subcategory="consolas" data-price="280" onclick="alert('🎮 Nintendo Switch OLED')">
       <div class="item-card__image">
         <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
         <i class="fas fa-gamepad placeholder-icon white"></i>
-        <span class="price-tag">â‚¬280</span>
+        <span class="price-tag">€280</span>
       </div>
       <div class="item-card__info">
-        <div class="item-card__title">Nintendo Switch OLED Â· Blanco Â· Como nueva</div>
+        <div class="item-card__title">Nintendo Switch OLED · Blanco · Como nueva</div>
         <div class="item-card__meta"><i class="fas fa-map-pin"></i> Zaragoza</div>
       </div>
     </div>
     <!-- Item 27 -->
-    <div class="item-card" data-category="electronica" data-subcategory="accesorios" data-price="85" onclick="goToDetail(27)">
+    <div class="item-card" data-category="electronica" data-subcategory="accesorios" data-price="85" onclick="alert('⌨️ Teclado Logitech')">
       <div class="item-card__image">
         <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
         <i class="fas fa-keyboard placeholder-icon white"></i>
-        <span class="price-tag">â‚¬85</span>
+        <span class="price-tag">€85</span>
       </div>
       <div class="item-card__info">
-        <div class="item-card__title">Logitech MX Mechanical Â· InalÃ¡mbrico Â· TÃ¡ctil</div>
+        <div class="item-card__title">Logitech MX Mechanical · Inalámbrico · Táctil</div>
         <div class="item-card__meta"><i class="fas fa-map-pin"></i> Alicante</div>
       </div>
     </div>
     <!-- Item 28 -->
-    <div class="item-card" data-category="moda" data-subcategory="ropa-mujer" data-price="35" onclick="goToDetail(28)">
+    <div class="item-card" data-category="moda" data-subcategory="ropa-mujer" data-price="35" onclick="alert('👗 Vestido Zara')">
       <div class="item-card__image">
         <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
         <i class="fas fa-female placeholder-icon white"></i>
-        <span class="price-tag">â‚¬35</span>
+        <span class="price-tag">€35</span>
       </div>
       <div class="item-card__info">
-        <div class="item-card__title">Vestido Zara Â· Talla S Â· Floral Â· Puesto 2 veces</div>
+        <div class="item-card__title">Vestido Zara · Talla S · Floral · Puesto 2 veces</div>
         <div class="item-card__meta"><i class="fas fa-map-pin"></i> Madrid</div>
       </div>
     </div>
     <!-- Item 29 -->
-    <div class="item-card" data-category="deporte" data-subcategory="fitness" data-price="55" onclick="goToDetail(29)">
+    <div class="item-card" data-category="deporte" data-subcategory="fitness" data-price="55" onclick="alert('⛸️ Patines en línea')">
       <div class="item-card__image">
         <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
         <i class="fas fa-skating placeholder-icon white"></i>
-        <span class="price-tag">â‚¬55</span>
+        <span class="price-tag">€55</span>
       </div>
       <div class="item-card__info">
-        <div class="item-card__title">Patines en lÃ­nea Â· Talla 42 Â· Ajustables Â· Poco uso</div>
+        <div class="item-card__title">Patines en línea · Talla 42 · Ajustables · Poco uso</div>
         <div class="item-card__meta"><i class="fas fa-map-pin"></i> Barcelona</div>
       </div>
     </div>
     <!-- Item 30 -->
-    <div class="item-card" data-category="hogar" data-subcategory="muebles" data-price="150" onclick="goToDetail(30)">
+    <div class="item-card" data-category="hogar" data-subcategory="muebles" data-price="150" onclick="alert('🪑 Silla IKEA Markus')">
       <div class="item-card__image">
         <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
         <i class="fas fa-chair placeholder-icon white"></i>
-        <span class="price-tag">â‚¬150</span>
+        <span class="price-tag">€150</span>
       </div>
       <div class="item-card__info">
-        <div class="item-card__title">Silla oficina IKEA Markus Â· Negro Â· Muy cuidada</div>
+        <div class="item-card__title">Silla oficina IKEA Markus · Negro · Muy cuidada</div>
         <div class="item-card__meta"><i class="fas fa-map-pin"></i> Valencia</div>
       </div>
     </div>
     <!-- Item 31 -->
-    <div class="item-card" data-category="libros" data-subcategory="academicos" data-price="120" onclick="goToDetail(31)">
+    <div class="item-card" data-category="libros" data-subcategory="academicos" data-price="120" onclick="alert('📖 Enciclopedia Salvat')">
       <div class="item-card__image">
         <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
         <i class="fas fa-book placeholder-icon white"></i>
-        <span class="price-tag">â‚¬120</span>
+        <span class="price-tag">€120</span>
       </div>
       <div class="item-card__info">
-        <div class="item-card__title">Enciclopedia Salvat Â· 12 tomos Â· Completa Â· 2005</div>
-        <div class="item-card__meta"><i class="fas fa-map-pin"></i> MÃ¡laga</div>
+        <div class="item-card__title">Enciclopedia Salvat · 12 tomos · Completa · 2005</div>
+        <div class="item-card__meta"><i class="fas fa-map-pin"></i> Málaga</div>
       </div>
     </div>
     <!-- Item 32 -->
-    <div class="item-card" data-category="libros" data-subcategory="comics" data-price="25" onclick="goToDetail(32)">
+    <div class="item-card" data-category="libros" data-subcategory="comics" data-price="25" onclick="alert('🦇 Batman Year One')">
       <div class="item-card__image">
         <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
         <i class="fas fa-book-open placeholder-icon white"></i>
-        <span class="price-tag">â‚¬25</span>
+        <span class="price-tag">€25</span>
       </div>
       <div class="item-card__info">
-        <div class="item-card__title">Batman Year One Â· Frank Miller Â· EdiciÃ³n Deluxe</div>
+        <div class="item-card__title">Batman Year One · Frank Miller · Edición Deluxe</div>
         <div class="item-card__meta"><i class="fas fa-map-pin"></i> Bilbao</div>
       </div>
     </div>
@@ -1240,9 +1240,9 @@
   <div class="empty-state" id="emptyState" style="display: none;">
     <div class="empty-state__icon"><i class="fas fa-search"></i></div>
     <div class="empty-state__title">No encontramos resultados</div>
-    <div class="empty-state__text">Prueba con otros tÃ©rminos o filtros diferentes</div>
+    <div class="empty-state__text">Prueba con otros términos o filtros diferentes</div>
     <button class="empty-state__btn" onclick="clearSearch()">
-      <i class="fas fa-times"></i> Limpiar bÃºsqueda
+      <i class="fas fa-times"></i> Limpiar búsqueda
     </button>
   </div>
 
@@ -1251,7 +1251,7 @@
     <div class="match-banner__icon"><i class="fas fa-star"></i></div>
     <div class="match-banner__content">
       <div class="match-banner__title">Tienes 1 match pendiente</div>
-      <div class="match-banner__text">Fender Stratocaster â†” Trek Marlin 7</div>
+      <div class="match-banner__text">Fender Stratocaster ↔ Trek Marlin 7</div>
     </div>
     <button class="match-banner__close" onclick="closeBanner()">
       <i class="fas fa-times"></i>
@@ -1259,7 +1259,6 @@
   </div>
 
   <!-- ===== BOTTOM NAV ===== -->
-  
   <nav class="bottom-nav">
     <button class="nav-item active" onclick="goToHome()">
       <i class="fas fa-home"></i>
@@ -1312,7 +1311,7 @@
       items.forEach(item => {
         if (item.style.display !== 'none') visible++;
       });
-      document.getElementById('articleCount').textContent = visible + ' artÃ­culos';
+      document.getElementById('articleCount').textContent = visible + ' artículos';
     }
 
     // ===== FILTER BY CATEGORY (chips) =====
@@ -1386,7 +1385,7 @@
     function goToUpload() { window.parent.location.href = '../v3-subir/'; }
     function goToMatches() { window.parent.location.href = '../v12-mis-matches/'; }
 
-    console.log('ðŸ“± TREQE v1 â€” CatÃ¡logo Â· 32 productos demo');
+    console.log('📱 TREQE v1 — Catálogo · 32 productos demo');
 
     // ===== ADVANCED SEARCH FILTERS (modal) =====
     function openFilters() {
@@ -1395,7 +1394,7 @@
         modal.classList.add('visible');
         document.body.style.overflow = 'hidden';
       } else {
-        alert('Filtros disponibles en versiÃ³n completa');
+        alert('Filtros disponibles en versión completa');
       }
     }
 
@@ -1407,24 +1406,24 @@
       }
     }
 
-    // SubcategorÃ­as por categorÃ­a (desde API Wallapop)
+    // Subcategorías por categoría (desde API Wallapop)
     const subcategories = {
-      electronica: ['MÃ³viles', 'PortÃ¡tiles', 'Tablets', 'CÃ¡maras', 'Audio', 'Consolas', 'Accesorios', 'TV y Proyectores', 'Smartwatches', 'Componentes PC', 'PerifÃ©ricos'],
-      moda: ['Ropa hombre', 'Ropa mujer', 'Zapatos', 'Bolsos', 'Relojes', 'JoyerÃ­a', 'Vintage', 'Accesorios', 'Belleza'],
-      deporte: ['Bicicletas', 'Fitness', 'Running', 'NataciÃ³n', 'FÃºtbol', 'Padel', 'Camping', 'MontaÃ±a y Ski', 'Baloncesto', 'Golf', 'Yoga', 'Pesas', 'Patines'],
-      musica: ['Guitarras', 'BaterÃ­as', 'Teclados', 'Vinilos', 'Equipos DJ', 'Instrumentos viento', 'MicrÃ³fonos', 'Partituras'],
-      hogar: ['Muebles', 'DecoraciÃ³n', 'ElectrodomÃ©sticos', 'JardÃ­n', 'Bricolaje', 'LÃ¡mparas', 'Cocina', 'BaÃ±o', 'Textiles', 'Mascotas', 'CalefacciÃ³n'],
-      libros: ['Novelas', 'CÃ³mics', 'AcadÃ©micos', 'Infantil', 'Idiomas', 'Arte', 'Revistas', 'Ensayo'],
-      motor: ['Coches', 'Motos', 'Recambios coche', 'Recambios moto', 'GPS', 'Herramientas', 'NeumÃ¡ticos', 'Accesorios'],
+      electronica: ['Móviles', 'Portátiles', 'Tablets', 'Cámaras', 'Audio', 'Consolas', 'Accesorios', 'TV y Proyectores', 'Smartwatches', 'Componentes PC', 'Periféricos'],
+      moda: ['Ropa hombre', 'Ropa mujer', 'Zapatos', 'Bolsos', 'Relojes', 'Joyería', 'Vintage', 'Accesorios', 'Belleza'],
+      deporte: ['Bicicletas', 'Fitness', 'Running', 'Natación', 'Fútbol', 'Padel', 'Camping', 'Montaña y Ski', 'Baloncesto', 'Golf', 'Yoga', 'Pesas', 'Patines'],
+      musica: ['Guitarras', 'Baterías', 'Teclados', 'Vinilos', 'Equipos DJ', 'Instrumentos viento', 'Micrófonos', 'Partituras'],
+      hogar: ['Muebles', 'Decoración', 'Electrodomésticos', 'Jardín', 'Bricolaje', 'Lámparas', 'Cocina', 'Baño', 'Textiles', 'Mascotas', 'Calefacción'],
+      libros: ['Novelas', 'Cómics', 'Académicos', 'Infantil', 'Idiomas', 'Arte', 'Revistas', 'Ensayo'],
+      motor: ['Coches', 'Motos', 'Recambios coche', 'Recambios moto', 'GPS', 'Herramientas', 'Neumáticos', 'Accesorios'],
       inmuebles: ['Pisos', 'Casas', 'Garajes', 'Locales', 'Terrenos', 'Oficinas', 'Habitaciones'],
-      bicicletas: ['Bicis montaÃ±a', 'Bicis carretera', 'Bicis elÃ©ctricas', 'Cascos', 'Componentes', 'Accesorios', 'Ropa ciclismo'],
-      electrodomesticos: ['Cocina', 'LavanderÃ­a', 'ClimatizaciÃ³n', 'PequeÃ±o electro', 'Aspiradoras', 'Recambios'],
-      bebes: ['Ropa bebÃ©', 'Juguetes', 'Carritos', 'Sillas coche', 'Cunas', 'AlimentaciÃ³n', 'Seguridad', 'Maternidad'],
-      coleccionismo: ['AntigÃ¼edades', 'Monedas', 'Sellos', 'Cromos', 'Figuras', 'PÃ³sters', 'Postales'],
-      construccion: ['Puertas', 'Ventanas', 'Suelos', 'Pintura', 'FerreterÃ­a', 'Andamios', 'Electricidad', 'BaÃ±os'],
+      bicicletas: ['Bicis montaña', 'Bicis carretera', 'Bicis eléctricas', 'Cascos', 'Componentes', 'Accesorios', 'Ropa ciclismo'],
+      electrodomesticos: ['Cocina', 'Lavandería', 'Climatización', 'Pequeño electro', 'Aspiradoras', 'Recambios'],
+      bebes: ['Ropa bebé', 'Juguetes', 'Carritos', 'Sillas coche', 'Cunas', 'Alimentación', 'Seguridad', 'Maternidad'],
+      coleccionismo: ['Antigüedades', 'Monedas', 'Sellos', 'Cromos', 'Figuras', 'Pósters', 'Postales'],
+      construccion: ['Puertas', 'Ventanas', 'Suelos', 'Pintura', 'Ferretería', 'Andamios', 'Electricidad', 'Baños'],
       industria: ['Agricultura', 'Maquinaria', 'Herramientas', 'Recambios', 'Tractores'],
       empleo: ['Ofertas empleo', 'Busco empleo'],
-      servicios: ['Clases', 'Limpieza', 'Mudanzas', 'Reparaciones', 'Canguros', 'Terapias', 'FontanerÃ­a', 'Electricista'],
+      servicios: ['Clases', 'Limpieza', 'Mudanzas', 'Reparaciones', 'Canguros', 'Terapias', 'Fontanería', 'Electricista'],
       otros: ['Varios']
     };
 
@@ -1528,7 +1527,7 @@
       let filtersHTML = '';
       
       if (category) filtersHTML += `<div class="active-filter" data-filter="category"><span>${document.getElementById('categorySelect').options[document.getElementById('categorySelect').selectedIndex].text}</span><button onclick="removeFilter('category')"><i class="fas fa-times"></i></button></div>`;
-      if (priceMin > 0 || priceMax < Infinity) filtersHTML += `<div class="active-filter" data-filter="price"><span>â‚¬${priceMin || 0} - â‚¬${priceMax === Infinity ? 'âˆž' : priceMax}</span><button onclick="removeFilter('price')"><i class="fas fa-times"></i></button></div>`;
+      if (priceMin > 0 || priceMax < Infinity) filtersHTML += `<div class="active-filter" data-filter="price"><span>€${priceMin || 0} - €${priceMax === Infinity ? '∞' : priceMax}</span><button onclick="removeFilter('price')"><i class="fas fa-times"></i></button></div>`;
       if (condition !== 'any') filtersHTML += `<div class="active-filter" data-filter="condition"><span>${document.querySelector('[data-condition].active').textContent}</span><button onclick="removeFilter('condition')"><i class="fas fa-times"></i></button></div>`;
       
       if (filtersHTML) {
@@ -1609,66 +1608,66 @@
           <div class="filter-group__title">Ordenar por</div>
           <div class="filter-chips filter-chips--sort">
             <button class="filter-chip active" data-sort="relevance">Relevancia</button>
-            <button class="filter-chip" data-sort="price-asc">Precio â†‘</button>
-            <button class="filter-chip" data-sort="price-desc">Precio â†“</button>
-            <button class="filter-chip" data-sort="newest">MÃ¡s reciente</button>
+            <button class="filter-chip" data-sort="price-asc">Precio ↑</button>
+            <button class="filter-chip" data-sort="price-desc">Precio ↓</button>
+            <button class="filter-chip" data-sort="newest">Más reciente</button>
           </div>
         </div>
-        <!-- CategorÃ­a -->
+        <!-- Categoría -->
         <div class="filter-group">
-          <div class="filter-group__title">CategorÃ­a</div>
+          <div class="filter-group__title">Categoría</div>
           <select class="filter-select" id="categorySelect" onchange="updateSubcategories()">
             <option value="">Todas</option>
-            <option value="electronica">ElectrÃ³nica</option>
+            <option value="electronica">Electrónica</option>
             <option value="moda">Moda</option>
             <option value="deporte">Deporte</option>
-            <option value="musica">MÃºsica</option>
+            <option value="musica">Música</option>
             <option value="hogar">Hogar</option>
             <option value="libros">Libros</option>
             <option value="motor">Motor</option>
             <option value="inmuebles">Inmuebles</option>
             <option value="bicicletas">Bicicletas</option>
-            <option value="electrodomesticos">ElectrodomÃ©sticos</option>
-            <option value="bebes">BebÃ©s y niÃ±os</option>
+            <option value="electrodomesticos">Electrodomésticos</option>
+            <option value="bebes">Bebés y niños</option>
             <option value="coleccionismo">Coleccionismo</option>
-            <option value="construccion">ConstrucciÃ³n</option>
+            <option value="construccion">Construcción</option>
             <option value="industria">Industria</option>
             <option value="empleo">Empleo</option>
             <option value="servicios">Servicios</option>
             <option value="otros">Otros</option>
           </select>
         </div>
-        <!-- SubcategorÃ­a -->
+        <!-- Subcategoría -->
         <div class="filter-group" id="subcategoryGroup" style="display: none;">
-          <div class="filter-group__title">SubcategorÃ­a</div>
+          <div class="filter-group__title">Subcategoría</div>
           <select class="filter-select" id="subcategorySelect">
             <option value="">Todas</option>
           </select>
         </div>
         <!-- Precio -->
         <div class="filter-group">
-          <div class="filter-group__title">Precio (â‚¬)</div>
+          <div class="filter-group__title">Precio (€)</div>
           <div class="filter-range">
             <div class="filter-price-input">
-              <span class="filter-price-symbol">â‚¬</span>
+              <span class="filter-price-symbol">€</span>
               <input type="number" placeholder="0" class="filter-input filter-input--price" id="priceMin" min="0">
             </div>
-            <span class="filter-range-separator">â€”</span>
+            <span class="filter-range-separator">—</span>
             <div class="filter-price-input">
-              <span class="filter-price-symbol">â‚¬</span>
+              <span class="filter-price-symbol">€</span>
               <input type="number" placeholder="Max" class="filter-input filter-input--price" id="priceMax" min="0">
             </div>
           </div>
           <div class="filter-quick-prices">
-            <button class="filter-quick-btn" onclick="setPriceRange(0, 50, this)">Hasta â‚¬50</button>
-            <button class="filter-quick-btn" onclick="setPriceRange(50, 200, this)">â‚¬50-200</button>
-            <button class="filter-quick-btn" onclick="setPriceRange(200, 500, this)">â‚¬200-500</button>
-            <button class="filter-quick-btn" onclick="setPriceRange(500, null, this)">+â‚¬500</button>
+            <button class="filter-quick-btn" onclick="setPriceRange(0, 50, this)">Hasta €50</button>
+            <button class="filter-quick-btn" onclick="setPriceRange(50, 200, this)">€50-200</button>
+            <button class="filter-quick-btn" onclick="setPriceRange(200, 500, this)">€200-500</button>
+            <button class="filter-quick-btn" onclick="setPriceRange(500, null, this)">+€500</button>
           </div>
         </div>
-        <!-- CondiciÃ³n -->
+        <!-- Condición -->
         <div class="filter-group">
-          <div class="filter-group__title">CondiciÃ³n</div>
+          <div class="filter-group__title">Condición</div>
           <div class="filter-chips">
             <button class="filter-chip active" data-condition="any">Cualquiera</button>
             <button class="filter-chip" data-condition="new">Nuevo</button>
