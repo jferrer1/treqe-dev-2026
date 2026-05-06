@@ -1330,10 +1330,8 @@
       items.forEach(item => {
         const cat = item.dataset.category || '';
         const title = item.querySelector('.item-card__title').textContent.toLowerCase();
-        const meta = item.querySelector('.item-card__meta').textContent.toLowerCase();
-        
         const matchesCategory = activeCategory === 'all' || cat === activeCategory;
-        const matchesSearch = !query || title.includes(query) || meta.includes(query);
+        const matchesSearch = !query || title.includes(query);
         
         if (matchesCategory && matchesSearch) {
           item.style.display = '';
@@ -1497,12 +1495,10 @@
         const itemCat = item.dataset.category || '';
         const itemSubcat = item.dataset.subcategory || '';
         const title = item.querySelector('.item-card__title').textContent.toLowerCase();
-        const meta = item.querySelector('.item-card__meta').textContent.toLowerCase();
-        
         const matchesCategory = !category || itemCat === category;
         const matchesSubcategory = !subcategory || itemSubcat === subcategory;
         const matchesPrice = itemPrice >= priceMin && itemPrice <= priceMax;
-        const matchesSearch = !query || title.includes(query) || meta.includes(query);
+        const matchesSearch = !query || title.includes(query);
         
         if (matchesCategory && matchesSubcategory && matchesPrice && matchesSearch) {
           item.style.display = '';
