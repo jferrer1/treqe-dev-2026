@@ -407,6 +407,61 @@
     .help-link button:active { color: var(--text); }
 
     /* ===== BOTTOM NAV ===== */
+    
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      font-size: 0.65rem;
+      font-weight: 500;
+      color: var(--text-tertiary);
+      transition: color 0.2s;
+      padding: 4px 0;
+      flex: 1;
+      max-width: 80px;
+      position: relative;
+    }
+    .nav-item i {
+      font-size: 1.3rem;
+    }
+    .nav-item.active {
+      color: var(--accent);
+    }
+    .nav-item.active i {
+      transform: scale(1.05);
+    }
+    .nav-item .nav-badge {
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      position: absolute;
+      top: 2px;
+      right: 12px;
+    }
+    .nav-item.nav-add {
+      position: relative;
+      top: 0;
+    }
+    .nav-item.nav-add .nav-add-btn {
+      width: 48px;
+      height: 48px;
+      background: var(--accent);
+      color: #FFFFFF;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 16px rgba(255,106,53,0.3);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .nav-item.nav-add .nav-add-btn:active {
+      transform: scale(0.92);
+      box-shadow: 0 2px 8px rgba(255,106,53,0.2);
+    }
+
     .bottom-nav {
       position: fixed;
       bottom: 0;
@@ -425,39 +480,11 @@
       z-index: 100;
     isolation: isolate;
     }
-    .nav-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 2px;
-      font-size: 0.65rem;
-      font-weight: 500;
-      color: var(--text-tertiary);
-      transition: color 0.2s;
-      padding: 4px 16px;
-      position: relative;
-    }
-    .nav-item i { font-size: 1.2rem; }
-    .nav-item.active { color: var(--accent); }
-    .nav-item.nav-add .nav-add-btn {
-      width: 48px;
-      height: 48px;
-      background: var(--accent);
-      color: #FFFFFF;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      box-shadow: 0 4px 16px rgba(255,106,53,0.3);
-      transition: transform 0.2s, box-shadow 0.2s;
-      position: relative;
-      top: -12px;
-    }
-    .nav-item.nav-add .nav-add-btn:active {
-      transform: scale(0.92);
-      box-shadow: 0 2px 8px rgba(255,106,53,0.2);
-    }
+    
+    
+    
+    
+    
 
     /* ===== PROGRESS SIMULATOR ===== */
     .progress-control {
