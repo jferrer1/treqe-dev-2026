@@ -2044,12 +2044,27 @@
         }
     }
 
-    const pagingSentinel = document.getElementById('pagingSentinel');
-    if (pagingSentinel) {
-        new IntersectionObserver((entries) => {
-            entries.forEach(e => { if (e.isIntersecting) loadChunk(); });
-        }, { rootMargin: '200px' }).observe(pagingSentinel);
-    }
+    let isLoading = false;
+    window.addEventListener('scroll', function() {
+        if (isLoading) return;
+        const sentinel = document.getElementById('pagingSentinel');
+        if (!sentinel || sentinel.style.display === 'none') return;
+        const rect = sentinel.getBoundingClientRect();
+        if (rect.top < window.innerHeight + 100) {
+            isLoading = true;
+            loadChunk();
+            setTimeout(function() { isLoading = false; }, 500);
+        }
+    });
+    setTimeout(function() {
+        const sentinel = document.getElementById('pagingSentinel');
+        if (sentinel && sentinel.style.display !== 'none') {
+            const rect = sentinel.getBoundingClientRect();
+            if (rect.top < window.innerHeight + 100) {
+                loadChunk();
+            }
+        }
+    }, 500);
 
     const origFilter = filterByCategory;
     filterByCategory = function(cat) {
