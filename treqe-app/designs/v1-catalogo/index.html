@@ -2101,9 +2101,10 @@
       items.forEach(item => {
         const cat = item.dataset.category || '';
         const title = item.querySelector('.item-card__title').textContent.toLowerCase();
+        const meta = item.querySelector('.item-card__meta').textContent.toLowerCase();
         
         const matchesCategory = activeCategory === 'all' || cat === activeCategory;
-        const matchesSearch = !query || title.includes(query);
+        const matchesSearch = !query || title.includes(query) || meta.includes(query);
         
         if (matchesCategory && matchesSearch) {
           item.style.display = '';
@@ -2146,6 +2147,15 @@
     }
 
     // ===== NAVIGATION =====
+    function goToNotifs() { window.parent.location.href = '../v11-notificaciones/'; }
+    function goToProfile() { window.parent.location.href = '../v4-perfil/'; }
+    function goToHome() { window.parent.location.href = '../v1-catalogo/'; }
+    function goToSearch() { window.parent.location.href = '../v1-catalogo/'; }
+    function goToUpload() { window.parent.location.href = '../v3-subir/'; }    function goToNotifs() { window.parent.location.href = '../v11-notificaciones/'; }
+    function goToProfile() { window.parent.location.href = '../v4-perfil/'; }
+    function goToCatalog() { window.parent.location.href = '../v1-catalogo/'; }
+    function goToDetail(id) { window.parent.location.href = '../v2-detalle/?id=' + id; }
+    function goToMatches() { window.parent.location.href = '../v12-mis-matches/'; }
 
     console.log('📱 TREQE v1 — Catálogo · 32 productos demo');
 
@@ -2258,11 +2268,12 @@
         const itemCat = item.dataset.category || '';
         const itemSubcat = item.dataset.subcategory || '';
         const title = item.querySelector('.item-card__title').textContent.toLowerCase();
+        const meta = item.querySelector('.item-card__meta').textContent.toLowerCase();
         
         const matchesCategory = !category || itemCat === category;
         const matchesSubcategory = !subcategory || itemSubcat === subcategory;
         const matchesPrice = itemPrice >= priceMin && itemPrice <= priceMax;
-        const matchesSearch = !query || title.includes(query);
+        const matchesSearch = !query || title.includes(query) || meta.includes(query);
         
         if (matchesCategory && matchesSubcategory && matchesPrice && matchesSearch) {
           item.style.display = '';
@@ -2448,31 +2459,22 @@
       sentinel.style.alignItems = 'center';
       sentinel.style.justifyContent = 'center';
       sentinel.style.padding = '20px';
-      sentinel.style.textAlign = 'center';
-      sentinel.innerHTML = '<span id="scrollLoader"><i class="fas fa-spinner fa-pulse"></i> Cargando más artículos...</span>';
+      sentinel.style.gridColumn = '1 / -1';
+      sentinel.innerHTML = '<div id="scrollLoader" style="color:var(--text-tertiary);font-size:0.8rem;"><i class="fas fa-spinner fa-pulse"></i> Cargando más artículos...</div>';
       catalogEl.parentNode.insertBefore(sentinel, catalogEl.nextSibling);
     }
     
     // Init: show first batch
     showBatch(0);
-    // Show initial count
-    document.getElementById('articleCount').textContent = Math.min(20, totalItemCount) + ' artículos';
     setupInfiniteScroll();
 
   
-    function goToDetail(id) { window.parent.location.href = '../v2-detalle/?id=' + id; }
-    function goToNotifs() { window.parent.location.href = '../v11-notificaciones/'; }
-    function goToProfile() { window.parent.location.href = '../v4-perfil/'; }
-    function goToHome() { window.parent.location.href = '../v1-catalogo/'; }
-    function goToSearch() { window.parent.location.href = '../v1-catalogo/'; }
-    function goToUpload() { window.parent.location.href = '../v3-subir/'; }
-    function goToCatalog() { window.parent.location.href = '../v1-catalogo/'; }
-    function goToDetail(id) { window.parent.location.href = '../v2-detalle/?id=' + id; }
-    function goToMatches() { window.parent.location.href = '../v12-mis-matches/'; }
     function goToDiscover() { window.parent.location.href = '../v1-catalogo/'; }
     function goToTrades() { window.parent.location.href = '../v12-mis-matches/'; }
     function goToInbox() { window.parent.location.href = '../v11-notificaciones/'; }
-</script>
+    function goToUpload() { window.parent.location.href = '../v3-subir/'; }
+    function goToProfile() { window.parent.location.href = '../v4-perfil/'; }
+    function goToDetail(id) { window.parent.location.href = '../v2-detalle/?id=' + id; }</script>
 
   <!-- ===== FILTER MODAL ===== -->
   <div class="filter-modal-overlay" id="filterModal" onclick="closeFilters()">
