@@ -2365,6 +2365,109 @@
     // ===== INIT =====
     updateItemCounts();
     updateArticleCount();
+    // ===== INFINITE SCROLL (story scrolling) =====
+    const BATCH_SIZE = 20;
+    let currentBatch = 0;
+    const allItems = Array.from(document.querySelectorAll('.item-card'));
+    const totalItemCount = allItems.length;
+    
+    function showBatch(batchNum) {
+      const end = Math.min((batchNum + 1) * BATCH_SIZE, totalItemCount);
+      // Hide all
+      allItems.forEach((item, i) => {
+        item.style.display = (i < end) ? '' : 'none';
+      });
+      currentBatch = batchNum;
+      updateArticleCount();
+      // Also update filter pill counts
+      updateItemCounts();
+    }
+    
+    function loadMoreItems() {
+      const nextBatch = currentBatch + 1;
+      const end = Math.min((nextBatch + 1) * BATCH_SIZE, totalItemCount);
+      if (end <= totalItemCount) {
+        // Show more items
+        for (let i = currentBatch * BATCH_SIZE; i < end; i++) {
+          allItems[i].style.display = '';
+        }
+        currentBatch = nextBatch;
+        // Hide loading if all loaded
+        if (end >= totalItemCount) {
+          document.getElementById('scrollLoader').style.display = 'none';
+        }
+        updateArticleCount();
+        updateItemCounts();
+      }
+    }
+    
+    // Set up intersection observer for infinite scroll
+    function setupInfiniteScroll() {
+      const sentinel = document.getElementById('scrollSentinel');
+      if (!sentinel) return;
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            loadMoreItems();
+          }
+        });
+      }, { rootMargin: '200px' });
+      
+      observer.observe(sentinel);
+    }
+    
+    // Override filterByCategory to work with batches
+    const origFilterByCategory = filterByCategory;
+    filterByCategory = function(category) {
+      activeCategory = category;
+      document.querySelectorAll('.filter-pill').forEach(p => {
+        p.classList.toggle('active', p.dataset.category === category);
+      });
+      // Show all items temporarily for counting, then re-apply batch
+      allItems.forEach(item => item.style.display = '');
+      origFilterByCategory(category);
+      // Re-apply batch hiding after filter
+      if (activeCategory === 'all') {
+        showBatch(currentBatch);
+      }
+    };
+    
+    // Override applyCurrentFilters to work with batches
+    const origApply = applyCurrentFilters;
+    applyCurrentFilters = function() {
+      allItems.forEach(item => item.style.display = '');
+      origApply();
+      // If "all" category, re-apply batch hiding
+      if (activeCategory === 'all') {
+        const end = (currentBatch + 1) * BATCH_SIZE;
+        allItems.forEach((item, i) => {
+          if (item.style.display !== 'none' && i >= end) {
+            item.style.display = 'none';
+          }
+        });
+      }
+    };
+    
+    // Add scroll sentinel after catalog
+    const catalogEl = document.getElementById('catalog');
+    if (catalogEl) {
+      const sentinel = document.createElement('div');
+      sentinel.id = 'scrollSentinel';
+      sentinel.style.height = '20px';
+      sentinel.style.display = 'flex';
+      sentinel.style.alignItems = 'center';
+      sentinel.style.justifyContent = 'center';
+      sentinel.style.padding = '20px';
+      sentinel.style.gridColumn = '1 / -1';
+      sentinel.innerHTML = '<div id="scrollLoader" style="color:var(--text-tertiary);font-size:0.8rem;"><i class="fas fa-spinner fa-pulse"></i> Cargando más artículos...</div>';
+      catalogEl.parentNode.insertBefore(sentinel, catalogEl.nextSibling);
+    }
+    
+    // Init: show first batch
+    showBatch(0);
+    setupInfiniteScroll();
+
   
     function goToDiscover() { window.parent.location.href = '../v1-catalogo/'; }
     function goToTrades() { window.parent.location.href = '../v12-mis-matches/'; }
