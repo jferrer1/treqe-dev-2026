@@ -1369,7 +1369,9 @@
     }, 2000);
 
     function closeBanner() {
-      document.getElementById('matchBanner').classList.remove('show');
+      const banner = document.getElementById('matchBanner');
+      banner.classList.remove('show');
+      banner.style.display = 'none';
     }
 
     // ===== NAVIGATION =====
