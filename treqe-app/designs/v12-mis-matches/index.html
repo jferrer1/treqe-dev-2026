@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>TREQE — Mis trueques</title>
+  <title>TREQE — Mis Treqes</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
@@ -16,7 +16,7 @@
       background: #F8F6F0;
       color: #1A1A1A;
       min-height: 100vh;
-      padding-bottom: 80px;
+      padding-bottom: 88px;
       -webkit-font-smoothing: antialiased;
     }
     button { font-family: inherit; cursor: pointer; border: none; background: none; }
@@ -37,29 +37,15 @@
       --shadow: 0 2px 12px rgba(0,0,0,0.06);
     }
 
-    /* ===== STATUS BAR ===== */
-    .status-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 8px 20px 4px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--text-secondary);
-      background: var(--bg);
-    }
-    .status-bar .time { font-weight: 700; color: var(--text); }
-    .status-bar .icons { display: flex; gap: 6px; font-size: 0.7rem; }
-
     /* ===== HEADER ===== */
     .header {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
       padding: 12px 16px 16px;
       background: var(--bg);
+      position: relative;
     }
-
     .header__back {
       position: absolute;
       left: 12px;
@@ -74,86 +60,20 @@
       transition: background 0.2s;
     }
     .header__back:active { background: var(--border); }
-    .header__settings {
-      position: absolute;
-      right: 12px;
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text);
-      font-size: 1.1rem;
-    }
-    .header__settings:active { background: var(--border); }
-
-    .header__left {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    }FOOBAR{
-      width: 40px;
-      height: 40px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text);
-      font-size: 1.1rem;
-      transition: background 0.2s;
-    }
-    .header__back:active { background: var(--border); }
     .header__title {
       font-size: 1.05rem;
       font-weight: 600;
       color: var(--text);
     }
     .header__count {
+      position: absolute;
+      right: 16px;
       font-size: 0.75rem;
       color: var(--text-tertiary);
       font-weight: 500;
-      margin-left: 8px;
     }
 
-        /* ===== ORDERS ===== */
-    .section { margin-bottom: 16px; }
-    .section__header {
-      display: flex; justify-content: space-between; align-items: center;
-      margin-bottom: 10px; padding: 0 16px;
-    }
-    .section__title {
-      font-size: 0.9rem; font-weight: 600; color: var(--text);
-    }
-    .activity-feed { padding: 0 16px; }
-    .activity-item {
-      display: flex; align-items: center; gap: 12px;
-      padding: 14px 12px; background: var(--card-bg);
-      border-radius: 12px; margin-bottom: 10px;
-      box-shadow: var(--shadow);
-    }
-    .activity-item__icon {
-      width: 40px; height: 40px; border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1rem; flex-shrink: 0;
-    }
-    .activity-item__icon.waiting { background: #FFF3ED; color: var(--accent); }
-    .activity-item__icon.done { background: #E8F8F5; color: var(--success); }
-    .activity-item__content { flex: 1; min-width: 0; }
-    .activity-item__title {
-      font-size: 0.82rem; font-weight: 600; color: var(--text);
-      margin-bottom: 3px;
-    }
-    .activity-item__meta {
-      font-size: 0.7rem; color: var(--text-tertiary);
-    }
-    .activity-item__status-badge {
-      font-size: 0.65rem; font-weight: 600; padding: 4px 8px;
-      border-radius: 6px; flex-shrink: 0;
-    }
-    .activity-item__status-badge.waiting { background: #FFF3ED; color: var(--accent); }
-    .activity-item__status-badge.done { background: #E8F8F5; color: var(--success); }    /* ===== TABS ===== */
+    /* ===== TABS ===== */
     .tabs {
       display: flex;
       gap: 8px;
@@ -190,28 +110,28 @@
     .tab.active .count { background: rgba(255,255,255,0.2); }
 
     /* ===== MATCH CARD ===== */
-    .match-list {
-      padding: 0 16px;
-    }
+    .match-section { padding: 0 16px; }
     .match-card {
       background: var(--card-bg);
       border-radius: 20px;
       padding: 20px;
       margin-bottom: 16px;
       box-shadow: var(--shadow);
-      cursor: pointer;
-      transition: transform 0.2s;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
     .match-card:active { transform: scale(0.98); }
-    .match-card.pending { border-left: 4px solid var(--accent); }
-    .match-card.waiting { border-left: 4px solid var(--warning); }
-    .match-card.completed { border-left: 4px solid var(--success); }
 
     .match-card__header {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
+    }
+    .match-card__id {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--text-tertiary);
+      letter-spacing: 0.3px;
     }
     .match-card__status {
       display: flex;
@@ -222,28 +142,46 @@
       padding: 6px 12px;
       border-radius: 20px;
     }
-    .match-card__status.pending {
+    .match-card__status.active-status {
       background: rgba(255,106,53,0.1);
       color: var(--accent);
     }
-    .match-card__status.waiting {
+    .match-card__status.pending-status {
       background: rgba(245,166,35,0.1);
-      color: var(--warning);
+      color: #C48A1A;
     }
-    .match-card__status.completed {
+    .match-card__status.broken-status {
+      background: rgba(231,76,60,0.1);
+      color: var(--danger);
+    }
+    .match-card__status.in-progress {
       background: rgba(0,184,184,0.1);
       color: var(--success);
     }
-    .match-card__time {
-      font-size: 0.7rem;
-      color: var(--text-tertiary);
+    .match-card__status.done-status {
+      background: rgba(0,184,184,0.1);
+      color: var(--success);
+    }
+
+    .match-card__timer {
       display: flex;
       align-items: center;
       gap: 4px;
-    }
-    .match-card__time.urgent {
-      color: var(--danger);
+      font-size: 0.75rem;
       font-weight: 600;
+      color: var(--text-tertiary);
+      padding: 4px 10px;
+      border-radius: 12px;
+      background: var(--bg);
+    }
+    .match-card__timer.timer--urgent {
+      color: #FFF;
+      background: var(--danger);
+      animation: pulse-urgent 2s infinite;
+    }
+    @keyframes pulse-urgent {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
     }
 
     /* ===== ITEM COMPARISON ===== */
@@ -255,30 +193,26 @@
       padding: 16px;
       background: var(--bg);
       border-radius: 16px;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
-    .item-compare__item {
-      text-align: center;
-    }
-    .item-compare__image {
-      width: 70px;
-      height: 70px;
+    .item-compare__item { text-align: center; }
+    .item-compare__emoji {
+      width: 60px;
+      height: 60px;
       border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 1.8rem;
-      margin: 0 auto 10px;
+      margin: 0 auto 8px;
+      background: var(--card-bg);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     }
-    .item-compare__image.get { background: #2D2D2D; color: rgba(255,255,255,0.3); }
-    .item-compare__image.give { background: #1A3A2A; color: rgba(255,255,255,0.3); }
     .item-compare__name {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 600;
       color: var(--text);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      line-height: 1.2;
     }
     .item-compare__price {
       font-size: 0.7rem;
@@ -286,78 +220,105 @@
       margin-top: 2px;
       font-weight: 500;
     }
+    .item-compare__from {
+      font-size: 0.65rem;
+      color: var(--text-tertiary);
+      margin-top: 1px;
+    }
     .item-compare__arrow {
       font-size: 1.2rem;
       color: var(--accent);
     }
 
-    /* ===== PARTICIPANTS ===== */
-    .participants {
-      margin-bottom: 16px;
+    /* ===== PARTICIPANTS CIRCLE ===== */
+    .match-card__circle {
+      margin-bottom: 14px;
     }
-    .participants__title {
-      font-size: 0.75rem;
+    .circle-title {
+      font-size: 0.72rem;
       font-weight: 600;
       color: var(--text-tertiary);
       text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 10px;
+      letter-spacing: 0.4px;
+      margin-bottom: 8px;
     }
-    .participant-row {
+    .circle-row {
       display: flex;
       align-items: center;
       gap: 10px;
-      padding: 8px 0;
+      padding: 7px 0;
       border-bottom: 1px solid var(--border);
     }
-    .participant-row:last-child { border-bottom: none; }
-    .participant-avatar {
-      width: 32px;
-      height: 32px;
+    .circle-row:last-child { border-bottom: none; }
+    .circle-avatar {
+      width: 30px;
+      height: 30px;
       border-radius: 50%;
       background: var(--border);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       font-weight: 600;
       color: var(--text-secondary);
+      flex-shrink: 0;
     }
-    .participant-avatar.you { background: var(--accent); color: #FFF; }
-    .participant-info {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-    .participant-name {
-      font-size: 0.82rem;
+    .circle-avatar.you { background: var(--accent); color: #FFF; }
+    .circle-info { flex: 1; min-width: 0; }
+    .circle-name {
+      font-size: 0.8rem;
       font-weight: 500;
       color: var(--text);
     }
-    .participant-item {
-      font-size: 0.7rem;
+    .circle-item {
+      font-size: 0.68rem;
       color: var(--text-tertiary);
     }
-    .participant-status {
-      font-size: 0.7rem;
+    .circle-badge {
+      font-size: 0.65rem;
       font-weight: 600;
       padding: 4px 10px;
       border-radius: 20px;
       display: flex;
       align-items: center;
-      gap: 4px;
+      gap: 3px;
+      flex-shrink: 0;
     }
-    .participant-status.accepted {
+    .circle-badge.accepted {
       background: rgba(0,184,184,0.1);
       color: var(--success);
     }
-    .participant-status.pending {
+    .circle-badge.pending {
       background: rgba(255,106,53,0.1);
       color: var(--accent);
     }
-    .participant-status.rejected {
+    .circle-badge.rejected {
       background: rgba(231,76,60,0.1);
       color: var(--danger);
+    }
+
+    /* ===== PROGRESS BAR ===== */
+    .progress-bar-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+    .progress-bar {
+      flex: 1;
+      height: 6px;
+      background: var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .progress-bar__fill {
+      height: 100%;
+      border-radius: 10px;
+      background: var(--accent);
+      transition: width 0.5s;
     }
 
     /* ===== ACTION BUTTONS ===== */
@@ -369,14 +330,14 @@
       flex: 1;
       padding: 14px;
       border-radius: 14px;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       font-weight: 600;
       text-align: center;
       transition: all 0.2s;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 6px;
     }
     .action-btn:active { transform: scale(0.97); }
     .action-btn--primary {
@@ -384,81 +345,234 @@
       color: #FFF;
       box-shadow: 0 4px 16px rgba(255,106,53,0.25);
     }
+    .action-btn--primary:active { background: var(--accent-hover); }
     .action-btn--secondary {
       background: var(--bg);
       color: var(--text-secondary);
       border: 1.5px solid var(--border);
     }
-    .action-btn--secondary:active { color: var(--danger); border-color: var(--danger); }
-
-    /* ===== COMPLETED STATE ===== */
-    .completed-info {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px;
-      background: rgba(0,184,184,0.05);
-      border-radius: 12px;
-      margin-bottom: 12px;
+    .action-btn--secondary:active { border-color: var(--danger); color: var(--danger); }
+    .action-btn--ghost {
+      background: transparent;
+      color: var(--accent);
+      border: 1.5px solid var(--accent);
     }
-    .completed-info__icon {
-      width: 40px;
-      height: 40px;
+    .action-btn--ghost:active { background: rgba(255,106,53,0.05); }
+    .action-btn--success {
       background: var(--success);
-      border-radius: 50%;
+      color: #FFF;
+      box-shadow: 0 4px 16px rgba(0,184,184,0.25);
+    }
+    .action-btn--success:active { opacity: 0.85; }
+    .action-btn--full {
+      width: 100%;
+    }
+
+    /* ===== BROKEN STATE ===== */
+    .broken-reason {
       display: flex;
       align-items: center;
-      justify-content: center;
-      color: #FFF;
-      font-size: 1rem;
+      gap: 8px;
+      padding: 10px 14px;
+      background: rgba(231,76,60,0.06);
+      border-radius: 12px;
+      margin-bottom: 14px;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
     }
-    .completed-info__text {
-      flex: 1;
+    .broken-reason i { color: var(--danger); }
+
+    /* ===== SHIPPING INFO ===== */
+    .shipping-block {
+      padding: 12px 14px;
+      background: var(--bg);
+      border-radius: 14px;
+      margin-bottom: 10px;
     }
-    .completed-info__title {
-      font-size: 0.85rem;
+    .shipping-block:last-child { margin-bottom: 14px; }
+    .shipping-block__label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      margin-bottom: 4px;
+    }
+    .shipping-block__dir {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      margin-bottom: 2px;
+      line-height: 1.4;
+    }
+    .shipping-block__item {
+      font-size: 0.82rem;
       font-weight: 600;
       color: var(--text);
     }
-    .completed-info__meta {
-      font-size: 0.75rem;
+    .shipping-block__arrow { /* subtle inline arrow before content */ }
+
+    /* ===== TRACKING ===== */
+    .tracking-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.82rem;
+    }
+    .tracking-item:last-child { border-bottom: none; margin-bottom: 14px; }
+    .tracking-item__icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+    .tracking-item__icon.received { background: rgba(0,184,184,0.1); color: var(--success); }
+    .tracking-item__icon.transit { background: rgba(245,166,35,0.1); color: var(--warning); }
+    .tracking-item__info { flex: 1; }
+    .tracking-item__label {
+      font-weight: 500;
+      color: var(--text);
+    }
+    .tracking-item__meta {
+      font-size: 0.7rem;
+      color: var(--text-tertiary);
+      margin-top: 1px;
+    }
+
+    /* ===== COMPLETED SUMMARY ===== */
+    .completed-summary {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 12px 14px;
+      background: rgba(0,184,184,0.04);
+      border-radius: 14px;
+      margin-bottom: 14px;
+    }
+    .completed-row {
+      font-size: 0.82rem;
+      color: var(--text);
+    }
+    .completed-row strong { font-weight: 600; }
+
+    .rating-stars {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+      font-size: 0.8rem;
       color: var(--text-secondary);
-      margin-top: 2px;
+    }
+    .rating-stars span { color: #F5A623; }
+
+    /* ===== FEEDBACK STATE ===== */
+    .feedback-toast {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.9);
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 32px 28px;
+      box-shadow: 0 12px 48px rgba(0,0,0,0.15);
+      text-align: center;
+      z-index: 200;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s;
+      max-width: 320px;
+      width: 90%;
+    }
+    .feedback-toast.show {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    .feedback-toast__icon {
+      font-size: 2.5rem;
+      margin-bottom: 12px;
+    }
+    .feedback-toast__title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .feedback-toast__text {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.4;
+      margin-bottom: 20px;
+    }
+    .feedback-toast__btn {
+      padding: 12px 32px;
+      border-radius: 14px;
+      background: var(--accent);
+      color: #FFF;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    .feedback-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.3);
+      z-index: 199;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .feedback-overlay.show {
+      opacity: 1;
+      pointer-events: auto;
     }
 
     /* ===== EMPTY STATE ===== */
     .empty-state {
       text-align: center;
-      padding: 80px 32px;
+      padding: 60px 32px;
       color: var(--text-tertiary);
     }
     .empty-state i {
-      font-size: 4rem;
-      margin-bottom: 20px;
+      font-size: 3.5rem;
+      margin-bottom: 16px;
       opacity: 0.3;
     }
     .empty-state h3 {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       color: var(--text);
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       font-weight: 600;
     }
     .empty-state p {
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       line-height: 1.5;
-      margin-bottom: 24px;
-    }
-    .empty-state__btn {
-      padding: 14px 28px;
-      background: var(--accent);
-      color: #FFF;
-      border-radius: 14px;
-      font-size: 0.9rem;
-      font-weight: 600;
+      margin-bottom: 20px;
     }
 
     /* ===== BOTTOM NAV ===== */
-    
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      padding: 0;
+      height: 72px;
+      padding-bottom: 12px;
+      z-index: 100;
+      isolation: isolate;
+    }
     .nav-item {
       display: flex;
       flex-direction: column;
@@ -473,15 +587,9 @@
       max-width: 80px;
       position: relative;
     }
-    .nav-item i {
-      font-size: 1.3rem;
-    }
-    .nav-item.active {
-      color: var(--accent);
-    }
-    .nav-item.active i {
-      transform: scale(1.05);
-    }
+    .nav-item i { font-size: 1.3rem; }
+    .nav-item.active { color: var(--accent); }
+    .nav-item.active i { transform: scale(1.05); }
     .nav-item .nav-badge {
       width: 6px;
       height: 6px;
@@ -491,10 +599,7 @@
       top: 2px;
       right: 12px;
     }
-    .nav-item.nav-add {
-      position: relative;
-      top: 0;
-    }
+    .nav-item.nav-add { position: relative; top: 0; }
     .nav-item.nav-add .nav-add-btn {
       width: 48px;
       height: 48px;
@@ -513,32 +618,6 @@
       box-shadow: 0 2px 8px rgba(255,106,53,0.2);
     }
 
-    .bottom-nav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-top: 1px solid var(--border);
-      display: flex;
-      justify-content: space-evenly;
-      align-items: center;
-      padding: 0;
-      height: 72px;
-      padding-bottom: 12px;
-      z-index: 100;
-    isolation: isolate;
-    }
-    
-    
-    
-    
-    
-    
-    
-
     /* ===== DEMO NOTICE ===== */
     .demo-notice {
       text-align: center;
@@ -552,162 +631,312 @@
 
     /* ===== RESPONSIVE ===== */
     @media (min-width: 600px) {
-      .header, .tabs, .match-list { max-width: 600px; margin: 0 auto; }
-      .match-list { padding: 0 24px; }
+      .header, .tabs, .match-section { max-width: 600px; margin: 0 auto; }
     }
-  
-    .match-card__info { flex: 1; min-width: 0; }
-    .match-card__title { font-size: 0.85rem; font-weight: 600; color: var(--text); margin-bottom: 3px; }
-    .match-card__meta { font-size: 0.72rem; color: var(--text-secondary); }
-    .match-card__date { font-size: 0.65rem; color: var(--text-tertiary); margin-top: 4px; }
-    .match-card__status {
-      font-size: 0.7rem; font-weight: 600;
-      padding: 4px 8px; border-radius: 6px;
-      display: flex; align-items: center; gap: 4px;
-    }
-    .match-card__status.pending { background: #FFF3ED; color: var(--accent); }
-    .match-card__status.active-status { background: #E8F8F5; color: var(--success); }
-    .match-card__status.completed-badge { background: #F0EDE6; color: var(--text-tertiary); }
-    .status-dot { width: 6px; height: 6px; border-radius: 50%; display: inline-block; }
-    .status-dot.active { background: var(--success); }
-    .match-card__action {
-      padding: 8px 14px; border-radius: 8px;
-      background: var(--accent); color: #FFF;
-      font-size: 0.75rem; font-weight: 600; flex-shrink: 0;
-    }
-
   </style>
 </head>
 <body>
 
-  <!-- ===== DEMO NOTICE ===== -->
-  
-  <!-- ===== STATUS BAR ===== -->
-  
   <!-- ===== HEADER ===== -->
-  <div class="header" style="justify-content:center;">
+  <div class="header">
     <button class="header__back" onclick="goToDiscover()" aria-label="Atrás"><i class="fas fa-chevron-left"></i></button>
     <span class="header__title">Treqes</span>
-    <span class="header__count" style="position:absolute;right:16px;font-size:0.75rem;color:var(--text-tertiary);">3 activos</span>
+    <span class="header__count" id="headerCount">6 activos</span>
   </div>
 
   <!-- ===== TABS ===== -->
   <div class="tabs">
     <button class="tab active" onclick="switchTab(this, 'active')">
-      Activos <span class="count">2</span>
+      Activos 🔴 <span class="count">1</span>
     </button>
     <button class="tab" onclick="switchTab(this, 'pending')">
-      Pendientes <span class="count">1</span>
+      Pendientes 🟡 <span class="count">2</span>
+    </button>
+    <button class="tab" onclick="switchTab(this, 'in-progress')">
+      En curso 🟢 <span class="count">2</span>
     </button>
     <button class="tab" onclick="switchTab(this, 'completed')">
-      Completados <span class="count">2</span>
-    </button>
-    <button class="tab" onclick="switchTab(this, 'orders')">
-      <i class="fas fa-shopping-bag"></i> Pedidos <span class="count">2</span>
+      Completados 🔵 <span class="count">1</span>
     </button>
   </div>
 
-  <!-- ===== MATCH LIST ===== -->
-  <div class="match-list" id="matchList">
+  <!-- ===== MATCH SECTIONS ===== -->
 
-    <!-- ACTIVE -->
-    <div class="match-section" id="active-section">
-      <div class="match-list">
-        <div class="match-card active">
-          <div class="match-card__info">
-            <div class="match-card__title">iPhone 15 Pro ↔ PlayStation 5</div>
-            <div class="match-card__meta">Propuesta enviada · Pendiente de respuesta</div>
-            <div class="match-card__date">Hace 2 horas</div>
-          </div>
-          <div class="match-card__status pending">
-            <span class="status-dot"></span> Pendiente
-          </div>
-        </div>
-        <div class="match-card active">
-          <div class="match-card__info">
-            <div class="match-card__title">Canon EOS R ↔ AirPods Max</div>
-            <div class="match-card__meta">Match aceptado · Coordinando envio</div>
-            <div class="match-card__date">Hace 1 dia</div>
-          </div>
-          <div class="match-card__status active-status">
-            <span class="status-dot active"></span> En curso
-          </div>
+  <!-- ===== ACTIVES 🔴 — Card 1 ===== -->
+  <div class="match-section" id="active-section">
+    <!-- Card 1: Match encontrado (tu turno) -->
+    <div class="match-card" id="match-7842">
+      <div class="match-card__header">
+        <span class="match-card__id">#TRX-7842</span>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span class="match-card__status active-status">⭐ Match encontrado</span>
+          <span class="match-card__timer timer--urgent" id="timer-7842">
+            ⏱ <span id="time-7842">23:45:12</span>
+          </span>
         </div>
       </div>
-    </div>
-    
-    <!-- PENDING -->
-    <div class="match-section" id="pending-section" style="display:none;">
-      <div class="match-list">
-        <div class="match-card pending">
-          <div class="match-card__info">
-            <div class="match-card__title">G-SHOCK Mudmaster ↔ iPhone 12</div>
-            <div class="match-card__meta">Te han enviado una propuesta</div>
-            <div class="match-card__date">Hace 30 min</div>
-          </div>
-          <button class="match-card__action" onclick="alert('Ver propuesta')">Revisar</button>
+
+      <!-- Item comparison -->
+      <div class="item-compare">
+        <div class="item-compare__item">
+          <div class="item-compare__emoji">📱</div>
+          <div class="item-compare__name">iPhone 15 Pro</div>
+          <div class="item-compare__from">de Ana</div>
+          <div class="item-compare__price">890€</div>
         </div>
-        <div class="match-card pending">
-          <div class="match-card__info">
-            <div class="match-card__title">Bajo Ibanez ↔ Bateria Roland</div>
-            <div class="match-card__meta">Propuesta recibida · Pendiente</div>
-            <div class="match-card__date">Hace 5 horas</div>
-          </div>
-          <button class="match-card__action" onclick="alert('Ver propuesta')">Revisar</button>
+        <div class="item-compare__arrow">
+          <i class="fas fa-arrow-right"></i><br>
+          <span style="font-size:0.65rem;font-weight:600;color:var(--text-tertiary);">recibes</span>
+        </div>
+        <div class="item-compare__item">
+          <div class="item-compare__emoji">🎸</div>
+          <div class="item-compare__name">Fender Stratocaster</div>
+          <div class="item-compare__from">das tú</div>
+          <div class="item-compare__price">580€ + 310€</div>
         </div>
       </div>
+
+      <!-- Circle -->
+      <div class="match-card__circle">
+        <div class="circle-title">Círculo</div>
+        <div class="circle-row">
+          <div class="circle-avatar you">Tú</div>
+          <div class="circle-info">
+            <div class="circle-name">Tú</div>
+            <div class="circle-item">🎸 F. Stratocaster → Bruno</div>
+          </div>
+          <span class="circle-badge pending">⏳ Decidir</span>
+        </div>
+        <div class="circle-row">
+          <div class="circle-avatar">A</div>
+          <div class="circle-info">
+            <div class="circle-name">Ana</div>
+            <div class="circle-item">📱 iPhone 15 Pro → Tú</div>
+          </div>
+          <span class="circle-badge accepted">✅ Aceptado</span>
+        </div>
+        <div class="circle-row">
+          <div class="circle-avatar">B</div>
+          <div class="circle-info">
+            <div class="circle-name">Bruno</div>
+            <div class="circle-item">🎮 PS5 → Ana</div>
+          </div>
+          <span class="circle-badge accepted">✅ Aceptado</span>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="action-buttons">
+        <button class="action-btn action-btn--primary" onclick="acceptMatch('7842')">✅ Aceptar</button>
+        <button class="action-btn action-btn--secondary" onclick="rejectMatch('7842')">❌ Rechazar</button>
+      </div>
     </div>
-    
-    <!-- COMPLETED -->
-    <div class="match-section" id="completed-section" style="display:none;">
-      <div class="match-list">
-        <div class="match-card completed">
-          <div class="match-card__info">
-            <div class="match-card__title">Trek Marlin 7 ↔ AirPods Max</div>
-            <div class="match-card__meta">Intercambio completado · 12 Abr 2026</div>
-          </div>
-          <span class="match-card__status completed-badge">Hecho</span>
+  </div>
+
+  <!-- ===== PENDING 🟡 — Cards 2 & 3 ===== -->
+  <div class="match-section" id="pending-section" style="display:none;">
+
+    <!-- Card 2: Esperando confirmación -->
+    <div class="match-card" id="match-7843">
+      <div class="match-card__header">
+        <span class="match-card__id">#TRX-7843</span>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span class="match-card__status pending-status">⏳ Esperando confirmación</span>
+          <span class="match-card__timer" id="timer-7843">
+            ⏱ <span id="time-7843">18:32:05</span>
+          </span>
         </div>
-        <div class="match-card completed">
-          <div class="match-card__info">
-            <div class="match-card__title">Casco Shoei ↔ G-SHOCK</div>
-            <div class="match-card__meta">Intercambio completado · 5 Abr 2026</div>
-          </div>
-          <span class="match-card__status completed-badge">Hecho</span>
+      </div>
+
+      <div class="item-compare">
+        <div class="item-compare__item">
+          <div class="item-compare__emoji">📷</div>
+          <div class="item-compare__name">Canon EOS R</div>
+          <div class="item-compare__from">de Carlos</div>
+          <div class="item-compare__price">650€</div>
         </div>
+        <div class="item-compare__arrow">
+          <i class="fas fa-arrow-right"></i><br>
+          <span style="font-size:0.65rem;font-weight:600;color:var(--text-tertiary);">recibes</span>
+        </div>
+        <div class="item-compare__item">
+          <div class="item-compare__emoji">🎧</div>
+          <div class="item-compare__name">AirPods Max</div>
+          <div class="item-compare__from">para Ana</div>
+          <div class="item-compare__price">380€ + 270€</div>
+        </div>
+      </div>
+
+      <div class="match-card__circle">
+        <div class="circle-title">Círculo</div>
+        <div class="circle-row">
+          <div class="circle-avatar you">Tú</div>
+          <div class="circle-info">
+            <div class="circle-name">Tú</div>
+            <div class="circle-item">🎧 AirPods Max → Ana</div>
+          </div>
+          <span class="circle-badge accepted">✅ Aceptaste</span>
+        </div>
+        <div class="circle-row">
+          <div class="circle-avatar">A</div>
+          <div class="circle-info">
+            <div class="circle-name">Ana</div>
+            <div class="circle-item">🚲 Trek Marlin → Carlos</div>
+          </div>
+          <span class="circle-badge accepted">✅ Aceptado</span>
+        </div>
+        <div class="circle-row">
+          <div class="circle-avatar">C</div>
+          <div class="circle-info">
+            <div class="circle-name">Carlos</div>
+            <div class="circle-item">📷 Canon EOS R → Tú</div>
+          </div>
+          <span class="circle-badge pending">⏳ Pendiente</span>
+        </div>
+      </div>
+
+      <div class="progress-bar-wrap">
+        <span>Progreso</span>
+        <div class="progress-bar">
+          <div class="progress-bar__fill" style="width:66.66%"></div>
+        </div>
+        <span>2/3</span>
+      </div>
+
+      <div class="action-buttons">
+        <button class="action-btn action-btn--secondary" onclick="cancelParticipation('7843')">⏸ Cancelar participación</button>
+        <button class="action-btn action-btn--primary" onclick="remindUser('7843', 'Carlos')">🔔 Recordar a Carlos</button>
       </div>
     </div>
 
-    <div class="match-section" id="orders-section" style="display:none;">  <div class="section">
-    <div class="section__header">
-      <span class="section__title"><i class="fas fa-shopping-bag" style="color:var(--accent);margin-right:6px;"></i>Pedidos</span>
-    </div>
-    <div class="activity-feed">
-      <div class="activity-item">
-        <div class="activity-item__icon waiting">
-          <i class="fas fa-box"></i>
-        </div>
-        <div class="activity-item__content">
-          <div class="activity-item__title">Canon EOS R (compra directa)</div>
-          <div class="activity-item__meta">1.200 EUR · En preparacion</div>
-        </div>
-        <span class="activity-item__status-badge waiting">En curso</span>
+    <!-- Card 3: Match roto -->
+    <div class="match-card" id="match-7841">
+      <div class="match-card__header">
+        <span class="match-card__id">#TRX-7841</span>
+        <span class="match-card__status broken-status">❌ Match roto</span>
       </div>
-      <div class="activity-item">
-        <div class="activity-item__icon done">
+
+      <div class="broken-reason">
+        <i class="fas fa-info-circle"></i>
+        <span>Bruno rechazó el intercambio. Tu artículo vuelve a estar disponible para nuevos matches.</span>
+      </div>
+
+      <div class="item-compare" style="grid-template-columns:1fr;">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <div style="text-align:left;">
+            <div style="font-size:0.68rem;color:var(--text-tertiary);margin-bottom:2px;">Ibas a recibir</div>
+            <div style="font-size:0.85rem;font-weight:600;">⌚ G-SHOCK Mudmaster <span style="font-weight:400;color:var(--text-secondary);">(250€)</span></div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:0.68rem;color:var(--text-tertiary);margin-bottom:2px;">Ibas a dar</div>
+            <div style="font-size:0.85rem;font-weight:600;">🏍️ Casco Shoei NXR2 <span style="font-weight:400;color:var(--text-secondary);">(320€ → 70€)</span></div>
+          </div>
+        </div>
+      </div>
+
+      <button class="action-btn action-btn--ghost action-btn--full" onclick="findNewMatch('7841', 'Casco Shoei NXR2')">
+        🔍 Buscar nuevo match para Casco Shoei
+      </button>
+    </div>
+  </div>
+
+  <!-- ===== IN PROGRESS 🟢 — Cards 4 & 5 ===== -->
+  <div class="match-section" id="in-progress-section" style="display:none;">
+
+    <!-- Card 4: Coordinando envío -->
+    <div class="match-card" id="match-7840">
+      <div class="match-card__header">
+        <span class="match-card__id">#TRX-7840</span>
+        <span class="match-card__status in-progress">📦 Coordinar envío</span>
+      </div>
+
+      <div class="shipping-block">
+        <div class="shipping-block__label">Envía TU artículo a</div>
+        <div class="shipping-block__dir">Carlos · C/ Mayor 23, 28013 Madrid</div>
+        <div class="shipping-block__item">🎧 AirPods Max + 270€</div>
+      </div>
+      <div class="shipping-block">
+        <div class="shipping-block__label">Recibirás de</div>
+        <div class="shipping-block__dir">Ana · Avda. Diagonal 345, 08037 Barcelona</div>
+        <div class="shipping-block__item">📷 Canon EOS R</div>
+      </div>
+
+      <button class="action-btn action-btn--success action-btn--full" onclick="markAsSent('7840')">
+        ✔️ Ya lo he enviado
+      </button>
+    </div>
+
+    <!-- Card 5: En camino -->
+    <div class="match-card" id="match-7838">
+      <div class="match-card__header">
+        <span class="match-card__id">#TRX-7838</span>
+        <span class="match-card__status in-progress">🚚 En camino</span>
+      </div>
+
+      <div class="tracking-item">
+        <div class="tracking-item__icon received">
           <i class="fas fa-check"></i>
         </div>
-        <div class="activity-item__content">
-          <div class="activity-item__title">AirPods Max (trueque)</div>
-          <div class="activity-item__meta">Intercambiado por G-SHOCK</div>
+        <div class="tracking-item__info">
+          <div class="tracking-item__label">Tu envío a Bruno</div>
+          <div class="tracking-item__meta">📦 Recibido (hace 2 días)</div>
         </div>
-        <span class="activity-item__status-badge done">Completado</span>
       </div>
+      <div class="tracking-item">
+        <div class="tracking-item__icon transit">
+          <i class="fas fa-truck"></i>
+        </div>
+        <div class="tracking-item__info">
+          <div class="tracking-item__label">Tu recepción de Ana</div>
+          <div class="tracking-item__meta">🚚 En camino → llega mañana</div>
+          <div class="tracking-item__meta">📍 Última actualización: Madrid, 14:32h</div>
+        </div>
+      </div>
+
+      <button class="action-btn action-btn--primary action-btn--full" onclick="viewTracking('7838')">
+        📍 Ver seguimiento completo
+      </button>
     </div>
   </div>
+
+  <!-- ===== COMPLETED 🔵 — Card 6 ===== -->
+  <div class="match-section" id="completed-section" style="display:none;">
+
+    <!-- Card 6: Intercambio finalizado -->
+    <div class="match-card" id="match-7839">
+      <div class="match-card__header">
+        <span class="match-card__id">#TRX-7839</span>
+        <span class="match-card__status done-status">✅ Completado · Hace 3 días</span>
+      </div>
+
+      <div class="completed-summary">
+        <div class="completed-row"><strong>Recibiste:</strong> 🎧 AirPods Max (380€)</div>
+        <div class="completed-row"><strong>Diste:</strong> 🚲 Trek Marlin 7 (420€ → recibiste <strong>40€</strong>)</div>
+      </div>
+
+      <div class="rating-stars">
+        <span>Participantes:</span>
+        <span>Ana ⭐⭐⭐⭐⭐</span>
+        <span>Bruno ⭐⭐⭐⭐</span>
+      </div>
+
+      <button class="action-btn action-btn--primary action-btn--full" onclick="rateTrade('7839')">
+        ⭐ Valorar intercambio
+      </button>
+    </div>
   </div>
-</div>
-<nav class="bottom-nav">
+
+  <!-- ===== FEEDBACK TOAST ===== -->
+  <div class="feedback-overlay" id="feedbackOverlay"></div>
+  <div class="feedback-toast" id="feedbackToast">
+    <div class="feedback-toast__icon" id="feedbackIcon">✅</div>
+    <div class="feedback-toast__title" id="feedbackTitle">¡Hecho!</div>
+    <div class="feedback-toast__text" id="feedbackText">Acción completada correctamente.</div>
+    <button class="feedback-toast__btn" onclick="closeFeedback()">Cerrar</button>
+  </div>
+
+  <!-- ===== BOTTOM NAV ===== -->
+  <nav class="bottom-nav">
     <button class="nav-item" onclick="goToDiscover()">
       <i class="fas fa-search"></i>
       <span>Buscar</span>
@@ -731,56 +960,162 @@
   </nav>
 
   <script>
-    function goBack() {
-      window.parent.location.href = '../v4-perfil/';
-    }
-
-    function goToCatalog() {
-      window.parent.location.href = '../v1-catalogo/';
-    }
-
-    function goToProfile() {
-      window.parent.location.href = '../v4-perfil/';
-    }
-
-    function goToMatchDetail() {
-      window.parent.location.href = '../v6-match-notification/';
-    }
-
+    // ===== TAB SWITCHING =====
     function switchTab(tab, filter) {
-      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
       tab.classList.add('active');
-      document.querySelectorAll('.match-section').forEach(s => s.style.display = 'none');
-      var section = document.getElementById(filter + '-section');
-      if (section) section.style.display = 'block';
+      var sections = ['active-section', 'pending-section', 'in-progress-section', 'completed-section'];
+      sections.forEach(function(id) {
+        var el = document.getElementById(id);
+        if (el) el.style.display = 'none';
+      });
+      var target = document.getElementById(filter + '-section');
+      if (target) target.style.display = 'block';
     }
 
-    function acceptMatch() {
-      alert('✅ Has aceptado el match\n\nEsperando confirmación de los demás participantes...');
+    // ===== TIMERS =====
+    var timers = {};
+
+    function startTimer(id, initialSeconds) {
+      var remaining = initialSeconds;
+      var display = document.getElementById('time-' + id);
+      var wrapper = document.getElementById('timer-' + id);
+      if (!display) return;
+
+      timers[id] = setInterval(function() {
+        remaining--;
+        if (remaining <= 0) {
+          clearInterval(timers[id]);
+          display.textContent = '00:00:00';
+          if (wrapper) {
+            wrapper.className = 'match-card__timer';
+            wrapper.style.background = 'rgba(231,76,60,0.1)';
+            wrapper.style.color = 'var(--danger)';
+            wrapper.innerHTML = '⏱ Expirado';
+          }
+          showFeedback('⏰', 'Tiempo agotado', 'El match #TRX-' + id + ' ha expirado. El artículo vuelve al catálogo.');
+          return;
+        }
+        var hrs = Math.floor(remaining / 3600);
+        var mins = Math.floor((remaining % 3600) / 60);
+        var secs = remaining % 60;
+        display.textContent =
+          String(hrs).padStart(2, '0') + ':' +
+          String(mins).padStart(2, '0') + ':' +
+          String(secs).padStart(2, '0');
+
+        // Mark urgent when < 1h
+        if (wrapper && remaining < 3600 && remaining > 0) {
+          wrapper.className = 'match-card__timer timer--urgent';
+        }
+      }, 1000);
     }
 
-    function rejectMatch() {
-      if (confirm('¿Seguro que quieres rechazar este match? Tu artículo volverá a estar disponible.')) {
-        alert('Match rechazado. Tu artículo está disponible para nuevos trueques.');
+    // Card 1: 24h timer (start at 23:45:12 = 85512s)
+    startTimer('7842', 85512);
+    // Card 2: 18:32:05 = 66725s
+    startTimer('7843', 66725);
+
+    // ===== FEEDBACK TOAST =====
+    function showFeedback(icon, title, text) {
+      document.getElementById('feedbackIcon').textContent = icon;
+      document.getElementById('feedbackTitle').textContent = title;
+      document.getElementById('feedbackText').textContent = text;
+      document.getElementById('feedbackToast').classList.add('show');
+      document.getElementById('feedbackOverlay').classList.add('show');
+    }
+
+    function closeFeedback() {
+      document.getElementById('feedbackToast').classList.remove('show');
+      document.getElementById('feedbackOverlay').classList.remove('show');
+    }
+
+    // ===== CARD 1: Aceptar / Rechazar =====
+    function acceptMatch(id) {
+      var card = document.getElementById('match-' + id);
+      if (!card) return;
+      // Clear timer
+      if (timers[id]) { clearInterval(timers[id]); delete timers[id]; }
+      showFeedback('✅', '¡Match aceptado!',
+        'Has aceptado el intercambio #TRX-' + id + '. Ahora pasará a Pendientes mientras esperamos la confirmación del resto del círculo.');
+      // Visual feedback on card
+      card.style.opacity = '0.4';
+      card.style.pointerEvents = 'none';
+    }
+
+    function rejectMatch(id) {
+      var card = document.getElementById('match-' + id);
+      if (!card) return;
+      if (timers[id]) { clearInterval(timers[id]); delete timers[id]; }
+      showFeedback('❌', 'Match rechazado',
+        'Has rechazado el intercambio #TRX-' + id + '. Tu artículo vuelve a estar disponible para nuevos matches.');
+      card.style.opacity = '0.4';
+      card.style.pointerEvents = 'none';
+    }
+
+    // ===== CARD 2: Cancelar / Recordar =====
+    function cancelParticipation(id) {
+      if (!confirm('¿Seguro que quieres cancelar tu participación en #TRX-' + id + '?')) return;
+      if (timers[id]) { clearInterval(timers[id]); delete timers[id]; }
+      showFeedback('⏸', 'Participación cancelada',
+        'Has cancelado tu participación en #TRX-' + id + '. Todos los participantes han sido liberados.');
+    }
+
+    function remindUser(id, name) {
+      showFeedback('🔔', 'Recordatorio enviado a ' + name,
+        'Le hemos notificado para que revise su match #TRX-' + id + ' pendiente.');
+    }
+
+    // ===== CARD 4: Ya lo he enviado =====
+    function markAsSent(id) {
+      var card = document.getElementById('match-' + id);
+      if (!card) return;
+      var btn = card.querySelector('.action-btn--success');
+      if (btn) {
+        btn.textContent = '✅ Enviado — Pendiente de recepción';
+        btn.style.background = 'var(--border)';
+        btn.style.color = 'var(--text-secondary)';
+        btn.style.boxShadow = 'none';
+        btn.disabled = true;
+        btn.style.pointerEvents = 'none';
       }
+      showFeedback('📦', '¡Envío registrado!',
+        'Hemos marcado el envío de #TRX-' + id + ' como realizado. El receptor recibirá una notificación.');
     }
 
-    console.log('⭐ TREQE v12 — Mis trueques');
-    console.log('🧪 Prototipo de diseño — 25 Abril 2026');
-  
+    // ===== CARD 5: Ver seguimiento =====
+    function viewTracking(id) {
+      showFeedback('📍', 'Seguimiento completo',
+        'Tracking de #TRX-' + id + ':\n• Tu envío a Bruno: Recibido ✅\n• Recepción de Ana: En camino 🚚\n• Llegada estimada: Mañana');
+    }
+
+    // ===== CARD 6: Valorar =====
+    function rateTrade(id) {
+      showFeedback('⭐', 'Valora tu intercambio',
+        'Cuéntanos tu experiencia en #TRX-' + id + '. ¿Cómo fue el trato con Ana y Bruno?');
+    }
+
+    // ===== CARD 3: Buscar nuevo match =====
+    function findNewMatch(id, itemName) {
+      showFeedback('🔍', 'Buscando nuevo match',
+        'Estamos buscando un nuevo círculo para tu ' + itemName + '. Te notificaremos cuando encontremos un match.');
+    }
+
+    // ===== NAVIGATION (preserved) =====
     function goToHome() { window.parent.location.href = '../v1-catalogo/'; }
     function goToSearch() { window.parent.location.href = '../v1-catalogo/'; }
     function goToUpload() { window.parent.location.href = '../v3-subir/'; }
     function goToMatches() { window.parent.location.href = '../v12-mis-matches/'; }
     function goToNotifs() { window.parent.location.href = '../v11-notificaciones/'; }
-    function goToProfile() { window.parent.location.href = '../v4-perfil/'; }
     function goToCatalog() { window.parent.location.href = '../v1-catalogo/'; }
     function goToDetail(id) { window.parent.location.href = '../v2-detalle/?id=' + id; }
     function goToDiscover() { window.parent.location.href = '../v1-catalogo/'; }
     function goToTrades() { window.parent.location.href = '../v12-mis-matches/'; }
     function goToInbox() { window.parent.location.href = '../v11-notificaciones/'; }
-    function goToUpload() { window.parent.location.href = '../v3-subir/'; }
     function goToProfile() { window.parent.location.href = '../v4-perfil/'; }
-    function goToDetail(id) { window.parent.location.href = '../v2-detalle/?id=' + id; }</script>
+
+    console.log('⭐ TREQE v12 — Mis Treqes (prototipo completo)');
+    console.log('🧪 6 cards | 4 tabs | timers | Mar 2026');
+  </script>
 </body>
 </html>
