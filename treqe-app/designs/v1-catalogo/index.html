@@ -77,14 +77,15 @@
     .header .logo span { color: var(--accent); }
     .search-bar {
       flex: 1;
+      min-width: 0;
       display: flex;
       align-items: center;
       background: #FFFFFF;
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 0 10px;
+      padding: 0 8px;
       height: 40px;
-      gap: 6px;
+      gap: 4px;
       transition: border-color 0.2s, box-shadow 0.2s;
     }
     .search-bar:focus-within {
@@ -94,6 +95,7 @@
     .search-bar i { color: var(--text-tertiary); font-size: 0.9rem; }
     .search-bar input {
       flex: 1;
+      min-width: 0;
       border: none;
       outline: none;
       background: transparent;
@@ -103,16 +105,16 @@
     }
     .search-bar input::placeholder { color: var(--text-tertiary); }
     .search-bar__filter {
-      width: 32px;
-      height: 32px;
+      width: 28px;
+      height: 28px;
       border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
       color: var(--text-secondary);
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       background: transparent;
-      margin-left: 4px;
+      flex-shrink: 0;
     }
     .search-bar__filter:active { background: var(--border); }
     /* Notification Badge */
