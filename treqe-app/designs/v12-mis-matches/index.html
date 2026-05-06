@@ -600,193 +600,14 @@
       Pendientes <span class="count">1</span>
     </button>
     <button class="tab" onclick="switchTab(this, 'completed')">
-      Completados
-    </button>
+      Completados <span class="count">2</span>`r`n    </button>
     <button class="tab" onclick="switchTab(this, 'orders')">
-      <i class="fas fa-shopping-bag"></i> Pedidos
-    </button>
+      <i class="fas fa-shopping-bag"></i> Pedidos <span class="count">2</span>`r`n    </button>
   </div>
 
   <!-- ===== MATCH LIST ===== -->
   <div class="match-list" id="matchList">
 
-    <!-- MATCH 1: PENDING DECISION -->
-    <div class="match-card pending" onclick="goToMatchDetail()">
-      <div class="match-card__header">
-        <div class="match-card__status pending">
-          <i class="fas fa-star"></i> Match encontrado
-        </div>
-        <div class="match-card__time urgent">
-          <i class="fas fa-hourglass-half"></i> 23:45:12
-        </div>
-      </div>
-
-      <div class="item-compare">
-        <div class="item-compare__item">
-          <div class="item-compare__image get">
-            <i class="fas fa-guitar"></i>
-          </div>
-          <div class="item-compare__name">Fender Stratocaster</div>
-          <div class="item-compare__price">580€</div>
-        </div>
-        <div class="item-compare__arrow"><i class="fas fa-arrow-right"></i></div>
-        <div class="item-compare__item">
-          <div class="item-compare__image give">
-            <i class="fas fa-bicycle"></i>
-          </div>
-          <div class="item-compare__name">Trek Marlin 7</div>
-          <div class="item-compare__price">420€ + 160€</div>
-        </div>
-      </div>
-
-      <div class="participants">
-        <div class="participants__title">Estado del círculo</div>
-        <div class="participant-row">
-          <div class="participant-avatar you">T</div>
-          <div class="participant-info">
-            <span class="participant-name">Tú</span>
-            <span class="participant-item">Trek Marlin 7</span>
-          </div>
-          <div class="participant-status pending"><i class="fas fa-clock"></i> Decidir</div>
-        </div>
-        <div class="participant-row">
-          <div class="participant-avatar">A</div>
-          <div class="participant-info">
-            <span class="participant-name">Ana</span>
-            <span class="participant-item">Fender Stratocaster</span>
-          </div>
-          <div class="participant-status accepted"><i class="fas fa-check"></i> Confirmado</div>
-        </div>
-        <div class="participant-row">
-          <div class="participant-avatar">B</div>
-          <div class="participant-info">
-            <span class="participant-name">Bruno</span>
-            <span class="participant-item">Cámara Canon</span>
-          </div>
-          <div class="participant-status pending"><i class="fas fa-clock"></i> Pendiente</div>
-        </div>
-      </div>
-
-      <div class="action-buttons">
-        <button class="action-btn action-btn--secondary" onclick="event.stopPropagation(); rejectMatch()">
-          <i class="fas fa-times"></i> Rechazar
-        </button>
-        <button class="action-btn action-btn--primary" onclick="event.stopPropagation(); acceptMatch()">
-          <i class="fas fa-check"></i> Aceptar
-        </button>
-      </div>
-    </div>
-
-    <!-- MATCH 2: WAITING FOR OTHERS -->
-    <div class="match-card waiting" onclick="alert('Ver detalle del match')">
-      <div class="match-card__header">
-        <div class="match-card__status waiting">
-          <i class="fas fa-hourglass-half"></i> Esperando confirmación
-        </div>
-        <div class="match-card__time">
-          <i class="fas fa-clock"></i> 18:32:05
-        </div>
-      </div>
-
-      <div class="item-compare">
-        <div class="item-compare__item">
-          <div class="item-compare__image get" style="background: #1A2A3A;">
-            <i class="fas fa-camera"></i>
-          </div>
-          <div class="item-compare__name">Canon EOS R</div>
-          <div class="item-compare__price">1.200€</div>
-        </div>
-        <div class="item-compare__arrow"><i class="fas fa-arrow-right"></i></div>
-        <div class="item-compare__item">
-          <div class="item-compare__image give" style="background: #2A1A2A;">
-            <i class="fas fa-headphones"></i>
-          </div>
-          <div class="item-compare__name">AirPods Max</div>
-          <div class="item-compare__price">380€ + 820€</div>
-        </div>
-      </div>
-
-      <div class="participants">
-        <div class="participants__title">Estado del círculo</div>
-        <div class="participant-row">
-          <div class="participant-avatar you" style="background: var(--success);">T</div>
-          <div class="participant-info">
-            <span class="participant-name">Tú</span>
-            <span class="participant-item">AirPods Max</span>
-          </div>
-          <div class="participant-status accepted"><i class="fas fa-check"></i> Aceptado</div>
-        </div>
-        <div class="participant-row">
-          <div class="participant-avatar">A</div>
-          <div class="participant-info">
-            <span class="participant-name">Ana</span>
-            <span class="participant-item">Canon EOS R</span>
-          </div>
-          <div class="participant-status accepted"><i class="fas fa-check"></i> Aceptado</div>
-        </div>
-        <div class="participant-row">
-          <div class="participant-avatar">C</div>
-          <div class="participant-info">
-            <span class="participant-name">Carlos</span>
-            <span class="participant-item">MacBook Air</span>
-          </div>
-          <div class="participant-status pending"><i class="fas fa-clock"></i> Pendiente</div>
-        </div>
-      </div>
-
-      <div class="action-buttons">
-        <button class="action-btn action-btn--secondary" style="flex: 0.4;" onclick="event.stopPropagation(); alert('Cancelar match')">
-          Cancelar
-        </button>
-        <button class="action-btn action-btn--primary" style="flex: 0.6; background: var(--warning);" onclick="event.stopPropagation(); alert('Enviar recordatorio')">
-          <i class="fas fa-bell"></i> Recordar
-        </button>
-      </div>
-    </div>
-
-    <!-- MATCH 3: COMPLETED -->
-    <div class="match-card completed" onclick="alert('Ver detalle completado')">
-      <div class="match-card__header">
-        <div class="match-card__status completed">
-          <i class="fas fa-check-double"></i> Completado
-        </div>
-        <div class="match-card__time">
-          Hace 3 días
-        </div>
-      </div>
-
-      <div class="completed-info">
-        <div class="completed-info__icon">
-          <i class="fas fa-check"></i>
-        </div>
-        <div class="completed-info__text">
-          <div class="completed-info__title">Intercambio finalizado</div>
-          <div class="completed-info__meta">Trek Marlin 7 ↔ AirPods Max · 12 Abr 2026</div>
-        </div>
-      </div>
-
-      <div class="item-compare" style="margin-bottom: 0; opacity: 0.7;">
-        <div class="item-compare__item">
-          <div class="item-compare__image get" style="background: #1A3A2A;">
-            <i class="fas fa-headphones"></i>
-          </div>
-          <div class="item-compare__name">AirPods Max</div>
-          <div class="item-compare__price">380€</div>
-        </div>
-        <div class="item-compare__arrow"><i class="fas fa-check"></i></div>
-        <div class="item-compare__item">
-          <div class="item-compare__image give" style="background: #1A3A2A;">
-            <i class="fas fa-bicycle"></i>
-          </div>
-          <div class="item-compare__name">Trek Marlin 7</div>
-          <div class="item-compare__price">420€</div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  
     <!-- ACTIVE -->
     <div class="match-section" id="active-section">
       <div class="match-list">
@@ -855,40 +676,33 @@
       </div>
     </div>
 
-    <div class="match-section" id="orders-section" style="display:none;">
-      <div class="section">
-        <div class="section__header">
-          <span class="section__title"><i class="fas fa-shopping-bag" style="color:var(--accent);margin-right:6px;"></i>Pedidos</span>
+    <div class="match-section" id="orders-section" style="display:none;">  <div class="section">
+    <div class="section__header">
+      <span class="section__title"><i class="fas fa-shopping-bag" style="color:var(--accent);margin-right:6px;"></i>Pedidos</span>
+    </div>
+    <div class="activity-feed">
+      <div class="activity-item">
+        <div class="activity-item__icon waiting">
+          <i class="fas fa-box"></i>
         </div>
-        <div class="activity-feed">
-          <div class="activity-item">
-            <div class="activity-item__icon waiting">
-              <i class="fas fa-box"></i>
-            </div>
-            <div class="activity-item__content">
-              <div class="activity-item__title">Canon EOS R (compra directa)</div>
-              <div class="activity-item__meta">1.200 EUR · En preparacion</div>
-            </div>
-            <span class="activity-item__status-badge waiting">En curso</span>
-          </div>
-          <div class="activity-item">
-            <div class="activity-item__icon done">
-              <i class="fas fa-check"></i>
-            </div>
-            <div class="activity-item__content">
-              <div class="activity-item__title">AirPods Max (trueque)</div>
-              <div class="activity-item__meta">Intercambiado por G-SHOCK</div>
-            </div>
-            <span class="activity-item__status-badge done">Completado</span>
-          </div>
+        <div class="activity-item__content">
+          <div class="activity-item__title">Canon EOS R (compra directa)</div>
+          <div class="activity-item__meta">1.200 EUR · En preparacion</div>
         </div>
+        <span class="activity-item__status-badge waiting">En curso</span>
+      </div>
+      <div class="activity-item">
+        <div class="activity-item__icon done">
+          <i class="fas fa-check"></i>
+        </div>
+        <div class="activity-item__content">
+          <div class="activity-item__title">AirPods Max (trueque)</div>
+          <div class="activity-item__meta">Intercambiado por G-SHOCK</div>
+        </div>
+        <span class="activity-item__status-badge done">Completado</span>
       </div>
     </div>
-  <!-- ===== BOTTOM NAV ===== -->
-  
-  
-  
-  <nav class="bottom-nav">
+  </div>class="bottom-nav">
     <button class="nav-item" onclick="goToDiscover()">
       <i class="fas fa-search"></i>
       <span>Buscar</span>
