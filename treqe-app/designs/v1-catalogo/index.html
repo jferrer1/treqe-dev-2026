@@ -314,7 +314,7 @@
     .item-card__meta i { font-size: 0.6rem; }
 
     /* ===== ITEM CARD COLOR VARIANTS (for demo) ===== */
-    .item-card:nth-child(1) .item-card__image { background: #2D2D2D; }
+        .item-card:nth-child(1) .item-card__image { background: #2D2D2D; }
     .item-card:nth-child(2) .item-card__image { background: #3A2A1A; }
     .item-card:nth-child(3) .item-card__image { background: #1A2A3A; }
     .item-card:nth-child(4) .item-card__image { background: #2A1A2A; }
@@ -346,7 +346,46 @@
     .item-card:nth-child(30) .item-card__image { background: #3A1A3A; }
     .item-card:nth-child(31) .item-card__image { background: #1A3D3A; }
     .item-card:nth-child(32) .item-card__image { background: #2D2A1A; }
-    .item-card .placeholder-icon.white { color: rgba(255,255,255,0.3); }
+    .item-card:nth-child(33) .item-card__image { background: #2D2D2D; }
+    .item-card:nth-child(34) .item-card__image { background: #3A2A1A; }
+    .item-card:nth-child(35) .item-card__image { background: #1A2A3A; }
+    .item-card:nth-child(36) .item-card__image { background: #2A1A2A; }
+    .item-card:nth-child(37) .item-card__image { background: #1A3A2A; }
+    .item-card:nth-child(38) .item-card__image { background: #3A3A1A; }
+    .item-card:nth-child(39) .item-card__image { background: #2A2A3A; }
+    .item-card:nth-child(40) .item-card__image { background: #3A2A3A; }
+    .item-card:nth-child(41) .item-card__image { background: #1A1A2A; }
+    .item-card:nth-child(42) .item-card__image { background: #2A3A2A; }
+    .item-card:nth-child(43) .item-card__image { background: #3A1A1A; }
+    .item-card:nth-child(44) .item-card__image { background: #1A3A3A; }
+    .item-card:nth-child(45) .item-card__image { background: #2D3D2D; }
+    .item-card:nth-child(46) .item-card__image { background: #3A2A2A; }
+    .item-card:nth-child(47) .item-card__image { background: #1A3A1A; }
+    .item-card:nth-child(48) .item-card__image { background: #2A2A1A; }
+    .item-card:nth-child(49) .item-card__image { background: #2A3A1A; }
+    .item-card:nth-child(50) .item-card__image { background: #3A1A2A; }
+    .item-card:nth-child(51) .item-card__image { background: #1A1A3A; }
+    .item-card:nth-child(52) .item-card__image { background: #3A3A2A; }
+    .item-card:nth-child(53) .item-card__image { background: #1A2A1A; }
+    .item-card:nth-child(54) .item-card__image { background: #2D1A2A; }
+    .item-card:nth-child(55) .item-card__image { background: #3A3A3A; }
+    .item-card:nth-child(56) .item-card__image { background: #2A1A1A; }
+    .item-card:nth-child(57) .item-card__image { background: #1A2A2A; }
+    .item-card:nth-child(58) .item-card__image { background: #2D2A3A; }
+    .item-card:nth-child(59) .item-card__image { background: #3A2D1A; }
+    .item-card:nth-child(60) .item-card__image { background: #1A1A1A; }
+    .item-card:nth-child(61) .item-card__image { background: #2A3D2A; }
+    .item-card:nth-child(62) .item-card__image { background: #3A1A3A; }
+    .item-card:nth-child(63) .item-card__image { background: #1A3D3A; }
+    .item-card:nth-child(64) .item-card__image { background: #2D2A1A; }
+    .item-card:nth-child(65) .item-card__image { background: #2D2D2D; }
+    .item-card:nth-child(66) .item-card__image { background: #3A2A1A; }
+    .item-card:nth-child(67) .item-card__image { background: #1A2A3A; }
+    .item-card:nth-child(68) .item-card__image { background: #2A1A2A; }
+    .item-card:nth-child(69) .item-card__image { background: #1A3A2A; }
+    .item-card:nth-child(70) .item-card__image { background: #3A3A1A; }
+
+.item-card .placeholder-icon.white { color: rgba(255,255,255,0.3); }
 
     /* ===== BOTTOM NAV ===== */
     .bottom-nav {
@@ -836,7 +875,7 @@
   <!-- ===== SECTION TITLE ===== -->
   <div class="section-title">
     <h2>Descubrir</h2>
-    <span id="articleCount">32 artículos</span>
+    <span id="articleCount">70 artículos</span>
   </div>
 
   <!-- ===== CATALOG GRID ===== -->
@@ -1227,6 +1266,390 @@
       </div>
     </div>
 
+
+    <div class="item-card" data-category="bicicletas" data-subcategory="bicis-electricas" data-price="890" onclick="goToDetail(33)">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-bicycle placeholder-icon white"></i>
+        <span class="price-tag">€890</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Bicicleta electrica Xiaomi · 25km/h · Autonomia 60km</div>
+      </div>
+    </div>
+    <div class="item-card" data-category="bicicletas" data-subcategory="cascos" data-price="55" onclick="goToDetail(34)">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-helmet-safety placeholder-icon white"></i>
+        <span class="price-tag">€55</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Casco Specialized Align II · Talla M · Negro mate</div>
+      </div>
+    </div>
+    <div class="item-card" data-category="electronica" data-subcategory="audio" data-price="220" onclick="goToDetail(35)">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-headphones placeholder-icon white"></i>
+        <span class="price-tag">€220</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Auriculares Sony WH-1000XM5 · Cancelacion ruido</div>
+      </div>
+    </div>
+    <div class="item-card" data-category="electronica" data-subcategory="tablets" data-price="520" onclick="goToDetail(36)">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-tablet-alt placeholder-icon white"></i>
+        <span class="price-tag">€520</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">iPad Air M2 · 11" · 128GB · WiFi · Gris espacial</div>
+      </div>
+    </div>
+    <div class="item-card" data-category="electronica" data-subcategory="perifericos" data-price="180" onclick="goToDetail(37)">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-desktop placeholder-icon white"></i>
+        <span class="price-tag">€180</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Monitor LG Ultrawide 29" · 2560x1080 · 75Hz</div>
+      </div>
+    </div>
+    <div class="item-card" data-category="electronica" data-subcategory="perifericos" data-price="95" onclick="goToDetail(38)">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-keyboard placeholder-icon white"></i>
+        <span class="price-tag">€95</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Teclado mecanico Keychron Q1 · Hot-swap · Negro</div>
+      </div>
+    </div>
+    <div class="item-card" data-category="electronica" data-subcategory="perifericos" data-price="65" onclick="goToDetail(39)">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-computer-mouse placeholder-icon white"></i>
+        <span class="price-tag">€65</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Raton Logitech G Pro X Superlight · Blanco</div>
+      </div>
+    </div>
+    <div class="item-card" data-category="electronica" data-subcategory="camaras" data-price="1200" onclick="goToDetail(40)">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-camera placeholder-icon white"></i>
+        <span class="price-tag">€1200</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Camara Sony A7 III · 24MP · Solo cuerpo</div>
+      </div>
+    </div>
+    <div class="item-card" data-category="electronica" data-subcategory="camaras" data-price="850" onclick="goToDetail(41)">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-plane placeholder-icon white"></i>
+        <span class="price-tag">€850</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">DJI Mini 4 Pro · Drone con 4K · Fly More Combo</div>
+      </div>
+    </div>
+    <div class="item-card" data-category="electronica" data-subcategory="accesorios" data-price="320" onclick="goToDetail(42)">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-projector placeholder-icon white"></i>
+        <span class="price-tag">€320</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Proyector Xiaomi Mi Smart · 1080p · Android TV</div>
+      </div>
+    </div>
+    <div class="item-card" data-category="electronica" data-subcategory="accesorios" data-price="550" onclick="goToDetail(43)">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-tv placeholder-icon white"></i>
+        <span class="price-tag">€550</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Samsung QLED 55" · 4K · Smart TV · 2023</div>
+      </div>
+    </div>
+    <div class="item-card" data-category="electronica" data-subcategory="consolas" data-price="380" onclick="goToDetail(44)">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-gamepad placeholder-icon white"></i>
+        <span class="price-tag">€380</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Xbox Series X · 1TB · 2 mandos · Como nueva</div>
+      </div>
+    </div>
+    <div class="item-card" data-category="electronica" data-subcategory="consolas" data-price="150" onclick="goToDetail(45)">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-gamepad placeholder-icon white"></i>
+        <span class="price-tag">€150</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Nintendo Switch Lite · Turquesa · Perfecto estado</div>
+      </div>
+    </div>
+    <div class="item-card" data-category="electronica" data-subcategory="portatiles" data-price="1450" onclick="goToDetail(46)">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-laptop placeholder-icon white"></i>
+        <span class="price-tag">€1450</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">MacBook Pro 14" M3 Pro · 18GB · 512GB</div>
+      </div>
+    </div>
+    <div class="item-card" data-category="electronica" data-subcategory="smartwatches" data-price="180" onclick="goToDetail(47)">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-clock placeholder-icon white"></i>
+        <span class="price-tag">€180</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Samsung Galaxy Watch 6 Classic · 47mm · LTE</div>
+      </div>
+    </div>
+    <div class="item-card" data-category="moda" data-subcategory="zapatos" data-price="60" onclick="goToDetail(48)">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-shoe-prints placeholder-icon white"></i>
+        <span class="price-tag">€60</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Zapatillas Nike Air Force 1 · Talla 42 · Blancas</div>
+      </div>
+    </div>
+    <div class="item-card" data-category="moda" data-subcategory="ropa-hombre" data-price="85" onclick="goToDetail(49)">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-vest placeholder-icon white"></i>
+        <span class="price-tag">€85</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Chaqueta The North Face · Talla M · Impermeable</div>
+      </div>
+    </div>
+    <div class="item-card" data-category="moda" data-subcategory="bolsos" data-price="120" onclick="goToDetail(50)">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-shopping-bag placeholder-icon white"></i>
+        <span class="price-tag">€120</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Bolso Michael Kors · Piel · Color crema</div>
+      </div>
+    </div>
+    <div class="item-card" data-category="moda" data-subcategory="belleza" data-price="70" onclick="goToDetail(51)">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-spray-can placeholder-icon white"></i>
+        <span class="price-tag">€70</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Perfume Chanel Bleu · 100ml · 90% lleno</div>
+      </div>
+    </div>
+    <div class="item-card" data-category="moda" data-subcategory="ropa-mujer" data-price="25" onclick="goToDetail(52)">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-female placeholder-icon white"></i>
+        <span class="price-tag">€25</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Vestido Mango · Talla S · Largo · Floral</div>
+      </div>
+    </div>
+    <div class="item-card" data-category="hogar" data-subcategory="muebles" data-price="250" onclick="goToDetail(53)">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-couch placeholder-icon white"></i>
+        <span class="price-tag">€250</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Sofa cama IKEA Friheten · Esquinero · Gris</div>
+      </div>
+    </div>
+    <div class="item-card" data-category="hogar" data-subcategory="muebles" data-price="140" onclick="goToDetail(54)">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-table placeholder-icon white"></i>
+        <span class="price-tag">€140</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Mesa comedor redonda · 120cm · Madera</div>
+      </div>
+    </div>
+    <div class="item-card" data-category="electrodomesticos" data-subcategory="aspiradoras" data-price="350" onclick="goToDetail(55)">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-robot placeholder-icon white"></i>
+        <span class="price-tag">€350</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Robot aspirador Roomba j7+ · Base autovaciado</div>
+      </div>
+    </div>
+    <div class="item-card" data-category="electrodomesticos" data-subcategory="lavanderia" data-price="280" onclick="goToDetail(56)">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-tint placeholder-icon white"></i>
+        <span class="price-tag">€280</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Lavadora Bosch Serie 4 · 8kg · 1200rpm</div>
+      </div>
+    </div>
+    <div class="item-card" data-category="electrodomesticos" data-subcategory="lavanderia" data-price="320" onclick="goToDetail(57)">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-wind placeholder-icon white"></i>
+        <span class="price-tag">€320</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Secadora Balay · 7kg · Bomba de calor</div>
+      </div>
+    </div>
+    <div class="item-card" data-category="electrodomesticos" data-subcategory="cocina" data-price="450" onclick="goToDetail(58)">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-snowflake placeholder-icon white"></i>
+        <span class="price-tag">€450</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Nevera Samsung · Side by Side · 600L</div>
+      </div>
+    </div>
+    <div class="item-card" data-category="bebes" data-subcategory="carritos" data-price="180" onclick="goToDetail(59)">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-baby-carriage placeholder-icon white"></i>
+        <span class="price-tag">€180</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Cochecito BabyTribe PRO · Plegable · 3 en 1</div>
+      </div>
+    </div>
+    <div class="item-card" data-category="bebes" data-subcategory="sillas-coche" data-price="95" onclick="goToDetail(60)">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-car-seat placeholder-icon white"></i>
+        <span class="price-tag">€95</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Silla de coche Maxi-Cosi · Grupo 0-1</div>
+      </div>
+    </div>
+    <div class="item-card" data-category="bebes" data-subcategory="cunas" data-price="75" onclick="goToDetail(61)">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-bed placeholder-icon white"></i>
+        <span class="price-tag">€75</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Cuna colecho · Madera · Regulable altura</div>
+      </div>
+    </div>
+    <div class="item-card" data-category="deporte" data-subcategory="pesas" data-price="80" onclick="goToDetail(62)">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-dumbbell placeholder-icon white"></i>
+        <span class="price-tag">€80</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Set de pesas 30kg · Mancuernas · Hierro</div>
+      </div>
+    </div>
+    <div class="item-card" data-category="deporte" data-subcategory="padel" data-price="95" onclick="goToDetail(63)">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-table-tennis placeholder-icon white"></i>
+        <span class="price-tag">€95</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Raqueta Wilson Blade 98 · 2023 · Como nueva</div>
+      </div>
+    </div>
+    <div class="item-card" data-category="deporte" data-subcategory="fitness" data-price="500" onclick="goToDetail(64)">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-person-running placeholder-icon white"></i>
+        <span class="price-tag">€500</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Cinta de correr NordicTrack · Inclinacion motorizada</div>
+      </div>
+    </div>
+    <div class="item-card" data-category="bicicletas" data-subcategory="bicis-montana" data-price="350" onclick="goToDetail(65)">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-bicycle placeholder-icon white"></i>
+        <span class="price-tag">€350</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Bicicleta montana Orbea · 29" · 2022</div>
+      </div>
+    </div>
+    <div class="item-card" data-category="bicicletas" data-subcategory="accesorios" data-price="120" onclick="goToDetail(66)">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-satellite-dish placeholder-icon white"></i>
+        <span class="price-tag">€120</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Garmin Edge 530 · GPS ciclismo</div>
+      </div>
+    </div>
+    <div class="item-card" data-category="deporte" data-subcategory="patines" data-price="45" onclick="goToDetail(67)">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-skating placeholder-icon white"></i>
+        <span class="price-tag">€45</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Patines en linea · Talla 42 · Ajustables</div>
+      </div>
+    </div>
+    <div class="item-card" data-category="hogar" data-subcategory="calefaccion" data-price="40" onclick="goToDetail(68)">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-fire placeholder-icon white"></i>
+        <span class="price-tag">€40</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Manta electrica · 180x200cm · 3 niveles</div>
+      </div>
+    </div>
+    <div class="item-card" data-category="hogar" data-subcategory="lamparas" data-price="35" onclick="goToDetail(69)">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-lightbulb placeholder-icon white"></i>
+        <span class="price-tag">€35</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Lampara de techo LED · 60cm · Regulable</div>
+      </div>
+    </div>
+    <div class="item-card" data-category="deporte" data-subcategory="futbol" data-price="35" onclick="goToDetail(70)">
+      <div class="item-card__image">
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <i class="fas fa-futbol placeholder-icon white"></i>
+        <span class="price-tag">€35</span>
+      </div>
+      <div class="item-card__info">
+        <div class="item-card__title">Balon futbol Adidas Champions · Talla 5</div>
+      </div>
+    </div>
+  </div>
+  <div id="pagingSentinel" style="height:20px;text-align:center;padding:20px;color:var(--text-tertiary);font-size:0.8rem;">
+    <span id="pagingLoader"><i class="fas fa-spinner fa-pulse"></i> Cargando mas articulos...</span>
   </div>
 
   <!-- ===== EMPTY STATE (hidden by default) ===== -->
@@ -1588,6 +2011,55 @@
     }
 
     // ===== INIT =====
+    // ===== STORY SCROLLING =====
+    const BATCH_SIZE = 20;
+    let currentBatch = 0;
+    const pageItems = Array.from(document.querySelectorAll('.item-card'));
+    const pageTotal = pageItems.length;
+
+    function showChunk(num) {
+        const end = Math.min((num + 1) * BATCH_SIZE, pageTotal);
+        pageItems.forEach((item, i) => {
+            item.style.display = (i < end) ? '' : 'none';
+        });
+        currentBatch = num;
+        updateArticleCount();
+        updateItemCounts();
+    }
+
+    function loadChunk() {
+        const next = currentBatch + 1;
+        const end = Math.min((next + 1) * BATCH_SIZE, pageTotal);
+        if (end > currentBatch * BATCH_SIZE) {
+            for (let i = currentBatch * BATCH_SIZE; i < end; i++) {
+                pageItems[i].style.display = '';
+            }
+            currentBatch = next;
+            if (end >= pageTotal) {
+                const loader = document.getElementById('pagingLoader');
+                if (loader) loader.style.display = 'none';
+            }
+            updateArticleCount();
+            updateItemCounts();
+        }
+    }
+
+    const pagingSentinel = document.getElementById('pagingSentinel');
+    if (pagingSentinel) {
+        new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) loadChunk(); });
+        }, { rootMargin: '200px' }).observe(pagingSentinel);
+    }
+
+    const origFilter = filterByCategory;
+    filterByCategory = function(cat) {
+        pageItems.forEach(i => i.style.display = '');
+        origFilter(cat);
+        if (cat === 'all') showChunk(currentBatch);
+    };
+
+    showChunk(0);
+
     updateItemCounts();
     updateArticleCount();
   
