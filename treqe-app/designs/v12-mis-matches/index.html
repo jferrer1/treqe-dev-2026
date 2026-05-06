@@ -555,6 +555,27 @@
       .header, .tabs, .match-list { max-width: 600px; margin: 0 auto; }
       .match-list { padding: 0 24px; }
     }
+  
+    .match-card__info { flex: 1; min-width: 0; }
+    .match-card__title { font-size: 0.85rem; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+    .match-card__meta { font-size: 0.72rem; color: var(--text-secondary); }
+    .match-card__date { font-size: 0.65rem; color: var(--text-tertiary); margin-top: 4px; }
+    .match-card__status {
+      font-size: 0.7rem; font-weight: 600;
+      padding: 4px 8px; border-radius: 6px;
+      display: flex; align-items: center; gap: 4px;
+    }
+    .match-card__status.pending { background: #FFF3ED; color: var(--accent); }
+    .match-card__status.active-status { background: #E8F8F5; color: var(--success); }
+    .match-card__status.completed-badge { background: #F0EDE6; color: var(--text-tertiary); }
+    .status-dot { width: 6px; height: 6px; border-radius: 50%; display: inline-block; }
+    .status-dot.active { background: var(--success); }
+    .match-card__action {
+      padding: 8px 14px; border-radius: 8px;
+      background: var(--accent); color: #FFF;
+      font-size: 0.75rem; font-weight: 600; flex-shrink: 0;
+    }
+
   </style>
 </head>
 <body>
@@ -836,7 +857,7 @@
       </div>
     </div>
 
-    orders-section" style="display:none;">
+    <div class="match-section" id="orders-section" style="display:none;">
       <div class="section">
         <div class="section__header">
           <span class="section__title"><i class="fas fa-shopping-bag" style="color:var(--accent);margin-right:6px;"></i>Pedidos</span>
