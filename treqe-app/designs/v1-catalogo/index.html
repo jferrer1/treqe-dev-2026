@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>TREQE — Catálogo</title>
+  <title>TREQE - Catálogo</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
@@ -14,15 +14,21 @@
       flex-shrink: 0;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+    html {
+      font-size: 16px;
+      -webkit-text-size-adjust: 100%;
+      scroll-behavior: smooth;
+    }
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background: #F8F6F0;
       color: #1A1A1A;
-      min-height: 100vh;
-      padding-bottom: 80px; /* space for bottom nav */
+      min-height: 100dvh;
+      padding-bottom: 80px;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      overscroll-behavior: contain;
+      scrollbar-gutter: stable;
     }
     img { max-width: 100%; display: block; }
     button { font-family: inherit; cursor: pointer; border: none; background: none; }
@@ -153,11 +159,12 @@
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.1); }
     }
-    
+
     /* Floating Match Banner */
     .match-banner {
       position: fixed;
       top: 80px;
+      z-index: 90;
       left: 16px;
       right: 16px;
       background: linear-gradient(135deg, #FF6A35 0%, #E55A2B 100%);
@@ -245,6 +252,7 @@
       box-shadow: var(--shadow);
       transition: transform 0.2s, box-shadow 0.2s;
       cursor: pointer;
+      contain: layout style;
     }
     .item-card:active {
       transform: scale(0.97);
@@ -409,8 +417,9 @@
       align-items: center;
       padding: 0;
       height: 72px;
-      padding-bottom: 12px; /* safe area */
+      padding-bottom: 12px;
       z-index: 100;
+      isolation: isolate;
     }
     .nav-item {
       display: flex;
@@ -729,8 +738,13 @@
       border: 1px solid var(--border);
       color: var(--text);
     }
-
-    /* ===== ACTIVE FILTERS BAR ===== */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+     ===== */
     .active-filters {
       display: none;
       align-items: center;
@@ -842,9 +856,9 @@
 <body>
 
   <!-- ===== DEMO NOTICE ===== -->
-  
+
   <!-- ===== STATUS BAR ===== -->
-  
+
   <!-- ===== HEADER ===== -->
   <div class="header">
       <svg class="treqe-logo" viewBox="0 0 90 28" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -902,7 +916,7 @@
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Fender Stratocaster · Muy buen estado</div>
-        
+
       </div>
     </div>
     <!-- Item 2 -->
@@ -914,7 +928,7 @@
       </div>
       <div class="item-card__info">
         <div class="item-card__title">G-SHOCK Mudmaster · Edición limitada</div>
-        
+
       </div>
     </div>
     <!-- Item 3 -->
@@ -926,7 +940,7 @@
       </div>
       <div class="item-card__info">
         <div class="item-card__title">iPhone 15 Pro · 256GB · Titanio natural</div>
-        
+
       </div>
     </div>
     <!-- Item 4 -->
@@ -938,7 +952,7 @@
       </div>
       <div class="item-card__info">
         <div class="item-card__title">PlayStation 5 · Edición digital · 2 mandos</div>
-        
+
       </div>
     </div>
     <!-- Item 5 -->
@@ -950,7 +964,7 @@
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Canon EOS R · Objetivo 24-70mm · Como nueva</div>
-        
+
       </div>
     </div>
     <!-- Item 6 -->
@@ -962,7 +976,7 @@
       </div>
       <div class="item-card__info">
         <div class="item-card__title">MacBook Air M3 · 16GB · 512GB · Medianoche</div>
-        
+
       </div>
     </div>
     <!-- Item 7 -->
@@ -974,7 +988,7 @@
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Casco Shoei NXR2 · Talla M · Carbono</div>
-        
+
       </div>
     </div>
     <!-- Item 8 -->
@@ -986,7 +1000,7 @@
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Trek Marlin 7 · Mtb · Talla L · 2023</div>
-        
+
       </div>
     </div>
     <!-- Item 9 -->
@@ -998,7 +1012,7 @@
       </div>
       <div class="item-card__info">
         <div class="item-card__title">AirPods Max · Azul cielo · Como nuevos</div>
-        
+
       </div>
     </div>
     <!-- Item 10 -->
@@ -1010,7 +1024,7 @@
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Bajo Fender Jazz Bass · Sunrise · 2019</div>
-        
+
       </div>
     </div>
     <!-- Item 11 -->
@@ -1022,7 +1036,7 @@
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Samsung Galaxy S25 Ultra · 512GB · Titanium</div>
-        
+
       </div>
     </div>
     <!-- Item 12 -->
@@ -1034,7 +1048,7 @@
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Apple Watch Ultra 2 · Naranja · 49mm</div>
-        
+
       </div>
     </div>
     <!-- Item 13 -->
@@ -1046,7 +1060,7 @@
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Sofá IKEA Kivik · 3 plazas · Gris claro</div>
-        
+
       </div>
     </div>
     <!-- Item 14 -->
@@ -1058,7 +1072,7 @@
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Nespresso Vertuo Next · Plata · Poco uso</div>
-        
+
       </div>
     </div>
     <!-- Item 15 -->
@@ -1070,7 +1084,7 @@
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Lámpara de pie IKEA · Nordviken · Blanca</div>
-        
+
       </div>
     </div>
     <!-- Item 16 -->
@@ -1081,8 +1095,8 @@
         <span class="price-tag">€95</span>
       </div>
       <div class="item-card__info">
-        <div class="item-card__title">Kindle Paperwhite · 11ª gen · 32GB · Sin marcas</div>
-        
+        <div class="item-card__title">Kindle Paperwhite · 11a gen · 32GB · Sin marcas</div>
+
       </div>
     </div>
     <!-- Item 17 -->
@@ -1094,7 +1108,7 @@
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Mochila The North Face · Borealis · Negra</div>
-        
+
       </div>
     </div>
     <!-- Item 18 -->
@@ -1106,7 +1120,7 @@
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Nike Air Max 90 · Talla 42 · Muy buen estado</div>
-        
+
       </div>
     </div>
     <!-- Item 19 -->
@@ -1118,7 +1132,7 @@
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Palas Bullpadel · Pack 2 uds. · Usadas 3 meses</div>
-        
+
       </div>
     </div>
     <!-- Item 20 -->
@@ -1130,7 +1144,7 @@
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Set pesas 20kg · Con mancuernas · Hierro fundido</div>
-        
+
       </div>
     </div>
     <!-- Item 21 -->
@@ -1142,7 +1156,7 @@
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Guitarra acústica Yamaha F310 · Clásica · 6 cuerdas</div>
-        
+
       </div>
     </div>
     <!-- Item 22 -->
@@ -1154,7 +1168,7 @@
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Vinilos Beatles · Colección 5 LP · Edición original</div>
-        
+
       </div>
     </div>
     <!-- Item 23 -->
@@ -1166,7 +1180,7 @@
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Batería electrónica Roland TD-1DMK · Completa</div>
-        
+
       </div>
     </div>
     <!-- Item 24 -->
@@ -1178,7 +1192,7 @@
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Cien años de soledad · Gabriel García Márquez · Tapa dura</div>
-        
+
       </div>
     </div>
     <!-- Item 25 -->
@@ -1190,7 +1204,7 @@
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Harry Potter · 7 libros · Tapa blanda · Casi nuevos</div>
-        
+
       </div>
     </div>
     <!-- Item 26 -->
@@ -1202,7 +1216,7 @@
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Nintendo Switch OLED · Blanco · Como nueva</div>
-        
+
       </div>
     </div>
     <!-- Item 27 -->
@@ -1214,7 +1228,7 @@
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Logitech MX Mechanical · Inalámbrico · Táctil</div>
-        
+
       </div>
     </div>
     <!-- Item 28 -->
@@ -1226,7 +1240,7 @@
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Vestido Zara · Talla S · Floral · Puesto 2 veces</div>
-        
+
       </div>
     </div>
     <!-- Item 29 -->
@@ -1238,7 +1252,7 @@
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Patines en línea · Talla 42 · Ajustables · Poco uso</div>
-        
+
       </div>
     </div>
     <!-- Item 30 -->
@@ -1250,7 +1264,7 @@
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Silla oficina IKEA Markus · Negro · Muy cuidada</div>
-        
+
       </div>
     </div>
     <!-- Item 31 -->
@@ -1262,7 +1276,7 @@
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Enciclopedia Salvat · 12 tomos · Completa · 2005</div>
-        
+
       </div>
     </div>
     <!-- Item 32 -->
@@ -1274,7 +1288,7 @@
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Batman Year One · Frank Miller · Edición Deluxe</div>
-        
+
       </div>
     </div>
 
@@ -1687,9 +1701,9 @@
   </div>
 
   <!-- ===== BOTTOM NAV ===== -->
-  
-  
-  
+
+
+
   <nav class="bottom-nav">
     <button class="nav-item active" onclick="goToDiscover()">
       <i class="fas fa-search"></i>
@@ -1748,12 +1762,12 @@
     // ===== FILTER BY CATEGORY (chips) =====
     function filterByCategory(category) {
       activeCategory = category;
-      
+
       // Update pill styles
       document.querySelectorAll('.filter-pill').forEach(p => {
         p.classList.toggle('active', p.dataset.category === category);
       });
-      
+
       applyCurrentFilters();
     }
 
@@ -1767,7 +1781,7 @@
         const title = item.querySelector('.item-card__title').textContent.toLowerCase();
         const matchesCategory = activeCategory === 'all' || cat === activeCategory;
         const matchesSearch = !query || title.includes(query);
-        
+
         if (matchesCategory && matchesSearch) {
           item.style.display = '';
           visibleCount++;
@@ -1784,7 +1798,7 @@
         emptyState.style.display = 'none';
         catalog.style.display = 'grid';
       }
-      
+
       updateArticleCount();
     }
 
@@ -1819,7 +1833,7 @@
     function goToDetail(id) { window.parent.location.href = '../v2-detalle/?id=' + id; }
     function goToMatches() { window.parent.location.href = '../v12-mis-matches/'; }
 
-    console.log('📱 TREQE v1 — Catálogo · 32 productos demo');
+    console.log('📱 TREQE v1 - Catálogo · 32 productos demo');
 
     // ===== ADVANCED SEARCH FILTERS (modal) =====
     function openFilters() {
@@ -1865,10 +1879,10 @@
       const category = document.getElementById('categorySelect').value;
       const subGroup = document.getElementById('subcategoryGroup');
       const subSelect = document.getElementById('subcategorySelect');
-      
+
       if (category && subcategories[category]) {
         subGroup.style.display = 'block';
-        subSelect.innerHTML = '<option value="">Todas</option>' + 
+        subSelect.innerHTML = '<option value="">Todas</option>' +
           subcategories[category].map(sub => `<option value="${sub.toLowerCase().replace(/ /g, '-')}">${sub}</option>`).join('');
       } else {
         subGroup.style.display = 'none';
@@ -1910,19 +1924,19 @@
 
     function applyFilters() {
       closeFilters();
-      
+
       // Sync: reset pills to "Todas" when modal is used
       activeCategory = 'all';
       document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
       document.querySelector('.filter-pill[data-category="all"]').classList.add('active');
-      
+
       const category = document.getElementById('categorySelect').value;
       const subcategory = document.getElementById('subcategorySelect').value;
       const priceMin = parseFloat(document.getElementById('priceMin').value) || 0;
       const priceMax = parseFloat(document.getElementById('priceMax').value) || Infinity;
       const condition = document.querySelector('[data-condition].active')?.dataset.condition || 'any';
       const query = searchInput.value.toLowerCase().trim();
-      
+
       // --- Apply all modal filters + search to items ---
       let visibleCount = 0;
       items.forEach(item => {
@@ -1934,7 +1948,7 @@
         const matchesSubcategory = !subcategory || itemSubcat === subcategory;
         const matchesPrice = itemPrice >= priceMin && itemPrice <= priceMax;
         const matchesSearch = !query || title.includes(query);
-        
+
         if (matchesCategory && matchesSubcategory && matchesPrice && matchesSearch) {
           item.style.display = '';
           visibleCount++;
@@ -1942,7 +1956,7 @@
           item.style.display = 'none';
         }
       });
-      
+
       // Show/hide empty state
       if (visibleCount === 0) {
         emptyState.style.display = 'flex';
@@ -1951,24 +1965,24 @@
         emptyState.style.display = 'none';
         catalog.style.display = 'grid';
       }
-      
+
       updateArticleCount();
-      
+
       // Show active filters bar
       const activeFiltersEl = document.getElementById('activeFilters');
       let filtersHTML = '';
-      
+
       if (category) filtersHTML += `<div class="active-filter" data-filter="category"><span>${document.getElementById('categorySelect').options[document.getElementById('categorySelect').selectedIndex].text}</span><button onclick="removeFilter('category')"><i class="fas fa-times"></i></button></div>`;
       if (priceMin > 0 || priceMax < Infinity) filtersHTML += `<div class="active-filter" data-filter="price"><span>€${priceMin || 0} - €${priceMax === Infinity ? '∞' : priceMax}</span><button onclick="removeFilter('price')"><i class="fas fa-times"></i></button></div>`;
       if (condition !== 'any') filtersHTML += `<div class="active-filter" data-filter="condition"><span>${document.querySelector('[data-condition].active').textContent}</span><button onclick="removeFilter('condition')"><i class="fas fa-times"></i></button></div>`;
-      
+
       if (filtersHTML) {
         activeFiltersEl.innerHTML = filtersHTML + '<button class="clear-all-filters" onclick="clearAllFilters()">Limpiar todo</button>';
         activeFiltersEl.classList.add('visible');
       } else {
         activeFiltersEl.classList.remove('visible');
       }
-      
+
       console.log('Filtros aplicados:', { category, subcategory, priceMin, priceMax, condition, resultados: getVisibleCount() });
     }
 
@@ -2004,13 +2018,13 @@
       document.querySelector('[data-condition="any"]').classList.add('active');
       document.querySelectorAll('.filter-chips--sort .filter-chip').forEach(chip => chip.classList.remove('active'));
       document.querySelector('[data-sort="relevance"]').classList.add('active');
-      
+
       // Reset items visibility completely
       items.forEach(item => item.style.display = '');
-      
+
       document.getElementById('activeFilters').classList.remove('visible');
       closeFilters();
-      
+
       // Re-apply category pills + search
       activeCategory = 'all';
       document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
@@ -2081,7 +2095,7 @@
 
     updateItemCounts();
     updateArticleCount();
-  
+
     function goToDiscover() { window.parent.location.href = '../v1-catalogo/'; }
     function goToTrades() { window.parent.location.href = '../v12-mis-matches/'; }
     function goToInbox() { window.parent.location.href = '../v11-notificaciones/'; }
@@ -2146,7 +2160,7 @@
               <span class="filter-price-symbol">€</span>
               <input type="number" placeholder="0" class="filter-input filter-input--price" id="priceMin" min="0">
             </div>
-            <span class="filter-range-separator">—</span>
+            <span class="filter-range-separator">-</span>
             <div class="filter-price-input">
               <span class="filter-price-symbol">€</span>
               <input type="number" placeholder="Max" class="filter-input filter-input--price" id="priceMax" min="0">
