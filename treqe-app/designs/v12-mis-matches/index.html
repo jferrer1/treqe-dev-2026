@@ -88,7 +88,43 @@
       margin-left: 8px;
     }
 
-    /* ===== TABS ===== */
+        /* ===== ORDERS ===== */
+    .section { margin-bottom: 16px; }
+    .section__header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 10px; padding: 0 16px;
+    }
+    .section__title {
+      font-size: 0.9rem; font-weight: 600; color: var(--text);
+    }
+    .activity-feed { padding: 0 16px; }
+    .activity-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 14px 12px; background: var(--card-bg);
+      border-radius: 12px; margin-bottom: 10px;
+      box-shadow: var(--shadow);
+    }
+    .activity-item__icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+    }
+    .activity-item__icon.waiting { background: #FFF3ED; color: var(--accent); }
+    .activity-item__icon.done { background: #E8F8F5; color: var(--success); }
+    .activity-item__content { flex: 1; min-width: 0; }
+    .activity-item__title {
+      font-size: 0.82rem; font-weight: 600; color: var(--text);
+      margin-bottom: 3px;
+    }
+    .activity-item__meta {
+      font-size: 0.7rem; color: var(--text-tertiary);
+    }
+    .activity-item__status-badge {
+      font-size: 0.65rem; font-weight: 600; padding: 4px 8px;
+      border-radius: 6px; flex-shrink: 0;
+    }
+    .activity-item__status-badge.waiting { background: #FFF3ED; color: var(--accent); }
+    .activity-item__status-badge.done { background: #E8F8F5; color: var(--success); }    /* ===== TABS ===== */
     .tabs {
       display: flex;
       gap: 8px;
@@ -491,6 +527,9 @@
     <button class="tab" onclick="switchTab(this, 'completed')">
       Completados
     </button>
+    <button class="tab" onclick="switchTab(this, 'orders')">
+      <i class="fas fa-shopping-bag"></i> Pedidos
+    </button>
   </div>
 
   <!-- ===== MATCH LIST ===== -->
@@ -672,6 +711,37 @@
 
   </div>
 
+  
+    <!-- ORDERS -->
+    <div class="match-section" id="orders-section" style="display:none;">
+      <div class="section">
+        <div class="section__header">
+          <span class="section__title"><i class="fas fa-shopping-bag" style="color:var(--accent);margin-right:6px;"></i>Pedidos</span>
+        </div>
+        <div class="activity-feed">
+          <div class="activity-item">
+            <div class="activity-item__icon waiting">
+              <i class="fas fa-box"></i>
+            </div>
+            <div class="activity-item__content">
+              <div class="activity-item__title">Canon EOS R (compra directa)</div>
+              <div class="activity-item__meta">1.200 EUR · En preparacion</div>
+            </div>
+            <span class="activity-item__status-badge waiting">En curso</span>
+          </div>
+          <div class="activity-item">
+            <div class="activity-item__icon done">
+              <i class="fas fa-check"></i>
+            </div>
+            <div class="activity-item__content">
+              <div class="activity-item__title">AirPods Max (trueque)</div>
+              <div class="activity-item__meta">Intercambiado por G-SHOCK</div>
+            </div>
+            <span class="activity-item__status-badge done">Completado</span>
+          </div>
+        </div>
+      </div>
+    </div>
   <!-- ===== BOTTOM NAV ===== -->
   
   
