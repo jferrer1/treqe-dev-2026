@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -553,7 +553,7 @@
     <div class="section">
       <div class="section__header">
         <span class="section__title"><i class="fas fa-heart" style="color:var(--accent);margin-right:6px;"></i>Me gustan</span>
-        <button class="section__action" onclick="goToDiscover()">Ver todo</button>
+        <button class="section__action" onclick="goToFavorites()">Ver todo</button>
       </div>
       <div class="my-items">
         <div class="my-item" onclick="alert('🎸 Fender Stratocaster')">
@@ -643,7 +643,7 @@
   
   
   <nav class="bottom-nav">
-    <button class="nav-item" onclick="goToDiscover()">
+    <button class="nav-item" onclick="goToFavorites()">
       <i class="fas fa-search"></i>
       <span>Buscar</span>
     </button>
@@ -731,7 +731,7 @@
     console.log('👤 TREQE v4 — Perfil');
     console.log('🧪 Treqe Prototype — Apr 2026');
   
-    function goToDiscover() { window.parent.location.href = '../v1-catalogo/'; }
+    function goToFavorites() { window.parent.location.href = '../v1-catalogo/'; }
     function goToTrades() { window.parent.location.href = '../v12-mis-matches/'; }
     function goToInbox() { window.parent.location.href = '../v11-notificaciones/'; }
     function goToUpload() { window.parent.location.href = '../v3-subir/'; }
