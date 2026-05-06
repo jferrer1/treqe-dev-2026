@@ -767,7 +767,76 @@
 
   
     <!-- ORDERS -->
-    <div class="match-section" id="orders-section" style="display:none;">
+    <div class="match-section" id="
+    <!-- ACTIVE -->
+    <div class="match-section" id="active-section">
+      <div class="match-list">
+        <div class="match-card active">
+          <div class="match-card__info">
+            <div class="match-card__title">iPhone 15 Pro ↔ PlayStation 5</div>
+            <div class="match-card__meta">Propuesta enviada · Pendiente de respuesta</div>
+            <div class="match-card__date">Hace 2 horas</div>
+          </div>
+          <div class="match-card__status pending">
+            <span class="status-dot"></span> Pendiente
+          </div>
+        </div>
+        <div class="match-card active">
+          <div class="match-card__info">
+            <div class="match-card__title">Canon EOS R ↔ AirPods Max</div>
+            <div class="match-card__meta">Match aceptado · Coordinando envio</div>
+            <div class="match-card__date">Hace 1 dia</div>
+          </div>
+          <div class="match-card__status active-status">
+            <span class="status-dot active"></span> En curso
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- PENDING -->
+    <div class="match-section" id="pending-section" style="display:none;">
+      <div class="match-list">
+        <div class="match-card pending">
+          <div class="match-card__info">
+            <div class="match-card__title">G-SHOCK Mudmaster ↔ iPhone 12</div>
+            <div class="match-card__meta">Te han enviado una propuesta</div>
+            <div class="match-card__date">Hace 30 min</div>
+          </div>
+          <button class="match-card__action" onclick="alert('Ver propuesta')">Revisar</button>
+        </div>
+        <div class="match-card pending">
+          <div class="match-card__info">
+            <div class="match-card__title">Bajo Ibanez ↔ Bateria Roland</div>
+            <div class="match-card__meta">Propuesta recibida · Pendiente</div>
+            <div class="match-card__date">Hace 5 horas</div>
+          </div>
+          <button class="match-card__action" onclick="alert('Ver propuesta')">Revisar</button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- COMPLETED -->
+    <div class="match-section" id="completed-section" style="display:none;">
+      <div class="match-list">
+        <div class="match-card completed">
+          <div class="match-card__info">
+            <div class="match-card__title">Trek Marlin 7 ↔ AirPods Max</div>
+            <div class="match-card__meta">Intercambio completado · 12 Abr 2026</div>
+          </div>
+          <span class="match-card__status completed-badge">Hecho</span>
+        </div>
+        <div class="match-card completed">
+          <div class="match-card__info">
+            <div class="match-card__title">Casco Shoei ↔ G-SHOCK</div>
+            <div class="match-card__meta">Intercambio completado · 5 Abr 2026</div>
+          </div>
+          <span class="match-card__status completed-badge">Hecho</span>
+        </div>
+      </div>
+    </div>
+
+    orders-section" style="display:none;">
       <div class="section">
         <div class="section__header">
           <span class="section__title"><i class="fas fa-shopping-bag" style="color:var(--accent);margin-right:6px;"></i>Pedidos</span>
@@ -843,7 +912,9 @@
     function switchTab(tab, filter) {
       document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
-      console.log('Filter:', filter);
+      document.querySelectorAll('.match-section').forEach(s => s.style.display = 'none');
+      var section = document.getElementById(filter + '-section');
+      if (section) section.style.display = 'block';
     }
 
     function acceptMatch() {
