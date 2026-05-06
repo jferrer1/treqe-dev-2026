@@ -2050,21 +2050,13 @@
         const sentinel = document.getElementById('pagingSentinel');
         if (!sentinel || sentinel.style.display === 'none') return;
         const rect = sentinel.getBoundingClientRect();
-        if (rect.top < window.innerHeight + 100) {
+        var isNearBottom = (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 200;
+        if (isNearBottom) {
             isLoading = true;
             loadChunk();
-            setTimeout(function() { isLoading = false; }, 500);
+            setTimeout(function() { isLoading = false; }, 800);
         }
     });
-    setTimeout(function() {
-        const sentinel = document.getElementById('pagingSentinel');
-        if (sentinel && sentinel.style.display !== 'none') {
-            const rect = sentinel.getBoundingClientRect();
-            if (rect.top < window.innerHeight + 100) {
-                loadChunk();
-            }
-        }
-    }, 500);
 
     const origFilter = filterByCategory;
     filterByCategory = function(cat) {
