@@ -592,6 +592,10 @@
     .video-slot { aspect-ratio:16/9;border-radius:12px;border:1.5px dashed var(--border);display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--text-tertiary);font-size:.65rem;position:relative;overflow:hidden;transition:border-color .2s; }
     .video-slot:active { border-color:var(--accent); }
     .video-slot i { font-size:1.5rem;margin-bottom:4px;color:var(--text-tertiary); }
+
+    .video-section { margin-bottom: 20px; }
+    .video-section__label { font-size: 0.72rem; font-weight: 600; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
+    .video-section__label i { margin-right: 4px; }
 </style>
 </head>
 <body>
@@ -654,6 +658,37 @@
     <!-- Photos -->
     <div class="photo-section">
       <div class="photo-section__label"><i class="fas fa-camera"></i> Fotos <span style="font-weight:400;text-transform:none;letter-spacing:0;">(mín. 1, máx. 5)</span></div>
+      <!-- ===== VIDEO UPLOAD ===== -->
+      <div class="video-section">
+        <div class="video-section__label"><i class="fas fa-video"></i> Videos <span style="font-weight:400;text-transform:none;letter-spacing:0;">(opcional, max. 4)</span></div>
+        <div class="video-grid" id="videoGrid">
+          <div class="video-slot" onclick="addVideo(this)" id="video0">
+            <div class="placeholder-content" style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+              <i class="fas fa-plus"></i>
+              <span>Anadir</span>
+            </div>
+          </div>
+          <div class="video-slot" onclick="addVideo(this)" id="video1">
+            <div class="placeholder-content" style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+              <i class="fas fa-plus"></i>
+              <span>Anadir</span>
+            </div>
+          </div>
+          <div class="video-slot" onclick="addVideo(this)" id="video2">
+            <div class="placeholder-content" style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+              <i class="fas fa-plus"></i>
+              <span>Anadir</span>
+            </div>
+          </div>
+          <div class="video-slot" onclick="addVideo(this)" id="video3">
+            <div class="placeholder-content" style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+              <i class="fas fa-plus"></i>
+              <span>Anadir</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="photo-grid" id="photoGrid">
         <div class="photo-slot primary" onclick="addPhoto(this)" id="slot0">
           <div class="placeholder-content" style="display:flex;flex-direction:column;align-items:center;gap:4px;">
