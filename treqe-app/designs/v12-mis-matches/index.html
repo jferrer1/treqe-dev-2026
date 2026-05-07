@@ -694,16 +694,16 @@
 
   <!-- ===== TABS ===== -->
   <div class="tabs">
-    <button class="tab active" style="pointer-events:auto" onclick="switchTab(this, 'active')">
+    <button class="tab active" data-filter="active">
       Activos 🔴 <span class="count">1</span>
     </button>
-    <button class="tab" style="pointer-events:auto;background:yellow" onclick="alert(&#39;CLICK&#39;);switchTab(this, 'pending')">
+    <button class="tab" data-filter="pending">
       Pendientes 🟡 <span class="count">2</span>
     </button>
-    <button class="tab" style="pointer-events:auto;background:yellow" onclick="alert(&#39;CLICK&#39;);switchTab(this, 'in-progress')">
+    <button class="tab" data-filter="in-progress">
       En curso 🟢 <span class="count">2</span>
     </button>
-    <button class="tab" style="pointer-events:auto;background:yellow" onclick="alert(&#39;CLICK&#39;);switchTab(this, 'completed')">
+    <button class="tab" data-filter="completed">
       Completados 🔵 <span class="count">1</span>
     </button>
   </div>
@@ -1216,6 +1216,24 @@
         showFeedback(⭐, 'Valoracion enviada', 'Has valorado con ' + currentRating + ' estrellas');
       }, 300);
     }
+
+
+    // Tab switching via JS listeners
+    document.querySelectorAll('.tab').forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        var filter = this.getAttribute('data-filter');
+        if (!filter) return;
+        document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
+        this.classList.add('active');
+        var ids = ['active-section','pending-section','in-progress-section','completed-section'];
+        ids.forEach(function(id) {
+          var el = document.getElementById(id);
+          if (el) el.style.display = 'none';
+        });
+        var target = document.getElementById(filter + '-section');
+        if (target) target.style.display = 'block';
+      });
+    });
 
 </script>
 
