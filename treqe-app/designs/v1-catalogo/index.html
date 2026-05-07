@@ -1796,6 +1796,22 @@ function filterByCategory(category) {
         }
       });
 
+      // Sort visible items
+      var sortChip = document.querySelector('[data-sort].active');
+      if (sortChip && sortChip.dataset.sort !== 'relevance') {
+        var order = sortChip.dataset.sort;
+        var catEl = document.getElementById('catalog');
+        var visibleItems = Array.from(items).filter(function(it) { return it.style.display !== 'none'; });
+        if (order === 'price-asc') {
+          visibleItems.sort(function(a, b) { return (parseFloat(a.dataset.price)||0) - (parseFloat(b.dataset.price)||0); });
+        } else if (order === 'price-desc') {
+          visibleItems.sort(function(a, b) { return (parseFloat(b.dataset.price)||0) - (parseFloat(a.dataset.price)||0); });
+        } else if (order === 'newest') {
+          visibleItems.reverse();
+        }
+        visibleItems.forEach(function(item) { catEl.appendChild(item); });
+      }
+
       // Show/hide empty state
       if (visibleCount === 0) {
         emptyState.style.display = 'flex';
@@ -1945,6 +1961,22 @@ function filterByCategory(category) {
           item.style.display = 'none';
         }
       });
+
+      // Sort visible items
+      var sortChip = document.querySelector('[data-sort].active');
+      if (sortChip && sortChip.dataset.sort !== 'relevance') {
+        var order = sortChip.dataset.sort;
+        var catEl = document.getElementById('catalog');
+        var visibleItems = Array.from(items).filter(function(it) { return it.style.display !== 'none'; });
+        if (order === 'price-asc') {
+          visibleItems.sort(function(a, b) { return (parseFloat(a.dataset.price)||0) - (parseFloat(b.dataset.price)||0); });
+        } else if (order === 'price-desc') {
+          visibleItems.sort(function(a, b) { return (parseFloat(b.dataset.price)||0) - (parseFloat(a.dataset.price)||0); });
+        } else if (order === 'newest') {
+          visibleItems.reverse();
+        }
+        visibleItems.forEach(function(item) { catEl.appendChild(item); });
+      }
 
       // Show/hide empty state
       if (visibleCount === 0) {
