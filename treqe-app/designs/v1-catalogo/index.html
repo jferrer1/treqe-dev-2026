@@ -1907,18 +1907,18 @@ function filterByCategory(category) {
     // Sort chips selection
     document.addEventListener('click', function(e) {
       var chip = e.target.closest('.filter-chip');
-      if (chip && chip.closest('.filter-chips--sort')) {
+      if (!chip) return;
+      if (chip.closest('.filter-chips--sort')) {
         chip.closest('.filter-chips--sort').querySelectorAll('.filter-chip').forEach(function(c) { c.classList.remove('active'); });
         chip.classList.add('active');
+        return;
       }
-    });
-
-    // Condition chips
-    document.addEventListener('click', function(e) {
-      var chip = e.target.closest('.filter-chip');
-      if (chip && !chip.closest('.filter-chips--sort') && chip.dataset.condition) {
-        chip.parentElement.querySelectorAll('.filter-chip').forEach(function(c) { c.classList.remove('active'); });
-        chip.classList.add('active');
+      if (chip.dataset.condition) {
+        var ct = chip.closest('.filter-chips');
+        if (ct) {
+          ct.querySelectorAll('.filter-chip').forEach(function(c) { c.classList.remove('active'); });
+          chip.classList.add('active');
+        }
       }
     });
 
