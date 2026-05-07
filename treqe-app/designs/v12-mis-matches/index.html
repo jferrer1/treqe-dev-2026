@@ -640,9 +640,9 @@
     .rate-modal-overlay {
       position: fixed; inset: 0; background: rgba(0,0,0,0.5);
       backdrop-filter: blur(4px); z-index: 200;
-      display: none; align-items: flex-end; justify-content: center;
+      display: none;
     }
-    .rate-modal-overlay.visible { display: flex; }
+    .rate-modal-overlay.visible { display: flex; align-items: flex-end; justify-content: center; }
     .rate-modal {
       background: var(--card-bg); border-radius: 24px 24px 0 0;
       width: 100%; max-height: 65vh; overflow: hidden;
