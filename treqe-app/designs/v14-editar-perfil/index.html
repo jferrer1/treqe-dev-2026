@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>TREQUE — Editar perfil</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{font-size:16px;-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+    body{font-family:'Inter',sans-serif;background:#F8F6F0;color:#1A1A1A;min-height:100dvh;padding-bottom:80px;-webkit-font-smoothing:antialiased;overscroll-behavior:contain;scrollbar-gutter:stable}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+    :root{--bg:#F8F6F0;--text:#1A1A1A;--text-secondary:#888;--text-tertiary:#B0B0B0;--border:#E8E4DC;--accent:#FF6A35;--accent-hover:#E55A2B;--success:#00B8B8;--danger:#E74C3C;--card-bg:#FFF;--shadow:0 2px 12px rgba(0,0,0,.06)}
+    button,input,textarea,select{font-family:inherit;font-size:inherit}
+    button{cursor:pointer;border:none;background:none}
+
+    .header{display:flex;align-items:center;justify-content:center;padding:12px 16px;background:var(--bg);width:100%;position:relative}
+    .header__back{position:absolute;left:12px;width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--text);font-size:1.1rem;transition:background .2s}
+    .header__back:active{background:var(--border)}
+    .header__title{font-size:1.05rem;font-weight:600;color:var(--text)}
+
+    .page{padding:0 16px 16px;max-width:500px;margin:0 auto}
+    .avatar-section{display:flex;flex-direction:column;align-items:center;padding:20px 0;gap:12px}
+    .avatar-circle{width:96px;height:96px;border-radius:50%;background:var(--accent);color:#FFF;display:flex;align-items:center;justify-content:center;font-size:2.5rem;font-weight:700;position:relative;overflow:hidden}
+    .avatar-circle__overlay{position:absolute;inset:0;background:rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s}
+    .avatar-circle:hover .avatar-circle__overlay,.avatar-circle:active .avatar-circle__overlay{opacity:1}
+    .avatar-circle__overlay i{color:#FFF;font-size:1.2rem}
+    .avatar-change{font-size:.82rem;color:var(--accent);font-weight:500}
+
+    .form-group{margin-bottom:18px}
+    .form-group__label{font-size:.72rem;font-weight:600;color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:8px}
+    .form-input{width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:10px;font-size:.9rem;color:var(--text);background:var(--card-bg);transition:border-color .2s}
+    .form-input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(255,106,53,.1)}
+    .form-textarea{width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:10px;font-size:.9rem;color:var(--text);background:var(--card-bg);resize:vertical;min-height:100px;transition:border-color .2s}
+    .form-textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(255,106,53,.1)}
+    .form-hint{font-size:.68rem;color:var(--text-tertiary);margin-top:4px}
+    .form-section{margin-top:24px;padding-top:16px;border-top:1px solid var(--border)}
+    .form-section__title{font-size:.85rem;font-weight:600;color:var(--text);margin-bottom:14px}
+
+    .save-btn{width:100%;padding:14px;border-radius:12px;font-size:.9rem;font-weight:600;background:var(--accent);color:#FFF;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:24px;transition:all .2s}
+    .save-btn:active{opacity:.9;transform:scale(.98)}
+    .save-btn__success{background:var(--success)}
+
+    .bottom-nav{position:fixed;inset:auto 0 0;background:rgba(255,255,255,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid var(--border);display:flex;justify-content:space-evenly;align-items:center;padding:0;height:72px;padding-bottom:12px;z-index:100;isolation:isolate}
+    .nav-item{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:.65rem;font-weight:500;color:var(--text-tertiary);transition:color .2s;padding:4px 0;flex:1;max-width:80px;position:relative}
+    .nav-item i{font-size:1.3rem}
+    .nav-item.active{color:var(--accent)}
+    .nav-item.active i{transform:scale(1.05)}
+    .nav-item .nav-badge{width:6px;height:6px;background:var(--accent);border-radius:50%;position:absolute;top:2px;right:12px}
+    .nav-item.nav-add{position:relative;top:0}
+    .nav-item.nav-add .nav-add-btn{width:48px;height:48px;background:var(--accent);color:#FFF;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;box-shadow:0 4px 16px rgba(255,106,53,.3);transition:transform .2s,box-shadow .2s}
+    .nav-item.nav-add .nav-add-btn:active{transform:scale(.92);box-shadow:0 2px 8px rgba(255,106,53,.2)}
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <button class="header__back" onclick="goToProfile()" aria-label="Atras"><i class="fas fa-chevron-left"></i></button>
+    <span class="header__title">Editar perfil</span>
+  </div>
+
+  <div class="page">
+    <div class="avatar-section">
+      <div class="avatar-circle" onclick="alert('Cambiar foto de perfil')">
+        T
+        <div class="avatar-circle__overlay"><i class="fas fa-camera"></i></div>
+      </div>
+      <button class="avatar-change" onclick="alert('Cambiar foto de perfil')"><i class="fas fa-camera" style="margin-right:4px;"></i> Cambiar foto</button>
+    </div>
+
+    <div class="form-group">
+      <label class="form-group__label">Nombre</label>
+      <input class="form-input" type="text" value="Tu Nombre" id="nameInput" maxlength="50">
+    </div>
+
+    <div class="form-group">
+      <label class="form-group__label">Nombre de usuario</label>
+      <input class="form-input" type="text" value="@usuario" id="usernameInput" maxlength="30">
+      <div class="form-hint">Es publico y aparecera en tu perfil</div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-group__label">Biografia</label>
+      <textarea class="form-textarea" id="bioInput" maxlength="300" placeholder="Cuenta algo sobre ti y lo que buscas en Treqe...">Apasionado de la musica y la tecnologia. Busco intercambios justos y sin complicaciones.</textarea>
+      <div class="form-hint"><span id="bioCount">63</span>/300</div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section__title"><i class="fas fa-map-marker-alt" style="color:var(--accent);margin-right:6px;"></i>Ubicacion</div>
+      <div class="form-group">
+        <label class="form-group__label">Ciudad</label>
+        <input class="form-input" type="text" value="Barcelona" id="cityInput">
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section__title"><i class="fas fa-link" style="color:var(--accent);margin-right:6px;"></i>Redes sociales</div>
+      <div class="form-group">
+        <label class="form-group__label">Instagram</label>
+        <input class="form-input" type="text" value="" placeholder="@usuario" id="instagramInput">
+      </div>
+    </div>
+
+    <button class="save-btn" id="saveBtn" onclick="saveProfile()">
+      <i class="fas fa-check"></i> Guardar cambios
+    </button>
+  </div>
+
+  <nav class="bottom-nav">
+    <button class="nav-item" onclick="goToDiscover()"><i class="fas fa-search"></i><span>Buscar</span></button>
+    <button class="nav-item" onclick="goToTrades()"><i class="fas fa-exchange-alt"></i><span>Treqes</span></button>
+    <button class="nav-item nav-add" onclick="goToUpload()"><div class="nav-add-btn"><i class="fas fa-plus"></i></div></button>
+    <button class="nav-item" onclick="goToInbox()"><i class="fas fa-bell"></i><span>Avisos</span><span class="nav-badge"></span></button>
+    <button class="nav-item active" onclick="goToProfile()"><i class="fas fa-user"></i><span>Perfil</span></button>
+  </nav>
+
+<script>
+    document.getElementById('bioInput').addEventListener('input', function() {
+      document.getElementById('bioCount').textContent = this.value.length;
+    });
+
+    function saveProfile() {
+      var btn = document.getElementById('saveBtn');
+      btn.innerHTML = '<i class="fas fa-check"></i> Guardado';
+      btn.classList.add('save-btn__success');
+      setTimeout(function() {
+        btn.innerHTML = '<i class="fas fa-check"></i> Guardar cambios';
+        btn.classList.remove('save-btn__success');
+      }, 2000);
+    }
+
+    function goToDiscover() { window.parent.location.href = '../v1-catalogo/'; }
+    function goToTrades() { window.parent.location.href = '../v12-mis-matches/'; }
+    function goToInbox() { window.parent.location.href = '../v11-notificaciones/'; }
+    function goToUpload() { window.parent.location.href = '../v3-subir/'; }
+    function goToProfile() { window.parent.location.href = '../v4-perfil/'; }
+</script>
+</body>
+</html>
