@@ -759,7 +759,7 @@
       background: var(--bg);
       border-bottom: 1px solid var(--border);
     }
-    .active-filters.visible { display: flex; }
+    .active-filters.visible { display: flex !important; }
     .active-filters::-webkit-scrollbar { display: none; }
     .active-filter {
       display: flex;
@@ -2037,7 +2037,7 @@ function filterByCategory(category) {
       var sc=document.querySelectorAll('.filter-chips--sort .filter-chip');for(var i=0;i<sc.length;i++)sc[i].classList.remove('active');
       var rs=document.querySelector('[data-sort="relevance"]');if(rs)rs.classList.add('active');
       var it=document.querySelectorAll('.item-card');for(var i=0;i<it.length;i++)it[i].style.display='';
-      var af=document.getElementById('activeFilters');if(af){af.innerHTML='';af.style.cssText='display:none !important';}
+      var af=document.getElementById('activeFilters');if(af){af.innerHTML='';af.classList.remove('visible');}
       document.getElementById('filterModal').classList.remove('visible');
       document.body.style.overflow='';
       activeCategory='all';
