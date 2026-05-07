@@ -1193,6 +1193,7 @@
       stars.forEach(function(s, i) {
         s.classList.toggle('active', i < val);
       });
+  }, 100);
       var texts = ['', 'Muy malo', 'Regular', 'Aceptable', 'Bueno', 'Excelente'];
       document.getElementById('ratingScore').textContent = texts[val] + ' (' + val + '/5)';
     }
@@ -1219,7 +1220,7 @@
 
 
     // Tab switching via JS listeners
-    document.querySelectorAll('.tab').forEach(function(tab) {
+    setTimeout(function() { document.querySelectorAll('.tab').forEach(function(tab) {
       tab.addEventListener('click', function() {
         var filter = this.getAttribute('data-filter');
         if (!filter) return;
