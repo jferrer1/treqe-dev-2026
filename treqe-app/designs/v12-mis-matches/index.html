@@ -93,9 +93,6 @@
       border: 1px solid var(--border);
       color: var(--text-secondary);
       transition: all 0.2s;
-      position: relative;
-      z-index: 5;
-      cursor: pointer;
     }
     .tab:active { background: var(--border); }
     .tab.active {
@@ -636,51 +633,6 @@
     @media (min-width: 600px) {
       .header, .tabs, .match-section { max-width: 600px; margin: 0 auto; }
     }
-  
-    .rate-modal-overlay {
-      position: fixed; inset: 0; background: rgba(0,0,0,0.5);
-      backdrop-filter: blur(4px); z-index: 200;
-      display: none;
-    }
-    .rate-modal-overlay.visible { display: flex; align-items: flex-end; justify-content: center; }
-    .rate-modal {
-      background: var(--card-bg); border-radius: 24px 24px 0 0;
-      width: 100%; max-height: 65vh; overflow: hidden;
-      animation: slideUp .3s ease;
-    }
-    .rate-modal__header {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 16px 20px 12px; border-bottom: 1px solid var(--border);
-    }
-    .rate-modal__title { font-size: 1rem; font-weight: 600; color: var(--text); }
-    .rate-modal__close {
-      width: 32px; height: 32px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      color: var(--text-secondary); font-size: .9rem;
-    }
-    .rate-modal__close:active { background: var(--border); }
-    .rate-modal__body { padding: 20px; text-align: center; }
-    .rate-modal__stars {
-      display: flex; justify-content: center; gap: 8px; margin-bottom: 16px;
-    }
-    .rate-star {
-      font-size: 2.2rem; color: var(--border); cursor: pointer;
-      transition: color .15s, transform .15s;
-    }
-    .rate-star.active { color: #F5A623; }
-    .rate-star:active { transform: scale(1.2); }
-    .rate-modal__score { font-size: 1.2rem; font-weight: 700; color: var(--text); margin-bottom: 12px; }
-    .rate-modal__textarea {
-      width: 100%; padding: 12px; border: 1px solid var(--border);
-      border-radius: 10px; font-size: .85rem; font-family: inherit;
-      resize: vertical; background: var(--card-bg); color: var(--text);
-      min-height: 80px; text-align: left;
-    }
-    .rate-modal__textarea:focus { outline: none; border-color: var(--accent); }
-    .rate-modal__footer {
-      display: flex; gap: 10px; padding: 12px 20px 20px; border-top: 1px solid var(--border);
-    }
-
   </style>
 </head>
 <body>
@@ -694,16 +646,16 @@
 
   <!-- ===== TABS ===== -->
   <div class="tabs">
-    <button class="tab active" data-filter="active">
+    <button class="tab active" onclick="switchTab(this, 'active')">
       Activos 🔴 <span class="count">1</span>
     </button>
-    <button class="tab" data-filter="pending">
+    <button class="tab" onclick="switchTab(this, 'pending')">
       Pendientes 🟡 <span class="count">2</span>
     </button>
-    <button class="tab" data-filter="in-progress">
+    <button class="tab" onclick="switchTab(this, 'in-progress')">
       En curso 🟢 <span class="count">2</span>
     </button>
-    <button class="tab" data-filter="completed">
+    <button class="tab" onclick="switchTab(this, 'completed')">
       Completados 🔵 <span class="count">1</span>
     </button>
   </div>
@@ -995,7 +947,7 @@
   </div>
 
   <!-- ===== FEEDBACK TOAST ===== -->
-  <div class="feedback-overlay" id="feedbackOverlay" style="display:none"></div>
+  <div class="feedback-overlay" id="feedbackOverlay"></div>
   <div class="feedback-toast" id="feedbackToast">
     <div class="feedback-toast__icon" id="feedbackIcon">✅</div>
     <div class="feedback-toast__title" id="feedbackTitle">¡Hecho!</div>
@@ -1090,13 +1042,11 @@
       document.getElementById('feedbackTitle').textContent = title;
       document.getElementById('feedbackText').textContent = text;
       document.getElementById('feedbackToast').classList.add('show');
-      document.getElementById('feedbackOverlay').style.display = 'block';
       document.getElementById('feedbackOverlay').classList.add('show');
     }
 
     function closeFeedback() {
       document.getElementById('feedbackToast').classList.remove('show');
-      document.getElementById('feedbackOverlay').style.display = 'none';
       document.getElementById('feedbackOverlay').classList.remove('show');
     }
 
@@ -1160,7 +1110,8 @@
 
     // ===== CARD 6: Valorar =====
     function rateTrade(id) {
-      openRating();
+      showFeedback('⭐', 'Valora tu intercambio',
+        'Cuéntanos tu experiencia en #TRX-' + id + '. ¿Cómo fue el trato con Ana y Bruno?');
     }
 
     // ===== CARD 3: Buscar nuevo match =====
@@ -1185,83 +1136,6 @@
 
     console.log('⭐ TREQE v12 — Mis Treqes (prototipo completo)');
     console.log('🧪 6 cards | 4 tabs | timers | Mar 2026');
-  
-    var currentRating = 0;
-    function setRating(val) {
-      currentRating = val;
-      var stars = document.querySelectorAll('.rate-star');
-      stars.forEach(function(s, i) {
-        s.classList.toggle('active', i < val);
-      });
-  }, 100);
-      var texts = ['', 'Muy malo', 'Regular', 'Aceptable', 'Bueno', 'Excelente'];
-      document.getElementById('ratingScore').textContent = texts[val] + ' (' + val + '/5)';
-    }
-    function openRating() {
-      currentRating = 0;
-      document.getElementById('ratingModal').classList.add('visible');
-      document.getElementById('ratingComment').value = '';
-      document.getElementById('ratingScore').textContent = 'Selecciona estrellas';
-      document.querySelectorAll('.rate-star').forEach(function(s) { s.classList.remove('active'); });
-      document.body.style.overflow = 'hidden';
-    }
-    function closeRating() {
-      document.getElementById('ratingModal').classList.remove('visible');
-      document.body.style.overflow = '';
-    }
-    function submitRating() {
-      if (currentRating === 0) return;
-      document.getElementById('ratingModal').classList.remove('visible');
-      document.body.style.overflow = '';
-      setTimeout(function() {
-        showFeedback(⭐, 'Valoracion enviada', 'Has valorado con ' + currentRating + ' estrellas');
-      }, 300);
-    }
-
-
-    // Tab switching via JS listeners
-    setTimeout(function() { document.querySelectorAll('.tab').forEach(function(tab) {
-      tab.addEventListener('click', function() {
-        var filter = this.getAttribute('data-filter');
-        if (!filter) return;
-        document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
-        this.classList.add('active');
-        var ids = ['active-section','pending-section','in-progress-section','completed-section'];
-        ids.forEach(function(id) {
-          var el = document.getElementById(id);
-          if (el) el.style.display = 'none';
-        });
-        var target = document.getElementById(filter + '-section');
-        if (target) target.style.display = 'block';
-      });
-    });
-
-</script>
-
-  <!-- ===== RATING MODAL ===== -->
-  <div class="rate-modal-overlay" id="ratingModal" onclick="if(event.target===this)closeRating()">
-    <div class="rate-modal">
-      <div class="rate-modal__header">
-        <span class="rate-modal__title"><i class="fas fa-star" style="color:#F5A623;margin-right:8px;"></i>Valorar intercambio</span>
-        <button class="rate-modal__close" onclick="closeRating()"><i class="fas fa-times"></i></button>
-      </div>
-      <div class="rate-modal__body">
-        <div class="rate-modal__score" id="ratingScore">Selecciona estrellas</div>
-        <div class="rate-modal__stars" id="ratingStars">
-          <i class="fas fa-star rate-star" data-value="1" onclick="setRating(1)"></i>
-          <i class="fas fa-star rate-star" data-value="2" onclick="setRating(2)"></i>
-          <i class="fas fa-star rate-star" data-value="3" onclick="setRating(3)"></i>
-          <i class="fas fa-star rate-star" data-value="4" onclick="setRating(4)"></i>
-          <i class="fas fa-star rate-star" data-value="5" onclick="setRating(5)"></i>
-        </div>
-        <textarea class="rate-modal__textarea" id="ratingComment" placeholder="Anade un comentario (opcional)..."></textarea>
-      </div>
-      <div class="rate-modal__footer">
-        <button class="btn btn--secondary" onclick="closeRating()">Cancelar</button>
-        <button class="btn btn--primary" onclick="submitRating()"><i class="fas fa-paper-plane"></i> Enviar valoracion</button>
-      </div>
-    </div>
-  </div>
-
+  </script>
 </body>
 </html>
