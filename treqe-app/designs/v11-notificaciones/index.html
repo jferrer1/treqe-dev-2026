@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -790,9 +790,9 @@
       document.getElementById('replyForm').style.display = 'none';
     }
     function sendReply() {
-      const ta = document.querySelector('.reply-form__textarea');
+      const ta = document.getElementById('replyText');
       if (!ta.value.trim()) return;
-      const btn = document.querySelector('.reply-form__btn');
+      const btn = document.querySelector('.btn--primary');
       btn.innerHTML = '<i class="fas fa-check"></i> Respuesta enviada';
       btn.style.background = 'var(--success)';
       setTimeout(() => {
