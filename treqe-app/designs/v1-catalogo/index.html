@@ -2008,6 +2008,7 @@ function filterByCategory(category) {
     }
 
     function removeFilter(filterType) {
+      if(filterType==='price'){var pm=document.getElementById('priceMin');pm.style.border='3px solid green';setTimeout(function(){pm.style.border='';},2000);}
       if (filterType === 'category') {
         document.getElementById('categorySelect').value = '';
         document.getElementById('subcategorySelect').value = '';
