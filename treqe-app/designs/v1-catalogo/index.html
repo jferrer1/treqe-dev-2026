@@ -1906,19 +1906,19 @@ function filterByCategory(category) {
 
     // Sort chips selection
     document.addEventListener('click', function(e) {
-      var chip = e.target.closest('.filter-chip'); if (chip && chip.closest('.filter-chips--sort')) {
-        e.target.closest('.filter-chips--sort').querySelectorAll('.filter-chip').forEach(chip => chip.classList.remove('active'));
-        chip2.classList.add('active');
+      var chip = e.target.closest('.filter-chip');
+      if (chip && chip.closest('.filter-chips--sort')) {
+        chip.closest('.filter-chips--sort').querySelectorAll('.filter-chip').forEach(function(c) { c.classList.remove('active'); });
+        chip.classList.add('active');
       }
     });
 
     // Condition chips
     document.addEventListener('click', function(e) {
-      var chip2 = e.target.closest('.filter-chip'); if (chip2 && !chip2.closest('.filter-chips--sort')) {
-        if (chip2.dataset.condition) {
-          chip2.closest('.filter-chips').querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
-          chip2.classList.add('active');
-        }
+      var chip = e.target.closest('.filter-chip');
+      if (chip && !chip.closest('.filter-chips--sort') && chip.dataset.condition) {
+        chip.parentElement.querySelectorAll('.filter-chip').forEach(function(c) { c.classList.remove('active'); });
+        chip.classList.add('active');
       }
     });
 
