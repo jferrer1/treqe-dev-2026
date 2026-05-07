@@ -694,16 +694,16 @@
 
   <!-- ===== TABS ===== -->
   <div class="tabs">
-    <button class="tab active" onclick="switchTab(this, 'active')">
+    <button class="tab active" ontouchend="switchTab(this,''active'');event.preventDefault()" onclick="switchTab(this, 'active')">
       Activos 🔴 <span class="count">1</span>
     </button>
-    <button class="tab" onclick="switchTab(this, 'pending')">
+    <button class="tab" ontouchend="switchTab(this,''active'');event.preventDefault()" onclick="switchTab(this, 'pending')">
       Pendientes 🟡 <span class="count">2</span>
     </button>
-    <button class="tab" onclick="switchTab(this, 'in-progress')">
+    <button class="tab" ontouchend="switchTab(this,''active'');event.preventDefault()" onclick="switchTab(this, 'in-progress')">
       En curso 🟢 <span class="count">2</span>
     </button>
-    <button class="tab" onclick="switchTab(this, 'completed')">
+    <button class="tab" ontouchend="switchTab(this,''active'');event.preventDefault()" onclick="switchTab(this, 'completed')">
       Completados 🔵 <span class="count">1</span>
     </button>
   </div>
