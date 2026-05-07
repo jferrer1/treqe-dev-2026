@@ -586,7 +586,13 @@
       color: var(--text-secondary);
       font-size: 0.9rem;
     }
-  </style>
+  
+    .video-label { font-size:0.72rem;font-weight:600;color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.5px;margin:20px 0 10px; }
+    .video-grid { display:grid;grid-template-columns:repeat(2,1fr);gap:8px; }
+    .video-slot { aspect-ratio:16/9;border-radius:12px;border:1.5px dashed var(--border);display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--text-tertiary);font-size:.65rem;position:relative;overflow:hidden;transition:border-color .2s; }
+    .video-slot:active { border-color:var(--accent); }
+    .video-slot i { font-size:1.5rem;margin-bottom:4px;color:var(--text-tertiary); }
+</style>
 </head>
 <body>
 
@@ -951,6 +957,8 @@
     function goToInbox() { window.parent.location.href = '../v11-notificaciones/'; }
     function goToUpload() { window.parent.location.href = '../v3-subir/'; }
     function goToProfile() { window.parent.location.href = '../v4-perfil/'; }
-    function goToDetail(id) { window.parent.location.href = '../v2-detalle/?id=' + id; }</script>
+    function goToDetail(id) { window.parent.location.href = '../v2-detalle/?id=' + id; }
+    function addVideo(slot) { alert("Selector de video (max 30s). En la version completa podras grabar o seleccionar de la galeria."); }
+</script>
 </body>
 </html>
