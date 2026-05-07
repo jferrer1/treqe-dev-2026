@@ -2043,7 +2043,9 @@ function filterByCategory(category) {
       // Reset items visibility completely
       items.forEach(item => item.style.display = '');
 
-      document.getElementById('activeFilters').classList.remove('visible');
+      var af = document.getElementById('activeFilters');
+      af.innerHTML = '';
+      af.style.display = 'none';
       closeFilters();
 
       // Re-apply category pills + search
