@@ -1755,15 +1755,18 @@
     }
 
     function updateArticleCount() {
-      let visible = 0;
+      var visible = 0;
+      var query = searchInput.value.toLowerCase().trim();
       items.forEach(item => {
-        if (item.style.display !== 'none') visible++;
+        var cat = item.dataset.category || '';
+        var title = item.querySelector('.item-card__title').textContent.toLowerCase();
+        var matchesCategory = activeCategory === 'all' || cat === activeCategory;
+        var matchesSearch = !query || title.includes(query);
+        if (matchesCategory && matchesSearch) visible++;
       });
       document.getElementById('articleCount').textContent = visible + ' artículos';
     }
-
-    // ===== FILTER BY CATEGORY (chips) =====
-    function filterByCategory(category) {
+function filterByCategory(category) {
       activeCategory = category;
 
       // Update pill styles
