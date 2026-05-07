@@ -1,0 +1,11 @@
+﻿<!DOCTYPE html><html><head><meta charset="UTF-8"><style>
+.active-filters{flex-wrap:nowrap;display:none;align-items:center;gap:8px;padding:10px 16px;background:#F8F6F0;border-bottom:1px solid #E8E4DC}
+.active-filters.visible{display:flex!important}
+.active-filter{display:flex;align-items:center;gap:6px;padding:6px 12px;background:#FF6A35;color:#FFF;border-radius:16px;font-size:.75rem}
+.clear-all-filters{font-size:.75rem;color:#888;text-decoration:underline;white-space:nowrap;padding:6px 8px}
+</style></head><body>
+<div class="active-filters" id="af"><button class="clear-all-filters" onclick="document.getElementById('af').classList.remove('visible')">Limpiar</button></div>
+<button onclick="document.getElementById('af').innerHTML='<span class=active-filter>200-500 X</span><button class=clear-all-filters onclick=document.getElementById(\'af\').classList.remove(\'visible\')>Limpiar</button>';document.getElementById('af').classList.add('visible')">Aplicar filtros</button>
+<button onclick="document.getElementById('af').classList.remove('visible')">Limpiar</button>
+<p>La barra aparece/desaparece correctamente.</p>
+</body></html>

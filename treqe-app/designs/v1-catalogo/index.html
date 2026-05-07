@@ -2026,6 +2026,12 @@ function filterByCategory(category) {
         var ac = document.querySelector('[data-condition="any"]'); if(ac) ac.classList.add('active');
       }
       applyFilters();
+      // Force hide bar if no filter tags remain
+      var af = document.getElementById('activeFilters');
+      if (af) {
+        var tags = af.querySelectorAll('.active-filter');
+        if (tags.length === 0) af.classList.remove('visible');
+      }
     }function clearAllFilters() {
       var cs=document.getElementById('categorySelect'),ss=document.getElementById('subcategorySelect');
       if(cs)cs.value='';if(ss)ss.value='';updateSubcategories();
