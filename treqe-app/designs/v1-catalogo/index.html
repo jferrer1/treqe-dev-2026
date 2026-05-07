@@ -1756,15 +1756,25 @@
     function updateArticleCount() {
       var visible = 0;
       var query = searchInput.value.toLowerCase().trim();
+      var modalCat = (document.getElementById('categorySelect')||{}).value || '';
+      var modalSub = (document.getElementById('subcategorySelect')||{}).value || '';
+      var priceMin = parseFloat((document.getElementById('priceMin')||{}).value) || 0;
+      var priceMax = parseFloat((document.getElementById('priceMax')||{}).value) || Infinity;
       items.forEach(item => {
         var cat = item.dataset.category || '';
         var title = item.querySelector('.item-card__title').textContent.toLowerCase();
+        var itemPrice = parseFloat(item.dataset.price) || 0;
+        var subcat = item.dataset.subcategory || '';
         var matchesCategory = activeCategory === 'all' || cat === activeCategory;
         var matchesSearch = !query || title.includes(query);
-        if (matchesCategory && matchesSearch) visible++;
+        var matchesModalCat = !modalCat || cat === modalCat;
+        var matchesModalSub = !modalSub || subcat === modalSub;
+        var matchesPrice = itemPrice >= priceMin && itemPrice <= priceMax;
+        if (matchesCategory && matchesSearch && matchesModalCat && matchesModalSub && matchesPrice) visible++;
       });
-      document.getElementById('articleCount').textContent = visible + ' artículos';
+      document.getElementById('articleCount').textContent = visible + ' art' + String.fromCharCode(237) + 'culos';
     }
+
 function filterByCategory(category) {
       activeCategory = category;
 
