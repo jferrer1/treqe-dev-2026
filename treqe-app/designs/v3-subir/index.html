@@ -656,8 +656,61 @@
   <form class="form-wrap" id="submitForm" onsubmit="return handleSubmit(event)">
 
     <!-- Photos -->
-    <div class="photo-section">
-      <div class="photo-section__label"><i class="fas fa-camera"></i> Fotos <span style="font-weight:400;text-transform:none;letter-spacing:0;">(mín. 1, máx. 5)</span></div>
+    
+      <!-- ===== PHOTO UPLOAD ===== -->
+      <div class="photo-section">
+        <div class="photo-section__label"><i class="fas fa-camera"></i> Fotos <span style="font-weight:400;text-transform:none;letter-spacing:0;">(min. 1, max. 8)</span></div>
+        <div class="photo-grid" id="photoGrid">
+          <div class="photo-slot primary" onclick="addPhoto(this)" id="slot0">
+            <div class="placeholder-content" style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+              <i class="fas fa-camera"></i>
+              <span>Principal</span>
+            </div>
+          </div>
+          <div class="photo-slot" onclick="addPhoto(this)" id="slot1">
+            <div class="placeholder-content" style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+              <i class="fas fa-plus"></i>
+              <span>Anadir</span>
+            </div>
+          </div>
+          <div class="photo-slot" onclick="addPhoto(this)" id="slot2">
+            <div class="placeholder-content" style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+              <i class="fas fa-plus"></i>
+              <span>Anadir</span>
+            </div>
+          </div>
+          <div class="photo-slot" onclick="addPhoto(this)" id="slot3">
+            <div class="placeholder-content" style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+              <i class="fas fa-plus"></i>
+              <span>Anadir</span>
+            </div>
+          </div>
+          <div class="photo-slot" onclick="addPhoto(this)" id="slot4">
+            <div class="placeholder-content" style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+              <i class="fas fa-plus"></i>
+              <span>Anadir</span>
+            </div>
+          </div>
+          <div class="photo-slot" onclick="addPhoto(this)" id="slot5">
+            <div class="placeholder-content" style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+              <i class="fas fa-plus"></i>
+              <span>Anadir</span>
+            </div>
+          </div>
+          <div class="photo-slot" onclick="addPhoto(this)" id="slot6">
+            <div class="placeholder-content" style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+              <i class="fas fa-plus"></i>
+              <span>Anadir</span>
+            </div>
+          </div>
+          <div class="photo-slot" onclick="addPhoto(this)" id="slot7">
+            <div class="placeholder-content" style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+              <i class="fas fa-plus"></i>
+              <span>Anadir</span>
+            </div>
+          </div>
+        </div>
+      </div>
       <!-- ===== VIDEO UPLOAD ===== -->
       <div class="video-section">
         <div class="video-section__label"><i class="fas fa-video"></i> Videos <span style="font-weight:400;text-transform:none;letter-spacing:0;">(opcional, max. 4)</span></div>
@@ -688,37 +741,7 @@
           </div>
         </div>
       </div>
-
-      <div class="photo-grid" id="photoGrid">
-        <div class="photo-slot primary" onclick="addPhoto(this)" id="slot0">
-          <div class="placeholder-content" style="display:flex;flex-direction:column;align-items:center;gap:4px;">
-            <i class="fas fa-camera"></i>
-            <span>Principal</span>
-          </div>
-        </div>
-        <div class="photo-slot" onclick="addPhoto(this)" id="slot1">
-          <div class="placeholder-content" style="display:flex;flex-direction:column;align-items:center;gap:4px;">
-            <i class="fas fa-plus"></i>
-            <span>Añadir</span>
-          </div>
-        </div>
-        <div class="photo-slot" onclick="addPhoto(this)" id="slot2">
-          <div class="placeholder-content" style="display:flex;flex-direction:column;align-items:center;gap:4px;">
-            <i class="fas fa-plus"></i>
-            <span>Añadir</span>
-          </div>
-        </div>
-        <div class="photo-slot" onclick="addPhoto(this)" id="slot3">
-          <div class="placeholder-content" style="display:flex;flex-direction:column;align-items:center;gap:4px;">
-            <i class="fas fa-plus"></i>
-            <span>Añadir</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Title -->
-    <div class="form-group">
+<div class="form-group">
       <label for="title">Título del artículo</label>
       <input type="text" id="title" placeholder="Ej. Fender Stratocaster Player Series" required>
     </div>
