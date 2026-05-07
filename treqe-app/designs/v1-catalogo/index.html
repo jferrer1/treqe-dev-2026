@@ -2029,33 +2029,24 @@ function filterByCategory(category) {
     }
 
     function clearAllFilters() {
-      document.getElementById('categorySelect').value = '';
-      document.getElementById('subcategorySelect').value = '';
-      updateSubcategories();
-      document.getElementById('priceMin').value = '';
-      document.getElementById('priceMax').value = '';
-      document.querySelectorAll('.filter-quick-btn').forEach(btn => btn.classList.remove('active'));
-      document.querySelectorAll('[data-condition]').forEach(chip => chip.classList.remove('active'));
-      var anyChip = document.querySelector('[data-condition="any"]'); if (anyChip) anyChip.classList.add('active');
-      document.querySelectorAll('.filter-chips--sort .filter-chip').forEach(chip => chip.classList.remove('active'));
-      var relChip = document.querySelector('[data-sort="relevance"]'); if (relChip) relChip.classList.add('active');
-
-      // Reset items visibility completely
-      items.forEach(item => item.style.display = '');
-
-      var af = document.getElementById('activeFilters');
-      af.innerHTML = '';
-      af.style.display = 'none';
-      closeFilters();
-
-      // Re-apply category pills + search
-      activeCategory = 'all';
-      document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
-      document.querySelector('.filter-pill[data-category="all"]').classList.add('active');
+      var cs=document.getElementById('categorySelect'),ss=document.getElementById('subcategorySelect');
+      if(cs)cs.value='';if(ss)ss.value='';updateSubcategories();
+      var pm=document.getElementById('priceMin'),px=document.getElementById('priceMax');
+      if(pm)pm.value='';if(px)px.value='';
+      var qb=document.querySelectorAll('.filter-quick-btn');for(var i=0;i<qb.length;i++)qb[i].classList.remove('active');
+      var cd=document.querySelectorAll('[data-condition]');for(var i=0;i<cd.length;i++)cd[i].classList.remove('active');
+      var ac=document.querySelector('[data-condition="any"]');if(ac)ac.classList.add('active');
+      var sc=document.querySelectorAll('.filter-chips--sort .filter-chip');for(var i=0;i<sc.length;i++)sc[i].classList.remove('active');
+      var rs=document.querySelector('[data-sort="relevance"]');if(rs)rs.classList.add('active');
+      var it=document.querySelectorAll('.item-card');for(var i=0;i<it.length;i++)it[i].style.display='';
+      var af=document.getElementById('activeFilters');if(af){af.innerHTML='';af.style.cssText='display:none !important';}
+      document.getElementById('filterModal').classList.remove('visible');
+      document.body.style.overflow='';
+      activeCategory='all';
+      var fp=document.querySelectorAll('.filter-pill');for(var i=0;i<fp.length;i++)fp[i].classList.remove('active');
+      var ap=document.querySelector('.filter-pill[data-category="all"]');if(ap)ap.classList.add('active');
       applyCurrentFilters();
-    }
-
-    function resetFilters() {
+    }function resetFilters() {
       clearAllFilters();
     }
 
