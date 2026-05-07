@@ -584,7 +584,7 @@
         <i class="fas fa-chevron-right"></i>
       </button>
       
-      <button class="profile-action" onclick="verifyIdentity()">
+      <button class="profile-action" onclick="goToVerify()">
         <div class="profile-action__icon verified"><i class="fas fa-shield-alt"></i></div>
         <div class="profile-action__text">
           <div class="profile-action__title">Verificar identidad</div>
@@ -795,6 +795,7 @@
     console.log('👤 TREQE v4 — Perfil');
     console.log('🧪 Treqe Prototype — Apr 2026');
   
+    function goToVerify() { window.parent.location.href = "../v15-verificar-identidad/"; }
     function goToEditProfile() { window.parent.location.href = "../v14-editar-perfil/"; }
     function goToFavorites() { window.parent.location.href = '../v13-favoritos/'; }
     function goToTrades() { window.parent.location.href = '../v12-mis-matches/'; }
