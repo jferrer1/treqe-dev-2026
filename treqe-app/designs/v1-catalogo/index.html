@@ -2019,16 +2019,14 @@ function filterByCategory(category) {
       if (filterType === 'price') {
         document.getElementById('priceMin').value = '';
         document.getElementById('priceMax').value = '';
-        document.querySelectorAll('.filter-quick-btn').forEach(btn => btn.classList.remove('active'));
+        var qbs = document.querySelectorAll('.filter-quick-btn'); for(var i=0;i<qbs.length;i++) qbs[i].classList.remove('active');
       }
       if (filterType === 'condition') {
-        document.querySelectorAll('[data-condition]').forEach(chip => chip.classList.remove('active'));
-        var anyChip = document.querySelector('[data-condition="any"]'); if (anyChip) anyChip.classList.add('active');
+        var cds = document.querySelectorAll('[data-condition]'); for(var i=0;i<cds.length;i++) cds[i].classList.remove('active');
+        var ac = document.querySelector('[data-condition="any"]'); if(ac) ac.classList.add('active');
       }
       applyFilters();
-    }
-
-    function clearAllFilters() {
+    }function clearAllFilters() {
       var cs=document.getElementById('categorySelect'),ss=document.getElementById('subcategorySelect');
       if(cs)cs.value='';if(ss)ss.value='';updateSubcategories();
       var pm=document.getElementById('priceMin'),px=document.getElementById('priceMax');
