@@ -992,7 +992,7 @@
   </div>
 
   <!-- ===== FEEDBACK TOAST ===== -->
-  <div class="feedback-overlay" id="feedbackOverlay"></div>
+  <div class="feedback-overlay" id="feedbackOverlay" style="display:none"></div>
   <div class="feedback-toast" id="feedbackToast">
     <div class="feedback-toast__icon" id="feedbackIcon">✅</div>
     <div class="feedback-toast__title" id="feedbackTitle">¡Hecho!</div>
@@ -1087,11 +1087,13 @@
       document.getElementById('feedbackTitle').textContent = title;
       document.getElementById('feedbackText').textContent = text;
       document.getElementById('feedbackToast').classList.add('show');
+      document.getElementById('feedbackOverlay').style.display = 'block';
       document.getElementById('feedbackOverlay').classList.add('show');
     }
 
     function closeFeedback() {
       document.getElementById('feedbackToast').classList.remove('show');
+      document.getElementById('feedbackOverlay').style.display = 'none';
       document.getElementById('feedbackOverlay').classList.remove('show');
     }
 
