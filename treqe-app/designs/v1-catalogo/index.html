@@ -1998,7 +1998,7 @@ function filterByCategory(category) {
 
       if (filtersHTML) {
         activeFiltersEl.innerHTML = filtersHTML + '<button class="clear-all-filters" onclick="clearAllFilters()">Limpiar todo</button>';
-        activeFiltersEl.classList.add('visible'); activeFiltersEl.style.paddingLeft = '16px'; activeFiltersEl.style.paddingRight = '16px';
+        activeFiltersEl.classList.add('visible'); activeFiltersEl.style.paddingLeft = (window.innerWidth >= 1024 ? '32px' : window.innerWidth >= 600 ? '24px' : '16px'); activeFiltersEl.style.paddingRight = (window.innerWidth >= 1024 ? '32px' : window.innerWidth >= 600 ? '24px' : '16px');
       } else {
         activeFiltersEl.innerHTML = '';
         activeFiltersEl.classList.remove('visible');
