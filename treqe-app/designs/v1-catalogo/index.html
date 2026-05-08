@@ -748,18 +748,8 @@
       }
     }
      ===== */
-    .active-filters {
-      display: none;
-      white-space: nowrap;
-      padding: 10px 20px;
-      overflow-x: auto;
-      scrollbar-width: none;
-      background: var(--bg);
-      border-bottom: 1px solid var(--border);
-    }
-    .active-filters.visible { display: block !important; }
-    .active-filters .active-filter { display: inline-flex; align-items: center; margin-right: 8px; }
-    .active-filters .clear-all-filters { display: inline; margin-left: 8px; }
+    .active-filters { display: none; padding: 10px 20px; background: var(--bg); border-bottom: 1px solid var(--border); }
+    .active-filters.visible { display: flex !important; flex-wrap: wrap; gap: 8px; align-items: center; }
     .active-filters::-webkit-scrollbar { display: none; }
     .active-filter {
       display: inline-flex;
