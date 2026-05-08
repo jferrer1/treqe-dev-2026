@@ -854,6 +854,37 @@
       .demo-notice { max-width: 1000px; margin: 0 auto; }
       .trade-modal { max-width: 500px; margin: 0 auto; border-radius: 24px; max-height: 90vh; }
     }
+  
+    .video-overlay {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(0,0,0,0.3);
+    }
+    .video-overlay i { font-size: 3rem; color: rgba(255,255,255,0.8); }
+    .gallery-thumbs {
+      display: flex; gap: 6px; padding: 8px 16px 0;
+      overflow-x: auto; scrollbar-width: none;
+    }
+    .gallery-thumbs::-webkit-scrollbar { display: none; }
+    .gallery-thumb {
+      width: 48px; height: 48px; border-radius: 8px;
+      background: var(--border); display: flex; align-items: center;
+      justify-content: center; flex-shrink: 0; cursor: pointer;
+      position: relative; font-size: .8rem; color: var(--text-tertiary);
+    }
+    .gallery-thumb:active { transform: scale(.95); }
+    .video-thumb { border: 2px solid var(--accent); }
+    .thumb-play {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .thumb-play i { font-size: .7rem; color: var(--accent); }
+    .thumb-label {
+      position: absolute; bottom: 1px; right: 4px;
+      font-size: .5rem; color: var(--text-tertiary); font-weight: 600;
+    }
+    .main-icon { font-size: 4rem; color: rgba(255,255,255,0.2); }
+
   </style>
 </head>
 <body>
@@ -876,21 +907,124 @@
     <!-- ===== GALLERY ===== -->
     <div class="gallery" id="gallery">
       <div class="gallery-slides" id="gallerySlides">
-        <div class="gallery-slide active" style="background: linear-gradient(135deg, #2D2D2D 0%, #1A1A1A 100%);">
+        <div class="gallery-slide active" style="background: linear-gradient(135deg, #2D2D2D 0%, #111 100%);">
           <i class="fas fa-guitar main-icon"></i>
         </div>
-        <div class="gallery-slide" style="background: linear-gradient(135deg, #3A2A1A 0%, #1A1A1A 100%);">
+        <div class="gallery-slide" style="background: linear-gradient(135deg, #3A2A1A 0%, #111 100%);">
           <i class="fas fa-guitar main-icon"></i>
         </div>
-        <div class="gallery-slide" style="background: linear-gradient(135deg, #1A2A3A 0%, #1A1A1A 100%);">
+        <div class="gallery-slide" style="background: linear-gradient(135deg, #1A2A3A 0%, #111 100%);">
           <i class="fas fa-guitar main-icon"></i>
+        </div>
+        <div class="gallery-slide" style="background: linear-gradient(135deg, #2A1A2A 0%, #111 100%);">
+          <i class="fas fa-music main-icon"></i>
+        </div>
+        <div class="gallery-slide" style="background: linear-gradient(135deg, #1A3A2A 0%, #111 100%);">
+          <i class="fas fa-guitar main-icon"></i>
+        </div>
+        <div class="gallery-slide" style="background: linear-gradient(135deg, #3A3A1A 0%, #111 100%);">
+          <i class="fas fa-guitar main-icon"></i>
+        </div>
+        <div class="gallery-slide" style="background: linear-gradient(135deg, #2A2A3A 0%, #111 100%);">
+          <i class="fas fa-guitar main-icon"></i>
+        </div>
+        <div class="gallery-slide" style="background: linear-gradient(135deg, #3A2A3A 0%, #111 100%);">
+          <i class="fas fa-guitar main-icon"></i>
+        </div>
+        <div class="gallery-slide" style="background: linear-gradient(135deg, #1A2A3A 0%, #111 100%);">
+          <i class="fas fa-play-circle main-icon"></i>
+          <div class="video-overlay"><i class="fas fa-play"></i></div>
+        </div>
+        <div class="gallery-slide" style="background: linear-gradient(135deg, #2A1A2A 0%, #111 100%);">
+          <i class="fas fa-play-circle main-icon"></i>
+          <div class="video-overlay"><i class="fas fa-play"></i></div>
+        </div>
+        <div class="gallery-slide" style="background: linear-gradient(135deg, #3A2A1A 0%, #111 100%);">
+          <i class="fas fa-play-circle main-icon"></i>
+          <div class="video-overlay"><i class="fas fa-play"></i></div>
+        </div>
+        <div class="gallery-slide" style="background: linear-gradient(135deg, #2A3A2A 0%, #111 100%);">
+          <i class="fas fa-play-circle main-icon"></i>
+          <div class="video-overlay"><i class="fas fa-play"></i></div>
         </div>
       </div>
-      <span class="gallery-badge"><i class="fas fa-camera"></i> <span id="galleryCounter">1</span>/3</span>
+      <span class="gallery-badge"><i class="fas fa-camera"></i> <span id="galleryCounter">1</span>/12</span>
       <div class="gallery-dots" id="galleryDots">
         <span class="active" onclick="goToSlide(0)"></span>
-        <span onclick="goToSlide(1)"></span>
-        <span onclick="goToSlide(2)"></span>
+        <span class="" onclick="goToSlide(1)"></span>
+        <span class="" onclick="goToSlide(2)"></span>
+        <span class="" onclick="goToSlide(3)"></span>
+        <span class="" onclick="goToSlide(4)"></span>
+        <span class="" onclick="goToSlide(5)"></span>
+        <span class="" onclick="goToSlide(6)"></span>
+        <span class="" onclick="goToSlide(7)"></span>
+        <span class="" onclick="goToSlide(8)"></span>
+        <span class="" onclick="goToSlide(9)"></span>
+        <span class="" onclick="goToSlide(10)"></span>
+        <span class="" onclick="goToSlide(11)"></span>
+      </div>
+      <div class="gallery-thumbs">
+        <div class="gallery-thumb" onclick="goToSlide(0)">
+          <i class="fas fa-guitar"></i>
+          
+          <span class="thumb-label">1</span>
+        </div>
+        <div class="gallery-thumb" onclick="goToSlide(1)">
+          <i class="fas fa-guitar"></i>
+          
+          <span class="thumb-label">2</span>
+        </div>
+        <div class="gallery-thumb" onclick="goToSlide(2)">
+          <i class="fas fa-guitar"></i>
+          
+          <span class="thumb-label">3</span>
+        </div>
+        <div class="gallery-thumb" onclick="goToSlide(3)">
+          <i class="fas fa-guitar"></i>
+          
+          <span class="thumb-label">4</span>
+        </div>
+        <div class="gallery-thumb" onclick="goToSlide(4)">
+          <i class="fas fa-guitar"></i>
+          
+          <span class="thumb-label">5</span>
+        </div>
+        <div class="gallery-thumb" onclick="goToSlide(5)">
+          <i class="fas fa-guitar"></i>
+          
+          <span class="thumb-label">6</span>
+        </div>
+        <div class="gallery-thumb" onclick="goToSlide(6)">
+          <i class="fas fa-guitar"></i>
+          
+          <span class="thumb-label">7</span>
+        </div>
+        <div class="gallery-thumb" onclick="goToSlide(7)">
+          <i class="fas fa-guitar"></i>
+          
+          <span class="thumb-label">8</span>
+        </div>
+        <div class="gallery-thumb video-thumb" onclick="goToSlide(8)">
+          <i class="fas fa-video"></i>
+          <span class="thumb-play"><i class="fas fa-play"></i></span>
+          <span class="thumb-label">9</span>
+        </div>
+        <div class="gallery-thumb video-thumb" onclick="goToSlide(9)">
+          <i class="fas fa-video"></i>
+          <span class="thumb-play"><i class="fas fa-play"></i></span>
+          <span class="thumb-label">10</span>
+        </div>
+        <div class="gallery-thumb video-thumb" onclick="goToSlide(10)">
+          <i class="fas fa-video"></i>
+          <span class="thumb-play"><i class="fas fa-play"></i></span>
+          <span class="thumb-label">11</span>
+        </div>
+        <div class="gallery-thumb video-thumb" onclick="goToSlide(11)">
+          <i class="fas fa-video"></i>
+          <span class="thumb-play"><i class="fas fa-play"></i></span>
+          <span class="thumb-label">12</span>
+        </div>
+
       </div>
     </div>
 
