@@ -1,13 +1,20 @@
 <!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>
-:root{--bg:#F8F6F0;--text:#1A1A1A;--text-secondary:#888;--accent:#FF6A35;--border:#E8E4DC}
+:root{--bg:#F8F6F0;--accent:#FF6A35;--border:#E8E4DC}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Inter,sans-serif;background:var(--bg);padding-top:80px}
-.active-filters{display:none;padding:10px 20px;background:var(--bg);border-bottom:1px solid var(--border)}
-.active-filters.visible{display:flex!important;flex-wrap:wrap;gap:8px;align-items:center}
-.active-filter{display:flex;align-items:center;gap:6px;padding:6px 12px;background:var(--accent);color:#FFF;border-radius:16px;font-size:.75rem;font-weight:500;white-space:nowrap}
-.clear-all-filters{font-size:.75rem;color:var(--text-secondary);text-decoration:underline;white-space:nowrap;padding:6px 8px}
-p{margin:20px;color:var(--text-secondary)}
+body{font-family:Inter,sans-serif;background:var(--bg);padding:100px 20px}
+.active-filters{display:flex!important;flex-wrap:wrap;gap:8px;align-items:center;padding:10px 20px;background:var(--bg);border-bottom:1px solid var(--border)}
+.active-filter{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;background:var(--accent);color:#FFF;border-radius:16px;font-size:.75rem;margin-left:0!important}
+.clear-all-filters{font-size:.75rem;color:#888;text-decoration:underline;padding:6px 8px}
+p{margin:20px 0;font-size:1.2rem}
 </style></head><body>
-<div class="active-filters visible" id="af"><div class="active-filter" style="margin-left:20px"><span>200 - 500</span><button style="background:none;border:none;color:#FFF;cursor:pointer;font-size:1rem;padding:0 4px" onclick="this.parentElement.remove();if(!document.querySelector('.active-filter'))document.getElementById('af').classList.remove('visible')">&times;</button></div><button class="clear-all-filters" onclick="document.getElementById('af').classList.remove('visible')">Limpiar todo</button></div>
-<p>El tag naranja debe empezar a 20px del borde izquierdo.</p>
+<div class="active-filters" id="af">
+  <div class="active-filter" id="tag"><span>200 - 500</span><button style="background:none;border:none;color:#FFF;cursor:pointer;font-size:1rem;padding:0 4px" onclick="document.getElementById('tag').remove()">x</button></div>
+  <button class="clear-all-filters">Limpiar todo</button>
+</div>
+<p id="info">posicion del tag: calculando...</p>
+<script>
+var t=document.getElementById('tag');
+var r=t.getBoundingClientRect();
+document.getElementById('info').textContent='Tag a '+Math.round(r.left)+'px del borde izquierdo. Esperado: 40px (body padding 20px + bar padding 20px).';
+</script>
 </body></html>
