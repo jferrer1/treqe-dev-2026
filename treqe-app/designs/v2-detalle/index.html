@@ -885,6 +885,38 @@
     }
     .main-icon { font-size: 4rem; color: rgba(255,255,255,0.2); }
 
+  
+    .lightbox-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 300;
+      display: none; align-items: center; justify-content: center;
+    }
+    .lightbox-overlay.show { display: flex; }
+    .lightbox-close {
+      position: absolute; top: 16px; right: 16px; z-index: 301;
+      width: 40px; height: 40px; border-radius: 50%;
+      background: rgba(255,255,255,0.15); color: #FFF;
+      display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+    }
+    .lightbox-slides {
+      width: 100%; height: 70vh; display: flex; overflow: hidden;
+    }
+    .lightbox-slide {
+      flex: 0 0 100%; display: flex; align-items: center; justify-content: center;
+    }
+    .lightbox-slide i { font-size: 6rem; color: rgba(255,255,255,0.2); }
+    .lightbox-counter {
+      position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
+      color: rgba(255,255,255,0.7); font-size: 0.85rem; font-weight: 600;
+    }
+    .lightbox-prev, .lightbox-next {
+      position: absolute; top: 50%; transform: translateY(-50%); z-index: 301;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(255,255,255,0.15); color: #FFF;
+      display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+    }
+    .lightbox-prev { left: 12px; }
+    .lightbox-next { right: 12px; }
+
   </style>
 </head>
 <body>
@@ -1357,6 +1389,19 @@
     const gallery = document.getElementById('gallery');
     const slides = document.getElementById('gallerySlides');
 
+    // Swipe support
+    var touchStartX = 0;
+    var touchEndX = 0;
+    slides.addEventListener('touchstart', function(e) { touchStartX = e.changedTouches[0].screenX; });
+    slides.addEventListener('touchend', function(e) {
+      touchEndX = e.changedTouches[0].screenX;
+      var diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) goToSlide(currentSlide + 1);
+        else goToSlide(currentSlide - 1);
+      }
+    });
+
     function goToSlide(index) {
       if (index < 0) index = totalSlides - 1;
       if (index >= totalSlides) index = 0;
@@ -1466,6 +1511,52 @@
     function goToUpload() { window.parent.location.href = '../v3-subir/'; }
     function goToProfile() { window.parent.location.href = '../v4-perfil/'; }
     function goToTracking() { window.parent.location.href = "../v7-seguimiento/"; }
-    function goToDetail(id) { window.parent.location.href = '../v2-detalle/?id=' + id; }</script>
+    function goToDetail(id) { window.parent.location.href = '../v2-detalle/?id=' + id; }
+    // Lightbox
+    function openLightbox() {
+      var lb = document.getElementById('lightbox');
+      var ls = document.getElementById('lightboxSlides');
+      // Build lightbox content from gallery slides
+      var gallerySlides = document.querySelectorAll('.gallery-slide');
+      ls.innerHTML = '';
+      for (var i = 0; i < gallerySlides.length; i++) {
+        var clone = gallerySlides[i].cloneNode(true);
+        clone.className = 'lightbox-slide';
+        ls.appendChild(clone);
+      }
+      ls.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
+      document.getElementById('lightboxCounter').textContent = (currentSlide + 1) + '/12';
+      lb.classList.add('show');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('show');
+      document.body.style.overflow = '';
+    }
+    function lightboxNav(dir) {
+      currentSlide += dir;
+      if (currentSlide < 0) currentSlide = 11;
+      if (currentSlide > 11) currentSlide = 0;
+      document.getElementById('lightboxSlides').style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
+      document.getElementById('lightboxCounter').textContent = (currentSlide + 1) + '/12';
+    }
+    // Open lightbox on gallery click
+    document.getElementById('gallery').addEventListener('click', function(e) {
+      if (!e.target.closest('.gallery-thumb')) openLightbox();
+    });
+
+</script>
+
+  <!-- ===== LIGHTBOX ===== -->
+  <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()"><i class="fas fa-times"></i></button>
+    <div class="lightbox-slides" id="lightboxSlides">
+      <!-- Slides duplicated for lightbox -->
+    </div>
+    <span class="lightbox-counter" id="lightboxCounter">1/12</span>
+    <button class="lightbox-prev" onclick="event.stopPropagation();lightboxNav(-1)"><i class="fas fa-chevron-left"></i></button>
+    <button class="lightbox-next" onclick="event.stopPropagation();lightboxNav(1)"><i class="fas fa-chevron-right"></i></button>
+  </div>
+
 </body>
 </html>
