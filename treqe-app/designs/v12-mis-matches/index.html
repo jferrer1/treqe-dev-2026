@@ -34,7 +34,7 @@
       --warning: #F5A623;
       --danger: #E74C3C;
       --card-bg: #FFFFFF;
-      --shadow: 0 2px 12px rgba(0,0,0,0.06);
+      --shadow: 0 4px 20px rgba(0,0,0,0.05);
     }
 
     /* ===== HEADER ===== */
@@ -117,7 +117,7 @@
       padding: 20px;
       margin-bottom: 16px;
       box-shadow: var(--shadow);
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
     .match-card:active { transform: scale(0.98); }
 
@@ -171,7 +171,7 @@
       font-weight: 600;
       color: var(--text-tertiary);
       padding: 4px 10px;
-      border-radius: 12px;
+      border-radius: 14px;
       background: var(--bg);
     }
     .match-card__timer.timer--urgent {
@@ -192,14 +192,14 @@
       align-items: center;
       padding: 16px;
       background: var(--bg);
-      border-radius: 16px;
+      border-radius: 20px;
       margin-bottom: 14px;
     }
     .item-compare__item { text-align: center; }
     .item-compare__emoji {
       width: 60px;
       height: 60px;
-      border-radius: 14px;
+      border-radius: 18px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -329,7 +329,7 @@
     .action-btn {
       flex: 1;
       padding: 14px;
-      border-radius: 14px;
+      border-radius: 18px;
       font-size: 0.85rem;
       font-weight: 600;
       text-align: center;
@@ -339,7 +339,7 @@
       justify-content: center;
       gap: 6px;
     }
-    .action-btn:active { transform: scale(0.97); }
+    .action-btn:active { transform: scale(0.98); }
     .action-btn--primary {
       background: var(--accent);
       color: #FFF;
@@ -375,7 +375,7 @@
       gap: 8px;
       padding: 10px 14px;
       background: rgba(231,76,60,0.06);
-      border-radius: 12px;
+      border-radius: 14px;
       margin-bottom: 14px;
       font-size: 0.8rem;
       color: var(--text-secondary);
@@ -386,7 +386,7 @@
     .shipping-block {
       padding: 12px 14px;
       background: var(--bg);
-      border-radius: 14px;
+      border-radius: 18px;
       margin-bottom: 10px;
     }
     .shipping-block:last-child { margin-bottom: 14px; }
@@ -451,7 +451,7 @@
       gap: 6px;
       padding: 12px 14px;
       background: rgba(0,184,184,0.04);
-      border-radius: 14px;
+      border-radius: 18px;
       margin-bottom: 14px;
     }
     .completed-row {
@@ -511,7 +511,7 @@
     }
     .feedback-toast__btn {
       padding: 12px 32px;
-      border-radius: 14px;
+      border-radius: 18px;
       background: var(--accent);
       color: #FFF;
       font-size: 0.9rem;
@@ -560,9 +560,9 @@
       bottom: 0;
       left: 0;
       right: 0;
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
       border-top: 1px solid var(--border);
       display: flex;
       justify-content: space-evenly;
@@ -611,7 +611,7 @@
       justify-content: center;
       font-size: 1.2rem;
       box-shadow: 0 4px 16px rgba(255,106,53,0.3);
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
     .nav-item.nav-add .nav-add-btn:active {
       transform: scale(0.92);

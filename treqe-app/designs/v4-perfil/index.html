@@ -78,7 +78,7 @@
       --success: #00B8B8;
       --warning: #F5A623;
       --card-bg: #FFFFFF;
-      --shadow: 0 2px 12px rgba(0,0,0,0.06);
+      --shadow: 0 4px 20px rgba(0,0,0,0.05);
     }
 
     /* ===== STATUS BAR ===== */
@@ -136,7 +136,7 @@
       margin: 4px 16px 16px;
       padding: 20px;
       background: var(--card-bg);
-      border-radius: 16px;
+      border-radius: 20px;
       box-shadow: var(--shadow);
     }
     .scoring-card__top {
@@ -209,7 +209,7 @@
       gap: 14px;
       padding: 14px;
       background: var(--card-bg);
-      border-radius: 14px;
+      border-radius: 18px;
       border: 1px solid var(--border);
       transition: all 0.2s;
     }
@@ -276,14 +276,14 @@
     }
     .my-item {
       background: var(--card-bg);
-      border-radius: 12px;
+      border-radius: 14px;
       overflow: hidden;
       box-shadow: var(--shadow);
       cursor: pointer;
       transition: transform 0.2s;
       position: relative;
     }
-    .my-item:active { transform: scale(0.97); }
+    .my-item:active { transform: scale(0.98); }
     .my-item__image {
       aspect-ratio: 1;
       display: flex;
@@ -347,7 +347,7 @@
       gap: 12px;
       padding: 12px 14px;
       background: var(--card-bg);
-      border-radius: 12px;
+      border-radius: 14px;
       box-shadow: var(--shadow);
       transition: transform 0.2s;
       cursor: pointer;
@@ -412,7 +412,7 @@
     }
     .stat-card {
       background: var(--card-bg);
-      border-radius: 14px;
+      border-radius: 18px;
       padding: 16px 12px;
       text-align: center;
       box-shadow: var(--shadow);
@@ -497,7 +497,7 @@
       justify-content: center;
       font-size: 1.2rem;
       box-shadow: 0 4px 16px rgba(255,106,53,0.3);
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
     .nav-item.nav-add .nav-add-btn:active {
       transform: scale(0.92);
@@ -509,9 +509,9 @@
       bottom: 0;
       left: 0;
       right: 0;
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
       border-top: 1px solid var(--border);
       display: flex;
       justify-content: space-evenly;

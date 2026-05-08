@@ -46,7 +46,7 @@
       --accent-hover: #E55A2B;
       --success: #00B8B8;
       --card-bg: #FFFFFF;
-      --shadow: 0 2px 12px rgba(0,0,0,0.06);
+      --shadow: 0 4px 20px rgba(0,0,0,0.05);
     }
 
     /* ===== STATUS BAR (mock) ===== */
@@ -88,7 +88,7 @@
       align-items: center;
       background: #FFFFFF;
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: 14px;
       padding: 0 8px;
       height: 40px;
       gap: 4px;
@@ -168,7 +168,7 @@
       left: 16px;
       right: 16px;
       background: linear-gradient(135deg, #FF6A35 0%, #E55A2B 100%);
-      border-radius: 16px;
+      border-radius: 20px;
       padding: 16px 20px;
       display: flex;
       align-items: center;
@@ -185,7 +185,7 @@
       width: 44px;
       height: 44px;
       background: rgba(255,255,255,0.2);
-      border-radius: 12px;
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -250,15 +250,15 @@
     /* ===== ITEM CARD ===== */
     .item-card {
       background: var(--card-bg);
-      border-radius: 14px;
+      border-radius: 18px;
       overflow: hidden;
       box-shadow: var(--shadow);
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: transform 0.3s, box-shadow 0.3s;
       cursor: pointer;
       contain: layout style;
     }
     .item-card:active {
-      transform: scale(0.97);
+      transform: scale(0.98);
       box-shadow: 0 1px 6px rgba(0,0,0,0.04);
     }
     .item-card__image {
@@ -411,9 +411,9 @@
       bottom: 0;
       left: 0;
       right: 0;
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
       border-top: 1px solid var(--border);
       display: flex;
       justify-content: space-evenly;
@@ -456,7 +456,7 @@
       justify-content: center;
       font-size: 1.2rem;
       box-shadow: 0 4px 16px rgba(255,106,53,0.3);
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
     .nav-item.nav-add .nav-add-btn:active {
       transform: scale(0.92);
@@ -728,7 +728,7 @@
     .filter-btn {
       flex: 1;
       padding: 14px;
-      border-radius: 12px;
+      border-radius: 14px;
       font-size: 0.9rem;
       font-weight: 600;
     }
@@ -758,7 +758,7 @@
       padding: 6px 12px;
       background: var(--accent);
       color: #FFF;
-      border-radius: 16px;
+      border-radius: 20px;
       font-size: 0.75rem;
       font-weight: 500;
       white-space: nowrap; 
@@ -814,7 +814,7 @@
     }
     .filter-quick-btn {
       padding: 6px 10px;
-      border-radius: 14px;
+      border-radius: 18px;
       border: 1px solid var(--border);
       background: var(--card-bg);
       font-size: 0.7rem;

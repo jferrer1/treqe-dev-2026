@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -19,7 +19,7 @@
       --bg: #F8F6F0; --text: #1A1A1A; --text-secondary: #888;
       --text-tertiary: #B0B0B0; --border: #E8E4DC;
       --accent: #FF6A35; --card-bg: #FFFFFF;
-      --shadow: 0 2px 12px rgba(0,0,0,0.06);
+      --shadow: 0 4px 20px rgba(0,0,0,0.05);
     }
     button { font-family: inherit; cursor: pointer; border: none; background: none; }
     .treqe-logo { height: 28px; width: 90px; flex-shrink: 0; vertical-align: middle; }
@@ -47,10 +47,10 @@
       padding: 0 16px 16px;
     }
     .item-card {
-      background: var(--card-bg); border-radius: 14px; overflow: hidden;
+      background: var(--card-bg); border-radius: 18px; overflow: hidden;
       box-shadow: var(--shadow); cursor: pointer;
     }
-    .item-card:active { transform: scale(0.97); }
+    .item-card:active { transform: scale(0.98); }
     .item-card__image {
       position: relative; aspect-ratio: 1/1;
       display: flex; align-items: center; justify-content: center;
@@ -126,7 +126,7 @@
       justify-content: center;
       font-size: 1.2rem;
       box-shadow: 0 4px 16px rgba(255,106,53,0.3);
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
     .nav-item.nav-add .nav-add-btn:active {
       transform: scale(0.92);
@@ -135,8 +135,8 @@
 
     .bottom-nav {
       position: fixed; bottom: 0; left: 0; right: 0;
-      background: rgba(255,255,255,0.92); backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      background: rgba(255,255,255,0.85); backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
       border-top: 1px solid var(--border); display: flex;
       justify-content: space-evenly; align-items: center;
       padding: 0;
