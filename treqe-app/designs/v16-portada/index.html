@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>treqe. — Intercambio en cadena</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html {
+      font-size: 16px;
+      -webkit-text-size-adjust: 100%;
+      scroll-behavior: smooth;
+      scroll-snap-type: y mandatory;
+    }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #00224D;
+      color: #1A1A1A;
+      min-height: 100dvh;
+      padding-bottom: 84px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overscroll-behavior: contain;
+    }
+    img { max-width: 100%; display: block; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+    a { text-decoration: none; color: inherit; }
+    input { font-family: inherit; font-size: inherit; }
+
+    :root {
+      --bg: #F8F6F0;
+      --text: #00234E;
+      --text-secondary: #888888;
+      --text-tertiary: #B0B0B0;
+      --border: #E8E4DC;
+      --accent: #FF6A35;
+      --accent-hover: #E55A2B;
+      --card-bg: #FFFFFF;
+      --navy: #00224D;
+      --teal: #A7D7C5;
+      --yellow: #FFC950;
+      --pink: #EF7B8E;
+      --cream: #FFF9E0;
+    }
+
+    /* ===== HEADER (matches v1-catalogo) ===== */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 60px;
+      padding: 8px 16px;
+      background: var(--navy);
+      box-sizing: border-box;
+      width: 100%;
+    }
+    .header.header--cream { background: var(--cream); }
+    .header.header--teal { background: var(--teal); }
+    .header.header--yellow { background: var(--yellow); }
+    .header--cream .treqe-logo-text { color: var(--navy); }
+    .header--teal .treqe-logo-text { color: var(--navy); }
+    .header--yellow .treqe-logo-text { color: var(--navy); }
+    .header--cream .search-bar input { color: var(--navy); }
+    .header--teal .search-bar input { color: var(--navy); }
+    .header--yellow .search-bar input { color: var(--navy); }
+
+    .treqe-logo {
+      height: 44px;
+      width: auto;
+      flex-shrink: 0;
+      display: block;
+    }
+    .treqe-logo-text {
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: #FFF;
+    }
+    .treqe-logo-text span { color: var(--accent); }
+
+    .search-bar {
+      flex: 0 1 45%;
+      max-width: 280px;
+      display: flex;
+      align-items: center;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 30px;
+      padding: 0 14px;
+      height: 38px;
+      gap: 8px;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .header--cream .search-bar { background: rgba(0,34,77,0.06); border-color: rgba(0,34,77,0.1); }
+    .header--cream .search-bar:focus-within { background: rgba(0,34,77,0.1); border-color: var(--accent); }
+    .header--teal .search-bar { background: rgba(0,34,77,0.06); border-color: rgba(0,34,77,0.1); }
+    .header--teal .search-bar:focus-within { background: rgba(0,34,77,0.1); border-color: var(--accent); }
+    .header--yellow .search-bar { background: rgba(0,34,77,0.06); border-color: rgba(0,34,77,0.1); }
+    .header--yellow .search-bar:focus-within { background: rgba(0,34,77,0.1); border-color: var(--accent); }
+
+    .search-bar:focus-within {
+      background: rgba(255,255,255,0.18);
+      border-color: var(--accent);
+    }
+    .search-bar i { color: rgba(255,255,255,0.4); font-size: 0.85rem; }
+    .search-bar input {
+      flex: 1;
+      min-width: 0;
+      border: none;
+      outline: none;
+      background: transparent;
+      font-size: 0.85rem;
+      color: #FFF;
+      height: 100%;
+    }
+    .search-bar input::placeholder { color: rgba(255,255,255,0.4); }
+
+    /* ===== SECTION BASE ===== */
+    .section {
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 24px 60px;
+      position: relative;
+      overflow: hidden;
+      scroll-snap-align: start;
+    }
+
+    /* ===== SECTION 1 — NAVY ===== */
+    .section--navy {
+      background: var(--navy);
+      color: #FFF;
+      text-align: center;
+    }
+    .hero-wordmark {
+      font-size: clamp(3.5rem, 15vw, 8rem);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 0.9;
+      margin-bottom: 0.3em;
+    }
+    .hero-wordmark span { color: var(--accent); }
+    .hero-tagline {
+      font-size: clamp(1.2rem, 4vw, 2.2rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 0.15em;
+    }
+    .hero-sub {
+      font-size: clamp(0.95rem, 2.5vw, 1.4rem);
+      font-weight: 400;
+      opacity: 0.6;
+      letter-spacing: 0.02em;
+    }
+
+    /* ===== SECTION 2 — CREAM ===== */
+    .section--cream {
+      background: var(--cream);
+      color: var(--navy);
+    }
+    .exchange-card {
+      background: #FFF;
+      border-radius: 32px;
+      padding: 32px 28px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 8px 40px rgba(0,34,77,0.06);
+      position: relative;
+    }
+    .exchange-card::before {
+      content: '';
+      position: absolute;
+      top: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60%;
+      height: 4px;
+      border-radius: 4px;
+    }
+    .exchange-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 0;
+    }
+    .exchange-row + .exchange-row {
+      border-top: 2px dashed #E8E4DC;
+    }
+    .exchange-emoji {
+      font-size: 2.2rem;
+      width: 52px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+    .exchange-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      margin-bottom: 2px;
+    }
+    .exchange-item {
+      font-size: clamp(1rem, 3vw, 1.2rem);
+      font-weight: 600;
+      line-height: 1.3;
+      color: var(--navy);
+    }
+    .exchange-item em {
+      font-style: italic;
+      font-weight: 400;
+      font-family: 'Georgia', 'Times New Roman', serif;
+      opacity: 0.85;
+    }
+    .exchange-change {
+      text-align: center;
+      font-size: 1.2rem;
+      color: var(--accent);
+      padding: 4px 0;
+    }
+    .exchange-cta {
+      margin-top: 28px;
+      font-size: clamp(1rem, 3vw, 1.3rem);
+      font-weight: 700;
+      text-align: center;
+      line-height: 1.4;
+      color: var(--navy);
+      opacity: 0.85;
+    }
+    .exchange-cta em {
+      font-style: italic;
+      font-weight: 400;
+      font-family: 'Georgia', 'Times New Roman', serif;
+    }
+
+    /* ===== SECTION 3 — TEAL ===== */
+    .section--teal {
+      background: var(--teal);
+      color: var(--navy);
+    }
+    .steps {
+      width: 100%;
+      max-width: 420px;
+    }
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      padding: 20px 0;
+    }
+    .step + .step {
+      border-top: 1px solid rgba(0,34,77,0.12);
+    }
+    .step-num {
+      font-size: 2.8rem;
+      font-weight: 900;
+      line-height: 0.85;
+      color: rgba(0,34,77,0.25);
+      flex-shrink: 0;
+      width: 56px;
+      text-align: center;
+    }
+    .step-content {
+      flex: 1;
+    }
+    .step-title {
+      font-size: clamp(1.1rem, 3.5vw, 1.5rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 4px;
+    }
+    .step-desc {
+      font-size: clamp(0.85rem, 2.5vw, 1rem);
+      font-weight: 400;
+      opacity: 0.7;
+      line-height: 1.4;
+    }
+    .step-arrow {
+      margin-top: 12px;
+      text-align: center;
+    }
+    .step-arrow span {
+      display: inline-block;
+      font-size: 1.8rem;
+      letter-spacing: 6px;
+      color: var(--accent);
+      font-weight: 300;
+    }
+
+    /* ===== SECTION 4 — YELLOW ===== */
+    .section--yellow {
+      background: var(--yellow);
+      color: var(--navy);
+      text-align: center;
+    }
+    .cta-headline {
+      font-size: clamp(1.6rem, 5vw, 2.8rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.3em;
+    }
+    .cta-sub {
+      font-size: clamp(1rem, 3vw, 1.4rem);
+      font-weight: 500;
+      opacity: 0.7;
+      line-height: 1.4;
+      margin-bottom: 1.8em;
+    }
+    .cta-sub em {
+      font-style: italic;
+      font-weight: 400;
+      font-family: 'Georgia', 'Times New Roman', serif;
+    }
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--navy);
+      color: #FFF;
+      font-size: clamp(1rem, 3vw, 1.2rem);
+      font-weight: 700;
+      padding: 16px 40px;
+      border-radius: 50px;
+      transition: transform 0.25s, box-shadow 0.25s;
+      box-shadow: 0 4px 20px rgba(0,34,77,0.15);
+    }
+    .cta-btn:active {
+      transform: scale(0.96);
+      box-shadow: 0 2px 10px rgba(0,34,77,0.1);
+    }
+    .cta-btn i {
+      font-size: 0.9em;
+      transition: transform 0.3s;
+    }
+
+    /* ===== BOTTOM NAV (matches v1-catalogo) ===== */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      padding: 0;
+      height: 72px;
+      padding-bottom: 12px;
+      z-index: 100;
+      isolation: isolate;
+    }
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      font-size: 0.65rem;
+      font-weight: 500;
+      color: var(--text-tertiary);
+      transition: color 0.2s;
+      padding: 4px 0;
+      flex: 1;
+      max-width: 80px;
+      position: relative;
+    }
+    .nav-item i { font-size: 1.3rem; }
+    .nav-item.active { color: var(--accent); }
+    .nav-item.active i { transform: scale(1.05); }
+    .nav-item.nav-add { position: relative; top: 0; }
+    .nav-item.nav-add .nav-add-btn {
+      width: 48px;
+      height: 48px;
+      background: var(--accent);
+      color: #FFFFFF;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 16px rgba(255,106,53,0.3);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .nav-item.nav-add .nav-add-btn:active {
+      transform: scale(0.92);
+      box-shadow: 0 2px 8px rgba(255,106,53,0.2);
+    }
+    .nav-item .nav-badge {
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      position: absolute;
+      top: 2px;
+      right: 12px;
+    }
+
+    /* ===== DECORATIVE ELEMENTS ===== */
+    .deco-dot {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      opacity: 0.04;
+      pointer-events: none;
+    }
+    .deco-dot--1 { top: -60px; right: -60px; background: #FFF; }
+    .deco-dot--2 { bottom: -80px; left: -80px; background: #FFF; }
+    .deco-tilt {
+      position: absolute;
+      font-size: 12rem;
+      font-weight: 900;
+      color: rgba(0,34,77,0.03);
+      pointer-events: none;
+      letter-spacing: -0.06em;
+      line-height: 1;
+    }
+    .deco-tilt--tl { top: 20px; left: 20px; }
+    .deco-tilt--br { bottom: 20px; right: 20px; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (min-width: 600px) {
+      .section { padding: 100px 40px 80px; }
+      .exchange-card { padding: 40px 36px; }
+      .steps { max-width: 480px; }
+      .step-num { width: 64px; font-size: 3.2rem; }
+      .header { min-height: 68px; padding: 10px 24px; }
+      .treqe-logo { height: 50px; }
+      .search-bar { flex: 0 1 40%; max-width: 320px; height: 42px; }
+    }
+
+    @media (min-width: 1024px) {
+      html { scroll-snap-type: y proximity; }
+      .section { padding: 120px 60px 100px; }
+      .exchange-card { max-width: 520px; padding: 48px 44px; }
+      .steps { max-width: 560px; }
+      .step { padding: 28px 0; gap: 28px; }
+      .step-num { width: 72px; font-size: 3.6rem; }
+      .header { min-height: 76px; padding: 12px 32px; }
+      .treqe-logo { height: 56px; }
+      .search-bar { flex: 0 1 35%; max-width: 360px; height: 44px; }
+      .cta-btn { padding: 20px 52px; }
+      .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,34,77,0.2); }
+      .bottom-nav { height: 76px; padding-bottom: 16px; }
+      .nav-item { font-size: 0.7rem; max-width: 100px; }
+      .nav-item i { font-size: 1.4rem; }
+      .nav-item.nav-add .nav-add-btn { width: 52px; height: 52px; font-size: 1.3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header" id="header">
+    <a href="../v1-catalogo/" class="treqe-logo-text">treqe<span>.</span></a>
+    <div class="search-bar">
+      <i class="fas fa-search"></i>
+      <input type="text" placeholder="Buscar en treqe…" aria-label="Buscar">
+    </div>
+  </header>
+
+  <!-- ===== SECTION 1 — NAVY ===== -->
+  <section class="section section--navy">
+    <div class="deco-dot deco-dot--1"></div>
+    <div class="deco-dot deco-dot--2"></div>
+    <div class="deco-tilt deco-tilt--tl">treqe</div>
+    <div class="deco-tilt deco-tilt--br">♻</div>
+    <div>
+      <div class="hero-wordmark">treqe<span>.</span></div>
+      <div class="hero-tagline">Intercambio en cadena.</div>
+      <div class="hero-sub">Con o sin dinero.</div>
+    </div>
+  </section>
+
+  <!-- ===== SECTION 2 — CREAM ===== -->
+  <section class="section section--cream">
+    <div class="exchange-card">
+      <div class="exchange-row">
+        <div class="exchange-emoji">🚲</div>
+        <div>
+          <div class="exchange-label">Antes tenía</div>
+          <div class="exchange-item">un carrito de bebé</div>
+        </div>
+      </div>
+      <div class="exchange-change">⇅</div>
+      <div class="exchange-row">
+        <div class="exchange-emoji">📱</div>
+        <div>
+          <div class="exchange-label">Ahora tengo</div>
+          <div class="exchange-item">este <em>iPhone</em></div>
+        </div>
+      </div>
+    </div>
+    <div class="exchange-cta">
+      Tú no cambias con alguien.<br>
+      Cambias con la <em>comunidad</em>.
+    </div>
+  </section>
+
+  <!-- ===== SECTION 3 — TEAL ===== -->
+  <section class="section section--teal">
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">①</div>
+        <div class="step-content">
+          <div class="step-title">Subes lo que no usas</div>
+          <div class="step-desc">Fotos, descripción, valor justo</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">②</div>
+        <div class="step-content">
+          <div class="step-title">Pides lo que quieres</div>
+          <div class="step-desc">Explora y elige entre miles de cosas</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">③</div>
+        <div class="step-content">
+          <div class="step-title">Treqe encuentra la cadena</div>
+          <div class="step-desc">Intercambios circulares sin fricción</div>
+          <div class="step-arrow"><span>▸▸▸</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SECTION 4 — YELLOW ===== -->
+  <section class="section section--yellow">
+    <div>
+      <div class="cta-headline">Paga lo que quieres<br>con lo que tienes</div>
+      <div class="cta-sub">Dale una segunda vida a tus cosas <em>✨</em></div>
+      <a href="../v10-registro/" class="cta-btn">
+        Empieza ahora
+        <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== BOTTOM NAV (matches v1-catalogo) ===== -->
+  <nav class="bottom-nav">
+    <button class="nav-item active" onclick="goToDiscover()">
+      <i class="fas fa-search"></i>
+      <span>Buscar</span>
+    </button>
+    <button class="nav-item" onclick="goToTrades()">
+      <i class="fas fa-exchange-alt"></i>
+      <span>Treqes</span>
+    </button>
+    <button class="nav-item nav-add" onclick="goToUpload()">
+      <div class="nav-add-btn"><i class="fas fa-plus"></i></div>
+    </button>
+    <button class="nav-item" onclick="goToInbox()">
+      <i class="fas fa-bell"></i>
+      <span>Avisos</span>
+      <span class="nav-badge"></span>
+    </button>
+    <button class="nav-item" onclick="goToProfile()">
+      <i class="fas fa-user"></i>
+      <span>Perfil</span>
+    </button>
+  </nav>
+
+  <!-- ===== JAVASCRIPT ===== -->
+  <script>
+    // ===== NAVIGATION (matches v1-catalogo) =====
+    function goToDiscover()  { window.parent.location.href = '../v1-catalogo/'; }
+    function goToTrades()    { window.parent.location.href = '../v12-mis-matches/'; }
+    function goToUpload()    { window.parent.location.href = '../v3-subir/'; }
+    function goToInbox()     { window.parent.location.href = '../v11-notificaciones/'; }
+    function goToProfile()   { window.parent.location.href = '../v4-perfil/'; }
+    function goToRegistro()  { window.parent.location.href = '../v10-registro/'; }
+
+    // ===== HEADER COLOR ADAPTATION =====
+    // Update header background to match the current section
+    const header = document.getElementById('header');
+    const sections = document.querySelectorAll('.section');
+
+    function updateHeader() {
+      let currentBg = 'navy';
+      sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        const threshold = window.innerHeight * 0.3;
+        if (rect.top < threshold && rect.bottom > threshold) {
+          if (section.classList.contains('section--cream')) currentBg = 'cream';
+          else if (section.classList.contains('section--teal')) currentBg = 'teal';
+          else if (section.classList.contains('section--yellow')) currentBg = 'yellow';
+          else currentBg = 'navy';
+        }
+      });
+
+      header.className = 'header';
+      if (currentBg === 'cream') header.classList.add('header--cream');
+      else if (currentBg === 'teal') header.classList.add('header--teal');
+      else if (currentBg === 'yellow') header.classList.add('header--yellow');
+    }
+
+    window.addEventListener('scroll', updateHeader, { passive: true });
+    window.addEventListener('resize', updateHeader, { passive: true });
+    updateHeader();
+  </script>
+</body>
+</html>
