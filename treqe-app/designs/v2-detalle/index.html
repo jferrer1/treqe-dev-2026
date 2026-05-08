@@ -1390,12 +1390,12 @@
     const slides = document.getElementById('gallerySlides');
 
     // Swipe support
-    var touchStartX = 0;
-    var touchEndX = 0;
-    slides.addEventListener('touchstart', function(e) { touchStartX = e.changedTouches[0].screenX; });
+    var tStartX = 0;
+    var tEndX = 0;
+    slides.addEventListener('touchstart', function(e) { tStartX = e.changedTouches[0].screenX; });
     slides.addEventListener('touchend', function(e) {
-      touchEndX = e.changedTouches[0].screenX;
-      var diff = touchStartX - touchEndX;
+      tEndX = e.changedTouches[0].screenX;
+      var diff = tStartX - tEndX;
       if (Math.abs(diff) > 50) {
         if (diff > 0) goToSlide(currentSlide + 1);
         else goToSlide(currentSlide - 1);
@@ -1429,11 +1429,11 @@
 
     // Touch events for swipe
     gallery.addEventListener('touchstart', (e) => {
-      touchStartX = e.changedTouches[0].screenX;
+      tStartX = e.changedTouches[0].screenX;
     }, { passive: true });
 
     gallery.addEventListener('touchend', (e) => {
-      touchEndX = e.changedTouches[0].screenX;
+      tEndX = e.changedTouches[0].screenX;
       handleSwipe();
     }, { passive: true });
 
