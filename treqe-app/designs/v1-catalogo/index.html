@@ -74,19 +74,21 @@
       width: 100%;
     }
     .header .logo {
+      position: absolute;
+      left: 16px;
       font-size: 1.2rem;
       font-weight: 800;
       letter-spacing: -0.5px;
       color: var(--text);
       flex-shrink: 0;
+      z-index: 1;
     }
     .header .logo span { color: var(--accent); }
     .search-bar {
       flex: 0 1 33%;
       max-width: 300px;
-      min-width: 0;
-      margin: 0 auto;
       display: flex;
+      margin: 0 auto;
       align-items: center;
       background: #FFFFFF;
       border: 1px solid var(--border);
