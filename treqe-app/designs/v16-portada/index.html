@@ -11,399 +11,384 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --bg: #F8F6F0;
-    --card-bg: #FFFFFF;
-    --text: #00234E;
-    --text-secondary: #5B6E8C;
-    --border: #E8E4DC;
-    --accent: #FF6A35;
-    --navy: #00224D;
-    --yellow: #FFC950;
-    --teal: #A7D7C5;
-    --pink: #EF7B8E;
-    --cream: #FFF9E0;
-    --lavender: #9B76B3;
+    --bg: #F8F6F0; --card-bg: #FFFFFF; --text: #00234E;
+    --text-secondary: #5B6E8C; --border: #E8E4DC; --accent: #FF6A35;
+    --navy: #00224D; --yellow: #FFC950; --teal: #A7D7C5;
+    --pink: #EF7B8E; --cream: #FFF9E0; --lavender: #9B76B3;
     --shadow: 0 4px 20px rgba(0,0,0,0.05);
     --shadow-lg: 0 8px 32px rgba(0,0,0,0.07);
   }
-  html { background: var(--bg); font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif; }
-  body {
-    max-width: 100vw;
-    overflow-x: hidden;
-    color: var(--text);
-    -webkit-font-smoothing: antialiased;
-    padding-bottom: 70px;
-    overscroll-behavior: contain;
-  }
+  html { background: var(--bg); font-family: 'Inter','Segoe UI',system-ui,-apple-system,sans-serif; }
+  body { max-width: 100vw; overflow-x: hidden; color: var(--text); -webkit-font-smoothing: antialiased; padding-bottom: 70px; overscroll-behavior: contain; background: var(--bg); }
+  a { text-decoration: none; color: inherit; }
 
-  /* ===== HEADER ===== */
+  /* ── HEADER ── */
   .header {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 12px 16px;
-    background: var(--bg);
-    min-height: 80px;
+    position: relative; display: flex; align-items: center; justify-content: center;
+    padding: 12px 16px; background: var(--bg); min-height: 80px;
+    background: rgba(248,246,240,0.85); backdrop-filter: blur(24px);
+    position: sticky; top: 0; z-index: 50;
   }
-  .header .logo-link {
-    position: absolute;
-    left: 16px;
-    top: 50%;
-    transform: translateY(-50%);
-    display: block;
-  }
-  .header .logo-link img {
-    height: 70px;
-    width: auto;
-    margin-left: -6px;
-  }
+  .header .logo-wrap { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); }
+  .header .logo-wrap img { height: 70px; width: auto; margin-left: -6px; }
   .search-bar {
-    flex: 0 1 33%;
-    max-width: 300px;
-    display: flex;
-    align-items: center;
-    background: #FFFFFF;
-    border-radius: 14px;
-    padding: 0 14px;
-    height: 40px;
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow);
+    flex: 0 1 33%; max-width: 300px; display: flex; align-items: center;
+    background: #FFFFFF; border-radius: 14px; padding: 0 14px; height: 40px;
+    border: 1px solid var(--border); box-shadow: var(--shadow);
   }
   .search-bar i { color: var(--text-secondary); font-size: 0.85rem; margin-right: 8px; }
-  .search-bar input {
-    border: none; outline: none; background: transparent;
-    font-family: inherit; font-size: 0.85rem; width: 100%;
-    color: var(--text);
-  }
+  .search-bar input { border: none; outline: none; background: transparent; font-family: inherit; font-size: 0.85rem; width: 100%; color: var(--text); }
   .search-bar input::placeholder { color: #B0B8C8; }
 
-  /* ===== HERO SECTIONS ===== */
-  .section {
-    padding: 48px 24px;
-    text-align: center;
+  /* ── HERO (Navy) ── */
+  .hero {
+    background: var(--navy); color: #FFF; padding: 64px 24px 72px; text-align: center;
+    position: relative; overflow: hidden;
   }
-  .section-navy { background: var(--navy); color: #FFFFFF; }
-  .section-cream { background: var(--cream); }
-  .section-teal { background: var(--teal); }
-  .section-yellow { background: var(--yellow); }
+  .hero::before {
+    content: ''; position: absolute; top: -80px; right: -40px;
+    width: 260px; height: 260px; border-radius: 50%;
+    background: rgba(255,255,255,0.03);
+  }
+  .hero::after {
+    content: ''; position: absolute; bottom: -60px; left: -30px;
+    width: 180px; height: 180px; border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .hero-badge {
+    display: inline-block; background: rgba(255,255,255,0.1);
+    padding: 6px 16px; border-radius: 20px; font-size: 0.7rem;
+    text-transform: uppercase; letter-spacing: 2px; margin-bottom: 24px;
+    backdrop-filter: blur(8px);
+  }
+  .hero h1 {
+    font-size: clamp(2.8rem, 7vw, 5rem); font-weight: 900;
+    line-height: 1.05; letter-spacing: -2px; position: relative; z-index: 1;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero .tagline {
+    font-size: clamp(1rem, 2.5vw, 1.4rem); font-weight: 600;
+    opacity: 0.8; margin-top: 12px; letter-spacing: -0.5px; position: relative; z-index: 1;
+  }
+  .hero .tagline em { font-style: normal; color: var(--accent); }
 
-  .section-tag {
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+  /* ── FLOATING BEFORE/AFTER CARD ── */
+  .exchange-section {
+    background: var(--bg); padding: 0 16px; margin-top: -32px;
+  }
+  .exchange-card {
+    background: var(--card-bg); border-radius: 24px;
+    box-shadow: 0 12px 48px rgba(0,0,0,0.08);
+    padding: 36px 24px 32px; max-width: 440px; margin: 0 auto;
+    position: relative; z-index: 2;
+  }
+  .exchange-card .pill {
+    display: inline-block; background: var(--cream); color: var(--text);
+    padding: 4px 14px; border-radius: 12px; font-size: 0.7rem;
+    font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px;
+  }
+  .swap-row {
+    display: flex; align-items: center; justify-content: center; gap: 20px;
+  }
+  .swap-item {
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+    flex: 1;
+  }
+  .swap-icon {
+    width: 72px; height: 72px; border-radius: 20px;
+    display: flex; align-items: center; justify-content: center; font-size: 2.2rem;
+  }
+  .swap-item.before .swap-icon { background: #FFF5E6; }
+  .swap-item.after .swap-icon { background: #E6F0FF; }
+  .swap-label {
+    font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1.5px;
+    font-weight: 700; color: var(--text-secondary);
+  }
+  .swap-name {
+    font-family: 'Playfair Display','Georgia',serif; font-style: italic;
+    font-weight: 700; font-size: 1rem; color: var(--text); text-align: center;
+    line-height: 1.3;
+  }
+  .swap-connector {
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+  }
+  .swap-connector .dot {
+    width: 8px; height: 8px; border-radius: 50%; background: var(--border);
+  }
+  .swap-connector .line {
+    width: 2px; height: 48px; background: var(--border);
+  }
+  .swap-connector .arrow {
+    font-size: 0.9rem; color: var(--accent);
+  }
+  .exchange-card .insight {
+    margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--border);
+    text-align: center; font-size: 0.9rem; color: var(--text-secondary);
+    line-height: 1.6;
+  }
+  .exchange-card .insight strong { color: var(--text); font-weight: 700; }
+  .exchange-card .insight em { color: var(--accent); font-style: normal; }
+
+  /* ── HOW IT WORKS (Teal) ── */
+  .how-section {
+    background: var(--teal); padding: 56px 24px; text-align: center;
+  }
+  .how-section .section-label {
+    font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px;
+    font-weight: 700; color: rgba(0,35,78,0.4); margin-bottom: 32px;
+  }
+  .steps {
+    display: flex; flex-direction: column; gap: 20px; max-width: 440px; margin: 0 auto;
+  }
+  .step {
+    background: rgba(255,255,255,0.55); backdrop-filter: blur(12px);
+    border-radius: 20px; padding: 28px 24px; display: flex;
+    align-items: flex-start; gap: 18px; text-align: left;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    transition: transform 0.3s; isolation: isolate;
+  }
+  .step:active { transform: scale(0.98); }
+  .step-circle {
+    width: 52px; height: 52px; border-radius: 16px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; font-weight: 800;
+  }
+  .step:nth-child(1) .step-circle { background: var(--navy); color: #FFF; }
+  .step:nth-child(2) .step-circle { background: var(--accent); color: #FFF; }
+  .step:nth-child(3) .step-circle { background: var(--navy); color: #FFF; }
+  .step-content h3 { font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+  .step-content p { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.4; }
+  .step-extra {
+    margin-top: 24px; display: flex; align-items: center; justify-content: center;
+    gap: 8px; font-size: 0.85rem; font-weight: 600; color: var(--text);
     opacity: 0.7;
-    margin-bottom: 16px;
   }
-  .section-cream .section-tag { color: var(--text-secondary); }
-  .section-cream .section-tag { color: var(--text-secondary); }
+  .step-extra .dots { letter-spacing: 2px; }
 
-  /* Section 1: Hero */
-  .hero-title {
-    font-size: clamp(2.2rem, 6vw, 4rem);
-    font-weight: 900;
-    line-height: 1.1;
-    letter-spacing: -1px;
+  /* ── CIRCULAR ILLUSTRATION SECTION (Pink) ── */
+  .circle-section {
+    background: var(--pink); padding: 56px 24px; text-align: center;
+    position: relative; overflow: hidden;
   }
-  .hero-title small {
-    display: block;
-    font-size: clamp(1rem, 3vw, 1.5rem);
-    font-weight: 600;
-    letter-spacing: -0.5px;
-    margin-top: 8px;
-    opacity: 0.85;
+  .circle-section .deco-circle {
+    position: absolute; border-radius: 50%; border: 2px solid rgba(255,255,255,0.15);
+    pointer-events: none;
   }
-  .hero-sub {
-    margin-top: 12px;
-    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
-    font-weight: 500;
-    opacity: 0.7;
+  .circle-section .deco-circle.c1 { width: 300px; height: 300px; top: -100px; right: -80px; }
+  .circle-section .deco-circle.c2 { width: 200px; height: 200px; bottom: -60px; left: -50px; }
+  .circle-section .deco-circle.c3 { width: 120px; height: 120px; top: 40%; right: 10%; }
+  .circle-illustration {
+    position: relative; width: 220px; height: 220px; margin: 0 auto 32px;
   }
-
-  /* Floating card */
-  .float-card {
-    background: var(--card-bg);
-    border-radius: 20px;
-    box-shadow: var(--shadow-lg);
-    padding: 32px 24px;
-    margin: 0 auto;
-    max-width: 420px;
-    text-align: center;
-    transition: transform 0.3s;
+  .circle-ring {
+    position: absolute; inset: 0; border-radius: 50%;
+    border: 4px dashed rgba(255,255,255,0.4);
+    animation: spin 20s linear infinite;
   }
-  .float-card:active { transform: scale(0.98); }
-
-  .exchange-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    margin: 20px 0;
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .circle-nodes {
+    position: absolute; inset: 20px; border-radius: 50%;
   }
-  .exchange-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
+  .circle-node {
+    position: absolute; width: 44px; height: 44px; border-radius: 14px;
+    background: rgba(255,255,255,0.9); display: flex; align-items: center;
+    justify-content: center; font-size: 1.3rem; box-shadow: var(--shadow);
   }
-  .exchange-item .emoji-big {
-    font-size: 3rem;
-    line-height: 1;
+  .circle-node.n1 { top: -10px; left: 50%; transform: translateX(-50%); }
+  .circle-node.n2 { top: 50%; right: -10px; transform: translateY(-50%); }
+  .circle-node.n3 { bottom: -10px; left: 50%; transform: translateX(-50%); }
+  .circle-node.n4 { top: 50%; left: -10px; transform: translateY(-50%); }
+  .circle-center {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    width: 60px; height: 60px; border-radius: 18px;
+    background: var(--navy); color: #FFF;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem; box-shadow: 0 4px 16px rgba(0,0,0,0.15);
   }
-  .exchange-item .label {
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--text-secondary);
-    font-weight: 600;
+  .circle-section h2 {
+    font-size: clamp(1.4rem, 4vw, 2rem); font-weight: 800;
+    letter-spacing: -0.5px; color: var(--navy); position: relative; z-index: 1;
   }
-  .exchange-item .item-name {
-    font-family: 'Playfair Display', 'Georgia', serif;
-    font-style: italic;
-    font-weight: 700;
-    font-size: 1.1rem;
-    color: var(--text);
-  }
-  .exchange-arrow {
-    font-size: 1.5rem;
-    color: var(--accent);
-    font-weight: 700;
-  }
-  .exchange-divider {
-    width: 60%;
-    height: 1px;
-    background: var(--border);
-    margin: 20px auto;
-  }
-  .exchange-insight {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    line-height: 1.5;
-  }
-  .exchange-insight em {
-    color: var(--text);
-    font-weight: 700;
-    font-style: normal;
+  .circle-section p {
+    font-size: 0.9rem; color: rgba(0,35,78,0.7); margin-top: 8px;
+    max-width: 320px; margin-left: auto; margin-right: auto;
+    position: relative; z-index: 1;
   }
 
-  /* Section 3: Steps */
-  .steps-list {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    max-width: 380px;
-    margin: 0 auto;
+  /* ── CTA (Yellow) ── */
+  .cta-section {
+    background: var(--yellow); padding: 56px 24px; text-align: center;
   }
-  .step-card {
-    background: rgba(255,255,255,0.6);
-    backdrop-filter: blur(12px);
-    border-radius: 18px;
-    padding: 24px 20px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    text-align: left;
-    box-shadow: var(--shadow);
-    transition: transform 0.3s;
+  .cta-section h2 {
+    font-size: clamp(1.6rem, 4.5vw, 2.6rem); font-weight: 900;
+    letter-spacing: -1px; line-height: 1.2; margin-bottom: 8px;
   }
-  .step-card:active { transform: scale(0.98); }
-  .step-num {
-    width: 48px; height: 48px;
-    border-radius: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.4rem;
-    font-weight: 800;
-    flex-shrink: 0;
-  }
-  .step-card:nth-child(1) .step-num { background: var(--navy); color: #FFF; }
-  .step-card:nth-child(2) .step-num { background: var(--accent); color: #FFF; }
-  .step-card:nth-child(3) .step-num { background: var(--navy); color: #FFF; }
-  .step-text { font-size: 0.95rem; font-weight: 600; color: var(--text); }
-  .step-text small { display: block; font-weight: 400; color: var(--text-secondary); font-size: 0.8rem; margin-top: 2px; }
-
-  /* Section 4: CTA */
-  .cta-title {
-    font-size: clamp(1.5rem, 4vw, 2.5rem);
-    font-weight: 900;
-    letter-spacing: -0.5px;
-    line-height: 1.2;
-    margin-bottom: 8px;
-  }
-  .cta-sub {
-    font-size: 0.95rem;
-    opacity: 0.8;
-    margin-bottom: 28px;
+  .cta-section .cta-sub {
+    font-size: 0.95rem; opacity: 0.75; margin-bottom: 28px;
+    font-family: 'Playfair Display','Georgia',serif; font-style: italic;
   }
   .cta-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--text);
-    color: #FFF;
-    font-family: inherit;
-    font-size: 1rem;
-    font-weight: 700;
-    padding: 16px 40px;
-    border-radius: 16px;
-    border: none;
-    cursor: pointer;
-    text-decoration: none;
-    box-shadow: var(--shadow);
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--navy); color: #FFF; font-family: inherit;
+    font-size: 1.05rem; font-weight: 700; padding: 18px 44px;
+    border-radius: 18px; border: none; cursor: pointer; text-decoration: none;
+    box-shadow: 0 8px 24px rgba(0,35,78,0.2);
     transition: transform 0.3s, box-shadow 0.3s;
   }
-  .cta-btn:active { transform: scale(0.97); }
+  .cta-btn:active { transform: scale(0.96); }
+  .cta-btn i { font-size: 0.9rem; }
 
-  /* ===== BOTTOM NAV ===== */
+  /* ── BOTTOM NAV ── */
   .bottom-nav {
-    position: fixed;
-    bottom: 0; left: 0; right: 0;
-    background: rgba(255,255,255,0.85);
-    backdrop-filter: blur(24px);
-    border-top: 1px solid var(--border);
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 8px 8px 12px;
-    z-index: 100;
-    contain: layout style;
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: rgba(255,255,255,0.85); backdrop-filter: blur(24px);
+    border-top: 1px solid var(--border); display: flex;
+    justify-content: space-around; align-items: center;
+    padding: 8px 8px 12px; z-index: 100; contain: layout style;
   }
   .nav-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 3px;
-    text-decoration: none;
-    color: var(--text-secondary);
-    font-size: 0.6rem;
-    font-weight: 600;
-    transition: color 0.2s;
-    padding: 4px 8px;
+    display: flex; flex-direction: column; align-items: center; gap: 3px;
+    text-decoration: none; color: var(--text-secondary); font-size: 0.6rem;
+    font-weight: 600; transition: color 0.2s; padding: 4px 8px;
   }
   .nav-item i { font-size: 1.1rem; }
   .nav-item.active { color: var(--accent); }
   .nav-plus {
-    background: var(--accent);
-    color: #FFF;
-    width: 44px; height: 44px;
-    border-radius: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    margin-top: -16px;
-    box-shadow: var(--shadow);
-    transition: transform 0.3s;
+    background: var(--accent); color: #FFF; width: 44px; height: 44px;
+    border-radius: 14px; display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; margin-top: -16px;
+    box-shadow: var(--shadow); transition: transform 0.3s;
   }
   .nav-plus:active { transform: scale(0.95); }
 
-  /* ===== RESPONSIVE ===== */
+  /* ── RESPONSIVE ── */
   @media (min-width: 600px) {
     .header { padding: 12px 24px; }
-    .header .logo-link { left: 24px; }
-    .section { padding: 64px 32px; }
-    .float-card { max-width: 480px; padding: 40px 32px; }
-    .steps-list { flex-direction: row; max-width: 720px; gap: 16px; }
-    .step-card { flex: 1; flex-direction: column; text-align: center; padding: 28px 20px; }
+    .header .logo-wrap { left: 24px; }
+    .hero { padding: 80px 32px 88px; }
+    .steps { max-width: 640px; flex-direction: row; }
+    .step { flex: 1; flex-direction: column; align-items: center; text-align: center; }
   }
   @media (min-width: 1024px) {
     .header { max-width: 1200px; margin: 0 auto; padding: 16px 32px; }
-    .header .logo-link { left: 32px; }
-    .section { padding: 80px 32px; }
-    .hero-title { font-size: 4rem; }
-    .float-card { max-width: 540px; }
-    .steps-list { gap: 20px; }
+    .header .logo-wrap { left: 32px; }
+    .hero { padding: 100px 32px 108px; }
+    .hero h1 { font-size: 5rem; }
+    .exchange-card { max-width: 500px; }
+    .steps { gap: 24px; }
   }
   @media (prefers-reduced-motion: reduce) {
-    .float-card, .step-card, .cta-btn, .nav-plus { transition: none; }
+    .step, .cta-btn, .nav-plus, .circle-ring { transition: none; animation: none; }
   }
 </style>
 </head>
 <body>
 
-<!-- ===== HEADER ===== -->
+<!-- ══════ HEADER ══════ -->
 <header class="header">
-  <a href="../v1-catalogo/" class="logo-link"><img src="../v1-catalogo/logo-treqe.png" alt="treqe"></a>
+  <a href="../v1-catalogo/" class="logo-wrap"><img src="../v1-catalogo/logo-treqe.png" alt="treqe"></a>
   <div class="search-bar">
     <i class="fas fa-search"></i>
     <input type="text" placeholder="Buscar artículos...">
   </div>
 </header>
 
-<!-- ===== SECTION 1: ¿QUÉ ES ESTO? (0-1s) ===== -->
-<section class="section section-navy">
-  <p class="section-tag">Intercambio circular</p>
-  <h1 class="hero-title">
-    treqe.
-    <small>Intercambio en cadena.</small>
-  </h1>
-  <p class="hero-sub">Con o sin dinero. Tú decides.</p>
+<!-- ══════ HERO: ¿QUÉ ES ESTO? ══════ -->
+<section class="hero">
+  <div class="hero-badge">✦ Intercambio circular</div>
+  <h1>treqe<span>.</span></h1>
+  <p class="tagline">Intercambio en cadena. <em>Con o sin dinero.</em></p>
 </section>
 
-<!-- ===== SECTION 2: ¿CÓMO FUNCIONA? (1-2s) ===== -->
-<section class="section section-cream">
-  <p class="section-tag">El gancho visual</p>
-  <div class="float-card">
-    <div class="exchange-row">
-      <div class="exchange-item">
-        <span class="label">Antes tenía</span>
-        <span class="emoji-big">🚲</span>
-        <span class="item-name">un carrito de bebé</span>
+<!-- ══════ FLOATING CARD: ANTES/AHORA ══════ -->
+<section class="exchange-section">
+  <div class="exchange-card">
+    <div class="pill">📦 El gancho</div>
+    <div class="swap-row">
+      <div class="swap-item before">
+        <span class="swap-label">Antes tenía</span>
+        <div class="swap-icon">🚲</div>
+        <span class="swap-name">un carrito de bebé</span>
       </div>
-      <span class="exchange-arrow">→</span>
-      <div class="exchange-item">
-        <span class="label">Ahora tengo</span>
-        <span class="emoji-big">📱</span>
-        <span class="item-name">este iPhone</span>
+      <div class="swap-connector">
+        <div class="dot"></div>
+        <div class="line"></div>
+        <div class="arrow">→</div>
+      </div>
+      <div class="swap-item after">
+        <span class="swap-label">Ahora tengo</span>
+        <div class="swap-icon">📱</div>
+        <span class="swap-name">este iPhone</span>
       </div>
     </div>
-    <div class="exchange-divider"></div>
-    <p class="exchange-insight">
-      Tú no cambias con alguien.<br>
+    <div class="insight">
+      Tú no cambias con <strong>alguien</strong>.<br>
       Cambias con <em>la comunidad</em>.
-    </p>
-  </div>
-</section>
-
-<!-- ===== SECTION 3: ¿CÓMO ES POSIBLE? (2-3s) ===== -->
-<section class="section section-teal">
-  <p class="section-tag" style="color:var(--text-secondary)">En 3 pasos</p>
-  <div class="steps-list">
-    <div class="step-card">
-      <div class="step-num">①</div>
-      <div class="step-text">
-        Subes lo que no usas
-        <small>Rápido, sin complicaciones</small>
-      </div>
-    </div>
-    <div class="step-card">
-      <div class="step-num">②</div>
-      <div class="step-text">
-        Pides lo que quieres
-        <small>Lo que sea, sin límites</small>
-      </div>
-    </div>
-    <div class="step-card">
-      <div class="step-num">③</div>
-      <div class="step-text">
-        Treqe encuentra la cadena
-        <small>El algoritmo hace la magia ▸▸▸</small>
-      </div>
     </div>
   </div>
 </section>
 
-<!-- ===== SECTION 4: CTA ===== -->
-<section class="section section-yellow">
-  <h2 class="cta-title">Paga lo que quieres<br>con lo que tienes</h2>
+<!-- ══════ HOW: 3 PASOS ══════ -->
+<section class="how-section">
+  <div class="section-label">Cómo funciona</div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-circle">①</div>
+      <div class="step-content">
+        <h3>Subes lo que no usas</h3>
+        <p>Rápido, sin complicaciones. Dale salida a lo que ya no necesitas.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-circle">②</div>
+      <div class="step-content">
+        <h3>Pides lo que quieres</h3>
+        <p>Lo que sea. Sin límites. Tú marcas el destino.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-circle">③</div>
+      <div class="step-content">
+        <h3>Treqe encuentra la cadena</h3>
+        <p>El algoritmo conecta a la comunidad para cerrar el círculo.</p>
+      </div>
+    </div>
+  </div>
+  <div class="step-extra">
+    <span>Nadie se queda sin lo suyo</span>
+    <span class="dots">▸▸▸</span>
+  </div>
+</section>
+
+<!-- ══════ CIRCULAR EXCHANGE ILLUSTRATION ══════ -->
+<section class="circle-section">
+  <div class="deco-circle c1"></div>
+  <div class="deco-circle c2"></div>
+  <div class="deco-circle c3"></div>
+  <div class="circle-illustration">
+    <div class="circle-ring"></div>
+    <div class="circle-nodes">
+      <div class="circle-node n1">📚</div>
+      <div class="circle-node n2">🎧</div>
+      <div class="circle-node n3">👟</div>
+      <div class="circle-node n4">🎸</div>
+    </div>
+    <div class="circle-center">⟳</div>
+  </div>
+  <h2>Así funciona el intercambio circular</h2>
+  <p>4 personas, 4 objetos, una sola cadena. Sin dinero, solo comunidad.</p>
+</section>
+
+<!-- ══════ CTA ══════ -->
+<section class="cta-section">
+  <h2>Paga lo que quieres<br>con lo que tienes</h2>
   <p class="cta-sub">Dale una segunda vida a tus cosas</p>
   <a href="../v10-registro/" class="cta-btn">
     Empieza ahora <i class="fas fa-arrow-right"></i>
   </a>
 </section>
 
-<!-- ===== BOTTOM NAV ===== -->
+<!-- ══════ BOTTOM NAV ══════ -->
 <nav class="bottom-nav">
   <a href="../v1-catalogo/" class="nav-item active">
     <i class="fas fa-search"></i> Buscar
