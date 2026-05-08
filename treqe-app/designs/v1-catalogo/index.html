@@ -1993,8 +1993,8 @@ function filterByCategory(category) {
       const activeFiltersEl = document.getElementById('activeFilters');
       let filtersHTML = '';
 
-      if (category) filtersHTML += `<div class="active-filter" data-filter="category"><span>${document.getElementById('categorySelect').options[document.getElementById('categorySelect').selectedIndex].text}</span><button onclick="removeFilter('category')"><i class="fas fa-times"></i></button></div>`;
-      if (priceMin > 0 || priceMax < Infinity) filtersHTML += `<div class="active-filter" data-filter="price"><span>€${priceMin || 0} - €${priceMax === Infinity ? '∞' : priceMax}</span><button onclick="removeFilter('price')"><i class="fas fa-times"></i></button></div>`;
+      if (category) filtersHTML += `<div class="active-filter" data-filter="category" style="margin-left:20px"><span>${document.getElementById('categorySelect').options[document.getElementById('categorySelect').selectedIndex].text}</span><button onclick="removeFilter('category')"><i class="fas fa-times"></i></button></div>`;
+      if (priceMin > 0 || priceMax < Infinity) filtersHTML += `<div class="active-filter" data-filter="price" style="margin-left:20px"><span>€${priceMin || 0} - €${priceMax === Infinity ? '∞' : priceMax}</span><button onclick="removeFilter('price')"><i class="fas fa-times"></i></button></div>`;
       // condition tag removed until data-condition exists on items: if (condition !== 'any') filtersHTML += `<div class="active-filter" data-filter="condition"><span>${document.querySelector('[data-condition].active').textContent}</span><button onclick="removeFilter('condition')"><i class="fas fa-times"></i></button></div>`;
 
       if (filtersHTML) {
