@@ -1833,15 +1833,9 @@ function filterByCategory(category) {
     }
 
     // ===== MATCH BANNER =====
-    setTimeout(() => {
-      document.getElementById('matchBanner').classList.add('show');
-    }, 2000);
+    // match banner removed
 
-    function closeBanner() {
-      const banner = document.getElementById('matchBanner');
-      banner.classList.remove('show');
-      banner.style.display = 'none';
-    }
+    
 
     // ===== NAVIGATION =====
     function goToNotifs() { window.parent.location.href = '../v11-notificaciones/'; }
