@@ -1872,10 +1872,8 @@ function filterByCategory(category) {
     function applyFilters() {
       closeFilters();
 
-      // Sync: reset pills to "Todas" when modal is used
+      // Sync: reset pill state (pills removed, modal is the source of truth)
       activeCategory = 'all';
-      document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
-      document.querySelector('.filter-pill[data-category="all"]').classList.add('active');
 
       const category = document.getElementById('categorySelect').value;
       const subcategory = document.getElementById('subcategorySelect').value;
