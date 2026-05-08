@@ -13,6 +13,10 @@
       width: 154px;
       flex-shrink: 0;
       display: block;
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html {
@@ -87,8 +91,8 @@
     .search-bar {
       flex: 0 1 33%;
       max-width: 300px;
-      margin: auto 0;
       display: flex;
+      margin: auto;
       align-items: center;
       background: #FFFFFF;
       border: 1px solid var(--border);
@@ -857,14 +861,14 @@
 
   <!-- ===== HEADER ===== -->
   <div class="header">
-      <svg class="treqe-logo" viewBox="0 0 124 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg class="treqe-logo" viewBox="0 0 98 34" fill="none" xmlns="http://www.w3.org/2000/svg">
     <defs>
       <style>
-        .logo-text { font-family: 'Inter','Segoe UI','SF Pro Display',system-ui,sans-serif; font-weight: 700; font-size: 30px; fill: #00234E; }
+        .lg { font-family: 'Inter','Segoe UI',system-ui,-apple-system,sans-serif; font-weight: 700; fill: #00234E; }
       </style>
     </defs>
-    <text x="6" y="27" class="logo-text" letter-spacing="-2.5" textLength="90">treqe</text>
-    <circle cx="108" cy="28" r="4.5" fill="#FF6A35"/>
+    <text x="2" y="26" class="lg" font-size="29" letter-spacing="-2">treqe</text>
+    <circle cx="86" cy="29" r="4" fill="#FF6A35"/>
   </svg>
     <div class="search-bar">
       <i class="fas fa-search"></i>
