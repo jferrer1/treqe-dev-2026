@@ -506,45 +506,6 @@
     }
 
     /* ===== SORT / FILTER BAR ===== */
-    .filter-bar {
-      display: flex;
-      gap: 8px;
-      padding: 0 16px 12px;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-    }
-    .filter-bar::-webkit-scrollbar { display: none; }
-    .filter-pill {
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 7px 14px;
-      border-radius: 10px;
-      font-size: 0.75rem;
-      font-weight: 500;
-      background: #FFFFFF;
-      border: 1px solid var(--border);
-      color: var(--text-secondary);
-      transition: all 0.2s;
-    }
-    .filter-pill:active { background: var(--border); }
-    .filter-pill i { font-size: 0.7rem; }
-    .filter-pill .count {
-      background: var(--border);
-      padding: 1px 6px;
-      border-radius: 6px;
-      font-size: 0.65rem;
-      font-weight: 600;
-    }
-    @media (min-width: 600px) {
-      .filter-bar { padding: 0 24px 14px; }
-    }
-    @media (min-width: 1024px) {
-      .filter-bar { max-width: 1200px; margin: 0 auto; padding: 0 32px 14px; }
-    }
-
     /* ===== SCORING TOOLTIP (sutil) ===== */
     .scoring-info {
       cursor: pointer;
@@ -876,32 +837,6 @@
   <!-- ===== ACTIVE FILTERS BAR (debajo del buscador) ===== -->
   <div class="active-filters" id="activeFilters">
     <!-- Se llena dinámicamente al aplicar filtros -->
-  </div>
-
-  <!-- ===== CATEGORY CHIPS ===== -->
-  <div class="filter-bar">
-    <button class="filter-pill active" data-category="all" onclick="filterByCategory('all')"><i class="fas fa-th-large"></i> Todas</button>
-    <button class="filter-pill" data-category="electronica" onclick="filterByCategory('electronica')"><i class="fas fa-microchip"></i> Electrónica <span class="count" id="count-electronica">0</span></button>
-    <button class="filter-pill" data-category="moda" onclick="filterByCategory('moda')"><i class="fas fa-tshirt"></i> Moda <span class="count" id="count-moda">0</span></button>
-    <button class="filter-pill" data-category="deporte" onclick="filterByCategory('deporte')"><i class="fas fa-running"></i> Deporte <span class="count" id="count-deporte">0</span></button>
-    <button class="filter-pill" data-category="musica" onclick="filterByCategory('musica')"><i class="fas fa-music"></i> Música <span class="count" id="count-musica">0</span></button>
-    <button class="filter-pill" data-category="hogar" onclick="filterByCategory('hogar')"><i class="fas fa-home"></i> Hogar <span class="count" id="count-hogar">0</span></button>
-    <button class="filter-pill" data-category="libros" onclick="filterByCategory('libros')"><i class="fas fa-book"></i> Libros <span class="count" id="count-libros">0</span></button>
-    <button class="filter-pill" data-category="libros" onclick="filterByCategory('libros')"><i class="fas fa-book"></i> Libros <span class="count" id="count-libros">0</span></button>
-    <button class="filter-pill" data-category="motor" onclick="filterByCategory('motor')"><i class="fas fa-car"></i> Motor <span class="count" id="count-motor">0</span></button>
-    <button class="filter-pill" data-category="bicicletas" onclick="filterByCategory('bicicletas')"><i class="fas fa-bicycle"></i> Bicis <span class="count" id="count-bicicletas">0</span></button>
-    <button class="filter-pill" data-category="electrodomesticos" onclick="filterByCategory('electrodomesticos')"><i class="fas fa-blender"></i> Electrodomésticos <span class="count" id="count-electrodomesticos">0</span></button>
-    <button class="filter-pill" data-category="bebes" onclick="filterByCategory('bebes')"><i class="fas fa-baby"></i> Bebés <span class="count" id="count-bebes">0</span></button>
-    <button class="filter-pill" data-category="coleccionismo" onclick="filterByCategory('coleccionismo')"><i class="fas fa-gem"></i> Coleccionismo <span class="count" id="count-coleccionismo">0</span></button>
-    <button class="filter-pill" data-category="inmuebles" onclick="filterByCategory('inmuebles')"><i class="fas fa-building"></i> Inmuebles <span class="count" id="count-inmuebles">0</span></button>
-    <button class="filter-pill" data-category="servicios" onclick="filterByCategory('servicios')"><i class="fas fa-concierge-bell"></i> Servicios <span class="count" id="count-servicios">0</span></button>
-    <button class="filter-pill" data-category="otros" onclick="filterByCategory('otros')"><i class="fas fa-ellipsis-h"></i> Otros <span class="count" id="count-otros">0</span></button>
-  </div>
-
-  <!-- ===== SECTION TITLE ===== -->
-  <div class="section-title">
-    <h2>Descubrir</h2>
-    <span id="articleCount">70 artículos</span>
   </div>
 
   <!-- ===== CATALOG GRID ===== -->
