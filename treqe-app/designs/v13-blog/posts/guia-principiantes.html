@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Guia para principiantes del trueque en Treqe — Blog TREQE</title>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Guia completa de Treqe — Blog TREQE</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{font-size:16px;scroll-behavior:smooth}body{font-family:'Inter',sans-serif;background:#F8F6F0;color:#1A1A1A;min-height:100dvh;-webkit-font-smoothing:antialiased;overscroll-behavior:contain}
@@ -10,8 +10,7 @@ img{max-width:100%;display:block}button{font-family:inherit;cursor:pointer;borde
 .header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;padding:0 24px;height:80px;gap:24px}
 .header-inner .logo{display:flex;align-items:center;gap:0;flex-shrink:0}
 .header-inner .logo .blog-suffix{font-size:1.1rem;font-weight:500;color:var(--text-sec);margin-left:-10px;position:relative;top:3px}
-.back-link{padding:8px 16px;border-radius:8px;font-size:.85rem;font-weight:500;color:var(--text-sec);transition:all .2s;margin-left:auto}
-.back-link:hover{background:#FFF;color:var(--text)}.back-link i{margin-right:6px}
+.back-link{padding:8px 16px;border-radius:8px;font-size:.85rem;font-weight:500;color:var(--text-sec);transition:all .2s;margin-left:auto}.back-link:hover{background:#FFF;color:var(--text)}.back-link i{margin-right:6px}
 .mobile-header{display:none;align-items:center;gap:10px;padding:8px 12px 12px 16px;background:var(--bg)}
 .mobile-header .back-btn{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--text);font-size:1.1rem}
 .mobile-header .mob-logo{display:flex;align-items:center;gap:0}
@@ -27,6 +26,7 @@ img{max-width:100%;display:block}button{font-family:inherit;cursor:pointer;borde
 .post-body h1{font-size:clamp(1.5rem,3.5vw,2.2rem);font-weight:800;color:var(--text);line-height:1.2;margin-bottom:8px;letter-spacing:-.5px}
 .post-body .subhead{font-size:clamp(.9rem,1.5vw,1.05rem);color:var(--text-sec);line-height:1.6;margin-bottom:28px}
 .post-body h2{font-size:clamp(1.1rem,2vw,1.3rem);font-weight:700;color:var(--text);margin-top:36px;margin-bottom:12px}
+.post-body h3{font-size:clamp(.95rem,1.3vw,1.05rem);font-weight:600;color:var(--text);margin-top:24px;margin-bottom:8px}
 .post-body p{font-size:clamp(.88rem,1.2vw,.95rem);line-height:1.75;color:var(--text);margin-bottom:18px}
 .post-body .highlight-box{background:#FFF;border-left:4px solid var(--accent);padding:20px 24px;border-radius:0 var(--radius) var(--radius) 0;margin:24px 0;box-shadow:var(--shadow)}
 .post-body .highlight-box p{font-size:.9rem;color:var(--text-sec);margin-bottom:0}
@@ -35,15 +35,15 @@ img{max-width:100%;display:block}button{font-family:inherit;cursor:pointer;borde
 .post-body .pullquote p{font-size:clamp(1rem,1.8vw,1.15rem);font-weight:600;color:var(--text);font-style:italic;margin-bottom:8px}
 .post-body .pullquote span{font-size:.8rem;color:var(--text-ter);font-style:normal}
 .post-body .divider{text-align:center;margin:32px 0;color:var(--text-ter);font-size:.85rem;letter-spacing:5px}
+.post-body .kpi-row{display:flex;gap:12px;margin:24px 0;flex-wrap:wrap}
+.post-body .kpi-card{flex:1;min-width:140px;background:var(--card);border-radius:var(--radius);padding:20px;text-align:center;box-shadow:var(--shadow)}
+.post-body .kpi-card .num{font-size:1.6rem;font-weight:800;color:var(--accent)}
+.post-body .kpi-card .label{font-size:.7rem;color:var(--text-sec);margin-top:4px}
 .post-body ul{list-style:none;margin:20px 0 24px}
 .post-body ul li{position:relative;padding-left:26px;font-size:clamp(.88rem,1.1vw,.92rem);line-height:1.6;color:var(--text);margin-bottom:12px}
 .post-body ul li::before{content:'\f00c';font-family:'Font Awesome 6 Free';font-weight:900;position:absolute;left:0;color:var(--success);font-size:.8rem}
 .post-body ol{margin:16px 0 20px;padding-left:24px}
 .post-body ol li{font-size:clamp(.88rem,1.1vw,.92rem);line-height:1.6;color:var(--text);margin-bottom:10px}
-.post-body .step-card{background:var(--card);border-radius:var(--radius);padding:20px;margin:16px 0;box-shadow:var(--shadow)}
-.post-body .step-card .step-num{display:inline-block;background:var(--accent);color:#FFF;width:28px;height:28px;border-radius:50%;text-align:center;line-height:28px;font-size:.75rem;font-weight:700;margin-right:10px}
-.post-body .step-card h3{display:inline;font-size:1rem;font-weight:600;color:var(--text)}
-.post-body .step-card p{margin-top:10px;font-size:.85rem;color:var(--text-sec)}
 .post-cta{margin-top:36px;padding:32px;background:linear-gradient(135deg,#1A1A2E,#2A2A4E);border-radius:var(--radius);text-align:center}
 .post-cta h3{color:#FFF;font-size:clamp(1rem,1.8vw,1.15rem);font-weight:700;margin-bottom:8px}
 .post-cta p{color:rgba(255,255,255,.65);font-size:.85rem;margin-bottom:18px}
@@ -98,80 +98,110 @@ body{padding-bottom:80px}.site-header{display:none}.mobile-header{display:flex}.
 <div class="post-hero"><i class="fas fa-compass"></i><span class="post-tag">Guia</span></div>
 
 <article class="post-container"><div class="post-body">
-  <div class="post-meta"><span>3 de mayo de 2026</span><span class="dot"></span><span>7 min de lectura</span><span class="category">Guia</span></div>
-  <h1>Guia para principiantes: como funciona el trueque en Treqe</h1>
-  <p class="subhead">Todo lo que necesitas saber para hacer tu primer intercambio. Desde crear tu perfil hasta recibir tu objeto. Sin jerga tecnica, sin rodeos.</p>
+  <div class="post-meta"><span>3 de mayo de 2026</span><span class="dot"></span><span>8 min de lectura</span><span class="category">Guia</span></div>
 
-  <p>Acabas de llegar a Treqe y todo suena genial, pero no tienes ni idea de por donde empezar. Normal. El trueque estructurado no es algo que se explique en el colegio. Esta guia te lleva de la mano desde cero hasta tu primer intercambio completado.</p>
+  <h1>Guia completa de Treqe: como funciona de verdad</h1>
+  <p class="subhead">Dos formas de conseguir lo que quieres, ofertas silenciosas, ciclos de intercambio y un sistema de fases que te guia desde el primer clic hasta que recibes tu objeto.</p>
 
-  <div class="step-card">
-    <span class="step-num">1</span><h3>Crea tu perfil</h3>
-    <p>Registrate con tu correo electronico o vincula tu cuenta de Google. Te pediremos un nombre de usuario (puede ser un pseudonimo) y tu codigo postal para mostrarte objetos cercanos. No compartimos tus datos personales con nadie. En menos de 2 minutos estas dentro.</p>
+  <h2>Las dos formas de conseguir algo en Treqe</h2>
+
+  <p>El catalogo muestra articulos. Cuando encuentras algo que te interesa, tienes dos caminos:</p>
+
+  <h3>Opción A: Compra directa 🛒</h3>
+  <p>La via rapida. Ves un articulo, ves su precio fijo, haces clic en "Comprar ahora", pagas y lo recibes en casa. Sin intercambio, sin esperas, sin circulo. Exactamente como funciona Wallapop o cualquier otra plataforma de compraventa.</p>
+
+  <p><strong>Cuando usarla:</strong> Cuando necesitas algo urgente, cuando no tienes nada que ofrecer a cambio, o cuando simplemente prefieres pagar y ya.</p>
+
+  <h3>Opción B: Intercambio circular 🤝</h3>
+  <p>Aqui esta lo que hace diferente a Treqe. Ves un articulo y en lugar de comprarlo, haces clic en "Quiero esto" y ofreces algo a cambio. Puede ser otro objeto, un servicio, o una combinacion de objeto + dinero para ajustar la diferencia de valor.</p>
+
+  <div class="highlight-box">
+    <p><strong>Importante:</strong> En Treqe <strong>si se usa dinero</strong>. Si tu objeto vale menos que lo que quieres, pagas la diferencia. Si vale mas, recibes dinero. No es trueque puro: es intercambio inteligente con ajuste monetario.</p>
   </div>
 
-  <div class="step-card">
-    <span class="step-num">2</span><h3>Anade tus objetos ("Tengo")</h3>
-    <p>Piensa en todas esas cosas que tienes en casa y que ya no usas. Una guitarra que acumula polvo. Un movil del ano pasado. Un sofá que ya no pega con la decoracion. Un libro que ya leiste. Sube fotos, escribe una breve descripcion y di en que estado esta. No pongas precio: en Treqe no se vende, se intercambia.</p>
-  </div>
+  <p><strong>Ejemplo:</strong> Quieres un iPhone 15 Pro de 890€. Tienes una Fender Stratocaster valorada en 580€. Ofreces la guitarra + 310€. Si el algoritmo encuentra un ciclo donde encajas, consigues el iPhone pagando solo 310€ en lugar de 890€.</p>
 
-  <div class="step-card">
-    <span class="step-num">3</span><h3>Di lo que buscas ("Quiero")</h3>
-    <p>¿Que necesitas? Puede ser otro objeto, un servicio (clases de algo, reparaciones, cocinar una cena) o incluso experiencias. Se especifico: "clases de guitarra" funciona mejor que "aprender musica".</p>
-  </div>
+  <h2>El Muro de Ofertas Silencioso</h2>
 
-  <div class="step-card">
-    <span class="step-num">4</span><h3>Espera a que el algoritmo haga su magia</h3>
-    <p>Aqui pasa la parte que diferencia a Treqe de todo lo demas. No tienes que buscar uno a uno a quien quiera intercambiar contigo. El algoritmo analiza tu "tengo" y tu "quiero" y lo cruza con todos los demas usuarios. Cuando encuentra un ciclo de intercambio donde todo el mundo recibe lo que quiere, te llega una notificacion.</p>
-  </div>
+  <p>Cuando dices "Quiero esto" en un articulo, puede que otras personas tambien lo quieran. ¿Como se gestiona?</p>
 
-  <div class="pullquote">
-    <p>"No tienes que encontrar a nadie. El algoritmo encuentra el ciclo por ti. Tu solo tienes que esperar la notificacion."</p>
-  </div>
+  <p>No es "el primero que llega, se lo queda". Tu oferta entra en un <strong>muro de ofertas silencioso</strong>. El articulo sigue visible en el catalogo. Otros usuarios pueden ofrecer tambien. Nadie sabe que han ofrecido los demas.</p>
 
-  <div class="step-card">
-    <span class="step-num">5</span><h3>Revisa la propuesta de intercambio</h3>
-    <p>El algoritmo te muestra el ciclo completo: que das tu, que recibes, y quienes son las otras personas involucradas. Puedes ver sus perfiles, su reputacion y las valoraciones de intercambios anteriores. Si todo te parece bien, aceptas.</p>
-  </div>
-
-  <div class="step-card">
-    <span class="step-num">6</span><h3>Coordina la entrega</h3>
-    <p>Una vez todos los participantes del ciclo han aceptado, se abre un chat grupal para coordinar la logistica. Queda en un punto de encuentro, acuerda el envio por correo o utiliza los puntos de intercambio seguro que Treqe esta habilitando en colaboracion con comercios locales.</p>
-  </div>
-
-  <div class="step-card">
-    <span class="step-num">7</span><h3>Confirma la recepcion y valora</h3>
-    <p>Cuando todos han recibido sus objetos, confirmas la recepcion en la app. El intercambio se marca como completado y tanto tu como los demas reciben un aumento en su reputacion. Valora a tus contrapartes: ayuda a la comunidad a crecer sana.</p>
-  </div>
-
-  <h2>Errores comunes de principiantes</h2>
+  <p>El algoritmo evalua todas las ofertas acumuladas y busca la mejor combinacion posible, priorizando:</p>
 
   <ul>
-    <li><strong>Subir objetos en mal estado:</strong> Se honesto con el estado de las cosas. Una descripcion precisa evita malentendidos y valoraciones negativas.</li>
-    <li><strong>Ser demasiado vago en "Quiero":</strong> "Cosas interesantes" no ayuda al algoritmo. Se concreto: "Cascos de bicicleta, talla M" es mucho mejor.</li>
-    <li><strong>Esperar intercambios instantaneos:</strong> Cuando la comunidad es pequena, puede tardar unos dias en formarse un ciclo. No desesperes. Anade mas objetos y afina tus preferencias.</li>
-    <li><strong>No actualizar tus objetos:</strong> Si intercambiaste algo, retiralo. Si ya no buscas algo, actualiza tu lista. Mantén tu perfil al dia.</li>
+    <li>Ciclos mas cortos (menos personas que coordinar)</li>
+    <li>Menor diferencia economica (menos dinero de por medio)</li>
+    <li>Mayor reputacion de los participantes</li>
   </ul>
 
-  <h2>Consejos para intercambiar mejor</h2>
+  <p>No hay carreras ni "me lo quitaron de las manos". El sistema optimiza para que el maximo numero de personas consiga lo que quiere.</p>
 
-  <p>Una vez que hayas hecho tu primer intercambio, estos consejos te ayudaran a sacar mas partido de Treqe:</p>
+  <h2>El ciclo de vida completo de un intercambio</h2>
+
+  <p>Una vez que el algoritmo encuentra un ciclo donde encajas, el proceso tiene 6 fases. Te explicamos cada una:</p>
+
+  <div class="kpi-row">
+    <div class="kpi-card"><div class="num">1</div><div class="label" style="font-size:.8rem;font-weight:600;color:var(--text)">Match encontrado</div></div>
+    <div class="kpi-card"><div class="num">2</div><div class="label" style="font-size:.8rem;font-weight:600;color:var(--text)">Esperando</div></div>
+    <div class="kpi-card"><div class="num">3</div><div class="label" style="font-size:.8rem;font-weight:600;color:var(--text)">Match roto</div></div>
+    <div class="kpi-card"><div class="num">4</div><div class="label" style="font-size:.8rem;font-weight:600;color:var(--text)">Coordinar</div></div>
+    <div class="kpi-card"><div class="num">5</div><div class="label" style="font-size:.8rem;font-weight:600;color:var(--text)">En camino</div></div>
+    <div class="kpi-card"><div class="num">6</div><div class="label" style="font-size:.8rem;font-weight:600;color:var(--text)">Completado</div></div>
+  </div>
+
+  <h3>Fase 1: Match encontrado (tu turno)</h3>
+  <p>Te llega una notificacion: "Match circular encontrado. Recibes X, das Y. ¿Aceptas?" Ves el resumen del circulo: quien da que, quien recibe que, y cuanto dinero (si hay) tienes que pagar o recibir.</p>
+  <p>Tienes <strong>24 horas</strong> para decidir. Pasado ese tiempo, el match expira y vuelves al pool.</p>
+  <p><strong>Botones:</strong> ✅ Aceptar / ❌ Rechazar</p>
+
+  <h3>Fase 2: Esperando confirmacion</h3>
+  <p>Ya aceptaste. El circulo espera a que los demas participantes confirmen. Ves el progreso: "2 de 3 aceptaron".</p>
+  <p>Mientras esperas, puedes cancelar tu participacion si cambias de opinion.</p>
+  <p><strong>Botones:</strong> ⏸ Cancelar / 🔔 Recordar a los pendientes</p>
+
+  <h3>Fase 3: Match roto</h3>
+  <p>Alguien rechazo o dejo expirar su plazo. El match se cancela. Todos los participantes son liberados y sus articulos vuelven a estar disponibles.</p>
+  <p>No pasa nada. Simplemente vuelves al pool y el algoritmo seguira buscando otros ciclos para ti.</p>
+  <p><strong>Boton:</strong> 🔄 Buscar nuevo match</p>
+
+  <h3>Fase 4: Coordinar envio</h3>
+  <p>Todos aceptaron. Llega la parte logistica. Te mostramos las direcciones de envio de tus contrapartes. Tu envias tu objeto a una persona y recibiras de otra.</p>
+  <p>Por ejemplo: tu envias tu guitarra a Ana, Ana envia su camara a Carlos, y Carlos te envia el iPhone a ti.</p>
+  <p><strong>Boton:</strong> 📦 Ya lo envie</p>
+
+  <h3>Fase 5: En camino</h3>
+  <p>Cada articulo tiene su propio seguimiento. Ves el estado de cada envio del ciclo: Pendiente, Enviado, En transito, Recibido.</p>
+  <p>Sabes cuando se envio cada cosa, cuando llega y si hay alguna incidencia.</p>
+
+  <h3>Fase 6: Completado</h3>
+  <p>Todo el mundo recibio lo suyo. El intercambio se marca como completado. Tu reputacion sube.</p>
+  <p>Puedes valorar a tus contrapartes con estrellas y dejar un comentario. Esto ayuda a que la comunidad crezca sana.</p>
+  <p><strong>Boton:</strong> ⭐ Valorar intercambio</p>
+
+  <h2>Las 4 pestañas de "Mis Treqes"</h2>
+
+  <p>Todo esto lo gestionas desde la seccion "Mis Treqes", organizado en 4 pestañas:</p>
 
   <ul>
-    <li><strong>Anade al menos 5 objetos:</strong>Cuantas mas opciones tengas, mas probable es que el algoritmo encuentre un ciclo. No subas solo lo que quieras quitar de en medio; sube todo lo que estes dispuesto a intercambiar.</li>
-    <li><strong>Actualiza tus preferencias semanalmente:</strong> Los objetos que buscas cambian. Revisa tu lista de "Quiero" cada semana.</li>
-    <li><strong>Intercambia primero objetos de poco valor:</strong> Para coger confianza con el sistema, empieza con objetos pequenos (libros, accesorios). Cuando entiendas el flujo, lanzate a por intercambios mayores.</li>
-    <li><strong>Construye reputacion:</strong> Cada intercambio completado suma puntos. Los usuarios con alta reputacion tienen prioridad en el algoritmo.</li>
+    <li><strong>🔴 Activos:</strong> Matches que esperan tu decision (Fase 1). Timer de 24h visible.</li>
+    <li><strong>🟡 Pendientes:</strong> Matches que ya aceptaste pero esperan a otros (Fase 2+3). Progreso visible.</li>
+    <li><strong>🟢 En curso:</strong> Intercambios en fase de envio (Fase 4+5). Direcciones y tracking.</li>
+    <li><strong>🔵 Completados:</strong> Historial de intercambios finalizados (Fase 6). Para valorar.</li>
   </ul>
+
+  <p>Aqui tambien ves tus compras directas (si has comprado algo con dinero) junto a tus intercambios activos. Todo lo que esta en transito lo tienes en un solo lugar.</p>
 
   <div class="divider">· · ·</div>
 
-  <p>El primer intercambio siempre cuesta. Pero una vez que pruebas lo que es recibir algo que necesitas sin gastar un euro, todo cambia. Bienvenido a Treqe.</p>
+  <p>Asi funciona Treqe. Dos formas de conseguir lo que quieres, ofertas que compiten en silencio, y un sistema de fases que te lleva de la mano desde el match hasta el objeto en tus manos. Sin misterio, sin tecnicismos. Solo intercambios que funcionan.</p>
 
   <div class="post-cta">
     <h3>¿Preparado para tu primer intercambio?</h3>
     <p>Treqe abre pronto. Se el primero en probarlo.</p>
-    <a class="cta-btn" href="#" onclick="alert('Registro (demo)')">Crear mi cuenta <i class="fas fa-arrow-right"></i></a>
+    <a class="cta-btn" href="../../v1-catalogo/">Explorar catalogo <i class="fas fa-arrow-right"></i></a>
   </div>
+
 </div></article>
 
 <div class="post-footer">
@@ -184,22 +214,22 @@ body{padding-bottom:80px}.site-header{display:none}.mobile-header{display:flex}.
 </div>
 
 <div class="related-section">
-  <h2>Continua aprendiendo</h2>
+  <h2>Sigue aprendiendo</h2>
   <div class="related-grid">
-    <div class="related-card" onclick="window.location.href='sistema-reputacion.html'">
-      <div class="related-card__thumb orange"><i class="fas fa-star"></i></div>
-      <div class="related-card__title">Como funciona el sistema de reputacion</div>
-      <div class="related-card__excerpt">La confianza es la moneda de Treqe.</div>
-    </div>
-    <div class="related-card" onclick="window.location.href='algoritmo-intercambio-circular.html'">
-      <div class="related-card__thumb teal"><i class="fas fa-code-branch"></i></div>
-      <div class="related-card__title">El algoritmo del intercambio circular</div>
-      <div class="related-card__excerpt">La tecnologia detras del matching.</div>
-    </div>
     <div class="related-card" onclick="window.location.href='primera-entrega.html'">
       <div class="related-card__thumb gold"><i class="fas fa-arrows-spin"></i></div>
       <div class="related-card__title">Treqe no es Wallapop</div>
-      <div class="related-card__excerpt">Por que esto es diferente.</div>
+      <div class="related-card__excerpt">Por que el intercambio estructurado es diferente.</div>
+    </div>
+    <div class="related-card" onclick="window.location.href='sistema-reputacion.html'">
+      <div class="related-card__thumb orange"><i class="fas fa-star"></i></div>
+      <div class="related-card__title">Sistema de reputacion</div>
+      <div class="related-card__excerpt">La confianza se mide y se recompensa.</div>
+    </div>
+    <div class="related-card" onclick="window.location.href='historia-ipad-guitarra.html'">
+      <div class="related-card__thumb teal"><i class="fas fa-guitar"></i></div>
+      <div class="related-card__title">Caso real: iPad por clases de guitarra</div>
+      <div class="related-card__excerpt">Un intercambio que solo Treqe podria encontrar.</div>
     </div>
   </div>
 </div>
