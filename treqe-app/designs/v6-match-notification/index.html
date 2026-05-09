@@ -89,45 +89,32 @@
     }
     .app-bar button:active { background: var(--border); }
 
-    /* ===== NOTIFICATION BELL (demo trigger) ===== */
-    .notif-trigger-area {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 40px 24px;
-      text-align: center;
-    }
-    .notif-trigger-area i {
-      font-size: 3rem;
-      color: var(--text-tertiary);
-      margin-bottom: 16px;
-      opacity: 0.4;
-    }
-    .notif-trigger-area h2 {
-      font-size: 1.2rem;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-    .notif-trigger-area p {
-      color: var(--text-secondary);
-      font-size: 0.85rem;
-      line-height: 1.5;
-      max-width: 280px;
-      margin-bottom: 24px;
-    }
-    .trigger-btn {
-      padding: 14px 32px;
+    /* ===== PUSH NOTIFICATION BANNER ===== */
+    .push-notif {
+      position: fixed;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-120px);
+      z-index: 300;
       background: var(--accent);
       color: #FFF;
-      border-radius: 18px;
-      font-size: 0.95rem;
+      padding: 14px 24px;
+      border-radius: 16px;
+      font-size: 0.9rem;
       font-weight: 600;
-      box-shadow: 0 4px 16px rgba(255,106,53,0.25);
-      transition: all 0.2s;
+      box-shadow: 0 6px 24px rgba(255,106,53,0.35);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      white-space: nowrap;
+      transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      pointer-events: none;
+      max-width: calc(100vw - 40px);
     }
-    .trigger-btn:active { transform: scale(0.96); }
+    .push-notif i { font-size: 1rem; color: #FFF; }
+    .push-notif.visible {
+      transform: translateX(-50%) translateY(0);
+    }
 
     /* ===== NOTIFICATION OVERLAY ===== */
     .overlay {
@@ -475,14 +462,9 @@
     <button onclick="alert('👤 Perfil')"><i class="fas fa-user"></i></button>
   </div>
 
-  <!-- ===== TRIGGER AREA ===== -->
-  <div class="notif-trigger-area">
-    <i class="fas fa-bell"></i>
-    <h2>Simulación de notificación</h2>
-    <p>Pulsa el botón para recibir una notificación de match encontrado, como si acabara de llegar.</p>
-    <button class="trigger-btn" onclick="showNotification()">
-      <i class="fas fa-bolt"></i> Recibir match
-    </button>
+  <!-- ===== PUSH NOTIFICATION BANNER ===== -->
+  <div class="push-notif" id="pushNotif">
+    <i class="fas fa-bolt"></i> ¡Nuevo match encontrado!
   </div>
 
   <!-- ===== OVERLAY ===== -->
@@ -497,7 +479,7 @@
       <!-- CELEBRATION STATE -->
       <div id="celebrationState">
         <div class="celebration">
-          <div class="celebration__icon"><i class="fas fa-star"></i></div>
+          <div class="celebration__icon"><i class="fas fa-bolt"></i></div>
           <h2>¡Enhorabuena!</h2>
           <p>Hay una oportunidad para ti</p>
         </div>
@@ -583,7 +565,7 @@
             <i class="fas fa-times"></i> Rechazar
           </button>
           <button class="action-btn action-btn--accept" onclick="acceptMatch()">
-            <i class="fas fa-check"></i> Aceptar
+            <i class="fas fa-bolt" style="color:#FFF;"></i> Aceptar
           </button>
         </div>
       </div>
@@ -660,8 +642,24 @@
 
     function hideNotification() {
       document.getElementById('overlay').classList.remove('visible');
+      document.getElementById('pushNotif').classList.remove('visible');
       document.body.style.overflow = '';
     }
+
+    function showPushNotification() {
+      const banner = document.getElementById('pushNotif');
+      banner.classList.add('visible');
+      setTimeout(() => {
+        banner.classList.remove('visible');
+        // After banner fades out, show the match sheet
+        setTimeout(() => showNotification(), 400);
+      }, 2500);
+    }
+
+    // Automatically simulate push notification on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(showPushNotification, 800);
+    });
 
     function acceptMatch() {
       if (isAccepted) return;
@@ -718,8 +716,9 @@
       if (e.key === 'Escape') hideNotification();
     });
 
-    console.log('🎉 TREQE v6 — Match Notification');
-    console.log('🧪 Prototipo de diseño — 23 Abril 2026');
+    console.log('🚀 TREQE v6 — Match Notification (directo)');
+    console.log('🧪 Prototipo de diseño — 9 Mayo 2026');
+    console.log('📌 Cambios: match directo | icono bolt blanco | push notification simulada');
   </script>
 </body>
 </html>
