@@ -122,11 +122,12 @@
     /* ===== HERO IMAGE ===== */
     .post-hero {
       height: 320px;
-      background: linear-gradient(135deg, #FF6A35 0%, #FF8A5C 50%, #6C63FF 100%);
+      background: #1A1A2E;
       display: flex;
       align-items: center;
       justify-content: center;
       position: relative;
+      overflow: hidden;
     }
     .post-hero i {
       font-size: 6rem;
@@ -571,7 +572,9 @@
   </div>
 
   <!-- Hero -->
-  <div class="post-hero">
+  <div class="post-hero" style="overflow:hidden;background:#1A1A2E">
+    <img src="../assets/primera-entrega.png" style="position:absolute;width:100%;height:100%;object-fit:cover;opacity:0.4" alt="">
+    <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,26,46,0.7),rgba(0,0,0,0.3));z-index:1"></div>
     <i class="fas fa-arrows-spin"></i>
     <span class="post-tag">Primera entrega</span>
   </div>
@@ -659,18 +662,18 @@
   <div class="related-section">
     <h2>Articulos relacionados</h2>
     <div class="related-grid">
-      <div class="related-card" onclick="alert('Post: Treqe de intercambio')">
-        <div class="related-card__thumb teal"><i class="fas fa-code"></i></div>
-        <div class="related-card__title">Treqe que hace posible el intercambio circular</div>
-        <div class="related-card__excerpt">Como resuelve Treqe el problema matematico del trueque multiple.</div>
+      <div class="related-card" onclick="window.location.href='algoritmo-intercambio-circular.html'">
+        <div class="related-card__thumb teal" style="background-image:url('../assets/algoritmo.png');background-size:cover;background-position:center"></div>
+        <div class="related-card__title">Como Treqe encuentra tu intercambio perfecto</div>
+        <div class="related-card__excerpt">Pones lo que tienes, dices lo que quieres, y Treqe hace el resto.</div>
       </div>
-      <div class="related-card" onclick="alert('Post: Guia para principiantes')">
-        <div class="related-card__thumb purple"><i class="fas fa-compass"></i></div>
+      <div class="related-card" onclick="window.location.href='guia-principiantes.html'">
+        <div class="related-card__thumb purple" style="background-image:url('../assets/guia.png');background-size:cover;background-position:center"></div>
         <div class="related-card__title">Guia para principiantes del trueque en Treqe</div>
         <div class="related-card__excerpt">Todo lo que necesitas saber para hacer tu primer intercambio.</div>
       </div>
-      <div class="related-card" onclick="alert('Post: Anti-consumismo inteligente')">
-        <div class="related-card__thumb dark"><i class="fas fa-brain"></i></div>
+      <div class="related-card" onclick="window.location.href='anti-consumismo-inteligente.html'">
+        <div class="related-card__thumb dark" style="background-image:url('../assets/anti-consumismo.png');background-size:cover;background-position:center"></div>
         <div class="related-card__title">Anti-consumismo: no comprar menos, intercambiar mejor</div>
         <div class="related-card__excerpt">El consumo consciente va de optimizar, no de privarse.</div>
       </div>
