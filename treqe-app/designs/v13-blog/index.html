@@ -1002,6 +1002,23 @@
         card.style.display = (cat === 'all' || cc === cat) ? '' : 'none';
       });
     }
+    function updateBadges() {
+      var cards = document.querySelectorAll('.article-card');
+      var counts = {};
+      cards.forEach(function(c) {
+        var cat = c.getAttribute('data-cat');
+        counts[cat] = (counts[cat] || 0) + 1;
+      });
+      document.querySelectorAll('.sidebar-card ul li .badge').forEach(function(b) {
+        var li = b.parentElement;
+        var onclick = li.getAttribute('onclick') || '';
+        var match = onclick.match(/filterCategory\('(\w+)'/);
+        if (match && counts[match[1]]) {
+          b.textContent = counts[match[1]];
+        }
+      });
+    }
+    updateBadges();
     function goToDiscover() { window.parent.location.href = '../v1-catalogo/'; }
     function goToTrades() { window.parent.location.href = '../v12-mis-matches/'; }
     function goToUpload() { window.parent.location.href = '../v3-subir/'; }
