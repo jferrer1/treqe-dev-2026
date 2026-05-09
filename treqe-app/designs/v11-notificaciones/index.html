@@ -1,14 +1,13 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>TREQE — Notificaciones</title>
+  <title>TREQE — Avisos</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     /* ===== RESET & BASE ===== */
-    .treqe-logo { height: 24px; width: 76px; flex-shrink: 0; vertical-align: middle; }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { font-size: 16px; -webkit-text-size-adjust: 100%; }
     body {
@@ -37,60 +36,114 @@
       --shadow: 0 4px 20px rgba(0,0,0,0.05);
     }
 
+    /* ===== STATUS BAR ===== */
+    .status-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 20px 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      background: var(--bg);
+    }
+    .status-bar .time { font-weight: 700; color: var(--text); }
+    .status-bar .icons { display: flex; gap: 6px; font-size: 0.7rem; }
 
-    /* ===== INBOX DASHBOARD ===== */
-    .inbox-stats {
-      display: flex;
-      gap: 8px;
-      padding: 4px 16px 12px;
-    }
-    .inbox-stat {
-      flex: 1;
-      background: var(--card-bg);
-      border-radius: 14px;
-      padding: 14px 10px;
-      text-align: center;
-      box-shadow: var(--shadow);
-    }
-    .inbox-stat__num {
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--accent);
-    }
-    .inbox-stat__label {
-      font-size: 0.7rem;
-      color: var(--text-tertiary);
-      margin-top: 2px;
-    }
-    .inbox-tabs {
-      display: flex;
-      gap: 4px;
-      padding: 0 16px 12px;
-      overflow-x: auto;
-      scrollbar-width: none;
-    }
-    .inbox-tabs::-webkit-scrollbar { display: none; }
-    .inbox-tab {
-      flex-shrink: 0;
+    /* ===== HEADER ===== */
+    .header {
       display: flex;
       align-items: center;
-      gap: 6px;
-      padding: 8px 14px;
-      border-radius: 10px;
-      font-size: 0.75rem;
-      font-weight: 500;
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      color: var(--text-secondary);
-      transition: all 0.2s;
-      white-space: nowrap;
+      justify-content: center;
+      padding: 12px 16px 8px;
+      background: var(--bg);
+      position: relative;
     }
-    .inbox-tab.active {
+    .header__back {
+      position: absolute;
+      left: 12px;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+      font-size: 1.1rem;
+      transition: background 0.2s;
+    }
+    .header__back:active { background: var(--border); }
+    .header__settings {
+      position: absolute;
+      right: 12px;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+      font-size: 1.1rem;
+    }
+    .header__settings:active { background: var(--border); }
+    .header__title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* ===== SEGMENTED CONTROL (replaces inbox-stats + inbox-tabs) ===== */
+    .segmented-wrap {
+      padding: 4px 16px 12px;
+      background: var(--bg);
+    }
+    .segmented {
+      display: flex;
+      background: #EDEAE2;
+      border-radius: 14px;
+      padding: 3px;
+      gap: 2px;
+    }
+    .segmented__btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      padding: 10px 6px;
+      border-radius: 11px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      background: transparent;
+      transition: all 0.25s ease;
+      white-space: nowrap;
+      min-width: 0;
+    }
+    .segmented__btn i { font-size: 0.7rem; }
+    .segmented__btn .seg-count {
+      font-size: 0.62rem;
+      font-weight: 700;
+      background: rgba(0,0,0,0.06);
+      padding: 1px 6px;
+      border-radius: 8px;
+      color: var(--text-tertiary);
+    }
+    .segmented__btn.active {
+      background: var(--card-bg);
+      color: var(--text);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      font-weight: 600;
+    }
+    .segmented__btn.active .seg-count {
       background: var(--accent);
       color: #FFF;
-      border-color: var(--accent);
     }
-    .inbox-tab i { font-size: 0.75rem; }
+    .segmented__btn:active:not(.active) {
+      background: rgba(255,255,255,0.3);
+    }
+
+    /* ===== INBOX CONTENT ===== */
     .inbox-content {
       padding: 0 16px 16px;
     }
@@ -100,6 +153,8 @@
     .inbox-section.active {
       display: block;
     }
+
+    /* ===== NOTIFICATION ITEMS (product-emoji style) ===== */
     .inbox-item {
       display: flex;
       gap: 12px;
@@ -107,17 +162,34 @@
       border-bottom: 1px solid var(--border);
     }
     .inbox-item:last-child { border-bottom: none; }
+
+    /* Product emoji avatar — larger, more expressive */
     .inbox-item__icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      font-size: 1rem;
+      font-size: 1.4rem;
     }
-    .inbox-item__body { flex: 1; min-width: 0; }
+    /* Category background tints for product emojis */
+    .inbox-item__icon.cat-music   { background: rgba(255,106,53,0.12); }
+    .inbox-item__icon.cat-bike    { background: rgba(0,184,184,0.12); }
+    .inbox-item__icon.cat-tech    { background: rgba(92,107,192,0.12); }
+    .inbox-item__icon.cat-phone   { background: rgba(245,166,35,0.12); }
+    .inbox-item__icon.cat-gaming  { background: rgba(231,76,60,0.12); }
+    .inbox-item__icon.cat-camera  { background: rgba(39,174,96,0.12); }
+    .inbox-item__icon.cat-audio   { background: rgba(155,89,182,0.12); }
+    .inbox-item__icon.cat-helmet  { background: rgba(52,152,219,0.12); }
+    .inbox-item__icon.cat-watch   { background: rgba(149,165,166,0.12); }
+    .inbox-item__icon.cat-default { background: rgba(136,136,136,0.08); }
+
+    .inbox-item__body {
+      flex: 1;
+      min-width: 0;
+    }
     .inbox-item__title {
       font-size: 0.82rem;
       font-weight: 600;
@@ -125,34 +197,102 @@
       margin-bottom: 3px;
     }
     .inbox-item__text {
-      font-size: 0.75rem;
+      font-size: 0.78rem;
       color: var(--text-secondary);
-      line-height: 1.4;
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
     .inbox-item__meta {
       font-size: 0.65rem;
       color: var(--text-tertiary);
-      margin-top: 4px;
+      margin-top: 5px;
       display: flex;
       align-items: center;
       gap: 4px;
     }
-    .inbox-item__action {
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
+
+    /* ===== QUICK-REPLY INLINE ===== */
+    .inbox-item__actions {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text-tertiary);
-      font-size: 0.85rem;
+      align-items: flex-start;
+      gap: 4px;
       flex-shrink: 0;
       margin-top: 4px;
     }
-    .inbox-item__action:active {
-      background: var(--border);
-      color: var(--text);
+    .inbox-item__responder {
+      padding: 5px 11px;
+      border-radius: 8px;
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: var(--accent);
+      background: rgba(255,106,53,0.08);
+      white-space: nowrap;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
     }
+    .inbox-item__responder:active {
+      background: rgba(255,106,53,0.18);
+      transform: scale(0.95);
+    }
+    .inbox-item__responder i { font-size: 0.6rem; }
+
+    /* Inline reply form — compact, appears inside card */
+    .quick-reply-wrap {
+      display: none;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px dashed var(--border);
+    }
+    .quick-reply-wrap.visible { display: block; }
+    .quick-reply-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .quick-reply-input {
+      flex: 1;
+      padding: 9px 12px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 0.78rem;
+      font-family: inherit;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 36px;
+      transition: border-color 0.2s;
+    }
+    .quick-reply-input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .quick-reply-send {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--accent);
+      color: #FFF;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+      transition: all 0.2s;
+    }
+    .quick-reply-send:active { transform: scale(0.9); opacity: 0.85; }
+    .quick-reply-send.done { background: var(--success); }
+    .quick-reply-char {
+      font-size: 0.6rem;
+      color: var(--text-tertiary);
+      text-align: right;
+      margin-top: 3px;
+    }
+
+    /* ===== MODAL REPLY (fallback for long replies) ===== */
     .reply-form {
       padding: 0 16px 16px;
     }
@@ -205,339 +345,6 @@
     }
     .reply-form__btn:active { opacity: 0.9; }
 
-
-    /* ===== STATUS BAR ===== */
-    .status-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 8px 20px 4px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--text-secondary);
-      background: var(--bg);
-    }
-    .status-bar .time { font-weight: 700; color: var(--text); }
-    .status-bar .icons { display: flex; gap: 6px; font-size: 0.7rem; }
-
-    /* ===== HEADER ===== */
-    .header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 16px 16px;
-      background: var(--bg);
-    }
-
-    .header__back {
-      position: absolute;
-      left: 12px;
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text);
-      font-size: 1.1rem;
-      transition: background 0.2s;
-    }
-    .header__back:active { background: var(--border); }
-    .header__settings {
-      position: absolute;
-      right: 12px;
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text);
-      font-size: 1.1rem;
-    }
-    .header__settings:active { background: var(--border); }
-
-    .header__left {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    }FOOBAR{
-      width: 40px;
-      height: 40px;
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text);
-      font-size: 1.1rem;
-      transition: background 0.2s;
-    }
-    .header__back:active { background: var(--border); }
-    .header__title {
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: var(--text);
-    }
-    .header__actions {
-      display: flex;
-      gap: 8px;
-    }
-    .header__btn {
-      padding: 8px 16px;
-      border-radius: 10px;
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: var(--text-secondary);
-      transition: all 0.2s;
-    }
-    .header__btn:active { background: var(--border); }
-    .header__btn.primary {
-      background: var(--accent);
-      color: #FFF;
-    }
-
-    /* ===== TABS ===== */
-    .tabs {
-      display: flex;
-      gap: 8px;
-      padding: 0 16px 16px;
-      background: var(--bg);
-      overflow-x: auto;
-      scrollbar-width: none;
-    }
-    .tabs::-webkit-scrollbar { display: none; }
-    .tab {
-      flex-shrink: 0;
-      padding: 10px 18px;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      font-weight: 500;
-      background: #FFFFFF;
-      border: 1px solid var(--border);
-      color: var(--text-secondary);
-      transition: all 0.2s;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .tab:active { background: var(--border); }
-    .tab.active {
-      background: var(--accent);
-      color: #FFF;
-      border-color: var(--accent);
-    }
-    .tab .badge {
-      background: var(--danger);
-      color: #FFF;
-      font-size: 0.65rem;
-      font-weight: 700;
-      padding: 2px 6px;
-      border-radius: 10px;
-    }
-
-    /* ===== NOTIFICATION LIST ===== */
-    .notif-list {
-      padding: 0 16px;
-    }
-    .notif-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      padding: 16px;
-      background: var(--card-bg);
-      border-radius: 20px;
-      margin-bottom: 10px;
-      box-shadow: var(--shadow);
-      cursor: pointer;
-      transition: transform 0.2s;
-      position: relative;
-    }
-    .notif-item:active { transform: scale(0.98); }
-    .notif-item.unread {
-      border-left: 3px solid var(--accent);
-    }
-    .notif-item__icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      flex-shrink: 0;
-    }
-    .notif-item__icon.match { background: rgba(255,106,53,0.1); color: var(--accent); }
-    .notif-item__icon.message { background: rgba(0,184,184,0.1); color: var(--success); }
-    .notif-item__icon.system { background: rgba(136,136,136,0.1); color: var(--text-secondary); }
-    .notif-item__icon.success { background: rgba(39,174,96,0.1); color: #27AE60; }
-    .notif-item__icon.warning { background: rgba(245,166,35,0.1); color: var(--warning); }
-    
-    .notif-item__content {
-      flex: 1;
-      min-width: 0;
-    }
-    .notif-item__title {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 4px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .notif-item__dot {
-      width: 6px;
-      height: 6px;
-      background: var(--accent);
-      border-radius: 50%;
-    }
-    .notif-item__text {
-      font-size: 0.8rem;
-      color: var(--text-secondary);
-      line-height: 1.4;
-    }
-    .notif-item__meta {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 8px;
-      font-size: 0.7rem;
-      color: var(--text-tertiary);
-    }
-    .notif-item__time { font-weight: 500; }
-    .notif-item__action {
-      color: var(--accent);
-      font-weight: 600;
-    }
-    
-    .notif-item__arrow {
-      color: var(--text-tertiary);
-      font-size: 0.9rem;
-      padding: 8px;
-    }
-
-    /* ===== EMPTY STATE ===== */
-    .empty-state {
-      text-align: center;
-      padding: 60px 32px;
-      color: var(--text-tertiary);
-    }
-    .empty-state i {
-      font-size: 4rem;
-      margin-bottom: 20px;
-      opacity: 0.3;
-    }
-    .empty-state h3 {
-      font-size: 1.1rem;
-      color: var(--text);
-      margin-bottom: 8px;
-      font-weight: 600;
-    }
-    .empty-state p {
-      font-size: 0.85rem;
-      line-height: 1.5;
-    }
-
-    /* ===== BOTTOM NAV ===== */
-    
-    .nav-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 2px;
-      font-size: 0.65rem;
-      font-weight: 500;
-      color: var(--text-tertiary);
-      transition: color 0.2s;
-      padding: 4px 0;
-      flex: 1;
-      max-width: 80px;
-      position: relative;
-    }
-    .nav-item i {
-      font-size: 1.3rem;
-    }
-    .nav-item.active {
-      color: var(--accent);
-    }
-    .nav-item.active i {
-      transform: scale(1.05);
-    }
-    .nav-item .nav-badge {
-      width: 6px;
-      height: 6px;
-      background: var(--accent);
-      border-radius: 50%;
-      position: absolute;
-      top: 2px;
-      right: 12px;
-    }
-    .nav-item.nav-add {
-      position: relative;
-      top: 0;
-    }
-    .nav-item.nav-add .nav-add-btn {
-      width: 48px;
-      height: 48px;
-      background: var(--accent);
-      color: #FFFFFF;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      box-shadow: 0 4px 16px rgba(255,106,53,0.3);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .nav-item.nav-add .nav-add-btn:active {
-      transform: scale(0.92);
-      box-shadow: 0 2px 8px rgba(255,106,53,0.2);
-    }
-
-    .bottom-nav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: rgba(255,255,255,0.85);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border-top: 1px solid var(--border);
-      display: flex;
-      justify-content: space-evenly;
-      align-items: center;
-      padding: 0;
-      height: 72px;
-      padding-bottom: 12px;
-      z-index: 100;
-    isolation: isolate;
-    }
-    
-    
-    
-    
-    
-    
-    
-
-    /* ===== DEMO NOTICE ===== */
-    .demo-notice {
-      text-align: center;
-      padding: 6px 16px;
-      font-size: 0.65rem;
-      color: var(--text-tertiary);
-      background: #F0EDE6;
-      letter-spacing: 0.3px;
-    }
-    .demo-notice i { margin-right: 4px; }
-
-    /* ===== RESPONSIVE ===== */
-    @media (min-width: 600px) {
-      .header, .tabs, .notif-list { max-width: 600px; margin: 0 auto; }
-      .notif-list { padding: 0 24px; }
-    }
-  
     .modal-overlay {
       position: fixed; inset: 0; background: rgba(0,0,0,0.5);
       backdrop-filter: blur(4px); z-index: 200;
@@ -581,164 +388,300 @@
     .btn--secondary { background: var(--card-bg); border: 1px solid var(--border); color: var(--text); }
     .btn--secondary:active { background: var(--border); }
 
+    /* ===== EMPTY STATE ===== */
+    .empty-state {
+      text-align: center;
+      padding: 60px 32px;
+      color: var(--text-tertiary);
+    }
+    .empty-state i {
+      font-size: 4rem;
+      margin-bottom: 20px;
+      opacity: 0.3;
+    }
+    .empty-state h3 {
+      font-size: 1.1rem;
+      color: var(--text);
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+    .empty-state p {
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+
+    /* ===== BOTTOM NAV ===== */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      padding: 0;
+      height: 72px;
+      padding-bottom: 12px;
+      z-index: 100;
+      isolation: isolate;
+    }
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      font-size: 0.65rem;
+      font-weight: 500;
+      color: var(--text-tertiary);
+      transition: color 0.2s;
+      padding: 4px 0;
+      flex: 1;
+      max-width: 80px;
+      position: relative;
+    }
+    .nav-item i { font-size: 1.3rem; }
+    .nav-item.active { color: var(--accent); }
+    .nav-item.active i { transform: scale(1.05); }
+    .nav-item .nav-badge {
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      position: absolute;
+      top: 2px;
+      right: 12px;
+    }
+    .nav-item.nav-add { position: relative; top: 0; }
+    .nav-item.nav-add .nav-add-btn {
+      width: 48px;
+      height: 48px;
+      background: var(--accent);
+      color: #FFFFFF;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 16px rgba(255,106,53,0.3);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .nav-item.nav-add .nav-add-btn:active {
+      transform: scale(0.92);
+      box-shadow: 0 2px 8px rgba(255,106,53,0.2);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (min-width: 600px) {
+      .header, .segmented-wrap, .inbox-content { max-width: 600px; margin: 0 auto; }
+      .inbox-content { padding: 0 24px 16px; }
+    }
   </style>
 </head>
 <body>
 
   <!-- ===== HEADER ===== -->
-  <div class="header" style="justify-content:center;">
+  <div class="header">
     <button class="header__back" onclick="goToDiscover()" aria-label="Atrás"><i class="fas fa-chevron-left"></i></button>
     <span class="header__title">Avisos</span>
   </div>
 
-  <!-- ===== DASHBOARD STATS ===== -->
-  <div class="inbox-stats">
-    <div class="inbox-stat">
-      <div class="inbox-stat__num">3</div>
-      <div class="inbox-stat__label">Consultas</div>
+  <!-- ===== COMPACT SEGMENTED CONTROL (replaces inbox-stats + inbox-tabs) ===== -->
+  <div class="segmented-wrap">
+    <div class="segmented">
+      <button class="segmented__btn active" data-tab="consultas" onclick="switchInboxTab('consultas')">
+        <i class="fas fa-question-circle"></i> Consultas <span class="seg-count">3</span>
+      </button>
+      <button class="segmented__btn" data-tab="trueques" onclick="switchInboxTab('trueques')">
+        <i class="fas fa-exchange-alt"></i> Trueques <span class="seg-count">2</span>
+      </button>
+      <button class="segmented__btn" data-tab="recomendados" onclick="switchInboxTab('recomendados')">
+        <i class="fas fa-star"></i> Recomendados <span class="seg-count">5</span>
+      </button>
+      <button class="segmented__btn" data-tab="actividad" onclick="switchInboxTab('actividad')">
+        <i class="fas fa-chart-line"></i> Actividad
+      </button>
     </div>
-    <div class="inbox-stat">
-      <div class="inbox-stat__num">2</div>
-      <div class="inbox-stat__label">Trueques</div>
-    </div>
-    <div class="inbox-stat">
-      <div class="inbox-stat__num">5</div>
-      <div class="inbox-stat__label">Recomendados</div>
-    </div>
-  </div>
-
-  <!-- ===== INBOX TABS ===== -->
-  <div class="inbox-tabs">
-    <button class="inbox-tab active" data-tab="consultas" onclick="switchInboxTab('consultas')">
-      <i class="fas fa-question-circle"></i> Consultas
-    </button>
-    <button class="inbox-tab" data-tab="trueques" onclick="switchInboxTab('trueques')">
-      <i class="fas fa-exchange-alt"></i> Trueques
-    </button>
-    <button class="inbox-tab" data-tab="recomendados" onclick="switchInboxTab('recomendados')">
-      <i class="fas fa-star"></i> Recomendados
-    </button>
-    <button class="inbox-tab" data-tab="actividad" onclick="switchInboxTab('actividad')">
-      <i class="fas fa-chart-line"></i> Actividad
-    </button>
   </div>
 
   <!-- ===== INBOX CONTENT ===== -->
   <div class="inbox-content">
-    <!-- CONSULTAS -->
+    <!-- ─── CONSULTAS ─── -->
     <div class="inbox-section active" id="tab-consultas">
       <div class="inbox-item">
-        <div class="inbox-item__icon" style="background: #FFF3ED;"><i class="fas fa-user" style="color:var(--accent);"></i></div>
+        <div class="inbox-item__icon cat-music">🎸</div>
         <div class="inbox-item__body">
           <div class="inbox-item__title">Alguien preguntó por tu Fender Stratocaster</div>
-          <div class="inbox-item__text">"Buenas, ¿tiene algún defecto la guitarra? ¿Aceptas envío a Valencia?"</div>
+          <div class="inbox-item__text">"Buenas, ¿tiene algún defecto la guitarra? ¿Aceptas envío a Valencia? Es para un regalo y quiero asegurarme de que llega perfecta."</div>
           <div class="inbox-item__meta"><i class="far fa-clock"></i> Hace 15 min</div>
+          <!-- Inline quick-reply -->
+          <div class="quick-reply-wrap" id="qr-consultas-0">
+            <div class="quick-reply-row">
+              <input class="quick-reply-input" type="text" placeholder="Responder rápido..." maxlength="200" oninput="updateCharCount(this)">
+              <button class="quick-reply-send" onclick="sendQuickReply(this)"><i class="fas fa-paper-plane"></i></button>
+            </div>
+            <div class="quick-reply-char"><span class="qr-count">0</span>/200</div>
+          </div>
         </div>
-        <button class="inbox-item__action" onclick="showReplyForm(this)"><i class="fas fa-reply"></i></button>
+        <div class="inbox-item__actions">
+          <button class="inbox-item__responder" onclick="toggleQuickReply(this)"><i class="fas fa-reply"></i> Responder</button>
+        </div>
       </div>
+
       <div class="inbox-item">
-        <div class="inbox-item__icon" style="background: #FFF3ED;"><i class="fas fa-user" style="color:var(--accent);"></i></div>
+        <div class="inbox-item__icon cat-bike">🚲</div>
         <div class="inbox-item__body">
           <div class="inbox-item__title">Alguien preguntó por tu Trek Marlin 7</div>
-          <div class="inbox-item__text">"¿La bicicleta tiene aún la garantía? ¿Cuántos km tiene?"</div>
+          <div class="inbox-item__text">"¿La bicicleta tiene aún la garantía? ¿Cuántos km tiene aproximadamente? Me interesa mucho pero quiero estar seguro del estado."</div>
           <div class="inbox-item__meta"><i class="far fa-clock"></i> Hace 2 h</div>
+          <div class="quick-reply-wrap" id="qr-consultas-1">
+            <div class="quick-reply-row">
+              <input class="quick-reply-input" type="text" placeholder="Responder rápido..." maxlength="200" oninput="updateCharCount(this)">
+              <button class="quick-reply-send" onclick="sendQuickReply(this)"><i class="fas fa-paper-plane"></i></button>
+            </div>
+            <div class="quick-reply-char"><span class="qr-count">0</span>/200</div>
+          </div>
         </div>
-        <button class="inbox-item__action" onclick="showReplyForm(this)"><i class="fas fa-reply"></i></button>
+        <div class="inbox-item__actions">
+          <button class="inbox-item__responder" onclick="toggleQuickReply(this)"><i class="fas fa-reply"></i> Responder</button>
+        </div>
       </div>
+
       <div class="inbox-item">
-        <div class="inbox-item__icon" style="background: #FFF3ED;"><i class="fas fa-user" style="color:var(--accent);"></i></div>
+        <div class="inbox-item__icon cat-tech">💻</div>
         <div class="inbox-item__body">
           <div class="inbox-item__title">Alguien preguntó por tu MacBook Air M3</div>
-          <div class="inbox-item__text">"Hola, ¿cuántas horas de uso tiene aproximadamente?"</div>
+          <div class="inbox-item__text">"Hola, ¿cuántas horas de uso tiene aproximadamente? ¿Viene con cargador original y caja? Estoy muy interesado en comprarlo."</div>
           <div class="inbox-item__meta"><i class="far fa-clock"></i> Hace 1 d</div>
+          <div class="quick-reply-wrap" id="qr-consultas-2">
+            <div class="quick-reply-row">
+              <input class="quick-reply-input" type="text" placeholder="Responder rápido..." maxlength="200" oninput="updateCharCount(this)">
+              <button class="quick-reply-send" onclick="sendQuickReply(this)"><i class="fas fa-paper-plane"></i></button>
+            </div>
+            <div class="quick-reply-char"><span class="qr-count">0</span>/200</div>
+          </div>
         </div>
-        <button class="inbox-item__action" onclick="showReplyForm(this)"><i class="fas fa-reply"></i></button>
+        <div class="inbox-item__actions">
+          <button class="inbox-item__responder" onclick="toggleQuickReply(this)"><i class="fas fa-reply"></i> Responder</button>
+        </div>
       </div>
     </div>
-    
-    <!-- TRUEQUES -->
+
+    <!-- ─── TRUEQUES ─── -->
     <div class="inbox-section" id="tab-trueques">
       <div class="inbox-item">
-        <div class="inbox-item__icon" style="background: #E8F8F5;"><i class="fas fa-retweet" style="color:var(--success);"></i></div>
+        <div class="inbox-item__icon cat-gaming">🎮</div>
         <div class="inbox-item__body">
           <div class="inbox-item__title">Propuesta de trueque recibida</div>
-          <div class="inbox-item__text">iPhone 15 Pro ↔ PlayStation 5 · Valoración: 890€ ↔ 480€</div>
-          <div class="inbox-item__meta"><i class="far fa-clock"></i> Hace 1 h · Pendiente</div>
+          <div class="inbox-item__text">Tu PlayStation 5 ↔ iPhone 15 Pro · Valoración: 480€ ↔ 890€. ¿Te interesa la propuesta? Revisa los detalles antes de responder.</div>
+          <div class="inbox-item__meta"><i class="far fa-clock"></i> Hace 1 h · <span style="color:var(--warning);font-weight:600;">Pendiente</span></div>
+          <div class="quick-reply-wrap" id="qr-trueques-0">
+            <div class="quick-reply-row">
+              <input class="quick-reply-input" type="text" placeholder="Ej: Me interesa, hablemos..." maxlength="200" oninput="updateCharCount(this)">
+              <button class="quick-reply-send" onclick="sendQuickReply(this)"><i class="fas fa-paper-plane"></i></button>
+            </div>
+            <div class="quick-reply-char"><span class="qr-count">0</span>/200</div>
+          </div>
         </div>
-        <button class="inbox-item__action" onclick="goToTrades()"><i class="fas fa-arrow-right"></i></button>
+        <div class="inbox-item__actions">
+          <button class="inbox-item__responder" onclick="toggleQuickReply(this)"><i class="fas fa-reply"></i> Responder</button>
+        </div>
       </div>
+
       <div class="inbox-item">
-        <div class="inbox-item__icon" style="background: #FEF9E7;"><i class="fas fa-check-circle" style="color:var(--warning);"></i></div>
+        <div class="inbox-item__icon cat-camera">📷</div>
         <div class="inbox-item__body">
           <div class="inbox-item__title">Trueque aceptado: Canon EOS R ↔ AirPods Max</div>
-          <div class="inbox-item__text">Ambos confirmaron. Solo falta coordinar el envío.</div>
-          <div class="inbox-item__meta"><i class="far fa-clock"></i> Hace 1 d · En progreso</div>
+          <div class="inbox-item__text">Ambos habéis confirmado el trueque. Solo falta coordinar el envío y las condiciones del intercambio. Contacta con la otra persona para quedar.</div>
+          <div class="inbox-item__meta"><i class="far fa-clock"></i> Hace 1 d · <span style="color:var(--success);font-weight:600;">En progreso</span></div>
+          <div class="quick-reply-wrap" id="qr-trueques-1">
+            <div class="quick-reply-row">
+              <input class="quick-reply-input" type="text" placeholder="Mensaje rápido..." maxlength="200" oninput="updateCharCount(this)">
+              <button class="quick-reply-send" onclick="sendQuickReply(this)"><i class="fas fa-paper-plane"></i></button>
+            </div>
+            <div class="quick-reply-char"><span class="qr-count">0</span>/200</div>
+          </div>
         </div>
-        <button class="inbox-item__action" onclick="goToTrades()"><i class="fas fa-arrow-right"></i></button>
+        <div class="inbox-item__actions">
+          <button class="inbox-item__responder" onclick="toggleQuickReply(this)"><i class="fas fa-reply"></i> Responder</button>
+        </div>
       </div>
     </div>
-    
-    <!-- RECOMENDADOS -->
+
+    <!-- ─── RECOMENDADOS ─── -->
     <div class="inbox-section" id="tab-recomendados">
       <div class="inbox-item">
-        <div class="inbox-item__icon" style="background: #E8EAF6;"><i class="fas fa-lightbulb" style="color:#5C6BC0;"></i></div>
+        <div class="inbox-item__icon cat-gaming">🎮</div>
         <div class="inbox-item__body">
           <div class="inbox-item__title">A alguien le interesa tu PlayStation 5</div>
-          <div class="inbox-item__text">Tiene un iPhone 15 Pro que encaja con tus gustos · Match potencial 92%</div>
+          <div class="inbox-item__text">Tiene un iPhone 15 Pro que encaja con tus gustos · Match potencial 92%. Una oportunidad excelente para un trueque equilibrado.</div>
           <div class="inbox-item__meta">Ver perfil del interesado</div>
         </div>
-        <button class="inbox-item__action" onclick="goToDiscover()"><i class="fas fa-eye"></i></button>
+        <div class="inbox-item__actions">
+          <button class="inbox-item__responder" onclick="goToTrades()"><i class="fas fa-eye"></i> Ver</button>
+        </div>
       </div>
+
       <div class="inbox-item">
-        <div class="inbox-item__icon" style="background: #E8EAF6;"><i class="fas fa-fire" style="color:#5C6BC0;"></i></div>
+        <div class="inbox-item__icon cat-bike">🚲</div>
         <div class="inbox-item__body">
           <div class="inbox-item__title">Artículo popular cerca de ti</div>
-          <div class="inbox-item__text">Bicicleta Trek Marlin 7 · 15 personas lo han visto hoy</div>
-          <div class="inbox-item__meta">En Granada · Hace 3 h</div>
+          <div class="inbox-item__text">Bicicleta Trek Marlin 7 · 15 personas lo han visto hoy en Granada. Es uno de los artículos más visitados de tu zona esta semana.</div>
+          <div class="inbox-item__meta">Granada · Hace 3 h</div>
         </div>
-        <button class="inbox-item__action" onclick="goToDiscover()"><i class="fas fa-eye"></i></button>
+        <div class="inbox-item__actions">
+          <button class="inbox-item__responder" onclick="goToDiscover()"><i class="fas fa-eye"></i> Ver</button>
+        </div>
       </div>
+
       <div class="inbox-item">
-        <div class="inbox-item__icon" style="background: #E8EAF6;"><i class="fas fa-magic" style="color:#5C6BC0;"></i></div>
+        <div class="inbox-item__icon cat-music">🎸</div>
         <div class="inbox-item__body">
           <div class="inbox-item__title">Basado en tu Fender Stratocaster</div>
-          <div class="inbox-item__text">A otros usuarios con guitarras también les interesa: Amplificador Vox AC15, Pedalera Boss</div>
+          <div class="inbox-item__text">A otros usuarios con guitarras también les interesa: Amplificador Vox AC15, Pedalera Boss y cuerdas Elixir. Descubre más artículos compatibles.</div>
           <div class="inbox-item__meta">2 artículos recomendados</div>
         </div>
-        <button class="inbox-item__action" onclick="goToDiscover()"><i class="fas fa-eye"></i></button>
+        <div class="inbox-item__actions">
+          <button class="inbox-item__responder" onclick="goToDiscover()"><i class="fas fa-eye"></i> Ver</button>
+        </div>
       </div>
     </div>
-    
-    <!-- ACTIVIDAD -->
+
+    <!-- ─── ACTIVIDAD ─── -->
     <div class="inbox-section" id="tab-actividad">
       <div class="inbox-item">
-        <div class="inbox-item__icon" style="background: #F0EDE6;"><i class="fas fa-heart" style="color:var(--text-secondary);"></i></div>
+        <div class="inbox-item__icon cat-music">🎸</div>
         <div class="inbox-item__body">
           <div class="inbox-item__title">A 3 personas les gusta tu Fender Stratocaster</div>
-          <div class="inbox-item__text">Tu artículo tiene buena acogida en la comunidad</div>
+          <div class="inbox-item__text">Tu artículo tiene buena acogida en la comunidad. Sigue así, tu reputación como vendedor está subiendo gracias a la calidad de tus publicaciones.</div>
           <div class="inbox-item__meta">Hace 30 min</div>
         </div>
       </div>
+
       <div class="inbox-item">
-        <div class="inbox-item__icon" style="background: #F0EDE6;"><i class="fas fa-eye" style="color:var(--text-secondary);"></i></div>
+        <div class="inbox-item__icon cat-tech">💻</div>
         <div class="inbox-item__body">
           <div class="inbox-item__title">Tu MacBook Air M3 ha tenido 45 visitas hoy</div>
-          <div class="inbox-item__text">Está en el top 10% de artículos más vistos de la categoría</div>
+          <div class="inbox-item__text">Está en el top 10% de artículos más vistos de la categoría. Considera mejorar la descripción para cerrar el trato más rápido.</div>
           <div class="inbox-item__meta">Hace 2 h</div>
         </div>
       </div>
+
       <div class="inbox-item">
-        <div class="inbox-item__icon" style="background: #F0EDE6;"><i class="fas fa-clock" style="color:var(--text-secondary);"></i></div>
+        <div class="inbox-item__icon cat-helmet">🪖</div>
         <div class="inbox-item__body">
           <div class="inbox-item__title">Trueque completado: Casco Shoei ↔ G-SHOCK</div>
-          <div class="inbox-item__text">¡Valora tu experiencia! Tu reputación subirá al hacerlo.</div>
+          <div class="inbox-item__text">¡Valora tu experiencia! Tu reputación subirá al hacerlo. Una valoración positiva ayuda a construir confianza en la comunidad Treqe.</div>
           <div class="inbox-item__meta">Hace 3 d · Pendiente de valoración</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ===== REPLY FORM (hidden, appears on click) ===== -->
+  <!-- ===== MODAL REPLY (fallback for longer replies) ===== -->
   <div class="modal-overlay" id="replyModal" onclick="if(event.target===this)closeReplyForm()">
     <div class="modal-card">
       <div class="modal-card__header">
@@ -750,7 +693,7 @@
           <span class="modal-card__preview-label">Consulta original:</span>
           <div class="modal-card__preview-text" id="replyPreviewText">Cargando...</div>
         </div>
-        <textarea class="reply-form__textarea" id="replyText" placeholder="Escribe tu respuesta (se enviara de forma anonima)..." rows="3"></textarea>
+        <textarea class="reply-form__textarea" id="replyText" placeholder="Escribe tu respuesta (se enviará de forma anónima)..." rows="3"></textarea>
       </div>
       <div class="modal-card__footer">
         <button class="btn btn--secondary" onclick="closeReplyForm()">Cancelar</button>
@@ -759,7 +702,7 @@
     </div>
   </div>
 
-
+  <!-- ===== BOTTOM NAV ===== -->
   <nav class="bottom-nav">
     <button class="nav-item" onclick="goToDiscover()">
       <i class="fas fa-search"></i>
@@ -784,57 +727,77 @@
   </nav>
 
   <script>
-    function goBack() {
-      window.parent.location.href = '../v1-catalogo/';
-    }
+    // ─── Navigation ───
+    function goToHome()      { window.parent.location.href = '../v1-catalogo/'; }
+    function goToSearch()    { window.parent.location.href = '../v1-catalogo/'; }
+    function goToUpload()    { window.parent.location.href = '../v3-subir/'; }
+    function goToMatches()   { window.parent.location.href = '../v12-mis-matches/'; }
+    function goToNotifs()    { window.parent.location.href = '../v11-notificaciones/'; }
+    function goToProfile()   { window.parent.location.href = '../v4-perfil/'; }
+    function goToCatalog()   { window.parent.location.href = '../v1-catalogo/'; }
+    function goToDetail(id)  { window.parent.location.href = '../v2-detalle/?id=' + id; }
+    function goToDiscover()  { window.parent.location.href = '../v1-catalogo/'; }
+    function goToTrades()    { window.parent.location.href = '../v12-mis-matches/'; }
+    function goToInbox()     { window.parent.location.href = '../v11-notificaciones/'; }
 
-    function goToCatalog() {
-      window.parent.location.href = '../v1-catalogo/';
-    }
-
-    function goToMatch() {
-      window.parent.location.href = '../v6-match-notification/';
-    }
-
-    function switchTab(tab, filter) {
-      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      // In a real app, this would filter notifications
-      console.log('Filter:', filter);
-    }
-
-    function markAllRead() {
-      document.querySelectorAll('.notif-item.unread').forEach(item => {
-        item.classList.remove('unread');
-        const dot = item.querySelector('.notif-item__dot');
-        if (dot) dot.remove();
-      });
-      document.querySelector('.tab.active .badge').style.display = 'none';
-    }
-
-    console.log('🔔 TREQE v11 — Notificaciones');
-    console.log('🧪 Prototipo de diseño — 25 Abril 2026');
-  
-    function goToHome() { window.parent.location.href = '../v1-catalogo/'; }
-    function goToSearch() { window.parent.location.href = '../v1-catalogo/'; }
-    function goToUpload() { window.parent.location.href = '../v3-subir/'; }
-    function goToMatches() { window.parent.location.href = '../v12-mis-matches/'; }
-    function goToNotifs() { window.parent.location.href = '../v11-notificaciones/'; }
-    function goToProfile() { window.parent.location.href = '../v4-perfil/'; }
-    function goToCatalog() { window.parent.location.href = '../v1-catalogo/'; }
-    function goToDetail(id) { window.parent.location.href = '../v2-detalle/?id=' + id; }
-    function goToDiscover() { window.parent.location.href = '../v1-catalogo/'; }
-    function goToTrades() { window.parent.location.href = '../v12-mis-matches/'; }
-    function goToInbox() { window.parent.location.href = '../v11-notificaciones/'; }
-    function goToUpload() { window.parent.location.href = '../v3-subir/'; }
-    function goToProfile() { window.parent.location.href = '../v4-perfil/'; }
-    function goToDetail(id) { window.parent.location.href = '../v2-detalle/?id=' + id; }
+    // ─── Segmented tab switching ───
     function switchInboxTab(tab) {
-      document.querySelectorAll('.inbox-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.segmented__btn').forEach(t => t.classList.remove('active'));
       document.querySelectorAll('.inbox-section').forEach(s => s.classList.remove('active'));
-      document.querySelector(`.inbox-tab[data-tab="${tab}"]`).classList.add('active');
+      document.querySelector(`.segmented__btn[data-tab="${tab}"]`).classList.add('active');
       document.getElementById(`tab-${tab}`).classList.add('active');
     }
+
+    // ─── Quick-reply inline ───
+    function toggleQuickReply(btn) {
+      // Walk up to .inbox-item, then find its .quick-reply-wrap
+      const item = btn.closest('.inbox-item');
+      const wrap = item.querySelector('.quick-reply-wrap');
+      if (!wrap) return;
+
+      const isVisible = wrap.classList.contains('visible');
+      // Close all other quick-reply wraps first
+      document.querySelectorAll('.quick-reply-wrap.visible').forEach(w => {
+        w.classList.remove('visible');
+      });
+      if (!isVisible) {
+        wrap.classList.add('visible');
+        const input = wrap.querySelector('.quick-reply-input');
+        if (input) setTimeout(() => input.focus(), 100);
+      }
+    }
+
+    function updateCharCount(input) {
+      const wrap = input.closest('.quick-reply-wrap');
+      const countEl = wrap.querySelector('.qr-count');
+      if (countEl) countEl.textContent = input.value.length;
+    }
+
+    function sendQuickReply(btn) {
+      const wrap = btn.closest('.quick-reply-wrap');
+      const input = wrap.querySelector('.quick-reply-input');
+      const text = input.value.trim();
+      if (!text) return;
+
+      // Visual feedback
+      btn.classList.add('done');
+      btn.innerHTML = '<i class="fas fa-check"></i>';
+      input.disabled = true;
+      input.style.opacity = '0.5';
+
+      // Simulate send (in real app, POST to API)
+      setTimeout(() => {
+        btn.innerHTML = '<i class="fas fa-paper-plane"></i>';
+        btn.classList.remove('done');
+        input.disabled = false;
+        input.style.opacity = '1';
+        input.value = '';
+        wrap.querySelector('.qr-count').textContent = '0';
+        wrap.classList.remove('visible');
+      }, 1200);
+    }
+
+    // ─── Modal reply (fallback for long replies) ───
     function showReplyForm(btn) {
       const modal = document.getElementById("replyModal");
       modal.classList.add("visible");
@@ -843,10 +806,12 @@
       var preview = btn.closest(".inbox-item").querySelector(".inbox-item__text");
       if (preview) document.getElementById("replyPreviewText").textContent = preview.textContent;
     }
+
     function closeReplyForm() {
       document.getElementById("replyModal").classList.remove("visible");
       document.body.style.overflow = "";
     }
+
     function sendReply() {
       const ta = document.getElementById('replyText');
       if (!ta.value.trim()) return;
@@ -857,9 +822,12 @@
         btn.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar respuesta';
         btn.style.background = '';
         ta.value = '';
-        document.getElementById('replyForm').style.display = 'none';
+        closeReplyForm();
       }, 2000);
     }
-</script>
+
+    console.log('🔔 TREQE v11 — Avisos (UX mejorado)');
+    console.log('🧪 Prototipo con fotos producto + quick-reply inline + tabs compactos');
+  </script>
 </body>
 </html>
