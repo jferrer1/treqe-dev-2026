@@ -57,6 +57,13 @@ img{max-width:100%;display:block}button{font-family:inherit;cursor:pointer;borde
 .related-card__thumb.orange{background:linear-gradient(135deg,#FF6A35,#FF8A5C)}
 .related-card__thumb.purple{background:linear-gradient(135deg,#6C63FF,#8A84FF)}
 .related-card__thumb.gold{background:linear-gradient(135deg,#F5A623,#F7C948)}
+    .related-card[onclick*="primera-entrega"] .related-card__thumb{background-image:url("../assets/primera-entrega.png") !important;background-size:cover;background-position:center}
+    .related-card[onclick*="algoritmo-intercambio-circular"] .related-card__thumb{background-image:url("../assets/algoritmo.png") !important;background-size:cover;background-position:center}
+    .related-card[onclick*="historia-ipad-guitarra"] .related-card__thumb{background-image:url("../assets/historia-ipad.png") !important;background-size:cover;background-position:center}
+    .related-card[onclick*="guia-principiantes"] .related-card__thumb{background-image:url("../assets/guia.png") !important;background-size:cover;background-position:center}
+    .related-card[onclick*="anti-consumismo-inteligente"] .related-card__thumb{background-image:url("../assets/anti-consumismo.png") !important;background-size:cover;background-position:center}
+    .related-card[onclick*="sistema-reputacion"] .related-card__thumb{background-image:url("../assets/reputacion.png") !important;background-size:cover;background-position:center}
+    .related-card[onclick*="treqe-economia-circular"] .related-card__thumb{background-image:url("../assets/economia-circular.png") !important;background-size:cover;background-position:center}
 .related-card__title{font-size:.88rem;font-weight:600;color:var(--text);line-height:1.3;margin-bottom:4px}
 .related-card__excerpt{font-size:.75rem;color:var(--text-sec);line-height:1.4}
 .bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.85);backdrop-filter:blur(24px);border-top:1px solid var(--border);justify-content:space-evenly;align-items:center;padding:0;height:72px;padding-bottom:12px;z-index:100}
@@ -90,7 +97,7 @@ body{padding-bottom:80px}.site-header{display:none}.mobile-header{display:flex}.
   <button class="back-btn" onclick="goBack()"><i class="fas fa-chevron-left"></i></button>
   <div class="mob-logo"><img class="treqe-logo" src="../logo-treqe.png" alt="treqe"><span class="blog-suffix">.blog</span></div>
 </div>
-<div class="post-hero"><img src="../assets/algoritmo.png" style="position:absolute;width:100%;height:100%;object-fit:cover;opacity:0.4" alt=""><div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,26,46,0.7),rgba(0,0,0,0.3));z-index:1"></div><i class="fas fa-magic"></i><span class="post-tag">Tecnologia</span></div>
+<div class="post-hero"><img src="../assets/sistema.png" style="position:absolute;width:100%;height:100%;object-fit:cover;opacity:0.4" alt=""><div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,26,46,0.7),rgba(0,0,0,0.3));z-index:1"></div><i class="fas fa-magic"></i><span class="post-tag">Tecnologia</span></div>
 
 <article class="post-container"><div class="post-body">
   <div class="post-meta"><span>7 de mayo de 2026</span><span class="dot"></span><span>5 min de lectura</span><span class="category">Tecnologia</span></div>
@@ -108,7 +115,7 @@ body{padding-bottom:80px}.site-header{display:none}.mobile-header{display:flex}.
 
   <div class="kpi-row">
     <div class="kpi-card" style="border:2px solid var(--accent)"><div class="num">🛒</div><div class="label" style="font-size:.85rem;font-weight:600;color:var(--text);margin-top:8px">Compra directa</div><div class="label" style="margin-top:4px">Como Wallapop. Ves algo, pagas, lo recibes.</div></div>
-    <div class="kpi-card" style="border:2px solid var(--success)"><div class="num">🤝</div><div class="label" style="font-size:.85rem;font-weight:600;color:var(--text);margin-top:8px">Intercambio circular</div><div class="label" style="margin-top:4px">Ofreces algo a cambio. El algoritmo busca el circulo.</div></div>
+    <div class="kpi-card" style="border:2px solid var(--success)"><div class="num">🤝</div><div class="label" style="font-size:.85rem;font-weight:600;color:var(--text);margin-top:8px">Intercambio circular</div><div class="label" style="margin-top:4px">Ofreces algo a cambio. Treqe busca el circulo.</div></div>
   </div>
 
   <h3>Opción A: Compra directa</h3>
@@ -120,7 +127,7 @@ body{padding-bottom:80px}.site-header{display:none}.mobile-header{display:flex}.
   <p>Porque si, en Treqe tambien se puede meter dinero. Si tu objeto vale menos que lo que quieres, puedes complementar con efectivo. Y si vale mas, recibes la diferencia. No es trueque puro: es <strong>intercambio inteligente con ajuste monetario</strong>.</p>
 
   <div class="highlight-box">
-    <p><strong>Ejemplo real:</strong> Tu tienes una Fender Stratocaster valorada en 580€ y quieres un iPhone 15 Pro de 890€. En Treqe ofreces la guitarra + 310€. Si el algoritmo encuentra un ciclo donde encajas, el intercambio se cierra. Has conseguido un iPhone pagando menos de la mitad de su precio.</p>
+    <p><strong>Ejemplo real:</strong> Tu tienes una Fender Stratocaster valorada en 580€ y quieres un iPhone 15 Pro de 890€. En Treqe ofreces la guitarra + 310€. Si Treqe encuentra un ciclo donde encajas, el intercambio se cierra. Has conseguido un iPhone pagando menos de la mitad de su precio.</p>
   </div>
 
   <h2>El Muro de Ofertas Silencioso</h2>
@@ -129,7 +136,7 @@ body{padding-bottom:80px}.site-header{display:none}.mobile-header{display:flex}.
 
   <p>Cuando dices "Quiero esto", tu oferta entra en un <strong>muro de ofertas silencioso</strong>. El articulo sigue visible en el catalogo. Otras personas pueden seguir ofreciendo tambien. Nadie sabe quien mas ha ofrecido ni que ha ofrecido.</p>
 
-  <p>El algoritmo evalua todas las ofertas acumuladas y busca la mejor combinacion posible, teniendo en cuenta tres factores:</p>
+  <p>Treqe evalua todas las ofertas acumuladas y busca la mejor combinacion posible, teniendo en cuenta tres factores:</p>
 
   <ul>
     <li><strong>Ciclos mas cortos:</strong> Cuantas menos personas tenga que coordinar, mejor. Un intercambio de 3 personas es preferible a uno de 5.</li>
@@ -140,22 +147,22 @@ body{padding-bottom:80px}.site-header{display:none}.mobile-header{display:flex}.
   <p>No hay carreras. No hay "me lo quitan de las manos". El sistema optimiza para que el maximo numero de personas consiga lo que quiere de la forma mas equilibrada posible.</p>
 
   <div class="pullquote">
-    <p>"No tienes que competir con nadie. Tu oferta entra en el sistema y el algoritmo decide cuando hay un circulo que funciona para todos."</p>
+    <p>"No tienes que competir con nadie. Tu oferta entra en el sistema y Treqe decide cuando hay un circulo que funciona para todos."</p>
   </div>
 
   <h2>¿Y si nadie quiere lo que ofrezco?</h2>
 
-  <p>Es la pregunta del millon. Y la respuesta es: <strong>el algoritmo busca combinaciones que tu no verias</strong>.</p>
+  <p>Es la pregunta del millon. Y la respuesta es: <strong>el sistema busca combinaciones que tu no verias</strong>.</p>
 
   <p>Tu ves una guitarra y quieres una camara. Parece que no hay conexion directa. Pero Treqe mira mas alla: encuentra a alguien que tiene una camara y quiere unas zapatillas, y a un tercero que tiene zapatillas y quiere tu guitarra. Ciclo cerrado. Tres personas contentas.</p>
 
   <p>Es como un puzzle donde cada persona es una pieza. Tu solo ves tu pieza y la que quieres. Treqe ve el puzzle entero y encuentra donde encaja cada una.</p>
 
-  <p>Cuantos mas objetos subas y mas activo estes, mas probable es que el algoritmo te encuentre un ciclo. Por eso recomendamos subir todo lo que estes dispuesto a intercambiar, no solo lo que quieras quitarte de encima.</p>
+  <p>Cuantos mas objetos subas y mas activo estes, mas probable es que Treqe te encuentre un ciclo. Por eso recomendamos subir todo lo que estes dispuesto a intercambiar, no solo lo que quieras quitarte de encima.</p>
 
   <h2>El ciclo de vida de un intercambio</h2>
 
-  <p>Cuando el algoritmo encuentra un ciclo donde encajas, empieza un proceso que tiene 6 fases:</p>
+  <p>Cuando Treqe encuentra un ciclo donde encajas, empieza un proceso que tiene 6 fases:</p>
 
   <ol>
     <li><strong>Match encontrado:</strong> Te llega una notificacion. "Recibes X, das Y. ¿Aceptas?" Tienes 24 horas para decidir.</li>
