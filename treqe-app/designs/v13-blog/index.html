@@ -261,6 +261,37 @@
       color: var(--text-tertiary);
       font-weight: 400;
     }
+    .author-bio {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+    }
+    .author-bio__avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFF;
+      font-weight: 700;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .author-bio__info { flex: 1; }
+    .author-bio__name { font-size: 0.85rem; font-weight: 600; color: var(--text); }
+    .author-bio__desc { font-size: 0.75rem; color: var(--text-secondary); line-height: 1.4; }
+    .content-row .sidebar-newsletter input {
+      width: 100%; height: 42px; border: 1px solid var(--border); border-radius: 10px;
+      padding: 0 14px; font-size: 0.85rem; outline: none; background: var(--bg); margin-bottom: 8px;
+    }
+    .content-row .sidebar-newsletter input:focus { border-color: var(--accent); }
 
     /* ===== FEATURED ARTICLE ===== */
     .featured-article {
@@ -789,7 +820,7 @@
         <!-- Article Grid -->
         <div class="article-grid">
 
-          <div class="article-card" onclick="alert('Post demo: El algoritmo que hace posible el intercambio circular')">
+          <div class="article-card" onclick="window.location.href='posts/algoritmo-intercambio-circular.html'">
             <div class="article-card__thumb teal"><i class="fas fa-code"></i></div>
             <div class="article-card__content">
               <div class="article-card__meta">
@@ -801,7 +832,7 @@
             </div>
           </div>
 
-          <div class="article-card" onclick="alert('Post demo: Intercambie un iPad por clases de guitarra')">
+          <div class="article-card" onclick="window.location.href='posts/historia-ipad-guitarra.html'">
             <div class="article-card__thumb gold"><i class="fas fa-guitar"></i></div>
             <div class="article-card__content">
               <div class="article-card__meta">
@@ -813,7 +844,7 @@
             </div>
           </div>
 
-          <div class="article-card" onclick="alert('Post demo: Guia para principiantes del trueque')">
+          <div class="article-card" onclick="window.location.href='posts/guia-principiantes.html'">
             <div class="article-card__thumb purple"><i class="fas fa-compass"></i></div>
             <div class="article-card__content">
               <div class="article-card__meta">
@@ -825,7 +856,7 @@
             </div>
           </div>
 
-          <div class="article-card" onclick="alert('Post demo: Anti-consumismo inteligente')">
+          <div class="article-card" onclick="window.location.href='posts/anti-consumismo-inteligente.html'">
             <div class="article-card__thumb dark"><i class="fas fa-brain"></i></div>
             <div class="article-card__content">
               <div class="article-card__meta">
@@ -837,7 +868,7 @@
             </div>
           </div>
 
-          <div class="article-card" onclick="alert('Post demo: Sistema de reputacion')">
+          <div class="article-card" onclick="window.location.href='posts/sistema-reputacion.html'">
             <div class="article-card__thumb orange"><i class="fas fa-star"></i></div>
             <div class="article-card__content">
               <div class="article-card__meta">
@@ -849,7 +880,7 @@
             </div>
           </div>
 
-          <div class="article-card" onclick="alert('Post demo: Treqe + economia circular')">
+          <div class="article-card" onclick="window.location.href='posts/treqe-economia-circular.html'">
             <div class="article-card__thumb teal"><i class="fas fa-recycle"></i></div>
             <div class="article-card__content">
               <div class="article-card__meta">
@@ -865,7 +896,7 @@
 
         <!-- Load more -->
         <div class="load-more">
-          <button onclick="alert('Cargando mas articulos...')">Cargar mas articulos</button>
+          <button onclick="window.location.href='#'">Cargar mas articulos</button>
         </div>
       </div>
 

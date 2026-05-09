@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Anti-consumismo inteligente — Blog TREQE</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{font-size:16px;scroll-behavior:smooth}body{font-family:'Inter',sans-serif;background:#F8F6F0;color:#1A1A1A;min-height:100dvh;-webkit-font-smoothing:antialiased;overscroll-behavior:contain}
+:root{--bg:#F8F6F0;--text:#1A1A1A;--text-sec:#888;--text-ter:#B0B0B0;--border:#E8E4DC;--accent:#FF6A35;--success:#00B8B8;--card:#FFF;--shadow:0 2px 12px rgba(0,0,0,.06);--shadow-h:0 6px 24px rgba(0,0,0,.1);--radius:18px}
+img{max-width:100%;display:block}button{font-family:inherit;cursor:pointer;border:none;background:none}a{text-decoration:none;color:inherit}
+.treqe-logo{height:70px;width:auto;flex-shrink:0;display:block;margin-left:-6px}
+.site-header{background:var(--bg);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+.header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;padding:0 24px;height:80px;gap:24px}
+.header-inner .logo{display:flex;align-items:center;gap:0;flex-shrink:0}
+.header-inner .logo .blog-suffix{font-size:1.1rem;font-weight:500;color:var(--text-sec);margin-left:-10px;position:relative;top:3px}
+.back-link{padding:8px 16px;border-radius:8px;font-size:.85rem;font-weight:500;color:var(--text-sec);transition:all .2s;margin-left:auto}
+.back-link:hover{background:#FFF;color:var(--text)}.back-link i{margin-right:6px}
+.mobile-header{display:none;align-items:center;gap:10px;padding:8px 12px 12px 16px;background:var(--bg)}
+.mobile-header .back-btn{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--text);font-size:1.1rem}
+.mobile-header .mob-logo{display:flex;align-items:center;gap:0}
+.mobile-header .mob-logo .treqe-logo{height:50px;margin-left:-4px}
+.mobile-header .mob-logo .blog-suffix{font-size:.9rem;font-weight:500;color:var(--text-sec);margin-left:-8px}
+.post-hero{height:320px;background:linear-gradient(135deg,#1A1A2E,#2A2A4E);display:flex;align-items:center;justify-content:center;position:relative}
+.post-hero i{font-size:6rem;color:rgba(255,255,255,.15)}.post-hero .post-tag{position:absolute;bottom:20px;left:24px;background:rgba(0,0,0,.4);backdrop-filter:blur(4px);color:#FFF;font-size:.75rem;font-weight:700;padding:6px 16px;border-radius:8px}
+.post-container{max-width:720px;margin:0 auto;padding:0 24px}
+.post-body{padding:32px 0 48px}
+.post-meta{display:flex;align-items:center;gap:10px;font-size:.8rem;color:var(--text-ter);margin-bottom:20px;flex-wrap:wrap}
+.post-meta .dot{width:3px;height:3px;border-radius:50%;background:var(--text-ter)}
+.post-meta .category{background:#F0EDE6;padding:3px 10px;border-radius:6px;font-size:.7rem;font-weight:600;color:var(--text-sec)}
+.post-body h1{font-size:clamp(1.5rem,3.5vw,2.2rem);font-weight:800;color:var(--text);line-height:1.2;margin-bottom:8px;letter-spacing:-.5px}
+.post-body .subhead{font-size:clamp(.9rem,1.5vw,1.05rem);color:var(--text-sec);line-height:1.6;margin-bottom:28px}
+.post-body h2{font-size:clamp(1.1rem,2vw,1.3rem);font-weight:700;color:var(--text);margin-top:36px;margin-bottom:12px}
+.post-body p{font-size:clamp(.88rem,1.2vw,.95rem);line-height:1.75;color:var(--text);margin-bottom:18px}
+.post-body .highlight-box{background:#FFF;border-left:4px solid var(--accent);padding:20px 24px;border-radius:0 var(--radius) var(--radius) 0;margin:24px 0;box-shadow:var(--shadow)}
+.post-body .highlight-box p{font-size:.9rem;color:var(--text-sec);margin-bottom:0}
+.post-body .highlight-box strong{color:var(--accent)}
+.post-body .pullquote{margin:28px 0;padding:28px 24px;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);text-align:center}
+.post-body .pullquote p{font-size:clamp(1rem,1.8vw,1.15rem);font-weight:600;color:var(--text);font-style:italic;margin-bottom:8px}
+.post-body .pullquote span{font-size:.8rem;color:var(--text-ter);font-style:normal}
+.post-body .divider{text-align:center;margin:32px 0;color:var(--text-ter);font-size:.85rem;letter-spacing:5px}
+.post-body table{width:100%;border-collapse:collapse;margin:20px 0;font-size:.85rem}
+.post-body table th,.post-body table td{padding:12px 16px;text-align:left;border-bottom:1px solid var(--border)}
+.post-body table th{background:#FFF;font-weight:600;color:var(--text)}
+.post-body table td{color:var(--text-sec)}
+.post-body .kpi-row{display:flex;gap:12px;margin:24px 0;flex-wrap:wrap}
+.post-body .kpi-card{flex:1;min-width:140px;background:var(--card);border-radius:var(--radius);padding:20px;text-align:center;box-shadow:var(--shadow)}
+.post-body .kpi-card .num{font-size:1.6rem;font-weight:800;color:var(--accent)}
+.post-body .kpi-card .label{font-size:.7rem;color:var(--text-sec);margin-top:4px}
+.post-cta{margin-top:36px;padding:32px;background:linear-gradient(135deg,#1A1A2E,#2A2A4E);border-radius:var(--radius);text-align:center}
+.post-cta h3{color:#FFF;font-size:clamp(1rem,1.8vw,1.15rem);font-weight:700;margin-bottom:8px}
+.post-cta p{color:rgba(255,255,255,.65);font-size:.85rem;margin-bottom:18px}
+.post-cta .cta-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 32px;background:var(--accent);color:#FFF;border-radius:10px;font-size:.9rem;font-weight:600;cursor:pointer;transition:background .2s}
+.post-footer{max-width:720px;margin:0 auto;padding:20px 24px 40px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.post-footer span{font-size:.82rem;color:var(--text-ter)}
+.share-buttons{display:flex;gap:8px}
+.share-buttons button{width:38px;height:38px;border-radius:50%;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text-sec);font-size:.85rem;cursor:pointer;transition:all .2s}
+.share-buttons button:hover{background:var(--accent);color:#FFF;border-color:var(--accent);transform:scale(1.1)}
+.related-section{max-width:1200px;margin:0 auto;padding:0 24px 40px}
+.related-section h2{font-size:1.2rem;font-weight:700;color:var(--text);margin-bottom:16px}
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.related-card{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);cursor:pointer;transition:transform .3s,box-shadow .3s}
+.related-card:hover{transform:scale(1.02);box-shadow:var(--shadow-h)}
+.related-card__thumb{width:100%;height:120px;border-radius:8px;margin-bottom:12px;display:flex;align-items:center;justify-content:center;font-size:2rem;color:rgba(255,255,255,.3)}
+.related-card__thumb.teal{background:linear-gradient(135deg,#00B8B8,#00D4AA)}
+.related-card__thumb.purple{background:linear-gradient(135deg,#6C63FF,#8A84FF)}
+.related-card__thumb.orange{background:linear-gradient(135deg,#FF6A35,#FF8A5C)}
+.related-card__thumb.gold{background:linear-gradient(135deg,#F5A623,#F7C948)}
+.related-card__title{font-size:.88rem;font-weight:600;color:var(--text);line-height:1.3;margin-bottom:4px}
+.related-card__excerpt{font-size:.75rem;color:var(--text-sec);line-height:1.4}
+.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.85);backdrop-filter:blur(24px);border-top:1px solid var(--border);justify-content:space-evenly;align-items:center;padding:0;height:72px;padding-bottom:12px;z-index:100}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:.65rem;font-weight:500;color:var(--text-ter);padding:4px 0;flex:1;max-width:80px;position:relative}
+.nav-item i{font-size:1.3rem}.nav-item.active{color:var(--accent)}
+.nav-item.nav-add .nav-add-btn{width:48px;height:48px;background:var(--accent);color:#FFF;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;box-shadow:0 4px 16px rgba(255,106,53,.3)}
+.nav-item .nav-badge{width:6px;height:6px;background:var(--accent);border-radius:50%;position:absolute;top:2px;right:12px}
+.site-footer{border-top:1px solid var(--border);padding:32px 24px}
+.footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.footer-inner span{font-size:.8rem;color:var(--text-ter)}
+.footer-inner .social-links{display:flex;gap:12px}
+.footer-inner .social-links a{width:36px;height:36px;border-radius:50%;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text-sec);font-size:.85rem;transition:all .2s}
+.footer-inner .social-links a:hover{background:var(--accent);color:#FFF;border-color:var(--accent)}
+@media(max-width:900px){.related-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:767px){
+body{padding-bottom:80px}.site-header{display:none}.mobile-header{display:flex}.bottom-nav{display:flex}
+.post-hero{height:200px}.post-hero i{font-size:3.5rem}.post-container{padding:0 16px}
+.post-body{padding:24px 0 32px}.post-cta{padding:24px 20px}.post-footer{padding:16px}
+.post-footer span{width:100%;text-align:center}.share-buttons{justify-content:center;width:100%}
+.related-section{padding:0 16px 24px}.related-grid{grid-template-columns:1fr}
+.site-footer{padding:20px 16px}.footer-inner{flex-direction:column;text-align:center}
+}
+@media(min-width:768px){.site-header{display:block}.bottom-nav{display:none}}
+</style></head><body>
+
+<header class="site-header"><div class="header-inner">
+  <a class="logo" href="../../v1-catalogo/"><img class="treqe-logo" src="../logo-treqe.png" alt="treqe"><span class="blog-suffix">.blog</span></a>
+  <a class="back-link" href="../"><i class="fas fa-arrow-left"></i> Volver al blog</a>
+</div></header>
+<div class="mobile-header">
+  <button class="back-btn" onclick="goBack()"><i class="fas fa-chevron-left"></i></button>
+  <div class="mob-logo"><img class="treqe-logo" src="../logo-treqe.png" alt="treqe"><span class="blog-suffix">.blog</span></div>
+</div>
+<div class="post-hero"><i class="fas fa-brain"></i><span class="post-tag">Reflexion</span></div>
+
+<article class="post-container"><div class="post-body">
+  <div class="post-meta"><span>1 de mayo de 2026</span><span class="dot"></span><span>7 min de lectura</span><span class="category">Reflexion</span></div>
+  <h1>Anti-consumismo inteligente: no es comprar menos, es intercambiar mejor</h1>
+  <p class="subhead">En un mundo donde la inflacion aprieta, los salarios estancados y el consumo se ha convertido en identidad, el trueque estructurado no es un capricho hipster. Es la herramienta economica mas infravalorada del siglo XXI.</p>
+
+  <p>Vivimos una epoca contradictoria. Por un lado, la economia global empuja al consumo constante: el PIB depende de que compremos, el marketing nos dice que merecemos lo nuevo, y las redes sociales convierten la acumulacion en espectaculo. Por otro lado, la realidad macroeconomica no acompaña: la inflacion acumulada en los ultimos tres anos en Espana supera el 15%, los salarios reales llevan una decada estancados, y el precio de la vivienda convierte cualquier gasto discrecional en un lujo.</p>
+
+  <div class="pullquote">
+    <p>"El problema no es que compremos demasiado. Es que pagamos por cosas que podriamos conseguir intercambiando."</p>
+    <span>— Treqe, manifies</span>
+  </div>
+
+  <p>En este contexto, el discurso del "anti-consumismo" tradicional suena a privilegio. "Compra menos" es facil de decir cuando tienes suficiente. Pero la mayoria de la gente no necesita comprar menos: necesita <strong>comprar mejor</strong>. Y ahi es donde el intercambio entra como la herramienta mas poderosa y mas ignorada.</p>
+
+  <h2>El coste de oportunidad del dinero</h2>
+
+  <p>Cada vez que vendes algo por dinero y luego compras otra cosa con ese dinero, pierdes en dos frentes: pagas comision al vender (las plataformas de segunda mano se llevan entre el 5% y el 15%), y pagas margen al comprar (el vendedor tiene que ganar algo). En total, entre una venta y una compra, puedes perder facilmente el 20-30% del valor de tus objetos.</p>
+
+  <p>En un intercambio directo, ese 20-30% se queda en tu bolsillo. Literalmente.</p>
+
+  <div class="kpi-row">
+    <div class="kpi-card"><div class="num">20-30%</div><div class="label">Perdida en comisiones al vender y comprar</div></div>
+    <div class="kpi-card"><div class="num">0%</div><div class="label">Perdida en un intercambio en Treqe</div></div>
+    <div class="kpi-card"><div class="num">47%</div><div class="label">de objetos en hogares espanoles sin usar</div></div>
+  </div>
+
+  <h2>El contexto macro: por que ahora tiene sentido</h2>
+
+  <p>Hay razones estructurales que hacen que el trueque no sea una moda, sino una necesidad economica de nuestro tiempo:</p>
+
+  <h3>Inflacion y poder adquisitivo</h3>
+  <p>El IPC acumulado en Espana desde 2021 ha reducido el poder adquisitivo de las familias en mas de dos puntos porcentuales. Cada euro vale menos. Pero el valor de un objeto —su utilidad real— no se devalua con la inflacion. Una guitarra sigue siendo una guitarra, independientemente de lo quevalga el euro. Intercambiar objetos desacopla el valor de uso del valor monetario.</p>
+
+  <h3>Estancamiento salarial</h3>
+  <p>Los salarios reales en Espana estan practicamente congelados desde 2008. El coste de la vida ha subido, pero los ingresos no. Intercambiar lo que ya tienes por lo que necesitas es una forma de aumentar tu poder adquisitivo sin depender de tu nomina.</p>
+
+  <h3>Obsolescencia programada y derecho a reparar</h3>
+  <p>La Union Europea esta legislando el derecho a reparar, pero aun asi, millones de objetos funcionales se desechan cada año no porque esten rotos, sino porque el usuario se aburrio o porque "ya no es el ultimo modelo". Treqe ataca este problema desde el angulo opuesto: si no lo usas, intercambialo. No lo tires ni lo vendas por cuatro euros.</p>
+
+  <h2>La politica del intercambio</h2>
+
+  <p>El trueque tiene tambien una dimension politica, aunque no nos guste llamarla asi. En un mundo donde la economia esta mediada por grandes corporaciones que controlan la produccion, la distribucion y el precio, el intercambio peer-to-peer es un acto de soberania economica individual.</p>
+
+  <p>No estas comprando en Amazon. No estas vendiendo en una plataforma que se queda un porcentaje. Estas negociando directamente con otra persona, basando la transaccion en el valor real que cada uno da a los objetos. Es la economia desintermediada que prometia internet y que nunca llego del todo.</p>
+
+  <div class="highlight-box">
+    <p><strong>La tesis de Treqe:</strong> El consumo consciente no va de privarse. Va de optimizar los recursos que ya tienes. Tu casa esta llena de valor acumulado. Treqe te ayuda a ponerlo en circulacion sin que el dinero sea una barrera.</p>
+  </div>
+
+  <h2>Consumo inteligente vs. consumo militante</h2>
+
+  <p>No somos una plataforma para convencidos. No hace falta llevar ropa de segunda mano por conviccion ecologica ni sentirse mal por comprar en el Zara. Treqe no es un movimiento. Es una herramienta.</p>
+
+  <p>La diferencia es sutil pero importante: el consumo militante te dice lo que no debes hacer. El consumo inteligente te muestra lo que puedes ganar. Uno opera por culpa. El otro por optimizacion.</p>
+
+  <p>Cuando intercambias algo en Treqe no estas "salvando el planeta". Estas consiguiendo lo que necesitas sin gastar dinero. El hecho de que ademas sea mejor para el medio ambiente es una consecuencia, no la motivacion. Y esa es exactamente la razon por la que funciona.</p>
+
+  <p>La gente no cambia sus habitos por ideologia. Cambia cuando ve un beneficio claro e inmediato. Intercambiar es mas rentable que comprar. Punto.</p>
+
+  <h2>Lo que viene</h2>
+
+  <p>Las plataformas de segunda mano tradicionales (Wallapop, Vinted, Milanuncios) han demostrado que la gente quiere dar una segunda vida a sus objetos. Pero todas operan con el mismo modelo: ponle un precio y espera. Treqe anade una capa que ninguna tiene: la posibilidad de intercambiar sin dinero.</p>
+
+  <p>En un contexto de inflacion persistente, salarios estancados y conciencia ecologica creciente, el intercambio estructurado no es una alternativa. Es la evolucion natural del consumo.</p>
+
+  <div class="divider">· · ·</div>
+
+  <p>No se trata de comprar menos. Se trata de intercambiar mejor. Treqe es la herramienta para hacerlo posible.</p>
+
+  <div class="post-cta">
+    <h3>¿Listo para intercambiar mejor?</h3>
+    <p>Treqe abre pronto. Apuntate a la lista de espera para ser de los primeros.</p>
+    <a class="cta-btn" href="#" onclick="alert('Apuntarme (demo)')">Unirme a la lista <i class="fas fa-arrow-right"></i></a>
+  </div>
+</div></article>
+
+<div class="post-footer">
+  <span>Comparte</span>
+  <div class="share-buttons">
+    <button onclick="alert('Twitter (demo)')"><i class="fab fa-twitter"></i></button>
+    <button onclick="alert('LinkedIn (demo)')"><i class="fab fa-linkedin-in"></i></button>
+    <button onclick="alert('Copiar enlace (demo)')"><i class="fas fa-link"></i></button>
+  </div>
+</div>
+
+<div class="related-section">
+  <h2>Articulos relacionados</h2>
+  <div class="related-grid">
+    <div class="related-card" onclick="window.location.href='primera-entrega.html'">
+      <div class="related-card__thumb orange"><i class="fas fa-arrows-spin"></i></div>
+      <div class="related-card__title">Treqe no es Wallapop</div>
+      <div class="related-card__excerpt">El trueque estructurado llego para quedarse.</div>
+    </div>
+    <div class="related-card" onclick="window.location.href='historia-ipad-guitarra.html'">
+      <div class="related-card__thumb gold"><i class="fas fa-guitar"></i></div>
+      <div class="related-card__title">Intercambie un iPad por clases de guitarra</div>
+      <div class="related-card__excerpt">La historia de Laura y el ciclo de 3 personas.</div>
+    </div>
+    <div class="related-card" onclick="alert('Post: Treqe y economia circular')">
+      <div class="related-card__thumb teal"><i class="fas fa-recycle"></i></div>
+      <div class="related-card__title">Treqe y la economia circular</div>
+      <div class="related-card__excerpt">Como tus objetos pueden tener mil vidas.</div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer"><div class="footer-inner">
+  <span>&copy; 2026 Treqe. Intercambia, no compres.</span>
+  <div class="social-links">
+    <a href="#" onclick="alert('Twitter')"><i class="fab fa-twitter"></i></a>
+    <a href="#" onclick="alert('Instagram')"><i class="fab fa-instagram"></i></a>
+    <a href="#" onclick="alert('LinkedIn')"><i class="fab fa-linkedin-in"></i></a>
+  </div>
+</div></footer>
+
+<nav class="bottom-nav">
+  <button class="nav-item" onclick="goToDiscover()"><i class="fas fa-search"></i><span>Buscar</span></button>
+  <button class="nav-item" onclick="goToTrades()"><i class="fas fa-exchange-alt"></i><span>Treqes</span></button>
+  <button class="nav-item nav-add" onclick="goToUpload()"><div class="nav-add-btn"><i class="fas fa-plus"></i></div></button>
+  <button class="nav-item" onclick="goToInbox()"><i class="fas fa-bell"></i><span>Avisos</span><span class="nav-badge"></span></button>
+  <button class="nav-item" onclick="goToProfile()"><i class="fas fa-user"></i><span>Perfil</span></button>
+</nav>
+
+<script>
+function goBack(){window.parent.location.href='../'}
+function goToDiscover(){window.parent.location.href='../../v1-catalogo/'}
+function goToTrades(){window.parent.location.href='../../v12-mis-matches/'}
+function goToUpload(){window.parent.location.href='../../v3-subir/'}
+function goToInbox(){window.parent.location.href='../../v11-notificaciones/'}
+function goToProfile(){window.parent.location.href='../../v4-perfil/'}
+</script>
+</body></html>

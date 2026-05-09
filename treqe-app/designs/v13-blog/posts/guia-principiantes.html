@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Guia para principiantes del trueque en Treqe — Blog TREQE</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{font-size:16px;scroll-behavior:smooth}body{font-family:'Inter',sans-serif;background:#F8F6F0;color:#1A1A1A;min-height:100dvh;-webkit-font-smoothing:antialiased;overscroll-behavior:contain}
+:root{--bg:#F8F6F0;--text:#1A1A1A;--text-sec:#888;--text-ter:#B0B0B0;--border:#E8E4DC;--accent:#FF6A35;--success:#00B8B8;--card:#FFF;--shadow:0 2px 12px rgba(0,0,0,.06);--shadow-h:0 6px 24px rgba(0,0,0,.1);--radius:18px}
+img{max-width:100%;display:block}button{font-family:inherit;cursor:pointer;border:none;background:none}a{text-decoration:none;color:inherit}
+.treqe-logo{height:70px;width:auto;flex-shrink:0;display:block;margin-left:-6px}
+.site-header{background:var(--bg);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+.header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;padding:0 24px;height:80px;gap:24px}
+.header-inner .logo{display:flex;align-items:center;gap:0;flex-shrink:0}
+.header-inner .logo .blog-suffix{font-size:1.1rem;font-weight:500;color:var(--text-sec);margin-left:-10px;position:relative;top:3px}
+.back-link{padding:8px 16px;border-radius:8px;font-size:.85rem;font-weight:500;color:var(--text-sec);transition:all .2s;margin-left:auto}
+.back-link:hover{background:#FFF;color:var(--text)}.back-link i{margin-right:6px}
+.mobile-header{display:none;align-items:center;gap:10px;padding:8px 12px 12px 16px;background:var(--bg)}
+.mobile-header .back-btn{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--text);font-size:1.1rem}
+.mobile-header .mob-logo{display:flex;align-items:center;gap:0}
+.mobile-header .mob-logo .treqe-logo{height:50px;margin-left:-4px}
+.mobile-header .mob-logo .blog-suffix{font-size:.9rem;font-weight:500;color:var(--text-sec);margin-left:-8px}
+.post-hero{height:320px;background:linear-gradient(135deg,#6C63FF,#8A84FF);display:flex;align-items:center;justify-content:center;position:relative}
+.post-hero i{font-size:6rem;color:rgba(255,255,255,.15)}.post-hero .post-tag{position:absolute;bottom:20px;left:24px;background:rgba(0,0,0,.4);backdrop-filter:blur(4px);color:#FFF;font-size:.75rem;font-weight:700;padding:6px 16px;border-radius:8px}
+.post-container{max-width:720px;margin:0 auto;padding:0 24px}
+.post-body{padding:32px 0 48px}
+.post-meta{display:flex;align-items:center;gap:10px;font-size:.8rem;color:var(--text-ter);margin-bottom:20px;flex-wrap:wrap}
+.post-meta .dot{width:3px;height:3px;border-radius:50%;background:var(--text-ter)}
+.post-meta .category{background:#F0EDE6;padding:3px 10px;border-radius:6px;font-size:.7rem;font-weight:600;color:var(--text-sec)}
+.post-body h1{font-size:clamp(1.5rem,3.5vw,2.2rem);font-weight:800;color:var(--text);line-height:1.2;margin-bottom:8px;letter-spacing:-.5px}
+.post-body .subhead{font-size:clamp(.9rem,1.5vw,1.05rem);color:var(--text-sec);line-height:1.6;margin-bottom:28px}
+.post-body h2{font-size:clamp(1.1rem,2vw,1.3rem);font-weight:700;color:var(--text);margin-top:36px;margin-bottom:12px}
+.post-body p{font-size:clamp(.88rem,1.2vw,.95rem);line-height:1.75;color:var(--text);margin-bottom:18px}
+.post-body .highlight-box{background:#FFF;border-left:4px solid var(--accent);padding:20px 24px;border-radius:0 var(--radius) var(--radius) 0;margin:24px 0;box-shadow:var(--shadow)}
+.post-body .highlight-box p{font-size:.9rem;color:var(--text-sec);margin-bottom:0}
+.post-body .highlight-box strong{color:var(--accent)}
+.post-body .pullquote{margin:28px 0;padding:28px 24px;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);text-align:center}
+.post-body .pullquote p{font-size:clamp(1rem,1.8vw,1.15rem);font-weight:600;color:var(--text);font-style:italic;margin-bottom:8px}
+.post-body .pullquote span{font-size:.8rem;color:var(--text-ter);font-style:normal}
+.post-body .divider{text-align:center;margin:32px 0;color:var(--text-ter);font-size:.85rem;letter-spacing:5px}
+.post-body ul{list-style:none;margin:20px 0 24px}
+.post-body ul li{position:relative;padding-left:26px;font-size:clamp(.88rem,1.1vw,.92rem);line-height:1.6;color:var(--text);margin-bottom:12px}
+.post-body ul li::before{content:'\f00c';font-family:'Font Awesome 6 Free';font-weight:900;position:absolute;left:0;color:var(--success);font-size:.8rem}
+.post-body ol{margin:16px 0 20px;padding-left:24px}
+.post-body ol li{font-size:clamp(.88rem,1.1vw,.92rem);line-height:1.6;color:var(--text);margin-bottom:10px}
+.post-body .step-card{background:var(--card);border-radius:var(--radius);padding:20px;margin:16px 0;box-shadow:var(--shadow)}
+.post-body .step-card .step-num{display:inline-block;background:var(--accent);color:#FFF;width:28px;height:28px;border-radius:50%;text-align:center;line-height:28px;font-size:.75rem;font-weight:700;margin-right:10px}
+.post-body .step-card h3{display:inline;font-size:1rem;font-weight:600;color:var(--text)}
+.post-body .step-card p{margin-top:10px;font-size:.85rem;color:var(--text-sec)}
+.post-cta{margin-top:36px;padding:32px;background:linear-gradient(135deg,#1A1A2E,#2A2A4E);border-radius:var(--radius);text-align:center}
+.post-cta h3{color:#FFF;font-size:clamp(1rem,1.8vw,1.15rem);font-weight:700;margin-bottom:8px}
+.post-cta p{color:rgba(255,255,255,.65);font-size:.85rem;margin-bottom:18px}
+.post-cta .cta-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 32px;background:var(--accent);color:#FFF;border-radius:10px;font-size:.9rem;font-weight:600;cursor:pointer;transition:background .2s}
+.post-footer{max-width:720px;margin:0 auto;padding:20px 24px 40px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.post-footer span{font-size:.82rem;color:var(--text-ter)}
+.share-buttons{display:flex;gap:8px}
+.share-buttons button{width:38px;height:38px;border-radius:50%;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text-sec);font-size:.85rem;cursor:pointer;transition:all .2s}
+.share-buttons button:hover{background:var(--accent);color:#FFF;border-color:var(--accent);transform:scale(1.1)}
+.related-section{max-width:1200px;margin:0 auto;padding:0 24px 40px}
+.related-section h2{font-size:1.2rem;font-weight:700;color:var(--text);margin-bottom:16px}
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.related-card{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);cursor:pointer;transition:transform .3s,box-shadow .3s}
+.related-card:hover{transform:scale(1.02);box-shadow:var(--shadow-h)}
+.related-card__thumb{width:100%;height:120px;border-radius:8px;margin-bottom:12px;display:flex;align-items:center;justify-content:center;font-size:2rem;color:rgba(255,255,255,.3)}
+.related-card__thumb.teal{background:linear-gradient(135deg,#00B8B8,#00D4AA)}
+.related-card__thumb.orange{background:linear-gradient(135deg,#FF6A35,#FF8A5C)}
+.related-card__thumb.gold{background:linear-gradient(135deg,#F5A623,#F7C948)}
+.related-card__title{font-size:.88rem;font-weight:600;color:var(--text);line-height:1.3;margin-bottom:4px}
+.related-card__excerpt{font-size:.75rem;color:var(--text-sec);line-height:1.4}
+.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.85);backdrop-filter:blur(24px);border-top:1px solid var(--border);justify-content:space-evenly;align-items:center;padding:0;height:72px;padding-bottom:12px;z-index:100}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:.65rem;font-weight:500;color:var(--text-ter);padding:4px 0;flex:1;max-width:80px;position:relative}
+.nav-item i{font-size:1.3rem}.nav-item.active{color:var(--accent)}
+.nav-item.nav-add .nav-add-btn{width:48px;height:48px;background:var(--accent);color:#FFF;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;box-shadow:0 4px 16px rgba(255,106,53,.3)}
+.nav-item .nav-badge{width:6px;height:6px;background:var(--accent);border-radius:50%;position:absolute;top:2px;right:12px}
+.site-footer{border-top:1px solid var(--border);padding:32px 24px}
+.footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.footer-inner span{font-size:.8rem;color:var(--text-ter)}
+.footer-inner .social-links{display:flex;gap:12px}
+.footer-inner .social-links a{width:36px;height:36px;border-radius:50%;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text-sec);font-size:.85rem;transition:all .2s}
+.footer-inner .social-links a:hover{background:var(--accent);color:#FFF;border-color:var(--accent)}
+@media(max-width:900px){.related-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:767px){
+body{padding-bottom:80px}.site-header{display:none}.mobile-header{display:flex}.bottom-nav{display:flex}
+.post-hero{height:200px}.post-hero i{font-size:3.5rem}.post-container{padding:0 16px}
+.post-body{padding:24px 0 32px}.post-cta{padding:24px 20px}.post-footer{padding:16px}
+.post-footer span{width:100%;text-align:center}.share-buttons{justify-content:center;width:100%}
+.related-section{padding:0 16px 24px}.related-grid{grid-template-columns:1fr}
+.site-footer{padding:20px 16px}.footer-inner{flex-direction:column;text-align:center}
+}
+@media(min-width:768px){.site-header{display:block}.bottom-nav{display:none}}
+</style></head><body>
+
+<header class="site-header"><div class="header-inner">
+  <a class="logo" href="../../v1-catalogo/"><img class="treqe-logo" src="../logo-treqe.png" alt="treqe"><span class="blog-suffix">.blog</span></a>
+  <a class="back-link" href="../"><i class="fas fa-arrow-left"></i> Volver al blog</a>
+</div></header>
+<div class="mobile-header">
+  <button class="back-btn" onclick="goBack()"><i class="fas fa-chevron-left"></i></button>
+  <div class="mob-logo"><img class="treqe-logo" src="../logo-treqe.png" alt="treqe"><span class="blog-suffix">.blog</span></div>
+</div>
+<div class="post-hero"><i class="fas fa-compass"></i><span class="post-tag">Guia</span></div>
+
+<article class="post-container"><div class="post-body">
+  <div class="post-meta"><span>3 de mayo de 2026</span><span class="dot"></span><span>7 min de lectura</span><span class="category">Guia</span></div>
+  <h1>Guia para principiantes: como funciona el trueque en Treqe</h1>
+  <p class="subhead">Todo lo que necesitas saber para hacer tu primer intercambio. Desde crear tu perfil hasta recibir tu objeto. Sin jerga tecnica, sin rodeos.</p>
+
+  <p>Acabas de llegar a Treqe y todo suena genial, pero no tienes ni idea de por donde empezar. Normal. El trueque estructurado no es algo que se explique en el colegio. Esta guia te lleva de la mano desde cero hasta tu primer intercambio completado.</p>
+
+  <div class="step-card">
+    <span class="step-num">1</span><h3>Crea tu perfil</h3>
+    <p>Registrate con tu correo electronico o vincula tu cuenta de Google. Te pediremos un nombre de usuario (puede ser un pseudonimo) y tu codigo postal para mostrarte objetos cercanos. No compartimos tus datos personales con nadie. En menos de 2 minutos estas dentro.</p>
+  </div>
+
+  <div class="step-card">
+    <span class="step-num">2</span><h3>Anade tus objetos ("Tengo")</h3>
+    <p>Piensa en todas esas cosas que tienes en casa y que ya no usas. Una guitarra que acumula polvo. Un movil del ano pasado. Un sofá que ya no pega con la decoracion. Un libro que ya leiste. Sube fotos, escribe una breve descripcion y di en que estado esta. No pongas precio: en Treqe no se vende, se intercambia.</p>
+  </div>
+
+  <div class="step-card">
+    <span class="step-num">3</span><h3>Di lo que buscas ("Quiero")</h3>
+    <p>¿Que necesitas? Puede ser otro objeto, un servicio (clases de algo, reparaciones, cocinar una cena) o incluso experiencias. Se especifico: "clases de guitarra" funciona mejor que "aprender musica".</p>
+  </div>
+
+  <div class="step-card">
+    <span class="step-num">4</span><h3>Espera a que el algoritmo haga su magia</h3>
+    <p>Aqui pasa la parte que diferencia a Treqe de todo lo demas. No tienes que buscar uno a uno a quien quiera intercambiar contigo. El algoritmo analiza tu "tengo" y tu "quiero" y lo cruza con todos los demas usuarios. Cuando encuentra un ciclo de intercambio donde todo el mundo recibe lo que quiere, te llega una notificacion.</p>
+  </div>
+
+  <div class="pullquote">
+    <p>"No tienes que encontrar a nadie. El algoritmo encuentra el ciclo por ti. Tu solo tienes que esperar la notificacion."</p>
+  </div>
+
+  <div class="step-card">
+    <span class="step-num">5</span><h3>Revisa la propuesta de intercambio</h3>
+    <p>El algoritmo te muestra el ciclo completo: que das tu, que recibes, y quienes son las otras personas involucradas. Puedes ver sus perfiles, su reputacion y las valoraciones de intercambios anteriores. Si todo te parece bien, aceptas.</p>
+  </div>
+
+  <div class="step-card">
+    <span class="step-num">6</span><h3>Coordina la entrega</h3>
+    <p>Una vez todos los participantes del ciclo han aceptado, se abre un chat grupal para coordinar la logistica. Queda en un punto de encuentro, acuerda el envio por correo o utiliza los puntos de intercambio seguro que Treqe esta habilitando en colaboracion con comercios locales.</p>
+  </div>
+
+  <div class="step-card">
+    <span class="step-num">7</span><h3>Confirma la recepcion y valora</h3>
+    <p>Cuando todos han recibido sus objetos, confirmas la recepcion en la app. El intercambio se marca como completado y tanto tu como los demas reciben un aumento en su reputacion. Valora a tus contrapartes: ayuda a la comunidad a crecer sana.</p>
+  </div>
+
+  <h2>Errores comunes de principiantes</h2>
+
+  <ul>
+    <li><strong>Subir objetos en mal estado:</strong> Se honesto con el estado de las cosas. Una descripcion precisa evita malentendidos y valoraciones negativas.</li>
+    <li><strong>Ser demasiado vago en "Quiero":</strong> "Cosas interesantes" no ayuda al algoritmo. Se concreto: "Cascos de bicicleta, talla M" es mucho mejor.</li>
+    <li><strong>Esperar intercambios instantaneos:</strong> Cuando la comunidad es pequena, puede tardar unos dias en formarse un ciclo. No desesperes. Anade mas objetos y afina tus preferencias.</li>
+    <li><strong>No actualizar tus objetos:</strong> Si intercambiaste algo, retiralo. Si ya no buscas algo, actualiza tu lista. Mantén tu perfil al dia.</li>
+  </ul>
+
+  <h2>Consejos para intercambiar mejor</h2>
+
+  <p>Una vez que hayas hecho tu primer intercambio, estos consejos te ayudaran a sacar mas partido de Treqe:</p>
+
+  <ul>
+    <li><strong>Anade al menos 5 objetos:</strong>Cuantas mas opciones tengas, mas probable es que el algoritmo encuentre un ciclo. No subas solo lo que quieras quitar de en medio; sube todo lo que estes dispuesto a intercambiar.</li>
+    <li><strong>Actualiza tus preferencias semanalmente:</strong> Los objetos que buscas cambian. Revisa tu lista de "Quiero" cada semana.</li>
+    <li><strong>Intercambia primero objetos de poco valor:</strong> Para coger confianza con el sistema, empieza con objetos pequenos (libros, accesorios). Cuando entiendas el flujo, lanzate a por intercambios mayores.</li>
+    <li><strong>Construye reputacion:</strong> Cada intercambio completado suma puntos. Los usuarios con alta reputacion tienen prioridad en el algoritmo.</li>
+  </ul>
+
+  <div class="divider">· · ·</div>
+
+  <p>El primer intercambio siempre cuesta. Pero una vez que pruebas lo que es recibir algo que necesitas sin gastar un euro, todo cambia. Bienvenido a Treqe.</p>
+
+  <div class="post-cta">
+    <h3>¿Preparado para tu primer intercambio?</h3>
+    <p>Treqe abre pronto. Se el primero en probarlo.</p>
+    <a class="cta-btn" href="#" onclick="alert('Registro (demo)')">Crear mi cuenta <i class="fas fa-arrow-right"></i></a>
+  </div>
+</div></article>
+
+<div class="post-footer">
+  <span>Guarda esta guia</span>
+  <div class="share-buttons">
+    <button onclick="alert('Twitter')"><i class="fab fa-twitter"></i></button>
+    <button onclick="alert('LinkedIn')"><i class="fab fa-linkedin-in"></i></button>
+    <button onclick="alert('Copiar')"><i class="fas fa-link"></i></button>
+  </div>
+</div>
+
+<div class="related-section">
+  <h2>Continua aprendiendo</h2>
+  <div class="related-grid">
+    <div class="related-card" onclick="window.location.href='sistema-reputacion.html'">
+      <div class="related-card__thumb orange"><i class="fas fa-star"></i></div>
+      <div class="related-card__title">Como funciona el sistema de reputacion</div>
+      <div class="related-card__excerpt">La confianza es la moneda de Treqe.</div>
+    </div>
+    <div class="related-card" onclick="window.location.href='algoritmo-intercambio-circular.html'">
+      <div class="related-card__thumb teal"><i class="fas fa-code-branch"></i></div>
+      <div class="related-card__title">El algoritmo del intercambio circular</div>
+      <div class="related-card__excerpt">La tecnologia detras del matching.</div>
+    </div>
+    <div class="related-card" onclick="window.location.href='primera-entrega.html'">
+      <div class="related-card__thumb gold"><i class="fas fa-arrows-spin"></i></div>
+      <div class="related-card__title">Treqe no es Wallapop</div>
+      <div class="related-card__excerpt">Por que esto es diferente.</div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer"><div class="footer-inner">
+  <span>&copy; 2026 Treqe. Intercambia, no compres.</span>
+  <div class="social-links">
+    <a href="#" onclick="alert('Twitter')"><i class="fab fa-twitter"></i></a>
+    <a href="#" onclick="alert('Instagram')"><i class="fab fa-instagram"></i></a>
+    <a href="#" onclick="alert('LinkedIn')"><i class="fab fa-linkedin-in"></i></a>
+  </div>
+</div></footer>
+
+<nav class="bottom-nav">
+  <button class="nav-item" onclick="goToDiscover()"><i class="fas fa-search"></i><span>Buscar</span></button>
+  <button class="nav-item" onclick="goToTrades()"><i class="fas fa-exchange-alt"></i><span>Treqes</span></button>
+  <button class="nav-item nav-add" onclick="goToUpload()"><div class="nav-add-btn"><i class="fas fa-plus"></i></div></button>
+  <button class="nav-item" onclick="goToInbox()"><i class="fas fa-bell"></i><span>Avisos</span><span class="nav-badge"></span></button>
+  <button class="nav-item" onclick="goToProfile()"><i class="fas fa-user"></i><span>Perfil</span></button>
+</nav>
+
+<script>
+function goBack(){window.parent.location.href='../'}
+function goToDiscover(){window.parent.location.href='../../v1-catalogo/'}
+function goToTrades(){window.parent.location.href='../../v12-mis-matches/'}
+function goToUpload(){window.parent.location.href='../../v3-subir/'}
+function goToInbox(){window.parent.location.href='../../v11-notificaciones/'}
+function goToProfile(){window.parent.location.href='../../v4-perfil/'}
+</script>
+</body></html>
