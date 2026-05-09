@@ -833,7 +833,7 @@
         <!-- Article Grid -->
         <div class="article-grid">
 
-          <div class="article-card" onclick="window.location.href='posts/algoritmo-intercambio-circular.html'">
+          <div class="article-card" data-cat="tecnologia" onclick="window.location.href='posts/algoritmo-intercambio-circular.html'">
             <div class="article-card__thumb teal"><img src="assets/algoritmo.png" alt=""></div>
             <div class="article-card__content">
               <div class="article-card__meta">
@@ -845,7 +845,7 @@
             </div>
           </div>
 
-          <div class="article-card" onclick="window.location.href='posts/historia-ipad-guitarra.html'">
+          <div class="article-card" data-cat="historias" onclick="window.location.href='posts/historia-ipad-guitarra.html'">
             <div class="article-card__thumb gold"><img src="assets/historia-ipad.png" alt=""></div>
             <div class="article-card__content">
               <div class="article-card__meta">
@@ -857,7 +857,7 @@
             </div>
           </div>
 
-          <div class="article-card" onclick="window.location.href='posts/guia-principiantes.html'">
+          <div class="article-card" data-cat="guia" onclick="window.location.href='posts/guia-principiantes.html'">
             <div class="article-card__thumb purple"><img src="assets/guia.png" alt=""></div>
             <div class="article-card__content">
               <div class="article-card__meta">
@@ -869,7 +869,7 @@
             </div>
           </div>
 
-          <div class="article-card" onclick="window.location.href='posts/anti-consumismo-inteligente.html'">
+          <div class="article-card" data-cat="economia" onclick="window.location.href='posts/anti-consumismo-inteligente.html'">
             <div class="article-card__thumb dark"><img src="assets/anti-consumismo.png" alt=""></div>
             <div class="article-card__content">
               <div class="article-card__meta">
@@ -881,7 +881,7 @@
             </div>
           </div>
 
-          <div class="article-card" onclick="window.location.href='posts/sistema-reputacion.html'">
+          <div class="article-card" data-cat="guia" onclick="window.location.href='posts/sistema-reputacion.html'">
             <div class="article-card__thumb orange"><img src="assets/reputacion.png" alt=""></div>
             <div class="article-card__content">
               <div class="article-card__meta">
@@ -893,7 +893,7 @@
             </div>
           </div>
 
-          <div class="article-card" onclick="window.location.href='posts/treqe-economia-circular.html'">
+          <div class="article-card" data-cat="sostenibilidad" onclick="window.location.href='posts/treqe-economia-circular.html'">
             <div class="article-card__thumb teal"><img src="assets/economia-circular.png" alt=""></div>
             <div class="article-card__content">
               <div class="article-card__meta">
@@ -992,6 +992,16 @@
   </nav>
 
   <script>
+    function filterCategory(cat, el) {
+      var chips = document.querySelectorAll('.cat-chip');
+      chips.forEach(function(c) { c.classList.remove('active'); });
+      el.classList.add('active');
+      var cards = document.querySelectorAll('.article-card');
+      cards.forEach(function(card) {
+        var cc = card.getAttribute('data-cat');
+        card.style.display = (cat === 'all' || cc === cat) ? '' : 'none';
+      });
+    }
     function goToDiscover() { window.parent.location.href = '../v1-catalogo/'; }
     function goToTrades() { window.parent.location.href = '../v12-mis-matches/'; }
     function goToUpload() { window.parent.location.href = '../v3-subir/'; }
