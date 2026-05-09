@@ -151,6 +151,7 @@
       display: flex; gap: 8px;
       padding: 8px 16px;
       align-items: center;
+      justify-content: flex-start;
     }
     .tool-btn {
       display: flex; align-items: center; gap: 6px;
@@ -169,6 +170,35 @@
     }
     .tool-btn:active { transform: scale(0.97); }
     .tool-btn i { font-size: 0.75rem; color: var(--accent); }
+
+    .sort-wrapper { position: relative; }
+    .sort-dropdown {
+      position: absolute; top: calc(100% + 4px); left: 0;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(32px) saturate(200%);
+      -webkit-backdrop-filter: blur(32px) saturate(200%);
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.6);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+      padding: 8px;
+      min-width: 200px;
+      display: none; flex-direction: column; gap: 2px;
+      z-index: 60;
+    }
+    .sort-dropdown.open { display: flex; }
+    .sort-option {
+      display: block; width: 100%; text-align: left;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: none;
+      background: transparent;
+      font-family: inherit; font-size: 0.82rem; font-weight: 500;
+      color: var(--text);
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .sort-option:hover { background: rgba(0,0,0,0.03); }
+    .sort-option.active { background: rgba(255,106,53,0.1); color: var(--accent); font-weight: 700; }
     @media (min-width: 600px) {
       .toolbar { padding: 8px 24px; }
       .search-icon { right: 24px; }
@@ -884,9 +914,17 @@
     <button class="tool-btn" onclick="openFilters()">
       <i class="fas fa-sliders-h"></i> Filtrar
     </button>
-    <button class="tool-btn" onclick="openSort()">
-      <i class="fas fa-arrow-down-wide-short"></i> Ordenar
-    </button>
+    <div class="sort-wrapper">
+      <button class="tool-btn" onclick="toggleSortDropdown()">
+        <i class="fas fa-arrow-down-wide-short"></i> Ordenar
+      </button>
+      <div class="sort-dropdown" id="sortDropdown">
+        <button class="sort-option active" data-sort="relevance" onclick="pickSortFromDropdown(this,'relevance')">Relevancia</button>
+        <button class="sort-option" data-sort="price-asc" onclick="pickSortFromDropdown(this,'price-asc')">Precio: menor a mayor</button>
+        <button class="sort-option" data-sort="price-desc" onclick="pickSortFromDropdown(this,'price-desc')">Precio: mayor a menor</button>
+        <button class="sort-option" data-sort="recent" onclick="pickSortFromDropdown(this,'recent')">Más recientes</button>
+      </div>
+    </div>
   </div>
 
   <!-- ===== ACTIVE FILTERS BAR (debajo del buscador) ===== -->
@@ -2134,6 +2172,37 @@ function pickCondition(chip){chip.parentElement.querySelectorAll(".filter-chip")
         setTimeout(function() { input.focus(); }, 300);
       }
     }
+    function toggleSortDropdown() {
+      var dd = document.getElementById('sortDropdown');
+      dd.classList.toggle('open');
+    }
+    function pickSortFromDropdown(btn, sort) {
+      var dd = document.getElementById('sortDropdown');
+      dd.querySelectorAll('.sort-option').forEach(function(o) { o.classList.remove('active'); });
+      btn.classList.add('active');
+      dd.classList.remove('open');
+      // Apply sort to visible items
+      var items = Array.from(document.querySelectorAll('.item-card'));
+      var visible = items.filter(function(i) { return i.style.display !== 'none'; });
+      var catalog = document.getElementById('catalog');
+      if (sort === 'price-asc') {
+        visible.sort(function(a, b) { return (parseFloat(a.dataset.price)||0) - (parseFloat(b.dataset.price)||0); });
+      } else if (sort === 'price-desc') {
+        visible.sort(function(a, b) { return (parseFloat(b.dataset.price)||0) - (parseFloat(a.dataset.price)||0); });
+      } else if (sort === 'recent') {
+        visible.reverse();
+      }
+      // relevance = default order, do nothing
+      visible.forEach(function(item) { catalog.appendChild(item); });
+    }
+    // Close sort dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+      var dd = document.getElementById('sortDropdown');
+      var wrapper = document.querySelector('.sort-wrapper');
+      if (dd && wrapper && !wrapper.contains(e.target)) {
+        dd.classList.remove('open');
+      }
+    });
 </script>
 
   <!-- ===== FILTER MODAL ===== -->
