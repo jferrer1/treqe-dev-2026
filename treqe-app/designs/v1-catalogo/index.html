@@ -1763,16 +1763,6 @@
 
   <!-- ===== JAVASCRIPT ===== -->
   <script>
-    // Read search query from URL params (for cross-page search)
-    (function() {
-      var params = new URLSearchParams(window.location.search);
-      var q = params.get('search');
-      if (q) {
-        var input = document.getElementById('searchInput');
-        input.value = q;
-        input.dispatchEvent(new Event('input', { bubbles: true }));
-      }
-    })();
     // ===== STATE =====
     const searchInput = document.getElementById('searchInput');
     const catalog = document.getElementById('catalog');
@@ -2213,6 +2203,17 @@ function pickCondition(chip){chip.parentElement.querySelectorAll(".filter-chip")
         dd.classList.remove('open');
       }
     });
+
+    // Read search query from URL params
+    (function() {
+      var params = new URLSearchParams(window.location.search);
+      var q = params.get('search');
+      if (q) {
+        var input = document.getElementById('searchInput');
+        input.value = q;
+        if (typeof applyCurrentFilters === 'function') applyCurrentFilters();
+      }
+    })();
 </script>
 
   <!-- ===== FILTER MODAL ===== -->
