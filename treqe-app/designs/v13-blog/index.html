@@ -787,12 +787,12 @@
 
     <!-- Categories -->
     <div class="categories">
-      <button class="cat-chip active">Todo</button>
-      <button class="cat-chip" onclick="alert('Categoria: Trueque y economia')">Trueque y economia</button>
-      <button class="cat-chip" onclick="alert('Categoria: Casos reales')">Casos reales</button>
-      <button class="cat-chip" onclick="alert('Categoria: Tecnologia')">Tecnologia</button>
-      <button class="cat-chip" onclick="alert('Categoria: Comunidad')">Comunidad</button>
-      <button class="cat-chip" onclick="alert('Categoria: Historias')">Historias</button>
+      <button class="cat-chip active" onclick="filterCategory('all',this)">Todo</button>
+      <button class="cat-chip" onclick="filterCategory('economia',this)">Trueque y economia</button>
+      <button class="cat-chip" onclick="filterCategory('historias',this)">Casos reales</button>
+      <button class="cat-chip" onclick="filterCategory('tecnologia',this)">Tecnologia</button>
+      <button class="cat-chip" onclick="filterCategory('guia',this)">Guia</button>
+      <button class="cat-chip" onclick="filterCategory('sostenibilidad',this)">Sostenibilidad</button>
     </div>
 
     <!-- Content row (main + sidebar) -->
