@@ -653,12 +653,20 @@ function toggleSearch() {
   if (expand.classList.contains('open')) {
     expand.classList.remove('open');
     setTimeout(function() { icon.style.opacity = '1'; }, 200);
+    if (input.value.trim()) {
+      window.location.href = '../v1-catalogo/?search=' + encodeURIComponent(input.value.trim());
+    }
   } else {
     icon.style.opacity = '0';
     expand.classList.add('open');
     setTimeout(function() { input.focus(); }, 300);
   }
 }
+document.getElementById('searchInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && this.value.trim()) {
+    window.location.href = '../v1-catalogo/?search=' + encodeURIComponent(this.value.trim());
+  }
+});
 </script>
 </body>
 </html>

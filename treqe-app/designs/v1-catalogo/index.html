@@ -1763,6 +1763,15 @@
 
   <!-- ===== JAVASCRIPT ===== -->
   <script>
+    // Read search query from URL params (for cross-page search)
+    (function() {
+      var params = new URLSearchParams(window.location.search);
+      var q = params.get('search');
+      if (q) {
+        document.getElementById('searchInput').value = q;
+        if (typeof onSearchInput === 'function') onSearchInput();
+      }
+    })();
     // ===== STATE =====
     const searchInput = document.getElementById('searchInput');
     const catalog = document.getElementById('catalog');
