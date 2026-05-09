@@ -56,18 +56,23 @@
       gap: 24px;
     }
     .header-inner .logo {
-      font-size: 1.2rem;
-      font-weight: 800;
-      letter-spacing: -0.5px;
-      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 2px;
       flex-shrink: 0;
     }
-    .header-inner .logo span { color: var(--accent); }
-    .header-inner .logo small {
-      font-size: 0.7rem;
-      font-weight: 400;
-      color: var(--text-tertiary);
-      margin-left: 4px;
+    .header-inner .logo img {
+      height: 32px;
+      width: auto;
+      display: block;
+    }
+    .header-inner .logo .blog-suffix {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin-left: 2px;
+      position: relative;
+      top: 1px;
     }
     .back-link {
       padding: 8px 16px;
@@ -94,6 +99,22 @@
       color: var(--text); font-size: 1.1rem;
     }
     .mobile-header .back-btn:active { background: var(--border); }
+    .mobile-header .mob-logo {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+    .mobile-header .mob-logo img {
+      height: 28px;
+      width: auto;
+      display: block;
+    }
+    .mobile-header .mob-logo .blog-suffix {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin-left: 2px;
+    }
 
     /* ===== HERO IMAGE ===== */
     .post-hero {
@@ -522,7 +543,10 @@
   <!-- Desktop Header -->
   <header class="site-header">
     <div class="header-inner">
-      <a class="logo" href="../v1-catalogo/">treqe<small>.blog</small></a>
+      <a class="logo" href="../v1-catalogo/">
+        <img src="../logo-treqe.png" alt="treqe">
+        <span class="blog-suffix">.blog</span>
+      </a>
       <a class="back-link" href="../v13-blog/"><i class="fas fa-arrow-left"></i> Volver al blog</a>
     </div>
   </header>
@@ -530,7 +554,10 @@
   <!-- Mobile Header -->
   <div class="mobile-header">
     <button class="back-btn" onclick="goBack()"><i class="fas fa-chevron-left"></i></button>
-    <span style="font-size:0.88rem; font-weight:700; color:var(--text);">treqe.blog</span>
+    <div class="mob-logo">
+      <img src="../logo-treqe.png" alt="treqe">
+      <span class="blog-suffix">.blog</span>
+    </div>
   </div>
 
   <!-- Hero -->
