@@ -34,20 +34,6 @@
       --shadow: 0 2px 12px rgba(0,0,0,0.06);
     }
 
-    /* ===== STATUS BAR (mobile mock) ===== */
-    .status-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 8px 20px 4px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--text-secondary);
-      background: var(--bg);
-    }
-    .status-bar .time { font-weight: 700; color: var(--text); }
-    .status-bar .icons { display: flex; gap: 6px; font-size: 0.7rem; }
-
     /* ===== HEADER ===== */
     .site-header {
       background: var(--bg);
@@ -477,7 +463,6 @@
 
       .site-header { display: none; }
       .mobile-header { display: flex; }
-      .status-bar { display: flex; }
       .bottom-nav { display: flex; }
 
       .post-hero { height: 200px; }
@@ -502,23 +487,13 @@
     }
 
     @media (min-width: 768px) {
-      .status-bar, .mobile-header { display: none; }
+      .mobile-header { display: none; }
       .site-header { display: block; }
       .bottom-nav { display: none; }
     }
   </style>
 </head>
 <body>
-
-  <!-- Status Bar (mobile) -->
-  <div class="status-bar">
-    <span class="time">13:11</span>
-    <div class="icons">
-      <i class="fas fa-signal"></i>
-      <i class="fas fa-wifi"></i>
-      <i class="fas fa-battery-three-quarters"></i>
-    </div>
-  </div>
 
   <!-- Desktop Header -->
   <header class="site-header">
