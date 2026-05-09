@@ -149,7 +149,7 @@
     /* Toolbar */
     .toolbar {
       display: flex; gap: 8px;
-      padding: 6px 16px;
+      padding: 6px 16px 4px;
       align-items: center;
       justify-content: flex-start;
     }
@@ -200,12 +200,12 @@
     .sort-option:hover { background: rgba(0,0,0,0.03); }
     .sort-option.active { background: rgba(255,106,53,0.1); color: var(--accent); font-weight: 700; }
     @media (min-width: 600px) {
-      .toolbar { padding: 6px 24px; }
+      .toolbar { padding: 6px 24px 4px; }
       .search-icon { right: 24px; }
       .search-expand { right: 24px; }
     }
     @media (min-width: 1024px) {
-      .toolbar { max-width: 1200px; margin: 0 auto; padding: 6px 32px; }
+      .toolbar { max-width: 1200px; margin: 0 auto; padding: 6px 32px 4px; }
     }
     .search-bar__filter:active { background: var(--border); }
     /* Notification Badge */
