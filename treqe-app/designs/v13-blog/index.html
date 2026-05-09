@@ -922,18 +922,18 @@
             <h3>Newsletter</h3>
             <p>Recibe los nuevos articulos una vez a la semana. Zero spam.</p>
             <input type="email" placeholder="tu@email.com">
-            <button onclick="alert('Gracias por suscribirte! (demo)')">Suscribirse</button>
+            <button onclick="var e=this.parentElement.querySelector('input');if(e.value){alert('Gracias! Te avisaremos cuando haya nuevos articulos.');e.value=''}else{alert('Introduce tu email primero')}">Suscribirse</button>
           </div>
 
           <!-- Categorias -->
           <div class="sidebar-card">
             <h3>Categorias</h3>
             <ul>
-              <li><i class="fas fa-tag"></i> Trueque y economia <span class="badge">12</span></li>
-              <li><i class="fas fa-tag"></i> Casos reales <span class="badge">8</span></li>
-              <li><i class="fas fa-tag"></i> Tecnologia <span class="badge">6</span></li>
-              <li><i class="fas fa-tag"></i> Comunidad <span class="badge">5</span></li>
-              <li><i class="fas fa-tag"></i> Historias <span class="badge">4</span></li>
+              <li onclick="filterCategory('economia',document.querySelector('.cat-chip'))"><i class="fas fa-tag"></i> Trueque y economia <span class="badge">12</span></li>
+              <li onclick="filterCategory('historias',document.querySelector('.cat-chip'))"><i class="fas fa-tag"></i> Casos reales <span class="badge">8</span></li>
+              <li onclick="filterCategory('tecnologia',document.querySelector('.cat-chip'))"><i class="fas fa-tag"></i> Tecnologia <span class="badge">6</span></li>
+              <li onclick="filterCategory('guia',document.querySelector('.cat-chip'))"><i class="fas fa-tag"></i> Guia <span class="badge">5</span></li>
+              <li onclick="filterCategory('sostenibilidad',document.querySelector('.cat-chip'))"><i class="fas fa-tag"></i> Sostenibilidad <span class="badge">4</span></li>
             </ul>
           </div>
 
@@ -941,10 +941,10 @@
           <div class="sidebar-card">
             <h3>Mas leidos</h3>
             <ul>
-              <li><i class="fas fa-arrow-right"></i> Treqe no es Wallapop</li>
-              <li><i class="fas fa-arrow-right"></i> El algoritmo de intercambio</li>
-              <li><i class="fas fa-arrow-right"></i> Guia para principiantes</li>
-              <li><i class="fas fa-arrow-right"></i> Sistema de reputacion</li>
+              <li onclick="window.location.href='posts/primera-entrega.html'"><i class="fas fa-arrow-right"></i> Treqe no es Wallapop</li>
+              <li onclick="window.location.href='posts/algoritmo-intercambio-circular.html'"><i class="fas fa-arrow-right"></i> Como Treqe encuentra tu intercambio</li>
+              <li onclick="window.location.href='posts/guia-principiantes.html'"><i class="fas fa-arrow-right"></i> Guia para principiantes</li>
+              <li onclick="window.location.href='posts/sistema-reputacion.html'"><i class="fas fa-arrow-right"></i> Sistema de reputacion</li>
             </ul>
           </div>
 
