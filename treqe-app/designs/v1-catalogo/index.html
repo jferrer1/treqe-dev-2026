@@ -1768,8 +1768,9 @@
       var params = new URLSearchParams(window.location.search);
       var q = params.get('search');
       if (q) {
-        document.getElementById('searchInput').value = q;
-        if (typeof onSearchInput === 'function') onSearchInput();
+        var input = document.getElementById('searchInput');
+        input.value = q;
+        input.dispatchEvent(new Event('input', { bubbles: true }));
       }
     })();
     // ===== STATE =====
