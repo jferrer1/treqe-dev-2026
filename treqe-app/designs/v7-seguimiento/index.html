@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -43,6 +43,35 @@
     .tracking-item__label{font-size:.65rem;color:var(--text-tertiary);margin-bottom:3px}
     .tracking-item__name{font-size:.8rem;font-weight:600;color:var(--text)}
 
+    /* ── Intercambio circular: split recibo/envío ── */
+    .swap-split{display:flex;flex-direction:column;gap:0;margin-bottom:12px;border-radius:12px;overflow:hidden;border:1px solid var(--border)}
+    .swap-split__side{padding:12px 14px}
+    .swap-split__side--receive{background:#F6FCFC;border-bottom:1px dashed var(--border)}
+    .swap-split__side--send{background:#FFF9F6}
+    .swap-split__header{display:flex;align-items:center;gap:6px;margin-bottom:8px}
+    .swap-split__header-icon{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;flex-shrink:0}
+    .swap-split__side--receive .swap-split__header-icon{background:rgba(0,184,184,.12);color:var(--success)}
+    .swap-split__side--send .swap-split__header-icon{background:rgba(255,106,53,.12);color:var(--accent)}
+    .swap-split__header-label{font-size:.75rem;font-weight:600;color:var(--text);flex:1}
+    .swap-split__status{font-size:.65rem;font-weight:600;padding:2px 8px;border-radius:6px;white-space:nowrap}
+    .swap-split__status--info{background:rgba(0,184,184,.1);color:var(--success)}
+    .swap-split__status--warn{background:rgba(245,166,35,.12);color:#C88A1A}
+    .swap-split__status--success{background:rgba(0,184,184,.1);color:var(--success)}
+    .swap-split__status--muted{background:var(--bg);color:var(--text-tertiary)}
+    .swap-split__item{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+    .swap-split__item-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
+    .swap-split__side--receive .swap-split__item-icon{background:rgba(0,184,184,.08);color:var(--success)}
+    .swap-split__side--send .swap-split__item-icon{background:rgba(255,106,53,.08);color:var(--accent)}
+    .swap-split__item-details{flex:1;min-width:0}
+    .swap-split__item-name{font-size:.8rem;font-weight:600;color:var(--text)}
+    .swap-split__item-from{font-size:.65rem;color:var(--text-secondary)}
+    .swap-split__item-price{font-size:.65rem;color:var(--text-tertiary)}
+    .swap-split__carrier{display:flex;align-items:center;gap:6px;font-size:.68rem;color:var(--text-secondary);margin-top:4px;padding-top:6px;border-top:1px solid var(--border)}
+    .swap-split__carrier a{color:var(--accent);font-weight:500;text-decoration:none;transition:opacity .2s}
+    .swap-split__carrier a:hover{opacity:.7}
+    .swap-split__carrier a i{font-size:.6rem;margin-left:2px}
+
+    /* direct card timeline & info — action-oriented labels */
     .timeline{display:flex;align-items:center;gap:0;margin:12px 0;padding:4px 0}
     .timeline-step{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;position:relative}
     .timeline-step::after{content:'';position:absolute;top:11px;left:calc(50% + 12px);right:0;height:2px;background:var(--border);z-index:0}
@@ -52,13 +81,15 @@
     .timeline-step.completed::after{background:var(--success)}
     .timeline-step.active .timeline-step__dot{background:var(--accent);color:#FFF}
     .timeline-step.active::after{background:var(--border)}
-    .timeline-step__label{font-size:.6rem;color:var(--text-tertiary);text-align:center;white-space:nowrap}
+    .timeline-step__label{font-size:.6rem;color:var(--text-tertiary);text-align:center;white-space:nowrap;max-width:80px}
     .timeline-step.completed .timeline-step__label{color:var(--success)}
     .timeline-step.active .timeline-step__label{color:var(--accent)}
 
-    .tracking-info{background:#F8F6F0;border-radius:10px;padding:10px 12px;margin-bottom:10px;font-size:.72rem;color:var(--text-secondary);display:flex;align-items:center;gap:8px}
+    .tracking-info{background:#F8F6F0;border-radius:10px;padding:10px 12px;margin-bottom:8px;font-size:.72rem;color:var(--text-secondary);display:flex;align-items:center;gap:8px}
     .tracking-info i{color:var(--accent);font-size:.85rem}
     .tracking-info__text{flex:1}
+    .tracking-info__text a{color:var(--accent);font-weight:500;text-decoration:none}
+    .tracking-info__text a:hover{opacity:.7}
     .tracking-info__date{font-size:.65rem;color:var(--text-tertiary);white-space:nowrap}
     .tracking-action{width:100%;padding:10px;border-radius:10px;font-size:.8rem;font-weight:600;text-align:center;transition:all .2s}
     .tracking-action--accent{background:var(--accent);color:#FFF}
@@ -96,14 +127,14 @@
   </div>
 
   <div class="tabs">
-    <button class="tab active" onclick="switchTrackingTab(this,'active')"><i class="fas fa-truck"></i> Envios activos <span class="count">3</span></button>
+    <button class="tab active" onclick="switchTrackingTab(this,'active')"><i class="fas fa-truck"></i> Envíos activos <span class="count">3</span></button>
     <button class="tab" onclick="switchTrackingTab(this,'history')"><i class="fas fa-check-circle"></i> Historial <span class="count">2</span></button>
   </div>
 
-  <!-- TAB: ENVIOS ACTIVOS -->
+  <!-- ═══ TAB: ENVÍOS ACTIVOS ═══ -->
   <div class="tracking-section active" id="active-section">
-    
-    <!-- Card 1: Compra directa -->
+
+    <!-- ─── Card 1: Compra directa ─── -->
     <div class="tracking-card">
       <div class="tracking-card__header">
         <div>
@@ -113,36 +144,38 @@
         <span style="font-size:.7rem;color:var(--text-tertiary);">7 de mayo</span>
       </div>
       <div class="tracking-card__title">iPhone 15 Pro · 256GB · Titanio</div>
-      <div class="tracking-card__meta">890EUR · Vendedor: Ana</div>
-      
+      <div class="tracking-card__meta">890€ · Vendedor: Ana</div>
+
       <div class="timeline">
         <div class="timeline-step completed">
           <div class="timeline-step__dot"><i class="fas fa-check"></i></div>
-          <div class="timeline-step__label">Pendiente</div>
+          <div class="timeline-step__label">Esperando envío del vendedor</div>
         </div>
         <div class="timeline-step active">
           <div class="timeline-step__dot"><i class="fas fa-truck"></i></div>
-          <div class="timeline-step__label">Enviado</div>
+          <div class="timeline-step__label">En tránsito</div>
         </div>
         <div class="timeline-step">
           <div class="timeline-step__dot"><i class="fas fa-box"></i></div>
-          <div class="timeline-step__label">Transito</div>
+          <div class="timeline-step__label">Acción requerida: entregar paquete</div>
         </div>
         <div class="timeline-step">
           <div class="timeline-step__dot"><i class="fas fa-home"></i></div>
-          <div class="timeline-step__label">Recibido</div>
+          <div class="timeline-step__label">¡Entregado!</div>
         </div>
       </div>
-      
+
       <div class="tracking-info">
         <i class="fas fa-map-marker-alt"></i>
-        <div class="tracking-info__text">Correos Express · En transito · Madrid, 14:32</div>
+        <div class="tracking-info__text">
+          <a href="https://www.correosexpress.com/tracking?num=123456" target="_blank" rel="noopener">Correos Express</a> · En tránsito · Madrid, 14:32
+        </div>
         <div class="tracking-info__date">Hoy</div>
       </div>
-      <button class="tracking-action tracking-action--outline" onclick="alert('Seguimiento completo disponible en la version final')"><i class="fas fa-search-location"></i> Ver seguimiento completo</button>
+      <button class="tracking-action tracking-action--outline" onclick="alert('Seguimiento completo disponible en la versión final')"><i class="fas fa-search-location"></i> Ver seguimiento completo</button>
     </div>
 
-    <!-- Card 2: Intercambio circular -->
+    <!-- ─── Card 2: Intercambio circular (en tránsito — he enviado, me llega) ─── -->
     <div class="tracking-card">
       <div class="tracking-card__header">
         <div>
@@ -151,73 +184,116 @@
         </div>
         <span style="font-size:.7rem;color:var(--text-tertiary);">7 de mayo</span>
       </div>
-      <div class="tracking-card__items">
-        <div class="tracking-item">
-          <div class="tracking-item__label">Recibes</div>
-          <div class="tracking-item__name">Canon EOS R</div>
-          <span style="font-size:.65rem;color:var(--text-tertiary);">de Ana</span>
+
+      <!-- Split Recibo / Envío -->
+      <div class="swap-split">
+        <!-- Lado: Lo que recibo -->
+        <div class="swap-split__side swap-split__side--receive">
+          <div class="swap-split__header">
+            <div class="swap-split__header-icon"><i class="fas fa-arrow-down"></i></div>
+            <span class="swap-split__header-label">Lo que recibo</span>
+            <span class="swap-split__status swap-split__status--info">En tránsito</span>
+          </div>
+          <div class="swap-split__item">
+            <div class="swap-split__item-icon"><i class="fas fa-camera"></i></div>
+            <div class="swap-split__item-details">
+              <div class="swap-split__item-name">Canon EOS R</div>
+              <div class="swap-split__item-from">de Ana</div>
+            </div>
+          </div>
+          <div class="swap-split__carrier">
+            <i class="fas fa-truck"></i>
+            <a href="https://www.seur.com/livres/pseguim.web?n=SEUR789012" target="_blank" rel="noopener">SEUR <i class="fas fa-external-link-alt"></i></a>
+            · Barcelona, 9:15 · Llega mañana
+          </div>
         </div>
-        <div class="tracking-item">
-          <div class="tracking-item__label">Das</div>
-          <div class="tracking-item__name">AirPods Max</div>
-          <span style="font-size:.65rem;color:var(--text-tertiary);">380EUR</span>
+
+        <!-- Lado: Lo que envío -->
+        <div class="swap-split__side swap-split__side--send">
+          <div class="swap-split__header">
+            <div class="swap-split__header-icon"><i class="fas fa-arrow-up"></i></div>
+            <span class="swap-split__header-label">Lo que envío</span>
+            <span class="swap-split__status swap-split__status--success">¡Entregado!</span>
+          </div>
+          <div class="swap-split__item">
+            <div class="swap-split__item-icon"><i class="fas fa-headphones"></i></div>
+            <div class="swap-split__item-details">
+              <div class="swap-split__item-name">AirPods Max</div>
+              <div class="swap-split__item-from">380€</div>
+            </div>
+          </div>
+          <div class="swap-split__carrier">
+            <i class="fas fa-check-circle" style="color:var(--success)"></i>
+            <span>Ana ya lo recibió <span style="color:var(--text-tertiary)">· Hace 2 días</span></span>
+          </div>
         </div>
       </div>
 
-      <div class="tracking-info">
-        <i class="fas fa-box-open"></i>
-        <div class="tracking-info__text">Tu envio: Recibido (Ana ya lo tiene)</div>
-        <div class="tracking-info__date">Hace 2 dias</div>
-      </div>
-      <div class="tracking-info">
-        <i class="fas fa-truck-moving"></i>
-        <div class="tracking-info__text">Tu recepcion: En camino · Llega manana</div>
-        <div class="tracking-info__date">SEUR · Barcelona, 9:15</div>
-      </div>
-      <button class="tracking-action tracking-action--outline" onclick="alert('Seguimiento completo disponible en la version final')"><i class="fas fa-search-location"></i> Ver seguimiento completo</button>
+      <button class="tracking-action tracking-action--outline" onclick="alert('Seguimiento completo disponible en la versión final')"><i class="fas fa-search-location"></i> Ver seguimiento completo</button>
     </div>
 
-    <!-- Card 3: Intercambio con envio pendiente -->
+    <!-- ─── Card 3: Intercambio circular (espera envío del otro) ─── -->
     <div class="tracking-card">
       <div class="tracking-card__header">
         <div>
           <span class="tracking-card__type circular"><i class="fas fa-exchange-alt"></i> Intercambio circular</span>
           <div class="tracking-card__id">#TRX-7842</div>
         </div>
-        <span style="font-size:.7rem;color:var(--text-tertiary);">Pendiente</span>
+        <span style="font-size:.7rem;color:var(--warning);font-weight:500;">Esperando envío de Ana</span>
       </div>
-      <div class="tracking-card__items">
-        <div class="tracking-item">
-          <div class="tracking-item__label">Recibes</div>
-          <div class="tracking-item__name">iPhone 15 Pro</div>
-          <span style="font-size:.65rem;color:var(--text-tertiary);">de Ana</span>
+
+      <div class="swap-split">
+        <!-- Lado: Lo que recibo -->
+        <div class="swap-split__side swap-split__side--receive">
+          <div class="swap-split__header">
+            <div class="swap-split__header-icon"><i class="fas fa-arrow-down"></i></div>
+            <span class="swap-split__header-label">Lo que recibo</span>
+            <span class="swap-split__status swap-split__status--warn">Esperando envío del vendedor</span>
+          </div>
+          <div class="swap-split__item">
+            <div class="swap-split__item-icon"><i class="fas fa-mobile-alt"></i></div>
+            <div class="swap-split__item-details">
+              <div class="swap-split__item-name">iPhone 15 Pro</div>
+              <div class="swap-split__item-from">de Ana</div>
+            </div>
+          </div>
+          <div class="swap-split__carrier">
+            <i class="fas fa-clock" style="color:var(--warning)"></i>
+            <span>Ana aún no lo ha enviado</span>
+          </div>
         </div>
-        <div class="tracking-item">
-          <div class="tracking-item__label">Das</div>
-          <div class="tracking-item__name">Fender Stratocaster</div>
-          <span style="font-size:.65rem;color:var(--text-tertiary);">580EUR + 310EUR</span>
+
+        <!-- Lado: Lo que envío -->
+        <div class="swap-split__side swap-split__side--send">
+          <div class="swap-split__header">
+            <div class="swap-split__header-icon"><i class="fas fa-arrow-up"></i></div>
+            <span class="swap-split__header-label">Lo que envío</span>
+            <span class="swap-split__status swap-split__status--info">En tránsito</span>
+          </div>
+          <div class="swap-split__item">
+            <div class="swap-split__item-icon"><i class="fas fa-guitar"></i></div>
+            <div class="swap-split__item-details">
+              <div class="swap-split__item-name">Fender Stratocaster</div>
+              <div class="swap-split__item-from">580€ + 310€</div>
+            </div>
+          </div>
+          <div class="swap-split__carrier">
+            <i class="fas fa-truck"></i>
+            <a href="https://www.correosexpress.com/tracking?num=654321" target="_blank" rel="noopener">Correos Express <i class="fas fa-external-link-alt"></i></a>
+            · Pendiente de recepción por Ana
+          </div>
         </div>
       </div>
 
-      <div class="tracking-info">
-        <i class="fas fa-paper-plane"></i>
-        <div class="tracking-info__text">Tu envio: Enviado (pendiente de recepcion)</div>
-        <div class="tracking-info__date">Correos</div>
-      </div>
-      <div class="tracking-info">
-        <i class="fas fa-clock"></i>
-        <div class="tracking-info__text">Tu recepcion: Pendiente de envio (Ana aun no lo ha enviado)</div>
-        <div class="tracking-info__date">--</div>
-      </div>
-      <button class="tracking-action tracking-action--accent" onclick="alert('Recordatorio enviado a Ana')"><i class="fas fa-bell"></i> Recordar a Ana</button>
+      <button class="tracking-action tracking-action--accent" onclick="alert('Recordatorio enviado a Ana')"><i class="fas fa-bell"></i> Recordar a Ana que envíe</button>
     </div>
 
   </div>
 
-  <!-- TAB: HISTORIAL -->
+  <!-- ═══ TAB: HISTORIAL ═══ -->
   <div class="tracking-section" id="history-section">
 
-    <!-- Card 4: Compra completada -->
+    <!-- ─── Card 4: Compra completada ─── -->
     <div class="tracking-card">
       <div class="tracking-card__header">
         <div>
@@ -227,29 +303,29 @@
         <span style="font-size:.7rem;color:var(--success);font-weight:600;">Completado</span>
       </div>
       <div class="tracking-card__title">Canon EOS R</div>
-      <div class="tracking-card__meta">1.200EUR · Entregado: 12 Abr 2026</div>
+      <div class="tracking-card__meta">1.200€ · Entregado: 12 Abr 2026</div>
 
       <div class="timeline">
         <div class="timeline-step completed">
           <div class="timeline-step__dot"><i class="fas fa-check"></i></div>
-          <div class="timeline-step__label">Pendiente</div>
+          <div class="timeline-step__label">Esperando envío del vendedor</div>
         </div>
         <div class="timeline-step completed">
           <div class="timeline-step__dot"><i class="fas fa-check"></i></div>
-          <div class="timeline-step__label">Enviado</div>
+          <div class="timeline-step__label">En tránsito</div>
         </div>
         <div class="timeline-step completed">
           <div class="timeline-step__dot"><i class="fas fa-check"></i></div>
-          <div class="timeline-step__label">Transito</div>
+          <div class="timeline-step__label">Acción requerida: entregar paquete</div>
         </div>
         <div class="timeline-step completed">
           <div class="timeline-step__dot"><i class="fas fa-check"></i></div>
-          <div class="timeline-step__label">Recibido</div>
+          <div class="timeline-step__label">¡Entregado!</div>
         </div>
       </div>
     </div>
 
-    <!-- Card 5: Intercambio completado -->
+    <!-- ─── Card 5: Intercambio completado ─── -->
     <div class="tracking-card">
       <div class="tracking-card__header">
         <div>
@@ -258,22 +334,42 @@
         </div>
         <span style="font-size:.7rem;color:var(--success);font-weight:600;">Completado</span>
       </div>
-      <div class="tracking-card__items">
-        <div class="tracking-item">
-          <div class="tracking-item__label">Recibiste</div>
-          <div class="tracking-item__name">AirPods Max</div>
-          <span style="font-size:.65rem;color:var(--text-tertiary);">380EUR</span>
+
+      <div class="swap-split">
+        <div class="swap-split__side swap-split__side--receive">
+          <div class="swap-split__header">
+            <div class="swap-split__header-icon"><i class="fas fa-arrow-down"></i></div>
+            <span class="swap-split__header-label">Recibiste</span>
+            <span class="swap-split__status swap-split__status--success">¡Entregado!</span>
+          </div>
+          <div class="swap-split__item">
+            <div class="swap-split__item-icon"><i class="fas fa-headphones"></i></div>
+            <div class="swap-split__item-details">
+              <div class="swap-split__item-name">AirPods Max</div>
+              <div class="swap-split__item-from">380€</div>
+            </div>
+          </div>
         </div>
-        <div class="tracking-item">
-          <div class="tracking-item__label">Diste</div>
-          <div class="tracking-item__name">Trek Marlin 7</div>
-          <span style="font-size:.65rem;color:var(--text-tertiary);">420EUR (40EUR vuelta)</span>
+        <div class="swap-split__side swap-split__side--send">
+          <div class="swap-split__header">
+            <div class="swap-split__header-icon"><i class="fas fa-arrow-up"></i></div>
+            <span class="swap-split__header-label">Enviaste</span>
+            <span class="swap-split__status swap-split__status--success">¡Entregado!</span>
+          </div>
+          <div class="swap-split__item">
+            <div class="swap-split__item-icon"><i class="fas fa-bicycle"></i></div>
+            <div class="swap-split__item-details">
+              <div class="swap-split__item-name">Trek Marlin 7</div>
+              <div class="swap-split__item-from">420€ (40€ vuelta)</div>
+            </div>
+          </div>
         </div>
       </div>
+
       <div class="tracking-card__meta">Completado: 3 Abr 2026</div>
       <div class="participants">
         <div class="participant-row"><i class="fas fa-star"></i> Ana <span style="color:var(--warning);">★★★★★</span></div>
-        <div class="participant-row"><i class="fas fa-star"></i> Bruno <span style="color:var(--warning);">★★★★</span></div>
+        <div class="participant-row"><i class="fas fa-star"></i> Bruno <span style="color:var(--warning);">★★★★☆</span></div>
       </div>
     </div>
 

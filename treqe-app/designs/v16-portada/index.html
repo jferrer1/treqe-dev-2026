@@ -307,9 +307,18 @@
       0 4px 24px rgba(0,20,50,0.04),
       0 0 0 1px rgba(255,255,255,0.35),
       inset 0 1px 0 rgba(255,255,255,0.5);
-    transform: translateZ(0); will-change: transform;
-    transition: transform 0.3s;
+    transform: translateY(24px) translateZ(0); will-change: transform, opacity;
+    opacity: 0;
+    transition: opacity 0.7s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94);
   }
+  .step.visible {
+    opacity: 1;
+    transform: translateY(0) translateZ(0);
+  }
+  .step:nth-child(2) { transition-delay: 0s; }
+  .step:nth-child(2).visible { transition-delay: 0.15s; }
+  .step:nth-child(3) { transition-delay: 0s; }
+  .step:nth-child(3).visible { transition-delay: 0.3s; }
   .step::after {
     content: ''; position: absolute; top: -50%; left: -50%;
     width: 200%; height: 200%;
@@ -318,6 +327,7 @@
     pointer-events: none;
   }
   .step:active { transform: scale(0.98); }
+  .cta-btn-secondary:active { transform: scale(0.96); }
   .step-circle {
     width: 56px; height: 56px; border-radius: 18px; flex-shrink: 0;
     display: flex; align-items: center; justify-content: center;
@@ -511,6 +521,7 @@
   }
   @media (prefers-reduced-motion: reduce) {
     .step, .cta-btn, .nav-plus, .circle-ring, .hero .blob { transition: none; animation: none; }
+    .step { opacity: 1; transform: none; }
   }
 </style>
 </head>
@@ -612,6 +623,9 @@
   </div>
   <h2>Así funciona el intercambio circular</h2>
   <p>4 personas, 4 objetos, una sola cadena.<br>Con o sin dinero, solo comunidad.</p>
+  <a href="../v10-registro/" class="cta-btn-secondary" style="display:inline-flex;align-items:center;gap:10px;margin-top:32px;background:rgba(0,34,77,0.08);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);color:var(--navy);font-family:inherit;font-size:0.95rem;font-weight:700;padding:16px 36px;border-radius:18px;border:1px solid rgba(0,34,77,0.1);cursor:pointer;text-decoration:none;box-shadow:0 4px 20px rgba(0,0,0,0.04),inset 0 1px 0 rgba(255,255,255,0.5);transition:transform 0.3s,box-shadow 0.3s;position:relative;z-index:1;transform:translateZ(0);">
+    Empieza tu primer círculo <i class="fas fa-arrow-right" style="font-size:0.8rem;"></i>
+  </a>
 </section>
 
 <!-- ══════ CTA ══════ -->
@@ -667,6 +681,26 @@ document.getElementById('searchInput').addEventListener('keydown', function(e) {
     window.location.href = '../v1-catalogo/?search=' + encodeURIComponent(this.value.trim());
   }
 });
+
+// ── Scroll-triggered step animation ──
+(function() {
+  var steps = document.querySelectorAll('.step');
+  if (!steps.length) return;
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    steps.forEach(function(s) { observer.observe(s); });
+  } else {
+    // Fallback: show all immediately
+    steps.forEach(function(s) { s.classList.add('visible'); });
+  }
+})();
 </script>
 </body>
 </html>
