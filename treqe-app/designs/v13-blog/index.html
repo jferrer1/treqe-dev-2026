@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>TREQE — Blog</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #F8F6F0;
+      color: #1A1A1A;
+      min-height: 100vh;
+      padding-bottom: 80px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    img { max-width: 100%; display: block; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+    a { text-decoration: none; color: inherit; }
+    input { font-family: inherit; font-size: inherit; }
+
+    :root {
+      --bg: #F8F6F0;
+      --text: #1A1A1A;
+      --text-secondary: #888888;
+      --text-tertiary: #B0B0B0;
+      --border: #E8E4DC;
+      --accent: #FF6A35;
+      --accent-hover: #E55A2B;
+      --success: #00B8B8;
+      --card-bg: #FFFFFF;
+      --shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+
+    /* ===== STATUS BAR ===== */
+    .status-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 20px 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      background: var(--bg);
+    }
+    .status-bar .time { font-weight: 700; color: var(--text); }
+    .status-bar .icons { display: flex; gap: 6px; font-size: 0.7rem; }
+
+    /* ===== HEADER ===== */
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px 12px 16px;
+      background: var(--bg);
+      width: 100%;
+    }
+    .header .back-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .header .back-btn:active { background: var(--border); }
+    .header .logo {
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--text);
+      flex: 1;
+    }
+    .header .logo span { color: var(--accent); }
+
+    /* ===== HERO SECTION ===== */
+    .hero-blog {
+      margin: 4px 16px 20px;
+      padding: 28px 20px;
+      background: linear-gradient(135deg, #1A1A2E 0%, #2A2A4E 100%);
+      border-radius: 20px;
+      color: #FFF;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-blog::after {
+      content: '';
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: rgba(255,106,53,0.12);
+    }
+    .hero-blog__tag {
+      display: inline-block;
+      background: var(--accent);
+      color: #FFF;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+    }
+    .hero-blog h1 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+    .hero-blog p {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+    .hero-blog__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--accent);
+      transition: gap 0.2s;
+    }
+    .hero-blog__cta i { font-size: 0.7rem; }
+    .hero-blog__cta:active { gap: 10px; }
+
+    /* ===== BLOG CATEGORIES ===== */
+    .categories {
+      display: flex;
+      gap: 8px;
+      padding: 0 16px 16px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+    .categories::-webkit-scrollbar { display: none; }
+    .cat-chip {
+      flex-shrink: 0;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      background: #FFF;
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .cat-chip:active {
+      background: var(--accent);
+      color: #FFF;
+      border-color: var(--accent);
+    }
+    .cat-chip.active {
+      background: var(--accent);
+      color: #FFF;
+      border-color: var(--accent);
+    }
+
+    /* ===== SECTION TITLE ===== */
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 4px 16px 10px;
+    }
+    .section-title h2 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .section-title span {
+      font-size: 0.75rem;
+      color: var(--text-tertiary);
+      font-weight: 400;
+    }
+
+    /* ===== FEATURED ARTICLE (full width) ===== */
+    .featured-article {
+      margin: 0 16px 16px;
+      background: var(--card-bg);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .featured-article:active { transform: scale(0.98); }
+    .featured-article__image {
+      width: 100%;
+      height: 180px;
+      background: linear-gradient(135deg, #FF6A35, #FF8A5C);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .featured-article__image .icon-overlay {
+      font-size: 3rem;
+      color: rgba(255,255,255,0.3);
+    }
+    .featured-article__image .featured-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(4px);
+      color: #FFF;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+    .featured-article__body {
+      padding: 16px;
+    }
+    .featured-article__meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.7rem;
+      color: var(--text-tertiary);
+      margin-bottom: 8px;
+    }
+    .featured-article__meta .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--text-tertiary); }
+    .featured-article__title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.3;
+      margin-bottom: 6px;
+    }
+    .featured-article__excerpt {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+    .featured-article__read {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .featured-article__read i { font-size: 0.65rem; }
+
+    /* ===== ARTICLE LIST ===== */
+    .article-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 0 16px 16px;
+    }
+    .article-card {
+      display: flex;
+      gap: 14px;
+      background: var(--card-bg);
+      border-radius: 14px;
+      padding: 14px;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .article-card:active { transform: scale(0.98); }
+    .article-card__thumb {
+      width: 80px;
+      height: 80px;
+      border-radius: 10px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      color: rgba(255,255,255,0.5);
+    }
+    .article-card__thumb.orange { background: linear-gradient(135deg, #FF6A35, #FF8A5C); }
+    .article-card__thumb.teal { background: linear-gradient(135deg, #00B8B8, #00D4AA); }
+    .article-card__thumb.purple { background: linear-gradient(135deg, #6C63FF, #8A84FF); }
+    .article-card__thumb.dark { background: linear-gradient(135deg, #1A1A2E, #2A2A4E); }
+    .article-card__thumb.gold { background: linear-gradient(135deg, #F5A623, #F7C948); }
+    .article-card__content { flex: 1; min-width: 0; }
+    .article-card__meta {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.68rem;
+      color: var(--text-tertiary);
+      margin-bottom: 4px;
+    }
+    .article-card__meta .tag {
+      background: #F0EDE6;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.62rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+    .article-card__title {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.3;
+      margin-bottom: 4px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .article-card__excerpt {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* ===== NEWSLETTER SIGNUP ===== */
+    .newsletter {
+      margin: 8px 16px 16px;
+      padding: 20px;
+      background: var(--card-bg);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+    .newsletter h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .newsletter p {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-bottom: 14px;
+    }
+    .newsletter__form {
+      display: flex;
+      gap: 8px;
+    }
+    .newsletter__form input {
+      flex: 1;
+      height: 44px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0 14px;
+      font-size: 0.85rem;
+      outline: none;
+      transition: border-color 0.2s;
+      background: var(--bg);
+    }
+    .newsletter__form input:focus {
+      border-color: var(--accent);
+    }
+    .newsletter__form button {
+      flex-shrink: 0;
+      height: 44px;
+      padding: 0 20px;
+      background: var(--accent);
+      color: #FFF;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .newsletter__form button:active { background: var(--accent-hover); }
+
+    /* ===== BOTTOM NAV ===== */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 72px;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      padding: 0 8px;
+      padding-bottom: 8px;
+      z-index: 100;
+    }
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      padding: 6px 12px;
+      border-radius: 10px;
+      color: var(--text-tertiary);
+      font-size: 0.6rem;
+      font-weight: 500;
+      transition: color 0.2s;
+      position: relative;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .nav-item i {
+      font-size: 1.2rem;
+      transition: color 0.2s;
+    }
+    .nav-item.active {
+      color: var(--accent);
+    }
+    .nav-item.active i {
+      color: var(--accent);
+    }
+    .nav-add {
+      margin-top: -18px;
+    }
+    .nav-add-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      background: var(--accent);
+      color: #FFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      box-shadow: 0 4px 16px rgba(255,106,53,0.35);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .nav-add-btn:active {
+      transform: scale(0.92);
+      box-shadow: 0 2px 8px rgba(255,106,53,0.2);
+    }
+    .nav-badge {
+      position: absolute;
+      top: 2px;
+      right: 6px;
+      width: 16px;
+      height: 16px;
+      background: #E74C3C;
+      color: #FFF;
+      font-size: 0.55rem;
+      font-weight: 700;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid var(--bg);
+    }
+
+    /* ===== LOAD MORE ===== */
+    .load-more {
+      text-align: center;
+      padding: 8px 0 16px;
+    }
+    .load-more button {
+      padding: 10px 28px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: all 0.2s;
+    }
+    .load-more button:active {
+      background: var(--border);
+      color: var(--text);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (min-width: 480px) {
+      .header, .hero-blog, .featured-article, .newsletter,
+      .categories, .section-title, .article-list, .load-more { max-width: 480px; margin-left: auto; margin-right: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Status Bar -->
+  <div class="status-bar">
+    <span class="time">13:01</span>
+    <div class="icons">
+      <i class="fas fa-signal"></i>
+      <i class="fas fa-wifi"></i>
+      <i class="fas fa-battery-three-quarters"></i>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <div class="header">
+    <button class="back-btn" onclick="goToHome()"><i class="fas fa-chevron-left"></i></button>
+    <div class="logo">treqe<span>.</span>blog</div>
+  </div>
+
+  <!-- Hero -->
+  <div class="hero-blog">
+    <div class="hero-blog__tag">Primera entrega</div>
+    <h1>Por que el trueque es mas inteligente que comprar</h1>
+    <p>Intercambiamos desde antes de inventar el dinero. Treqe recupera lo mejor de esa idea con un algoritmo que hace posible lo imposible.</p>
+    <a class="hero-blog__cta" href="posts/primera-entrega.html">
+      Leer articulo <i class="fas fa-arrow-right"></i>
+    </a>
+  </div>
+
+  <!-- Categories -->
+  <div class="categories">
+    <button class="cat-chip active">Todo</button>
+    <button class="cat-chip" onclick="alert('Categoria: Trueque y economia')">Trueque y economia</button>
+    <button class="cat-chip" onclick="alert('Categoria: Casos reales')">Casos reales</button>
+    <button class="cat-chip" onclick="alert('Categoria: Tecnologia')">Tecnologia</button>
+    <button class="cat-chip" onclick="alert('Categoria: Comunidad')">Comunidad</button>
+    <button class="cat-chip" onclick="alert('Categoria: Historias')">Historias</button>
+  </div>
+
+  <!-- Section: Destacados -->
+  <div class="section-title" style="padding-top: 4px;">
+    <h2>Articulos destacados</h2>
+    <span>Mas recientes</span>
+  </div>
+
+  <!-- Featured article -->
+  <div class="featured-article" onclick="window.location.href='posts/primera-entrega.html'">
+    <div class="featured-article__image">
+      <span class="featured-badge">Nuevo</span>
+      <i class="fas fa-arrows-spin icon-overlay"></i>
+    </div>
+    <div class="featured-article__body">
+      <div class="featured-article__meta">
+        <span>9 mayo 2026</span>
+        <span class="dot"></span>
+        <span>5 min lectura</span>
+      </div>
+      <div class="featured-article__title">Treqe no es Wallapop: el trueque estructurado llego para quedarse</div>
+      <div class="featured-article__excerpt">Comprar y vender es el modelo mas obvio, pero no el mas eficiente. Detras de cada objeto que acumulas hay una oportunidad de intercambio que estas desperdiciando.</div>
+      <div class="featured-article__read">Seguir leyendo <i class="fas fa-arrow-right"></i></div>
+    </div>
+  </div>
+
+  <!-- Section: Mas articulos -->
+  <div class="section-title">
+    <h2>Mas articulos</h2>
+    <span>Ver todos</span>
+  </div>
+
+  <!-- Article list -->
+  <div class="article-list">
+
+    <!-- Card 1 -->
+    <div class="article-card" onclick="alert('Post demo: El algoritmo que hace posible el intercambio circular')">
+      <div class="article-card__thumb teal">
+        <i class="fas fa-code"></i>
+      </div>
+      <div class="article-card__content">
+        <div class="article-card__meta">
+          <span>7 mayo 2026</span>
+          <span class="tag">Tecnologia</span>
+        </div>
+        <div class="article-card__title">El algoritmo que hace posible el intercambio circular</div>
+        <div class="article-card__excerpt">Como resuelve Treqe el problema matematico del trueque multiple sin volverse loco en el intento.</div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="article-card" onclick="alert('Post demo: Intercambie un iPad por clases de guitarra')">
+      <div class="article-card__thumb gold">
+        <i class="fas fa-guitar"></i>
+      </div>
+      <div class="article-card__content">
+        <div class="article-card__meta">
+          <span>5 mayo 2026</span>
+          <span class="tag">Historias</span>
+        </div>
+        <div class="article-card__title">Intercambie un iPad por 3 meses de clases de guitarra y una cena</div>
+        <div class="article-card__excerpt">La historia de como Laura consiguio lo que necesitaba sin gastar un euro. El trueque en accion.</div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="article-card" onclick="alert('Post demo: Guia para principiantes del trueque')">
+      <div class="article-card__thumb purple">
+        <i class="fas fa-compass"></i>
+      </div>
+      <div class="article-card__content">
+        <div class="article-card__meta">
+          <span>3 mayo 2026</span>
+          <span class="tag">Guia</span>
+        </div>
+        <div class="article-card__title">Guia para principiantes: como funciona el trueque en Treqe</div>
+        <div class="article-card__excerpt">Todo lo que necesitas saber para hacer tu primer intercambio. Desde crear tu perfil hasta cerrar el trato.</div>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="article-card" onclick="alert('Post demo: Por que el anti-consumismo inteligente funciona')">
+      <div class="article-card__thumb dark">
+        <i class="fas fa-brain"></i>
+      </div>
+      <div class="article-card__content">
+        <div class="article-card__meta">
+          <span>1 mayo 2026</span>
+          <span class="tag">Reflexion</span>
+        </div>
+        <div class="article-card__title">Anti-consumismo inteligente: no es comprar menos, es intercambiar mejor</div>
+        <div class="article-card__excerpt">El consumo consciente no va de privarse. Va de optimizar. Y el trueque es la herramienta mas infravalorada.</div>
+      </div>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="article-card" onclick="alert('Post demo: Como funciona el sistema de reputacion')">
+      <div class="article-card__thumb orange">
+        <i class="fas fa-star"></i>
+      </div>
+      <div class="article-card__content">
+        <div class="article-card__meta">
+          <span>28 abril 2026</span>
+          <span class="tag">Producto</span>
+        </div>
+        <div class="article-card__title">Como funciona el sistema de reputacion y por que confiar en el</div>
+        <div class="article-card__excerpt">La confianza es la moneda mas valiosa en una comunidad de intercambio. Te explicamos como la medimos.</div>
+      </div>
+    </div>
+
+    <!-- Card 6 -->
+    <div class="article-card" onclick="alert('Post demo: Treqe + economia circular')">
+      <div class="article-card__thumb teal">
+        <i class="fas fa-recycle"></i>
+      </div>
+      <div class="article-card__content">
+        <div class="article-card__meta">
+          <span>25 abril 2026</span>
+          <span class="tag">Sostenibilidad</span>
+        </div>
+        <div class="article-card__title">Treqe y la economia circular: como tus objetos pueden tener mil vidas</div>
+        <div class="article-card__excerpt">Cada vez que intercambias algo, alargas su ciclo de vida. El impacto ambiental del trueque explicado.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Load more -->
+  <div class="load-more">
+    <button onclick="alert('Cargando mas articulos...')">Cargar mas articulos</button>
+  </div>
+
+  <!-- Newsletter -->
+  <div class="newsletter">
+    <h3>No te pierdas ninguna entrega</h3>
+    <p>Recibe los nuevos articulos directamente en tu correo. Una vez a la semana, zero spam.</p>
+    <div class="newsletter__form">
+      <input type="email" placeholder="tu@email.com" onfocus="this.placeholder=''" onblur="this.placeholder='tu@email.com'">
+      <button onclick="alert('Gracias por suscribirte! 🎉 (demo)')">Suscribirse</button>
+    </div>
+  </div>
+
+  <!-- ===== BOTTOM NAV ===== -->
+  <nav class="bottom-nav">
+    <button class="nav-item" onclick="goToHome()">
+      <i class="fas fa-home"></i>
+      <span>Inicio</span>
+    </button>
+    <button class="nav-item active">
+      <i class="fas fa-newspaper"></i>
+      <span>Blog</span>
+    </button>
+    <button class="nav-item nav-add" onclick="goToUpload()">
+      <div class="nav-add-btn"><i class="fas fa-plus"></i></div>
+    </button>
+    <button class="nav-item" onclick="goToMatches()">
+      <i class="fas fa-bell"></i>
+      <span>Notificaciones</span>
+      <span class="nav-badge">3</span>
+    </button>
+    <button class="nav-item" onclick="goToProfile()">
+      <i class="fas fa-user"></i>
+      <span>Perfil</span>
+    </button>
+  </nav>
+
+  <script>
+    function goToHome() {
+      window.parent.location.href = '../v1-catalogo/';
+    }
+    function goToSearch() {
+      window.parent.location.href = '../v1-catalogo/';
+    }
+    function goToUpload() {
+      window.parent.location.href = '../v3-subir/';
+    }
+    function goToMatches() {
+      window.parent.location.href = '../v12-mis-matches/';
+    }
+    function goToProfile() {
+      window.parent.location.href = '../v4-perfil/';
+    }
+  </script>
+
+</body>
+</html>
