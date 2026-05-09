@@ -2,13 +2,13 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Treqe no es Wallapop — Blog TREQE</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+    html { font-size: 16px; }
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background: #F8F6F0;
@@ -34,6 +34,7 @@
       --shadow: 0 2px 12px rgba(0,0,0,0.06);
     }
 
+    /* ===== STATUS BAR (mobile mock) ===== */
     .status-bar {
       display: flex;
       justify-content: space-between;
@@ -47,29 +48,66 @@
     .status-bar .time { font-weight: 700; color: var(--text); }
     .status-bar .icons { display: flex; gap: 6px; font-size: 0.7rem; }
 
-    .post-header {
+    /* ===== HEADER ===== */
+    .site-header {
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
       display: flex;
+      align-items: center;
+      padding: 0 24px;
+      height: 60px;
+      gap: 24px;
+    }
+    .header-inner .logo {
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--text);
+      flex-shrink: 0;
+    }
+    .header-inner .logo span { color: var(--accent); }
+    .header-inner .logo small {
+      font-size: 0.7rem;
+      font-weight: 400;
+      color: var(--text-tertiary);
+      margin-left: 4px;
+    }
+    .back-link {
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: all 0.2s;
+    }
+    .back-link:hover { background: #FFF; color: var(--text); }
+    .back-link i { margin-right: 6px; }
+
+    .mobile-header {
+      display: none;
       align-items: center;
       gap: 10px;
       padding: 8px 12px 12px 16px;
       background: var(--bg);
-      width: 100%;
     }
-    .post-header .back-btn {
-      width: 36px;
-      height: 36px;
+    .mobile-header .back-btn {
+      width: 36px; height: 36px;
       border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text);
-      font-size: 1.1rem;
-      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text); font-size: 1.1rem;
     }
-    .post-header .back-btn:active { background: var(--border); }
+    .mobile-header .back-btn:active { background: var(--border); }
 
+    /* ===== HERO IMAGE ===== */
     .post-hero {
-      height: 200px;
+      height: 320px;
       background: linear-gradient(135deg, #FF6A35 0%, #FF8A5C 50%, #6C63FF 100%);
       display: flex;
       align-items: center;
@@ -77,35 +115,38 @@
       position: relative;
     }
     .post-hero i {
-      font-size: 4rem;
-      color: rgba(255,255,255,0.2);
+      font-size: 6rem;
+      color: rgba(255,255,255,0.15);
     }
     .post-hero .post-tag {
       position: absolute;
-      bottom: 16px;
-      left: 20px;
+      bottom: 20px;
+      left: 24px;
       background: rgba(0,0,0,0.4);
       backdrop-filter: blur(4px);
       color: #FFF;
-      font-size: 0.7rem;
+      font-size: 0.75rem;
       font-weight: 700;
-      padding: 6px 14px;
+      padding: 6px 16px;
       border-radius: 8px;
     }
 
-    .post-body {
-      padding: 24px 20px 40px;
-      max-width: 640px;
+    /* ===== POST BODY ===== */
+    .post-container {
+      max-width: 720px;
       margin: 0 auto;
+      padding: 0 24px;
     }
-
+    .post-body {
+      padding: 32px 0 48px;
+    }
     .post-meta {
       display: flex;
       align-items: center;
       gap: 10px;
-      font-size: 0.75rem;
+      font-size: 0.8rem;
       color: var(--text-tertiary);
-      margin-bottom: 16px;
+      margin-bottom: 20px;
       flex-wrap: wrap;
     }
     .post-meta .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--text-tertiary); }
@@ -113,71 +154,63 @@
       background: #F0EDE6;
       padding: 3px 10px;
       border-radius: 6px;
-      font-size: 0.65rem;
+      font-size: 0.7rem;
       font-weight: 600;
       color: var(--text-secondary);
     }
-
     .post-body h1 {
-      font-size: 1.5rem;
+      font-size: clamp(1.5rem, 3.5vw, 2.2rem);
       font-weight: 800;
       color: var(--text);
-      line-height: 1.25;
-      margin-bottom: 6px;
+      line-height: 1.2;
+      margin-bottom: 8px;
       letter-spacing: -0.5px;
     }
-
     .post-body .subhead {
-      font-size: 0.95rem;
+      font-size: clamp(0.9rem, 1.5vw, 1.05rem);
       color: var(--text-secondary);
-      line-height: 1.5;
-      margin-bottom: 24px;
+      line-height: 1.6;
+      margin-bottom: 28px;
     }
-
     .post-body h2 {
-      font-size: 1.15rem;
+      font-size: clamp(1.1rem, 2vw, 1.3rem);
       font-weight: 700;
       color: var(--text);
-      margin-top: 32px;
-      margin-bottom: 10px;
+      margin-top: 36px;
+      margin-bottom: 12px;
       line-height: 1.3;
     }
-
     .post-body p {
-      font-size: 0.92rem;
-      line-height: 1.7;
+      font-size: clamp(0.88rem, 1.2vw, 0.95rem);
+      line-height: 1.75;
       color: var(--text);
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
-
     .post-body .highlight-box {
       background: #FFF;
-      border-left: 3px solid var(--accent);
-      padding: 16px 18px;
-      border-radius: 0 12px 12px 0;
-      margin: 20px 0;
+      border-left: 4px solid var(--accent);
+      padding: 20px 24px;
+      border-radius: 0 14px 14px 0;
+      margin: 24px 0;
       box-shadow: var(--shadow);
     }
     .post-body .highlight-box p {
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       color: var(--text-secondary);
       margin-bottom: 0;
-      line-height: 1.6;
+      line-height: 1.7;
     }
-    .post-body .highlight-box strong {
-      color: var(--accent);
-    }
-
+    .post-body .highlight-box strong { color: var(--accent); }
     .post-body .pullquote {
-      margin: 24px 0;
-      padding: 20px;
+      margin: 28px 0;
+      padding: 28px 24px;
       background: var(--card-bg);
-      border-radius: 14px;
+      border-radius: 16px;
       box-shadow: var(--shadow);
       text-align: center;
     }
     .post-body .pullquote p {
-      font-size: 1.05rem;
+      font-size: clamp(1rem, 1.8vw, 1.15rem);
       font-weight: 600;
       color: var(--text);
       line-height: 1.5;
@@ -185,24 +218,22 @@
       margin-bottom: 8px;
     }
     .post-body .pullquote span {
-      font-size: 0.75rem;
+      font-size: 0.8rem;
       color: var(--text-tertiary);
       font-style: normal;
       font-weight: 400;
     }
-
     .post-body ul {
       list-style: none;
-      padding: 0;
-      margin: 16px 0 20px;
+      margin: 20px 0 24px;
     }
     .post-body ul li {
       position: relative;
-      padding-left: 22px;
-      font-size: 0.9rem;
+      padding-left: 26px;
+      font-size: clamp(0.88rem, 1.1vw, 0.92rem);
       line-height: 1.6;
       color: var(--text);
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
     .post-body ul li::before {
       content: '\f00c';
@@ -211,96 +242,277 @@
       position: absolute;
       left: 0;
       color: var(--success);
-      font-size: 0.75rem;
+      font-size: 0.8rem;
     }
-
     .post-body .divider {
       text-align: center;
-      margin: 28px 0;
+      margin: 32px 0;
       color: var(--text-tertiary);
-      font-size: 0.8rem;
-      letter-spacing: 4px;
+      font-size: 0.85rem;
+      letter-spacing: 5px;
     }
 
+    /* ===== CTA ===== */
     .post-cta {
-      margin-top: 32px;
-      padding: 24px;
+      margin-top: 36px;
+      padding: 32px;
       background: linear-gradient(135deg, #1A1A2E, #2A2A4E);
       border-radius: 16px;
       text-align: center;
     }
     .post-cta h3 {
       color: #FFF;
-      font-size: 1.05rem;
+      font-size: clamp(1rem, 1.8vw, 1.15rem);
       font-weight: 700;
       margin-bottom: 8px;
     }
     .post-cta p {
-      color: rgba(255,255,255,0.7);
-      font-size: 0.82rem;
-      margin-bottom: 16px;
+      color: rgba(255,255,255,0.65);
+      font-size: 0.85rem;
+      margin-bottom: 18px;
     }
     .post-cta .cta-btn {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 12px 28px;
+      padding: 12px 32px;
       background: var(--accent);
       color: #FFF;
       border-radius: 10px;
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       font-weight: 600;
       transition: background 0.2s;
+      cursor: pointer;
     }
-    .post-cta .cta-btn:active { background: var(--accent-hover); }
+    .post-cta .cta-btn:hover { background: var(--accent-hover); }
 
+    /* ===== POST FOOTER ===== */
     .post-footer {
-      padding: 20px;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 20px 24px 40px;
       border-top: 1px solid var(--border);
-      margin-top: 10px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      max-width: 640px;
-      margin-left: auto;
-      margin-right: auto;
+      flex-wrap: wrap;
+      gap: 12px;
     }
     .post-footer span {
-      font-size: 0.78rem;
+      font-size: 0.82rem;
       color: var(--text-tertiary);
     }
-    .post-footer .share-buttons {
+    .share-buttons {
       display: flex;
-      gap: 10px;
+      gap: 8px;
     }
-    .post-footer .share-buttons button {
-      width: 36px;
-      height: 36px;
+    .share-buttons button {
+      width: 38px; height: 38px;
       border-radius: 50%;
       background: var(--card-bg);
       border: 1px solid var(--border);
       display: flex;
-      align-items: center;
-      justify-content: center;
+      align-items: center; justify-content: center;
       color: var(--text-secondary);
       font-size: 0.85rem;
       transition: all 0.2s;
+      cursor: pointer;
     }
-    .post-footer .share-buttons button:active {
+    .share-buttons button:hover {
       background: var(--accent);
       color: #FFF;
       border-color: var(--accent);
     }
 
-    @media (min-width: 640px) {
-      .post-hero { height: 280px; }
+    /* ===== RELATED POSTS ===== */
+    .related-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px 40px;
+    }
+    .related-section h2 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .related-card {
+      background: var(--card-bg);
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .related-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+    .related-card__thumb {
+      width: 100%;
+      height: 120px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: rgba(255,255,255,0.3);
+    }
+    .related-card__thumb.teal { background: linear-gradient(135deg, #00B8B8, #00D4AA); }
+    .related-card__thumb.purple { background: linear-gradient(135deg, #6C63FF, #8A84FF); }
+    .related-card__thumb.dark { background: linear-gradient(135deg, #1A1A2E, #2A2A4E); }
+    .related-card__title {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.3;
+      margin-bottom: 4px;
+    }
+    .related-card__excerpt {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    /* ===== BOTTOM NAV (mobile) ===== */
+    .bottom-nav {
+      display: none;
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      height: 72px;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(20px);
+      border-top: 1px solid var(--border);
+      align-items: center;
+      justify-content: space-around;
+      padding: 0 8px 8px;
+      z-index: 100;
+    }
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      padding: 6px 12px;
+      border-radius: 10px;
+      color: var(--text-tertiary);
+      font-size: 0.6rem;
+      font-weight: 500;
+      position: relative;
+    }
+    .nav-item i { font-size: 1.2rem; }
+    .nav-item.active { color: var(--accent); }
+    .nav-add { margin-top: -18px; }
+    .nav-add-btn {
+      width: 48px; height: 48px;
+      border-radius: 16px;
+      background: var(--accent);
+      color: #FFF;
+      display: flex;
+      align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      box-shadow: 0 4px 16px rgba(255,106,53,0.35);
+    }
+    .nav-badge {
+      position: absolute;
+      top: 2px; right: 6px;
+      width: 16px; height: 16px;
+      background: #E74C3C;
+      color: #FFF;
+      font-size: 0.55rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center; justify-content: center;
+      border: 2px solid #F8F6F0;
+    }
+
+    /* ===== FOOTER ===== */
+    .site-footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 24px;
+      text-align: center;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-inner span { font-size: 0.8rem; color: var(--text-tertiary); }
+    .footer-inner .social-links { display: flex; gap: 12px; }
+    .footer-inner .social-links a {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center; justify-content: center;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      transition: all 0.2s;
+    }
+    .footer-inner .social-links a:hover {
+      background: var(--accent); color: #FFF; border-color: var(--accent);
+    }
+
+    /* =============================================
+       RESPONSIVE
+       ============================================= */
+
+    @media (max-width: 900px) {
+      .related-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 767px) {
+      body { padding-bottom: 80px; }
+
+      .site-header { display: none; }
+      .mobile-header { display: flex; }
+      .status-bar { display: flex; }
+      .bottom-nav { display: flex; }
+
+      .post-hero { height: 200px; }
+      .post-hero i { font-size: 3.5rem; }
+      .post-hero .post-tag { bottom: 12px; left: 16px; }
+
+      .post-container { padding: 0 16px; }
+      .post-body { padding: 24px 0 32px; }
+      .post-body .highlight-box { padding: 16px 18px; }
+      .post-body .pullquote { padding: 20px 16px; }
+      .post-cta { padding: 24px 20px; }
+
+      .post-footer { padding: 16px; }
+      .post-footer span { width: 100%; text-align: center; }
+      .share-buttons { justify-content: center; width: 100%; }
+
+      .related-section { padding: 0 16px 24px; }
+      .related-grid { grid-template-columns: 1fr; }
+
+      .site-footer { padding: 20px 16px; }
+      .footer-inner { flex-direction: column; text-align: center; }
+    }
+
+    @media (min-width: 768px) {
+      .status-bar, .mobile-header { display: none; }
+      .site-header { display: block; }
+      .bottom-nav { display: none; }
     }
   </style>
 </head>
 <body>
 
+  <!-- Status Bar (mobile) -->
   <div class="status-bar">
-    <span class="time">13:02</span>
+    <span class="time">13:11</span>
     <div class="icons">
       <i class="fas fa-signal"></i>
       <i class="fas fa-wifi"></i>
@@ -308,87 +520,102 @@
     </div>
   </div>
 
-  <div class="post-header">
+  <!-- Desktop Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="logo" href="../v1-catalogo/">treqe<small>.blog</small></a>
+      <a class="back-link" href="../v13-blog/"><i class="fas fa-arrow-left"></i> Volver al blog</a>
+    </div>
+  </header>
+
+  <!-- Mobile Header -->
+  <div class="mobile-header">
     <button class="back-btn" onclick="goBack()"><i class="fas fa-chevron-left"></i></button>
-    <span style="font-size:0.85rem; font-weight:600; color:var(--text);">treqe.blog</span>
+    <span style="font-size:0.88rem; font-weight:700; color:var(--text);">treqe.blog</span>
   </div>
 
+  <!-- Hero -->
   <div class="post-hero">
     <i class="fas fa-arrows-spin"></i>
     <span class="post-tag">Primera entrega</span>
   </div>
 
-  <div class="post-body">
-    <div class="post-meta">
-      <span>9 de mayo de 2026</span>
-      <span class="dot"></span>
-      <span>5 min de lectura</span>
-      <span class="category">Trueque y economia</span>
+  <!-- Article -->
+  <article class="post-container">
+    <div class="post-body">
+
+      <div class="post-meta">
+        <span>9 de mayo de 2026</span>
+        <span class="dot"></span>
+        <span>5 min de lectura</span>
+        <span class="category">Trueque y economia</span>
+      </div>
+
+      <h1>Treqe no es Wallapop: el trueque estructurado llego para quedarse</h1>
+      <p class="subhead">Comprar y vender es el modelo mas obvio, pero no el mas eficiente. Detras de cada objeto que acumulas en tu casa hay una oportunidad de intercambio que estas desperdiciando.</p>
+
+      <p>Cuando alguien escucha "segunda mano" piensa en Wallapop, Vinted o Milanuncios. Plataformas donde pones precio a lo que ya no usas y esperas a que alguien te lo compre. Funciona, si. Pero tiene un problema de base: <strong>sigue siendo comprar.</strong></p>
+
+      <p>El dinero sigue siendo el intermediario. Y el dinero, aunque util, anade friccion donde no deberia haberla. Necesitas que alguien quiera exactamente tu objeto <em>y</em> que ademas tenga el dinero justo para pagarlo. Son dos condiciones que se cumplen menos de lo que parece.</p>
+
+      <div class="pullquote">
+        <p>"No necesito tu dinero. Necesito lo que tu tienes y yo no."</p>
+        <span>— La premisa de Treqe en una frase</span>
+      </div>
+
+      <p>Treqe cambia las reglas. Aqui no pones precio a las cosas. Dices que tienes y que quieres. Y el algoritmo encuentra cadenas de intercambio donde todo el mundo recibe lo que necesita sin que el dinero tenga que meterse por medio.</p>
+
+      <h2>El problema del trueque tradicional</h2>
+
+      <p>El trueque tiene mala fama. "Trueque" suena a intercambiar una vaca por un saco de patatas. O a grupos de Facebook donde la gente ofrece cosas imposibles y nadie sabe si el trato se cierra o no.</p>
+
+      <p>El problema historico del trueque es la <strong>doble coincidencia de necesidades</strong>: tu tienes una guitarra y quieres una camara. Necesitas encontrar a alguien que tenga una camara Y que ademas quiera tu guitarra. En un mercado de dos personas, las probabilidades son casi cero.</p>
+
+      <div class="highlight-box">
+        <p><strong>La clave:</strong> Cuando anadimos una tercera persona a la ecuacion, las probabilidades se disparan. Tu tienes una guitarra y quieres una camara. Alguien tiene una camara y quiere unas zapatillas. Un tercero tiene zapatillas y quiere tu guitarra. <strong>Ciclo cerrado.</strong> Todo el mundo gana. Nadie paga.</p>
+      </div>
+
+      <h2>Como funciona el algoritmo</h2>
+
+      <p>Esto que parece magia son matematicas. El algoritmo de Treqe busca ciclos de intercambio dentro de un grafo de ofertas. Cada nodo es una persona con sus "tengo" y sus "quiero". Cada conexion del grafo es una coincidencia posible.</p>
+
+      <p>El sistema evalua automaticamente combinaciones de 2, 3 y hasta 4 personas para encontrar el intercambio mas equilibrado posible. Usa un sistema de puntuacion que valora la complejidad del ciclo, el valor estimado de los objetos y la reputacion de los participantes.</p>
+
+      <p>El resultado: en lugar de pasar semanas esperando a que alguien te compre la guitarra para luego buscar una camara con ese dinero, Treqe te encuentra un intercambio multiple en minutos.</p>
+
+      <div class="divider">· · ·</div>
+
+      <h2>Que hace diferente a Treqe</h2>
+
+      <ul>
+        <li><strong>Sin dinero:</strong> El valor se equilibra con objetos, no con euros. Nadie paga, todos intercambian.</li>
+        <li><strong>Intercambios multiples:</strong> No necesitas encontrar a la persona exacta. El algoritmo conecta cadenas de 3 o 4 personas.</li>
+        <li><strong>Reputacion transparente:</strong> Cada usuario tiene un scoring basado en intercambios completados. La confianza se gana, no se compra.</li>
+        <li><strong>Resolucion de conflictos:</strong> Sistema de escrow, seguros y verificacion por pasos para que nadie salga perdiendo.</li>
+        <li><strong>Eco-inteligente:</strong> Cada objeto intercambiado es un objeto que no acaba en un vertedero. Consumo circular en accion.</li>
+      </ul>
+
+      <h2>No es anti-consumismo. Es consumo inteligente.</h2>
+
+      <p>No venimos a decirte que dejes de comprar. Venimos a decirte que <strong>intercambiar es mas rentable</strong>. Ese movil que tienes en el cajon desde hace un ano podria ser la bicicleta que alguien ya no usa pero que a ti te vendria genial. Y esa bicicleta podria ser el casco que otro esta buscando.</p>
+
+      <p>Es una red de valor que no necesita papel moneda. Solo necesita gente dispuesta a dar lo que ya no usa a cambio de lo que si usara.</p>
+
+      <div class="post-cta">
+        <h3>Unete al movimiento</h3>
+        <p>Treqe abre pronto. Se el primero en enterarte cuando podamos intercambiar.</p>
+        <a class="cta-btn" href="#" onclick="alert('Lista de espera (demo)')">
+          Apuntarme a la lista <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+
+      <p style="margin-top:24px; font-size:0.82rem; color:var(--text-tertiary); text-align:center;">
+        <em>Este articulo es la primera entrega del blog de Treqe. Cada semana exploraremos el trueque, la economia circular y las historias de quienes ya intercambian.</em>
+      </p>
     </div>
+  </article>
 
-    <h1>Treqe no es Wallapop: el trueque estructurado llego para quedarse</h1>
-    <p class="subhead">Comprar y vender es el modelo mas obvio, pero no el mas eficiente. Detras de cada objeto que acumulas en tu casa hay una oportunidad de intercambio que estas desperdiciando.</p>
-
-    <p>Cuando alguien escucha "segunda mano" piensa en Wallapop, Vinted o Milanuncios. Plataformas donde pones precio a lo que ya no usas y esperas a que alguien te lo compre. Funciona, si. Pero tiene un problema de base: <strong>sigue siendo comprar.</strong></p>
-
-    <p>El dinero sigue siendo el intermediario. Y el dinero, aunque util, anade friccion donde no deberia haberla. Necesitas que alguien quiera exactamente tu objeto <em>y</em> que ademas tenga el dinero justo para pagarlo. Son dos condiciones que se cumplen menos de lo que parece.</p>
-
-    <div class="pullquote">
-      <p>"No necesito tu dinero. Necesito lo que tu tienes y yo no."</p>
-      <span>— La premisa de Treqe en una frase</span>
-    </div>
-
-    <p>Treqe cambia las reglas. Aqui no pones precio a las cosas. Dices que tienes y que quieres. Y el algoritmo encuentra cadenas de intercambio donde todo el mundo recibe lo que necesita sin que el dinero tenga que meterse por medio.</p>
-
-    <h2>El problema del trueque tradicional</h2>
-
-    <p>El trueque tiene mala fama. "Trueque" suena a intercambiar una vaca por un saco de patatas. O a grupos de Facebook donde la gente ofrece cosas imposibles y nadie sabe si el trato se cierra o no.</p>
-
-    <p>El problema historico del trueque es la <strong>doble coincidencia de necesidades</strong>: tu tienes una guitarra y quieres una camara. Necesitas encontrar a alguien que tenga una camara Y que ademas quiera tu guitarra. En un mercado de dos personas, las probabilidades son casi cero.</p>
-
-    <div class="highlight-box">
-      <p><strong>La clave:</strong> Cuando anadimos una tercera persona a la ecuacion, las probabilidades se disparan. Tu tienes una guitarra y quieres una camara. Alguien tiene una camara y quiere unas zapatillas. Un tercero tiene zapatillas y quiere tu guitarra. <strong>Ciclo cerrado.</strong> Todo el mundo gana. Nadie paga.</p>
-    </div>
-
-    <h2>Como funciona el algoritmo</h2>
-
-    <p>Esto que parece magia es matematicas. El algoritmo de Treqe busca ciclos de intercambio dentro de un grafo de ofertas. Cada nodo es una persona con sus "tengo" y sus "quiero". Cada conexion es una coincidencia posible.</p>
-
-    <p>El sistema evalua automaticamente combinaciones de 2, 3 y hasta 4 personas para encontrar el intercambio mas equilibrado posible. Usa un sistema de puntuacion que valora la complejidad del ciclo, el valor estimado de los objetos y la reputacion de los participantes.</p>
-
-    <p>El resultado: en lugar de pasar semanas esperando a que alguien te compre la guitarra para luego buscar una camara con ese dinero, Treqe te encuentra un intercambio multiple en minutos.</p>
-
-    <div class="divider">· · ·</div>
-
-    <h2>Que hace diferente a Treqe</h2>
-
-    <ul>
-      <li><strong>Sin dinero:</strong> El valor se equilibra con objetos, no con euros. Nadie paga, todos intercambian.</li>
-      <li><strong>Intercambios multiples:</strong> No necesitas encontrar a la persona exacta. El algoritmo conecta cadenas de 3 o 4 personas.</li>
-      <li><strong>Reputacion transparente:</strong> Cada usuario tiene un scoring basado en intercambios completados. La confianza se gana.</li>
-      <li><strong>Resolucion de conflictos:</strong> Sistema de escrow, seguros y verificacion por pasos para que nadie salga perdiendo.</li>
-      <li><strong>Eco-inteligente:</strong> Cada objeto intercambiado es un objeto que no acaba en un vertedero. El consumo circular en accion.</li>
-    </ul>
-
-    <h2>No es anti-consumismo. Es consumo inteligente.</h2>
-
-    <p>No venimos a decirte que dejes de comprar. Venimos a decirte que <strong>intercambiar es mas rentable</strong>. Ese movil que tienes en el cajon desde hace un ano podria ser la bicicleta que alguien ya no usa pero que a ti te vendria genial. Y esa bicicleta podria ser el casco que otro esta buscando.</p>
-
-    <p>Es una red de valor que no necesita papel moneda. Solo necesita gente dispuesta a dar lo que ya no usa a cambio de lo que si usara.</p>
-
-    <div class="post-cta">
-      <h3>Unete al movimiento</h3>
-      <p>Treqe abre pronto. Se el primero en enterarte cuando podamos intercambiar.</p>
-      <a class="cta-btn" href="#" onclick="alert('Lista de espera (demo)')">
-        Apuntarme a la lista <i class="fas fa-arrow-right"></i>
-      </a>
-    </div>
-
-    <p style="margin-top:20px; font-size:0.8rem; color:var(--text-tertiary); text-align:center;">
-      <em>Este articulo es la primera entrega del blog de Treqe. Cada semana exploraremos el trueque, la economia circular y las historias de quienes ya intercambian.</em>
-    </p>
-  </div>
-
+  <!-- Post Footer -->
   <div class="post-footer">
     <span>Comparte este articulo</span>
     <div class="share-buttons">
@@ -398,10 +625,69 @@
     </div>
   </div>
 
+  <!-- Related -->
+  <div class="related-section">
+    <h2>Articulos relacionados</h2>
+    <div class="related-grid">
+      <div class="related-card" onclick="alert('Post: El algoritmo de intercambio')">
+        <div class="related-card__thumb teal"><i class="fas fa-code"></i></div>
+        <div class="related-card__title">El algoritmo que hace posible el intercambio circular</div>
+        <div class="related-card__excerpt">Como resuelve Treqe el problema matematico del trueque multiple.</div>
+      </div>
+      <div class="related-card" onclick="alert('Post: Guia para principiantes')">
+        <div class="related-card__thumb purple"><i class="fas fa-compass"></i></div>
+        <div class="related-card__title">Guia para principiantes del trueque en Treqe</div>
+        <div class="related-card__excerpt">Todo lo que necesitas saber para hacer tu primer intercambio.</div>
+      </div>
+      <div class="related-card" onclick="alert('Post: Anti-consumismo inteligente')">
+        <div class="related-card__thumb dark"><i class="fas fa-brain"></i></div>
+        <div class="related-card__title">Anti-consumismo: no comprar menos, intercambiar mejor</div>
+        <div class="related-card__excerpt">El consumo consciente va de optimizar, no de privarse.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span>&copy; 2026 Treqe. Intercambia, no compres.</span>
+      <div class="social-links">
+        <a href="#" onclick="alert('Twitter (demo)')"><i class="fab fa-twitter"></i></a>
+        <a href="#" onclick="alert('Instagram (demo)')"><i class="fab fa-instagram"></i></a>
+        <a href="#" onclick="alert('LinkedIn (demo)')"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" onclick="alert('TikTok (demo)')"><i class="fab fa-tiktok"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bottom Nav (mobile) -->
+  <nav class="bottom-nav">
+    <button class="nav-item" onclick="goToHome()">
+      <i class="fas fa-home"></i><span>Inicio</span>
+    </button>
+    <button class="nav-item active" onclick="goToBlog()">
+      <i class="fas fa-newspaper"></i><span>Blog</span>
+    </button>
+    <button class="nav-item nav-add" onclick="goToUpload()">
+      <div class="nav-add-btn"><i class="fas fa-plus"></i></div>
+    </button>
+    <button class="nav-item" onclick="goToMatches()">
+      <i class="fas fa-bell"></i><span>Avisos</span>
+      <span class="nav-badge">3</span>
+    </button>
+    <button class="nav-item" onclick="goToProfile()">
+      <i class="fas fa-user"></i><span>Perfil</span>
+    </button>
+  </nav>
+
   <script>
-    function goBack() {
-      window.parent.location.href = '../v13-blog/';
-    }
+    function goBack() { window.parent.location.href = '../v13-blog/'; }
+    function goToHome() { window.parent.location.href = '../v1-catalogo/'; }
+    function goToBlog() { window.parent.location.href = '../v13-blog/'; }
+    function goToUpload() { window.parent.location.href = '../v3-subir/'; }
+    function goToMatches() { window.parent.location.href = '../v12-mis-matches/'; }
+    function goToProfile() { window.parent.location.href = '../v4-perfil/'; }
   </script>
+
 </body>
 </html>
