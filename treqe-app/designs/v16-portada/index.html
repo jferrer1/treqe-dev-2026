@@ -477,25 +477,37 @@
 
   /* ── BOTTOM NAV ── */
     .bottom-nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(255,255,255,0.85);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border-top: 1px solid var(--border);
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    padding: 0 0 12px;
-    z-index: 100;
-  }
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      padding: 0;
+      height: 72px;
+      padding-bottom: 12px;
+      z-index: 100;
+      isolation: isolate;
+    }
   .nav-item {
-    display: flex; flex-direction: column; align-items: center; gap: 3px;
-    text-decoration: none; color: var(--text-secondary); font-size: 0.6rem;
-    font-weight: 600; transition: color 0.2s; padding: 4px 8px;
-  }
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      font-size: 0.65rem;
+      font-weight: 500;
+      color: var(--text-tertiary);
+      transition: color 0.2s;
+      padding: 4px 0;
+      flex: 1;
+      max-width: 80px;
+      position: relative;
+    }
   .nav-item i { font-size: 1.1rem; }
   .nav-item.active { color: var(--accent); }
   .nav-plus {
@@ -650,22 +662,27 @@
 </div>
 
 <nav class="bottom-nav">
-  <a href="../v1-catalogo/" class="nav-item active">
-    <i class="fas fa-search"></i> Buscar
-  </a>
-  <a href="../v12-mis-matches/" class="nav-item">
-    <i class="fas fa-sync-alt"></i> Treqes
-  </a>
-  <a href="../v3-subir/" class="nav-plus">
-    <i class="fas fa-plus"></i>
-  </a>
-  <a href="../v11-notificaciones/" class="nav-item">
-    <i class="fas fa-bell"></i> Avisos
-  </a>
-  <a href="../v4-perfil/" class="nav-item">
-    <i class="fas fa-user"></i> Perfil
-  </a>
-</nav>
+    <button class="nav-item active" onclick="goToDiscover()">
+      <i class="fas fa-search"></i>
+      <span>Buscar</span>
+    </button>
+    <button class="nav-item" onclick="goToTrades()">
+      <i class="fas fa-exchange-alt"></i>
+      <span>Treqes</span>
+    </button>
+    <button class="nav-item nav-add" onclick="goToUpload()">
+      <div class="nav-add-btn"><i class="fas fa-plus"></i></div>
+    </button>
+    <button class="nav-item" onclick="goToInbox()">
+      <i class="fas fa-bell"></i>
+      <span>Avisos</span>
+      <span class="nav-badge"></span>
+    </button>
+    <button class="nav-item" onclick="goToProfile()">
+      <i class="fas fa-user"></i>
+      <span>Perfil</span>
+    </button>
+  </nav>
 
 
 <script>
