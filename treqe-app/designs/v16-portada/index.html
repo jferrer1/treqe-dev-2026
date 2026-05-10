@@ -476,6 +476,32 @@
   .cta-btn i { font-size: 0.9rem; }
 
   /* ── BOTTOM NAV ── */
+        .nav-add {
+      position: relative;
+      top: 0;
+    }
+        .nav-add-btn {
+      width: 48px;
+      height: 48px;
+      background: var(--accent);
+      color: #FFFFFF;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 16px rgba(255,106,53,0.3);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+        .nav-badge {
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      position: absolute;
+      top: 2px;
+      right: 12px;
+    }
     .bottom-nav {
       position: fixed;
       bottom: 0;
@@ -510,12 +536,7 @@
     }
   .nav-item i { font-size: 1.1rem; }
   .nav-item.active { color: var(--accent); }
-  .nav-plus {
-    background: var(--accent); color: #FFF; width: 44px; height: 44px;
-    border-radius: 14px; display: flex; align-items: center; justify-content: center;
-    font-size: 1.2rem; margin-top: -16px;
-    box-shadow: var(--shadow); transition: transform 0.3s;
-  }
+  
   .nav-plus:active { transform: scale(0.95); }
 
   /* ── RESPONSIVE ── */
