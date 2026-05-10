@@ -4,10 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>treqe — Comunidad</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
 <style>
+@font-face {
+  font-family: 'IvyJournal';
+  src: url('fonts/IvyJournal.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Elza';
+  src: url('fonts/Elza-Regular.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{background:#111;display:flex;justify-content:center;align-items:center;min-height:100vh;padding:16px}
 .banner{
@@ -23,14 +32,14 @@ body{background:#111;display:flex;justify-content:center;align-items:center;min-
 }
 .copy{
   position:absolute;top:clamp(14px,2.5vw,28px);left:clamp(18px,3vw,36px);
-  z-index:1;
+  z-index:1;line-height:1.15;
 }
 .copy .italic{
-  font-family:'Playfair Display',serif;font-style:italic;font-weight:700;
+  font-family:'IvyJournal','Playfair Display',serif;font-style:italic;font-weight:700;
   font-size:clamp(1rem,2.5vw,1.7rem);color:#101E45;
 }
 .copy .bold{
-  font-family:Inter,sans-serif;font-weight:900;
+  font-family:'Elza',Inter,sans-serif;font-weight:700;
   font-size:clamp(1rem,2.5vw,1.7rem);color:#101E45;
   text-transform:uppercase;letter-spacing:-0.3px;
 }
