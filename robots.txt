@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /treqe-app/designs/v16-portada/
+Allow: /treqe-app/designs/v13-blog/
+Disallow: /treqe-app/designs/v0-prototype/
+Disallow: /treqe-app/designs/v1-catalogo/
+Disallow: /treqe-app/designs/v2-detalle/
+Disallow: /treqe-app/designs/v3-subir/
+Disallow: /treqe-app/designs/v4-perfil/
+Disallow: /treqe-app/designs/v5-onboarding/
+Disallow: /treqe-app/designs/v6-match-notification/
+Disallow: /treqe-app/designs/v7-seguimiento/
+Disallow: /treqe-app/designs/v8-ajustes/
+Disallow: /treqe-app/designs/v9-splash/
+Disallow: /treqe-app/designs/v10-registro/
+Disallow: /treqe-app/designs/v11-notificaciones/
+Disallow: /treqe-app/designs/v12-mis-matches/
+Disallow: /treqe-app/designs/v13-favoritos/
+Disallow: /treqe-app/designs/v14-editar-perfil/
+Disallow: /treqe-app/designs/v15-verificar-identidad/
+
+Sitemap: https://jferrer1.github.io/treqe-dev-2026/treqe-app/designs/sitemap.xml

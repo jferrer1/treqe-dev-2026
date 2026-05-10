@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /v16-portada/
+Allow: /v13-blog/
+Disallow: /
+
+Sitemap: https://jferrer1.github.io/treqe-dev-2026/treqe-app/designs/sitemap.xml
+
+# Fase 1: Solo portada y blog indexados
+# Próxima fase: migrar a treqe.es con sitemap completo
