@@ -523,6 +523,10 @@
       z-index: 100;
     isolation: isolate;
     }
+    .nav-add.active .nav-add-btn {
+      box-shadow: 0 0 20px rgba(255,106,53,0.5), 0 0 40px rgba(255,106,53,0.25);
+      transform: scale(1.08);
+    }
     
     
     
@@ -836,7 +840,7 @@
       <i class="fas fa-exchange-alt"></i>
       <span>Treqes</span>
     </button>
-    <button class="nav-item nav-add" onclick="goToUpload()">
+    <button class="nav-item nav-add active onclick="goToUpload()">
       <div class="nav-add-btn"><i class="fas fa-plus"></i></div>
     </button>
     <button class="nav-item" onclick="goToInbox()">
