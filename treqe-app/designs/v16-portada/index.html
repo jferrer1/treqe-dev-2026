@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -487,24 +487,6 @@
   
 
   /* ── RESPONSIVE ── */
-      .bottom-nav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: rgba(255,255,255,0.85);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border-top: 1px solid var(--border);
-      display: flex;
-      justify-content: space-evenly;
-      align-items: center;
-      padding: 0;
-      height: 72px;
-      padding-bottom: 12px;
-      z-index: 100;
-      isolation: isolate;
-    }
     .nav-item {
       display: flex;
       flex-direction: column;
@@ -523,31 +505,6 @@
       cursor: pointer;
       font-family: inherit;
       text-decoration: none;
-    }
-    .nav-item i { font-size: 1.3rem; }
-    .nav-item.active { color: var(--accent); }
-    .nav-add { position: relative; top: 0; }
-    .nav-add-btn {
-      width: 48px;
-      height: 48px;
-      background: var(--accent);
-      color: #FFFFFF;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 12px rgba(255,106,53,0.3);
-      margin-bottom: 2px;
-    }
-    .nav-add-btn i { font-size: 1.1rem; }
-    .nav-badge {
-      width: 6px;
-      height: 6px;
-      background: var(--accent);
-      border-radius: 50%;
-      position: absolute;
-      top: 2px;
-      right: 12px;
     }
     @media (min-width: 600px) {
     .header { padding: 12px 24px; }
@@ -569,9 +526,40 @@
     .steps { gap: 24px; }
   }
   @media (prefers-reduced-motion: reduce) {
-    .step, .cta-btn, .nav-plus, .circle-ring, .hero .blob { transition: none; animation: none; }
+    .step, .cta-btn,
     .step { opacity: 1; transform: none; }
   }
+    /* ===== BOTTOM NAV ===== */
+    .bottom-nav {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-top: 1px solid var(--border);
+      display: flex; justify-content: space-evenly; align-items: center;
+      padding: 0; height: 72px; padding-bottom: 12px; z-index: 100; isolation: isolate;
+    }
+    .nav-item {
+      display: flex; flex-direction: column; align-items: center; gap: 2px;
+      font-size: 0.65rem; font-weight: 500; color: var(--text-tertiary);
+      transition: color 0.2s; padding: 4px 0; flex: 1; max-width: 80px;
+      position: relative; border: none; background: none; cursor: pointer;
+      font-family: inherit; text-decoration: none;
+    }
+    .nav-item i { font-size: 1.3rem; }
+    .nav-item.active { color: var(--accent); }
+    .nav-add { position: relative; top: 0; }
+    .nav-add-btn {
+      width: 48px; height: 48px; background: var(--accent); color: #FFFFFF;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 12px rgba(255,106,53,0.3); margin-bottom: 2px;
+    }
+    .nav-add-btn i { font-size: 1.1rem; }
+    .nav-badge {
+      width: 6px; height: 6px; background: var(--accent); border-radius: 50%;
+      position: absolute; top: -2px; right: -6px;
+    }
+
 </style>
 </head>
 <body>
@@ -691,28 +679,6 @@
 <!-- ══════ BOTTOM NAV ══════ -->
 </div>
 
-<nav class="bottom-nav">
-    <a href="../v1-catalogo/" class="nav-item">
-      <i class="fas fa-search"></i>
-      <span>Buscar</span>
-    </a>
-    <a href="../v12-mis-matches/" class="nav-item">
-      <i class="fas fa-exchange-alt"></i>
-      <span>Treqes</span>
-    </a>
-    <a href="../v3-subir/" class="nav-itemnav-add">
-      <div class="nav-add-btn"><i class="fas fa-plus"></i></div>
-    </a>
-    <a href="../v11-notificaciones/" class="nav-item">
-      <span class="nav-badge"></span>
-      <span>Avisos</span>
-    </a>
-    <a href="../v4-perfil/" class="nav-item">
-      <i class="fas fa-user"></i>
-      <span>Perfil</span>
-    </a>
-  </nav>
-
 
 <script>
 function toggleSearch() {
@@ -756,6 +722,35 @@ document.getElementById('searchInput').addEventListener('keydown', function(e) {
     steps.forEach(function(s) { s.classList.add('visible'); });
   }
 })();
+
+function goToProfile(){window.location.href="../v1-catalogo/";}
+
+function goToInbox(){window.location.href="../v1-catalogo/";}
+
+function goToUpload(){window.location.href="../v1-catalogo/";}
+
+function goToTrades(){window.location.href="../v1-catalogo/";}
+
+function goToDiscover(){window.location.href="../v1-catalogo/";}
 </script>
+  <nav class="bottom-nav">
+    <a href="../v1-catalogo/" class="nav-item
+
+"><i class="fas fa-search"></i><span>Buscar</span></a>
+    <a href="../v12-mis-matches/" class="nav-item
+
+"><i class="fas fa-exchange-alt"></i><span>Treqes</span></a>
+    <a href="../v3-subir/" class="nav-item nav-add
+
+"><div class="nav-add-btn"><i class="fas fa-plus"></i></div></a>
+    <a href="../v11-notificaciones/" class="nav-item
+
+"><i class="fas fa-bell"></i><span>Avisos</span><span class="nav-badge"></span></a>
+    <a href="../v4-perfil/" class="nav-item
+
+"><i class="fas fa-user"></i><span>Perfil</span></a>
+  </nav>
+
+
 </body>
 </html>

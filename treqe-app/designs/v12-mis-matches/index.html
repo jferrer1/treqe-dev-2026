@@ -16,7 +16,7 @@
       background: #F8F6F0;
       color: #1A1A1A;
       min-height: 100vh;
-      padding-bottom: 88px;
+      padding-bottom: 80px;
       -webkit-font-smoothing: antialiased;
     }
     button { font-family: inherit; cursor: pointer; border: none; background: none; }
@@ -553,20 +553,9 @@
       line-height: 1.5;
       margin-bottom: 20px;
     }
-
-    /* ===== BOTTOM NAV ===== */
-    
-    
-    
-    
-    .nav-item.active i { transform: scale(1.05); }
     .nav-item 
     .nav-item
-    .nav-item.nav-add 
-    .nav-item.nav-add .nav-add-btn:active {
-      transform: scale(0.92);
-      box-shadow: 0 2px 8px rgba(255,106,53,0.2);
-    }
+    .nav-item.nav-add
 
     /* ===== DEMO NOTICE ===== */
     .demo-notice {
@@ -580,24 +569,6 @@
     .demo-notice i { margin-right: 4px; }
 
     /* ===== RESPONSIVE ===== */
-        .bottom-nav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: rgba(255,255,255,0.85);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border-top: 1px solid var(--border);
-      display: flex;
-      justify-content: space-evenly;
-      align-items: center;
-      padding: 0;
-      height: 72px;
-      padding-bottom: 12px;
-      z-index: 100;
-      isolation: isolate;
-    }
     .nav-item {
       display: flex;
       flex-direction: column;
@@ -616,31 +587,6 @@
       cursor: pointer;
       font-family: inherit;
       text-decoration: none;
-    }
-    .nav-item i { font-size: 1.3rem; }
-    .nav-item.active { color: var(--accent); }
-    .nav-add { position: relative; top: 0; }
-    .nav-add-btn {
-      width: 48px;
-      height: 48px;
-      background: var(--accent);
-      color: #FFFFFF;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 12px rgba(255,106,53,0.3);
-      margin-bottom: 2px;
-    }
-    .nav-add-btn i { font-size: 1.1rem; }
-    .nav-badge {
-      width: 6px;
-      height: 6px;
-      background: var(--accent);
-      border-radius: 50%;
-      position: absolute;
-      top: 2px;
-      right: 12px;
     }
     @media (min-width: 600px) {
       .header, .tabs, .match-section { max-width: 600px; margin: 0 auto; }
@@ -661,6 +607,37 @@
 .btn-r{flex:1;padding:12px;border-radius:10px;font-size:.85rem;font-weight:600;display:flex;align-items:center;justify-content:center;gap:6px}
 .btn-r--primary{background:var(--accent);color:#FFF}
 .btn-r--secondary{background:var(--card-bg);border:1px solid var(--border);color:var(--text)}
+    /* ===== BOTTOM NAV ===== */
+    .bottom-nav {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-top: 1px solid var(--border);
+      display: flex; justify-content: space-evenly; align-items: center;
+      padding: 0; height: 72px; padding-bottom: 12px; z-index: 100; isolation: isolate;
+    }
+    .nav-item {
+      display: flex; flex-direction: column; align-items: center; gap: 2px;
+      font-size: 0.65rem; font-weight: 500; color: var(--text-tertiary);
+      transition: color 0.2s; padding: 4px 0; flex: 1; max-width: 80px;
+      position: relative; border: none; background: none; cursor: pointer;
+      font-family: inherit; text-decoration: none;
+    }
+    .nav-item i { font-size: 1.3rem; }
+    .nav-item.active { color: var(--accent); }
+    .nav-add { position: relative; top: 0; }
+    .nav-add-btn {
+      width: 48px; height: 48px; background: var(--accent); color: #FFFFFF;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 12px rgba(255,106,53,0.3); margin-bottom: 2px;
+    }
+    .nav-add-btn i { font-size: 1.1rem; }
+    .nav-badge {
+      width: 6px; height: 6px; background: var(--accent); border-radius: 50%;
+      position: absolute; top: -2px; right: -6px;
+    }
+
   </style>
 </head>
 <body>
@@ -984,27 +961,6 @@
   </div>
 
   <!-- ===== BOTTOM NAV ===== -->
-  <nav class="bottom-nav">
-    <a href="../v1-catalogo/" class="nav-item">
-      <i class="fas fa-search"></i>
-      <span>Buscar</span>
-    </a>
-    <a href="../v12-mis-matches/" class="nav-item active">
-      <i class="fas fa-exchange-alt"></i>
-      <span>Treqes</span>
-    </a>
-    <a href="../v3-subir/" class="nav-itemnav-add">
-      <div class="nav-add-btn"><i class="fas fa-plus"></i></div>
-    </a>
-    <a href="../v11-notificaciones/" class="nav-item">
-      <span class="nav-badge"></span>
-      <span>Avisos</span>
-    </a>
-    <a href="../v4-perfil/" class="nav-item">
-      <i class="fas fa-user"></i>
-      <span>Perfil</span>
-    </a>
-  </nav>
 
   <script>
     // ===== TAB SWITCHING =====
@@ -1165,5 +1121,24 @@
     console.log('🧪 6 cards | 4 tabs | timers | Mar 2026');
   </script>
 <div class="rate-overlay" id="rateOverlay" onclick="if(event.target===this)(function(){document.getElementById('rateOverlay').classList.remove('show');document.body.style.overflow='';})()"><div class="rate-card"><div class="rate-card__hd"><span class="rate-card__title"><i class="fas fa-star" style="color:#F5A623;margin-right:8px;"></i>Valorar intercambio</span><button class="rate-card__cls" onclick="document.getElementById('rateOverlay').classList.remove('show');document.body.style.overflow='';"><i class="fas fa-times"></i></button></div><div class="rate-card__body"><div class="rate-card__score" id="rateScore">Selecciona estrellas</div><div class="rate-card__stars"><i class="fas fa-star rate-star" onclick="var s=document.querySelectorAll('.rate-star');for(var i=0;i<5;i++)s[i].classList.toggle('on',i<1);document.getElementById('rateScore').textContent='Muy malo (1/5)';document.getElementById('rateVal').value=1"></i><i class="fas fa-star rate-star" onclick="var s=document.querySelectorAll('.rate-star');for(var i=0;i<5;i++)s[i].classList.toggle('on',i<2);document.getElementById('rateScore').textContent='Regular (2/5)';document.getElementById('rateVal').value=2"></i><i class="fas fa-star rate-star" onclick="var s=document.querySelectorAll('.rate-star');for(var i=0;i<5;i++)s[i].classList.toggle('on',i<3);document.getElementById('rateScore').textContent='Aceptable (3/5)';document.getElementById('rateVal').value=3"></i><i class="fas fa-star rate-star" onclick="var s=document.querySelectorAll('.rate-star');for(var i=0;i<5;i++)s[i].classList.toggle('on',i<4);document.getElementById('rateScore').textContent='Bueno (4/5)';document.getElementById('rateVal').value=4"></i><i class="fas fa-star rate-star" onclick="var s=document.querySelectorAll('.rate-star');for(var i=0;i<5;i++)s[i].classList.toggle('on',i<5);document.getElementById('rateScore').textContent='Excelente (5/5)';document.getElementById('rateVal').value=5"></i></div><textarea class="rate-card__ta" id="rateComment" placeholder="Anade un comentario (opcional)..."></textarea></div><div class="rate-card__ft"><button class="btn-r btn-r--secondary" onclick="document.getElementById('rateOverlay').classList.remove('show');document.body.style.overflow='';">Cancelar</button><button class="btn-r btn-r--primary" onclick="var v=document.getElementById('rateVal').value;if(!v)return;document.getElementById('rateOverlay').classList.remove('show');document.body.style.overflow='';setTimeout(function(){alert('Valoracion enviada: '+v+' estrellas')},300);"><i class="fas fa-paper-plane"></i> Enviar valoracion</button></div></div></div><input type="hidden" id="rateVal" value="0">
+  <nav class="bottom-nav">
+    <a href="../v1-catalogo/" class="nav-item
+
+"><i class="fas fa-search"></i><span>Buscar</span></a>
+    <a href="../v12-mis-matches/" class="nav-item
+
+"><i class="fas fa-exchange-alt"></i><span>Treqes</span></a>
+    <a href="../v3-subir/" class="nav-item nav-add
+
+"><div class="nav-add-btn"><i class="fas fa-plus"></i></div></a>
+    <a href="../v11-notificaciones/" class="nav-item
+
+"><i class="fas fa-bell"></i><span>Avisos</span><span class="nav-badge"></span></a>
+    <a href="../v4-perfil/" class="nav-item
+
+"><i class="fas fa-user"></i><span>Perfil</span></a>
+  </nav>
+
+
 </body>
 </html>
