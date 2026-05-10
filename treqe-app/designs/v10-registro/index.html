@@ -115,14 +115,11 @@
     .auth-header__logo {
       width: 64px;
       height: 64px;
-      background: var(--text);
-      border-radius: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      border-radius: 14px;
+      display: block;
       margin: 0 auto 16px;
+      object-fit: contain;
     }
-    .auth-header__logo i { color: #FFF; font-size: 1.8rem; }
     .auth-header__title {
       font-size: 1.5rem;
       font-weight: 800;
@@ -200,13 +197,14 @@
       padding: 16px;
       border-radius: 18px;
       font-size: 0.9rem;
-      font-weight: 500;
-      color: var(--text-secondary);
-      border: 1.5px dashed var(--border);
+      font-weight: 600;
+      color: var(--accent);
+      border: 1.5px solid var(--accent);
+      background: rgba(255,106,53,0.06);
       transition: all 0.2s;
       z-index: 2;
     }
-    .email-btn:active { border-color: var(--accent); color: var(--accent); background: rgba(255,106,53,0.04); }
+    .email-btn:active { background: rgba(255,106,53,0.14); transform: scale(0.98); }
 
     /* ===== BOTTOM LINK ===== */
     .auth-footer {
@@ -295,9 +293,43 @@
     .social-view { display: flex; flex-direction: column; flex: 1; }
     .social-view.hidden { display: none; }
 
+      /* ===== BOTTOM NAV ===== */
+    .bottom-nav {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 8px 16px;
+      padding-bottom: max(8px, env(safe-area-inset-bottom, 8px));
+      background: var(--card-bg);
+      border-top: 1px solid var(--border);
+      box-shadow: 0 -2px 12px rgba(0,0,0,0.04);
+      z-index: 10;
+      flex-shrink: 0;
+    }
+    .bottom-nav__item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      padding: 4px 12px;
+      border-radius: 8px;
+      transition: background 0.15s;
+      cursor: pointer;
+      color: var(--text-tertiary);
+    }
+    .bottom-nav__item:active { background: var(--border); }
+    .bottom-nav__item i { font-size: 1.15rem; }
+    .bottom-nav__item span {
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.2px;
+    }
+    .bottom-nav__item--active { color: var(--accent); }
+
     /* ===== RESPONSIVE ===== */
     @media (min-width: 600px) {
-      .auth-screen { max-width: 420px; margin: 0 auto; padding: 40px 32px 48px; }
+      .auth-screen { max-width: 420px; margin: 0 auto; padding: 40px 32px 32px; }
+      .bottom-nav { max-width: 420px; margin: 0 auto; border-radius: 18px 18px 0 0; }
     }
 
     /* ===== PASSWORD TOGGLE ===== */
@@ -317,7 +349,7 @@
   </style>
 </head>
 <body>
-
+  
   <!-- ===== NOTICE ===== -->
   
   <!-- ===== STATUS BAR ===== -->
@@ -333,9 +365,9 @@
 
       <!-- HEADER -->
       <div class="auth-header">
-        <div class="auth-header__logo"><i class="fas fa-arrow-left-arrow-right"></i></div>
-        <div class="auth-header__title"><svg class="treqe-logo" viewBox="0 0 76 24" fill="none" xmlns="http://www.w3.org/2000/svg"><text x="0" y="19" font-family="Inter, sans-serif" font-weight="700" font-size="22" letter-spacing="-1.5" fill="#00234E">treqe<text x="60" y="19" fill="#FF6A35">.</text></text></svg></div>
-        <div class="auth-header__sub">Crea tu cuenta para empezar a intercambiar</div>
+        <img class="auth-header__logo" src="../v1-catalogo/logo-treqe.png" alt="TREQE">
+        <div class="auth-header__title" id="pageTitle"><svg class="treqe-logo" viewBox="0 0 76 24" fill="none" xmlns="http://www.w3.org/2000/svg"><text x="0" y="19" font-family="Inter, sans-serif" font-weight="700" font-size="22" letter-spacing="-1.5" fill="#00234E">treqe<text x="60" y="19" fill="#FF6A35">.</text></text></svg></div>
+        <div class="auth-header__sub" id="pageSubtitle">Crea tu cuenta para empezar a intercambiar</div>
       </div>
 
       <!-- SOCIAL BUTTONS -->
@@ -357,12 +389,12 @@
 
       <!-- EMAIL OPTION -->
       <button class="email-btn" onclick="showManual()">
-        <i class="fas fa-envelope"></i> Continuar con correo
+        <i class="fas fa-envelope"></i> <span id="emailBtnText">Continuar con correo</span>
       </button>
 
       <!-- FOOTER -->
       <div class="auth-footer">
-        <p>¿Ya tienes cuenta? <a onclick="alert('📝 Inicio de sesión (demo)')">Inicia sesión</a></p>
+        <p id="footerPrompt">¿Ya tienes cuenta? <a id="footerLink" onclick="toggleMode()">Inicia sesión</a></p>
         <div class="auth-footer__terms">
           Al continuar aceptas los <a onclick="alert('📜 Términos (demo)')">términos</a> y la <a onclick="alert('🔒 Privacidad (demo)')">política de privacidad</a>
         </div>
@@ -372,11 +404,11 @@
     <!-- ===== MANUAL FORM ===== -->
     <div class="manual-form" id="manualForm">
       <div class="auth-header" style="padding-bottom:16px;">
-        <div class="auth-header__title" style="font-size:1.3rem;">Crear cuenta</div>
-        <div class="auth-header__sub">Con tu correo electrónico</div>
+        <div class="auth-header__title" style="font-size:1.3rem;" id="manualTitle">Crear cuenta</div>
+        <div class="auth-header__sub" id="manualSub">Con tu correo electrónico</div>
       </div>
 
-      <div class="name-row">
+      <div class="name-row" id="nameRow">
         <input type="text" placeholder="Nombre" id="regName" value="Pepe">
         <input type="text" placeholder="Apellidos" id="regLast" value="Martínez">
       </div>
@@ -387,8 +419,8 @@
         <button class="toggle-pass" onclick="togglePass()"><i class="far fa-eye"></i></button>
       </div>
 
-      <button class="submit-btn" onclick="alert('✅ Cuenta creada → Catálogo (demo)')">
-        <i class="fas fa-arrow-right"></i> Crear cuenta
+      <button class="submit-btn" id="submitBtn" onclick="alert('✅ Cuenta creada → Catálogo (demo)')">
+        <i class="fas fa-arrow-right"></i> <span id="submitBtnText">Crear cuenta</span>
       </button>
 
       <div class="divider" style="padding:12px 0;">
@@ -413,9 +445,34 @@
 
   </div>
 
+  <!-- ===== BOTTOM NAV ===== -->
+  <nav class="bottom-nav">
+    <div class="bottom-nav__item" onclick="alert('🏠 Catálogo (demo)')">
+      <i class="fas fa-search"></i>
+      <span>Explorar</span>
+    </div>
+    <div class="bottom-nav__item" onclick="alert('❤️ Favoritos (demo)')">
+      <i class="fas fa-heart"></i>
+      <span>Favoritos</span>
+    </div>
+    <div class="bottom-nav__item" onclick="alert('📸 Subir (demo)')">
+      <i class="fas fa-plus-circle"></i>
+      <span>Subir</span>
+    </div>
+    <div class="bottom-nav__item" onclick="alert('💬 Mensajes (demo)')">
+      <i class="fas fa-comment-dots"></i>
+      <span>Mensajes</span>
+    </div>
+    <div class="bottom-nav__item bottom-nav__item--active">
+      <i class="fas fa-user"></i>
+      <span>Perfil</span>
+    </div>
+  </nav>
+
   <script>
     function socialRegister(provider) {
-      alert(`✅ Registro con ${provider} (demo)\n\nEn producción: OAuth redirect a ${provider}`);
+      const action = isLogin ? 'Inicio de sesión' : 'Registro';
+      alert(`✅ ${action} con ${provider} (demo)\n\nEn producción: OAuth redirect a ${provider}`);
     }
 
     function showManual() {
@@ -437,8 +494,45 @@
       pass.type = pass.type === 'password' ? 'text' : 'password';
     }
 
-    console.log('📝 TREQE v10 — Registro / Login');
-    console.log('🧪 Prototipo de diseño — 23 Abril 2026');
+    const isLogin = new URLSearchParams(window.location.search).get('mode') === 'login';
+
+    function applyMode() {
+      if (isLogin) {
+        document.getElementById('pageSubtitle').textContent = 'Inicia sesión para seguir intercambiando';
+        document.getElementById('emailBtnText').textContent = 'Continuar con correo';
+        document.getElementById('manualTitle').textContent = 'Iniciar sesión';
+        document.getElementById('manualSub').textContent = 'Con tu correo y contraseña';
+        document.getElementById('nameRow').style.display = 'none';
+        document.getElementById('submitBtnText').textContent = 'Iniciar sesión';
+        document.getElementById('submitBtn').setAttribute('onclick', "alert('✅ Inicio de sesión → Catálogo (demo)')");
+        document.getElementById('footerPrompt').innerHTML = '¿No tienes cuenta? <a id="footerLink" onclick="toggleMode()">Crea una</a>';
+        document.title = 'TREQE — Iniciar sesión';
+      } else {
+        document.getElementById('pageSubtitle').textContent = 'Crea tu cuenta para empezar a intercambiar';
+        document.getElementById('emailBtnText').textContent = 'Continuar con correo';
+        document.getElementById('manualTitle').textContent = 'Crear cuenta';
+        document.getElementById('manualSub').textContent = 'Con tu correo electrónico';
+        document.getElementById('nameRow').style.display = 'flex';
+        document.getElementById('submitBtnText').textContent = 'Crear cuenta';
+        document.getElementById('submitBtn').setAttribute('onclick', "alert('✅ Cuenta creada → Catálogo (demo)')");
+        document.getElementById('footerPrompt').innerHTML = '¿Ya tienes cuenta? <a id="footerLink" onclick="toggleMode()">Inicia sesión</a>';
+        document.title = 'TREQE — Registro';
+      }
+    }
+
+    function toggleMode() {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('mode') === 'login') {
+        params.delete('mode');
+      } else {
+        params.set('mode', 'login');
+      }
+      const qs = params.toString();
+      const url = qs ? window.location.pathname + '?' + qs : window.location.pathname;
+      window.location.href = url;
+    }
+
+    applyMode();
   </script>
 </body>
 </html>
