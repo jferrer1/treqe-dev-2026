@@ -12,7 +12,7 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
     --bg: #F8F6F0; --card-bg: #FFFFFF; --text: #00234E;
-    --text-secondary: #5B6E8C; --border: #E8E4DC; --accent: #FF6A35;
+    --text-secondary: #5B6E8C; --text-tertiary: #B0B0B0; --border: #E8E4DC; --accent: #FF6A35;
     --navy: #00224D; --yellow: #FFC950; --teal: #A7D7C5;
     --pink: #EF7B8E; --cream: #FFF9E0;
     --shadow: 0 4px 20px rgba(0,0,0,0.05);
@@ -51,7 +51,7 @@
     -webkit-backdrop-filter: blur(24px) saturate(200%);
     border: 1px solid rgba(255,255,255,0.5);
     cursor: pointer; z-index: 2;
-    color: var(--text-secondary);
+    color: #888;
     box-shadow: 0 2px 12px rgba(0,0,0,0.04);
     transition: opacity 0.2s;
   }
@@ -538,7 +538,7 @@
       cursor: pointer;
       font-family: inherit;
     }
-  .nav-item i { font-size: 1.1rem; }
+  .nav-item i { font-size: 1.3rem; }
   .nav-item.active { color: var(--accent); }
   
   .nav-plus:active { transform: scale(0.95); }
