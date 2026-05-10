@@ -6,65 +6,54 @@
 <title>treqe — Comunidad</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{background:#111;display:flex;justify-content:center;align-items:center;min-height:100vh;padding:16px}
 .banner{
-  width:100%;max-width:1000px;
-  aspect-ratio:2/1;
-  background:#B88CDB;
-  position:relative;overflow:hidden;
-  display:flex;flex-direction:column;
+  width:100%;max-width:1000px;aspect-ratio:2/1;
+  background:#B88CDB;position:relative;overflow:hidden;
 }
-/* Subtle grid texture like the original */
-.banner::before{
-  content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+.grid{
+  position:absolute;inset:0;pointer-events:none;
   background-image:
-    linear-gradient(rgba(16,30,69,.04) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(16,30,69,.04) 1px,transparent 1px);
+    linear-gradient(rgba(16,30,69,.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(16,30,69,.03) 1px,transparent 1px);
   background-size:40px 40px;
 }
 .copy{
-  padding:clamp(16px,3vw,32px) clamp(20px,3.5vw,40px) 0;
-  z-index:1;position:relative;
+  position:absolute;top:clamp(14px,2.5vw,28px);left:clamp(18px,3vw,36px);
+  z-index:1;
 }
-.sans{
-  font-family:Inter,sans-serif;font-weight:900;
-  font-size:clamp(0.9rem,2.2vw,1.5rem);
-  letter-spacing:-0.5px;line-height:1.1;
-  color:#101E45;text-transform:uppercase;
-}
-.serif{
+.copy .italic{
   font-family:'Playfair Display',serif;font-style:italic;font-weight:700;
-  font-size:clamp(0.9rem,2.2vw,1.5rem);
-  color:#101E45;line-height:1.2;
+  font-size:clamp(1rem,2.5vw,1.7rem);color:#101E45;
 }
-.char-area{
-  flex:1;display:flex;align-items:flex-end;justify-content:center;
-  z-index:1;position:relative;padding:0 clamp(10px,2vw,30px);
+.copy .bold{
+  font-family:Inter,sans-serif;font-weight:900;
+  font-size:clamp(1rem,2.5vw,1.7rem);color:#101E45;
+  text-transform:uppercase;letter-spacing:-0.3px;
 }
-.char-area img{
-  width:100%;max-width:900px;height:auto;
-  object-fit:contain;
-  margin-bottom:-2%;
+.chars{
+  position:absolute;bottom:0;left:0;right:0;
+  display:flex;justify-content:center;
+  padding:0 clamp(8px,1.5vw,20px);
 }
+.chars img{width:100%;max-width:900px;height:auto;margin-bottom:-1%;}
 </style>
 </head>
 <body>
-
 <div class="banner">
+  <div class="grid"></div>
   <div class="copy">
-    <span class="serif">Bienvenido</span>
-    <span class="sans"> A LA COMUNIDAD</span>
+    <span class="italic">Bienvenido</span>
+    <span class="bold"> A LA COMUNIDAD</span>
     <br>
-    <span class="sans">DE TRUEQUE, </span>
-    <span class="serif">sin dinero.</span>
+    <span class="bold">DE TRUEQUE</span>
   </div>
-  <div class="char-area">
+  <div class="chars">
     <img src="../chars/v658-te-56-internationalyouthday_1_1.png" alt="">
   </div>
 </div>
-
 </body>
 </html>
