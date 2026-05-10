@@ -355,13 +355,24 @@
     .modal-btn-delete:active { background: #C0392B; }
 
     /* ===== RESPONSIVE ===== */
-    @media (min-width: 600px) {
-      .settings-wrap { max-width: 560px; margin: 0 auto; }
-      .profile-card { margin-left: auto; margin-right: auto; max-width: calc(100% - 32px); }
+        .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      padding: 0;
+      height: 72px;
+      padding-bottom: 12px;
+      z-index: 100;
+      isolation: isolate;
     }
-  
-    /* ===== BOTTOM NAV ===== */
-    
     .nav-item {
       display: flex;
       flex-direction: column;
@@ -375,30 +386,16 @@
       flex: 1;
       max-width: 80px;
       position: relative;
+      border: none;
+      background: none;
+      cursor: pointer;
+      font-family: inherit;
+      text-decoration: none;
     }
-    .nav-item i {
-      font-size: 1.3rem;
-    }
-    .nav-item.active {
-      color: var(--accent);
-    }
-    .nav-item.active i {
-      transform: scale(1.05);
-    }
-    .nav-item .nav-badge {
-      width: 6px;
-      height: 6px;
-      background: var(--accent);
-      border-radius: 50%;
-      position: absolute;
-      top: 2px;
-      right: 12px;
-    }
-    .nav-item.nav-add {
-      position: relative;
-      top: 0;
-    }
-    .nav-item.nav-add .nav-add-btn {
+    .nav-item i { font-size: 1.3rem; }
+    .nav-item.active { color: var(--accent); }
+    .nav-add { position: relative; top: 0; }
+    .nav-add-btn {
       width: 48px;
       height: 48px;
       background: var(--accent);
@@ -407,30 +404,41 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.2rem;
-      box-shadow: 0 4px 16px rgba(255,106,53,0.3);
-      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 12px rgba(255,106,53,0.3);
+      margin-bottom: 2px;
     }
+    .nav-add-btn i { font-size: 1.1rem; }
+    .nav-badge {
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      position: absolute;
+      top: 2px;
+      right: 12px;
+    }
+    @media (min-width: 600px) {
+      .settings-wrap { max-width: 560px; margin: 0 auto; }
+      .profile-card { margin-left: auto; margin-right: auto; max-width: calc(100% - 32px); }
+    }
+  
+    /* ===== BOTTOM NAV ===== */
+    
+    
+    
+    
+    .nav-item.active i {
+      transform: scale(1.05);
+    }
+    .nav-item 
+    .nav-item
+    .nav-item.nav-add 
     .nav-item.nav-add .nav-add-btn:active {
       transform: scale(0.92);
       box-shadow: 0 2px 8px rgba(255,106,53,0.2);
     }
 
-    .bottom-nav {
-      position: fixed; bottom: 0; left: 0; right: 0;
-      background: rgba(255,255,255,0.85);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border-top: 1px solid var(--border);
-      display: flex;
-      justify-content: space-evenly;
-      align-items: center;
-      padding: 0;
-      height: 72px;
-      padding-bottom: 12px;
-      z-index: 100;
-    isolation: isolate;
-    }
+    
     
     
     
@@ -687,11 +695,25 @@
 </script>
 
   <nav class="bottom-nav">
-    <button class="nav-item" onclick="goToDiscover()"><i class="fas fa-search"></i><span>Buscar</span></button>
-    <button class="nav-item" onclick="goToTrades()"><i class="fas fa-exchange-alt"></i><span>Treqes</span></button>
-    <button class="nav-item nav-add" onclick="goToUpload()"><div class="nav-add-btn"><i class="fas fa-plus"></i></div><span>Publicar</span></button>
-    <button class="nav-item" onclick="goToInbox()"><i class="fas fa-bell"></i><span>Avisos</span><span class="nav-badge"></span></button>
-    <button class="nav-item active" onclick="goToProfile()"><i class="fas fa-user"></i><span>Perfil</span></button>
+    <a href="../v1-catalogo/" class="nav-item">
+      <i class="fas fa-search"></i>
+      <span>Buscar</span>
+    </a>
+    <a href="../v12-mis-matches/" class="nav-item">
+      <i class="fas fa-exchange-alt"></i>
+      <span>Treqes</span>
+    </a>
+    <a href="../v3-subir/" class="nav-itemnav-add">
+      <div class="nav-add-btn"><i class="fas fa-plus"></i></div>
+    </a>
+    <a href="../v11-notificaciones/" class="nav-item">
+      <span class="nav-badge"></span>
+      <span>Avisos</span>
+    </a>
+    <a href="../v4-perfil/" class="nav-item active">
+      <i class="fas fa-user"></i>
+      <span>Perfil</span>
+    </a>
   </nav>
 </body>
 </html>
