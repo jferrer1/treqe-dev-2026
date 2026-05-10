@@ -9,209 +9,211 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{background:#111;font-family:'Inter',sans-serif}
-body{display:flex;flex-direction:column;align-items:center;padding:40px 16px;gap:40px;min-height:100vh}
-h1{color:#fff;font-size:1.5rem;font-weight:800;letter-spacing:-0.5px;text-align:center;margin-bottom:-16px}
+body{background:#111;display:flex;flex-direction:column;align-items:center;padding:32px 16px;gap:48px}
+.post{width:100%;max-width:500px;aspect-ratio:1/1;position:relative;overflow:hidden;display:flex;flex-direction:column}
+.post .copy{padding:32px 28px 0;z-index:1}
+.post .sans{font-family:Inter,sans-serif;font-weight:900;font-size:clamp(1.2rem,3.5vw,1.6rem);letter-spacing:-0.5px;line-height:1.05;color:#101E45;text-transform:uppercase}
+.post .serif{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:clamp(1.2rem,3.5vw,1.6rem);color:#101E45;line-height:1.2}
+.post .char-area{flex:1;display:flex;align-items:flex-end;justify-content:center;z-index:0;padding:0 20px 0}
+.post .char-area img{max-width:90%;max-height:78%;object-fit:contain}
+.post .footer{display:flex;justify-content:space-between;align-items:flex-end;padding:0 28px 24px;z-index:1}
+.post .footer .url{font-size:0.65rem;font-weight:600;color:#101E45;opacity:0.45;letter-spacing:0.5px}
+.post .footer .logo{font-size:0.95rem;font-weight:800;color:#101E45;letter-spacing:-0.5px}
+.post .ground{position:absolute;bottom:60px;left:8%;right:8%;height:1.5px;background:#101E45;opacity:0.08}
+.post .grid-overlay{position:absolute;inset:0;opacity:0.03;pointer-events:none;
+  background-image:linear-gradient(rgba(16,30,69,.2) 1px,transparent 1px),linear-gradient(90deg,rgba(16,30,69,.2) 1px,transparent 1px);
+  background-size:40px 40px}
 
-/* Post card */
-.post{width:100%;max-width:400px;aspect-ratio:1/1;border-radius:4px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between}
-.post-text{padding:28px 24px 0;z-index:2;position:relative}
-.post-text .sans{font-family:'Inter',sans-serif;font-weight:900;font-size:clamp(1.1rem,3vw,1.4rem);letter-spacing:-0.3px;line-height:1.1;color:#101E45;text-transform:uppercase}
-.post-text .serif{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:clamp(1.1rem,3vw,1.4rem);color:#101E45;line-height:1.2}
-.post-char{flex:1;display:flex;align-items:flex-end;justify-content:center;z-index:1;position:relative;padding-bottom:8px}
-.post-char img{max-height:75%;width:auto;object-fit:contain}
-.post-footer{display:flex;justify-content:space-between;align-items:flex-end;padding:0 24px 20px;z-index:2;position:relative}
-.post-footer .url{font-size:0.65rem;font-weight:600;color:#101E45;opacity:0.6;letter-spacing:0.5px}
-.post-footer .logo{font-size:0.9rem;font-weight:800;color:#101E45;letter-spacing:-0.5px}
-.ground-line{position:absolute;bottom:60px;left:10%;right:10%;height:1.5px;background:#101E45;opacity:0.1;z-index:0}
+/* Background colors from ZIP assets */
+.bg-teal{background:#B4D9D1}
+.bg-blue{background:#5E9FD9}
+.bg-pink{background:#FF8997}
+.bg-cream{background:#FFF4CE}
+.bg-navy{background:#485091}
+.bg-yellow{background:#FFC65F}
+.bg-deeppink{background:#FF5A82}
+.bg-purple{background:#B88CDB}
+.bg-paleyellow{background:#FFF8D3}
+.bg-darkblue{background:#2458A1}
 
-/* Color variants */
-.bg-yellow{background:#FDBB49}
-.bg-cream{background:#FDF2D0}
-.bg-teal{background:#A2D9D9}
-.bg-ochre{background:#D69E33}
-.bg-cyan{background:#89CAC8}
-.bg-pink{background:#EE788A}
-.bg-purple{background:#9B70B7}
-.bg-mint{background:#A8DBD4}
-.bg-pale{background:#FFF4D1}
-
-/* Swipe hint */
-.swipe-hint{color:#888;font-size:0.75rem;text-align:center;margin-top:-24px}
-
-@media(min-width:768px){
-  body{flex-direction:row;flex-wrap:wrap;justify-content:center;padding:60px 32px}
-  .post{max-width:360px;aspect-ratio:1/1}
-}
+/* White text for dark backgrounds */
+.bg-navy .sans,.bg-navy .serif,.bg-navy .footer .url,.bg-navy .footer .logo{color:#FFF}
+.bg-navy .ground{background:rgba(255,255,255,0.15)}
+.bg-darkblue .sans,.bg-darkblue .serif,.bg-darkblue .footer .url,.bg-darkblue .footer .logo{color:#FFF}
+.bg-darkblue .ground{background:rgba(255,255,255,0.15)}
 </style>
 </head>
 <body>
 
-<h1>treqe — Posts de Instagram</h1>
-<p class="swipe-hint">Diseños recreados con assets extraídos</p>
-
-<!-- Post 1: Dale una segunda vida — Fotógrafo -->
-<div class="post bg-yellow">
-  <div class="post-text">
-    <div class="sans">DALE UNA</div>
-    <div class="serif">segunda vida</div>
-    <div class="sans">A TUS COSAS</div>
-  </div>
-  <div class="post-char">
-    <img src="../chars/v756-te-55_1.png" alt="">
-  </div>
-  <div class="ground-line"></div>
-  <div class="post-footer">
-    <span class="url">treqe.com</span>
-    <span class="logo">treqe</span>
-  </div>
-</div>
-
-<!-- Post 2: Antes tenía / Ahora tengo — Rellena -->
-<div class="post bg-cream">
-  <div class="post-text">
-    <div class="sans">ANTES TENÍA</div>
-    <div class="serif">esto ___________</div>
-    <div class="sans" style="margin-top:16px">AHORA TENGO</div>
-    <div class="serif">esto ___________</div>
-  </div>
-  <div class="post-footer" style="margin-top:auto">
-    <span class="url">treqe.com</span>
-    <span class="logo">treqe</span>
-  </div>
-</div>
-
-<!-- Post 3: Dale una segunda vida — Saltador -->
+<!-- POST 1: Dale una segunda vida — Teal bg, group character -->
 <div class="post bg-teal">
-  <div class="post-text">
+  <div class="copy">
     <div class="sans">DALE UNA</div>
     <div class="serif">segunda vida</div>
     <div class="sans">A TUS COSAS</div>
   </div>
-  <div class="post-char">
-    <img src="../chars/v756-te-43_1.png" alt="">
+  <div class="char-area">
+    <img src="../chars/v658-te-01-internationalyouthday_2.png" alt="">
   </div>
-  <div class="ground-line"></div>
-  <div class="post-footer">
+  <div class="grid-overlay"></div>
+  <div class="ground"></div>
+  <div class="footer">
     <span class="url">treqe.com</span>
     <span class="logo">treqe</span>
   </div>
 </div>
 
-<!-- Post 4: Antes/Ahora — Bailarina headphones -->
-<div class="post bg-ochre">
-  <div class="post-text">
-    <div class="sans">ANTES TENÍA</div>
-    <div class="serif">una lámpara de techo</div>
-    <div class="sans" style="margin-top:12px">AHORA TENGO</div>
-    <div class="serif">estos headphones</div>
-  </div>
-  <div class="post-char">
-    <img src="../chars/v658-te-29-internationalyouthday_2.png" alt="">
-  </div>
-  <div class="ground-line"></div>
-  <div class="post-footer">
-    <span class="url">treqe.com</span>
-    <span class="logo">treqe</span>
-  </div>
-</div>
-
-<!-- Post 5: Antes/Ahora — Bici → iPod -->
-<div class="post bg-cyan">
-  <div class="post-text">
-    <div class="sans">ANTES TENÍA</div>
-    <div class="serif">una bici de montaña</div>
-    <div class="sans" style="margin-top:12px">AHORA TENGO</div>
-    <div class="serif">este iPod touch</div>
-  </div>
-  <div class="post-char">
-    <img src="../chars/v658-te-34-internationalyouthday_2.png" alt="">
-  </div>
-  <div class="post-footer">
-    <span class="url">treqe.com</span>
-    <span class="logo">treqe</span>
-  </div>
-</div>
-
-<!-- Post 6: Antes/Ahora — Carrito → iPhone -->
-<div class="post bg-pink">
-  <div class="post-text">
-    <div class="sans">ANTES TENÍA</div>
-    <div class="serif">un carrito de bebé</div>
-    <div class="sans" style="margin-top:12px">AHORA TENGO</div>
-    <div class="serif">este iphone</div>
-  </div>
-  <div class="post-char">
-    <img src="../chars/v658-te-56-internationalyouthday_1_1.png" alt="">
-  </div>
-  <div class="ground-line"></div>
-  <div class="post-footer">
-    <span class="url">treqe.com</span>
-    <span class="logo">treqe</span>
-  </div>
-</div>
-
-<!-- Post 7: Comunidad -->
-<div class="post bg-purple">
-  <div class="post-text">
-    <div class="serif" style="font-size:1.3rem">Bienvenido</div>
-    <div class="sans">A LA COMUNIDAD</div>
-    <div class="sans" style="font-size:0.9rem;opacity:0.8">DE TRUEQUE, <span class="serif" style="font-size:0.9rem">sin dinero.</span></div>
-  </div>
-  <div class="post-char">
-    <img src="../chars/v658-te-37-internationalyouthday_2.png" alt="">
-  </div>
-  <div class="post-footer">
-    <span class="url">treqe.com</span>
-    <span class="logo">treqe</span>
-  </div>
-</div>
-
-<!-- Post 8: Guitarra -->
-<div class="post bg-mint">
-  <div class="post-text">
+<!-- POST 2: Antes tenía / Ahora tengo — Blue bg, guitarist -->
+<div class="post bg-blue">
+  <div class="copy">
     <div class="sans">ANTES TENÍA</div>
     <div class="serif">una bici estática</div>
-    <div class="sans" style="margin-top:12px">AHORA TENGO</div>
+    <div class="sans" style="margin-top:14px">AHORA TENGO</div>
     <div class="serif">esta guitarra eléctrica</div>
   </div>
-  <div class="post-char">
+  <div class="char-area">
     <img src="../chars/v756-te-66_1.png" alt="">
   </div>
-  <div class="post-footer">
+  <div class="ground"></div>
+  <div class="footer">
     <span class="url">treqe.com</span>
     <span class="logo">treqe</span>
   </div>
 </div>
 
-<!-- Post 9: Skate -->
-<div class="post bg-pale">
-  <div class="post-text">
+<!-- POST 3: Antes/Ahora — Pink bg, dancer -->
+<div class="post bg-pink">
+  <div class="copy">
     <div class="sans">ANTES TENÍA</div>
-    <div class="serif">una cámara de fotos</div>
-    <div class="sans" style="margin-top:12px">AHORA TENGO</div>
-    <div class="serif">este skateboard</div>
+    <div class="serif">una lámpara de techo</div>
+    <div class="sans" style="margin-top:14px">AHORA TENGO</div>
+    <div class="serif">estos headphones</div>
   </div>
-  <div class="post-char">
-    <img src="../chars/v756-te-77_1.png" alt="">
+  <div class="char-area">
+    <img src="../chars/v658-te-21-internationalyouthday_2.png" alt="">
   </div>
-  <div class="post-footer">
+  <div class="ground"></div>
+  <div class="footer">
     <span class="url">treqe.com</span>
     <span class="logo">treqe</span>
   </div>
 </div>
 
-<!-- Post 10: Comunidad 2 -->
-<div class="post bg-teal">
-  <div class="post-text">
+<!-- POST 4: Carrito → iPhone — Cream bg, phone user -->
+<div class="post bg-cream">
+  <div class="copy">
+    <div class="sans">ANTES TENÍA</div>
+    <div class="serif">un carrito de bebé</div>
+    <div class="sans" style="margin-top:14px">AHORA TENGO</div>
+    <div class="serif">este iphone</div>
+  </div>
+  <div class="char-area">
+    <img src="../chars/v756-te-55_1.png" alt="">
+  </div>
+  <div class="ground"></div>
+  <div class="footer">
+    <span class="url">treqe.com</span>
+    <span class="logo">treqe</span>
+  </div>
+</div>
+
+<!-- POST 5: Bienvenido a la comunidad — Navy bg -->
+<div class="post bg-navy">
+  <div class="copy">
+    <div class="serif" style="font-size:1.4rem">Bienvenido</div>
+    <div class="sans">A LA COMUNIDAD</div>
+    <div class="sans" style="font-size:0.85rem;opacity:0.85;margin-top:4px">DE TRUEQUE, <span class="serif" style="font-size:0.85rem;text-transform:none">sin dinero.</span></div>
+  </div>
+  <div class="char-area">
+    <img src="../chars/v658-te-56-internationalyouthday_1_1.png" alt="">
+  </div>
+  <div class="footer">
+    <span class="url">treqe.com</span>
+    <span class="logo">treqe</span>
+  </div>
+</div>
+
+<!-- POST 6: Dale una segunda vida — Yellow bg, basketball -->
+<div class="post bg-yellow">
+  <div class="copy">
     <div class="sans">DALE UNA</div>
     <div class="serif">segunda vida</div>
     <div class="sans">A TUS COSAS</div>
   </div>
-  <div class="post-char">
-    <img src="../chars/v658-te-70-internationalyouthday_2.png" alt="">
+  <div class="char-area">
+    <img src="../chars/v756-te-58_1.png" alt="">
   </div>
-  <div class="post-footer">
+  <div class="ground"></div>
+  <div class="footer">
+    <span class="url">treqe.com</span>
+    <span class="logo">treqe</span>
+  </div>
+</div>
+
+<!-- POST 7: Cámara → Skate — Deep pink bg, skater -->
+<div class="post bg-deeppink">
+  <div class="copy">
+    <div class="sans">ANTES TENÍA</div>
+    <div class="serif">una cámara de fotos</div>
+    <div class="sans" style="margin-top:14px">AHORA TENGO</div>
+    <div class="serif">este skateboard</div>
+  </div>
+  <div class="char-area">
+    <img src="../chars/v756-te-77_1.png" alt="">
+  </div>
+  <div class="ground"></div>
+  <div class="footer">
+    <span class="url">treqe.com</span>
+    <span class="logo">treqe</span>
+  </div>
+</div>
+
+<!-- POST 8: Dale una segunda vida — Purple bg -->
+<div class="post bg-purple">
+  <div class="copy">
+    <div class="sans">DALE UNA</div>
+    <div class="serif">segunda vida</div>
+    <div class="sans">A TUS COSAS</div>
+  </div>
+  <div class="char-area">
+    <img src="../chars/v744-te-98_1_1.png" alt="">
+  </div>
+  <div class="ground"></div>
+  <div class="footer">
+    <span class="url">treqe.com</span>
+    <span class="logo">treqe</span>
+  </div>
+</div>
+
+<!-- POST 9: Dale una segunda vida — Pale yellow bg -->
+<div class="post bg-paleyellow">
+  <div class="copy">
+    <div class="sans">ANTES TENÍA</div>
+    <div class="serif">un microondas</div>
+    <div class="sans" style="margin-top:14px">AHORA TENGO</div>
+    <div class="serif">un ipad</div>
+  </div>
+  <div class="char-area">
+    <img src="../chars/v756-te-02_1.png" alt="">
+  </div>
+  <div class="ground"></div>
+  <div class="footer">
+    <span class="url">treqe.com</span>
+    <span class="logo">treqe</span>
+  </div>
+</div>
+
+<!-- POST 10: Antes/Ahora — Dark blue bg, jumper -->
+<div class="post bg-darkblue">
+  <div class="copy">
+    <div class="sans">DALE UNA</div>
+    <div class="serif">segunda vida</div>
+    <div class="sans">A TUS COSAS</div>
+  </div>
+  <div class="char-area">
+    <img src="../chars/v756-te-43_1.png" alt="">
+  </div>
+  <div class="footer">
     <span class="url">treqe.com</span>
     <span class="logo">treqe</span>
   </div>
