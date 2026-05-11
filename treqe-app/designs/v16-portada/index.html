@@ -228,16 +228,16 @@
     letter-spacing: -0.3px;
   }
   .exchange-card {
-    background: rgba(255,255,255,0.5);
-    backdrop-filter: blur(48px) saturate(220%);
-    -webkit-backdrop-filter: blur(48px) saturate(220%);
-    border-radius: 32px;
-    padding: 32px 24px;
+    background: rgba(255,255,255,0.4);
+    backdrop-filter: blur(40px) saturate(200%) brightness(1.05);
+    -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(1.05);
+    border-radius: 28px;
+    padding: 36px 28px 32px;
     max-width: 440px; margin: 0 auto;
     position: relative; z-index: 2;
     box-shadow:
-      0 8px 40px rgba(0,20,50,0.06),
-      0 0 0 1px rgba(255,255,255,0.4),
+      0 4px 24px rgba(0,20,50,0.05),
+      0 0 0 1px rgba(255,255,255,0.35),
       inset 0 1px 0 rgba(255,255,255,0.5);
   }
   .exchange-card::before {
@@ -253,74 +253,63 @@
     opacity: 0.7;
   }
   
-  /* Swap Visual — Chain Cycle */
+  /* Chain Cycle */
   .chain-stage {
     display: flex; align-items: center; justify-content: center;
-    gap: 12px; margin-bottom: 8px;
-    animation: chainCycle 12s ease-in-out infinite;
+    gap: 16px; margin-bottom: 4px;
   }
-  @keyframes chainCycle {
-    0%, 20%   { /* 🚲→📱 */ }
-    25%, 45%  { /* reveal 📱→🎸 */ }
-    50%, 70%  { /* reveal 🎸→👟 */ }
-    75%, 95%  { /* reveal 👟→🚲 */ }
-  }
-  
   .chain-item {
-    display: flex; flex-direction: column; align-items: center; gap: 6px;
-    text-align: center; flex: 1; max-width: 120px;
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    text-align: center; flex: 1; max-width: 130px;
   }
   .chain-icon {
-    width: 72px; height: 72px; border-radius: 22px;
+    width: 76px; height: 76px; border-radius: 24px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 2.2rem; transition: all 0.5s;
+    font-size: 2.4rem; transition: transform 0.3s, opacity 0.3s;
   }
   .chain-before .chain-icon {
-    background: rgba(255,240,220,0.85);
-    box-shadow: 0 4px 16px rgba(255,180,80,0.12);
-    border: 1px solid rgba(255,180,80,0.15);
+    background: rgba(255,245,235,0.9);
+    box-shadow:
+      0 6px 24px rgba(255,180,80,0.08),
+      inset 0 1px 0 rgba(255,255,255,0.6);
+    border: 1px solid rgba(255,180,80,0.1);
   }
   .chain-after .chain-icon {
-    background: rgba(220,235,255,0.85);
-    box-shadow: 0 4px 16px rgba(80,140,255,0.12);
-    border: 1px solid rgba(80,140,255,0.15);
+    background: rgba(235,245,255,0.9);
+    box-shadow:
+      0 6px 24px rgba(80,160,255,0.08),
+      inset 0 1px 0 rgba(255,255,255,0.6);
+    border: 1px solid rgba(80,160,255,0.1);
   }
   .chain-label {
-    font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1.5px;
+    font-size: 0.62rem; text-transform: uppercase; letter-spacing: 1.8px;
     font-weight: 700; color: var(--text-tertiary);
   }
   .chain-name {
     font-family: 'Playfair Display','Georgia',serif; font-style: italic;
     font-weight: 700; font-size: 0.9rem; color: var(--text);
-    line-height: 1.2;
+    line-height: 1.3; max-width: 120px;
   }
   .chain-arrow {
-    font-size: 1.4rem; color: var(--accent); font-weight: 700;
-    flex-shrink: 0; margin-top: -14px;
-  }
-  
-  /* Cycle through examples via JS-driven content swaps */
-  .chain-after .chain-icon { animation: slideIn 0.5s ease-out; }
-  @keyframes slideIn {
-    from { transform: scale(0.8); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
+    font-size: 1.3rem; color: var(--accent); font-weight: 700;
+    flex-shrink: 0; opacity: 0.7;
   }
     /* Insight */
   .exchange-insight {
-    margin: 28px 0;
-    padding: 20px 16px;
-    background: linear-gradient(135deg, rgba(255,249,224,0.5), rgba(230,240,255,0.5));
-    border-radius: 20px;
-    border: 1px solid rgba(0,35,78,0.04);
+    margin: 24px 0 0;
+    padding: 18px 20px;
+    background: linear-gradient(135deg, rgba(255,249,224,0.3), rgba(235,245,255,0.3));
+    border-radius: 18px;
+    border: 1px solid rgba(0,35,78,0.03);
   }
   .exchange-insight .insight-icon {
-    font-size: 1.2rem; color: var(--accent); margin-bottom: 8px;
+    font-size: 1rem; color: var(--accent); margin-bottom: 6px; opacity: 0.7;
   }
   .exchange-insight p {
-    font-size: 0.95rem; color: var(--text); line-height: 1.7; margin: 0;
+    font-size: 0.88rem; color: var(--text); line-height: 1.7; margin: 0;
     font-weight: 500;
   }
-  .exchange-insight strong { color: var(--accent); }
+  .exchange-insight strong { color: var(--accent); font-weight: 700; }
   .exchange-insight em { font-style: italic; color: var(--text); font-weight: 600; }
   
   /* Steps */
@@ -341,16 +330,7 @@
     background: var(--accent); color: #FFF;
     display: flex; align-items: center; justify-content: center;
     font-size: 0.75rem; font-weight: 700; flex-shrink: 0;
-  }.insight {
-    margin-top: 32px; padding-top: 24px;
-    border-top: 1px solid rgba(0,35,78,0.06);
-    text-align: center; font-size: 0.9rem; color: var(--text-secondary);
-    line-height: 1.7;
-  }
-  .exchange-card .insight strong { color: var(--text); font-weight: 700; }
-  .exchange-card .insight em { color: var(--accent); font-style: normal; font-weight: 600; }
-
-  /* ── HOW IT WORKS ── */
+  }  /* ── HOW IT WORKS ── */
   .how-section {
     background: linear-gradient(180deg, var(--teal) 0%, rgba(167,215,197,0.5) 100%);
     padding: 64px 24px; text-align: center;
