@@ -253,99 +253,75 @@
     opacity: 0.7;
   }
   
-  /* Swap Visual — Community Ring */
-  .swap-visual {
-    display: flex; flex-direction: column; align-items: center;
-    gap: 24px; margin-bottom: 28px;
+  /* Swap Visual — Split Card Editorial */
+  .split-card {
+    display: flex; flex-direction: column;
+    border-radius: 24px; overflow: hidden;
+    background: rgba(255,255,255,0.3);
+    box-shadow: 0 4px 24px rgba(0,20,50,0.04), inset 0 1px 0 rgba(255,255,255,0.6);
   }
-  
-  /* Community Ring */
-  .community-ring {
-    position: relative; width: 200px; height: 200px;
-    margin: 0 auto;
+  .split-half {
+    position: relative; padding: 32px 24px 28px;
+    text-align: center; overflow: hidden;
   }
-  .ring-track {
-    position: absolute; inset: 0;
-    animation: ringSpin 20s linear infinite;
+  .split-give { background: linear-gradient(180deg, rgba(255,249,235,0.6), rgba(255,255,255,0.2)); }
+  .split-receive { background: linear-gradient(180deg, rgba(235,245,255,0.6), rgba(255,255,255,0.2)); }
+  .split-bg-blob {
+    position: absolute; width: 160px; height: 160px; border-radius: 50%;
+    top: 50%; left: 50%; transform: translate(-50%,-50%);
+    pointer-events: none; opacity: 0.4;
   }
-  @keyframes ringSpin {
-    to { transform: rotate(360deg); }
+  .split-give .split-bg-blob { background: radial-gradient(circle, rgba(255,200,100,0.5), transparent 70%); }
+  .split-receive .split-bg-blob { background: radial-gradient(circle, rgba(100,160,255,0.4), transparent 70%); }
+  .split-tag {
+    font-size: 0.6rem; text-transform: uppercase; letter-spacing: 2px;
+    font-weight: 700; color: var(--text-tertiary); margin-bottom: 16px;
+    display: block; position: relative; z-index: 1;
   }
-  .ring-item {
-    position: absolute;
-    width: 40px; height: 40px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.3rem;
-    background: rgba(255,255,255,0.85);
-    border-radius: 14px;
-    box-shadow: 0 2px 12px rgba(0,20,50,0.06), inset 0 1px 0 rgba(255,255,255,0.6);
-    top: 50%; left: 50%;
-    transform-origin: 0 0;
-    animation: itemStay 20s linear infinite;
+  .split-icon-wrap { position: relative; z-index: 1; margin-bottom: 12px; }
+  .split-icon {
+    width: 80px; height: 80px; margin: 0 auto;
+    border-radius: 24px; display: flex; align-items: center; justify-content: center;
+    font-size: 2.8rem; position: relative; z-index: 2;
+    background: rgba(255,255,255,0.8); backdrop-filter: blur(12px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+    transition: transform 0.3s;
   }
-  @keyframes itemStay {
-    to { transform: rotate(-360deg); }
-  }
-  .ring-pos-1 { transform: translate(-50%,-50%) rotate(0deg) translateX(80px) rotate(0deg); }
-  .ring-pos-2 { transform: translate(-50%,-50%) rotate(60deg) translateX(80px) rotate(-60deg); }
-  .ring-pos-3 { transform: translate(-50%,-50%) rotate(120deg) translateX(80px) rotate(-120deg); }
-  .ring-pos-4 { transform: translate(-50%,-50%) rotate(180deg) translateX(80px) rotate(-180deg); }
-  .ring-pos-5 { transform: translate(-50%,-50%) rotate(240deg) translateX(80px) rotate(-240deg); }
-  .ring-pos-6 { transform: translate(-50%,-50%) rotate(300deg) translateX(80px) rotate(-300deg); }
-  
-  .ring-center {
-    position: absolute; top: 50%; left: 50%;
-    transform: translate(-50%,-50%);
-    width: 72px; height: 72px;
+  .split-half:hover .split-icon { transform: scale(1.08); }
+  .split-icon-shadow {
+    width: 70px; height: 12px; margin: 8px auto 0;
+    background: radial-gradient(ellipse, rgba(0,0,0,0.1), transparent);
     border-radius: 50%;
-    background: var(--accent);
+  }
+  .split-name {
+    font-family: 'Playfair Display','Georgia',serif; font-style: italic;
+    font-weight: 700; font-size: 1.1rem; color: var(--text);
+    position: relative; z-index: 1;
+  }
+  .split-divider {
+    position: relative; height: 48px;
+    background: linear-gradient(90deg, transparent, rgba(255,106,53,0.08), var(--accent), rgba(255,106,53,0.08), transparent);
     display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 4px 24px rgba(255,106,53,0.3);
-    z-index: 2;
   }
-  .ring-label {
-    color: #FFF; font-weight: 800; font-size: 0.7rem;
-    letter-spacing: 2px; text-transform: uppercase;
+  .split-divider::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.03), transparent, rgba(0,0,0,0.03));
   }
-  .ring-pulse {
-    position: absolute; inset: -6px;
-    border-radius: 50%;
-    border: 2px solid rgba(255,106,53,0.3);
-    animation: ringPulse 2s ease-out infinite;
+  .split-arrow-wrap {
+    position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+    color: var(--accent); width: 20px; height: 32px;
+    animation: arrowBob 2s ease-in-out infinite;
   }
-  @keyframes ringPulse {
-    0% { transform: scale(1); opacity: 0.6; }
-    100% { transform: scale(1.5); opacity: 0; }
+  @keyframes arrowBob {
+    0%, 100% { transform: translateY(-50%) translateY(0); }
+    50% { transform: translateY(-50%) translateY(4px); }
   }
-  
-  /* Swap labels */
-  .swap-labels {
-    display: flex; flex-direction: column; gap: 10px;
-    width: 100%; max-width: 340px;
+  .split-svg { width: 100%; height: 100%; }
+  .split-word {
+    font-size: 0.55rem; text-transform: uppercase; letter-spacing: 2px;
+    font-weight: 700; color: var(--accent); text-align: center; line-height: 1.5;
   }
-  .swap-label-item {
-    display: flex; align-items: center; gap: 12px;
-    padding: 14px 16px;
-    background: rgba(255,255,255,0.6);
-    border-radius: 16px;
-    border: 1px solid rgba(0,35,78,0.04);
-  }
-  .swap-label-icon {
-    width: 44px; height: 44px; border-radius: 14px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.4rem; flex-shrink: 0;
-  }
-  .from-icon { background: rgba(255,245,230,0.9); }
-  .to-icon { background: rgba(230,240,255,0.9); }
-  .swap-label-text {
-    font-size: 0.85rem; color: var(--text-secondary); line-height: 1.4;
-  }
-  .swap-label-text em {
-    font-family: 'Playfair Display','Georgia',serif;
-    font-style: italic; font-weight: 700; color: var(--text);
-  }
-  
-  /* Insight */
+    /* Insight */
   .exchange-insight {
     margin: 28px 0;
     padding: 20px 16px;
@@ -742,28 +718,32 @@
   
   <div class="exchange-card">
     <div class="swap-visual">
-      <div class="community-ring">
-        <div class="ring-track">
-          <div class="ring-item ring-pos-1">🎸</div>
-          <div class="ring-item ring-pos-2">📚</div>
-          <div class="ring-item ring-pos-3">👟</div>
-          <div class="ring-item ring-pos-4">🎮</div>
-          <div class="ring-item ring-pos-5">🪴</div>
-          <div class="ring-item ring-pos-6">💻</div>
+      <div class="split-card">
+        <div class="split-half split-give">
+          <div class="split-bg-blob"></div>
+          <span class="split-tag">Tú entregas</span>
+          <div class="split-icon-wrap">
+            <div class="split-icon">🚲</div>
+            <div class="split-icon-shadow"></div>
+          </div>
+          <span class="split-name">un carrito de bebé</span>
         </div>
-        <div class="ring-center">
-          <span class="ring-label">TREQE</span>
-          <div class="ring-pulse"></div>
+        <div class="split-divider">
+          <div class="split-arrow-wrap">
+            <svg class="split-svg" viewBox="0 0 24 40" fill="none">
+              <path d="M12 0 V28 M6 22 L12 32 L18 22" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <span class="split-word">se<br>convierte<br>en</span>
         </div>
-      </div>
-      <div class="swap-labels">
-        <div class="swap-label-item">
-          <div class="swap-label-icon from-icon">🚲</div>
-          <span class="swap-label-text">Tú entregas <em>un carrito de bebé</em></span>
-        </div>
-        <div class="swap-label-item">
-          <div class="swap-label-icon to-icon">📱</div>
-          <span class="swap-label-text">Tú recibes <em>este iPhone</em></span>
+        <div class="split-half split-receive">
+          <div class="split-bg-blob"></div>
+          <span class="split-tag">Tú recibes</span>
+          <div class="split-icon-wrap">
+            <div class="split-icon">📱</div>
+            <div class="split-icon-shadow"></div>
+          </div>
+          <span class="split-name">este iPhone</span>
         </div>
       </div>
     </div>
