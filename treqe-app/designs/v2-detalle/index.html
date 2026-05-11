@@ -1247,7 +1247,7 @@
             </div>
 
             <div class="trade-difference">
-              <div class="trade-difference__label">Diferencia a pagar</div>
+              <div class="trade-difference__label" id="diffLabel">Diferencia a pagar</div>
               <div class="trade-difference__value" id="diffValue">-</div>
             </div>
           </div>
@@ -1278,7 +1278,16 @@
   <script>
     // Selected item state
     let selectedItem = null;
-    const targetPrice = 580;
+    let targetPrice = 0;
+    function getTargetPrice() {
+      if (targetPrice === 0 && window.TREQE_PRODUCTS) {
+        var p = new URLSearchParams(window.location.search);
+        var id = p.get('id');
+        var prod = TREQE_PRODUCTS.find(function(x){ return x.id == id; });
+        if (prod) targetPrice = Number(prod.price);
+      }
+      return targetPrice;
+    }
 
     // Wishlist toggle
     function toggleWish() {
@@ -1365,14 +1374,17 @@
       document.getElementById('confirmName').textContent = selectedItem.name;
       document.getElementById('confirmPrice').textContent = selectedItem.price + ' €';
 
-      const diff = targetPrice - selectedItem.price;
+      const diff = getTargetPrice() - selectedItem.price;
       const diffEl = document.getElementById('diffValue');
+      const diffLabel = document.getElementById('diffLabel');
 
       if (diff > 0) {
-        diffEl.textContent = '+ ' + diff + ' €';
+        diffLabel.textContent = 'Diferencia a pagar';
+        diffEl.textContent = diff + ' €';
         diffEl.className = 'trade-difference__value positive';
       } else if (diff < 0) {
-        diffEl.textContent = '- €' + Math.abs(diff) + ' (te pagan)';
+        diffLabel.textContent = 'Diferencia a recibir';
+        diffEl.textContent = Math.abs(diff) + ' €';
         diffEl.className = 'trade-difference__value negative';
       } else {
         diffEl.textContent = '€0 (intercambio exacto)';
