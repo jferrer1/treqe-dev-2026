@@ -502,7 +502,6 @@
     <span class="header__title">Avisos</span>
   </div>
 
-  <!-- ===== COMPACT SEGMENTED CONTROL (replaces inbox-stats + inbox-tabs) ===== -->
   <!-- ===== INBOX CONTENT (lista plana sin tabs) ===== -->
   <div class="inbox-content">
     <div style="padding: 4px 0 12px; font-size: 0.75rem; color: var(--text-tertiary); display: flex; align-items: center; gap: 6px;">
@@ -552,7 +551,81 @@
     <div class="inbox-item">
       <div class="inbox-item__icon cat-camera" style="background: rgba(39,174,96,0.12);">🔔</div>
       <div class="inbox-item__body">
-        <div class="inbox-item__title
+        <div class="inbox-item__title">Nueva Canon EOS R publicada en Barcelona</div>
+        <div class="inbox-item__text">Coincide con tu búsqueda guardada "cámaras réflex". Disponible para compra directa (650€) o intercambio. Publicado hace 30 minutos.</div>
+        <div class="inbox-item__meta"><i class="far fa-clock"></i> Hace 30 min · Barcelona</div>
+      </div>
+      <div class="inbox-item__actions">
+        <button class="inbox-item__responder" onclick="goToDetail('canon')"><i class="fas fa-eye"></i> Ver artículo</button>
+      </div>
+    </div>
+
+    <!-- 5. 📈 Oferta mejorada -->
+    <div class="inbox-item">
+      <div class="inbox-item__icon cat-bike" style="background: rgba(0,184,184,0.12);">📈</div>
+      <div class="inbox-item__body">
+        <div class="inbox-item__title">Ana ha mejorado su oferta por tu Trek Marlin 7</div>
+        <div class="inbox-item__text">Ahora ofrece su Canon EOS R + 50€ (antes eran 30€). Sigue sin haber match todavía — el algoritmo busca completar el círculo con su oferta actualizada.</div>
+        <div class="inbox-item__meta"><i class="far fa-clock"></i> Hace 3 h · <span style="color:var(--accent);font-weight:600;">Oferta actualizada</span></div>
+      </div>
+      <div class="inbox-item__actions">
+        <button class="inbox-item__responder" onclick="goToDetail('trek')"><i class="fas fa-eye"></i> Ver oferta</button>
+      </div>
+    </div>
+
+    <!-- 6. 🔗 Círculo cerca de cerrarse -->
+    <div class="inbox-item">
+      <div class="inbox-item__icon cat-music" style="background: rgba(92,107,192,0.12);">🔗</div>
+      <div class="inbox-item__body">
+        <div class="inbox-item__title">Tu Fender Stratocaster está cerca de cerrar un círculo</div>
+        <div class="inbox-item__text">Solo falta 1 persona para completar la cadena. Si alguien más ofrece un artículo compatible con las ofertas actuales, tendrás match automáticamente.</div>
+        <div class="inbox-item__meta"><i class="far fa-clock"></i> Hace 5 h · <span style="color:var(--warning);font-weight:600;">Casi listo</span></div>
+      </div>
+      <div class="inbox-item__actions">
+        <button class="inbox-item__responder" onclick="goToDetail('fender')"><i class="fas fa-eye"></i> Ver</button>
+      </div>
+    </div>
+
+    <!-- 7. 💶 Crédito pendiente -->
+    <div class="inbox-item">
+      <div class="inbox-item__icon cat-default" style="background: rgba(0,184,184,0.12);">💶</div>
+      <div class="inbox-item__body">
+        <div class="inbox-item__title">Tienes 40€ pendientes del intercambio #TRX-7839</div>
+        <div class="inbox-item__text">Se liberarán cuando Carlos confirme que ha recibido tu AirPods Max. Recibirás el ingreso en tu monedero Treqe en las siguientes 24h tras la confirmación.</div>
+        <div class="inbox-item__meta"><i class="far fa-clock"></i> Pendiente desde hace 2 d</div>
+      </div>
+      <div class="inbox-item__actions">
+        <button class="inbox-item__responder" onclick="goToTrades()"><i class="fas fa-eye"></i> Ver estado</button>
+      </div>
+    </div>
+
+    <!-- 8. 🔄 Artículo guardado ahora acepta intercambio -->
+    <div class="inbox-item">
+      <div class="inbox-item__icon cat-tech" style="background: rgba(245,166,35,0.12);">🔄</div>
+      <div class="inbox-item__body">
+        <div class="inbox-item__title">La Canon EOS R que guardaste ahora acepta intercambio</div>
+        <div class="inbox-item__text">Antes solo estaba disponible para compra directa. El dueño acaba de activar la opción de trueque. Puedes ofrecer tus artículos a cambio.</div>
+        <div class="inbox-item__meta"><i class="far fa-clock"></i> Hace 6 h</div>
+      </div>
+      <div class="inbox-item__actions">
+        <button class="inbox-item__responder" onclick="goToDetail('canon')"><i class="fas fa-eye"></i> Ver</button>
+      </div>
+    </div>
+
+    <!-- 9. ⭐ Recordatorio valoración -->
+    <div class="inbox-item">
+      <div class="inbox-item__icon cat-default" style="background: rgba(155,89,182,0.12);">⭐</div>
+      <div class="inbox-item__body">
+        <div class="inbox-item__title">¿Qué tal fue tu intercambio #TRX-7839?</div>
+        <div class="inbox-item__text">Canon EOS R por AirPods Max + 270€ se completó hace 3 días. Valora a los participantes para ayudar a la comunidad. Si no valoras en 7 días, se cerrará automáticamente.</div>
+        <div class="inbox-item__meta"><i class="far fa-clock"></i> Hace 3 d · <span style="color:var(--warning);font-weight:600;">Quedan 4 días</span></div>
+      </div>
+      <div class="inbox-item__actions">
+        <button class="inbox-item__responder" onclick="goToTrades()"><i class="fas fa-star"></i> Valorar</button>
+      </div>
+    </div>
+
+  </div>
 
   <!-- ===== BOTTOM NAV ===== -->
 
