@@ -2252,7 +2252,7 @@ function pickCondition(chip){chip.parentElement.querySelectorAll(".filter-chip")
         }
       });
       
-      card.appendChild(btn);
+      var img = card.querySelector(".item-card__image"); if (img) { img.style.position = "relative"; img.appendChild(btn); }
     });
   })();
 </script>
