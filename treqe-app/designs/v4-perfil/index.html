@@ -335,6 +335,14 @@
       background: var(--warning);
       color: #FFF;
     }
+    .my-item__status.accepted {
+      background: var(--success);
+      color: #FFF;
+    }
+    .my-item__status.rejected {
+      background: #E8E4DC;
+      color: var(--text-secondary);
+    }
 
     /* ===== LIKED ITEM PREVIEWS (emoji + overlay) ===== */
     .my-item__image--liked {
@@ -766,6 +774,49 @@
             <div class="my-item__price">180€</div>
           </div>
           <span class="my-item__status active">Activo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== SOLICITUDES DE TRUEQUE ===== -->
+    <div class="section">
+      <div class="section__header">
+        <span class="section__title"><i class="fas fa-exchange-alt" style="color:var(--accent);margin-right:6px;"></i>Solicitudes de trueque</span>
+        <button class="section__action" onclick="goToTrades()">Ver todas</button>
+      </div>
+      <div class="my-items">
+        <div class="my-item" onclick="goToDetail(26)">
+          <div class="my-item__image my-item__image--liked" style="background:linear-gradient(135deg,#1A2A3A,#2A3A5A)!important;">
+            <span class="my-item__emoji">🎮</span>
+            <div class="my-item__overlay">Nintendo Switch OLED</div>
+          </div>
+          <div class="my-item__info">
+            <div class="my-item__title">Nintendo Switch OLED</div>
+            <div class="my-item__price">€280</div>
+          </div>
+          <span class="my-item__status pending">Pendiente</span>
+        </div>
+        <div class="my-item" onclick="goToDetail(3)">
+          <div class="my-item__image my-item__image--liked" style="background:linear-gradient(135deg,#2A1A3A,#4A2A5A)!important;">
+            <span class="my-item__emoji">📱</span>
+            <div class="my-item__overlay">iPhone 15 Pro</div>
+          </div>
+          <div class="my-item__info">
+            <div class="my-item__title">iPhone 15 Pro</div>
+            <div class="my-item__price">€890</div>
+          </div>
+          <span class="my-item__status accepted">Aceptado</span>
+        </div>
+        <div class="my-item" onclick="goToDetail(21)">
+          <div class="my-item__image my-item__image--liked" style="background:linear-gradient(135deg,#1A3A2A,#2A5A3A)!important;">
+            <span class="my-item__emoji">🎸</span>
+            <div class="my-item__overlay">Yamaha F310</div>
+          </div>
+          <div class="my-item__info">
+            <div class="my-item__title">Yamaha F310</div>
+            <div class="my-item__price">€210</div>
+          </div>
+          <span class="my-item__status rejected">Rechazado</span>
         </div>
       </div>
     </div>
