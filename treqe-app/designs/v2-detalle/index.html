@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -1095,6 +1095,7 @@
       </div>
     
       <button class="gallery-wish" id="wishBtn" onclick="event.stopPropagation();toggleWish()" aria-label="Guardar"><i class="far fa-heart" id="wishIcon"></i></button>
+      <button class="gallery-trade" id="tradeBtn" onclick="event.stopPropagation();toggleTradeReq()" aria-label="Solicitar trueque"><i class="fas fa-exchange-alt" id="tradeIcon"></i></button>
     </div>
 
     <!-- ===== RIGHT PANEL ===== -->
@@ -1291,7 +1292,22 @@
       return targetPrice;
     }
 
-    // Wishlist toggle
+    // Trade request toggle
+    function toggleTradeReq() {
+      var params = new URLSearchParams(window.location.search);
+      var id = params.get("id") || "0";
+      var btn = document.getElementById("tradeBtn");
+      var req = JSON.parse(localStorage.getItem("treqe_trade_requests") || "[]");
+      var idx = req.indexOf(id);
+      if (idx === -1) { req.push(id); btn.classList.add("requested"); }
+      else { req.splice(idx, 1); btn.classList.remove("requested"); }
+      localStorage.setItem("treqe_trade_requests", JSON.stringify(req));
+    }
+
+    
+    // Init trade button state
+    (function(){ var p=new URLSearchParams(window.location.search); var id=p.get("id"); if(id){ var req=JSON.parse(localStorage.getItem("treqe_trade_requests")||"[]"); if(req.indexOf(id)!==-1){ document.getElementById("tradeBtn").classList.add("requested"); } } })();
+
     function toggleWish() {
       const btn = document.getElementById('wishBtn');
       const icon = document.getElementById('wishIcon');

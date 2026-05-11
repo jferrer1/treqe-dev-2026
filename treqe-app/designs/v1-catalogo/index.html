@@ -921,7 +921,26 @@
       top: 2px;
       right: 12px;
     }
-    </style>
+    
+    /* Trade request button */
+    .trade-btn {
+      position: absolute;
+      top: 6px;
+      left: 44px;
+      width: 34px; height: 34px;
+      border-radius: 10px;
+      border: none;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(255,255,255,0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      color: var(--text-tertiary);
+      font-size: 0.85rem;
+      cursor: pointer;
+      z-index: 5;
+      transition: color 0.2s, background 0.2s;
+    }
+    .trade-btn.requested { color: var(--accent); background: rgba(255,106,53,0.1); }</style>
 </head>
 <body>
 
@@ -2224,6 +2243,38 @@ function pickCondition(chip){chip.parentElement.querySelectorAll(".filter-chip")
         if (typeof applyCurrentFilters === 'function') applyCurrentFilters();
       }
     })();
+
+  /* ─── Trade Request Buttons ─── */
+  (function(){
+    var requested = JSON.parse(localStorage.getItem('treqe_trade_requests') || '[]');
+    document.querySelectorAll('.item-card').forEach(function(card){
+      var onclick = card.getAttribute('onclick');
+      var idMatch = onclick && onclick.match(/goToDetail\((\d+)\)/);
+      if (!idMatch) return;
+      var id = idMatch[1];
+      var isReq = requested.indexOf(id) !== -1;
+      
+      var btn = document.createElement('button');
+      btn.className = 'trade-btn' + (isReq ? ' requested' : '');
+      btn.innerHTML = '<i class="fas fa-exchange-alt"></i>';
+      btn.setAttribute('aria-label', 'Solicitar trueque');
+      btn.addEventListener('click', function(e){
+        e.stopPropagation();
+        var req = JSON.parse(localStorage.getItem('treqe_trade_requests') || '[]');
+        var idx = req.indexOf(id);
+        if (idx === -1) {
+          req.push(id);
+          btn.classList.add('requested');
+        } else {
+          req.splice(idx, 1);
+          btn.classList.remove('requested');
+        }
+        localStorage.setItem('treqe_trade_requests', JSON.stringify(req));
+      });
+      
+      card.appendChild(btn);
+    });
+  })();
 </script>
 
   <!-- ===== FILTER MODAL ===== -->
