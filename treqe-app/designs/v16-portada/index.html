@@ -253,61 +253,58 @@
     opacity: 0.7;
   }
   
-  /* Swap Visual — Circular Flow */
-  .circular-swap {
-    position: relative;
-    width: 220px; height: 220px; margin: 0 auto 20px;
-  }
-  .circle-ring {
-    position: absolute; inset: 0;
-    width: 100%; height: 100%;
-    color: var(--text-secondary);
-  }
-  .circle-ring path, .circle-ring polygon {
-    animation: flowPulse 3s ease-in-out infinite;
-  }
-  @keyframes flowPulse {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 0.7; }
-  }
-  
-  .circular-item {
-    position: absolute; display: flex; flex-direction: column; align-items: center;
-    gap: 6px; text-align: center;
-  }
-  .circular-before { top: 0; left: 50%; transform: translateX(-50%); }
-  .circular-after { bottom: 0; left: 50%; transform: translateX(-50%); }
-  
-  .circular-icon {
-    width: 64px; height: 64px; border-radius: 20px;
+  /* Swap Visual — Chain Cycle */
+  .chain-stage {
     display: flex; align-items: center; justify-content: center;
-    font-size: 2rem;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    gap: 12px; margin-bottom: 8px;
+    animation: chainCycle 12s ease-in-out infinite;
   }
-  .circular-before .circular-icon {
-    background: rgba(255,240,220,0.9);
-    border: 1px solid rgba(255,180,80,0.2);
+  @keyframes chainCycle {
+    0%, 20%   { /* 🚲→📱 */ }
+    25%, 45%  { /* reveal 📱→🎸 */ }
+    50%, 70%  { /* reveal 🎸→👟 */ }
+    75%, 95%  { /* reveal 👟→🚲 */ }
   }
-  .circular-after .circular-icon {
-    background: rgba(220,235,255,0.9);
-    border: 1px solid rgba(80,140,255,0.2);
+  
+  .chain-item {
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    text-align: center; flex: 1; max-width: 120px;
   }
-  .circular-label {
+  .chain-icon {
+    width: 72px; height: 72px; border-radius: 22px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2.2rem; transition: all 0.5s;
+  }
+  .chain-before .chain-icon {
+    background: rgba(255,240,220,0.85);
+    box-shadow: 0 4px 16px rgba(255,180,80,0.12);
+    border: 1px solid rgba(255,180,80,0.15);
+  }
+  .chain-after .chain-icon {
+    background: rgba(220,235,255,0.85);
+    box-shadow: 0 4px 16px rgba(80,140,255,0.12);
+    border: 1px solid rgba(80,140,255,0.15);
+  }
+  .chain-label {
     font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1.5px;
     font-weight: 700; color: var(--text-tertiary);
   }
-  .circular-name {
+  .chain-name {
     font-family: 'Playfair Display','Georgia',serif; font-style: italic;
-    font-weight: 700; font-size: 0.85rem; color: var(--text);
-    max-width: 120px; line-height: 1.2;
+    font-weight: 700; font-size: 0.9rem; color: var(--text);
+    line-height: 1.2;
+  }
+  .chain-arrow {
+    font-size: 1.4rem; color: var(--accent); font-weight: 700;
+    flex-shrink: 0; margin-top: -14px;
   }
   
-  .circular-tagline {
-    text-align: center; font-size: 0.8rem; color: var(--text-secondary);
-    line-height: 1.8;
+  /* Cycle through examples via JS-driven content swaps */
+  .chain-after .chain-icon { animation: slideIn 0.5s ease-out; }
+  @keyframes slideIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
   }
-  .circular-tagline strong { color: var(--text); font-weight: 700; }
-  .circular-tagline em { color: var(--accent); font-style: italic; font-weight: 700; }
     /* Insight */
   .exchange-insight {
     margin: 28px 0;
@@ -705,33 +702,18 @@
   
   <div class="exchange-card">
     <div class="swap-visual">
-      <div class="circular-swap">
-        <svg class="circle-ring" viewBox="0 0 200 200">
-          <circle cx="100" cy="100" r="85" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="6 4" opacity="0.2"/>
-          <path d="M 35 65 A 85 85 0 0 1 160 80" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
-          <polygon points="155,75 165,80 158,88" fill="var(--accent)" opacity="0.6"/>
-          <path d="M 155 125 A 85 85 0 0 1 40 110" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" opacity="0.3" stroke-dasharray="4 3"/>
-          <polygon points="45,112 35,108 40,100" fill="var(--accent)" opacity="0.3"/>
-          <!-- center dot -->
-          <circle cx="100" cy="100" r="3" fill="var(--accent)"/>
-        </svg>
-        
-        <div class="circular-item circular-before">
-          <div class="circular-icon">🚲</div>
-          <span class="circular-label">Antes tenía</span>
-          <span class="circular-name">un carrito de bebé</span>
+      <div class="chain-stage">
+        <div class="chain-item chain-before">
+          <span class="chain-label">Antes tenía</span>
+          <div class="chain-icon">🚲</div>
+          <span class="chain-name">un carrito de bebé</span>
         </div>
-        
-        <div class="circular-item circular-after">
-          <div class="circular-icon">📱</div>
-          <span class="circular-label">Ahora tengo</span>
-          <span class="circular-name">este iPhone</span>
+        <div class="chain-arrow">→</div>
+        <div class="chain-item chain-after">
+          <span class="chain-label">Ahora tengo</span>
+          <div class="chain-icon">📱</div>
+          <span class="chain-name">este iPhone</span>
         </div>
-      </div>
-      
-      <div class="circular-tagline">
-        <span>El intercambio <strong>no es lineal</strong>.</span>
-        <span>Es <em>circular</em>.</span>
       </div>
     </div>
     
@@ -876,5 +858,40 @@ function goToDiscover(){window.location.href="../v1-catalogo/";}
 
 
 
+
+  <script>
+  (function(){
+    var examples = [
+      { before: '🚲',  bname: 'un carrito de bebé', after: '📱', aname: 'este iPhone' },
+      { before: '📱',  bname: 'este iPhone',        after: '🎸', aname: 'una guitarra eléctrica' },
+      { before: '🎸',  bname: 'una guitarra eléctrica', after: '👟', aname: 'unas zapatillas' },
+      { before: '👟',  bname: 'unas zapatillas',     after: '🚲', aname: 'un carrito de bebé' }
+    ];
+    var idx = 0;
+    var elBefore = document.querySelector('.chain-before');
+    var elAfter = document.querySelector('.chain-after');
+    function swap() {
+      idx = (idx + 1) % examples.length;
+      var ex = examples[idx];
+      // Animate out
+      elAfter.querySelector('.chain-icon').style.transform = 'scale(0.8)';
+      elAfter.querySelector('.chain-icon').style.opacity = '0';
+      elBefore.querySelector('.chain-icon').style.transform = 'scale(0.8)';
+      elBefore.querySelector('.chain-icon').style.opacity = '0';
+      setTimeout(function(){
+        elBefore.querySelector('.chain-icon').textContent = ex.before;
+        elBefore.querySelector('.chain-name').textContent = ex.bname;
+        elAfter.querySelector('.chain-icon').textContent = ex.after;
+        elAfter.querySelector('.chain-name').textContent = ex.aname;
+        // Animate in
+        elBefore.querySelector('.chain-icon').style.transform = 'scale(1)';
+        elBefore.querySelector('.chain-icon').style.opacity = '1';
+        elAfter.querySelector('.chain-icon').style.transform = 'scale(1)';
+        elAfter.querySelector('.chain-icon').style.opacity = '1';
+      }, 300);
+    }
+    setInterval(swap, 3500);
+  })();
+  </script>
 </body>
 </html>
