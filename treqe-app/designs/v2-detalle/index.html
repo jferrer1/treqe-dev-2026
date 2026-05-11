@@ -1294,14 +1294,9 @@
 
     // Trade request toggle
     function toggleTradeReq() {
-      var params = new URLSearchParams(window.location.search);
-      var id = params.get("id") || "0";
-      var btn = document.getElementById("tradeBtn");
-      var req = JSON.parse(localStorage.getItem("treqe_trade_requests") || "[]");
-      var idx = req.indexOf(id);
-      if (idx === -1) { req.push(id); btn.classList.add("requested"); }
-      else { req.splice(idx, 1); btn.classList.remove("requested"); }
-      localStorage.setItem("treqe_trade_requests", JSON.stringify(req));
+      // Auto-opens trade modal - same as "Solicitar trueque" button
+      goToStep(1);
+      openTradeModal();
     }
 
     
@@ -1414,6 +1409,15 @@
     function sendTradeRequest() {
       closeTradeModal();
       document.getElementById('successMessage').classList.add('visible');
+      // Mark trade button as requested
+      var tradeBtn = document.getElementById('tradeBtn');
+      if (tradeBtn) tradeBtn.classList.add('requested');
+      // Save to localStorage
+      var params = new URLSearchParams(window.location.search);
+      var itemId = params.get('id') || '0';
+      var req = JSON.parse(localStorage.getItem('treqe_trade_requests') || '[]');
+      if (req.indexOf(itemId) === -1) req.push(itemId);
+      localStorage.setItem('treqe_trade_requests', JSON.stringify(req));
       // Save notification
       var notifs = JSON.parse(localStorage.getItem('treqe_notifications') || '[]');
       var receiveName = document.getElementById('receiveName').textContent;

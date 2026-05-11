@@ -923,24 +923,8 @@
     }
     
     /* Trade request button */
-    .trade-btn {
-      position: absolute;
-      top: 6px;
-      left: 44px;
-      width: 34px; height: 34px;
-      border-radius: 10px;
-      border: none;
-      display: flex; align-items: center; justify-content: center;
-      background: rgba(255,255,255,0.8);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      color: var(--text-tertiary);
-      font-size: 0.85rem;
-      cursor: pointer;
-      z-index: 5;
-      transition: color 0.2s, background 0.2s;
-    }
-    .trade-btn.requested { color: var(--accent); background: rgba(255,106,53,0.1); }</style>
+    .trade-btn { position: absolute; bottom: 6px; right: 6px; z-index: 5; width: 34px; height: 34px; border-radius: 10px; border: none; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.25); color: #FFF; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; }
+    .trade-btn.requested { background: var(--accent); color: #FFF; }</style>
 </head>
 <body>
 
@@ -2260,16 +2244,12 @@ function pickCondition(chip){chip.parentElement.querySelectorAll(".filter-chip")
       btn.setAttribute('aria-label', 'Solicitar trueque');
       btn.addEventListener('click', function(e){
         e.stopPropagation();
-        var req = JSON.parse(localStorage.getItem('treqe_trade_requests') || '[]');
-        var idx = req.indexOf(id);
-        if (idx === -1) {
-          req.push(id);
-          btn.classList.add('requested');
+        // Navigate to detail page (same as item card)
+        if (window.parent && window.parent.location) {
+          window.parent.location.href = '../v2-detalle/?id=' + id;
         } else {
-          req.splice(idx, 1);
-          btn.classList.remove('requested');
+          window.location.href = '../v2-detalle/?id=' + id;
         }
-        localStorage.setItem('treqe_trade_requests', JSON.stringify(req));
       });
       
       card.appendChild(btn);
