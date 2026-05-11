@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     .treqe-logo { height: 24px; width: 76px; flex-shrink: 0; vertical-align: middle; }
+    .logo-link { display: inline-flex; text-decoration: none; line-height: 0; }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { font-size: 16px; }
     body {
@@ -457,7 +458,7 @@
   
   <!-- ===== APP BAR (simulating being inside the app) ===== -->
   <div class="app-bar">
-    <span class="app-bar__logo"><svg class="treqe-logo" viewBox="0 0 76 24" fill="none" xmlns="http://www.w3.org/2000/svg"><text x="0" y="19" font-family="Inter, sans-serif" font-weight="700" font-size="22" letter-spacing="-1.5" fill="#00234E">treqe<text x="60" y="19" fill="#FF6A35">.</text></text></svg></span>
+    <span class="app-bar__logo"><a href="../v16-portada/index.html" class="logo-link"><svg class="treqe-logo" viewBox="0 0 76 24" fill="none" xmlns="http://www.w3.org/2000/svg"><text x="0" y="19" font-family="Inter, sans-serif" font-weight="700" font-size="22" letter-spacing="-1.5" fill="#00234E">treqe<text x="60" y="19" fill="#FF6A35">.</text></text></svg></a></span>
     <span class="app-bar__spacer"></span>
     <button onclick="alert('🔔 Notificaciones (demo)')"><i class="fas fa-bell"></i></button>
     <button onclick="alert('👤 Perfil')"><i class="fas fa-user"></i></button>
