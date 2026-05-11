@@ -253,58 +253,96 @@
     opacity: 0.7;
   }
   
-  /* Swap Visual */
+  /* Swap Visual — Community Ring */
   .swap-visual {
-    display: flex; align-items: center; justify-content: center;
-    gap: 8px; margin-bottom: 28px;
-  }
-  .swap-node {
-    display: flex; flex-direction: column; align-items: center; gap: 8px;
-    flex: 1; max-width: 130px;
-  }
-  .swap-node-icon {
-    width: 80px; height: 80px; border-radius: 24px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 2.6rem; position: relative;
-  }
-  .swap-node--from .swap-node-icon {
-    background: rgba(255,245,230,0.9);
-    box-shadow: 0 4px 20px rgba(255,200,100,0.2), inset 0 1px 0 rgba(255,255,255,0.6);
-  }
-  .swap-node--to .swap-node-icon {
-    background: rgba(230,240,255,0.9);
-    box-shadow: 0 4px 20px rgba(100,150,255,0.2), inset 0 1px 0 rgba(255,255,255,0.6);
-  }
-  .swap-node-label {
-    font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1.5px;
-    font-weight: 700; color: var(--text-tertiary);
-  }
-  .swap-node-name {
-    font-family: 'Playfair Display', 'Georgia', serif; font-style: italic;
-    font-weight: 700; font-size: 0.9rem; color: var(--text);
-    text-align: center; line-height: 1.2;
+    display: flex; flex-direction: column; align-items: center;
+    gap: 24px; margin-bottom: 28px;
   }
   
-  /* Flow connector */
-  .swap-flow {
-    display: flex; flex-direction: column; align-items: center;
-    position: relative; min-width: 48px;
+  /* Community Ring */
+  .community-ring {
+    position: relative; width: 200px; height: 200px;
+    margin: 0 auto;
   }
-  .swap-arc {
+  .ring-track {
+    position: absolute; inset: 0;
+    animation: ringSpin 20s linear infinite;
+  }
+  @keyframes ringSpin {
+    to { transform: rotate(360deg); }
+  }
+  .ring-item {
+    position: absolute;
     width: 40px; height: 40px;
-    border: 2px dashed rgba(255,106,53,0.25);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+    background: rgba(255,255,255,0.85);
+    border-radius: 14px;
+    box-shadow: 0 2px 12px rgba(0,20,50,0.06), inset 0 1px 0 rgba(255,255,255,0.6);
+    top: 50%; left: 50%;
+    transform-origin: 0 0;
+    animation: itemStay 20s linear infinite;
+  }
+  @keyframes itemStay {
+    to { transform: rotate(-360deg); }
+  }
+  .ring-pos-1 { transform: translate(-50%,-50%) rotate(0deg) translateX(80px) rotate(0deg); }
+  .ring-pos-2 { transform: translate(-50%,-50%) rotate(60deg) translateX(80px) rotate(-60deg); }
+  .ring-pos-3 { transform: translate(-50%,-50%) rotate(120deg) translateX(80px) rotate(-120deg); }
+  .ring-pos-4 { transform: translate(-50%,-50%) rotate(180deg) translateX(80px) rotate(-180deg); }
+  .ring-pos-5 { transform: translate(-50%,-50%) rotate(240deg) translateX(80px) rotate(-240deg); }
+  .ring-pos-6 { transform: translate(-50%,-50%) rotate(300deg) translateX(80px) rotate(-300deg); }
+  
+  .ring-center {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    width: 72px; height: 72px;
     border-radius: 50%;
-    border-bottom-color: transparent;
-    border-left-color: transparent;
-    transform: rotate(135deg);
+    background: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 24px rgba(255,106,53,0.3);
+    z-index: 2;
   }
-  .swap-arrow {
-    font-size: 1.4rem; color: var(--accent);
-    margin-top: -12px;
+  .ring-label {
+    color: #FFF; font-weight: 800; font-size: 0.7rem;
+    letter-spacing: 2px; text-transform: uppercase;
   }
-  .swap-flow-label {
-    font-size: 0.55rem; text-transform: uppercase; letter-spacing: 2px;
-    font-weight: 700; color: var(--accent); margin-top: 2px;
+  .ring-pulse {
+    position: absolute; inset: -6px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,106,53,0.3);
+    animation: ringPulse 2s ease-out infinite;
+  }
+  @keyframes ringPulse {
+    0% { transform: scale(1); opacity: 0.6; }
+    100% { transform: scale(1.5); opacity: 0; }
+  }
+  
+  /* Swap labels */
+  .swap-labels {
+    display: flex; flex-direction: column; gap: 10px;
+    width: 100%; max-width: 340px;
+  }
+  .swap-label-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 16px;
+    background: rgba(255,255,255,0.6);
+    border-radius: 16px;
+    border: 1px solid rgba(0,35,78,0.04);
+  }
+  .swap-label-icon {
+    width: 44px; height: 44px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; flex-shrink: 0;
+  }
+  .from-icon { background: rgba(255,245,230,0.9); }
+  .to-icon { background: rgba(230,240,255,0.9); }
+  .swap-label-text {
+    font-size: 0.85rem; color: var(--text-secondary); line-height: 1.4;
+  }
+  .swap-label-text em {
+    font-family: 'Playfair Display','Georgia',serif;
+    font-style: italic; font-weight: 700; color: var(--text);
   }
   
   /* Insight */
@@ -704,22 +742,29 @@
   
   <div class="exchange-card">
     <div class="swap-visual">
-      <div class="swap-node swap-node--from">
-        <div class="swap-node-icon">🚲</div>
-        <div class="swap-node-label">Tú entregas</div>
-        <div class="swap-node-name">un carrito de bebé</div>
+      <div class="community-ring">
+        <div class="ring-track">
+          <div class="ring-item ring-pos-1">🎸</div>
+          <div class="ring-item ring-pos-2">📚</div>
+          <div class="ring-item ring-pos-3">👟</div>
+          <div class="ring-item ring-pos-4">🎮</div>
+          <div class="ring-item ring-pos-5">🪴</div>
+          <div class="ring-item ring-pos-6">💻</div>
+        </div>
+        <div class="ring-center">
+          <span class="ring-label">TREQE</span>
+          <div class="ring-pulse"></div>
+        </div>
       </div>
-      
-      <div class="swap-flow">
-        <div class="swap-arc"></div>
-        <div class="swap-arrow">↻</div>
-        <span class="swap-flow-label">circular</span>
-      </div>
-      
-      <div class="swap-node swap-node--to">
-        <div class="swap-node-icon">📱</div>
-        <div class="swap-node-label">Tú recibes</div>
-        <div class="swap-node-name">este iPhone</div>
+      <div class="swap-labels">
+        <div class="swap-label-item">
+          <div class="swap-label-icon from-icon">🚲</div>
+          <span class="swap-label-text">Tú entregas <em>un carrito de bebé</em></span>
+        </div>
+        <div class="swap-label-item">
+          <div class="swap-label-icon to-icon">📱</div>
+          <span class="swap-label-text">Tú recibes <em>este iPhone</em></span>
+        </div>
       </div>
     </div>
     
