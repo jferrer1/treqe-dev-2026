@@ -960,7 +960,17 @@
       top: 2px;
       right: 12px;
     }
-    </style>
+    
+    .info-help-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); z-index: 400; display: none; align-items: flex-end; justify-content: center; }
+    .info-help-overlay.visible { display: flex; }
+    .info-help-modal { background: var(--card-bg); border-radius: 24px 24px 0 0; width: 100%; max-width: 500px; overflow: hidden; animation: slideUp 0.3s ease; }
+    .info-help-modal__header { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px 12px; border-bottom: 1px solid var(--border); }
+    .info-help-modal__header button { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); font-size: 0.9rem; }
+    .info-help-modal__title { font-size: 1rem; font-weight: 700; color: var(--text); }
+    .info-help-modal__body { padding: 20px; font-size: 0.85rem; color: var(--text-secondary); line-height: 1.7; }
+    .info-help-modal__body p { margin-bottom: 12px; }
+    .info-help-modal__body strong { color: var(--text); }
+</style>
 </head>
 <body>
 
@@ -1149,7 +1159,7 @@
 
         <!-- Info request -->
         <div class="info-request">
-          <div class="info-request__title"><i class="fas fa-question-circle"></i> Solicitar información</div>
+          <div class="info-request__title"><i class="fas fa-question-circle" onclick="event.stopPropagation();openInfoHelp()" style="cursor:pointer;" title="¿Cómo funciona?"></i> Solicitar información</div>
           <textarea class="info-request__textarea" placeholder="Ej: ¿Podrías añadir más fotos del producto? ¿Mejorarías la descripción con más detalles?..." rows="2"></textarea>
           <button class="info-request__btn" onclick="sendInfoRequest()">
             <i class="fas fa-paper-plane"></i> Enviar consulta
@@ -1607,6 +1617,9 @@
       if (!e.target.closest('.gallery-thumb')) openLightbox();
     });
 
+
+function openInfoHelp() { document.getElementById('infoHelpModal').classList.add('visible'); }
+function closeInfoHelp() { document.getElementById('infoHelpModal').classList.remove('visible'); }
 </script>
 
   <!-- ===== LIGHTBOX ===== -->
@@ -1884,5 +1897,20 @@ var TREQE_PRODUCTS = [
 })();
 
 </script>
+
+<!-- Info Help Modal -->
+<div class="info-help-overlay" id="infoHelpModal" onclick="closeInfoHelp()">
+  <div class="info-help-modal" onclick="event.stopPropagation()">
+    <div class="info-help-modal__header">
+      <span class="info-help-modal__title">Solicitar información</span>
+      <button onclick="closeInfoHelp()"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="info-help-modal__body">
+      <p>Esta <strong>no es una comunicación directa</strong> con la persona que publicó el artículo.</p>
+      <p>Tu mensaje se envía <strong>a través de Treqe</strong> para solicitar que el vendedor mejore la información publicada: más fotos, detalles del estado, medidas, especificaciones técnicas o cualquier dato que ayude a tomar una decisión.</p>
+      <p>El vendedor recibirá la solicitud y podrá actualizar la publicación con la información que necesitas.</p>
+    </div>
+  </div>
+</div>
 </body>
 </html>
