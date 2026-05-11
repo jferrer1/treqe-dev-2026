@@ -198,115 +198,152 @@
     .blog-link i { font-size: 0.85rem; }
 
   /* ── EXCHANGE CARD ── */
+  /* ===== CIRCULAR EXCHANGE ===== */
   .exchange-section {
     background: var(--bg);
-    padding: 0 16px; margin-top: -36px;
+    padding: 60px 16px 80px;
     position: relative;
+    text-align: center;
   }
   .exchange-section::before {
     content: ''; position: absolute;
-    width: 350px; height: 350px; top: -80px; left: -100px;
+    width: 350px; height: 350px; top: -40px; left: -100px;
     border-radius: 50%;
-    background: radial-gradient(circle, var(--teal) 0%, rgba(167,215,197,0.3) 30%, transparent 70%);
-    filter: blur(50px); opacity: 0.5;
+    background: radial-gradient(circle, var(--teal) 0%, rgba(167,215,197,0.25) 40%, transparent 70%);
+    filter: blur(60px); opacity: 0.4;
     pointer-events: none;
   }
   .exchange-section::after {
     content: ''; position: absolute;
-    width: 300px; height: 300px; bottom: -60px; right: -80px;
+    width: 300px; height: 300px; bottom: 20px; right: -80px;
     border-radius: 50%;
-    background: radial-gradient(circle, var(--yellow) 0%, rgba(255,201,80,0.3) 30%, transparent 70%);
-    filter: blur(50px); opacity: 0.5;
+    background: radial-gradient(circle, var(--yellow) 0%, rgba(255,201,80,0.25) 40%, transparent 70%);
+    filter: blur(60px); opacity: 0.4;
     pointer-events: none;
   }
-  .exchange-card {
-    background: rgba(255,255,255,0.55);
-    backdrop-filter: blur(48px) saturate(220%) brightness(1.05);
-    -webkit-backdrop-filter: blur(48px) saturate(220%) brightness(1.05);
-    border-radius: 28px;
-    padding: 40px 28px 36px; max-width: 440px; margin: 0 auto;
-    position: relative; z-index: 2; overflow: hidden;
-    box-shadow:
-      0 8px 40px rgba(0,20,50,0.08),
-      0 0 0 1px rgba(255,255,255,0.4),
-      inset 0 1px 0 rgba(255,255,255,0.6);
-    transform: translateZ(0); will-change: transform;
+  .exchange-headline {
+    font-family: 'Playfair Display', 'Georgia', serif;
+    font-weight: 700; font-size: 1.6rem; line-height: 1.3;
+    color: var(--text); margin: 8px 0 32px;
+    letter-spacing: -0.3px;
   }
-  /* Chromatic edge fringe */
+  .exchange-card {
+    background: rgba(255,255,255,0.5);
+    backdrop-filter: blur(48px) saturate(220%);
+    -webkit-backdrop-filter: blur(48px) saturate(220%);
+    border-radius: 32px;
+    padding: 32px 24px;
+    max-width: 440px; margin: 0 auto;
+    position: relative; z-index: 2;
+    box-shadow:
+      0 8px 40px rgba(0,20,50,0.06),
+      0 0 0 1px rgba(255,255,255,0.4),
+      inset 0 1px 0 rgba(255,255,255,0.5);
+  }
   .exchange-card::before {
     content: ''; position: absolute; inset: -1px; z-index: -1;
-    border-radius: 29px;
+    border-radius: 33px;
     background: linear-gradient(135deg,
-      rgba(167,215,197,0.6), rgba(155,118,179,0.5),
-      rgba(255,106,53,0.4), rgba(167,215,197,0.3),
-      rgba(239,123,142,0.5), rgba(255,201,80,0.4));
+      var(--teal), var(--purple), var(--accent),
+      var(--teal), var(--pink), var(--yellow));
     padding: 1px;
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor; mask-composite: exclude;
+    opacity: 0.7;
   }
-  /* Specular shine */
-  .exchange-card::after {
-    content: ''; position: absolute; top: -50%; left: -50%;
-    width: 200%; height: 200%;
-    background: radial-gradient(circle at 30% 20%,
-      rgba(255,255,255,0.3) 0%, transparent 50%);
-    pointer-events: none; opacity: 0.8;
+  
+  /* Swap Visual */
+  .swap-visual {
+    display: flex; align-items: center; justify-content: center;
+    gap: 8px; margin-bottom: 28px;
   }
-  .exchange-card .pill {
-    display: inline-block;
-    background: rgba(255,249,224,0.6); backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    color: var(--text); padding: 6px 16px; border-radius: 14px;
-    font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
-    letter-spacing: 1px; margin-bottom: 28px;
-    border: 1px solid rgba(0,35,78,0.06);
+  .swap-node {
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    flex: 1; max-width: 130px;
   }
-  .swap-row {
-    display: flex; align-items: center; justify-content: center; gap: 20px;
+  .swap-node-icon {
+    width: 80px; height: 80px; border-radius: 24px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2.6rem; position: relative;
   }
-  .swap-item {
-    display: flex; flex-direction: column; align-items: center; gap: 10px;
-    flex: 1;
+  .swap-node--from .swap-node-icon {
+    background: rgba(255,245,230,0.9);
+    box-shadow: 0 4px 20px rgba(255,200,100,0.2), inset 0 1px 0 rgba(255,255,255,0.6);
   }
-  .swap-icon {
-    width: 76px; height: 76px; border-radius: 22px;
-    display: flex; align-items: center; justify-content: center; font-size: 2.4rem;
+  .swap-node--to .swap-node-icon {
+    background: rgba(230,240,255,0.9);
+    box-shadow: 0 4px 20px rgba(100,150,255,0.2), inset 0 1px 0 rgba(255,255,255,0.6);
   }
-  .swap-item.before .swap-icon {
-    background: rgba(255,245,230,0.8); backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(0,0,0,0.04);
-  }
-  .swap-item.after .swap-icon {
-    background: rgba(230,240,255,0.8); backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(0,0,0,0.04);
-  }
-  .swap-label {
+  .swap-node-label {
     font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1.5px;
-    font-weight: 700; color: var(--text-secondary);
+    font-weight: 700; color: var(--text-tertiary);
   }
-  .swap-name {
-    font-family: 'Playfair Display','Georgia',serif; font-style: italic;
-    font-weight: 700; font-size: 1rem; color: var(--text); text-align: center;
-    line-height: 1.3;
+  .swap-node-name {
+    font-family: 'Playfair Display', 'Georgia', serif; font-style: italic;
+    font-weight: 700; font-size: 0.9rem; color: var(--text);
+    text-align: center; line-height: 1.2;
   }
-  .swap-connector {
-    display: flex; flex-direction: column; align-items: center; gap: 4px;
+  
+  /* Flow connector */
+  .swap-flow {
+    display: flex; flex-direction: column; align-items: center;
+    position: relative; min-width: 48px;
   }
-  .swap-connector .dot {
-    width: 8px; height: 8px; border-radius: 50%;
-    background: rgba(0,35,78,0.08);
+  .swap-arc {
+    width: 40px; height: 40px;
+    border: 2px dashed rgba(255,106,53,0.25);
+    border-radius: 50%;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    transform: rotate(135deg);
   }
-  .swap-connector .line {
-    width: 2px; height: 48px;
-    background: linear-gradient(to bottom, rgba(0,35,78,0.06), rgba(255,106,53,0.15));
+  .swap-arrow {
+    font-size: 1.4rem; color: var(--accent);
+    margin-top: -12px;
   }
-  .swap-connector .arrow {
-    font-size: 0.9rem; color: var(--accent); font-weight: 700;
+  .swap-flow-label {
+    font-size: 0.55rem; text-transform: uppercase; letter-spacing: 2px;
+    font-weight: 700; color: var(--accent); margin-top: 2px;
   }
-  .exchange-card .insight {
+  
+  /* Insight */
+  .exchange-insight {
+    margin: 28px 0;
+    padding: 20px 16px;
+    background: linear-gradient(135deg, rgba(255,249,224,0.5), rgba(230,240,255,0.5));
+    border-radius: 20px;
+    border: 1px solid rgba(0,35,78,0.04);
+  }
+  .exchange-insight .insight-icon {
+    font-size: 1.2rem; color: var(--accent); margin-bottom: 8px;
+  }
+  .exchange-insight p {
+    font-size: 0.95rem; color: var(--text); line-height: 1.7; margin: 0;
+    font-weight: 500;
+  }
+  .exchange-insight strong { color: var(--accent); }
+  .exchange-insight em { font-style: italic; color: var(--text); font-weight: 600; }
+  
+  /* Steps */
+  .exchange-steps {
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .ex-step {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 0.85rem; color: var(--text-secondary);
+    padding: 12px 16px;
+    background: rgba(255,255,255,0.5);
+    border-radius: 14px;
+    border: 1px solid rgba(0,35,78,0.03);
+    transition: background 0.2s;
+  }
+  .ex-num {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--accent); color: #FFF;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem; font-weight: 700; flex-shrink: 0;
+  }.insight {
     margin-top: 32px; padding-top: 24px;
     border-top: 1px solid rgba(0,35,78,0.06);
     text-align: center; font-size: 0.9rem; color: var(--text-secondary);
@@ -662,31 +699,41 @@
 
 <!-- ══════ EXCHANGE CARD (liquid glass) ══════ -->
 <section class="exchange-section">
+  <div class="section-label">El intercambio circular</div>
+  <h2 class="exchange-headline">Tú das algo que ya no usas.<br>Alguien recibe lo que necesita.</h2>
+  
   <div class="exchange-card">
-    <div class="pill">📦 Así funciona</div>
-    <div class="swap-row">
-      <div class="swap-item before">
-        <span class="swap-label">Antes tenía</span>
-        <div class="swap-icon">🚲</div>
-        <span class="swap-name">un carrito de bebé</span>
+    <div class="swap-visual">
+      <div class="swap-node swap-node--from">
+        <div class="swap-node-icon">🚲</div>
+        <div class="swap-node-label">Tú entregas</div>
+        <div class="swap-node-name">un carrito de bebé</div>
       </div>
-      <div class="swap-connector">
-        <div class="dot"></div>
-        <div class="line"></div>
-        <div class="arrow">→</div>
+      
+      <div class="swap-flow">
+        <div class="swap-arc"></div>
+        <div class="swap-arrow">↻</div>
+        <span class="swap-flow-label">circular</span>
       </div>
-      <div class="swap-item after">
-        <span class="swap-label">Ahora tengo</span>
-        <div class="swap-icon">📱</div>
-        <span class="swap-name">este iPhone</span>
+      
+      <div class="swap-node swap-node--to">
+        <div class="swap-node-icon">📱</div>
+        <div class="swap-node-label">Tú recibes</div>
+        <div class="swap-node-name">este iPhone</div>
       </div>
     </div>
-    <div class="insight">
-      Tú no cambias con <strong>alguien</strong>.<br>
-      Cambias con <em>la comunidad</em>.
+    
+    <div class="exchange-insight">
+      <div class="insight-icon">✦</div>
+      <p>Tú no cambias con <strong>alguien</strong>. Cambias con <em>la comunidad</em>.</p>
+    </div>
+    
+    <div class="exchange-steps">
+      <div class="ex-step"><span class="ex-num">1</span> Publica lo que no usas</div>
+      <div class="ex-step"><span class="ex-num">2</span> Elige entre miles de artículos</div>
+      <div class="ex-step"><span class="ex-num">3</span> Recibe sin pagar un euro</div>
     </div>
   </div>
-  
 </section>
 
 <!-- ══════ HOW IT WORKS ══════ -->
