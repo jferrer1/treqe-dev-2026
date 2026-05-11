@@ -503,217 +503,56 @@
   </div>
 
   <!-- ===== COMPACT SEGMENTED CONTROL (replaces inbox-stats + inbox-tabs) ===== -->
-  <div class="segmented-wrap">
-    <div class="segmented">
-      <button class="segmented__btn active" data-tab="consultas" onclick="switchInboxTab('consultas')">
-        <i class="fas fa-question-circle"></i> Consultas <span class="seg-count">3</span>
-      </button>
-      <button class="segmented__btn" data-tab="trueques" onclick="switchInboxTab('trueques')">
-        <i class="fas fa-exchange-alt"></i> Trueques <span class="seg-count">2</span>
-      </button>
-      <button class="segmented__btn" data-tab="recomendados" onclick="switchInboxTab('recomendados')">
-        <i class="fas fa-star"></i> Recomendados <span class="seg-count">5</span>
-      </button>
-      <button class="segmented__btn" data-tab="actividad" onclick="switchInboxTab('actividad')">
-        <i class="fas fa-chart-line"></i> Actividad
-      </button>
-    </div>
-  </div>
-
-  <!-- ===== INBOX CONTENT ===== -->
+  <!-- ===== INBOX CONTENT (lista plana sin tabs) ===== -->
   <div class="inbox-content">
-    <!-- ─── CONSULTAS ─── -->
-    <div class="inbox-section active" id="tab-consultas">
-      <div class="inbox-item">
-        <div class="inbox-item__icon cat-music">🎸</div>
-        <div class="inbox-item__body">
-          <div class="inbox-item__title">Alguien preguntó por tu Fender Stratocaster</div>
-          <div class="inbox-item__text">"Buenas, ¿tiene algún defecto la guitarra? ¿Aceptas envío a Valencia? Es para un regalo y quiero asegurarme de que llega perfecta."</div>
-          <div class="inbox-item__meta"><i class="far fa-clock"></i> Hace 15 min</div>
-          <!-- Inline quick-reply -->
-          <div class="quick-reply-wrap" id="qr-consultas-0">
-            <div class="quick-reply-row">
-              <input class="quick-reply-input" type="text" placeholder="Responder rápido..." maxlength="200" oninput="updateCharCount(this)">
-              <button class="quick-reply-send" onclick="sendQuickReply(this)"><i class="fas fa-paper-plane"></i></button>
-            </div>
-            <div class="quick-reply-char"><span class="qr-count">0</span>/200</div>
-          </div>
-        </div>
-        <div class="inbox-item__actions">
-          <button class="inbox-item__responder" onclick="toggleQuickReply(this)"><i class="fas fa-reply"></i> Responder</button>
-        </div>
-      </div>
+    <div style="padding: 4px 0 12px; font-size: 0.75rem; color: var(--text-tertiary); display: flex; align-items: center; gap: 6px;">
+      <i class="fas fa-circle" style="font-size: 0.4rem; color: var(--accent);"></i> 9 avisos nuevos
+    </div>
 
-      <div class="inbox-item">
-        <div class="inbox-item__icon cat-bike">🚲</div>
-        <div class="inbox-item__body">
-          <div class="inbox-item__title">Alguien preguntó por tu Trek Marlin 7</div>
-          <div class="inbox-item__text">"¿La bicicleta tiene aún la garantía? ¿Cuántos km tiene aproximadamente? Me interesa mucho pero quiero estar seguro del estado."</div>
-          <div class="inbox-item__meta"><i class="far fa-clock"></i> Hace 2 h</div>
-          <div class="quick-reply-wrap" id="qr-consultas-1">
-            <div class="quick-reply-row">
-              <input class="quick-reply-input" type="text" placeholder="Responder rápido..." maxlength="200" oninput="updateCharCount(this)">
-              <button class="quick-reply-send" onclick="sendQuickReply(this)"><i class="fas fa-paper-plane"></i></button>
-            </div>
-            <div class="quick-reply-char"><span class="qr-count">0</span>/200</div>
-          </div>
-        </div>
-        <div class="inbox-item__actions">
-          <button class="inbox-item__responder" onclick="toggleQuickReply(this)"><i class="fas fa-reply"></i> Responder</button>
-        </div>
+    <!-- 1. 👀 Alguien quiere tu artículo -->
+    <div class="inbox-item">
+      <div class="inbox-item__icon cat-music" style="background: rgba(255,106,53,0.15);">👀</div>
+      <div class="inbox-item__body">
+        <div class="inbox-item__title">Carlos quiere tu Fender Stratocaster</div>
+        <div class="inbox-item__text">Ha ofrecido su MacBook Air M3 + 300€. Todavía no hay match — el algoritmo busca completar el círculo. Recibirás un aviso cuando se cierre.</div>
+        <div class="inbox-item__meta"><i class="far fa-clock"></i> Hace 10 min · <span style="color:var(--accent);font-weight:600;">Oferta pendiente</span></div>
       </div>
-
-      <div class="inbox-item">
-        <div class="inbox-item__icon cat-tech">💻</div>
-        <div class="inbox-item__body">
-          <div class="inbox-item__title">Alguien preguntó por tu MacBook Air M3</div>
-          <div class="inbox-item__text">"Hola, ¿cuántas horas de uso tiene aproximadamente? ¿Viene con cargador original y caja? Estoy muy interesado en comprarlo."</div>
-          <div class="inbox-item__meta"><i class="far fa-clock"></i> Hace 1 d</div>
-          <div class="quick-reply-wrap" id="qr-consultas-2">
-            <div class="quick-reply-row">
-              <input class="quick-reply-input" type="text" placeholder="Responder rápido..." maxlength="200" oninput="updateCharCount(this)">
-              <button class="quick-reply-send" onclick="sendQuickReply(this)"><i class="fas fa-paper-plane"></i></button>
-            </div>
-            <div class="quick-reply-char"><span class="qr-count">0</span>/200</div>
-          </div>
-        </div>
-        <div class="inbox-item__actions">
-          <button class="inbox-item__responder" onclick="toggleQuickReply(this)"><i class="fas fa-reply"></i> Responder</button>
-        </div>
+      <div class="inbox-item__actions">
+        <button class="inbox-item__responder" onclick="goToDetail('fender')"><i class="fas fa-eye"></i> Ver oferta</button>
       </div>
     </div>
 
-    <!-- ─── TRUEQUES ─── -->
-    <div class="inbox-section" id="tab-trueques">
-      <div class="inbox-item">
-        <div class="inbox-item__icon cat-gaming">🎮</div>
-        <div class="inbox-item__body">
-          <div class="inbox-item__title">Propuesta de trueque recibida</div>
-          <div class="inbox-item__text">Tu PlayStation 5 ↔ iPhone 15 Pro · Valoración: 480€ ↔ 890€. ¿Te interesa la propuesta? Revisa los detalles antes de responder.</div>
-          <div class="inbox-item__meta"><i class="far fa-clock"></i> Hace 1 h · <span style="color:var(--warning);font-weight:600;">Pendiente</span></div>
-          <div class="quick-reply-wrap" id="qr-trueques-0">
-            <div class="quick-reply-row">
-              <input class="quick-reply-input" type="text" placeholder="Ej: Me interesa, hablemos..." maxlength="200" oninput="updateCharCount(this)">
-              <button class="quick-reply-send" onclick="sendQuickReply(this)"><i class="fas fa-paper-plane"></i></button>
-            </div>
-            <div class="quick-reply-char"><span class="qr-count">0</span>/200</div>
-          </div>
-        </div>
-        <div class="inbox-item__actions">
-          <button class="inbox-item__responder" onclick="toggleQuickReply(this)"><i class="fas fa-reply"></i> Responder</button>
-        </div>
+    <!-- 2. 💰 Bajada de precio en guardado -->
+    <div class="inbox-item">
+      <div class="inbox-item__icon cat-tech" style="background: rgba(245,166,35,0.15);">💰</div>
+      <div class="inbox-item__body">
+        <div class="inbox-item__title">El iPhone 15 Pro que guardaste bajó de precio</div>
+        <div class="inbox-item__text">Ahora cuesta 820€ (antes 890€). Sigue disponible para compra directa o intercambio. Aprovecha la oferta antes de que desaparezca.</div>
+        <div class="inbox-item__meta"><i class="far fa-clock"></i> Hace 2 h</div>
       </div>
-
-      <div class="inbox-item">
-        <div class="inbox-item__icon cat-camera">📷</div>
-        <div class="inbox-item__body">
-          <div class="inbox-item__title">Trueque aceptado: Canon EOS R ↔ AirPods Max</div>
-          <div class="inbox-item__text">Ambos habéis confirmado el trueque. Solo falta coordinar el envío y las condiciones del intercambio. Contacta con la otra persona para quedar.</div>
-          <div class="inbox-item__meta"><i class="far fa-clock"></i> Hace 1 d · <span style="color:var(--success);font-weight:600;">En progreso</span></div>
-          <div class="quick-reply-wrap" id="qr-trueques-1">
-            <div class="quick-reply-row">
-              <input class="quick-reply-input" type="text" placeholder="Mensaje rápido..." maxlength="200" oninput="updateCharCount(this)">
-              <button class="quick-reply-send" onclick="sendQuickReply(this)"><i class="fas fa-paper-plane"></i></button>
-            </div>
-            <div class="quick-reply-char"><span class="qr-count">0</span>/200</div>
-          </div>
-        </div>
-        <div class="inbox-item__actions">
-          <button class="inbox-item__responder" onclick="toggleQuickReply(this)"><i class="fas fa-reply"></i> Responder</button>
-        </div>
+      <div class="inbox-item__actions">
+        <button class="inbox-item__responder" onclick="goToDetail('iphone')"><i class="fas fa-eye"></i> Ver</button>
       </div>
     </div>
 
-    <!-- ─── RECOMENDADOS ─── -->
-    <div class="inbox-section" id="tab-recomendados">
-      <div class="inbox-item">
-        <div class="inbox-item__icon cat-gaming">🎮</div>
-        <div class="inbox-item__body">
-          <div class="inbox-item__title">A alguien le interesa tu PlayStation 5</div>
-          <div class="inbox-item__text">Tiene un iPhone 15 Pro que encaja con tus gustos · Match potencial 92%. Una oportunidad excelente para un trueque equilibrado.</div>
-          <div class="inbox-item__meta">Ver perfil del interesado</div>
-        </div>
-        <div class="inbox-item__actions">
-          <button class="inbox-item__responder" onclick="goToTrades()"><i class="fas fa-eye"></i> Ver</button>
-        </div>
+    <!-- 3. ❌ Match roto — artículo liberado -->
+    <div class="inbox-item">
+      <div class="inbox-item__icon cat-helmet" style="background: rgba(231,76,60,0.12);">❌</div>
+      <div class="inbox-item__body">
+        <div class="inbox-item__title">Match #TRX-7841 cancelado</div>
+        <div class="inbox-item__text">Bruno rechazó el intercambio. Tu Casco Shoei NXR2 vuelve a estar disponible para nuevos matches y compra directa. Ya puedes ofrecerlo a otros interesados.</div>
+        <div class="inbox-item__meta"><i class="far fa-clock"></i> Hace 1 h · <span style="color:var(--success);font-weight:600;">Artículo liberado</span></div>
       </div>
-
-      <div class="inbox-item">
-        <div class="inbox-item__icon cat-bike">🚲</div>
-        <div class="inbox-item__body">
-          <div class="inbox-item__title">Artículo popular cerca de ti</div>
-          <div class="inbox-item__text">Bicicleta Trek Marlin 7 · 15 personas lo han visto hoy en Granada. Es uno de los artículos más visitados de tu zona esta semana.</div>
-          <div class="inbox-item__meta">Granada · Hace 3 h</div>
-        </div>
-        <div class="inbox-item__actions">
-          <button class="inbox-item__responder" onclick="goToDiscover()"><i class="fas fa-eye"></i> Ver</button>
-        </div>
-      </div>
-
-      <div class="inbox-item">
-        <div class="inbox-item__icon cat-music">🎸</div>
-        <div class="inbox-item__body">
-          <div class="inbox-item__title">Basado en tu Fender Stratocaster</div>
-          <div class="inbox-item__text">A otros usuarios con guitarras también les interesa: Amplificador Vox AC15, Pedalera Boss y cuerdas Elixir. Descubre más artículos compatibles.</div>
-          <div class="inbox-item__meta">2 artículos recomendados</div>
-        </div>
-        <div class="inbox-item__actions">
-          <button class="inbox-item__responder" onclick="goToDiscover()"><i class="fas fa-eye"></i> Ver</button>
-        </div>
+      <div class="inbox-item__actions">
+        <button class="inbox-item__responder" onclick="goToDetail('casco')"><i class="fas fa-eye"></i> Ver artículo</button>
       </div>
     </div>
 
-    <!-- ─── ACTIVIDAD ─── -->
-    <div class="inbox-section" id="tab-actividad">
-      <div class="inbox-item">
-        <div class="inbox-item__icon cat-music">🎸</div>
-        <div class="inbox-item__body">
-          <div class="inbox-item__title">A 3 personas les gusta tu Fender Stratocaster</div>
-          <div class="inbox-item__text">Tu artículo tiene buena acogida en la comunidad. Sigue así, tu reputación como vendedor está subiendo gracias a la calidad de tus publicaciones.</div>
-          <div class="inbox-item__meta">Hace 30 min</div>
-        </div>
-      </div>
-
-      <div class="inbox-item">
-        <div class="inbox-item__icon cat-tech">💻</div>
-        <div class="inbox-item__body">
-          <div class="inbox-item__title">Tu MacBook Air M3 ha tenido 45 visitas hoy</div>
-          <div class="inbox-item__text">Está en el top 10% de artículos más vistos de la categoría. Considera mejorar la descripción para cerrar el trato más rápido.</div>
-          <div class="inbox-item__meta">Hace 2 h</div>
-        </div>
-      </div>
-
-      <div class="inbox-item">
-        <div class="inbox-item__icon cat-helmet">🪖</div>
-        <div class="inbox-item__body">
-          <div class="inbox-item__title">Trueque completado: Casco Shoei ↔ G-SHOCK</div>
-          <div class="inbox-item__text">¡Valora tu experiencia! Tu reputación subirá al hacerlo. Una valoración positiva ayuda a construir confianza en la comunidad Treqe.</div>
-          <div class="inbox-item__meta">Hace 3 d · Pendiente de valoración</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ===== MODAL REPLY (fallback for longer replies) ===== -->
-  <div class="modal-overlay" id="replyModal" onclick="if(event.target===this)closeReplyForm()">
-    <div class="modal-card">
-      <div class="modal-card__header">
-        <span class="modal-card__title"><i class="fas fa-reply" style="color:var(--accent);margin-right:8px;"></i>Responder consulta</span>
-        <button class="modal-card__close" onclick="closeReplyForm()"><i class="fas fa-times"></i></button>
-      </div>
-      <div class="modal-card__body">
-        <div class="modal-card__preview">
-          <span class="modal-card__preview-label">Consulta original:</span>
-          <div class="modal-card__preview-text" id="replyPreviewText">Cargando...</div>
-        </div>
-        <textarea class="reply-form__textarea" id="replyText" placeholder="Escribe tu respuesta (se enviará de forma anónima)..." rows="3"></textarea>
-      </div>
-      <div class="modal-card__footer">
-        <button class="btn btn--secondary" onclick="closeReplyForm()">Cancelar</button>
-        <button class="btn btn--primary" onclick="sendReply()"><i class="fas fa-paper-plane"></i> Enviar respuesta</button>
-      </div>
-    </div>
-  </div>
+    <!-- 4. 🔔 Nuevo artículo publicado coincide con búsqueda guardada -->
+    <div class="inbox-item">
+      <div class="inbox-item__icon cat-camera" style="background: rgba(39,174,96,0.12);">🔔</div>
+      <div class="inbox-item__body">
+        <div class="inbox-item__title
 
   <!-- ===== BOTTOM NAV ===== -->
 
@@ -731,94 +570,16 @@
     function goToTrades()    { window.parent.location.href = '../v12-mis-matches/'; }
     function goToInbox()     { window.parent.location.href = '../v11-notificaciones/'; }
 
-    // ─── Segmented tab switching ───
-    function switchInboxTab(tab) {
-      document.querySelectorAll('.segmented__btn').forEach(t => t.classList.remove('active'));
-      document.querySelectorAll('.inbox-section').forEach(s => s.classList.remove('active'));
-      document.querySelector(`.segmented__btn[data-tab="${tab}"]`).classList.add('active');
-      document.getElementById(`tab-${tab}`).classList.add('active');
-    }
-
-    // ─── Quick-reply inline ───
-    function toggleQuickReply(btn) {
-      // Walk up to .inbox-item, then find its .quick-reply-wrap
-      const item = btn.closest('.inbox-item');
-      const wrap = item.querySelector('.quick-reply-wrap');
-      if (!wrap) return;
-
-      const isVisible = wrap.classList.contains('visible');
-      // Close all other quick-reply wraps first
-      document.querySelectorAll('.quick-reply-wrap.visible').forEach(w => {
-        w.classList.remove('visible');
-      });
-      if (!isVisible) {
-        wrap.classList.add('visible');
-        const input = wrap.querySelector('.quick-reply-input');
-        if (input) setTimeout(() => input.focus(), 100);
+    // ─── Marcar como leído ───
+    document.querySelectorAll('.inbox-item').forEach((item, i) => {
+      if (i < 3) {
+        item.style.borderLeft = '3px solid var(--accent)';
+        item.style.paddingLeft = '10px';
       }
-    }
+    });
 
-    function updateCharCount(input) {
-      const wrap = input.closest('.quick-reply-wrap');
-      const countEl = wrap.querySelector('.qr-count');
-      if (countEl) countEl.textContent = input.value.length;
-    }
-
-    function sendQuickReply(btn) {
-      const wrap = btn.closest('.quick-reply-wrap');
-      const input = wrap.querySelector('.quick-reply-input');
-      const text = input.value.trim();
-      if (!text) return;
-
-      // Visual feedback
-      btn.classList.add('done');
-      btn.innerHTML = '<i class="fas fa-check"></i>';
-      input.disabled = true;
-      input.style.opacity = '0.5';
-
-      // Simulate send (in real app, POST to API)
-      setTimeout(() => {
-        btn.innerHTML = '<i class="fas fa-paper-plane"></i>';
-        btn.classList.remove('done');
-        input.disabled = false;
-        input.style.opacity = '1';
-        input.value = '';
-        wrap.querySelector('.qr-count').textContent = '0';
-        wrap.classList.remove('visible');
-      }, 1200);
-    }
-
-    // ─── Modal reply (fallback for long replies) ───
-    function showReplyForm(btn) {
-      const modal = document.getElementById("replyModal");
-      modal.classList.add("visible");
-      document.body.style.overflow = "hidden";
-      document.getElementById("replyText").focus();
-      var preview = btn.closest(".inbox-item").querySelector(".inbox-item__text");
-      if (preview) document.getElementById("replyPreviewText").textContent = preview.textContent;
-    }
-
-    function closeReplyForm() {
-      document.getElementById("replyModal").classList.remove("visible");
-      document.body.style.overflow = "";
-    }
-
-    function sendReply() {
-      const ta = document.getElementById('replyText');
-      if (!ta.value.trim()) return;
-      const btn = document.querySelector('.btn--primary');
-      btn.innerHTML = '<i class="fas fa-check"></i> Respuesta enviada';
-      btn.style.background = 'var(--success)';
-      setTimeout(() => {
-        btn.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar respuesta';
-        btn.style.background = '';
-        ta.value = '';
-        closeReplyForm();
-      }, 2000);
-    }
-
-    console.log('🔔 TREQE v11 — Avisos (UX mejorado)');
-    console.log('🧪 Prototipo con fotos producto + quick-reply inline + tabs compactos');
+    console.log('🔔 TREQE v11 — Avisos');
+    console.log('🧪 9 notificaciones no redundantes · Sin chat');
   </script>
     <nav class="bottom-nav">
     <a href="../v1-catalogo/" class="nav-item"><i class="fas fa-search"></i><span>Buscar</span></a>
