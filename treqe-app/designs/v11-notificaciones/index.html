@@ -13,7 +13,8 @@
     html { font-size: 16px; -webkit-text-size-adjust: 100%;   overflow-y: scroll; }
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #F8F6F0;
+      background: linear-gradient(160deg, #F8F6F0 0%, #F0EDE6 30%, #E8E4DC 70%, #F0EDE6 100%);
+      background-attachment: fixed;
       color: #1A1A1A;
       min-height: 100vh;
       padding-bottom: 80px;
@@ -51,14 +52,20 @@
     .status-bar .time { font-weight: 700; color: var(--text); }
     .status-bar .icons { display: flex; gap: 6px; font-size: 0.7rem; }
 
-    /* ===== HEADER ===== */
+    /* ===== HEADER (liquid glass) ===== */
     .header {
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 12px 16px 8px;
-      background: var(--bg);
-      position: relative;
+      padding: 14px 16px 10px;
+      background: rgba(248,246,240,0.6);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid rgba(255,255,255,0.4);
+      box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset;
     }
     .header__back {
       position: absolute;
@@ -148,21 +155,26 @@
     .inbox-content {
       padding: 0 16px 16px;
     }
-    .inbox-section {
-      display: none;
-    }
-    .inbox-section.active {
-      display: block;
-    }
 
-    /* ===== NOTIFICATION ITEMS (product-emoji style) ===== */
+    /* ===== NOTIFICATION ITEMS (liquid glass cards) ===== */
     .inbox-item {
       display: flex;
-      gap: 12px;
-      padding: 14px 0;
-      border-bottom: 1px solid var(--border);
+      gap: 14px;
+      padding: 18px 16px;
+      margin-bottom: 10px;
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(12px) saturate(160%);
+      -webkit-backdrop-filter: blur(12px) saturate(160%);
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.8);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03), 0 0 0 1px rgba(255,255,255,0.5) inset;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
-    .inbox-item:last-child { border-bottom: none; }
+    .inbox-item:active {
+      transform: scale(0.98);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+    }
+    .inbox-item:last-child { margin-bottom: 0; }
 
     /* Product emoji avatar — larger, more expressive */
     .inbox-item__icon {
@@ -224,21 +236,25 @@
       margin-top: 4px;
     }
     .inbox-item__responder {
-      padding: 5px 11px;
-      border-radius: 8px;
+      padding: 6px 12px;
+      border-radius: 10px;
       font-size: 0.68rem;
       font-weight: 600;
       color: var(--accent);
-      background: rgba(255,106,53,0.08);
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.9);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.03);
       white-space: nowrap;
       transition: all 0.2s;
       display: inline-flex;
       align-items: center;
-      gap: 4px;
+      gap: 5px;
     }
     .inbox-item__responder:active {
-      background: rgba(255,106,53,0.18);
-      transform: scale(0.95);
+      transform: scale(0.93);
+      background: rgba(255,106,53,0.12);
     }
     .inbox-item__responder i { font-size: 0.6rem; }
 
@@ -500,8 +516,11 @@
 
   <!-- ===== INBOX CONTENT (lista plana sin tabs) ===== -->
   <div class="inbox-content">
-    <div style="padding: 4px 0 12px; font-size: 0.75rem; color: var(--text-tertiary); display: flex; align-items: center; gap: 6px;">
-      <i class="fas fa-circle" style="font-size: 0.4rem; color: var(--accent);"></i> 9 avisos nuevos
+    <div style="padding: 6px 16px 14px; font-size: 0.72rem; color: var(--text-secondary); display: flex; align-items: center; gap: 8px;">
+      <span style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,106,53,0.12);backdrop-filter:blur(8px);padding:4px 12px;border-radius:20px;font-weight:600;color:var(--accent);">
+        <i class="fas fa-circle" style="font-size: 0.4rem;"></i> 9 avisos nuevos
+      </span>
+      <span style="color:var(--text-tertiary);">hoy</span>
     </div>
 
     <!-- 1. 👀 Alguien quiere tu artículo (intercambio, sin match aún) -->
