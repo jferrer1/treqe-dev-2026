@@ -178,19 +178,19 @@
   <!-- ===== HEADER WITH BACK ===== -->
   <div class="header">
     <button class="header__back" onclick="goToProfile()" aria-label="Atrás"><i class="fas fa-chevron-left"></i></button>
-    <span class="page-title"><i class="fas fa-heart" style="color:var(--accent);margin-right:8px;"></i>Me gusta</span>
+    <span class="page-title"><i class="fas fa-exchange-alt" style="color:var(--accent);margin-right:8px;"></i>Solicitudes de trueque</span>
   </div>
 
   <div class="section-title">
-    <h2>Tus favoritos</h2>
-    <span id="articleCount">8 artículos</span>
+    <h2>Tus solicitudes</h2>
+    <span id="articleCount">8 solicitudes</span>
   </div>
 
   <div class="catalog" id="catalog">
-    <!-- FAVORITE ITEMS - pre-selected with like button active -->
+    <!-- SOLICITUDES - pre-selected with like button active -->
     <div class="item-card" data-price="580" onclick="goToDetail(1)">
       <div class="item-card__image" style="background:#2D2D2D;">
-        <span class="like-btn liked"><i class="fas fa-heart"></i></span>
+        <span class="like-btn liked"><i class="fas fa-exchange-alt"></i></span>
         <i class="fas fa-guitar placeholder-icon white"></i>
         <span class="price-tag">€580</span>
       </div>
@@ -200,7 +200,7 @@
     </div>
     <div class="item-card" data-price="890" onclick="goToDetail(3)">
       <div class="item-card__image" style="background:#1A2A3A;">
-        <span class="like-btn liked"><i class="fas fa-heart"></i></span>
+        <span class="like-btn liked"><i class="fas fa-exchange-alt"></i></span>
         <i class="fas fa-mobile-alt placeholder-icon white"></i>
         <span class="price-tag">€890</span>
       </div>
@@ -210,7 +210,7 @@
     </div>
     <div class="item-card" data-price="650" onclick="goToDetail(5)">
       <div class="item-card__image" style="background:#1A3A2A;">
-        <span class="like-btn liked"><i class="fas fa-heart"></i></span>
+        <span class="like-btn liked"><i class="fas fa-exchange-alt"></i></span>
         <i class="fas fa-camera placeholder-icon white"></i>
         <span class="price-tag">€650</span>
       </div>
@@ -220,7 +220,7 @@
     </div>
     <div class="item-card" data-price="420" onclick="goToDetail(8)">
       <div class="item-card__image" style="background:#3A2A3A;">
-        <span class="like-btn liked"><i class="fas fa-heart"></i></span>
+        <span class="like-btn liked"><i class="fas fa-exchange-alt"></i></span>
         <i class="fas fa-bicycle placeholder-icon white"></i>
         <span class="price-tag">€420</span>
       </div>
@@ -230,7 +230,7 @@
     </div>
     <div class="item-card" data-price="380" onclick="goToDetail(9)">
       <div class="item-card__image" style="background:#1A1A2A;">
-        <span class="like-btn liked"><i class="fas fa-heart"></i></span>
+        <span class="like-btn liked"><i class="fas fa-exchange-alt"></i></span>
         <i class="fas fa-headphones placeholder-icon white"></i>
         <span class="price-tag">€380</span>
       </div>
@@ -240,7 +240,7 @@
     </div>
     <div class="item-card" data-price="250" onclick="goToDetail(2)">
       <div class="item-card__image" style="background:#3A2A1A;">
-        <span class="like-btn liked"><i class="fas fa-heart"></i></span>
+        <span class="like-btn liked"><i class="fas fa-exchange-alt"></i></span>
         <i class="fas fa-clock placeholder-icon white"></i>
         <span class="price-tag">€250</span>
       </div>
@@ -250,7 +250,7 @@
     </div>
     <div class="item-card" data-price="720" onclick="goToDetail(11)">
       <div class="item-card__image" style="background:#3A1A1A;">
-        <span class="like-btn liked"><i class="fas fa-heart"></i></span>
+        <span class="like-btn liked"><i class="fas fa-exchange-alt"></i></span>
         <i class="fas fa-mobile-alt placeholder-icon white"></i>
         <span class="price-tag">€720</span>
       </div>
@@ -260,7 +260,7 @@
     </div>
     <div class="item-card" data-price="550" onclick="goToDetail(12)">
       <div class="item-card__image" style="background:#1A3A3A;">
-        <span class="like-btn liked"><i class="fas fa-heart"></i></span>
+        <span class="like-btn liked"><i class="fas fa-exchange-alt"></i></span>
         <i class="fas fa-apple-alt placeholder-icon white"></i>
         <span class="price-tag">€550</span>
       </div>
@@ -279,7 +279,7 @@
     function goToUpload() { window.parent.location.href = '../v3-subir/'; }
     function goToProfile() { window.parent.location.href = '../v4-perfil/'; }
     function goToDetail(id) { window.parent.location.href = '../v2-detalle/?id=' + id; }
-    document.getElementById('articleCount').textContent = document.querySelectorAll('.item-card').length + ' artículos';
+    document.getElementById('articleCount').textContent = document.querySelectorAll('.item-card').length + ' solicitudes';
 </script>
     <nav class="bottom-nav">
     <a href="../v1-catalogo/" class="nav-item"><i class="fas fa-search"></i><span>Buscar</span></a>
