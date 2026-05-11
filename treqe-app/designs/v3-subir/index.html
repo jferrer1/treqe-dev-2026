@@ -675,7 +675,25 @@
       top: 2px;
       right: 12px;
     }
-    </style>
+    
+    .help-modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); z-index: 400; display: none; align-items: flex-end; justify-content: center; }
+    .help-modal-overlay.visible { display: flex; }
+    .help-modal { background: var(--card-bg); border-radius: 24px 24px 0 0; width: 100%; max-width: 500px; max-height: 80vh; overflow: hidden; animation: slideUp 0.3s ease; }
+    @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+    .help-modal__header { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px 12px; border-bottom: 1px solid var(--border); }
+    .help-modal__title { font-size: 1.1rem; font-weight: 700; color: var(--text); }
+    .help-modal__close { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); font-size: 0.9rem; }
+    .help-modal__close:active { background: var(--border); }
+    .help-modal__body { padding: 20px; max-height: 60vh; overflow-y: auto; }
+    .help-step { display: flex; gap: 12px; margin-bottom: 16px; }
+    .help-step__num { width: 28px; height: 28px; border-radius: 50%; background: var(--accent); color: #FFF; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+    .help-step__text { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; }
+    .help-step__text strong { color: var(--text); }
+    .help-benefits { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border); }
+    .help-benefits__title { font-size: 0.85rem; font-weight: 700; color: var(--text); margin-bottom: 10px; }
+    .help-benefit { font-size: 0.8rem; color: var(--text-secondary); padding: 8px 0; line-height: 1.4; }
+
+</style>
 </head>
 <body>
 
@@ -726,7 +744,7 @@
   <div class="form-header">
     <button onclick="history.back()" aria-label="Atrás"><i class="fas fa-times"></i></button>
     <span class="form-header__title">Subir artículo</span>
-    <button aria-label="Ayuda" onclick="alert('Sube un artículo para conseguir crédito en Treqe')" style="color:var(--text-tertiary);font-size:0.9rem;">
+    <button aria-label="Ayuda" onclick="openHelpModal()" style="color:var(--text-tertiary);font-size:0.9rem;">
       <i class="fas fa-question-circle"></i>
     </button>
   </div>
@@ -1071,6 +1089,9 @@
     function goToProfile() { window.parent.location.href = '../v4-perfil/'; }
     function goToDetail(id) { window.parent.location.href = '../v2-detalle/?id=' + id; }
     function addVideo(slot) { alert("Selector de video (max 30s). En la version completa podras grabar o seleccionar de la galeria."); }
+
+function openHelpModal() { document.getElementById('helpModal').classList.add('visible'); }
+function closeHelpModal() { document.getElementById('helpModal').classList.remove('visible'); }
 </script>
     <nav class="bottom-nav">
     <a href="../v1-catalogo/" class="nav-item"><i class="fas fa-search"></i><span>Buscar</span></a>
@@ -1082,5 +1103,42 @@
 
 
 
+
+  <!-- Help Modal -->
+  <div class="help-modal-overlay" id="helpModal" onclick="closeHelpModal()">
+    <div class="help-modal" onclick="event.stopPropagation()">
+      <div class="help-modal__header">
+        <span class="help-modal__title">Subir artículo</span>
+        <button class="help-modal__close" onclick="closeHelpModal()"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="help-modal__body">
+        <div class="help-step">
+          <div class="help-step__num">1</div>
+          <div class="help-step__text">
+            <strong>Haz fotos</strong> del artículo que quieres intercambiar. Sube hasta 5 imágenes, incluso un vídeo corto.
+          </div>
+        </div>
+        <div class="help-step">
+          <div class="help-step__num">2</div>
+          <div class="help-step__text">
+            <strong>Describe tu artículo</strong> con título, categoría, estado y precio. Cuanta más información, más posibilidades de match.
+          </div>
+        </div>
+        <div class="help-step">
+          <div class="help-step__num">3</div>
+          <div class="help-step__text">
+            <strong>Publícalo</strong>. Tu artículo entrará en la red de intercambio circular y el algoritmo buscará el mejor trueque para ti.
+          </div>
+        </div>
+        <div class="help-benefits">
+          <div class="help-benefits__title">Beneficios</div>
+          <div class="help-benefit">🔄 Consigue lo que quieres sin gastar dinero</div>
+          <div class="help-benefit">⭐ Suma puntos de scoring por cada artículo publicado</div>
+          <div class="help-benefit">📈 Más artículos = más visibilidad en la comunidad</div>
+          <div class="help-benefit">♻️ Dale una segunda vida a lo que ya no usas</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
