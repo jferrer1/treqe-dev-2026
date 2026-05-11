@@ -1425,6 +1425,7 @@
         text: 'Has solicitado un trueque por ' + receiveName,
         time: new Date().toLocaleString('es-ES', {hour:'2-digit',minute:'2-digit'}),
         type: 'trade',
+        productId: itemId,
         date: new Date().toISOString().split('T')[0]
       });
       localStorage.setItem('treqe_notifications', JSON.stringify(notifs));

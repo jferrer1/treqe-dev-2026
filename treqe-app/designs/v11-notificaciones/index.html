@@ -531,6 +531,9 @@
         <div class="inbox-item__text">Has solicitado un trueque por iPhone 15 Pro. Te notificaremos cuando sea posible hacer el intercambio.</div>
         <div class="inbox-item__meta"><i class="far fa-clock"></i> Ahora · <span style="color:var(--accent);font-weight:600;">Pendiente</span></div>
       </div>
+      <div class="inbox-item__actions">
+        <button class="inbox-item__responder" onclick="goToDetail(3)"><i class="fas fa-eye"></i> Ver</button>
+      </div>
     </div>
 
     <!-- 1. 👀 Alguien quiere tu artículo (intercambio, sin match aún) -->
@@ -690,6 +693,9 @@
           '<div class="inbox-item__title">Solicitud de trueque enviada</div>' +
           '<div class="inbox-item__text">' + n.text + '. Te notificaremos cuando sea posible hacer el intercambio.</div>' +
           '<div class="inbox-item__meta"><i class="far fa-clock"></i> ' + n.time + ' · <span style="color:var(--accent);font-weight:600;">Pendiente</span></div>' +
+          '</div>' +
+          '<div class="inbox-item__actions">' +
+          '<button class="inbox-item__responder" onclick="goToDetail(\'' + n.productId + '\')"><i class="fas fa-eye"></i> Ver</button>' +
           '</div>';
         parent.insertBefore(item, inbox);
       });
