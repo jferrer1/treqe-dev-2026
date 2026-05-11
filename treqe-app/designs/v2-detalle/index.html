@@ -1579,115 +1579,127 @@
 
 
 <script>
-  
-  /* ═══ PRODUCT DATA ═══ */
-  var TREQE_PRODUCTS = [
-  { id:1, name:"Fender Stratocaster", condition:"Muy buen estado", price:"580", icon:"🎸", category:"musica", subcategory:"guitarras" },
-  { id:2, name:"G-SHOCK Mudmaster", condition:"Edición limitada", price:"250", icon:"⏰", category:"moda", subcategory:"relojes" },
-  { id:3, name:"iPhone 15 Pro", condition:"256GB", price:"890", icon:"📱", category:"electronica", subcategory:"moviles" },
-  { id:4, name:"PlayStation 5", condition:"Edición digital", price:"480", icon:"🎮", category:"electronica", subcategory:"consolas" },
-  { id:5, name:"Canon EOS R", condition:"Objetivo 24-70mm", price:"650", icon:"📷", category:"electronica", subcategory:"camaras" },
-  { id:6, name:"MacBook Air M3", condition:"16GB", price:"920", icon:"💻", category:"electronica", subcategory:"portatiles" },
-  { id:7, name:"Casco Shoei NXR2", condition:"Talla M", price:"320", icon:"🏍️", category:"deporte", subcategory:"fitness" },
-  { id:8, name:"Trek Marlin 7", condition:"Mtb", price:"420", icon:"🚲", category:"deporte", subcategory:"bicicletas" },
-  { id:9, name:"AirPods Max", condition:"Azul cielo", price:"380", icon:"🎧", category:"electronica", subcategory:"audio" },
-  { id:10, name:"Bajo Fender Jazz Bass", condition:"Sunrise", price:"620", icon:"🎸", category:"musica", subcategory:"guitarras" },
-  { id:11, name:"Samsung Galaxy S25 Ultra", condition:"512GB", price:"720", icon:"📱", category:"electronica", subcategory:"moviles" },
-  { id:12, name:"Apple Watch Ultra 2", condition:"Naranja", price:"550", icon:"📦", category:"electronica", subcategory:"accesorios" },
-  { id:13, name:"Sofá IKEA Kivik", condition:"3 plazas", price:"180", icon:"🛋️", category:"hogar", subcategory:"muebles" },
-  { id:14, name:"Nespresso Vertuo Next", condition:"Plata", price:"85", icon:"📦", category:"hogar", subcategory:"electrodomesticos" },
-  { id:15, name:"Lámpara de pie IKEA", condition:"Nordviken", price:"45", icon:"📦", category:"hogar", subcategory:"lamparas" },
-  { id:16, name:"Kindle Paperwhite", condition:"11a gen", price:"95", icon:"📱", category:"electronica", subcategory:"tablets" },
-  { id:17, name:"Mochila The North Face", condition:"Borealis", price:"55", icon:"🛍️", category:"moda", subcategory:"bolsos" },
-  { id:18, name:"Nike Air Max 90", condition:"Talla 42", price:"75", icon:"👟", category:"moda", subcategory:"zapatos" },
-  { id:19, name:"Palas Bullpadel", condition:"Pack 2 uds.", price:"120", icon:"📦", category:"deporte", subcategory:"padel" },
-  { id:20, name:"Set pesas 20kg", condition:"Con mancuernas", price:"65", icon:"🏋️", category:"deporte", subcategory:"fitness" },
-  { id:21, name:"Guitarra acústica Yamaha F310", condition:"Clásica", price:"210", icon:"🎸", category:"musica", subcategory:"guitarras" },
-  { id:22, name:"Vinilos Beatles", condition:"Colección 5 LP", price:"120", icon:"💿", category:"musica", subcategory:"vinilos" },
-  { id:23, name:"Batería electrónica Roland TD-1DMK", condition:"Completa", price:"650", icon:"📦", category:"musica", subcategory:"baterias" },
-  { id:24, name:"Cien años de soledad", condition:"Gabriel García Márquez", price:"12", icon:"📚", category:"libros", subcategory:"novelas" },
-  { id:25, name:"Harry Potter", condition:"7 libros", price:"45", icon:"📦", category:"libros", subcategory:"novelas" },
-  { id:26, name:"Nintendo Switch OLED", condition:"Blanco", price:"280", icon:"🎮", category:"electronica", subcategory:"consolas" },
-  { id:27, name:"Logitech MX Mechanical", condition:"Inalámbrico", price:"85", icon:"⌨️", category:"electronica", subcategory:"accesorios" },
-  { id:28, name:"Vestido Zara", condition:"Talla S", price:"35", icon:"📦", category:"moda", subcategory:"ropa-mujer" },
-  { id:29, name:"Patines en línea", condition:"Talla 42", price:"55", icon:"📦", category:"deporte", subcategory:"fitness" },
-  { id:30, name:"Silla oficina IKEA Markus", condition:"Negro", price:"150", icon:"🪑", category:"hogar", subcategory:"muebles" },
-  { id:31, name:"Enciclopedia Salvat", condition:"12 tomos", price:"120", icon:"📚", category:"libros", subcategory:"academicos" },
-  { id:32, name:"Batman Year One", condition:"Frank Miller", price:"25", icon:"📦", category:"libros", subcategory:"comics" },
-  { id:33, name:"Bicicleta electrica Xiaomi", condition:"25km/h", price:"890", icon:"🚲", category:"bicicletas", subcategory:"bicis-electricas" },
-  { id:34, name:"Casco Specialized Align II", condition:"Talla M", price:"55", icon:"📦", category:"bicicletas", subcategory:"cascos" },
-  { id:35, name:"Auriculares Sony WH-1000XM5", condition:"Cancelacion ruido", price:"220", icon:"🎧", category:"electronica", subcategory:"audio" },
-  { id:36, name:"iPad Air M2", condition:"11"", price:"520", icon:"📱", category:"electronica", subcategory:"tablets" },
-  { id:37, name:"Monitor LG Ultrawide 29"", condition:"2560x1080", price:"180", icon:"🖥️", category:"electronica", subcategory:"perifericos" },
-  { id:38, name:"Teclado mecanico Keychron Q1", condition:"Hot-swap", price:"95", icon:"⌨️", category:"electronica", subcategory:"perifericos" },
-  { id:39, name:"Raton Logitech G Pro X Superlight", condition:"Blanco", price:"65", icon:"📦", category:"electronica", subcategory:"perifericos" },
-  { id:40, name:"Camara Sony A7 III", condition:"24MP", price:"1200", icon:"📷", category:"electronica", subcategory:"camaras" },
-  { id:41, name:"DJI Mini 4 Pro", condition:"Drone con 4K", price:"850", icon:"📦", category:"electronica", subcategory:"camaras" },
-  { id:42, name:"Proyector Xiaomi Mi Smart", condition:"1080p", price:"320", icon:"📦", category:"electronica", subcategory:"accesorios" },
-  { id:43, name:"Samsung QLED 55"", condition:"4K", price:"550", icon:"📺", category:"electronica", subcategory:"accesorios" },
-  { id:44, name:"Xbox Series X", condition:"1TB", price:"380", icon:"🎮", category:"electronica", subcategory:"consolas" },
-  { id:45, name:"Nintendo Switch Lite", condition:"Turquesa", price:"150", icon:"🎮", category:"electronica", subcategory:"consolas" },
-  { id:46, name:"MacBook Pro 14" M3 Pro", condition:"18GB", price:"1450", icon:"💻", category:"electronica", subcategory:"portatiles" },
-  { id:47, name:"Samsung Galaxy Watch 6 Classic", condition:"47mm", price:"180", icon:"⏰", category:"electronica", subcategory:"smartwatches" },
-  { id:48, name:"Zapatillas Nike Air Force 1", condition:"Talla 42", price:"60", icon:"👟", category:"moda", subcategory:"zapatos" },
-  { id:49, name:"Chaqueta The North Face", condition:"Talla M", price:"85", icon:"📦", category:"moda", subcategory:"ropa-hombre" },
-  { id:50, name:"Bolso Michael Kors", condition:"Piel", price:"120", icon:"🛍️", category:"moda", subcategory:"bolsos" },
-  { id:51, name:"Perfume Chanel Bleu", condition:"100ml", price:"70", icon:"📦", category:"moda", subcategory:"belleza" },
-  { id:52, name:"Vestido Mango", condition:"Talla S", price:"25", icon:"📦", category:"moda", subcategory:"ropa-mujer" },
-  { id:53, name:"Sofa cama IKEA Friheten", condition:"Esquinero", price:"250", icon:"🛋️", category:"hogar", subcategory:"muebles" },
-  { id:54, name:"Mesa comedor redonda", condition:"120cm", price:"140", icon:"📦", category:"hogar", subcategory:"muebles" },
-  { id:55, name:"Robot aspirador Roomba j7+", condition:"Base autovaciado", price:"350", icon:"📦", category:"electrodomesticos", subcategory:"aspiradoras" },
-  { id:56, name:"Lavadora Bosch Serie 4", condition:"8kg", price:"280", icon:"📦", category:"electrodomesticos", subcategory:"lavanderia" },
-  { id:57, name:"Secadora Balay", condition:"7kg", price:"320", icon:"📦", category:"electrodomesticos", subcategory:"lavanderia" },
-  { id:58, name:"Nevera Samsung", condition:"Side by Side", price:"450", icon:"❄️", category:"electrodomesticos", subcategory:"cocina" },
-  { id:59, name:"Cochecito BabyTribe PRO", condition:"Plegable", price:"180", icon:"👶", category:"bebes", subcategory:"carritos" },
-  { id:60, name:"Silla de coche Maxi-Cosi", condition:"Grupo 0-1", price:"95", icon:"📦", category:"bebes", subcategory:"sillas-coche" },
-  { id:61, name:"Cuna colecho", condition:"Madera", price:"75", icon:"📦", category:"bebes", subcategory:"cunas" },
-  { id:62, name:"Set de pesas 30kg", condition:"Mancuernas", price:"80", icon:"🏋️", category:"deporte", subcategory:"pesas" },
-  { id:63, name:"Raqueta Wilson Blade 98", condition:"2023", price:"95", icon:"📦", category:"deporte", subcategory:"padel" },
-  { id:64, name:"Cinta de correr NordicTrack", condition:"Inclinacion motorizada", price:"500", icon:"📦", category:"deporte", subcategory:"fitness" },
-  { id:65, name:"Bicicleta montana Orbea", condition:"29"", price:"350", icon:"🚲", category:"bicicletas", subcategory:"bicis-montana" },
-  { id:66, name:"Garmin Edge 530", condition:"GPS ciclismo", price:"120", icon:"📦", category:"bicicletas", subcategory:"accesorios" },
-  { id:67, name:"Patines en linea", condition:"Talla 42", price:"45", icon:"📦", category:"deporte", subcategory:"patines" },
-  { id:68, name:"Manta electrica", condition:"180x200cm", price:"40", icon:"🔥", category:"hogar", subcategory:"calefaccion" },
-  { id:69, name:"Lampara de techo LED", condition:"60cm", price:"35", icon:"📦", category:"hogar", subcategory:"lamparas" },
-  { id:70, name:"Balon futbol Adidas Champions", condition:"Talla 5", price:"35", icon:"⚽", category:"deporte", subcategory:"futbol" },
+var TREQE_PRODUCTS = [
+  { id:1, name:"Fender Stratocaster", condition:"Muy buen estado", price:"580", fa:"fa-guitar", cat:"musica", subcat:"guitarras" },
+  { id:2, name:"G-SHOCK Mudmaster", condition:"Edición limitada", price:"250", fa:"fa-clock", cat:"moda", subcat:"relojes" },
+  { id:3, name:"iPhone 15 Pro", condition:"256GB", price:"890", fa:"fa-mobile-alt", cat:"electronica", subcat:"moviles" },
+  { id:4, name:"PlayStation 5", condition:"Edición digital", price:"480", fa:"fa-gamepad", cat:"electronica", subcat:"consolas" },
+  { id:5, name:"Canon EOS R", condition:"Objetivo 24-70mm", price:"650", fa:"fa-camera", cat:"electronica", subcat:"camaras" },
+  { id:6, name:"MacBook Air M3", condition:"16GB", price:"920", fa:"fa-laptop", cat:"electronica", subcat:"portatiles" },
+  { id:7, name:"Casco Shoei NXR2", condition:"Talla M", price:"320", fa:"fa-motorcycle", cat:"deporte", subcat:"fitness" },
+  { id:8, name:"Trek Marlin 7", condition:"Mtb", price:"420", fa:"fa-bicycle", cat:"deporte", subcat:"bicicletas" },
+  { id:9, name:"AirPods Max", condition:"Azul cielo", price:"380", fa:"fa-headphones", cat:"electronica", subcat:"audio" },
+  { id:10, name:"Bajo Fender Jazz Bass", condition:"Sunrise", price:"620", fa:"fa-guitar", cat:"musica", subcat:"guitarras" },
+  { id:11, name:"Samsung Galaxy S25 Ultra", condition:"512GB", price:"720", fa:"fa-mobile-alt", cat:"electronica", subcat:"moviles" },
+  { id:12, name:"Apple Watch Ultra 2", condition:"Naranja", price:"550", fa:"fa-box", cat:"electronica", subcat:"accesorios" },
+  { id:13, name:"Sofá IKEA Kivik", condition:"3 plazas", price:"180", fa:"fa-couch", cat:"hogar", subcat:"muebles" },
+  { id:14, name:"Nespresso Vertuo Next", condition:"Plata", price:"85", fa:"fa-box", cat:"hogar", subcat:"electrodomesticos" },
+  { id:15, name:"Lámpara de pie IKEA", condition:"Nordviken", price:"45", fa:"fa-box", cat:"hogar", subcat:"lamparas" },
+  { id:16, name:"Kindle Paperwhite", condition:"11a gen", price:"95", fa:"fa-tablet-alt", cat:"electronica", subcat:"tablets" },
+  { id:17, name:"Mochila The North Face", condition:"Borealis", price:"55", fa:"fa-box", cat:"moda", subcat:"bolsos" },
+  { id:18, name:"Nike Air Max 90", condition:"Talla 42", price:"75", fa:"fa-running", cat:"moda", subcat:"zapatos" },
+  { id:19, name:"Palas Bullpadel", condition:"Pack 2 uds.", price:"120", fa:"fa-box", cat:"deporte", subcat:"padel" },
+  { id:20, name:"Set pesas 20kg", condition:"Con mancuernas", price:"65", fa:"fa-dumbbell", cat:"deporte", subcat:"fitness" },
+  { id:21, name:"Guitarra acústica Yamaha F310", condition:"Clásica", price:"210", fa:"fa-guitar", cat:"musica", subcat:"guitarras" },
+  { id:22, name:"Vinilos Beatles", condition:"Colección 5 LP", price:"120", fa:"fa-compact-disc", cat:"musica", subcat:"vinilos" },
+  { id:23, name:"Batería electrónica Roland TD-1DMK", condition:"Completa", price:"650", fa:"fa-box", cat:"musica", subcat:"baterias" },
+  { id:24, name:"Cien años de soledad", condition:"Gabriel García Márquez", price:"12", fa:"fa-book", cat:"libros", subcat:"novelas" },
+  { id:25, name:"Harry Potter", condition:"7 libros", price:"45", fa:"fa-box", cat:"libros", subcat:"novelas" },
+  { id:26, name:"Nintendo Switch OLED", condition:"Blanco", price:"280", fa:"fa-gamepad", cat:"electronica", subcat:"consolas" },
+  { id:27, name:"Logitech MX Mechanical", condition:"Inalámbrico", price:"85", fa:"fa-keyboard", cat:"electronica", subcat:"accesorios" },
+  { id:28, name:"Vestido Zara", condition:"Talla S", price:"35", fa:"fa-box", cat:"moda", subcat:"ropa-mujer" },
+  { id:29, name:"Patines en línea", condition:"Talla 42", price:"55", fa:"fa-box", cat:"deporte", subcat:"fitness" },
+  { id:30, name:"Silla oficina IKEA Markus", condition:"Negro", price:"150", fa:"fa-chair", cat:"hogar", subcat:"muebles" },
+  { id:31, name:"Enciclopedia Salvat", condition:"12 tomos", price:"120", fa:"fa-book", cat:"libros", subcat:"academicos" },
+  { id:32, name:"Batman Year One", condition:"Frank Miller", price:"25", fa:"fa-box", cat:"libros", subcat:"comics" },
+  { id:33, name:"Bicicleta electrica Xiaomi", condition:"25km/h", price:"890", fa:"fa-bicycle", cat:"bicicletas", subcat:"bicis-electricas" },
+  { id:34, name:"Casco Specialized Align II", condition:"Talla M", price:"55", fa:"fa-box", cat:"bicicletas", subcat:"cascos" },
+  { id:35, name:"Auriculares Sony WH-1000XM5", condition:"Cancelacion ruido", price:"220", fa:"fa-headphones", cat:"electronica", subcat:"audio" },
+  { id:36, name:"iPad Air M2", condition:"11\"", price:"520", fa:"fa-tablet-alt", cat:"electronica", subcat:"tablets" },
+  { id:37, name:"Monitor LG Ultrawide 29\"", condition:"2560x1080", price:"180", fa:"fa-desktop", cat:"electronica", subcat:"perifericos" },
+  { id:38, name:"Teclado mecanico Keychron Q1", condition:"Hot-swap", price:"95", fa:"fa-keyboard", cat:"electronica", subcat:"perifericos" },
+  { id:39, name:"Raton Logitech G Pro X Superlight", condition:"Blanco", price:"65", fa:"fa-box", cat:"electronica", subcat:"perifericos" },
+  { id:40, name:"Camara Sony A7 III", condition:"24MP", price:"1200", fa:"fa-camera", cat:"electronica", subcat:"camaras" },
+  { id:41, name:"DJI Mini 4 Pro", condition:"Drone con 4K", price:"850", fa:"fa-box", cat:"electronica", subcat:"camaras" },
+  { id:42, name:"Proyector Xiaomi Mi Smart", condition:"1080p", price:"320", fa:"fa-box", cat:"electronica", subcat:"accesorios" },
+  { id:43, name:"Samsung QLED 55\"", condition:"4K", price:"550", fa:"fa-tv", cat:"electronica", subcat:"accesorios" },
+  { id:44, name:"Xbox Series X", condition:"1TB", price:"380", fa:"fa-gamepad", cat:"electronica", subcat:"consolas" },
+  { id:45, name:"Nintendo Switch Lite", condition:"Turquesa", price:"150", fa:"fa-gamepad", cat:"electronica", subcat:"consolas" },
+  { id:46, name:"MacBook Pro 14\" M3 Pro", condition:"18GB", price:"1450", fa:"fa-laptop", cat:"electronica", subcat:"portatiles" },
+  { id:47, name:"Samsung Galaxy Watch 6 Classic", condition:"47mm", price:"180", fa:"fa-clock", cat:"electronica", subcat:"smartwatches" },
+  { id:48, name:"Zapatillas Nike Air Force 1", condition:"Talla 42", price:"60", fa:"fa-running", cat:"moda", subcat:"zapatos" },
+  { id:49, name:"Chaqueta The North Face", condition:"Talla M", price:"85", fa:"fa-box", cat:"moda", subcat:"ropa-hombre" },
+  { id:50, name:"Bolso Michael Kors", condition:"Piel", price:"120", fa:"fa-box", cat:"moda", subcat:"bolsos" },
+  { id:51, name:"Perfume Chanel Bleu", condition:"100ml", price:"70", fa:"fa-box", cat:"moda", subcat:"belleza" },
+  { id:52, name:"Vestido Mango", condition:"Talla S", price:"25", fa:"fa-box", cat:"moda", subcat:"ropa-mujer" },
+  { id:53, name:"Sofa cama IKEA Friheten", condition:"Esquinero", price:"250", fa:"fa-couch", cat:"hogar", subcat:"muebles" },
+  { id:54, name:"Mesa comedor redonda", condition:"120cm", price:"140", fa:"fa-box", cat:"hogar", subcat:"muebles" },
+  { id:55, name:"Robot aspirador Roomba j7+", condition:"Base autovaciado", price:"350", fa:"fa-box", cat:"electrodomesticos", subcat:"aspiradoras" },
+  { id:56, name:"Lavadora Bosch Serie 4", condition:"8kg", price:"280", fa:"fa-box", cat:"electrodomesticos", subcat:"lavanderia" },
+  { id:57, name:"Secadora Balay", condition:"7kg", price:"320", fa:"fa-box", cat:"electrodomesticos", subcat:"lavanderia" },
+  { id:58, name:"Nevera Samsung", condition:"Side by Side", price:"450", fa:"fa-snowflake", cat:"electrodomesticos", subcat:"cocina" },
+  { id:59, name:"Cochecito BabyTribe PRO", condition:"Plegable", price:"180", fa:"fa-baby-carriage", cat:"bebes", subcat:"carritos" },
+  { id:60, name:"Silla de coche Maxi-Cosi", condition:"Grupo 0-1", price:"95", fa:"fa-box", cat:"bebes", subcat:"sillas-coche" },
+  { id:61, name:"Cuna colecho", condition:"Madera", price:"75", fa:"fa-box", cat:"bebes", subcat:"cunas" },
+  { id:62, name:"Set de pesas 30kg", condition:"Mancuernas", price:"80", fa:"fa-dumbbell", cat:"deporte", subcat:"pesas" },
+  { id:63, name:"Raqueta Wilson Blade 98", condition:"2023", price:"95", fa:"fa-box", cat:"deporte", subcat:"padel" },
+  { id:64, name:"Cinta de correr NordicTrack", condition:"Inclinacion motorizada", price:"500", fa:"fa-box", cat:"deporte", subcat:"fitness" },
+  { id:65, name:"Bicicleta montana Orbea", condition:"29\"", price:"350", fa:"fa-bicycle", cat:"bicicletas", subcat:"bicis-montana" },
+  { id:66, name:"Garmin Edge 530", condition:"GPS ciclismo", price:"120", fa:"fa-box", cat:"bicicletas", subcat:"accesorios" },
+  { id:67, name:"Patines en linea", condition:"Talla 42", price:"45", fa:"fa-box", cat:"deporte", subcat:"patines" },
+  { id:68, name:"Manta electrica", condition:"180x200cm", price:"40", fa:"fa-fire", cat:"hogar", subcat:"calefaccion" },
+  { id:69, name:"Lampara de techo LED", condition:"60cm", price:"35", fa:"fa-box", cat:"hogar", subcat:"lamparas" },
+  { id:70, name:"Balon futbol Adidas Champions", condition:"Talla 5", price:"35", fa:"fa-futbol", cat:"deporte", subcat:"futbol" },
 ];
-  
-  /* ═══ LOAD PRODUCT FROM URL ═══ */
-  (function(){
-    var params = new URLSearchParams(window.location.search);
-    var id = params.get('id');
-    if (!id) return;
-    
-    var product = TREQE_PRODUCTS.find(function(p){ return p.id == id; });
-    if (!product) return;
-    
-    // Update UI
-    var titleEl = document.querySelector('.product-title');
-    if (titleEl) titleEl.textContent = product.name;
-    
-    var priceEl = document.querySelector('.product-price');
-    if (priceEl) priceEl.textContent = '€' + product.price;
-    
-    var condEl = document.querySelector('.product-condition');
-    if (condEl) condEl.textContent = product.condition;
-    
-    var catEl = document.querySelector('.product-category');
-    if (catEl) catEl.textContent = product.category + ' · ' + product.subcategory;
-    
-    // Update placeholder icon
-    var iconEl = document.querySelector('.gallery-slide .placeholder-icon');
-    if (iconEl) {
-      iconEl.className = 'fas fa-' + iconEl.className.split('fa-')[1].split(' ')[0] + ' placeholder-icon';
-      // Actually just update the icon character
-      var iconDiv = document.querySelector('.product-icon-placeholder');
-      if (iconDiv) iconDiv.textContent = product.icon;
-    }
-    
-    // Update page title
-    document.title = 'TREQE — ' + product.name;
-  })();
+
+(function(){
+  var params = new URLSearchParams(window.location.search);
+  var id = params.get('id');
+  if (!id) return;
+
+  var product = TREQE_PRODUCTS.find(function(p){ return p.id == id; });
+  if (!product) return;
+
+  // Update product name
+  var titleEl = document.querySelector('.item-title');
+  if (titleEl) titleEl.textContent = product.name + ' \u00b7 ' + product.condition;
+
+  // Update price
+  var priceEl = document.querySelector('.item-price');
+  if (priceEl) priceEl.textContent = '\u20AC' + product.price;
+
+  // Update condition badge (first .item-detail)
+  var condEl = document.querySelector('.item-detail:first-child');
+  if (condEl) condEl.innerHTML = '<i class="fas fa-check-circle"></i> ' + product.condition;
+
+  // Update breadcrumb subcategory
+  var breadItems = document.querySelectorAll('.breadcrumb > *');
+  if (breadItems.length > 1) breadItems[breadItems.length-1].textContent = product.subcat;
+
+  // Update gallery icon
+  var iconEl = document.querySelector('.gallery-slide .placeholder-icon');
+  if (iconEl) iconEl.className = product.fa + ' placeholder-icon white';
+
+  // Update page title
+  document.title = 'TREQE \u2014 ' + product.name;
+
+  // Update OG meta
+  var ogTitle = document.querySelector('meta[property="og:title"]');
+  if (ogTitle) ogTitle.setAttribute('content', product.name + ' \u00b7 Treqe');
+
+  var ogDesc = document.querySelector('meta[name="description"]');
+  if (ogDesc) ogDesc.setAttribute('content', product.name + ' - ' + product.condition + '. Consigue en Treqe mediante intercambio circular.');
+
+  // Update the 5 gallery thumbs with icons from similar products
+  var thumbs = document.querySelectorAll('.gallery-thumbs .thumb-label');
+  var thumbData = [1,2,3,4,5];
+  var similar = TREQE_PRODUCTS.filter(function(p){ return p.cat == product.cat; });
+  for (var t = 0; t < thumbs.length && t < similar.length; t++) {
+    if (similar[t].id == product.id) continue;
+    thumbs[t].innerHTML = '<i class="' + similar[t].fa + '"></i>';
+  }
+})();
+
 </script>
 </body>
 </html>
