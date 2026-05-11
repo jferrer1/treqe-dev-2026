@@ -253,74 +253,61 @@
     opacity: 0.7;
   }
   
-  /* Swap Visual — Split Card Editorial */
-  .split-card {
-    display: flex; flex-direction: column;
-    border-radius: 24px; overflow: hidden;
-    background: rgba(255,255,255,0.3);
-    box-shadow: 0 4px 24px rgba(0,20,50,0.04), inset 0 1px 0 rgba(255,255,255,0.6);
+  /* Swap Visual — Circular Flow */
+  .circular-swap {
+    position: relative;
+    width: 220px; height: 220px; margin: 0 auto 20px;
   }
-  .split-half {
-    position: relative; padding: 32px 24px 28px;
-    text-align: center; overflow: hidden;
+  .circle-ring {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    color: var(--text-secondary);
   }
-  .split-give { background: linear-gradient(180deg, rgba(255,249,235,0.6), rgba(255,255,255,0.2)); }
-  .split-receive { background: linear-gradient(180deg, rgba(235,245,255,0.6), rgba(255,255,255,0.2)); }
-  .split-bg-blob {
-    position: absolute; width: 160px; height: 160px; border-radius: 50%;
-    top: 50%; left: 50%; transform: translate(-50%,-50%);
-    pointer-events: none; opacity: 0.4;
+  .circle-ring path, .circle-ring polygon {
+    animation: flowPulse 3s ease-in-out infinite;
   }
-  .split-give .split-bg-blob { background: radial-gradient(circle, rgba(255,200,100,0.5), transparent 70%); }
-  .split-receive .split-bg-blob { background: radial-gradient(circle, rgba(100,160,255,0.4), transparent 70%); }
-  .split-tag {
-    font-size: 0.6rem; text-transform: uppercase; letter-spacing: 2px;
-    font-weight: 700; color: var(--text-tertiary); margin-bottom: 16px;
-    display: block; position: relative; z-index: 1;
+  @keyframes flowPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.7; }
   }
-  .split-icon-wrap { position: relative; z-index: 1; margin-bottom: 12px; }
-  .split-icon {
-    width: 80px; height: 80px; margin: 0 auto;
-    border-radius: 24px; display: flex; align-items: center; justify-content: center;
-    font-size: 2.8rem; position: relative; z-index: 2;
-    background: rgba(255,255,255,0.8); backdrop-filter: blur(12px);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.06);
-    transition: transform 0.3s;
+  
+  .circular-item {
+    position: absolute; display: flex; flex-direction: column; align-items: center;
+    gap: 6px; text-align: center;
   }
-  .split-half:hover .split-icon { transform: scale(1.08); }
-  .split-icon-shadow {
-    width: 70px; height: 12px; margin: 8px auto 0;
-    background: radial-gradient(ellipse, rgba(0,0,0,0.1), transparent);
-    border-radius: 50%;
-  }
-  .split-name {
-    font-family: 'Playfair Display','Georgia',serif; font-style: italic;
-    font-weight: 700; font-size: 1.1rem; color: var(--text);
-    position: relative; z-index: 1;
-  }
-  .split-divider {
-    position: relative; height: 48px;
-    background: linear-gradient(90deg, transparent, rgba(255,106,53,0.08), var(--accent), rgba(255,106,53,0.08), transparent);
+  .circular-before { top: 0; left: 50%; transform: translateX(-50%); }
+  .circular-after { bottom: 0; left: 50%; transform: translateX(-50%); }
+  
+  .circular-icon {
+    width: 64px; height: 64px; border-radius: 20px;
     display: flex; align-items: center; justify-content: center;
+    font-size: 2rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
   }
-  .split-divider::before {
-    content: ''; position: absolute; inset: 0;
-    background: linear-gradient(180deg, rgba(0,0,0,0.03), transparent, rgba(0,0,0,0.03));
+  .circular-before .circular-icon {
+    background: rgba(255,240,220,0.9);
+    border: 1px solid rgba(255,180,80,0.2);
   }
-  .split-arrow-wrap {
-    position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
-    color: var(--accent); width: 20px; height: 32px;
-    animation: arrowBob 2s ease-in-out infinite;
+  .circular-after .circular-icon {
+    background: rgba(220,235,255,0.9);
+    border: 1px solid rgba(80,140,255,0.2);
   }
-  @keyframes arrowBob {
-    0%, 100% { transform: translateY(-50%) translateY(0); }
-    50% { transform: translateY(-50%) translateY(4px); }
+  .circular-label {
+    font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1.5px;
+    font-weight: 700; color: var(--text-tertiary);
   }
-  .split-svg { width: 100%; height: 100%; }
-  .split-word {
-    font-size: 0.55rem; text-transform: uppercase; letter-spacing: 2px;
-    font-weight: 700; color: var(--accent); text-align: center; line-height: 1.5;
+  .circular-name {
+    font-family: 'Playfair Display','Georgia',serif; font-style: italic;
+    font-weight: 700; font-size: 0.85rem; color: var(--text);
+    max-width: 120px; line-height: 1.2;
   }
+  
+  .circular-tagline {
+    text-align: center; font-size: 0.8rem; color: var(--text-secondary);
+    line-height: 1.8;
+  }
+  .circular-tagline strong { color: var(--text); font-weight: 700; }
+  .circular-tagline em { color: var(--accent); font-style: italic; font-weight: 700; }
     /* Insight */
   .exchange-insight {
     margin: 28px 0;
@@ -718,33 +705,33 @@
   
   <div class="exchange-card">
     <div class="swap-visual">
-      <div class="split-card">
-        <div class="split-half split-give">
-          <div class="split-bg-blob"></div>
-          <span class="split-tag">Tú entregas</span>
-          <div class="split-icon-wrap">
-            <div class="split-icon">🚲</div>
-            <div class="split-icon-shadow"></div>
-          </div>
-          <span class="split-name">un carrito de bebé</span>
+      <div class="circular-swap">
+        <svg class="circle-ring" viewBox="0 0 200 200">
+          <circle cx="100" cy="100" r="85" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="6 4" opacity="0.2"/>
+          <path d="M 35 65 A 85 85 0 0 1 160 80" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+          <polygon points="155,75 165,80 158,88" fill="var(--accent)" opacity="0.6"/>
+          <path d="M 155 125 A 85 85 0 0 1 40 110" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" opacity="0.3" stroke-dasharray="4 3"/>
+          <polygon points="45,112 35,108 40,100" fill="var(--accent)" opacity="0.3"/>
+          <!-- center dot -->
+          <circle cx="100" cy="100" r="3" fill="var(--accent)"/>
+        </svg>
+        
+        <div class="circular-item circular-before">
+          <div class="circular-icon">🚲</div>
+          <span class="circular-label">Antes tenía</span>
+          <span class="circular-name">un carrito de bebé</span>
         </div>
-        <div class="split-divider">
-          <div class="split-arrow-wrap">
-            <svg class="split-svg" viewBox="0 0 24 40" fill="none">
-              <path d="M12 0 V28 M6 22 L12 32 L18 22" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <span class="split-word">se<br>convierte<br>en</span>
+        
+        <div class="circular-item circular-after">
+          <div class="circular-icon">📱</div>
+          <span class="circular-label">Ahora tengo</span>
+          <span class="circular-name">este iPhone</span>
         </div>
-        <div class="split-half split-receive">
-          <div class="split-bg-blob"></div>
-          <span class="split-tag">Tú recibes</span>
-          <div class="split-icon-wrap">
-            <div class="split-icon">📱</div>
-            <div class="split-icon-shadow"></div>
-          </div>
-          <span class="split-name">este iPhone</span>
-        </div>
+      </div>
+      
+      <div class="circular-tagline">
+        <span>El intercambio <strong>no es lineal</strong>.</span>
+        <span>Es <em>circular</em>.</span>
       </div>
     </div>
     
