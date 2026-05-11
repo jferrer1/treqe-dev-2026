@@ -114,25 +114,25 @@
     if (!product) return;
     
     // Update UI
-    var titleEl = document.querySelector('.product-title');
-    if (titleEl) titleEl.textContent = product.name;
+    var titleEl = document.querySelector('.item-title');
+    if (titleEl) titleEl.textContent = product.name + ' · ' + product.condition;
     
-    var priceEl = document.querySelector('.product-price');
+    var priceEl = document.querySelector('.item-price');
     if (priceEl) priceEl.textContent = '€' + product.price;
     
-    var condEl = document.querySelector('.product-condition');
-    if (condEl) condEl.textContent = product.condition;
+    var condEl = document.querySelector('.item-detail');
+    if (condEl) condEl.innerHTML = '<i class="fas fa-check-circle"></i> ' + product.condition;
     
-    var catEl = document.querySelector('.product-category');
-    if (catEl) catEl.textContent = product.category + ' · ' + product.subcategory;
+    var catEl = document.querySelector('.breadcrumb span:last-child');
+    if (catEl) catEl.textContent = product.subcategory;
     
-    // Update placeholder icon
+    // Update gallery placeholder icon
     var iconEl = document.querySelector('.gallery-slide .placeholder-icon');
     if (iconEl) {
-      iconEl.className = 'fas fa-' + iconEl.className.split('fa-')[1].split(' ')[0] + ' placeholder-icon';
-      // Actually just update the icon character
-      var iconDiv = document.querySelector('.product-icon-placeholder');
-      if (iconDiv) iconDiv.textContent = product.icon;
+      // Map to Font Awesome class
+      var iconMap = {'🎸':'fa-guitar','📱':'fa-mobile-alt','🎮':'fa-gamepad','💻':'fa-laptop','📚':'fa-book','🎧':'fa-headphones','📷':'fa-camera','⌚':'fa-watch','📺':'fa-tv','👕':'fa-tshirt','👟':'fa-running','🛋️':'fa-couch','🪑':'fa-chair','🚲':'fa-bicycle','🏍️':'fa-motorcycle','🚗':'fa-car','🖥️':'fa-desktop','⌨️':'fa-keyboard','🏋️':'fa-dumbbell','⚽':'fa-futbol','🏀':'fa-basketball-ball','🎵':'fa-music','💿':'fa-compact-disc','🎨':'fa-paint-brush','🧰':'fa-toolbox','💍':'fa-ring','💎':'fa-gem','👶':'fa-baby-carriage','🐕':'fa-dog','🐈':'fa-cat','🐟':'fa-fish','🌱':'fa-seedling','🍷':'fa-wine-glass-alt','🍾':'fa-wine-bottle','👓':'fa-glasses','🛍️':'fa-shopping-bag','🎁':'fa-gift','⏰':'fa-clock','🔌':'fa-plug','🌀':'fa-fan','❄️':'fa-snowflake','🔥':'fa-fire','💼':'fa-briefcase','🏆':'fa-trophy','⭐':'fa-star','❤️':'fa-heart','🍃':'fa-leaf','⚡':'fa-bolt','☀️':'fa-sun','🌙':'fa-moon','👑':'fa-crown','🫗':'fa-blender','🎹':'fa-music','📦':'fa-box'};
+      var cls = iconMap[product.icon] || 'fa-box';
+      iconEl.className = 'fas ' + cls + ' placeholder-icon white';
     }
     
     // Update page title
