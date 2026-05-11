@@ -1398,6 +1398,16 @@
     function sendTradeRequest() {
       closeTradeModal();
       document.getElementById('successMessage').classList.add('visible');
+      // Save notification
+      var notifs = JSON.parse(localStorage.getItem('treqe_notifications') || '[]');
+      var receiveName = document.getElementById('receiveName').textContent;
+      notifs.unshift({
+        text: 'Has solicitado un trueque por ' + receiveName,
+        time: new Date().toLocaleString('es-ES', {hour:'2-digit',minute:'2-digit'}),
+        type: 'trade',
+        date: new Date().toISOString().split('T')[0]
+      });
+      localStorage.setItem('treqe_notifications', JSON.stringify(notifs));
     }
 
     function closeSuccess() {

@@ -662,6 +662,27 @@
 
     console.log('🔔 TREQE v11 — Avisos');
     console.log('🧪 9 notificaciones no redundantes · Sin chat');
+
+    // Load trade request notifications from localStorage
+    (function(){
+      var notifs = JSON.parse(localStorage.getItem('treqe_notifications') || '[]');
+      if (!notifs.length) return;
+      var inbox = document.querySelector('.inbox-list');
+      if (!inbox) return;
+      notifs.forEach(function(n) {
+        var item = document.createElement('div');
+        item.className = 'inbox-item';
+        item.style.cssText = 'border-left:3px solid var(--accent);padding-left:10px;';
+        item.innerHTML =
+          '<div class="inbox-item__icon" style="background:rgba(255,106,53,0.12);">🔄</div>' +
+          '<div class="inbox-item__body">' +
+          '<div class="inbox-item__title">Solicitud de trueque enviada</div>' +
+          '<div class="inbox-item__text">' + n.text + '. Te notificaremos cuando sea posible hacer el intercambio.</div>' +
+          '<div class="inbox-item__meta"><i class="far fa-clock"></i> ' + n.time + ' · <span style="color:var(--accent);font-weight:600;">Pendiente</span></div>' +
+          '</div>';
+        inbox.insertBefore(item, inbox.firstChild);
+      });
+    })();
   </script>
     <nav class="bottom-nav">
     <a href="../v1-catalogo/" class="nav-item"><i class="fas fa-search"></i><span>Buscar</span></a>
