@@ -667,8 +667,9 @@
     (function(){
       var notifs = JSON.parse(localStorage.getItem('treqe_notifications') || '[]');
       if (!notifs.length) return;
-      var inbox = document.querySelector('.inbox-list');
+      var inbox = document.querySelector('.inbox-item');
       if (!inbox) return;
+      var parent = inbox.parentNode;
       notifs.forEach(function(n) {
         var item = document.createElement('div');
         item.className = 'inbox-item';
@@ -680,7 +681,7 @@
           '<div class="inbox-item__text">' + n.text + '. Te notificaremos cuando sea posible hacer el intercambio.</div>' +
           '<div class="inbox-item__meta"><i class="far fa-clock"></i> ' + n.time + ' · <span style="color:var(--accent);font-weight:600;">Pendiente</span></div>' +
           '</div>';
-        inbox.insertBefore(item, inbox.firstChild);
+        parent.insertBefore(item, inbox);
       });
     })();
   </script>
