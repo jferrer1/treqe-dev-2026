@@ -490,7 +490,60 @@
     line-height: 1.6; position: relative; z-index: 1;
   }
 
-  /* ── CTA ── */
+  /* ── GUIDE ── */
+  .guide-section {
+    padding: 64px 24px;
+    background: var(--cream);
+    position: relative;
+  }
+  .guide-section h2 {
+    text-align: center; font-size: clamp(1.3rem,3.5vw,1.8rem);
+    font-weight: 800; color: var(--navy);
+    margin-bottom: 8px; letter-spacing: -0.5px;
+  }
+  .guide-sub {
+    text-align: center; font-size: 0.9rem;
+    color: rgba(0,35,78,0.6);
+    margin-bottom: 40px; max-width: 500px; margin-left: auto; margin-right: auto;
+  }
+  .guide-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 20px; max-width: 720px; margin: 0 auto;
+  }
+  @media (max-width: 600px) { .guide-grid { grid-template-columns: 1fr; } }
+  .guide-card {
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border-radius: 20px; padding: 24px;
+    border: 1px solid rgba(255,255,255,0.9);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+  }
+  .guide-card__icon {
+    width: 48px; height: 48px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; margin-bottom: 14px;
+  }
+  .guide-card h3 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+  .guide-card p { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.6; }
+  .guide-card ol { padding-left: 18px; font-size: 0.82rem; color: var(--text-secondary); line-height: 2; margin-top: 8px; }
+  .guide-card ol li::marker { color: var(--accent); font-weight: 700; }
+  .guide-card .tag {
+    display: inline-block; font-size: 0.65rem; font-weight: 700;
+    padding: 3px 10px; border-radius: 20px; margin-bottom: 10px;
+  }
+  .guide-card .tag.buy { background: rgba(0,184,184,0.1); color: var(--success); }
+  .guide-card .tag.swap { background: rgba(255,106,53,0.1); color: var(--accent); }
+  .guide-card .tag.how { background: rgba(92,107,192,0.1); color: #5C6BC0; }
+  .guide-link {
+    text-align: center; margin-top: 32px;
+  }
+  .guide-link a {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 28px; background: var(--navy); color: #FFF;
+    border-radius: 14px; font-size: 0.9rem; font-weight: 600;
+    text-decoration: none; transition: transform 0.2s;
+  }
+  .guide-link a:active { transform: scale(0.97); }  /* ── CTA ── */
   .cta-section {
     background: linear-gradient(180deg, var(--yellow) 0%, rgba(255,201,80,0.6) 100%);
     padding: 64px 24px; text-align: center;
@@ -755,6 +808,50 @@
   </a>
 </section>
 
+<!-- ══════ QUICK GUIDE ══════ -->
+<section class="guide-section">
+  <h2>Cómo funciona Treqe</h2>
+  <p class="guide-sub">Dos formas de conseguir lo que quieres, una sola comunidad.</p>
+  <div class="guide-grid">
+    <div class="guide-card">
+      <div class="guide-card__icon" style="background:rgba(0,184,184,0.1);"><span style="font-size:1.3rem;">🛒</span></div>
+      <span class="tag buy">Compra directa</span>
+      <h3>Como en cualquier tienda</h3>
+      <p>Ves algo que te gusta, pagas y lo recibes en casa. Rápido, sencillo, sin complicaciones.</p>
+      <ol>
+        <li>Busca en el catálogo</li>
+        <li>Haz clic en "Comprar ahora"</li>
+        <li>El vendedor acepta</li>
+        <li>Pagas con tarjeta, PayPal o Bizum</li>
+        <li>Recibes el artículo en casa 🚚</li>
+      </ol>
+    </div>
+    <div class="guide-card">
+      <div class="guide-card__icon" style="background:rgba(255,106,53,0.1);"><span style="font-size:1.3rem;">🔄</span></div>
+      <span class="tag swap">Intercambio circular</span>
+      <h3>Nada de dinero, puro trueque</h3>
+      <p>Ofreces algo a cambio y el algoritmo busca la cadena perfecta. No hace falta que sea directo.</p>
+      <ol>
+        <li>Busca en el catálogo</li>
+        <li>Pulsa "Quiero esto" y ofrece algo a cambio</li>
+        <li>El algoritmo busca un círculo de intercambio</li>
+        <li>Todos aceptan el match</li>
+        <li>Cada uno envía su artículo al siguiente 🔄</li>
+      </ol>
+    </div>
+    <div class="guide-card" style="grid-column:1/-1;">
+      <div class="guide-card__icon" style="background:rgba(92,107,192,0.1);"><span style="font-size:1.3rem;">❓</span></div>
+      <span class="tag how">¿Y si no es exacto?</span>
+      <h3>Puedes combinar ambas</h3>
+      <p>Si tu artículo vale menos que el que quieres, puedes pagar la diferencia en efectivo. El intercambio circular también admite dinero para ajustar valores. Con o sin dinero, como prefieras.</p>
+    </div>
+  </div>
+  <div class="guide-link">
+    <a href="../v13-blog/posts/guia-principiantes.html">
+      Guía completa para principiantes <i class="fas fa-arrow-right"></i>
+    </a>
+  </div>
+</section>
 <!-- ══════ CTA ══════ -->
 <section class="cta-section">
   <h2>Paga lo que quieres<br>con lo que tienes</h2>
