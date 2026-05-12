@@ -454,11 +454,6 @@
       cursor: not-allowed;
       box-shadow: none;
     }
-    .nav-item 
-    .nav-item
-    .nav-item.nav-add
-
-    
     .nav-add.active 
     
     
@@ -906,6 +901,31 @@
     <div class="form-group">
       <label for="desc">Descripción <span class="optional">(opcional)</span></label>
       <textarea id="desc" placeholder="Describe el estado, año, accesorios incluidos..."></textarea>
+    </div>
+
+    <!-- Shipping info -->
+    <div class="form-group">
+      <label>Datos para el envío</label>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px;">
+        <div>
+          <label style="font-size:0.72rem;color:var(--text-secondary);font-weight:500;margin-bottom:4px;display:block;">Peso</label>
+          <div class="price-wrap" style="max-width:140px;">
+            <input type="number" id="weight" placeholder="0" min="0" step="0.1" style="padding:12px 12px 12px 8px;flex:1;border:none;outline:none;background:transparent;font-size:0.9rem;color:var(--text);">
+            <span class="currency-symbol" style="position:static;padding:0 12px 0 4px;font-size:0.78rem;color:var(--text-tertiary);font-weight:500;">kg</span>
+          </div>
+        </div>
+        <div>
+          <label style="font-size:0.72rem;color:var(--text-secondary);font-weight:500;margin-bottom:4px;display:block;">Dimensiones</label>
+          <div style="display:flex;align-items:center;gap:4px;">
+            <input type="number" id="dimL" placeholder="L" min="0" step="1" style="width:0;flex:1;padding:12px 6px;border:1px solid var(--border);border-radius:10px;font-size:0.85rem;text-align:center;outline:none;background:transparent;">
+            <span style="color:var(--text-tertiary);font-size:0.8rem;">×</span>
+            <input type="number" id="dimW" placeholder="A" min="0" step="1" style="width:0;flex:1;padding:12px 6px;border:1px solid var(--border);border-radius:10px;font-size:0.85rem;text-align:center;outline:none;background:transparent;">
+            <span style="color:var(--text-tertiary);font-size:0.8rem;">×</span>
+            <input type="number" id="dimH" placeholder="Al" min="0" step="1" style="width:0;flex:1;padding:12px 6px;border:1px solid var(--border);border-radius:10px;font-size:0.85rem;text-align:center;outline:none;background:transparent;">
+            <span style="font-size:0.78rem;color:var(--text-tertiary);font-weight:500;padding-left:4px;">cm</span>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Preview & Submit -->
