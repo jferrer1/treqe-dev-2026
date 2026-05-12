@@ -471,7 +471,63 @@
     }
     .rating-stars span { color: #F5A623; }
 
-    /* ===== FEEDBACK STATE ===== */
+    
+    /* ===== PAYMENT MODAL ===== */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(4px); z-index: 200;
+      display: none; align-items: flex-end; justify-content: center;
+    }
+    .modal-overlay.show { display: flex; }
+    .payment-card {
+      background: var(--card-bg); border-radius: 24px 24px 0 0;
+      width: 100%; max-width: 500px;
+      animation: slideUp .3s ease;
+    }
+    @keyframes slideUp { from{transform:translateY(100%)} to{transform:translateY(0)} }
+    .payment-card__hd {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 20px; border-bottom: 1px solid var(--border);
+    }
+    .payment-card__title { font-size: 1rem; font-weight: 600; }
+    .payment-card__cls {
+      width: 32px; height: 32px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-secondary); font-size: .9rem;
+    }
+    .payment-card__body { padding: 16px 20px; }
+    .payment-card__ft {
+      display: flex; gap: 10px; padding: 16px 20px 24px; border-top: 1px solid var(--border);
+    }
+    .payment-summary {
+      background: var(--bg); border-radius: 14px; padding: 12px 16px;
+    }
+    .payment-row {
+      display: flex; justify-content: space-between; padding: 6px 0;
+      font-size: 0.85rem; color: var(--text-secondary);
+    }
+    .payment-row--total {
+      border-top: 1px solid var(--border); margin-top: 4px; padding-top: 10px;
+      font-size: 0.95rem; font-weight: 700; color: var(--text);
+    }
+    .payment-methods { display: flex; flex-direction: column; gap: 8px; }
+    .payment-method {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 14px; border: 1.5px solid var(--border);
+      border-radius: 14px; cursor: pointer; transition: all .2s;
+    }
+    .payment-method.selected { border-color: var(--accent); background: rgba(255,106,53,0.04); }
+    .payment-method:active { transform: scale(0.98); }
+    .btn-p {
+      flex: 1; padding: 14px; border-radius: 14px; font-size: .9rem;
+      font-weight: 600; display: flex; align-items: center;
+      justify-content: center; gap: 6px; cursor: pointer; border: none;
+      font-family: inherit; transition: all .2s;
+    }
+    .btn-p:active { transform: scale(0.97); }
+    .btn-p--primary { background: var(--accent); color: #FFF; }
+    .btn-p--secondary { background: var(--bg); color: var(--text); border: 1px solid var(--border); }
+/* ===== FEEDBACK STATE ===== */
     .feedback-toast {
       position: fixed;
       top: 50%;
@@ -662,8 +718,7 @@
       top: 2px;
       right: 12px;
     }
-    
-</style>
+    </style>
 </head>
 <body>
 
@@ -694,35 +749,7 @@
 
   <!-- ===== ACTIVES 🔴 — Card 1 ===== -->
   <div class="match-section" id="active-section">
-        <!-- Card 0: Compra directa pendiente -->
-    <div class="match-card match-card--alert" id="buy-580" style="border-left:4px solid #5C6BC0;">
-      <div class="match-card__header">
-        <span class="match-card__id">#ORD-580</span>
-        <div style="display:flex;align-items:center;gap:8px;">
-          <span class="match-card__status pending-status" style="background:rgba(92,107,192,0.1);color:#5C6BC0;"><i class="fas fa-shopping-cart"></i> Solicitud de compra</span>
-        </div>
-      </div>
-      <div class="item-compare">
-        <div class="item-compare__item" style="grid-column:1/-1;text-align:left;">
-          <div style="display:flex;align-items:center;gap:14px;">
-            <div style="width:56px;height:56px;background:#2D2D2D;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;">🎸</div>
-            <div style="flex:1;">
-              <div style="font-size:.9rem;font-weight:600;">Fender Stratocaster</div>
-              <div style="font-size:.75rem;color:#888;margin-top:2px;">de Ana · Barcelona · Muy buen estado</div>
-              <div style="font-size:.85rem;font-weight:700;color:#FF6A35;margin-top:4px;">580€</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="progress-bar-wrap">
-        <span style="color:#5C6BC0;font-weight:600;"><i class="fas fa-clock"></i> Esperando respuesta del vendedor</span>
-      </div>
-      <div class="action-buttons">
-        <button class="action-btn action-btn--secondary" onclick="showFeedback('Cancelado','Solicitud cancelada','Has cancelado la solicitud de compra.')">Cancelar solicitud</button>
-        <button class="action-btn action-btn--primary" style="background:#5C6BC0;box-shadow:0 4px 16px rgba(92,107,192,0.25);" onclick="sellerAccepted('580')">Simular: Vendedor acepto</button>
-      </div>
-    </div>
-<!-- Card 1: Match encontrado (tu turno) -->
+    <!-- Card 1: Match encontrado (tu turno) -->
     <div class="match-card" id="match-7842">
       <div class="match-card__header">
         <span class="match-card__id">#TRX-7842</span>
@@ -902,29 +929,48 @@
   <div class="match-section" id="in-progress-section" style="display:none;">
 
     
-
-    <!-- Card 3b: Pendiente de pago -->
+    <!-- Card 3b: Pendiente de pago (entre Card 3 y Card 4) -->
     <div class="match-card" id="match-7844">
       <div class="match-card__header">
         <span class="match-card__id">#TRX-7844</span>
-        <span class="match-card__status pending-status">Pendiente de pago</span>
+        <span class="match-card__status pending-status">💳 Pendiente de pago</span>
       </div>
+
       <div class="item-compare" style="grid-template-columns:1fr;">
         <div style="padding:4px 0;">
-          <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:.82rem;"><span>Canon EOS R (de Carlos)</span><span style="font-weight:600;">650€</span></div>
-          <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:.82rem;"><span>AirPods Max (para Ana)</span><span style="font-weight:600;">380€</span></div>
-          <div style="display:flex;justify-content:space-between;padding:8px 0;color:#FF6A35;font-weight:600;font-size:.85rem;"><span>Diferencia</span><span>270€</span></div>
-          <div style="display:flex;justify-content:space-between;padding:6px 0;border-top:2px solid var(--border);font-size:.85rem;"><span>Envio</span><span>6,95€</span></div>
-          <div style="display:flex;justify-content:space-between;padding:8px 0;font-size:.95rem;"><span style="font-weight:700;">Total</span><span style="font-weight:800;color:#FF6A35;">276,95€</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border);">
+            <span style="font-size:0.8rem;color:var(--text);">📷 Canon EOS R (de Carlos)</span>
+            <span style="font-size:0.8rem;font-weight:600;">650€</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border);">
+            <span style="font-size:0.8rem;color:var(--text);">🎧 AirPods Max (para Ana)</span>
+            <span style="font-size:0.8rem;font-weight:600;">380€</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;color:var(--accent);font-weight:600;">
+            <span>Diferencia a pagar</span>
+            <span>270€</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-top:2px solid var(--border);font-weight:700;">
+            <span>Envío (tu artículo → Carlos)</span>
+            <span>6,95€</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;font-size:0.9rem;">
+            <span style="font-weight:700;">Total a pagar</span>
+            <span style="font-weight:800;color:var(--accent);font-size:1rem;">276,95€</span>
+          </div>
         </div>
       </div>
-      <div style="padding:8px 14px;background:rgba(255,106,53,0.06);border-radius:14px;margin-bottom:14px;font-size:.75rem;color:#888;display:flex;align-items:center;gap:8px;"><i class="fas fa-shield-alt" style="color:#FF6A35;"></i> Importe retenido mediante escrow hasta que todos reciban sus articulos.</div>
+
+      <div style="padding:8px 14px;background:rgba(255,106,53,0.06);border-radius:14px;margin-bottom:14px;font-size:0.75rem;color:var(--text-secondary);display:flex;align-items:center;gap:8px;">
+        <i class="fas fa-shield-alt" style="color:var(--accent);"></i>
+        Este importe se retiene mediante escrow hasta que todos reciban sus artículos.
+      </div>
+
       <div class="action-buttons">
-        <button class="action-btn action-btn--secondary" onclick="showFeedback('Cancelado','Pago cancelado','Puedes pagar mas tarde.')">Cancelar</button>
-        <button class="action-btn action-btn--primary" onclick="window.location.href='../v23-pago/'">Pagar ahora</button>
+        <button class="action-btn action-btn--secondary" onclick="showFeedback('❌','Pago cancelado','El match se mantiene activo. Puedes pagar mas tarde desde este mismo panel.')">Cancelar</button>
+        <button class="action-btn action-btn--primary" onclick="openPaymentModal('7844')">💳 Pagar ahora</button>
       </div>
     </div>
-
 <!-- Card 4: Coordinando envío -->
     <div class="match-card" id="match-7840">
       <div class="match-card__header">
@@ -1042,7 +1088,44 @@
     <button class="feedback-toast__btn" onclick="closeFeedback()">Cerrar</button>
   </div>
 
-  <!-- ===== BOTTOM NAV ===== -->
+  
+  <!-- ===== PAYMENT MODAL ===== -->
+  <div class="modal-overlay" id="paymentModal" onclick="if(event.target===this)closePaymentModal()">
+    <div class="payment-card">
+      <div class="payment-card__hd">
+        <span class="payment-card__title"><i class="fas fa-credit-card" style="color:var(--accent);margin-right:8px;"></i>Pagar intercambio</span>
+        <button class="payment-card__cls" onclick="closePaymentModal()"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="payment-card__body">
+        <div class="payment-summary">
+          <div class="payment-row"><span>Diferencia</span><span>270,00€</span></div>
+          <div class="payment-row"><span>Envío</span><span>6,95€</span></div>
+          <div class="payment-row payment-row--total"><span>Total</span><span style="color:var(--accent);font-weight:800;">276,95€</span></div>
+        </div>
+        <div style="margin:16px 0;font-size:0.78rem;color:var(--text-secondary);font-weight:500;">Método de pago</div>
+        <div class="payment-methods">
+          <label class="payment-method selected" onclick="selectPayment(this)">
+            <i class="fab fa-cc-visa" style="font-size:1.3rem;"></i>
+            <div style="flex:1;"><div style="font-size:0.82rem;font-weight:600;">Visa</div><div style="font-size:0.7rem;color:#888;">**** 4242</div></div>
+            <i class="fas fa-check-circle" style="color:var(--success);"></i>
+          </label>
+          <label class="payment-method" onclick="selectPayment(this)">
+            <i class="fab fa-cc-paypal" style="font-size:1.3rem;"></i>
+            <div style="flex:1;"><div style="font-size:0.82rem;font-weight:600;">PayPal</div><div style="font-size:0.7rem;color:#888;">usuario@email.com</div></div>
+          </label>
+          <label class="payment-method" onclick="selectPayment(this)">
+            <i class="fas fa-mobile-alt" style="font-size:1.3rem;"></i>
+            <div style="flex:1;"><div style="font-size:0.82rem;font-weight:600;">Bizum</div><div style="font-size:0.7rem;color:#888;">Pago rápido</div></div>
+          </label>
+        </div>
+      </div>
+      <div class="payment-card__ft">
+        <button class="btn-p btn-p--secondary" onclick="closePaymentModal()">Cancelar</button>
+        <button class="btn-p btn-p--primary" onclick="processPayment('7844')"><i class="fas fa-lock"></i> Pagar 276,95€</button>
+      </div>
+    </div>
+  </div>
+<!-- ===== BOTTOM NAV ===== -->
 
   <script>
     // ===== TAB SWITCHING =====
@@ -1116,7 +1199,7 @@
     }
 
     // ===== CARD 1: Aceptar / Rechazar =====
-    function sellerAccepted(id) { showFeedback('Vendedor acepto','Ana ha aceptado tu solicitud de compra. Ya puedes pagar.','Ve a la seccion de pago para completar la compra.'); document.getElementById('buy-' + id).style.opacity = '0.4'; }\n    function acceptMatch(id) {
+    function acceptMatch(id) {
       var card = document.getElementById('match-' + id);
       if (!card) return;
       // Clear timer
@@ -1174,7 +1257,7 @@
     }
 
     // ===== CARD 6: Valorar =====
-    function openRateModal(){document.getElementById('rateOverlay').classList.add('show');document.getElementById('rateScore').textContent='Selecciona estrellas';document.getElementById('rateVal').value=0;document.querySelectorAll('.rate-star').forEach(function(s){s.classList.remove('on')});document.body.style.overflow='hidden';}function rateTrade(id) {openRateModal();}function OLD_rateTrade(id) {
+    function openRateModal(){document.getElementById('rateOverlay').classList.add('show');document.getElementById('rateScore').textContent='Selecciona estrellas';document.getElementById('rateVal').value=0;document.querySelectorAll('.rate-star').forEach(function(s){s.classList.remove('on')});document.body.style.overflow='hidden';}function rateTrade(id) {openRateModal();}//function OLD_rateTrade(id) {
       showFeedback('⭐', 'Valora tu intercambio',
         'Cuéntanos tu experiencia en #TRX-' + id + '. ¿Cómo fue el trato con Ana y Bruno?');
     }
@@ -1186,7 +1269,36 @@
     }
 
     // ===== NAVIGATION (preserved) =====
-    function goToHome() { window.parent.location.href = '../v1-catalogo/'; }
+    
+    // ===== PAYMENT MODAL =====
+    function openPaymentModal(id) {
+      document.getElementById('paymentModal').classList.add('show');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closePaymentModal() {
+      document.getElementById('paymentModal').classList.remove('show');
+      document.body.style.overflow = '';
+    }
+
+    function selectPayment(el) {
+      document.querySelectorAll('.payment-method').forEach(function(m) { m.classList.remove('selected'); });
+      el.classList.add('selected');
+    }
+
+    function processPayment(id) {
+      var selected = document.querySelector('.payment-method.selected');
+      if (!selected) { alert('Selecciona un metodo de pago'); return; }
+      closePaymentModal();
+      var card = document.getElementById('match-' + id);
+      if (card) {
+        card.style.opacity = '0.4';
+        card.style.pointerEvents = 'none';
+      }
+      showFeedback('✅', 'Pago realizado',
+        'El importe de 276,95€ se ha retenido mediante escrow. El pago se liberara cuando todos los participantes reciban sus articulos. Ya puedes coordinar el envio.');
+    }
+function goToHome() { window.parent.location.href = '../v1-catalogo/'; }
     function goToSearch() { window.parent.location.href = '../v1-catalogo/'; }
     function goToUpload() { window.parent.location.href = '../v3-subir/'; }
     function goToMatches() { window.parent.location.href = '../v12-mis-matches/'; }
@@ -1199,12 +1311,7 @@
     function goToInbox() { window.parent.location.href = '../v11-notificaciones/'; }
     function goToProfile() { window.parent.location.href = '../v4-perfil/'; }
 
-    
-    function openPay() { document.getElementById('payModal').classList.add('show'); document.body.style.overflow = 'hidden'; }
-    function closePay() { document.getElementById('payModal').classList.remove('show'); document.body.style.overflow = ''; }
-    function selectPay(el) { document.querySelectorAll('.pay-method').forEach(function(m) { m.classList.remove('selected'); }); el.classList.add('selected'); }
-    function processPay() { var s = document.querySelector('.pay-method.selected'); if (!s) { alert('Selecciona un metodo de pago'); return; } closePay(); showFeedback('✅', 'Pago realizado', 'El importe se ha retenido mediante escrow.'); }
-        console.log('⭐ TREQE v12 — Mis Treqes (prototipo completo)');
+    console.log('⭐ TREQE v12 — Mis Treqes (prototipo completo)');
     console.log('🧪 6 cards | 4 tabs | timers | Mar 2026');
   </script>
 <div class="rate-overlay" id="rateOverlay" onclick="if(event.target===this)(function(){document.getElementById('rateOverlay').classList.remove('show');document.body.style.overflow='';})()"><div class="rate-card"><div class="rate-card__hd"><span class="rate-card__title"><i class="fas fa-star" style="color:#F5A623;margin-right:8px;"></i>Valorar intercambio</span><button class="rate-card__cls" onclick="document.getElementById('rateOverlay').classList.remove('show');document.body.style.overflow='';"><i class="fas fa-times"></i></button></div><div class="rate-card__body"><div class="rate-card__score" id="rateScore">Selecciona estrellas</div><div class="rate-card__stars"><i class="fas fa-star rate-star" onclick="var s=document.querySelectorAll('.rate-star');for(var i=0;i<5;i++)s[i].classList.toggle('on',i<1);document.getElementById('rateScore').textContent='Muy malo (1/5)';document.getElementById('rateVal').value=1"></i><i class="fas fa-star rate-star" onclick="var s=document.querySelectorAll('.rate-star');for(var i=0;i<5;i++)s[i].classList.toggle('on',i<2);document.getElementById('rateScore').textContent='Regular (2/5)';document.getElementById('rateVal').value=2"></i><i class="fas fa-star rate-star" onclick="var s=document.querySelectorAll('.rate-star');for(var i=0;i<5;i++)s[i].classList.toggle('on',i<3);document.getElementById('rateScore').textContent='Aceptable (3/5)';document.getElementById('rateVal').value=3"></i><i class="fas fa-star rate-star" onclick="var s=document.querySelectorAll('.rate-star');for(var i=0;i<5;i++)s[i].classList.toggle('on',i<4);document.getElementById('rateScore').textContent='Bueno (4/5)';document.getElementById('rateVal').value=4"></i><i class="fas fa-star rate-star" onclick="var s=document.querySelectorAll('.rate-star');for(var i=0;i<5;i++)s[i].classList.toggle('on',i<5);document.getElementById('rateScore').textContent='Excelente (5/5)';document.getElementById('rateVal').value=5"></i></div><textarea class="rate-card__ta" id="rateComment" placeholder="Anade un comentario (opcional)..."></textarea></div><div class="rate-card__ft"><button class="btn-r btn-r--secondary" onclick="document.getElementById('rateOverlay').classList.remove('show');document.body.style.overflow='';">Cancelar</button><button class="btn-r btn-r--primary" onclick="var v=document.getElementById('rateVal').value;if(!v)return;document.getElementById('rateOverlay').classList.remove('show');document.body.style.overflow='';setTimeout(function(){alert('Valoracion enviada: '+v+' estrellas')},300);"><i class="fas fa-paper-plane"></i> Enviar valoracion</button></div></div></div><input type="hidden" id="rateVal" value="0">
@@ -1215,7 +1322,6 @@
     <a href="../v11-notificaciones/" class="nav-item"><i class="fas fa-bell"></i><span>Avisos</span><span class="nav-badge"></span></a>
     <a href="../v4-perfil/" class="nav-item"><i class="fas fa-user"></i><span>Perfil</span></a>
   </nav>
-
 
 
 
