@@ -791,6 +791,29 @@
   <!-- ===== PENDING 🟡 — Cards 2 & 3 ===== -->
   <div class="match-section" id="pending-section" style="display:none;">
 
+        <!-- Card: Compra directa - Pendiente de pago -->
+    <div class="match-card" id="buy-581" style="border-left:4px solid #F5A623;">
+      <div class="match-card__header">
+        <span class="match-card__id">#ORD-581</span>
+        <span class="match-card__status pending-status" style="background:rgba(245,166,35,0.1);color:#F5A623;"><i class="fas fa-clock"></i> Pendiente de pago</span>
+        <span class="match-card__timer">⏱ 23:45:12</span>
+      </div>
+      <div class="item-compare">
+        <div class="item-compare__item" style="grid-column:1/-1;text-align:left;">
+          <div style="display:flex;align-items:center;gap:14px;">
+            <div style="width:56px;height:56px;background:#3A2A1A;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;">⌚</div>
+            <div style="flex:1;">
+              <div style="font-size:.9rem;font-weight:600;">G-SHOCK Mudmaster</div>
+              <div style="font-size:.75rem;color:#888;margin-top:2px;">de Marcos · Madrid · 250€</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="progress-bar-wrap">
+        <span style="color:var(--success);font-weight:600;"><i class="fas fa-check"></i> Vendedor acepto</span>
+      </div>
+      <button class="action-btn action-btn--primary action-btn--full" onclick="window.location.href='../v23-pago/'">💳 Pagar 250€</button>
+    </div>
     <!-- Card 2: Esperando confirmación -->
     <div class="match-card" id="match-7843">
       <div class="match-card__header">
@@ -898,6 +921,32 @@
   <!-- ===== IN PROGRESS 🟢 — Cards 4 & 5 ===== -->
   <div class="match-section" id="in-progress-section" style="display:none;">
 
+        <!-- Card: Compra directa - En curso -->
+    <div class="match-card" id="buy-582" style="border-left:4px solid #00B8B8;">
+      <div class="match-card__header">
+        <span class="match-card__id">#ORD-582</span>
+        <span class="match-card__status pending-status" style="background:rgba(0,184,184,0.1);color:#00B8B8;"><i class="fas fa-truck"></i> En camino</span>
+      </div>
+      <div class="item-compare">
+        <div class="item-compare__item" style="grid-column:1/-1;text-align:left;">
+          <div style="display:flex;align-items:center;gap:14px;">
+            <div style="width:56px;height:56px;background:#2D2D2D;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;">📱</div>
+            <div style="flex:1;">
+              <div style="font-size:.9rem;font-weight:600;">iPhone 15 Pro</div>
+              <div style="font-size:.75rem;color:#888;margin-top:2px;">de Ana · 890€ · Pagado el 10 may</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tracking-item" style="border:none;padding:0;">
+        <div class="tracking-item__icon transit"><i class="fas fa-truck"></i></div>
+        <div class="tracking-item__info">
+          <div class="tracking-item__label">Correos Express · ES1234567890</div>
+          <div class="tracking-item__meta">Madrid, 14:32h · Llega manana</div>
+        </div>
+      </div>
+      <button class="action-btn action-btn--ghost action-btn--full" onclick="goToTracking()">📍 Ver seguimiento</button>
+    </div>
     <!-- Card 4: Coordinando envío -->
     <div class="match-card" id="match-7840">
       <div class="match-card__header">
@@ -982,6 +1031,18 @@
   <!-- ===== COMPLETED 🔵 — Card 6 ===== -->
   <div class="match-section" id="completed-section" style="display:none;">
 
+        <!-- Card: Compra directa - Completada -->
+    <div class="match-card" id="buy-583" style="border-left:4px solid var(--success);">
+      <div class="match-card__header">
+        <span class="match-card__id">#ORD-583</span>
+        <span class="match-card__status pending-status" style="background:rgba(0,184,184,0.1);color:var(--success);"><i class="fas fa-check-double"></i> Recibido · Hace 2 dias</span>
+      </div>
+      <div class="completed-summary">
+        <div class="completed-row"><strong>Recibiste:</strong> 🎧 AirPods Max (380€)</div>
+        <div class="completed-row"><strong>Vendedor:</strong> Bruno · ⭐⭐⭐⭐</div>
+      </div>
+      <button class="action-btn action-btn--primary action-btn--full" onclick="alert('Valoracion enviada')">⭐ Valorar compra</button>
+    </div>
     <!-- Card 6: Intercambio finalizado -->
     <div class="match-card" id="match-7839">
       <div class="match-card__header">
