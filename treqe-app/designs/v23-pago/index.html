@@ -221,6 +221,13 @@
     function selectPayTab(el) {
       document.querySelectorAll('.payment-tab').forEach(function(t) { t.classList.remove('active'); });
       el.classList.add('active');
+      var method = el.querySelector('span').textContent.trim();
+      var cardForm = document.getElementById('cardForm');
+      if (method === 'Tarjeta') {
+        cardForm.style.display = 'block';
+      } else {
+        cardForm.style.display = 'none';
+      }
     }
 
     function processPayment() {
