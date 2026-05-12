@@ -732,22 +732,22 @@
   <!-- ===== TABS ===== -->
   <div class="tabs">
     <button class="tab active" onclick="switchTab(this, 'active')">
-      Activos 🔴 <span class="count">1</span>
+      Activos <span class="count">1</span>
     </button>
     <button class="tab" onclick="switchTab(this, 'pending')">
-      Pendientes 🟡 <span class="count">2</span>
+      Pendientes <span class="count">2</span>
     </button>
     <button class="tab" onclick="switchTab(this, 'in-progress')">
-      En curso 🟢 <span class="count">2</span>
+      En curso <span class="count">2</span>
     </button>
     <button class="tab" onclick="switchTab(this, 'completed')">
-      Completados 🔵 <span class="count">1</span>
+      Completados <span class="count">1</span>
     </button>
   </div>
 
   <!-- ===== MATCH SECTIONS ===== -->
 
-  <!-- ===== ACTIVES 🔴 — Card 1 ===== -->
+  <!-- ===== ACTIVES  — Card 1 ===== -->
   <div class="match-section" id="active-section">
     <!-- Card 1: Match encontrado (tu turno) -->
     <div class="match-card" id="match-7842">
@@ -764,7 +764,7 @@
       <!-- Item comparison -->
       <div class="item-compare">
         <div class="item-compare__item">
-          <div class="item-compare__emoji">📱</div>
+          <div class="item-compare__emoji"></div>
           <div class="item-compare__name">iPhone 15 Pro</div>
           <div class="item-compare__from">de Ana</div>
           <div class="item-compare__price">890€</div>
@@ -774,7 +774,7 @@
           <span style="font-size:0.65rem;font-weight:600;color:var(--text-tertiary);">recibes</span>
         </div>
         <div class="item-compare__item">
-          <div class="item-compare__emoji">🎸</div>
+          <div class="item-compare__emoji"></div>
           <div class="item-compare__name">Fender Stratocaster</div>
           <div class="item-compare__from">das tú</div>
           <div class="item-compare__price">580€ + 310€</div>
@@ -788,7 +788,7 @@
           <div class="circle-avatar you">Tú</div>
           <div class="circle-info">
             <div class="circle-name">Tú</div>
-            <div class="circle-item">🎸 F. Stratocaster → Bruno</div>
+            <div class="circle-item"> F. Stratocaster → Bruno</div>
           </div>
           <span class="circle-badge pending">⏳ Decidir</span>
         </div>
@@ -796,7 +796,7 @@
           <div class="circle-avatar">A</div>
           <div class="circle-info">
             <div class="circle-name">Ana</div>
-            <div class="circle-item">📱 iPhone 15 Pro → Tú</div>
+            <div class="circle-item"> iPhone 15 Pro → Tú</div>
           </div>
           <span class="circle-badge accepted">✅ Aceptado</span>
         </div>
@@ -804,7 +804,7 @@
           <div class="circle-avatar">B</div>
           <div class="circle-info">
             <div class="circle-name">Bruno</div>
-            <div class="circle-item">🎮 PS5 → Ana</div>
+            <div class="circle-item"> PS5 → Ana</div>
           </div>
           <span class="circle-badge accepted">✅ Aceptado</span>
         </div>
@@ -818,7 +818,7 @@
     </div>
   </div>
 
-  <!-- ===== PENDING 🟡 — Cards 2 & 3 ===== -->
+  <!-- ===== PENDING  — Cards 2 & 3 ===== -->
   <div class="match-section" id="pending-section" style="display:none;">
 
     <!-- Card 2: Esperando confirmación -->
@@ -835,7 +835,7 @@
 
       <div class="item-compare">
         <div class="item-compare__item">
-          <div class="item-compare__emoji">📷</div>
+          <div class="item-compare__emoji"></div>
           <div class="item-compare__name">Canon EOS R</div>
           <div class="item-compare__from">de Carlos</div>
           <div class="item-compare__price">650€</div>
@@ -845,7 +845,7 @@
           <span style="font-size:0.65rem;font-weight:600;color:var(--text-tertiary);">recibes</span>
         </div>
         <div class="item-compare__item">
-          <div class="item-compare__emoji">🎧</div>
+          <div class="item-compare__emoji"></div>
           <div class="item-compare__name">AirPods Max</div>
           <div class="item-compare__from">para Ana</div>
           <div class="item-compare__price">380€ + 270€</div>
@@ -858,7 +858,7 @@
           <div class="circle-avatar you">Tú</div>
           <div class="circle-info">
             <div class="circle-name">Tú</div>
-            <div class="circle-item">🎧 AirPods Max → Ana</div>
+            <div class="circle-item"> AirPods Max → Ana</div>
           </div>
           <span class="circle-badge accepted">✅ Aceptaste</span>
         </div>
@@ -866,7 +866,7 @@
           <div class="circle-avatar">A</div>
           <div class="circle-info">
             <div class="circle-name">Ana</div>
-            <div class="circle-item">🚲 Trek Marlin → Carlos</div>
+            <div class="circle-item"> Trek Marlin → Carlos</div>
           </div>
           <span class="circle-badge accepted">✅ Aceptado</span>
         </div>
@@ -874,7 +874,7 @@
           <div class="circle-avatar">C</div>
           <div class="circle-info">
             <div class="circle-name">Carlos</div>
-            <div class="circle-item">📷 Canon EOS R → Tú</div>
+            <div class="circle-item"> Canon EOS R → Tú</div>
           </div>
           <span class="circle-badge pending">⏳ Pendiente</span>
         </div>
@@ -890,7 +890,7 @@
 
       <div class="action-buttons">
         <button class="action-btn action-btn--secondary" onclick="cancelParticipation('7843')">⏸ Cancelar participación</button>
-        <button class="action-btn action-btn--primary" onclick="remindUser('7843', 'Carlos')">🔔 Recordar a Carlos</button>
+        <button class="action-btn action-btn--primary" onclick="remindUser('7843', 'Carlos')"> Recordar a Carlos</button>
       </div>
     </div>
 
@@ -914,18 +914,18 @@
           </div>
           <div style="text-align:right;">
             <div style="font-size:0.68rem;color:var(--text-tertiary);margin-bottom:2px;">Ibas a dar</div>
-            <div style="font-size:0.85rem;font-weight:600;">🏍️ Casco Shoei NXR2 <span style="font-weight:400;color:var(--text-secondary);">(320€ → 70€)</span></div>
+            <div style="font-size:0.85rem;font-weight:600;">️ Casco Shoei NXR2 <span style="font-weight:400;color:var(--text-secondary);">(320€ → 70€)</span></div>
           </div>
         </div>
       </div>
 
       <button class="action-btn action-btn--ghost action-btn--full" onclick="findNewMatch('7841', 'Casco Shoei NXR2')">
-        🔍 Buscar nuevo match para Casco Shoei
+         Buscar nuevo match para Casco Shoei
       </button>
     </div>
   </div>
 
-  <!-- ===== IN PROGRESS 🟢 — Cards 4 & 5 ===== -->
+  <!-- ===== IN PROGRESS  — Cards 4 & 5 ===== -->
   <div class="match-section" id="in-progress-section" style="display:none;">
 
     
@@ -933,17 +933,17 @@
     <div class="match-card" id="match-7844">
       <div class="match-card__header">
         <span class="match-card__id">#TRX-7844</span>
-        <span class="match-card__status pending-status">💳 Pendiente de pago</span>
+        <span class="match-card__status pending-status"> Pendiente de pago</span>
       </div>
 
       <div class="item-compare" style="grid-template-columns:1fr;">
         <div style="padding:4px 0;">
           <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border);">
-            <span style="font-size:0.8rem;color:var(--text);">📷 Canon EOS R (de Carlos)</span>
+            <span style="font-size:0.8rem;color:var(--text);"> Canon EOS R (de Carlos)</span>
             <span style="font-size:0.8rem;font-weight:600;">650€</span>
           </div>
           <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border);">
-            <span style="font-size:0.8rem;color:var(--text);">🎧 AirPods Max (para Ana)</span>
+            <span style="font-size:0.8rem;color:var(--text);"> AirPods Max (para Ana)</span>
             <span style="font-size:0.8rem;font-weight:600;">380€</span>
           </div>
           <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;color:var(--accent);font-weight:600;">
@@ -968,25 +968,25 @@
 
       <div class="action-buttons">
         <button class="action-btn action-btn--secondary" onclick="showFeedback('❌','Pago cancelado','El match se mantiene activo. Puedes pagar mas tarde desde este mismo panel.')">Cancelar</button>
-        <button class="action-btn action-btn--primary" onclick="openPaymentModal('7844')">💳 Pagar ahora</button>
+        <button class="action-btn action-btn--primary" onclick="openPaymentModal('7844')"> Pagar ahora</button>
       </div>
     </div>
 <!-- Card 4: Coordinando envío -->
     <div class="match-card" id="match-7840">
       <div class="match-card__header">
         <span class="match-card__id">#TRX-7840</span>
-        <span class="match-card__status in-progress">📦 Coordinar envío</span>
+        <span class="match-card__status in-progress"> Coordinar envío</span>
       </div>
 
       <div class="shipping-block">
         <div class="shipping-block__label">Envía TU artículo a</div>
         <div class="shipping-block__dir">Carlos · C/ Mayor 23, 28013 Madrid</div>
-        <div class="shipping-block__item">🎧 AirPods Max + 270€</div>
+        <div class="shipping-block__item"> AirPods Max + 270€</div>
       </div>
       <div class="shipping-block">
         <div class="shipping-block__label">Recibirás de</div>
         <div class="shipping-block__dir">Ana · Avda. Diagonal 345, 08037 Barcelona</div>
-        <div class="shipping-block__item">📷 Canon EOS R</div>
+        <div class="shipping-block__item"> Canon EOS R</div>
       </div>
 
       <button class="action-btn action-btn--success action-btn--full" onclick="markAsSent('7840')">
@@ -1003,7 +1003,7 @@
     <div class="match-card" id="match-7838">
       <div class="match-card__header">
         <span class="match-card__id">#TRX-7838</span>
-        <span class="match-card__status in-progress">🚚 En camino</span>
+        <span class="match-card__status in-progress"> En camino</span>
       </div>
 
       <div class="tracking-item">
@@ -1012,7 +1012,7 @@
         </div>
         <div class="tracking-item__info">
           <div class="tracking-item__label">Tu envío a Bruno</div>
-          <div class="tracking-item__meta">📦 Recibido (hace 2 días)</div>
+          <div class="tracking-item__meta"> Recibido (hace 2 días)</div>
         </div>
       </div>
       <div class="tracking-item">
@@ -1021,13 +1021,13 @@
         </div>
         <div class="tracking-item__info">
           <div class="tracking-item__label">Tu recepción de Ana</div>
-          <div class="tracking-item__meta">🚚 En camino → llega mañana</div>
-          <div class="tracking-item__meta">📍 Última actualización: Madrid, 14:32h</div>
+          <div class="tracking-item__meta"> En camino → llega mañana</div>
+          <div class="tracking-item__meta"> Última actualización: Madrid, 14:32h</div>
         </div>
       </div>
 
       <button class="action-btn action-btn--primary action-btn--full" onclick="viewTracking('7838')">
-        📍 Ver seguimiento completo
+         Ver seguimiento completo
       </button>
     </div>
     <!-- COMPRA DIRECTA -->
@@ -1052,7 +1052,7 @@
     </div>
 </div>
 
-  <!-- ===== COMPLETED 🔵 — Card 6 ===== -->
+  <!-- ===== COMPLETED  — Card 6 ===== -->
   <div class="match-section" id="completed-section" style="display:none;">
 
     <!-- Card 6: Intercambio finalizado -->
@@ -1063,8 +1063,8 @@
       </div>
 
       <div class="completed-summary">
-        <div class="completed-row"><strong>Recibiste:</strong> 🎧 AirPods Max (380€)</div>
-        <div class="completed-row"><strong>Diste:</strong> 🚲 Trek Marlin 7 (420€ → recibiste <strong>40€</strong>)</div>
+        <div class="completed-row"><strong>Recibiste:</strong>  AirPods Max (380€)</div>
+        <div class="completed-row"><strong>Diste:</strong>  Trek Marlin 7 (420€ → recibiste <strong>40€</strong>)</div>
       </div>
 
       <div class="rating-stars">
@@ -1230,7 +1230,7 @@
     }
 
     function remindUser(id, name) {
-      showFeedback('🔔', 'Recordatorio enviado a ' + name,
+      showFeedback('', 'Recordatorio enviado a ' + name,
         'Le hemos notificado para que revise su match #TRX-' + id + ' pendiente.');
     }
 
@@ -1247,7 +1247,7 @@
         btn.disabled = true;
         btn.style.pointerEvents = 'none';
       }
-      showFeedback('📦', '¡Envío registrado!',
+      showFeedback('', '¡Envío registrado!',
         'Hemos marcado el envío de #TRX-' + id + ' como realizado. El receptor recibirá una notificación.');
     }
 
@@ -1264,7 +1264,7 @@
 
     // ===== CARD 3: Buscar nuevo match =====
     function findNewMatch(id, itemName) {
-      showFeedback('🔍', 'Buscando nuevo match',
+      showFeedback('', 'Buscando nuevo match',
         'Estamos buscando un nuevo círculo para tu ' + itemName + '. Te notificaremos cuando encontremos un match.');
     }
 
@@ -1312,7 +1312,7 @@ function goToHome() { window.parent.location.href = '../v1-catalogo/'; }
     function goToProfile() { window.parent.location.href = '../v4-perfil/'; }
 
     console.log('⭐ TREQE v12 — Mis Treqes (prototipo completo)');
-    console.log('🧪 6 cards | 4 tabs | timers | Mar 2026');
+    console.log(' 6 cards | 4 tabs | timers | Mar 2026');
   </script>
 <div class="rate-overlay" id="rateOverlay" onclick="if(event.target===this)(function(){document.getElementById('rateOverlay').classList.remove('show');document.body.style.overflow='';})()"><div class="rate-card"><div class="rate-card__hd"><span class="rate-card__title"><i class="fas fa-star" style="color:#F5A623;margin-right:8px;"></i>Valorar intercambio</span><button class="rate-card__cls" onclick="document.getElementById('rateOverlay').classList.remove('show');document.body.style.overflow='';"><i class="fas fa-times"></i></button></div><div class="rate-card__body"><div class="rate-card__score" id="rateScore">Selecciona estrellas</div><div class="rate-card__stars"><i class="fas fa-star rate-star" onclick="var s=document.querySelectorAll('.rate-star');for(var i=0;i<5;i++)s[i].classList.toggle('on',i<1);document.getElementById('rateScore').textContent='Muy malo (1/5)';document.getElementById('rateVal').value=1"></i><i class="fas fa-star rate-star" onclick="var s=document.querySelectorAll('.rate-star');for(var i=0;i<5;i++)s[i].classList.toggle('on',i<2);document.getElementById('rateScore').textContent='Regular (2/5)';document.getElementById('rateVal').value=2"></i><i class="fas fa-star rate-star" onclick="var s=document.querySelectorAll('.rate-star');for(var i=0;i<5;i++)s[i].classList.toggle('on',i<3);document.getElementById('rateScore').textContent='Aceptable (3/5)';document.getElementById('rateVal').value=3"></i><i class="fas fa-star rate-star" onclick="var s=document.querySelectorAll('.rate-star');for(var i=0;i<5;i++)s[i].classList.toggle('on',i<4);document.getElementById('rateScore').textContent='Bueno (4/5)';document.getElementById('rateVal').value=4"></i><i class="fas fa-star rate-star" onclick="var s=document.querySelectorAll('.rate-star');for(var i=0;i<5;i++)s[i].classList.toggle('on',i<5);document.getElementById('rateScore').textContent='Excelente (5/5)';document.getElementById('rateVal').value=5"></i></div><textarea class="rate-card__ta" id="rateComment" placeholder="Anade un comentario (opcional)..."></textarea></div><div class="rate-card__ft"><button class="btn-r btn-r--secondary" onclick="document.getElementById('rateOverlay').classList.remove('show');document.body.style.overflow='';">Cancelar</button><button class="btn-r btn-r--primary" onclick="var v=document.getElementById('rateVal').value;if(!v)return;document.getElementById('rateOverlay').classList.remove('show');document.body.style.overflow='';setTimeout(function(){alert('Valoracion enviada: '+v+' estrellas')},300);"><i class="fas fa-paper-plane"></i> Enviar valoracion</button></div></div></div><input type="hidden" id="rateVal" value="0">
     <nav class="bottom-nav">
