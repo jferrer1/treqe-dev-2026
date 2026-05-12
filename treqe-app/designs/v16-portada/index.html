@@ -834,64 +834,16 @@ function goToDiscover(){window.location.href="../v1-catalogo/";}
 
 
 
-    <!-- ===== LEGAL FOOTER ===== -->
-  <div style="padding: 24px 16px 100px; text-align: center; font-size: 0.72rem; color: #888; line-height: 2.2;">
-    <div style="margin-bottom: 4px;">
-      <span style="font-weight: 700; color: #1A1A1A;">treqe</span>
-      <span style="color: #B0B0B0;"> — Intercambio en cadena</span>
-    </div>
-    <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
-      <a href="../v17-aviso-legal/" style="color: #888; text-decoration: none;">Aviso Legal</a>
-      <a href="../v18-privacidad/" style="color: #888; text-decoration: none;">Privacidad</a>
-      <a href="../v19-terminos/" style="color: #888; text-decoration: none;">Términos</a>
-      <a href="../v20-cookies/" style="color: #888; text-decoration: none;">Cookies</a>
-    </div>
-    <div style="margin-top: 8px; color: #B0B0B0;">© 2026 Treqe. Todos los derechos reservados.</div>
-  </div>
-<script>
-  (function(){
-    var examples = [
-      { before: '👶',  bname: 'un carrito de bebé', after: '📱', aname: 'este iPhone' },
-      { before: '📱',  bname: 'este iPhone',        after: '🎸', aname: 'una guitarra eléctrica' },
-      { before: '🎸',  bname: 'una guitarra eléctrica', after: '👟', aname: 'unas zapatillas' },
-      { before: '👟',  bname: 'unas zapatillas',     after: '👶', aname: 'un carrito de bebé' }
-    ];
-    var idx = 0;
-    var elBefore = document.querySelector('.chain-before');
-    var elAfter = document.querySelector('.chain-after');
-    function swap() {
-      idx = (idx + 1) % examples.length;
-      var ex = examples[idx];
-      // Animate out
-      elAfter.querySelector('.chain-icon').style.transform = 'scale(0.8)';
-      elAfter.querySelector('.chain-icon').style.opacity = '0';
-      elBefore.querySelector('.chain-icon').style.transform = 'scale(0.8)';
-      elBefore.querySelector('.chain-icon').style.opacity = '0';
-      setTimeout(function(){
-        elBefore.querySelector('.chain-icon').textContent = ex.before;
-        elBefore.querySelector('.chain-name').textContent = ex.bname;
-        elAfter.querySelector('.chain-icon').textContent = ex.after;
-        elAfter.querySelector('.chain-name').textContent = ex.aname;
-        // Animate in
-        elBefore.querySelector('.chain-icon').style.transform = 'scale(1)';
-        elBefore.querySelector('.chain-icon').style.opacity = '1';
-        elAfter.querySelector('.chain-icon').style.transform = 'scale(1)';
-        elAfter.querySelector('.chain-icon').style.opacity = '1';
-      }, 300);
-    }
-    setInterval(swap, 3500);
-  })();
-  </script>
-  <!-- ===== LEGAL FOOTER ===== -->
+      <!-- ===== LEGAL FOOTER ===== -->
   <div style="padding:24px 16px 100px;text-align:center;font-size:.72rem;color:#888;line-height:2.2;">
-    <div style="margin-bottom:4px;"><span style="font-weight:700;color:#1A1A1A;">treqe</span><span style="color:#B0B0B0;"> — Intercambio en cadena</span></div>
+    <div style="margin-bottom:4px;"><span style="font-weight:700;color:#1A1A1A;">treqe</span><span style="color:#B0B0B0;"> &mdash; Intercambio en cadena</span></div>
     <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;">
       <a href="../v17-aviso-legal/" style="color:#888;text-decoration:none;">Aviso Legal</a>
       <a href="../v18-privacidad/" style="color:#888;text-decoration:none;">Privacidad</a>
-      <a href="../v19-terminos/" style="color:#888;text-decoration:none;">Términos</a>
+      <a href="../v19-terminos/" style="color:#888;text-decoration:none;">T&eacute;rminos</a>
       <a href="../v20-cookies/" style="color:#888;text-decoration:none;">Cookies</a>
     </div>
-    <div style="margin-top:8px;color:#B0B0B0;">© 2026 Treqe</div>
+    <div style="margin-top:8px;color:#B0B0B0;">&copy; 2026 Treqe. Todos los derechos reservados.</div>
   </div>
 </body>
 </html>
