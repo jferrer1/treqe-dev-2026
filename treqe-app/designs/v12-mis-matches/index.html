@@ -1209,7 +1209,7 @@
 
     // ===== CARD 6: Valorar =====
     function openRateModal(){document.getElementById('rateOverlay').classList.add('show');document.getElementById('rateScore').textContent='Selecciona estrellas';document.getElementById('rateVal').value=0;document.querySelectorAll('.rate-star').forEach(function(s){s.classList.remove('on')});document.body.style.overflow='hidden';}function rateTrade(id) {openRateModal();}
-    function ratePurchase(id) { openRateModal('Valora tu compra'); }function OLD_rateTrade(id) {
+    function ratePurchase(id) { document.querySelector('.rate-card__title').innerHTML='<i class="fas fa-star" style="color:#F5A623;margin-right:8px;"></i>Valorar compra'; openRateModal('Valora tu compra'); }function OLD_rateTrade(id) {
       showFeedback('⭐', 'Valora tu intercambio',
         'Cuéntanos tu experiencia en #TRX-' + id + '. ¿Cómo fue el trato con Ana y Bruno?');
     }
