@@ -1088,7 +1088,7 @@
     }
 
     // ===== CARD 1: Aceptar / Rechazar =====
-    function acceptMatch(id) {
+    function sellerAccepted(id) { showFeedback('Vendedor acepto','Ana ha aceptado tu solicitud de compra. Ya puedes pagar.','Ve a la seccion de pago para completar la compra.'); document.getElementById('buy-' + id).style.opacity = '0.4'; }\n    function acceptMatch(id) {
       var card = document.getElementById('match-' + id);
       if (!card) return;
       // Clear timer
