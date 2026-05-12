@@ -663,18 +663,6 @@
       right: 12px;
     }
     
-    /* ===== PAYMENT MODAL ===== */
-    .pay-modal {
-      position: fixed; inset: 0; background: rgba(0,0,0,0.5);
-      backdrop-filter: blur(4px); z-index: 9999;
-      display: none; align-items: flex-end; justify-content: center;
-    }
-    .pay-modal.show { display: flex; }
-    .pay-card {
-      background: var(--card-bg); border-radius: 24px 24px 0 0;
-      width: 100%; max-width: 500px;
-      animation: slideUp .3s ease;
-    }
 </style>
 </head>
 <body>
@@ -905,7 +893,7 @@
       <div style="padding:8px 14px;background:rgba(255,106,53,0.06);border-radius:14px;margin-bottom:14px;font-size:.75rem;color:#888;display:flex;align-items:center;gap:8px;"><i class="fas fa-shield-alt" style="color:#FF6A35;"></i> Importe retenido mediante escrow hasta que todos reciban sus articulos.</div>
       <div class="action-buttons">
         <button class="action-btn action-btn--secondary" onclick="showFeedback('Cancelado','Pago cancelado','Puedes pagar mas tarde.')">Cancelar</button>
-        <button class="action-btn action-btn--primary" onclick="openPay()">Pagar ahora</button>
+        <button class="action-btn action-btn--primary" onclick="window.location.href='../v23-pago/'">Pagar ahora</button>
       </div>
     </div>
 
@@ -1203,27 +1191,5 @@
 
 
 
-  <div class="pay-modal" id="payModal" onclick="if(event.target===this)closePay()">
-    <div class="pay-card">
-      <div class="payment-card__hd"><span style="font-size:1rem;font-weight:600;"><i class="fas fa-credit-card" style="color:#FF6A35;margin-right:8px;"></i>Pagar</span><button onclick="closePay()" style="width:32px;height:32px;border-radius:50%;border:none;background:none;cursor:pointer;"><i class="fas fa-times"></i></button></div>
-      <div class="payment-card__body">
-        <div class="payment-summary">
-          <div class="payment-row"><span>Diferencia</span><span>270,00€</span></div>
-          <div class="payment-row"><span>Envio</span><span>6,95€</span></div>
-          <div class="payment-row payment-row--total"><span>Total</span><span style="color:#FF6A35;font-weight:800;">276,95€</span></div>
-        </div>
-        <div style="margin:16px 0;font-size:.78rem;color:#888;font-weight:500;">Metodo de pago</div>
-        <div style="display:flex;flex-direction:column;gap:8px;">
-          <label class="pay-method selected" onclick="selectPay(this)" style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;cursor:pointer;border:1.5px solid #FF6A35;background:rgba(255,106,53,0.04);"><i class="fab fa-cc-visa" style="font-size:1.3rem;"></i><div style="flex:1;"><div style="font-size:.82rem;font-weight:600;">Visa</div><div style="font-size:.7rem;color:#888;">**** 4242</div></div><i class="fas fa-check-circle" style="color:#00B8B8;"></i></label>
-          <label class="pay-method" onclick="selectPay(this)" style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;cursor:pointer;border:1.5px solid #E8E4DC;"><i class="fab fa-cc-paypal" style="font-size:1.3rem;"></i><div style="flex:1;"><div style="font-size:.82rem;font-weight:600;">PayPal</div><div style="font-size:.7rem;color:#888;">usuario@email.com</div></div></label>
-          <label class="pay-method" onclick="selectPay(this)" style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;cursor:pointer;border:1.5px solid #E8E4DC;"><i class="fas fa-mobile-alt" style="font-size:1.3rem;"></i><div style="flex:1;"><div style="font-size:.82rem;font-weight:600;">Bizum</div><div style="font-size:.7rem;color:#888;">Pago rapido</div></div></label>
-        </div>
-      </div>
-      <div class="payment-card__ft">
-        <button onclick="closePay()" style="flex:1;padding:14px;border-radius:14px;font-size:.9rem;font-weight:600;border:1px solid #E8E4DC;background:#F8F6F0;cursor:pointer;">Cancelar</button>
-        <button onclick="processPay()" style="flex:1;padding:14px;border-radius:14px;font-size:.9rem;font-weight:600;border:none;background:#FF6A35;color:#FFF;cursor:pointer;"><i class="fas fa-lock"></i> Pagar 276,95€</button>
-      </div>
-    </div>
-  </div>
 </body>
 </html>
