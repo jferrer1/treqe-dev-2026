@@ -163,7 +163,25 @@
         </div>
       </div>
 
-      <div class="submit-wrap">
+        <div id="paypalForm" style="display:none;">
+    <div style="padding:20px;background:#F8F6F0;border-radius:14px;text-align:center;">
+      <i class="fab fa-paypal" style="font-size:3rem;color:#003087;margin-bottom:12px;display:block;"></i>
+      <p style="font-size:.9rem;color:#666;margin-bottom:16px;">Serás redirigido a PayPal para completar el pago de forma segura.</p>
+      <div style="display:flex;align-items:center;gap:8px;padding:12px;background:#FFF;border-radius:10px;font-size:.82rem;color:#888;">
+        <i class="fas fa-envelope" style="color:#003087;"></i>
+        <span>usuario@email.com</span>
+      </div>
+    </div>
+  </div>
+  <div id="bizumForm" style="display:none;">
+    <div style="padding:20px;background:#F8F6F0;border-radius:14px;text-align:center;">
+      <i class="fas fa-mobile-alt" style="font-size:3rem;color:#5C6BC0;margin-bottom:12px;display:block;"></i>
+      <p style="font-size:.9rem;color:#666;margin-bottom:16px;">Recibirás una solicitud de pago en tu app de Bizum.</p>
+      <div style="display:flex;align-items:center;gap:8px;max-width:240px;margin:0 auto;">
+        <input type="tel" placeholder="Tu número de teléfono" style="flex:1;padding:14px;border:1.5px solid #E8E4DC;border-radius:12px;font-size:.9rem;text-align:center;outline:none;font-family:inherit;">
+      </div>
+    </div>
+  </div><div class="submit-wrap">
         <button class="btn-pagar" onclick="processPayment()">
           <i class="fas fa-lock"></i> Pagar 276,95€
         </button>
@@ -223,11 +241,14 @@
       el.classList.add('active');
       var method = el.querySelector('span').textContent.trim();
       var cardForm = document.getElementById('cardForm');
-      if (method === 'Tarjeta') {
-        cardForm.style.display = 'block';
-      } else {
-        cardForm.style.display = 'none';
-      }
+      var paypalForm = document.getElementById('paypalForm');
+      var bizumForm = document.getElementById('bizumForm');
+      cardForm.style.display = 'none';
+      paypalForm.style.display = 'none';
+      bizumForm.style.display = 'none';
+      if (method === 'Tarjeta') { cardForm.style.display = 'block'; }
+      else if (method === 'PayPal') { paypalForm.style.display = 'block'; }
+      else if (method === 'Bizum') { bizumForm.style.display = 'block'; }
     }
 
     function processPayment() {
