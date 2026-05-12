@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pagos y Escrow — Treqe</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{font-size:16px;scroll-behavior:smooth}
+    body{font-family:'Inter',sans-serif;background:#F8F6F0;color:#1A1A1A;min-height:100vh;padding:40px 24px 80px;-webkit-font-smoothing:antialiased;line-height:1.7}
+    .container{max-width:720px;margin:0 auto}
+    h1{font-size:1.6rem;font-weight:800;margin-bottom:6px;letter-spacing:-.5px}
+    .meta{font-size:.85rem;color:#888;margin-bottom:32px}
+    h2{font-size:1.15rem;font-weight:700;margin-top:28px;margin-bottom:10px}
+    h3{font-size:.95rem;font-weight:600;margin-top:18px;margin-bottom:8px;color:#1A1A1A}
+    p{margin-bottom:14px;font-size:.92rem;color:#444}
+    a{color:#FF6A35;text-decoration:none}
+    .back{display:inline-flex;align-items:center;gap:6px;padding:10px 16px;background:#FFF;border-radius:10px;font-size:.85rem;font-weight:500;margin-bottom:32px;color:#1A1A1A;text-decoration:none;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+    ul{margin-bottom:14px;padding-left:20px;font-size:.92rem;color:#444}
+    li{margin-bottom:6px}
+    strong{color:#1A1A1A}
+    .card{background:#FFF;border-radius:16px;padding:20px;margin-bottom:16px;box-shadow:0 2px 12px rgba(0,0,0,.04)}
+    .card-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:12px}
+    .card-icon.green{background:rgba(0,184,184,.12);color:#00B8B8}
+    .card-icon.orange{background:rgba(255,106,53,.12);color:#FF6A35}
+    .card-icon.blue{background:rgba(92,107,192,.12);color:#5C6BC0}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a class="back" href="../v16-portada/"><i class="fas fa-arrow-left"></i> Volver a Treqe</a>
+    <h1>Pagos, Escrow &amp; Comisiones</h1>
+    <div class="meta">Prototipo — Cómo funciona el dinero en Treqe</div>
+
+    <div class="card">
+      <div class="card-icon green"><i class="fas fa-shield-alt"></i></div>
+      <h2 style="margin-top:0;">Escrow: tu dinero está protegido</h2>
+      <p>Cuando un intercambio implica compensación económica (por ejemplo, tu artículo vale 400€ y el que quieres vale 500€, pagas 100€ de diferencia), Treqe <strong>retiene ese importe</strong> hasta que todos los participantes confirmen haber recibido sus artículos.</p>
+      <p><strong>Cómo funciona:</strong></p>
+      <ul>
+        <li>① El importe se cobra en el momento de aceptar el match</li>
+        <li>② Treqe lo retiene en una cuenta segregada (no lo usa)</li>
+        <li>③ Cuando todos confirman recepción, se libera al vendedor</li>
+        <li>④ Si algo sale mal, el dinero se devuelve al pagador</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-icon orange"><i class="fas fa-credit-card"></i></div>
+      <h2 style="margin-top:0;">Métodos de pago aceptados</h2>
+      <ul>
+        <li><strong>Tarjeta de crédito/débito</strong> (Visa, Mastercard) — procesado por Stripe</li>
+        <li><strong>Bizum</strong> — para compras directas de menos de 1.000€</li>
+        <li><strong>PayPal</strong> — disponible para compras directas e intercambios</li>
+        <li><strong>Monedero Treqe</strong> — saldo acumulado de intercambios anteriores</li>
+      </ul>
+      <p style="margin-top:10px;font-size:.82rem;color:#888;">Todos los pagos se procesan a través de Stripe. Treqe no almacena datos bancarios.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-icon blue"><i class="fas fa-percent"></i></div>
+      <h2 style="margin-top:0;">Comisiones</h2>
+      <p><strong>Compra directa:</strong> 5% del precio de venta (pagado por el vendedor)</p>
+      <p><strong>Intercambio circular:</strong> 5% sobre la diferencia económica (repartido entre los participantes)</p>
+      <p><strong>Sin comisión</strong> por publicar artículos ni por recibir ofertas.</p>
+      <p style="margin-top:10px;font-size:.82rem;color:#888;background:#F0EDE6;padding:12px;border-radius:10px;">
+        <i class="fas fa-info-circle" style="color:var(--accent);"></i> 
+        Durante la fase de prototipo no se aplican comisiones reales.
+      </p>
+    </div>
+
+    <a class="back" href="../v16-portada/" style="display:inline-flex;margin-top:10px;"><i class="fas fa-arrow-left"></i> Volver a Treqe</a>
+  </div>
+</body>
+</html>
