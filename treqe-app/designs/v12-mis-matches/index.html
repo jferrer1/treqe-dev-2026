@@ -1070,6 +1070,15 @@
 
   <script>
     // ===== TAB SWITCHING =====
+        function updateCounts() {
+      var tabs = [ 'active', 'pending', 'in-progress', 'completed' ];
+      tabs.forEach(function(t) {
+        var section = document.getElementById(t + '-section');
+        var count = section ? section.querySelectorAll('.match-card').length : 0;
+        var btn = document.querySelector('.tab[onclick*="' + t + '"] .count');
+        if (btn) btn.textContent = count;
+      });
+    }
     function switchTab(tab, filter) {
       document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
       tab.classList.add('active');
