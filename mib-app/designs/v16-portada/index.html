@@ -167,26 +167,28 @@
 
   .hero h1 {
     font-family: var(--font-sans);
-    font-size: clamp(2.4rem, 6vw, 4.2rem);
-    font-weight: 300;
-    line-height: 1.08;
-    letter-spacing: -1.5px;
+    font-size: clamp(2.6rem, 6.5vw, 4.6rem);
+    font-weight: 400;
+    line-height: 1.06;
+    letter-spacing: -2px;
     color: var(--text);
     margin-bottom: 20px;
   }
 
   .hero h1 strong {
     font-weight: 700;
+    font-style: italic;
   }
 
   .hero .sub {
-    font-size: 1.05rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
     font-weight: 400;
-    color: var(--text-sub);
-    line-height: 1.6;
-    max-width: 460px;
+    color: var(--text-dim);
+    line-height: 1.7;
+    max-width: 500px;
     margin: 0 auto;
-    font-style: italic;
+    letter-spacing: 0.03em;
   }
 
   /* ── EXCHANGE VISUAL ── */
@@ -263,11 +265,13 @@
   }
 
   .exchange-insight {
-    font-size: 0.88rem;
-    color: var(--text-sub);
-    line-height: 1.7;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    line-height: 1.8;
     padding-top: 24px;
     border-top: 1px solid var(--border);
+    letter-spacing: 0.04em;
   }
 
   .exchange-insight strong {
@@ -308,6 +312,14 @@
     border: 1px solid var(--border);
     border-radius: 2px;
     background: var(--surface);
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .step.visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   .step-num {
@@ -324,6 +336,7 @@
     font-weight: 600;
     color: var(--text);
     margin-bottom: 4px;
+    letter-spacing: -0.3px;
   }
 
   .step-content p {
@@ -388,15 +401,16 @@
   }
 
   .circle-section h2 {
-    font-size: clamp(1.3rem, 3vw, 1.8rem);
-    font-weight: 300;
-    letter-spacing: -0.5px;
+    font-size: clamp(1.4rem, 3.2vw, 2rem);
+    font-weight: 400;
+    letter-spacing: -0.8px;
     margin-bottom: 8px;
     color: var(--text);
   }
 
   .circle-section h2 strong {
     font-weight: 700;
+    font-style: italic;
   }
 
   .circle-section p {
@@ -424,22 +438,24 @@
 
   .guide-section h2 {
     text-align: center;
-    font-size: clamp(1.3rem, 3vw, 1.7rem);
-    font-weight: 300;
-    letter-spacing: -0.5px;
+    font-size: clamp(1.5rem, 3.2vw, 2rem);
+    font-weight: 400;
+    letter-spacing: -0.8px;
     margin-bottom: 8px;
   }
 
   .guide-section h2 strong {
     font-weight: 700;
+    font-style: italic;
   }
 
   .guide-sub {
+    font-family: var(--font-mono);
     text-align: center;
-    font-size: 0.85rem;
-    color: var(--text-sub);
+    font-size: 0.65rem;
+    color: var(--text-dim);
     margin-bottom: 48px;
-    font-style: italic;
+    letter-spacing: 0.06em;
   }
 
   .guide-grid {
@@ -474,10 +490,11 @@
   }
 
   .guide-card h3 {
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-weight: 600;
     color: var(--text);
     margin-bottom: 8px;
+    letter-spacing: -0.3px;
   }
 
   .guide-card p {
@@ -536,18 +553,19 @@
   }
 
   .cta-section h2 {
-    font-size: clamp(1.6rem, 4vw, 2.4rem);
-    font-weight: 300;
-    letter-spacing: -1px;
-    line-height: 1.2;
+    font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+    font-weight: 400;
+    letter-spacing: -1.5px;
+    line-height: 1.15;
     margin-bottom: 12px;
   }
 
   .cta-section .cta-sub {
-    font-size: 0.9rem;
-    color: var(--text-sub);
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--text-dim);
     margin-bottom: 36px;
-    font-style: italic;
+    letter-spacing: 0.06em;
   }
 
   .cta-btn {
@@ -838,5 +856,26 @@
   <div style="margin-top:12px;">&copy; 2026 MIB</div>
 </div>
 
+<script>
+(function() {
+  var steps = document.querySelectorAll('.step');
+  if (!steps.length) return;
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15 });
+    steps.forEach(function(s, i) {
+      s.style.transitionDelay = (i * 0.1) + 's';
+      observer.observe(s);
+    });
+  } else {
+    steps.forEach(function(s) { s.classList.add('visible'); });
+  }
+})();
+</script>
 </body>
 </html>
