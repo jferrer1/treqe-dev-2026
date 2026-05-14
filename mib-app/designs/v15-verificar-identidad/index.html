@@ -1,97 +1,293 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>TREQE — Verificar identidad</title>
-    <meta name="robots" content="noindex, nofollow">
+  <title>treqe — Verificar identidad</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
-:root{--bg:#F9F7F2;--surface:#FFF;--text:#1C1915;--text-sub:#6B6560;--text-dim:#A09A94;--border:#E5E0D8;--border-strong:#C5C0B8;--accent:#1C1915;}body.dark{--bg:#130B00;--surface:#1A1206;--text:#E8E2D6;--text-sub:#A0998F;--text-dim:#6B6560;--border:#3A3630;--border-strong:#5A5650;--accent:#E8E2D6;}
+  :root {
+    --bg:        #F9F7F2;
+    --surface:   #FFFFFF;
+    --text:      #1C1915;
+    --text-sub:  #6B6560;
+    --text-dim:  #A09A94;
+    --border:    #E5E0D8;
+    --border-strong: #C5C0B8;
+    --accent:    #1C1915;
+    --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+    --font-sans: 'IBM Plex Sans', 'Inter', 'Segoe UI', sans-serif;
+  }
 
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html{font-size:16px;-webkit-text-size-adjust:100%  overflow-y: scroll; }
-    body{font-family:'IBM Plex Sans',sans-serif;background:#F9F7F2;color:#1C1915;min-height:100dvh;padding-bottom:80px;-webkit-font-smoothing:antialiased}
-    :root{--bg:#F9F7F2;--text:#1C1915;--text-secondary:#888;--text-tertiary:#A09A94;--border:#E5E0D8;--accent:#1C1915;--success:#1C1915;--card-bg:#FFF;--shadow:0 2px 12px rgba(0,0,0,.06)}
-    button{font-family:inherit;cursor:pointer;border:none;background:none}
-    a{text-decoration:none}
-    .header{display:flex;align-items:center;justify-content:center;padding:12px 16px;background:var(--bg);width:100%;position:relative}
-    .header__back{position:absolute;left:12px;width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--text);font-size:1.1rem;transition:background .2s}
-    .header__back:active{background:var(--border)}
-    .header__title{font-size:1.05rem;font-weight:600;color:var(--text)}
+  body.dark {
+    --bg:        #130B00;
+    --surface:   #1A1206;
+    --text:      #E8E2D6;
+    --text-sub:  #A0998F;
+    --text-dim:  #6B6560;
+    --border:    #3A3630;
+    --border-strong: #5A5650;
+    --accent:    #E8E2D6;
+  }
+/* ===== treqe Design System - Taylor Penton Editorial ===== */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
-    .page{padding:0 16px 16px;max-width:500px;margin:0 auto}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #F9F7F2;
+  color: #1C1915;
+  min-height: 100dvh;
+  padding-bottom: 90px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background 0.2s, color 0.2s;
+}
+img { max-width: 100%; display: block; }
+button { font-family: 'IBM Plex Mono', monospace; cursor: pointer; border: 1px solid #E5E0D8; background: transparent; border-radius: 2px; color: #1C1915; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.12em; padding: 10px 20px; transition: all 0.15s; }
+button:hover { background: #1C1915; color: #FFF; border-color: #1C1915; }
+button:active { opacity: 0.7; }
+a { text-decoration: none; color: inherit; }
+input, textarea, select { font-family: 'IBM Plex Sans', sans-serif; font-size: 0.9rem; border: 1px solid #E5E0D8; border-radius: 2px; padding: 10px 12px; background: #FFF; color: #1C1915; outline: none; transition: border-color 0.15s; width: 100%; }
+input:focus, textarea:focus { border-color: #1C1915; }
+input::placeholder, textarea::placeholder { color: #A09A94; }
 
-    /* Progress bar */
-    .progress-wrap{margin:0 0 20px;padding:16px 0 0}
-    .progress-label{display:flex;justify-content:space-between;align-items:center;font-size:.78rem;font-weight:500;color:var(--text-secondary);margin-bottom:8px}
-    .progress-label__count{color:var(--accent);font-weight:600}
-    .progress-track{width:100%;height:8px;background:var(--border);border-radius:99px;overflow:hidden}
-    .progress-fill{height:100%;background:linear-gradient(90deg,var(--success),#01D0D0);border-radius:99px;transition:width .6s ease;width:67%}
-    .progress-steps{display:flex;justify-content:space-between;margin-top:8px;font-size:.68rem;color:var(--text-tertiary)}
-    .progress-steps .step-dot{display:flex;align-items:center;gap:4px}
-    .progress-steps .step-dot i{font-size:.6rem}
-    .progress-steps .step-dot.done{color:var(--success)}
-    .progress-steps .step-dot.active{color:var(--accent);font-weight:600}
-    .progress-steps .step-dot.pending{color:var(--text-tertiary)}
+/* ===== Dark Mode ===== */
+body.dark { background: #130B00; color: #E8E2D6; }
+body.dark input, body.dark textarea, body.dark select { background: #1A1206; border-color: #3A3630; color: #E8E2D6; }
+body.dark button { border-color: #3A3630; color: #E8E2D6; }
+body.dark button:hover { background: #E8E2D6; color: #130B00; border-color: #E8E2D6; }
 
-    .verify-hero{display:flex;flex-direction:column;align-items:center;text-align:center;padding:8px 0 16px}
-    .verify-icon{width:70px;height:70px;border-radius:50%;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:1.6rem;color:var(--accent);margin-bottom:12px}
-    .verify-hero__title{font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:6px}
-    .verify-hero__text{font-size:.82rem;color:var(--text-secondary);line-height:1.5;max-width:320px}
-    .verify-hero__badge{display:inline-flex;align-items:center;gap:6px;font-size:.75rem;font-weight:600;color:var(--success);background:#E8F8F5;padding:6px 12px;border-radius:20px;margin-top:10px}
-    .verify-hero__badge i{font-size:.85rem}
+/* ===== Typography ===== */
+h1, h2, h3, h4 { font-family: 'IBM Plex Sans', sans-serif; font-weight: 400; letter-spacing: -0.02em; line-height: 1.2; }
+h1 { font-size: 1.6rem; }
+h2 { font-size: 1.2rem; }
+h3 { font-size: 1rem; }
+p { font-size: 0.9rem; line-height: 1.5; color: #6B6560; }
+body.dark p { color: #A0998F; }
 
-    .verify-card{background:var(--card-bg);border-radius:14px;padding:16px 16px 12px;margin-bottom:12px;box-shadow:var(--shadow)}
-    .verify-card__row{display:flex;gap:12px;align-items:flex-start}
-    .verify-card__icon{width:40px;height:40px;min-width:40px;border-radius:10px;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:var(--accent)}
-    .verify-card__body{flex:1;min-width:0}
-    .verify-card__title{font-size:.85rem;font-weight:600;color:var(--text);margin-bottom:3px}
-    .verify-card__text{font-size:.75rem;color:var(--text-secondary);line-height:1.4}
-    .verify-card__status{display:inline-flex;align-items:center;gap:5px;margin-top:8px;font-size:.72rem;font-weight:600}
-    .verify-card__status.completed{color:var(--success)}
-    .verify-card__status.pending{color:var(--accent)}
+/* ===== Labels / Meta ===== */
+.label-mono, label, .mono-label, .tag, .badge, .chip { font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.16em; color: #A09A94; }
+body.dark .label-mono, body.dark label, body.dark .mono-label, body.dark .tag { color: #6B6560; }
 
-    /* CTA button inside card */
-    .verify-card__action{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:10px;padding:12px 0;border-radius:10px;font-size:.82rem;font-weight:600;background:var(--accent);color:#FFF;transition:all .2s}
-    .verify-card__action:active{opacity:.85;transform:scale(.98)}
-    .verify-card__action i{font-size:.85rem}
+/* ===== Header ===== */
+.treqe-header {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 16px;
+  background: #F9F7F2; border-bottom: 1px solid #E5E0D8;
+  transition: background 0.2s, border-color 0.2s;
+}
+body.dark .treqe-header { background: #130B00; border-color: #3A3630; }
+.treqe-logo { font-family: 'IBM Plex Sans', sans-serif; font-size: 1.3rem; font-weight: 700; font-style: italic; letter-spacing: -0.03em; color: #1C1915; }
+body.dark .treqe-logo { color: #E8E2D6; }
+.treqe-header-right { display: flex; align-items: center; gap: 8px; }
+.treqe-nav-pill { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 6px 12px; border: 1px solid #E5E0D8; border-radius: 2px; color: #6B6560; cursor: pointer; background: transparent; transition: all 0.15s; }
+body.dark .treqe-nav-pill { border-color: #3A3630; color: #A0998F; }
+.treqe-nav-pill:hover, .treqe-nav-pill.active { background: #1C1915; color: #FFF; border-color: #1C1915; }
+body.dark .treqe-nav-pill:hover { background: #E8E2D6; color: #130B00; border-color: #E8E2D6; }
+.treqe-dark-toggle { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; padding: 6px 10px; border: 1px solid #E5E0D8; border-radius: 2px; color: #6B6560; cursor: pointer; background: transparent; }
+body.dark .treqe-dark-toggle { border-color: #3A3630; color: #A0998F; }
 
-    /* Privacy link */
-    .privacy-link{display:inline-flex;align-items:center;gap:4px;font-size:.72rem;color:var(--text-tertiary);margin-top:8px;cursor:pointer;transition:color .2s;border-bottom:1px dashed var(--border);padding-bottom:0}
-    .privacy-link:hover{color:var(--accent);border-bottom-color:var(--accent)}
-    .privacy-link i{font-size:.7rem}
+/* ===== Bottom Nav ===== */
+.treqe-bottom-nav {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-around;
+  padding: 8px 0 max(8px, env(safe-area-inset-bottom));
+  background: #F9F7F2; border-top: 1px solid #E5E0D8;
+  transition: background 0.2s, border-color 0.2s;
+}
+body.dark .treqe-bottom-nav { background: #130B00; border-color: #3A3630; }
+.treqe-nav-item { display: flex; flex-direction: column; align-items: center; gap: 2px; font-family: 'IBM Plex Mono', monospace; font-size: 0.5rem; text-transform: uppercase; letter-spacing: 0.12em; color: #A09A94; text-decoration: none; padding: 4px 8px; transition: color 0.15s; }
+.treqe-nav-item i { font-size: 0.9rem; color: #6B6560; }
+body.dark .treqe-nav-item { color: #6B6560; }
+body.dark .treqe-nav-item i { color: #A0998F; }
+.treqe-nav-item.active { color: #1C1915; }
+.treqe-nav-item.active i { color: #1C1915; }
+body.dark .treqe-nav-item.active { color: #E8E2D6; }
+body.dark .treqe-nav-item.active i { color: #E8E2D6; }
 
-    .action-btn{width:100%;padding:14px;border-radius:12px;font-size:.9rem;font-weight:600;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:20px;transition:all .2s}
-    .action-btn--primary{background:var(--accent);color:#FFF}
-    .action-btn--primary:active{opacity:.9}
-    .action-btn--disabled{background:var(--border);color:var(--text-tertiary);cursor:not-allowed}
+/* ===== Cards ===== */
+.treqe-card { border: 1px solid #E5E0D8; border-radius: 2px; background: #FFF; padding: 16px; }
+body.dark .treqe-card { border-color: #3A3630; background: #1A1206; }
 
-    .bottom-nav{position:fixed;inset:auto 0 0;background:rgba(0,0,0,0.02);-webkit-border-top:1px solid var(--border);display:flex;justify-content:space-evenly;align-items:center;padding:0;height:72px;padding-bottom:12px;z-index:100;isolation:isolate}
-    .nav-item{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:.65rem;font-weight:500;color:var(--text-tertiary);transition:color .2s;padding:4px 0;flex:1;max-width:80px;position:relative}
-    .nav-item i{font-size:1.3rem}
-    .nav-item.active{color:var(--accent)}
-    .nav-item.active i{transform:scale(1.05)}
-    .nav-item .nav-badge{width:6px;height:6px;background:var(--accent);border-radius:50%;position:absolute;top:2px;right:12px}
-    .nav-item.nav-add{position:relative;top:0}
-    .nav-item.nav-add .nav-add-btn{width:48px;height:48px;background:var(--accent);color:#FFF;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;box-shadow:0 4px 16px rgba(0,0,0,0.06);transition:transform .2s,box-shadow .2s}
-    .nav-item.nav-add .nav-add-btn:active{transform:scale(.92);box-shadow:0 2px 8px rgba(0,0,0,0.06)}
-  
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:var(--surface);border-top:1px solid var(--border);display:flex;justify-content:space-evenly;align-items:center;height:68px;padding-bottom:max(6px,env(safe-area-inset-bottom));z-index:100;}.nav-item{position:relative;display:flex;flex-direction:column;align-items:center;gap:3px;font-family:"IBM Plex Mono",monospace;font-size:0.5rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-dim);transition:color 0.15s;padding:4px 0;flex:1;max-width:80px;border:none;background:none;cursor:pointer;text-decoration:none;}.nav-item i{font-size:1.1rem;}.nav-item.active{color:var(--text);}.nav-item.active i{color:var(--text);}.nav-add-btn{width:42px;height:42px;background:var(--text);color:var(--bg);border-radius:2px;display:flex;align-items:center;justify-content:center;margin-bottom:2px;}.nav-add-btn i{font-size:1rem;color:var(--bg);}.nav-badge{width:5px;height:5px;background:var(--text);border-radius:50%;position:absolute;top:2px;right:4px;}
+/* ===== Utility ===== */
+.text-center { text-align: center; }
+.text-sub { color: #6B6560; }
+body.dark .text-sub { color: #A0998F; }
+.text-dim { color: #A09A94; }
+body.dark .text-dim { color: #6B6560; }
+.mono { font-family: 'IBM Plex Mono', monospace; }
+.uppercase { text-transform: uppercase; }
+.small { font-size: 0.7rem; }
+.gap-8 { gap: 8px; }
+.gap-16 { gap: 16px; }
+.mt-8 { margin-top: 8px; }
+.mt-16 { margin-top: 16px; }
+.mt-24 { margin-top: 24px; }
+.mb-8 { margin-bottom: 8px; }
+.mb-16 { margin-bottom: 16px; }
+.p-16 { padding: 16px; }
+.px-16 { padding-left: 16px; padding-right: 16px; }
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.w-full { width: 100%; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+/* ===== Footer ===== */
+.treqe-footer { padding: 24px 16px; font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.12em; color: #A09A94; text-align: center; border-top: 1px solid #E5E0D8; margin-top: 24px; }
+body.dark .treqe-footer { border-color: #3A3630; color: #6B6560; }
+
+/* ===== Status bar mock ===== */
+.status-bar { display: flex; justify-content: space-between; align-items: center; padding: 6px 16px 2px; font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; color: #A09A94; }
+body.dark .status-bar { color: #6B6560; }
+.status-bar .time { font-weight: 600; }
+.status-bar .icons { display: flex; gap: 4px; }
+
+/* ===== Form elements ===== */
+.treqe-input { font-family: 'IBM Plex Sans', sans-serif; font-size: 0.9rem; border: 1px solid #E5E0D8; border-radius: 2px; padding: 10px 12px; background: #FFF; color: #1C1915; outline: none; width: 100%; }
+body.dark .treqe-input { background: #1A1206; border-color: #3A3630; color: #E8E2D6; }
+.treqe-input:focus { border-color: #1C1915; }
+body.dark .treqe-input:focus { border-color: #E8E2D6; }
+
+.treqe-select { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; border: 1px solid #E5E0D8; border-radius: 2px; padding: 8px 12px; background: #FFF; color: #1C1915; outline: none; }
+body.dark .treqe-select { background: #1A1206; border-color: #3A3630; color: #E8E2D6; }
+
+.treqe-checkbox { -webkit-appearance: none; appearance: none; width: 16px; height: 16px; border: 1px solid #E5E0D8; border-radius: 2px; cursor: pointer; flex-shrink: 0; position: relative; background: #FFF; }
+body.dark .treqe-checkbox { border-color: #3A3630; background: #1A1206; }
+.treqe-checkbox:checked { background: #1C1915; border-color: #1C1915; }
+body.dark .treqe-checkbox:checked { background: #E8E2D6; border-color: #E8E2D6; }
+.treqe-checkbox:checked::after { content: '\2713'; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); color: #FFF; font-size: 0.6rem; font-weight: 700; }
+body.dark .treqe-checkbox:checked::after { color: #130B00; }
+
+/* ===== Separator ===== */
+.treqe-hr { border: none; border-top: 1px solid #E5E0D8; margin: 16px 0; }
+body.dark .treqe-hr { border-color: #3A3630; }
+
+/* ===== Alert / Notice ===== */
+.treqe-notice { border: 1px solid #E5E0D8; border-radius: 2px; padding: 12px 16px; font-size: 0.8rem; color: #6B6560; }
+body.dark .treqe-notice { border-color: #3A3630; color: #A0998F; }
+
+/* ===== Pill tag ===== */
+.treqe-tag { display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 0.5rem; text-transform: uppercase; letter-spacing: 0.12em; border: 1px solid #E5E0D8; border-radius: 2px; padding: 3px 8px; color: #6B6560; }
+body.dark .treqe-tag { border-color: #3A3630; color: #A0998F; }
+
+/* ===== Demo tag ===== */
+.demo-tag { font-family: 'IBM Plex Mono', monospace; font-size: 0.45rem; color: #C5C0B8; text-align: center; padding: 4px; }
+body.dark .demo-tag { color: #5A5650; }
+
+/* ===== Empty state ===== */
+.treqe-empty { text-align: center; padding: 48px 16px; color: #A09A94; }
+body.dark .treqe-empty { color: #6B6560; }
+.treqe-empty i { font-size: 2rem; margin-bottom: 12px; color: #C5C0B8; }
+body.dark .treqe-empty i { color: #5A5650; }
+.treqe-empty p { font-size: 0.85rem; }
+
+/* ===== Fade animation ===== */
+@keyframes fadeUp { 0% { opacity: 0; transform: translateY(12px); } 100% { opacity: 1; transform: translateY(0); } }
+@keyframes popIn { 0% { opacity: 0; transform: scale(0.8); } 100% { opacity: 1; transform: scale(1); } }
+  /* ══════ BOTTOM NAV (standardized across all MIB pages) ══════ */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 68px;
+  padding-bottom: max(6px, env(safe-area-inset-bottom));
+  z-index: 100;
+}
+
+.nav-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  transition: color 0.15s;
+  padding: 4px 0;
+  flex: 1;
+  max-width: 80px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.nav-item i { font-size: 1.1rem; }
+
+.nav-item.active { color: var(--text); }
+.nav-item.active i { color: var(--text); }
+
+.nav-item .nav-add-btn,
+.nav-add-btn {
+  width: 42px;
+  height: 42px;
+  background: var(--text);
+  color: var(--bg);
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2px;
+}
+
+.nav-item .nav-add-btn i,
+.nav-add-btn i {
+  font-size: 1rem;
+  color: var(--bg);
+}
+
+.nav-badge {
+  width: 5px;
+  height: 5px;
+  background: var(--text);
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  right: 4px;
+}
+
 </style>
 </head>
 <body>
-  <div class="header">
+<div class="treqe-header">
+  <span class="treqe-header__title">Verificar</span>
+  <div class="treqe-header-right">
+    <a href="../v13-blog/" class="treqe-nav-pill"><i class="fas fa-pen"></i> Blog</a>
+    <a href="../v1-catalogo/" class="treqe-nav-pill"><i class="fas fa-th"></i> Catalogo</a>
+    <button class="treqe-dark-toggle" onclick="toggleDark()"><i class="fas fa-moon"></i></button>
+  </div>
+</div>
+
+<div class="header">
     <button class="header__back" onclick="goToProfile()" aria-label="Atras"><i class="fas fa-chevron-left"></i></button>
-    <span class="header__title">Verificar identidad</span>
+    <a href="../v16-portada/" class="header__title" style="text-decoration:none;color:inherit;">Verificar identidad</a>
   </div>
 
   <div class="page">
     <div class="verify-hero">
       <div class="verify-icon"><i class="fas fa-shield-alt"></i></div>
       <div class="verify-hero__title">Verifica tu identidad</div>
-      <div class="verify-hero__text">La verificacion aumenta tu reputacion y la confianza de otros usuarios en Treqe</div>
+      <div class="verify-hero__text">La verificacion aumenta tu reputacion y la confianza de otros usuarios en treqe</div>
       <div class="verify-hero__badge"><i class="fas fa-star"></i> +15 al scoring al verificar</div>
     </div>
 
@@ -161,7 +357,7 @@
 
     <nav class="bottom-nav">
     <a href="../v1-catalogo/" class="nav-item"><i class="fas fa-search"></i><span>Buscar</span></a>
-    <a href="../v12-mis-matches/" class="nav-item"><i class="fas fa-exchange-alt"></i><span>Treqes</span></a>
+    <a href="../v12-mis-matches/" class="nav-item"><i class="fas fa-exchange-alt"></i><span>treqes</span></a>
     <a href="../v3-subir/" class="nav-item nav-add"><div class="nav-add-btn"><i class="fas fa-plus"></i></div></a>
     <a href="../v11-notificaciones/" class="nav-item"><i class="fas fa-bell"></i><span>Avisos</span><span class="nav-badge"></span></a>
     <a href="../v4-perfil/" class="nav-item"><i class="fas fa-user"></i><span>Perfil</span></a>
@@ -182,6 +378,31 @@
     function showPrivacyInfo() {
       alert('Tus datos estan protegidos: usamos cifrado de extremo a extremo, nunca compartimos tu documento con otros usuarios, y puedes eliminar tus datos en cualquier momento desde Ajustes > Privacidad.')
     }
+</script>
+<div class="treqe-bottom-nav">
+  <a href="../v1-catalogo/" class="treqe-nav-item"><i class="fas fa-th"></i> Catalogo</a>
+  <a href="../v12-mis-matches/" class="treqe-nav-item"><i class="fas fa-exchange-alt"></i> Intercambios</a>
+  <a href="../v13-favoritos/" class="treqe-nav-item"><i class="fas fa-heart"></i> Favoritos</a>
+  <a href="../v4-perfil/" class="treqe-nav-item"><i class="fas fa-user"></i> Perfil</a>
+</div>
+
+<div class="treqe-footer">(c) 2026 treqe - Todos los derechos reservados</div>
+
+<div class="demo-tag"><i class="fas fa-flask"></i> treqe Prototype -- v15-verificar-identidad -- May 2026</div>
+
+<script>
+function toggleDark() {
+  document.body.classList.toggle("dark");
+  var btn = document.querySelector(".treqe-dark-toggle i");
+  if (btn) {
+    if (document.body.classList.contains("dark")) {
+      btn.className = "fas fa-sun";
+    } else {
+      btn.className = "fas fa-moon";
+    }
+  }
+}
+console.log("treqe Design System - Taylor Penton Editorial");
 </script>
 </body>
 </html>
