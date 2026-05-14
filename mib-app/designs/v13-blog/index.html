@@ -3,50 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>treqe — Blog | Intercambio inteligente</title>
-  <meta name="description" content="Blog de treqe. Historias de intercambio, guías para principiantes, el algoritmo de intercambio circular y reflexiones sobre economía sostenible.">
-  <meta property="og:title" content="treqe — Blog | Intercambio inteligente">
+  <title>TREQE — Blog | Trueque inteligente e intercambio circular</title>
+  <meta name="description" content="Blog de Treqe. Historias de intercambio, guías para principiantes, el algoritmo de trueque circular y reflexiones sobre economía sostenible.">
+  <meta property="og:title" content="TREQE — Blog | Trueque inteligente">
   <meta property="og:description" content="Descubre cómo funciona el intercambio circular. Guías, historias y el algoritmo que hace posible lo imposible.">
-  <meta property="og:image" content="https://jferrer1.github.io/treqe-app/designs/v13-blog/og-image.png">
+  <meta property="og:image" content="https://jferrer1.github.io/treqe-dev-2026/treqe-app/designs/v13-blog/og-image.png">
   <meta property="og:url" content="https://treqe.es/blog">
   <meta property="og:type" content="blog">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="canonical" href="https://treqe.es/blog">
+  <link rel="cañonical" href="https://treqe.es/blog">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Blog",
-    "name": "Blog de treqe",
-    "description": "Intercambio inteligente y circular",
+    "name": "Blog de Treqe",
+    "description": "Trueque inteligente e intercambio circular",
     "url": "https://treqe.es/blog"
   }
   </script>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-  :root {
-    --bg:        #F9F7F2;
-    --surface:   #FFFFFF;
-    --text:      #1C1915;
-    --text-sub:  #6B6560;
-    --text-dim:  #A09A94;
-    --border:    #E5E0D8;
-    --border-strong: #C5C0B8;
-    --accent:    #1C1915;
-    --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
-    --font-sans: 'IBM Plex Sans', 'Inter', 'Segoe UI', sans-serif;
-  }
 
-  body.dark {
-    --bg:        #130B00;
-    --surface:   #1A1206;
-    --text:      #E8E2D6;
-    --text-sub:  #A0998F;
-    --text-dim:  #6B6560;
-    --border:    #3A3630;
-    --border-strong: #5A5650;
-    --accent:    #E8E2D6;
-  }
+/* ══════ MIB Design System ══════ */
+:root {
+  --bg: #F9F7F2; --surface: #FFF; --text: #1C1915;
+  --text-sub: #6B6560; --text-dim: #A09A94;
+  --border: #E5E0D8; --border-strong: #C5C0B8; --accent: #1C1915;
+}
+body.dark {
+  --bg: #130B00; --surface: #1A1206; --text: #E8E2D6;
+  --text-sub: #A0998F; --text-dim: #6B6560;
+  --border: #3A3630; --border-strong: #5A5650; --accent: #E8E2D6;
+}
+
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { font-size: 16px; scroll-behavior: smooth; }
     body {
@@ -58,200 +49,301 @@
       -moz-osx-font-smoothing: grayscale;
       overscroll-behavior: contain;
       scrollbar-gutter: stable;
-      transition: background .3s, color .3s;
     }
-    body.dark { background: #130B00; color: #E8E2D6; }
     img { max-width: 100%; display: block; }
-    button { font-family: 'IBM Plex Mono', monospace; cursor: pointer; border: none; background: none; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
     a { text-decoration: none; color: inherit; }
     input { font-family: inherit; font-size: inherit; }
 
-    /* ===== treqe DESKTOP HEADER ===== */
-    .treqe-header {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 10px 16px;
-      background: #F9F7F2;
-      border-bottom: 1px solid #E5E0D8;
-      position: sticky; top: 0; z-index: 100;
-      transition: background .3s, border-color .3s;
+    :root {
+      --bg: #F9F7F2;
+      --text: #1C1915;
+      --text-secondary: #6B6560;
+      --text-tertiary: #A09A94;
+      --border: #E5E0D8;
+      --accent: #1C1915;
+      --accent-hover: #6B6560;
+      --success: #1C1915;
+      --card-bg: #FFFFFF;
+      --shadow: 0 2px 12px rgba(0,0,0,0.06);
+      --shadow-hover: 0 6px 24px rgba(0,0,0,0.1);
+      --radius: 18px;
+      --header-h: 80px;
     }
-    body.dark .treqe-header { background: #130B00; border-color: #3A3630; }
-    .treqe-header__left { display: flex; align-items: center; gap: 8px; }
-    .treqe-header__logo {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: .85rem; font-weight: 600;
-      letter-spacing: .12em; text-transform: uppercase;
-      color: #1C1915;
+
+    /* ===== HEADER ===== */
+    .site-header {
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
-    body.dark .treqe-header__logo { color: #E8E2D6; }
-    .treqe-header__right { display: flex; align-items: center; gap: 8px; }
-    .treqe-header__toggle {
-      width: 30px; height: 30px;
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      height: var(--header-h);
+      gap: 24px;
+    }
+    .treqe-logo {
+      height: 60px;
+      width: auto;
+      flex-shrink: 0;
+    }
+    .logo-link { display: inline-flex; align-items: flex-end; text-decoration: none; }
+    .header-inner .logo {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      flex-shrink: 0;
+    }
+    .header-inner .logo .blog-suffix {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin-left: 0;
+      position: relative;
+      top: 0;
+    }
+    .header-nav {
+      display: flex;
+      gap: 4px;
+      margin-left: auto;
+    }
+    .header-nav a {
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: all 0.2s;
+    }
+    .header-nav a:hover { background: #FFF; color: var(--text); }
+    .header-nav a.active { color: var(--accent); font-weight: 600; }
+
+    /* Mobile header (back button) */
+    .mobile-header {
+      display: none;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px 12px 16px;
+      background: var(--bg);
+    }
+    .mobile-header .back-btn {
+      width: 36px; height: 36px;
+      border-radius: 10px;
       display: flex; align-items: center; justify-content: center;
-      font-size: .7rem; color: #6B6560;
-      border: 1px solid #E5E0D8; border-radius: 2px;
+      color: var(--text); font-size: 1.1rem; flex-shrink: 0;
     }
-    body.dark .treqe-header__toggle { color: #A0998F; border-color: #3A3630; }
-    .treqe-header__toggle:active { background: #E5E0D8; }
-    body.dark .treqe-header__toggle:active { background: #3A3630; }
-    .treqe-pill {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: .55rem; font-weight: 500;
-      text-transform: uppercase; letter-spacing: .12em;
-      color: #6B6560;
-      padding: 4px 10px;
-      border: 1px solid #E5E0D8; border-radius: 2px;
+    .mobile-header .back-btn:active { background: var(--border); }
+    .mobile-header .mob-logo {
+      display: flex;
+      align-items: center;
+      gap: 0;
     }
-    body.dark .treqe-pill { color: #A0998F; border-color: #3A3630; }
-    .treqe-pill:active { background: #E5E0D8; color: #1C1915; }
-    body.dark .treqe-pill:active { background: #3A3630; color: #E8E2D6; }
-    .treqe-nav {
-      display: flex; gap: 4px;
+    .mobile-header .mob-logo .treqe-logo {
+      height: 40px;
+      width: auto;
     }
-    .treqe-nav a {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: .55rem; font-weight: 500;
-      text-transform: uppercase; letter-spacing: .1em;
-      padding: 6px 12px;
-      color: #6B6560;
-      border: 1px solid transparent;
-      border-radius: 2px;
-      transition: all .2s;
+    .mobile-header .mob-logo .blog-suffix {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin-left: 0;
     }
-    body.dark .treqe-nav a { color: #A0998F; }
-    .treqe-nav a:active { background: #E5E0D8; }
-    body.dark .treqe-nav a:active { background: #3A3630; }
-    .treqe-nav a.active { border-color: #E5E0D8; color: #1C1915; }
-    body.dark .treqe-nav a.active { border-color: #3A3630; color: #E8E2D6; }
+
+    /* ===== BLOG LAYOUT ===== */
+    .blog-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px;
+    }
 
     /* ===== HERO ===== */
-    .blog-wrapper { max-width: 1200px; margin: 0 auto; padding: 24px; }
     .hero-blog {
-      padding: 36px;
-      background: #FFFFFF;
-      border: 1px solid #E5E0D8;
-      border-radius: 2px;
-      margin-bottom: 28px;
+      padding: 40px 36px;
+      background: línear-gradient(135deg, #1A1A2E 0%, #2A2A4E 100%);
+      border-radius: 20px;
+      color: #FFF;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 32px;
     }
-    body.dark .hero-blog { background: #1A1206; border-color: #3A3630; }
+    .hero-blog::after {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 240px; height: 240px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.06);
+    }
+    .hero-blog::before {
+      content: '';
+      position: absolute;
+      bottom: -40px;
+      left: 20%;
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      background: rgba(0,184,184,0.08);
+    }
     .hero-blog__tag {
       display: inline-block;
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: .55rem; font-weight: 500;
-      text-transform: uppercase; letter-spacing: .12em;
-      padding: 4px 10px;
-      background: #1C1915;
-      color: #F9F7F2;
-      border-radius: 2px;
+      background: var(--accent);
+      color: #FFF;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
       margin-bottom: 14px;
     }
-    body.dark .hero-blog__tag { background: #E8E2D6; color: #130B00; }
     .hero-blog h1 {
-      font-size: clamp(1.3rem, 3vw, 1.8rem);
-      font-weight: 400;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 700;
       line-height: 1.25;
       margin-bottom: 10px;
       max-width: 700px;
-      color: #1C1915;
-      letter-spacing: -.5px;
     }
-    body.dark .hero-blog h1 { color: #E8E2D6; }
     .hero-blog p {
-      font-size: clamp(.82rem, 1.2vw, .92rem);
-      color: #6B6560;
+      font-size: clamp(0.85rem, 1.2vw, 0.95rem);
+      color: rgba(255,255,255,0.7);
       line-height: 1.6;
       margin-bottom: 20px;
       max-width: 600px;
     }
-    body.dark .hero-blog p { color: #A0998F; }
     .hero-blog__cta {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: .55rem; font-weight: 500;
-      text-transform: uppercase; letter-spacing: .1em;
-      color: #1C1915;
-      border: 1px solid #1C1915;
-      border-radius: 2px;
-      padding: 8px 16px;
-      transition: all .2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--accent);
+      transition: gap 0.2s;
     }
-    body.dark .hero-blog__cta { color: #E8E2D6; border-color: #E8E2D6; }
-    .hero-blog__cta:active { background: #1C1915; color: #F9F7F2; }
-    body.dark .hero-blog__cta:active { background: #E8E2D6; color: #130B00; }
+    .hero-blog__cta:hover { gap: 12px; }
+    .hero-blog__cta i { font-size: 0.7rem; }
+
+    /* ===== CONTENT ROW ===== */
+    .content-row {
+      display: flex;
+      gap: 32px;
+    }
+    .content-main {
+      flex: 1;
+      min-width: 0;
+    }
+    .content-sidebar {
+      width: 280px;
+      flex-shrink: 0;
+    }
 
     /* ===== CATEGORIES ===== */
     .categories {
-      display: flex; gap: 6px;
+      display: flex;
+      gap: 8px;
       margin-bottom: 24px;
       overflow-x: auto;
       scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
     }
     .categories::-webkit-scrollbar { display: none; }
     .cat-chip {
       flex-shrink: 0;
-      padding: 6px 14px;
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: .5rem; font-weight: 500;
-      text-transform: uppercase; letter-spacing: .1em;
-      background: #FFFFFF;
-      color: #6B6560;
-      border: 1px solid #E5E0D8;
-      border-radius: 2px;
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      background: #FFF;
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+      transition: all 0.2s;
       white-space: nowrap;
       cursor: pointer;
-      transition: all .2s;
     }
-    body.dark .cat-chip { background: #1A1206; color: #A0998F; border-color: #3A3630; }
+    .cat-chip:hover { border-color: var(--accent); color: var(--accent); }
     .cat-chip.active {
-      background: #1C1915;
-      color: #F9F7F2;
-      border-color: #1C1915;
+      background: var(--accent);
+      color: #FFF;
+      border-color: var(--accent);
     }
-    body.dark .cat-chip.active { background: #E8E2D6; color: #130B00; border-color: #E8E2D6; }
 
     /* ===== SECTION TITLE ===== */
     .section-title {
-      display: flex; justify-content: space-between; align-items: baseline;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
       margin-bottom: 16px;
     }
     .section-title h2 {
-      font-family: 'IBM Plex Sans', sans-serif;
-      font-size: 1.1rem; font-weight: 400;
-      color: #1C1915;
-      letter-spacing: -.5px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text);
     }
-    body.dark .section-title h2 { color: #E8E2D6; }
     .section-title span {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: .5rem;
-      color: #A09A94;
+      font-size: 0.8rem;
+      color: var(--text-tertiary);
       font-weight: 400;
     }
-    body.dark .section-title span { color: #6B6560; }
-
-    /* ===== CONTENT ROW ===== */
-    .content-row { display: flex; gap: 28px; }
-    .content-main { flex: 1; min-width: 0; }
-    .content-sidebar { width: 260px; flex-shrink: 0; }
+    .author-bio {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+    }
+    .author-bio__avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFF;
+      font-weight: 700;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .author-bio__info { flex: 1; }
+    .author-bio__name { font-size: 0.85rem; font-weight: 600; color: var(--text); }
+    .author-bio__desc { font-size: 0.75rem; color: var(--text-secondary); line-height: 1.4; }
+    .content-row .sidebar-newsletter input {
+      width: 100%; height: 42px; border: 1px solid var(--border); border-radius: 10px;
+      padding: 0 14px; font-size: 0.85rem; outline: none; background: var(--bg); margin-bottom: 8px;
+    }
+    .content-row .sidebar-newsletter input:focus { border-color: var(--accent); }
 
     /* ===== FEATURED ARTICLE ===== */
     .featured-article {
       display: flex;
-      background: #FFFFFF;
-      border: 1px solid #E5E0D8;
-      border-radius: 2px;
+      background: var(--card-bg);
+      border-radius: var(--radius);
       overflow: hidden;
+      box-shadow: var(--shadow);
       cursor: pointer;
-      transition: all .2s;
-      margin-bottom: 28px;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s;
+      margin-bottom: 32px;
+      contain: layout style;
     }
-    body.dark .featured-article { background: #1A1206; border-color: #3A3630; }
-    .featured-article:active { border-color: #C5C0B8; }
-    body.dark .featured-article:active { border-color: #5A5650; }
+    .featured-article:hover {
+      transform: scale(1.02);
+      box-shadow: var(--shadow-hover);
+    }
+    .featured-article:active {
+      transform: scale(0.98);
+    }
     .featured-article__image {
       width: 40%;
-      min-height: 220px;
-      background: #E5E0D8;
+      min-height: 240px;
+      background: linear-gradient(135deg, #1C1915, #FF8A5C);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -259,468 +351,439 @@
       flex-shrink: 0;
       overflow: hidden;
     }
-    body.dark .featured-article__image { background: #3A3630; }
     .featured-article__image img {
       position: absolute;
-      width: 100%; height: 100%;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
     }
     .featured-article__image .icon-overlay {
-      font-size: 3.5rem;
-      color: rgba(28,25,21,.15);
+      font-size: 4rem;
+      color: rgba(255,255,255,0.25);
       position: relative;
       z-index: 1;
     }
-    body.dark .featured-article__image .icon-overlay { color: rgba(232,226,214,.15); }
     .featured-article__image .featured-badge {
       position: absolute;
-      top: 14px; left: 14px;
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: .5rem; font-weight: 500;
+      top: 16px; left: 16px;
+      background: rgba(0,0,0,0.45);
+      color: #FFF;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 6px;
       text-transform: uppercase;
-      letter-spacing: .08em;
-      padding: 3px 10px;
-      background: #1C1915;
-      color: #F9F7F2;
-      border-radius: 2px;
+      letter-spacing: 0.5px;
     }
-    body.dark .featured-article__image .featured-badge { background: #E8E2D6; color: #130B00; }
     .featured-article__body {
-      padding: 24px 28px;
+      padding: 28px 32px;
       flex: 1;
       display: flex;
       flex-direction: column;
       justify-content: center;
     }
     .featured-article__meta {
-      display: flex; align-items: center; gap: 6px;
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: .5rem;
-      color: #A09A94;
-      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.75rem;
+      color: var(--text-tertiary);
+      margin-bottom: 10px;
     }
-    body.dark .featured-article__meta { color: #6B6560; }
-    .featured-article__meta .dot { width: 3px; height: 3px; background: #A09A94; border-radius: 50%; }
-    body.dark .featured-article__meta .dot { background: #6B6560; }
+    .featured-article__meta .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--text-tertiary); }
     .featured-article__title {
-      font-family: 'IBM Plex Sans', sans-serif;
-      font-size: clamp(1rem, 2vw, 1.25rem);
-      font-weight: 400;
-      color: #1C1915;
+      font-size: clamp(1.1rem, 2vw, 1.35rem);
+      font-weight: 700;
+      color: var(--text);
       line-height: 1.3;
       margin-bottom: 8px;
-      letter-spacing: -.5px;
     }
-    body.dark .featured-article__title { color: #E8E2D6; }
     .featured-article__excerpt {
-      font-size: .85rem;
-      color: #6B6560;
+      font-size: 0.88rem;
+      color: var(--text-secondary);
       line-height: 1.6;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
     }
-    body.dark .featured-article__excerpt { color: #A0998F; }
     .featured-article__read {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: .55rem; font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: .1em;
-      color: #1C1915;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent);
       display: flex;
       align-items: center;
       gap: 6px;
     }
-    body.dark .featured-article__read { color: #E8E2D6; }
+    .featured-article__read i { font-size: 0.7rem; }
+    .featured-article__read:hover { gap: 10px; }
 
     /* ===== ARTICLE GRID ===== */
-    .article-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-    .article-card {
-      display: flex; gap: 14px;
-      background: #FFFFFF;
-      border: 1px solid #E5E0D8;
-      border-radius: 2px;
-      padding: 16px;
-      cursor: pointer;
-      transition: all .2s;
+    .article-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
     }
-    body.dark .article-card { background: #1A1206; border-color: #3A3630; }
-    .article-card:active { border-color: #C5C0B8; }
-    body.dark .article-card:active { border-color: #5A5650; }
+    .article-card {
+      display: flex;
+      gap: 16px;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s;
+      contain: layout style;
+    }
+    .article-card:hover {
+      transform: scale(1.02);
+      box-shadow: var(--shadow-hover);
+    }
+    .article-card:active {
+      transform: scale(0.98);
+    }
     .article-card__thumb {
-      width: 68px;
-      height: 68px;
-      border: 1px solid #E5E0D8;
-      border-radius: 2px;
+      width: 72px;
+      height: 72px;
+      border-radius: 10px;
       flex-shrink: 0;
       overflow: hidden;
       position: relative;
     }
-    body.dark .article-card__thumb { border-color: #3A3630; }
-    .article-card__thumb img { width: 100%; height: 100%; object-fit: cover; }
-    .article-card__thumb.orange { background: #3A2A1A; }
-    .article-card__thumb.teal { background: #1A3A2A; }
-    .article-card__thumb.purple { background: #2A1A3A; }
-    .article-card__thumb.dark { background: #1C1915; }
-    .article-card__thumb.gold { background: #3A3A1A; }
+    .article-card__thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .article-card__thumb.orange { background: linear-gradient(135deg, #1C1915, #FF8A5C); }
+    .article-card__thumb.teal { background: linear-gradient(135deg, #1C1915, #00D4AA); }
+    .article-card__thumb.purple { background: linear-gradient(135deg, #6C63FF, #8A84FF); }
+    .article-card__thumb.dark { background: linear-gradient(135deg, #1A1A2E, #2A2A4E); }
+    .article-card__thumb.gold { background: linear-gradient(135deg, #F5A623, #F7C948); }
     .article-card__content { flex: 1; min-width: 0; }
     .article-card__meta {
-      display: flex; align-items: center; gap: 4px;
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: .45rem;
-      color: #A09A94;
-      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.7rem;
+      color: var(--text-tertiary);
+      margin-bottom: 6px;
       flex-wrap: wrap;
     }
-    body.dark .article-card__meta { color: #6B6560; }
     .article-card__meta .tag {
-      background: #E5E0D8;
-      padding: 1px 7px;
-      border-radius: 2px;
-      font-size: .45rem;
-      font-weight: 500;
-      color: #6B6560;
+      background: #F0EDE6;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      color: var(--text-secondary);
     }
-    body.dark .article-card__meta .tag { background: #3A3630; color: #A0998F; }
     .article-card__title {
-      font-family: 'IBM Plex Sans', sans-serif;
-      font-size: .85rem;
-      font-weight: 500;
-      color: #1C1915;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
       line-height: 1.3;
-      margin-bottom: 3px;
+      margin-bottom: 4px;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
-    body.dark .article-card__title { color: #E8E2D6; }
     .article-card__excerpt {
-      font-size: .72rem;
-      color: #6B6560;
+      font-size: 0.78rem;
+      color: var(--text-secondary);
       line-height: 1.4;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
-    body.dark .article-card__excerpt { color: #A0998F; }
 
     /* ===== SIDEBAR ===== */
-    .sidebar-sticky { position: sticky; top: 80px; }
+    .sidebar-sticky {
+      position: sticky;
+      top: calc(var(--header-h) + 24px);
+    }
     .sidebar-card {
-      background: #FFFFFF;
-      border: 1px solid #E5E0D8;
-      border-radius: 2px;
-      padding: 20px;
-      margin-bottom: 16px;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 20px;
     }
-    body.dark .sidebar-card { background: #1A1206; border-color: #3A3630; }
     .sidebar-card h3 {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: .55rem; font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: .12em;
-      color: #1C1915;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
       margin-bottom: 12px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid #E5E0D8;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
     }
-    body.dark .sidebar-card h3 { color: #E8E2D6; border-color: #3A3630; }
     .sidebar-card ul { list-style: none; }
     .sidebar-card ul li {
-      padding: 6px 0;
-      border-bottom: 1px solid #E5E0D8;
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: .5rem;
-      color: #6B6560;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.82rem;
+      color: var(--text-secondary);
       cursor: pointer;
-      transition: color .2s;
+      transition: color 0.2s;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
     }
-    body.dark .sidebar-card ul li { border-color: #3A3630; color: #A0998F; }
     .sidebar-card ul li:last-child { border-bottom: none; }
-    .sidebar-card ul li:active { color: #1C1915; }
-    body.dark .sidebar-card ul li:active { color: #E8E2D6; }
-    .sidebar-card ul li i { width: 14px; color: #1C1915; font-size: .55rem; }
-    body.dark .sidebar-card ul li i { color: #E8E2D6; }
+    .sidebar-card ul li:hover { color: var(--accent); }
+    .sidebar-card ul li i {
+      width: 16px;
+      color: var(--accent);
+      font-size: 0.7rem;
+    }
     .sidebar-card ul li .badge {
       margin-left: auto;
-      background: #E5E0D8;
-      padding: 1px 6px;
-      border-radius: 2px;
-      font-size: .45rem;
-      color: #6B6560;
+      background: #F0EDE6;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      color: var(--text-secondary);
     }
-    body.dark .sidebar-card ul li .badge { background: #3A3630; color: #A0998F; }
+
+    /* Newsletter in sidebar */
     .sidebar-newsletter p {
-      font-size: .75rem;
-      color: #6B6560;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
       line-height: 1.5;
       margin-bottom: 12px;
     }
-    body.dark .sidebar-newsletter p { color: #A0998F; }
     .sidebar-newsletter input {
-      width: 100%; height: 38px;
-      border: 1px solid #E5E0D8;
-      border-radius: 2px;
-      padding: 0 12px;
-      font-size: .8rem;
+      width: 100%;
+      height: 42px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0 14px;
+      font-size: 0.85rem;
       outline: none;
-      background: #F9F7F2;
+      transition: border-color 0.2s;
+      background: var(--bg);
       margin-bottom: 8px;
-      font-family: 'IBM Plex Sans', sans-serif;
-      color: #1C1915;
     }
-    body.dark .sidebar-newsletter input { border-color: #3A3630; background: #130B00; color: #E8E2D6; }
-    .sidebar-newsletter input:focus { border-color: #1C1915; }
-    body.dark .sidebar-newsletter input:focus { border-color: #E8E2D6; }
+    .sidebar-newsletter input:focus { border-color: var(--accent); }
     .sidebar-newsletter button {
-      width: 100%; height: 38px;
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: .55rem; font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: .1em;
-      background: #1C1915;
-      color: #F9F7F2;
-      border: 1px solid #1C1915;
-      border-radius: 2px;
+      width: 100%;
+      height: 42px;
+      background: var(--accent);
+      color: #FFF;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 600;
       cursor: pointer;
+      transition: background 0.2s;
     }
-    body.dark .sidebar-newsletter button { background: #E8E2D6; color: #130B00; border-color: #E8E2D6; }
+    .sidebar-newsletter button:hover { background: var(--accent-hover); }
 
     /* ===== LOAD MORE ===== */
-    .load-more { text-align: center; padding: 24px 0; }
+    .load-more {
+      text-align: center;
+      padding: 24px 0;
+    }
     .load-more button {
-      padding: 10px 28px;
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: .55rem; font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: .1em;
-      background: #FFFFFF;
-      border: 1px solid #E5E0D8;
-      border-radius: 2px;
-      color: #6B6560;
+      padding: 12px 32px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: all 0.2s;
       cursor: pointer;
     }
-    body.dark .load-more button { background: #1A1206; border-color: #3A3630; color: #A0998F; }
-    .load-more button:active { background: #1C1915; color: #F9F7F2; border-color: #1C1915; }
-    body.dark .load-more button:active { background: #E8E2D6; color: #130B00; border-color: #E8E2D6; }
+    .load-more button:hover {
+      background: var(--accent);
+      color: #FFF;
+      border-color: var(--accent);
+    }
 
-    /* ===== FOOTER ===== */
     .site-footer {
-      border-top: 1px solid #E5E0D8;
-      padding: 28px 24px;
+      border-top: 1px solid var(--border);
+      padding: 32px 24px;
       text-align: center;
     }
-    body.dark .site-footer { border-color: #3A3630; }
     .footer-inner {
-      max-width: 1200px; margin: 0 auto;
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 16px;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
     }
     .footer-inner span {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: .5rem;
-      color: #A09A94;
-      text-transform: uppercase;
+      font-size: 0.8rem;
+      color: var(--text-tertiary);
     }
-    body.dark .footer-inner span { color: #6B6560; }
-    .footer-inner .social-links { display: flex; gap: 8px; }
+    .footer-inner .social-links {
+      display: flex;
+      gap: 12px;
+    }
     .footer-inner .social-links a {
-      width: 32px; height: 32px;
-      border: 1px solid #E5E0D8;
-      border-radius: 2px;
-      display: flex; align-items: center; justify-content: center;
-      color: #6B6560;
-      font-size: .75rem;
-      transition: all .2s;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center; justify-content: center;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      transition: all 0.2s;
     }
-    body.dark .footer-inner .social-links a { border-color: #3A3630; color: #A0998F; }
-    .footer-inner .social-links a:active { background: #1C1915; color: #F9F7F2; border-color: #1C1915; }
-    body.dark .footer-inner .social-links a:active { background: #E8E2D6; color: #130B00; border-color: #E8E2D6; }
+    .footer-inner .social-links a:hover {
+      background: var(--accent);
+      color: #FFF;
+      border-color: var(--accent);
+    }
 
-    /* ===== RESPONSIVE ===== */
+    /* =============================================
+       RESPONSIVE BREAKPOINTS
+       ============================================= */
+
+    /* Tablet (768px - 1024px) */
     @media (max-width: 1024px) {
       .content-sidebar { display: none; }
       .blog-wrapper { padding: 20px; }
     }
+
+    /* Mobile (below 768px) */
     @media (max-width: 767px) {
+      body {  }
+
+      .site-header { display: none; }
+      .mobile-header { display: flex; }
+      .bottom-nav { display: flex; }
+
       .blog-wrapper { padding: 0; }
+
       .hero-blog {
         margin: 4px 16px 20px;
-        padding: 24px 20px;
+        padding: 28px 20px;
+        border-radius: 18px;
       }
+
       .categories { padding: 0 16px; }
       .section-title { padding: 4px 16px 10px; }
+
+      /* Featured article stacks vertically on mobile */
       .featured-article {
         flex-direction: column;
         margin: 0 16px 16px;
+        border-radius: 18px;
       }
       .featured-article__image {
         width: 100%;
         min-height: 160px;
       }
-      .article-card__thumb { width: 60px; height: 60px; }
+      .featured-article__image .icon-overlay { font-size: 3rem; }
+      .article-card__thumb { width: 64px; height: 64px; }
       .featured-article__body { padding: 16px; }
+
+      /* Article grid: 1 column on mobile */
       .article-grid {
         grid-template-columns: 1fr;
         padding: 0 16px;
-        gap: 8px;
+        gap: 10px;
       }
-      .article-card { padding: 12px; }
-      .article-card__thumb { width: 60px; height: 60px; }
+      .article-card { padding: 14px; border-radius: 18px; }
+      .article-card__thumb {
+        width: 64px; height: 64px;
+        font-size: 1.3rem;
+      }
+
       .load-more { padding: 8px 0 16px; }
+
       .site-footer { padding: 20px 16px; }
       .footer-inner { flex-direction: column; text-align: center; }
     }
 
-    
-    
-    body.dark 
-    @media (max-width: 767px) {  }
-    
-    body.dark 
-    
-    
-    body.dark 
-    .nav-item 
-    body.dark .nav-item 
-    
-    
-    body.dark 
-    
-  /* ══════ BOTTOM NAV (standardized across all MIB pages) ══════ */
-.bottom-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: var(--surface);
-  border-top: 1px solid var(--border);
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  height: 68px;
-  padding-bottom: max(6px, env(safe-area-inset-bottom));
-  z-index: 100;
-}
+    /* Desktop large (above 1200px) */
+    @media (min-width: 1025px) {
+      .article-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  
 
-.nav-item {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3px;
-  font-family: var(--font-mono);
-  font-size: 0.5rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-dim);
-  transition: color 0.15s;
-  padding: 4px 0;
-  flex: 1;
-  max-width: 80px;
-  border: none;
-  background: none;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.nav-item i { font-size: 1.1rem; }
-
-.nav-item.active { color: var(--text); }
-.nav-item.active i { color: var(--text); }
-
-.nav-item .nav-add-btn,
-.nav-add-btn {
-  width: 42px;
-  height: 42px;
-  background: var(--text);
-  color: var(--bg);
-  border-radius: 2px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 2px;
-}
-
-.nav-item .nav-add-btn i,
-.nav-add-btn i {
-  font-size: 1rem;
-  color: var(--bg);
-}
-
-.nav-badge {
-  width: 5px;
-  height: 5px;
-  background: var(--text);
-  border-radius: 50%;
-  position: absolute;
-  top: 2px;
-  right: 4px;
-}
+/* ══════ BOTTOM NAV (standardized) ══════ */
+.bottom-nav { position:fixed; bottom:0; left:0; right:0; background:var(--surface); border-top:1px solid var(--border); display:flex; justify-content:space-evenly; align-items:center; height:68px; padding-bottom:max(6px,env(safe-area-inset-bottom)); z-index:100; }
+.nav-item { position:relative; display:flex; flex-direction:column; align-items:center; gap:3px; font-family:'IBM Plex Mono',monospace; font-size:0.5rem; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-dim); transition:color 0.15s; padding:4px 0; flex:1; max-width:80px; border:none; background:none; cursor:pointer; text-decoration:none; }
+.nav-item i { font-size:1.1rem; }
+.nav-item.active { color:var(--text); }
+.nav-item.active i { color:var(--text); }
+.nav-add-btn { width:42px; height:42px; background:var(--text); color:var(--bg); border-radius:2px; display:flex; align-items:center; justify-content:center; margin-bottom:2px; }
+.nav-add-btn i { font-size:1rem; color:var(--bg); }
+.nav-badge { width:5px; height:5px; background:var(--text); border-radius:50%; position:absolute; top:2px; right:4px; }
 
 </style>
 </head>
 <body>
 
-  <!-- ===== treqe HEADER (desktop) ===== -->
-  <div class="treqe-header">
-    <div class="treqe-header__left">
-      <a href="../v16-portada/" class="treqe-header__logo" style="text-decoration:none;">treqe.blog</a>
-    </div>
-    <div class="treqe-header__right">
-      <button class="treqe-header__toggle" id="darkToggle" onclick="toggleDarkMode()" aria-label="Dark mode"><i class="fas fa-moon"></i></button>
-      <span class="treqe-header__pills">
-        <a href="../v1-catalogo/" class="treqe-pill">Catálogo</a>
-        <a href="../v13-blog/" class="treqe-pill active">Blog</a>
-      </span>
-      <nav class="treqe-nav">
-        <a href="../v1-catalogo/">Catálogo</a>
+  <!-- Desktop Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="../v16-portada/index.html" class="logo-link">
+        <img class="treqe-logo" src="treqe_logo_official.png" alt="treqe">
+        <span class="blog-suffix">.blog</span>
+      </a>
+      <nav class="header-nav">
+        <a href="../v1-catalogo/">Catalogo</a>
       </nav>
     </div>
+  </header>
+
+  <!-- Mobile Header -->
+  <div class="mobile-header">
+    <div class="mob-logo">
+      <a href="../v16-portada/index.html" class="logo-link">
+        <img class="treqe-logo" src="treqe_logo_official.png" alt="treqe">
+        <span class="blog-suffix">.blog</span>
+      </a>
+    </div>
+    <a href="../v1-catalogo/" style="margin-left:auto;padding:8px 14px;border-radius:8px;font-size:.82rem;font-weight:500;color:var(--text-sec)">Catalogo</a>
   </div>
 
-  <!-- ===== MAIN CONTENT ===== -->
+  <!-- Main Content -->
   <main class="blog-wrapper">
 
     <!-- Hero -->
     <div class="hero-blog">
       <div class="hero-blog__tag">Primera entrega</div>
-      <h1>Por qué el intercambio es más inteligente que comprar</h1>
-      <p>Intercambiamos desde antes de inventar el dinero. treqe recupera lo mejor de esa idea con un algoritmo que hace posible lo imposible.</p>
+      <h1>Por que el trueque es mas inteligente que comprar</h1>
+      <p>Intercambiamos desde antes de inventar el dinero. Treqe recupera lo mejor de esa idea con un algoritmo que hace posible lo imposible.</p>
       <a class="hero-blog__cta" href="posts/primera-entrega.html">
-        Leer artículo <i class="fas fa-arrow-right"></i>
+        Leer articulo <i class="fas fa-arrow-right"></i>
       </a>
     </div>
 
     <!-- Categories -->
     <div class="categories">
       <button class="cat-chip active" onclick="filterCategory('all',this)">Todo</button>
-      <button class="cat-chip" onclick="filterCategory('economia',this)">Intercambio y economía</button>
+      <button class="cat-chip" onclick="filterCategory('economía',this)">Trueque y economía</button>
       <button class="cat-chip" onclick="filterCategory('historias',this)">Casos reales</button>
-      <button class="cat-chip" onclick="filterCategory('tecnologia',this)">Tecnología</button>
-      <button class="cat-chip" onclick="filterCategory('guia',this)">Guía</button>
+      <button class="cat-chip" onclick="filterCategory('tecnología',this)">Tecnología</button>
+      <button class="cat-chip" onclick="filterCategory('guia',this)">Guia</button>
       <button class="cat-chip" onclick="filterCategory('sostenibilidad',this)">Sostenibilidad</button>
     </div>
 
-    <!-- Content row -->
+    <!-- Content row (main + sidebar) -->
     <div class="content-row">
 
       <!-- Main column -->
       <div class="content-main">
 
         <div class="section-title">
-          <h2>Artículos destacados</h2>
+          <h2>Articulos destacados</h2>
           <span>Más recientes</span>
         </div>
 
         <!-- Featured -->
-        <div class="featured-article" onclick="window.location.href='posts/primera-entrega.html'">
+        <div class="featured-article" onclick="window.location.href="posts/primera-entrega.html"">
           <div class="featured-article__image">
-            <img src="assets/primera-entrega.png" alt="treqe no es Wallapop" style="display:none;">
+            <img src="assets/primera-entrega.png" alt="Treqe no es Wallapop">
             <span class="featured-badge">Nuevo</span>
             <i class="fas fa-arrows-spin icon-overlay"></i>
           </div>
@@ -730,88 +793,88 @@
               <span class="dot"></span>
               <span>5 min lectura</span>
             </div>
-            <div class="featured-article__title">treqe no es Wallapop: el intercambio estructurado llegó para quedarse</div>
-            <div class="featured-article__excerpt">Comprar y vender es el modelo más obvio, pero no el más eficiente. Detrás de cada objeto que acumulas en tu casa hay una oportunidad de intercambio que estás desperdiciando.</div>
+            <div class="featured-article__title">Treqe no es Wallapop: el trueque estructurado llego para quedarse</div>
+            <div class="featured-article__excerpt">Comprar y vender es el modelo más obvio, pero no el más eficiente. Detras de cada objeto que acumulas en tú casa hay una oportunidad de intercambio que estás desperdiciando.</div>
             <div class="featured-article__read">Seguir leyendo <i class="fas fa-arrow-right"></i></div>
           </div>
         </div>
 
         <div class="section-title">
-          <h2>Más artículos</h2>
-          <span>Página 1 de 3</span>
+          <h2>Más articulos</h2>
+          <span>Pagina 1 de 3</span>
         </div>
 
         <!-- Article Grid -->
         <div class="article-grid">
 
-          <div class="article-card" data-cat="tecnologia" onclick="window.location.href='posts/algoritmo-intercambio-circular.html'">
-            <div class="article-card__thumb teal"><img src="assets/algoritmo.png" alt="" style="display:none;"></div>
+          <div class="article-card" data-cat="tecnología" onclick="window.location.href="posts/algoritmo-intercambio-circular.html"">
+            <div class="article-card__thumb teal"><img src="assets/algoritmo.png" alt=""></div>
             <div class="article-card__content">
               <div class="article-card__meta">
                 <span>7 may 2026</span>
                 <span class="tag">Tecnología</span>
               </div>
               <div class="article-card__title">El algoritmo que hace posible el intercambio circular</div>
-              <div class="article-card__excerpt">Cómo resuelve treqe el problema matemático del intercambio múltiple sin volverse loco en el intento.</div>
+              <div class="article-card__excerpt">Como resuelve Treqe el problema matematico del trueque multiple sin volverse loco en el intento.</div>
             </div>
           </div>
 
-          <div class="article-card" data-cat="historias" onclick="window.location.href='posts/historia-ipad-guitarra.html'">
-            <div class="article-card__thumb gold"><img src="assets/historia-ipad.png" alt="" style="display:none;"></div>
+          <div class="article-card" data-cat="historias" onclick="window.location.href="posts/historia-ipad-guitarra.html"">
+            <div class="article-card__thumb gold"><img src="assets/historia-ipad.png" alt=""></div>
             <div class="article-card__content">
               <div class="article-card__meta">
                 <span>5 may 2026</span>
                 <span class="tag">Historias</span>
               </div>
-              <div class="article-card__title">Intercambié un iPad por 3 meses de clases de guitarra y una cena</div>
-              <div class="article-card__excerpt">La historia de cómo Laura consiguió lo que necesitaba sin gastar un euro.</div>
+              <div class="article-card__title">Intercambie un iPad por 3 meses de clases de guitarra y una cena</div>
+              <div class="article-card__excerpt">La historia de como Laura consiguio lo que necesitaba sin gastar un euro.</div>
             </div>
           </div>
 
-          <div class="article-card" data-cat="guia" onclick="window.location.href='posts/guia-principiantes.html'">
-            <div class="article-card__thumb purple"><img src="assets/guia.png" alt="" style="display:none;"></div>
+          <div class="article-card" data-cat="guia" onclick="window.location.href="posts/guia-principiantes.html"">
+            <div class="article-card__thumb purple"><img src="assets/guia.png" alt=""></div>
             <div class="article-card__content">
               <div class="article-card__meta">
                 <span>3 may 2026</span>
-                <span class="tag">Guía</span>
+                <span class="tag">Guia</span>
               </div>
-              <div class="article-card__title">Guía para principiantes: cómo funciona el intercambio en treqe</div>
-              <div class="article-card__excerpt">Todo lo que necesitas saber para hacer tu primer intercambio.</div>
+              <div class="article-card__title">Guia para principiantes: como funciona el trueque en Treqe</div>
+              <div class="article-card__excerpt">Todo lo que necesitas saber para hacer tú primer intercambio.</div>
             </div>
           </div>
 
-          <div class="article-card" data-cat="economia" onclick="window.location.href='posts/anti-consumismo-inteligente.html'">
-            <div class="article-card__thumb dark"><img src="assets/anti-consumismo.png" alt="" style="display:none;"></div>
+          <div class="article-card" data-cat="economía" onclick="window.location.href="posts/anti-consumismo-inteligente.html"">
+            <div class="article-card__thumb dark"><img src="assets/anti-consumismo.png" alt=""></div>
             <div class="article-card__content">
               <div class="article-card__meta">
                 <span>1 may 2026</span>
-                <span class="tag">Reflexión</span>
+                <span class="tag">Reflexion</span>
               </div>
               <div class="article-card__title">Anti-consumismo inteligente: no es comprar menos, es intercambiar mejor</div>
               <div class="article-card__excerpt">El consumo consciente no va de privarse. Va de optimizar.</div>
             </div>
           </div>
 
-          <div class="article-card" data-cat="guia" onclick="window.location.href='posts/sistema-reputacion.html'">
-            <div class="article-card__thumb orange"><img src="assets/reputacion.png" alt="" style="display:none;"></div>
+          <div class="article-card" data-cat="guia" onclick="window.location.href="posts/sistema-reputacion.html"">
+            <div class="article-card__thumb orange"><img src="assets/reputacion.png" alt=""></div>
             <div class="article-card__content">
               <div class="article-card__meta">
                 <span>28 abr 2026</span>
                 <span class="tag">Producto</span>
               </div>
-              <div class="article-card__title">Cómo funciona el sistema de reputación</div>
+              <div class="article-card__title">Como funciona el sistema de reputación</div>
               <div class="article-card__excerpt">La confianza es la moneda más valiosa en una comunidad de intercambio.</div>
             </div>
           </div>
 
-          <div class="article-card" data-cat="sostenibilidad" onclick="window.location.href='posts/treqe-economia-circular.html'">
-            <div class="article-card__thumb teal"><img src="assets/economia-circular.png" alt="" style="display:none;"></div>
+          <div class="article-card" data-cat="sostenibilidad" onclick="window.location.href="posts/treqe-economia-circular.html"">
+            <div class="article-card__thumb teal"><img src="assets/economia-circular.png" alt=""></div>
             <div class="article-card__content">
               <div class="article-card__meta">
                 <span>25 abr 2026</span>
                 <span class="tag">Sostenibilidad</span>
               </div>
-              <div class="article-card__title">treqe y la economía circular: cómo tus objetos pueden tener mil vidas</div>
+              <div class="article-card__title">Treqe y la economía circular: como tus objetos pueden tener mil vidas</div>
               <div class="article-card__excerpt">Cada vez que intercambias algo, alargas su ciclo de vida.</div>
             </div>
           </div>
@@ -820,55 +883,55 @@
 
         <!-- Load more -->
         <div class="load-more">
-          <button onclick="window.location.href='#'">Cargar más artículos</button>
+          <button onclick="window.location.href="#"">Cargar más articulos</button>
         </div>
       </div>
 
-      <!-- Sidebar -->
+      <!-- Sidebar (desktop only) -->
       <aside class="content-sidebar">
         <div class="sidebar-sticky">
 
           <!-- Newsletter -->
           <div class="sidebar-card sidebar-newsletter">
             <h3>Newsletter</h3>
-            <p>Recibe los nuevos artículos una vez a la semana. Zero spam.</p>
+            <p>Recibe los nuevos articulos una vez a la semana. Zero spam.</p>
             <input type="email" placeholder="tu@email.com">
-            <button onclick="var e=this.parentElement.querySelector('input');if(e.value){alert('Gracias! Te avisaremos cuando haya nuevos artículos.');e.value=''}else{alert('Introduce tu email primero')}">Suscribirse</button>
+            <button onclick="var e=this.parentElement.querySelector('input');if(e.value){alert('Gracias! Te avisaremos cuando haya nuevos articulos.');e.value=''}else{alert('Introduce tú email primero')}">Suscribirse</button>
           </div>
 
           <!-- Categorías -->
           <div class="sidebar-card">
             <h3>Categorías</h3>
             <ul>
-              <li onclick="filterCategory('economia',document.querySelector('.cat-chip'))"><i class="fas fa-tag"></i> Intercambio y economía <span class="badge">12</span></li>
+              <li onclick="filterCategory('economía',document.querySelector('.cat-chip'))"><i class="fas fa-tag"></i> Trueque y economía <span class="badge">12</span></li>
               <li onclick="filterCategory('historias',document.querySelector('.cat-chip'))"><i class="fas fa-tag"></i> Casos reales <span class="badge">8</span></li>
-              <li onclick="filterCategory('tecnologia',document.querySelector('.cat-chip'))"><i class="fas fa-tag"></i> Tecnología <span class="badge">6</span></li>
-              <li onclick="filterCategory('guia',document.querySelector('.cat-chip'))"><i class="fas fa-tag"></i> Guía <span class="badge">5</span></li>
+              <li onclick="filterCategory('tecnología',document.querySelector('.cat-chip'))"><i class="fas fa-tag"></i> Tecnología <span class="badge">6</span></li>
+              <li onclick="filterCategory('guia',document.querySelector('.cat-chip'))"><i class="fas fa-tag"></i> Guia <span class="badge">5</span></li>
               <li onclick="filterCategory('sostenibilidad',document.querySelector('.cat-chip'))"><i class="fas fa-tag"></i> Sostenibilidad <span class="badge">4</span></li>
             </ul>
           </div>
 
           <!-- Popular -->
           <div class="sidebar-card">
-            <h3>Más leídos</h3>
+            <h3>Más leidos</h3>
             <ul>
-              <li onclick="window.location.href='posts/primera-entrega.html'"><i class="fas fa-arrow-right"></i> treqe no es Wallapop</li>
-              <li onclick="window.location.href='posts/algoritmo-intercambio-circular.html'"><i class="fas fa-arrow-right"></i> Cómo treqe encuentra tu intercambio</li>
-              <li onclick="window.location.href='posts/guia-principiantes.html'"><i class="fas fa-arrow-right"></i> Guía para principiantes</li>
-              <li onclick="window.location.href='posts/sistema-reputacion.html'"><i class="fas fa-arrow-right"></i> Sistema de reputación</li>
+              <li onclick="window.location.href="posts/primera-entrega.html""><i class="fas fa-arrow-right"></i> Treqe no es Wallapop</li>
+              <li onclick="window.location.href="posts/algoritmo-intercambio-circular.html""><i class="fas fa-arrow-right"></i> Como Treqe encuentra tú intercambio</li>
+              <li onclick="window.location.href="posts/guia-principiantes.html""><i class="fas fa-arrow-right"></i> Guia para principiantes</li>
+              <li onclick="window.location.href="posts/sistema-reputacion.html""><i class="fas fa-arrow-right"></i> Sistema de reputación</li>
             </ul>
           </div>
 
         </div>
       </aside>
 
-    </div>
+    </div><!-- /content-row -->
   </main>
 
   <!-- Footer -->
   <footer class="site-footer">
     <div class="footer-inner">
-      <span>&copy; 2026 treqe. Intercambia, no compres.</span>
+      <span>&copy; 2026 Treqe. Intercambia, no compres.</span>
       <div class="social-links">
         <a href="#" onclick="alert('Twitter (demo)')"><i class="fab fa-twitter"></i></a>
         <a href="#" onclick="alert('Instagram (demo)')"><i class="fab fa-instagram"></i></a>
@@ -878,41 +941,8 @@
     </div>
   </footer>
 
-  <!-- Bottom Nav (mobile) -->
-  <nav class="bottom-nav">
-    <a href="../v1-catalogo/" class="nav-item"><i class="fas fa-search"></i><span>Buscar</span></a>
-    <a href="../v12-mis-matches/" class="nav-item"><i class="fas fa-exchange-alt"></i><span>treqes</span></a>
-    <a href="../v3-subir/" class="nav-item nav-add"><div class="nav-add-btn"><i class="fas fa-plus"></i></div></a>
-    <a href="../v11-notificaciones/" class="nav-item"><i class="fas fa-bell"></i><span>Avisos</span><span class="nav-badge"></span></a>
-    <a href="../v4-perfil/" class="nav-item"><i class="fas fa-user"></i><span>Perfil</span></a>
-  </nav>
-
-  <!-- Legal footer -->
-  <div style="padding:24px 16px 80px;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:.45rem;color:#A09A94;line-height:2;">
-    <div style="margin-bottom:4px;"><span style="font-weight:600;color:#1C1915;">treqe</span><span style="color:#6B6560;">.blog</span></div>
-    <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;">
-      <a href="../v17-aviso-legal/" style="color:#A09A94;text-decoration:none;">Aviso Legal</a>
-      <a href="../v18-privacidad/" style="color:#A09A94;text-decoration:none;">Privacidad</a>
-      <a href="../v19-terminos/" style="color:#A09A94;text-decoration:none;">Términos</a>
-      <a href="../v20-cookies/" style="color:#A09A94;text-decoration:none;">Cookies</a>
-    </div>
-    <div style="margin-top:6px;color:#6B6560;">© 2026 treqe. Todos los derechos reservados.</div>
-  </div>
-
+  <!-- Bottom Nav (mobile only — exacto v1-catalogo) -->
   <script>
-    // ===== DARK MODE =====
-    function toggleDarkMode() {
-      document.body.classList.toggle('dark');
-      var icon = document.getElementById('darkToggle').querySelector('i');
-      icon.className = document.body.classList.contains('dark') ? 'fas fa-sun' : 'fas fa-moon';
-      try { localStorage.setItem('treqe-dark-mode', document.body.classList.contains('dark') ? '1' : '0'); } catch(e) {}
-    }
-    try { if (localStorage.getItem('treqe-dark-mode') === '1') document.body.classList.add('dark'); } catch(e) {}
-    if (document.body.classList.contains('dark')) {
-      var icon = document.getElementById('darkToggle').querySelector('i');
-      if (icon) icon.className = 'fas fa-sun';
-    }
-
     function filterCategory(cat, el) {
       var chips = document.querySelectorAll('.cat-chip');
       chips.forEach(function(c) { c.classList.remove('active'); });
@@ -940,7 +970,6 @@
       });
     }
     updateBadges();
-
     function goToDiscover() { window.parent.location.href = '../v1-catalogo/'; }
     function goToTrades() { window.parent.location.href = '../v12-mis-matches/'; }
     function goToUpload() { window.parent.location.href = '../v3-subir/'; }
@@ -948,5 +977,29 @@
     function goToProfile() { window.parent.location.href = '../v4-perfil/'; }
   </script>
 
+  <!-- ===== LEGAL FOOTER ===== -->
+  <div style="padding: 24px 16px 100px; text-align: center; font-size: 0.72rem; color: #888; line-height: 2.2;">
+    <div style="margin-bottom: 4px;"><span style="font-weight:700;color:#1C1915;">treqe</span><span style="color:#A09A94;">.blog</span></div>
+    <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;">
+      <a href="../../v17-aviso-legal/" style="color:#888;text-decoration:none;">Aviso Legal</a>
+      <a href="../../v18-privacidad/" style="color:#888;text-decoration:none;">Privacidad</a>
+      <a href="../../v19-terminos/" style="color:#888;text-decoration:none;">Términos</a>
+      <a href="../../v20-cookies/" style="color:#888;text-decoration:none;">Cookies</a>
+      <a href="../../v21-pagos-escrow/" style="color:#888;text-decoration:none;">Pagos</a>
+      <a href="../../v22-envios-costes/" style="color:#888;text-decoration:none;">Env&iacute;os</a>
+    </div>
+    <div style="margin-top:8px;color:#A09A94;">© 2026 Treqe. Todos los derechos reservados.</div>
+  </div>
+  <!-- ===== LEGAL FOOTER ===== -->
+  <div style="padding:24px 16px 80px;text-align:center;font-size:.72rem;color:#888;line-height:2.2;">
+    <div style="margin-bottom:4px;"><span style="font-weight:700;color:#1C1915;">treqe</span><span style="color:#A09A94;">.blog</span></div>
+    <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;">
+      <a href="../v17-aviso-legal/" style="color:#888;text-decoration:none;">Aviso Legal</a>
+      <a href="../v18-privacidad/" style="color:#888;text-decoration:none;">Privacidad</a>
+      <a href="../v19-terminos/" style="color:#888;text-decoration:none;">Términos</a>
+      <a href="../v20-cookies/" style="color:#888;text-decoration:none;">Cookies</a>
+    </div>
+    <div style="margin-top:8px;color:#A09A94;">© 2026 Treqe. Todos los derechos reservados.</div>
+  </div>
 </body>
 </html>

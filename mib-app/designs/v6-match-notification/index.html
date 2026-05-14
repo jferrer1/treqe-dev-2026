@@ -3,288 +3,486 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>treqe — Match encontrado</title>
-  <meta name="robots" content="noindex, nofollow">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <title>TREQE — Match encontrado</title>
+    <meta name="robots" content="noindex, nofollow">
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-  :root {
-    --bg:        #F9F7F2;
-    --surface:   #FFFFFF;
-    --text:      #1C1915;
-    --text-sub:  #6B6560;
-    --text-dim:  #A09A94;
-    --border:    #E5E0D8;
-    --border-strong: #C5C0B8;
-    --accent:    #1C1915;
-    --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
-    --font-sans: 'IBM Plex Sans', 'Inter', 'Segoe UI', sans-serif;
-  }
 
-  body.dark {
-    --bg:        #130B00;
-    --surface:   #1A1206;
-    --text:      #E8E2D6;
-    --text-sub:  #A0998F;
-    --text-dim:  #6B6560;
-    --border:    #3A3630;
-    --border-strong: #5A5650;
-    --accent:    #E8E2D6;
-  }
-/* ===== treqe Design System - Taylor Penton Editorial ===== */
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { font-size: 16px; -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
-body {
-  font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  background: #F9F7F2;
-  color: #1C1915;
-  min-height: 100dvh;
-  padding-bottom: 90px;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  transition: background 0.2s, color 0.2s;
+/* ══════ MIB Design System ══════ */
+:root {
+  --bg: #F9F7F2; --surface: #FFF; --text: #1C1915;
+  --text-sub: #6B6560; --text-dim: #A09A94;
+  --border: #E5E0D8; --border-strong: #C5C0B8; --accent: #1C1915;
 }
-img { max-width: 100%; display: block; }
-button { font-family: 'IBM Plex Mono', monospace; cursor: pointer; border: 1px solid #E5E0D8; background: transparent; border-radius: 2px; color: #1C1915; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.12em; padding: 10px 20px; transition: all 0.15s; }
-button:hover { background: #1C1915; color: #FFF; border-color: #1C1915; }
-button:active { opacity: 0.7; }
-a { text-decoration: none; color: inherit; }
-input, textarea, select { font-family: 'IBM Plex Sans', sans-serif; font-size: 0.9rem; border: 1px solid #E5E0D8; border-radius: 2px; padding: 10px 12px; background: #FFF; color: #1C1915; outline: none; transition: border-color 0.15s; width: 100%; }
-input:focus, textarea:focus { border-color: #1C1915; }
-input::placeholder, textarea::placeholder { color: #A09A94; }
-
-/* ===== Dark Mode ===== */
-body.dark { background: #130B00; color: #E8E2D6; }
-body.dark input, body.dark textarea, body.dark select { background: #1A1206; border-color: #3A3630; color: #E8E2D6; }
-body.dark button { border-color: #3A3630; color: #E8E2D6; }
-body.dark button:hover { background: #E8E2D6; color: #130B00; border-color: #E8E2D6; }
-
-/* ===== Typography ===== */
-h1, h2, h3, h4 { font-family: 'IBM Plex Sans', sans-serif; font-weight: 400; letter-spacing: -0.02em; line-height: 1.2; }
-h1 { font-size: 1.6rem; }
-h2 { font-size: 1.2rem; }
-h3 { font-size: 1rem; }
-p { font-size: 0.9rem; line-height: 1.5; color: #6B6560; }
-body.dark p { color: #A0998F; }
-
-/* ===== Labels / Meta ===== */
-.label-mono, label, .mono-label, .tag, .badge, .chip { font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.16em; color: #A09A94; }
-body.dark .label-mono, body.dark label, body.dark .mono-label, body.dark .tag { color: #6B6560; }
-
-/* ===== Header ===== */
-.treqe-header {
-  position: sticky; top: 0; z-index: 100;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 14px 16px;
-  background: #F9F7F2; border-bottom: 1px solid #E5E0D8;
-  transition: background 0.2s, border-color 0.2s;
-}
-body.dark .treqe-header { background: #130B00; border-color: #3A3630; }
-.treqe-logo { font-family: 'IBM Plex Sans', sans-serif; font-size: 1.3rem; font-weight: 700; font-style: italic; letter-spacing: -0.03em; color: #1C1915; }
-body.dark .treqe-logo { color: #E8E2D6; }
-.treqe-header-right { display: flex; align-items: center; gap: 8px; }
-.treqe-nav-pill { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 6px 12px; border: 1px solid #E5E0D8; border-radius: 2px; color: #6B6560; cursor: pointer; background: transparent; transition: all 0.15s; }
-body.dark .treqe-nav-pill { border-color: #3A3630; color: #A0998F; }
-.treqe-nav-pill:hover, .treqe-nav-pill.active { background: #1C1915; color: #FFF; border-color: #1C1915; }
-body.dark .treqe-nav-pill:hover { background: #E8E2D6; color: #130B00; border-color: #E8E2D6; }
-.treqe-dark-toggle { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; padding: 6px 10px; border: 1px solid #E5E0D8; border-radius: 2px; color: #6B6560; cursor: pointer; background: transparent; }
-body.dark .treqe-dark-toggle { border-color: #3A3630; color: #A0998F; }
-
-/* ===== Bottom Nav ===== */
-.treqe-bottom-nav {
-  position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
-  display: flex; align-items: center; justify-content: space-around;
-  padding: 8px 0 max(8px, env(safe-area-inset-bottom));
-  background: #F9F7F2; border-top: 1px solid #E5E0D8;
-  transition: background 0.2s, border-color 0.2s;
-}
-body.dark .treqe-bottom-nav { background: #130B00; border-color: #3A3630; }
-.treqe-nav-item { display: flex; flex-direction: column; align-items: center; gap: 2px; font-family: 'IBM Plex Mono', monospace; font-size: 0.5rem; text-transform: uppercase; letter-spacing: 0.12em; color: #A09A94; text-decoration: none; padding: 4px 8px; transition: color 0.15s; }
-.treqe-nav-item i { font-size: 0.9rem; color: #6B6560; }
-body.dark .treqe-nav-item { color: #6B6560; }
-body.dark .treqe-nav-item i { color: #A0998F; }
-.treqe-nav-item.active { color: #1C1915; }
-.treqe-nav-item.active i { color: #1C1915; }
-body.dark .treqe-nav-item.active { color: #E8E2D6; }
-body.dark .treqe-nav-item.active i { color: #E8E2D6; }
-
-/* ===== Cards ===== */
-.treqe-card { border: 1px solid #E5E0D8; border-radius: 2px; background: #FFF; padding: 16px; }
-body.dark .treqe-card { border-color: #3A3630; background: #1A1206; }
-
-/* ===== Utility ===== */
-.text-center { text-align: center; }
-.text-sub { color: #6B6560; }
-body.dark .text-sub { color: #A0998F; }
-.text-dim { color: #A09A94; }
-body.dark .text-dim { color: #6B6560; }
-.mono { font-family: 'IBM Plex Mono', monospace; }
-.uppercase { text-transform: uppercase; }
-.small { font-size: 0.7rem; }
-.gap-8 { gap: 8px; }
-.gap-16 { gap: 16px; }
-.mt-8 { margin-top: 8px; }
-.mt-16 { margin-top: 16px; }
-.mt-24 { margin-top: 24px; }
-.mb-8 { margin-bottom: 8px; }
-.mb-16 { margin-bottom: 16px; }
-.p-16 { padding: 16px; }
-.px-16 { padding-left: 16px; padding-right: 16px; }
-.flex { display: flex; }
-.flex-col { flex-direction: column; }
-.items-center { align-items: center; }
-.justify-center { justify-content: center; }
-.justify-between { justify-content: space-between; }
-.w-full { width: 100%; }
-.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-
-/* ===== Footer ===== */
-.treqe-footer { padding: 24px 16px; font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.12em; color: #A09A94; text-align: center; border-top: 1px solid #E5E0D8; margin-top: 24px; }
-body.dark .treqe-footer { border-color: #3A3630; color: #6B6560; }
-
-/* ===== Status bar mock ===== */
-.status-bar { display: flex; justify-content: space-between; align-items: center; padding: 6px 16px 2px; font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; color: #A09A94; }
-body.dark .status-bar { color: #6B6560; }
-.status-bar .time { font-weight: 600; }
-.status-bar .icons { display: flex; gap: 4px; }
-
-/* ===== Form elements ===== */
-.treqe-input { font-family: 'IBM Plex Sans', sans-serif; font-size: 0.9rem; border: 1px solid #E5E0D8; border-radius: 2px; padding: 10px 12px; background: #FFF; color: #1C1915; outline: none; width: 100%; }
-body.dark .treqe-input { background: #1A1206; border-color: #3A3630; color: #E8E2D6; }
-.treqe-input:focus { border-color: #1C1915; }
-body.dark .treqe-input:focus { border-color: #E8E2D6; }
-
-.treqe-select { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; border: 1px solid #E5E0D8; border-radius: 2px; padding: 8px 12px; background: #FFF; color: #1C1915; outline: none; }
-body.dark .treqe-select { background: #1A1206; border-color: #3A3630; color: #E8E2D6; }
-
-.treqe-checkbox { -webkit-appearance: none; appearance: none; width: 16px; height: 16px; border: 1px solid #E5E0D8; border-radius: 2px; cursor: pointer; flex-shrink: 0; position: relative; background: #FFF; }
-body.dark .treqe-checkbox { border-color: #3A3630; background: #1A1206; }
-.treqe-checkbox:checked { background: #1C1915; border-color: #1C1915; }
-body.dark .treqe-checkbox:checked { background: #E8E2D6; border-color: #E8E2D6; }
-.treqe-checkbox:checked::after { content: '\2713'; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); color: #FFF; font-size: 0.6rem; font-weight: 700; }
-body.dark .treqe-checkbox:checked::after { color: #130B00; }
-
-/* ===== Separator ===== */
-.treqe-hr { border: none; border-top: 1px solid #E5E0D8; margin: 16px 0; }
-body.dark .treqe-hr { border-color: #3A3630; }
-
-/* ===== Alert / Notice ===== */
-.treqe-notice { border: 1px solid #E5E0D8; border-radius: 2px; padding: 12px 16px; font-size: 0.8rem; color: #6B6560; }
-body.dark .treqe-notice { border-color: #3A3630; color: #A0998F; }
-
-/* ===== Pill tag ===== */
-.treqe-tag { display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 0.5rem; text-transform: uppercase; letter-spacing: 0.12em; border: 1px solid #E5E0D8; border-radius: 2px; padding: 3px 8px; color: #6B6560; }
-body.dark .treqe-tag { border-color: #3A3630; color: #A0998F; }
-
-/* ===== Demo tag ===== */
-.demo-tag { font-family: 'IBM Plex Mono', monospace; font-size: 0.45rem; color: #C5C0B8; text-align: center; padding: 4px; }
-body.dark .demo-tag { color: #5A5650; }
-
-/* ===== Empty state ===== */
-.treqe-empty { text-align: center; padding: 48px 16px; color: #A09A94; }
-body.dark .treqe-empty { color: #6B6560; }
-.treqe-empty i { font-size: 2rem; margin-bottom: 12px; color: #C5C0B8; }
-body.dark .treqe-empty i { color: #5A5650; }
-.treqe-empty p { font-size: 0.85rem; }
-
-/* ===== Fade animation ===== */
-@keyframes fadeUp { 0% { opacity: 0; transform: translateY(12px); } 100% { opacity: 1; transform: translateY(0); } }
-@keyframes popIn { 0% { opacity: 0; transform: scale(0.8); } 100% { opacity: 1; transform: scale(1); } }
-  /* ══════ BOTTOM NAV (standardized across all MIB pages) ══════ */
-.bottom-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: var(--surface);
-  border-top: 1px solid var(--border);
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  height: 68px;
-  padding-bottom: max(6px, env(safe-area-inset-bottom));
-  z-index: 100;
+body.dark {
+  --bg: #130B00; --surface: #1A1206; --text: #E8E2D6;
+  --text-sub: #A0998F; --text-dim: #6B6560;
+  --border: #3A3630; --border-strong: #5A5650; --accent: #E8E2D6;
 }
 
-.nav-item {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3px;
-  font-family: var(--font-mono);
-  font-size: 0.5rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-dim);
-  transition: color 0.15s;
-  padding: 4px 0;
-  flex: 1;
-  max-width: 80px;
-  border: none;
-  background: none;
-  cursor: pointer;
-  text-decoration: none;
-}
 
-.nav-item i { font-size: 1.1rem; }
+    .treqe-logo { height: 24px; width: 76px; flex-shrink: 0; vertical-align: middle; }
+    .logo-link { display: inline-flex; text-decoration: none; line-height: 0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; }
+    body {
+      font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #F9F7F2;
+      color: #1C1915;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+    a { text-decoration: none; color: inherit; }
 
-.nav-item.active { color: var(--text); }
-.nav-item.active i { color: var(--text); }
+    :root {
+      --bg: #F9F7F2;
+      --text: #1C1915;
+      --text-secondary: #6B6560;
+      --text-tertiary: #A09A94;
+      --border: #E5E0D8;
+      --accent: #1C1915;
+      --accent-hover: #6B6560;
+      --success: #1C1915;
+      --danger: #E74C3C;
+      --card-bg: #FFFFFF;
+      --shadow: 0 4px 20px rgba(0,0,0,0.05);
+    }
 
-.nav-item .nav-add-btn,
-.nav-add-btn {
-  width: 42px;
-  height: 42px;
-  background: var(--text);
-  color: var(--bg);
-  border-radius: 2px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 2px;
-}
+    /* ===== STATUS BAR ===== */
+    .status-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 20px 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      background: var(--bg);
+    }
+    .status-bar .time { font-weight: 700; color: var(--text); }
+    .status-bar .icons { display: flex; gap: 6px; font-size: 0.7rem; }
 
-.nav-item .nav-add-btn i,
-.nav-add-btn i {
-  font-size: 1rem;
-  color: var(--bg);
-}
+    /* ===== DEMO NOTICE ===== */
+    .demo-notice {
+      text-align: center;
+      padding: 6px 16px;
+      font-size: 0.65rem;
+      color: var(--text-tertiary);
+      background: #F0EDE6;
+      letter-spacing: 0.3px;
+    }
+    .demo-notice i { margin-right: 4px; }
 
-.nav-badge {
-  width: 5px;
-  height: 5px;
-  background: var(--text);
-  border-radius: 50%;
-  position: absolute;
-  top: 2px;
-  right: 4px;
-}
+    /* ===== SIMULATE APP BAR ===== */
+    .app-bar {
+      display: flex;
+      align-items: center;
+      padding: 8px 16px;
+      gap: 12px;
+      background: var(--bg);
+    }
+    .app-bar__logo {
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+    .app-bar__logo span { color: var(--accent); }
+    .app-bar__spacer { flex: 1; }
+    .app-bar button {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+    .app-bar button:active { background: var(--border); }
+
+    /* ===== PUSH NOTIFICATION BANNER ===== */
+    .push-notif {
+      position: fixed;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-120px);
+      z-index: 300;
+      background: var(--accent);
+      color: #FFF;
+      padding: 14px 24px;
+      border-radius: 16px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.06);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      white-space: nowrap;
+      transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      pointer-events: none;
+      max-width: calc(100vw - 40px);
+    }
+    .push-notif i { font-size: 1rem; color: #FFF; }
+    .push-notif.visible {
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* ===== NOTIFICATION OVERLAY ===== */
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(26,26,26,0.4);
+      z-index: 200;
+      align-items: flex-end;
+      justify-content: center;
+      -webkit-}
+    .overlay.visible { display: flex; }
+
+    /* ===== NOTIFICATION SHEET ===== */
+    .notification-sheet {
+      width: 100%;
+      max-width: 500px;
+      background: var(--card-bg);
+      border-radius: 24px 24px 0 0;
+      padding: 0 24px 32px;
+      animation: sheetUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 -8px 30px rgba(0,0,0,0.08);
+    }
+    @keyframes sheetUp {
+      0% { transform: translateY(100%); }
+      100% { transform: translateY(0); }
+    }
+
+    /* ===== SHEET HANDLE ===== */
+    .sheet-handle {
+      display: flex;
+      justify-content: center;
+      padding: 10px 0 6px;
+    }
+    .sheet-handle span {
+      width: 36px;
+      height: 4px;
+      background: var(--border);
+      border-radius: 4px;
+    }
+
+    /* ===== CONFETTI CELEBRATION ===== */
+    .celebration {
+      text-align: center;
+      padding: 8px 0 12px;
+    }
+    .celebration__icon {
+      width: 64px;
+      height: 64px;
+      background: rgba(0,0,0,0.06);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+      animation: bounce 1s ease infinite;
+    }
+    .celebration__icon i {
+      font-size: 1.8rem;
+      color: var(--accent);
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+    .celebration h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+    .celebration p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+
+    /* ===== ITEM COMPARISON ===== */
+    .item-compare {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 8px;
+      align-items: center;
+      margin: 16px 0;
+      padding: 16px;
+      background: var(--bg);
+      border-radius: 20px;
+    }
+    .item-compare__item {
+      text-align: center;
+    }
+    .item-compare__image {
+      width: 80px;
+      height: 80px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      margin: 0 auto 8px;
+    }
+    .item-compare__image.get { background: #2D2D2D; }
+    .item-compare__image.get i { color: rgba(255,255,255,0.25); }
+    .item-compare__image.give { background: #1A3A2A; }
+    .item-compare__image.give i { color: rgba(255,255,255,0.25); }
+    .item-compare__name {
+      font-size: 0.78rem;
+      font-weight: 500;
+    }
+    .item-compare__price {
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+      margin-top: 2px;
+      font-weight: 500;
+    }
+    .item-compare__arrow {
+      font-size: 1.5rem;
+      color: var(--accent);
+      padding: 0 4px;
+    }
+    .item-compare__labels {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 8px;
+      grid-column: 1 / -1;
+    }
+    .item-compare__labels span {
+      font-size: 0.62rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-tertiary);
+    }
+
+    /* ===== TRADE SUMMARY ===== */
+    .trade-summary {
+      padding: 4px 0 12px;
+    }
+    .trade-summary__row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      font-size: 0.88rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .trade-summary__row:last-child { border-bottom: none; }
+    .trade-summary__row .label { color: var(--text-secondary); }
+    .trade-summary__row .value { font-weight: 600; }
+    .trade-summary__row.total {
+      padding: 12px 0 4px;
+      font-size: 1rem;
+      border-bottom: none;
+    }
+    .trade-summary__row.total .label { font-weight: 600; color: var(--text); }
+    .trade-summary__row.total .value { font-size: 1.1rem; color: var(--accent); font-weight: 700; }
+
+    /* ===== TIMER ===== */
+    .timer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 0 16px;
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+    }
+    .timer i { color: var(--accent); font-size: 0.75rem; }
+    .timer strong {
+      color: var(--text);
+      font-weight: 600;
+      background: var(--bg);
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-size: 1rem;
+      letter-spacing: 1px;
+    }
+
+    /* ===== ACTION BUTTONS ===== */
+    .action-buttons {
+      display: flex;
+      gap: 10px;
+    }
+    .action-btn {
+      flex: 1;
+      padding: 16px;
+      border-radius: 18px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-align: center;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .action-btn:active { transform: scale(0.98); }
+    .action-btn--accept {
+      background: var(--accent);
+      color: #FFF;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    }
+    .action-btn--accept:active { background: var(--accent-hover); box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+    .action-btn--cancel {
+      background: var(--card-bg);
+      color: var(--text-secondary);
+      border: 1.5px solid var(--border);
+    }
+    .action-btn--cancel:active { background: #F5F3EE; color: var(--danger); border-color: var(--danger); }
+    .action-btn--reject {
+      background: var(--card-bg);
+      color: var(--text-secondary);
+      border: 1.5px solid var(--border);
+    }
+    .action-btn--reject:active { background: #F5F3EE; color: var(--danger); border-color: var(--danger); }
+
+    /* ===== ACCEPTED STATE (after clicking accept) ===== */
+    .accepted-state {
+      display: none;
+      text-align: center;
+      padding: 24px 0 8px;
+    }
+    .accepted-state.visible { display: block; }
+    .accepted-state .check-icon {
+      width: 56px;
+      height: 56px;
+      background: var(--success);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+      animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .accepted-state .check-icon i { color: #FFF; font-size: 1.5rem; }
+    @keyframes popIn {
+      0% { transform: scale(0); }
+      100% { transform: scale(1); }
+    }
+    .accepted-state h3 { font-size: 1.15rem; font-weight: 600; margin-bottom: 4px; }
+    .accepted-state p { color: var(--text-secondary); font-size: 0.85rem; }
+    .accepted-state .next-btn {
+      margin-top: 20px;
+      padding: 14px 32px;
+      background: var(--accent);
+      color: #FFF;
+      border-radius: 18px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    }
+    .accepted-state .next-btn:active { transform: scale(0.96); }
+
+    /* ===== PARTICIPANTS STATUS ===== */
+    .participants-status {
+      background: var(--bg);
+      border-radius: 20px;
+      padding: 16px;
+      margin: 16px 0;
+    }
+    .participant-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .participant-row:last-child { border-bottom: none; }
+    .participant-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+    .participant-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .participant-name {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .participant-item {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+    }
+    .participant-status {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .status-accepted {
+      background: rgba(0,184,184,0.15);
+      color: var(--success);
+    }
+    .status-pending {
+      background: rgba(0,0,0,0.06);
+      color: var(--accent);
+    }
+    .status-rejected {
+      background: rgba(231,76,60,0.15);
+      color: var(--danger);
+    }
+
+    /* ===== CLOSE AREA (tap outside sheet) ===== */
+    .overlay-bg {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (min-width: 600px) {
+      .notification-sheet { border-radius: 24px; margin-bottom: 40px; }
+      .overlay { align-items: center; }
+    }
+  
+
+/* ══════ BOTTOM NAV (standardized) ══════ */
+.bottom-nav { position:fixed; bottom:0; left:0; right:0; background:var(--surface); border-top:1px solid var(--border); display:flex; justify-content:space-evenly; align-items:center; height:68px; padding-bottom:max(6px,env(safe-area-inset-bottom)); z-index:100; }
+.nav-item { position:relative; display:flex; flex-direction:column; align-items:center; gap:3px; font-family:'IBM Plex Mono',monospace; font-size:0.5rem; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-dim); transition:color 0.15s; padding:4px 0; flex:1; max-width:80px; border:none; background:none; cursor:pointer; text-decoration:none; }
+.nav-item i { font-size:1.1rem; }
+.nav-item.active { color:var(--text); }
+.nav-item.active i { color:var(--text); }
+.nav-add-btn { width:42px; height:42px; background:var(--text); color:var(--bg); border-radius:2px; display:flex; align-items:center; justify-content:center; margin-bottom:2px; }
+.nav-add-btn i { font-size:1rem; color:var(--bg); }
+.nav-badge { width:5px; height:5px; background:var(--text); border-radius:50%; position:absolute; top:2px; right:4px; }
 
 </style>
 </head>
 <body>
-<div class="treqe-header">
-  <a href="../v1-catalogo/" class="treqe-logo" href="../v16-portada/">treqe</a>
-  <div class="treqe-header-right">
-    <a href="../v13-blog/" class="treqe-nav-pill"><i class="fas fa-pen"></i> Blog</a>
-    <a href="../v1-catalogo/" class="treqe-nav-pill"><i class="fas fa-th"></i> Catalogo</a>
-    <button class="treqe-dark-toggle" onclick="toggleDark()"><i class="fas fa-moon"></i></button>
-  </div>
-</div>
 
-<!-- ===== DEMO NOTICE ===== -->
+  <!-- ===== DEMO NOTICE ===== -->
   
   <!-- ===== STATUS BAR ===== -->
   
   <!-- ===== APP BAR (simulating being inside the app) ===== -->
   <div class="app-bar">
-    <span class="app-bar__logo"><a href="../v16-portada/index.html" class="treqe-logo-link"><svg class="treqe-logo" viewBox="0 0 76 24" fill="none" xmlns="http://www.w3.org/2000/svg"><text x="0" y="19" font-family="Inter, sans-serif" font-weight="700" font-size="22" letter-spacing="-1.5" fill="#1C1915">treqe<text x="60" y="19" fill="#1C1915">.</text></text></svg></a></span>
+    <span class="app-bar__logo"><a href="../v16-portada/index.html" class="logo-link"><svg class="treqe-logo" viewBox="0 0 76 24" fill="none" xmlns="http://www.w3.org/2000/svg"><text x="0" y="19" font-family="Inter, sans-serif" font-weight="700" font-size="22" letter-spacing="-1.5" fill="#00234E">treqe<text x="60" y="19" fill="#FF6A35">.</text></text></svg></a></span>
     <span class="app-bar__spacer"></span>
     <button onclick="alert('🔔 Notificaciones (demo)')"><i class="fas fa-bell"></i></button>
     <button onclick="alert('👤 Perfil')"><i class="fas fa-user"></i></button>
@@ -544,34 +742,9 @@ body.dark .treqe-empty i { color: #5A5650; }
       if (e.key === 'Escape') hideNotification();
     });
 
-    console.log('🚀 treqe v6 — Match Notification (directo)');
+    console.log('🚀 TREQE v6 — Match Notification (directo)');
     console.log('🧪 Prototipo de diseño — 9 Mayo 2026');
     console.log('📌 Cambios: match directo | icono bolt blanco | push notification simulada');
   </script>
-<div class="treqe-bottom-nav">
-  <a href="../v1-catalogo/" class="treqe-nav-item"><i class="fas fa-th"></i> Catalogo</a>
-  <a href="../v12-mis-matches/" class="treqe-nav-item"><i class="fas fa-exchange-alt"></i> Intercambios</a>
-  <a href="../v13-favoritos/" class="treqe-nav-item"><i class="fas fa-heart"></i> Favoritos</a>
-  <a href="../v4-perfil/" class="treqe-nav-item"><i class="fas fa-user"></i> Perfil</a>
-</div>
-
-<div class="treqe-footer">(c) 2026 treqe - Todos los derechos reservados</div>
-
-<div class="demo-tag"><i class="fas fa-flask"></i> treqe Prototype -- v6-match-notification -- May 2026</div>
-
-<script>
-function toggleDark() {
-  document.body.classList.toggle("dark");
-  var btn = document.querySelector(".treqe-dark-toggle i");
-  if (btn) {
-    if (document.body.classList.contains("dark")) {
-      btn.className = "fas fa-sun";
-    } else {
-      btn.className = "fas fa-moon";
-    }
-  }
-}
-console.log("treqe Design System - Taylor Penton Editorial");
-</script>
 </body>
 </html>
