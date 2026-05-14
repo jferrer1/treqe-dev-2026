@@ -1,0 +1,205 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <title>MIB — Prototipo Navegable</title>
+    <meta name="robots" content="noindex, nofollow">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+
+    .treqe-logo { height: 24px; width: 76px; flex-shrink: 0; vertical-align: middle; }
+    .logo-link { display: inline-flex; text-decoration: none; line-height: 0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #141414; height: 100vh; overflow: hidden; -webkit-font-smoothing: antialiased; }
+
+    .phone {
+      width: 100%; max-width: 390px; height: 100vh;
+      margin: 0 auto; background: #000; position: relative; overflow: hidden;
+    }
+    @media (min-width: 430px) {
+      .phone { height: 844px; margin: 20px auto; border-radius: 44px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+      body { display: flex; align-items: center; justify-content: center; }
+    }
+
+    iframe { width: 100%; height: calc(100% - 60px); border: none; display: block; background: #FAFAF8; margin-top: 60px; }
+
+    /* Loading overlay */
+    .loader {
+      position: absolute; top: 60px; left: 0; right: 0; bottom: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: #FAFAF8; z-index: 5; transition: opacity 0.3s;
+    }
+    .loader.hidden { opacity: 0; pointer-events: none; }
+    .loader .spinner { width: 32px; height: 32px; border: 3px solid #E0E0D8; border-top-color: #141414; border-radius: 50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Navigation bar */
+    .nav-bar {
+      position: absolute; top: 0; left: 0; right: 0; height: 60px;
+      background: #141414; z-index: 20; display: flex; align-items: center;
+      padding: 0 12px; gap: 8px; border-bottom: 1px solid #333;
+    }
+    .nav-bar .logo {
+      font-size: 1.1rem; font-weight: 800; color: #FFF; letter-spacing: -0.5px;
+    }
+    .nav-bar .logo span { color: #141414; }
+    .nav-bar .nav-select {
+      flex: 1; padding: 8px 12px; border-radius: 8px; border: 1px solid #444;
+      background: #2A2A2A; color: #FFF; font-size: 0.85rem; font-family: inherit;
+      cursor: pointer; outline: none;
+    }
+    .nav-bar .nav-select option { background: #2A2A2A; color: #FFF; }
+    .nav-bar .nav-btn {
+      width: 36px; height: 36px; border-radius: 8px; border: none;
+      background: #333; color: #FFF; font-size: 0.9rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.15s;
+    }
+    .nav-bar .nav-btn:hover { background: #444; }
+    .nav-bar .nav-btn:active { transform: scale(0.95); }
+    .nav-bar .nav-btn.primary { background: #141414; }
+    .nav-bar .nav-btn.primary:hover { background: #5C5C5C; }
+
+    /* Quick actions */
+    .quick-actions {
+      position: absolute; top: 60px; left: 0; right: 0;
+      background: #2A2A2A; padding: 8px 12px; display: flex; gap: 8px;
+      overflow-x: auto; z-index: 15; border-bottom: 1px solid #333;
+      scrollbar-width: none;
+    }
+    .quick-actions::-webkit-scrollbar { display: none; }
+    .quick-actions button {
+      flex-shrink: 0; padding: 6px 14px; border-radius: 20px;
+      border: 1px solid #444; background: #141414; color: #AAA;
+      font-size: 0.75rem; font-weight: 500; cursor: pointer; white-space: nowrap;
+      transition: all 0.15s;
+    }
+    .quick-actions button:hover { background: #333; color: #FFF; }
+    .quick-actions button.active { background: #141414; color: #FFF; border-color: #141414; }
+
+    /* Info bar */
+    .info-bar {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 28px;
+      background: #111; display: flex; align-items: center; justify-content: center;
+      gap: 16px; font-size: 0.65rem; color: #666; z-index: 10;
+    }
+    .info-bar span { display: flex; align-items: center; gap: 4px; }
+    .info-bar i { font-size: 0.6rem; }
+
+    @media (min-width: 430px) {
+      .info-bar { border-radius: 0 0 44px 44px; }
+    }
+  
+</style>
+</head>
+<body>
+  <div class="phone">
+    <!-- Navigation bar -->
+    <div class="nav-bar">
+      <span class="logo"><a href="../v16-portada/index.html" class="logo-link"><svg class="treqe-logo" viewBox="0 0 76 24" fill="none" xmlns="http://www.w3.org/2000/svg"><text x="0" y="19" font-family="Inter, sans-serif" font-weight="700" font-size="22" letter-spacing="-1.5" fill="#141414">MIB<text x="60" y="19" fill="#141414">.</text></text></svg></a></span>
+      <select class="nav-select" id="screenSelect" onchange="goTo(this.value)">
+        <option value="splash">🚀 Splash</option>
+        <option value="onboarding">📱 Onboarding</option>
+        <option value="registro">📝 Registro</option>
+        <option value="catalogo" selected>🔍 Catálogo</option>
+        <option value="detalle">📦 Detalle</option>
+        <option value="subir">⬆️ Subir</option>
+        <option value="perfil">👤 Perfil</option>
+        <option value="notificaciones">🔔 Notificaciones</option>
+        <option value="matches">⭐ Mis Matches</option>
+        <option value="match">💱 Match</option>
+        <option value="seguimiento">📍 Seguimiento</option>
+        <option value="ajustes">⚙️ Ajustes</option>
+      </select>
+      <button class="nav-btn" onclick="navBack()" title="Volver"><i class="fas fa-arrow-left"></i></button>
+      <button class="nav-btn primary" onclick="refreshFrame()" title="Recargar"><i class="fas fa-sync-alt"></i></button>
+    </div>
+
+    <!-- Quick actions -->
+    <div class="quick-actions" id="quickActions">
+      <button onclick="goTo('catalogo')" class="active" id="btn-catalogo">Catálogo</button>
+      <button onclick="goTo('perfil')" id="btn-perfil">Perfil</button>
+      <button onclick="goTo('notificaciones')" id="btn-notificaciones">Notifs</button>
+      <button onclick="goTo('matches')" id="btn-matches">Matches</button>
+      <button onclick="goTo('subir')" id="btn-subir">Subir</button>
+      <button onclick="goTo('match')" id="btn-match">Match</button>
+    </div>
+
+    <!-- Loading -->
+    <div class="loader" id="loader"><div class="spinner"></div></div>
+
+    <!-- Screen iframe -->
+    <iframe id="screenFrame" src="../v1-catalogo/" onload="onFrameLoad()"></iframe>
+
+    <!-- Info bar -->
+    <div class="info-bar">
+      <span><i class="fas fa-mouse-pointer"></i> Click en pantalla para interactuar</span>
+      <span><i class="fas fa-code-branch"></i> v0-prototype</span>
+    </div>
+  </div>
+
+  <script>
+    var SCREENS = {
+      'splash':         { path: '../v9-splash/',              name: 'Splash' },
+      'onboarding':     { path: '../v5-onboarding/',          name: 'Onboarding' },
+      'registro':       { path: '../v10-registro/',           name: 'Registro' },
+      'catalogo':       { path: '../v1-catalogo/',            name: 'Catálogo' },
+      'detalle':        { path: '../v2-detalle/',             name: 'Detalle' },
+      'subir':          { path: '../v3-subir/',               name: 'Subir' },
+      'perfil':         { path: '../v4-perfil/',              name: 'Perfil' },
+      'notificaciones': { path: '../v11-notificaciones/',     name: 'Notificaciones' },
+      'matches':        { path: '../v12-mis-matches/',        name: 'Mis Matches' },
+      'match':          { path: '../v6-match-notification/',  name: 'Match' },
+      'seguimiento':    { path: '../v7-seguimiento/',         name: 'Seguimiento' },
+      'ajustes':        { path: '../v8-ajustes/',             name: 'Ajustes' },
+    };
+
+    var currentScreen = 'catalogo';
+    var frame = document.getElementById('screenFrame');
+    var loader = document.getElementById('loader');
+    var navHistory = ['catalogo'];
+
+    function goTo(screenId) {
+      var screen = SCREENS[screenId];
+      if (!screen) return;
+
+      currentScreen = screenId;
+      navHistory.push(screenId);
+
+      // Update select
+      document.getElementById('screenSelect').value = screenId;
+
+      // Update quick actions
+      document.querySelectorAll('.quick-actions button').forEach(btn => btn.classList.remove('active'));
+      var activeBtn = document.getElementById('btn-' + screenId);
+      if (activeBtn) activeBtn.classList.add('active');
+
+      // Show loader and change src
+      loader.classList.remove('hidden');
+      frame.src = screen.path;
+    }
+
+    function onFrameLoad() {
+      loader.classList.add('hidden');
+    }
+
+    function navBack() {
+      if (navHistory.length > 1) {
+        navHistory.pop();
+        var prev = navHistory[navHistory.length - 1];
+        goTo(prev);
+        navHistory.pop(); // Prevent duplicate entry
+      }
+    }
+
+    function refreshFrame() {
+      loader.classList.remove('hidden');
+      frame.src = frame.src;
+    }
+
+    window.goTo = goTo;
+  </script>
+</body>
+</html>

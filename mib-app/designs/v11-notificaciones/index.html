@@ -1,0 +1,709 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>MIB — Notificaciones</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; -webkit-text-size-adjust: 100%;   overflow-y: scroll; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(160deg, #FAFAF8 0%, #F0EDE6 30%, #E0E0D8 70%, #F0EDE6 100%);
+      background-attachment: fixed;
+      color: #141414;
+      min-height: 100vh;
+      padding-bottom: 80px;
+      -webkit-font-smoothing: antialiased;
+    }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+    /* ===== COLORS ===== */
+    :root {
+      --bg: #FAFAF8;
+      --text: #141414;
+      --text-secondary: #5C5C5C;
+      --text-tertiary: #999999;
+      --border: #E0E0D8;
+      --accent: #141414;
+      --accent-hover: #5C5C5C;
+      --success: #141414;
+      --warning: #F5A623;
+      --danger: #E74C3C;
+      --card-bg: #FFFFFF;
+      --shadow: 0 4px 20px rgba(0,0,0,0.05);
+    }
+
+    /* ===== STATUS BAR ===== */
+    .status-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 20px 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      background: var(--bg);
+    }
+    .status-bar .time { font-weight: 700; color: var(--text); }
+    .status-bar .icons { display: flex; gap: 6px; font-size: 0.7rem; }
+
+    /* ===== HEADER (liquid glass) ===== */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 16px 10px;
+      background: rgba(248,246,240,0.6);
+      -webkit-position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid rgba(0,0,0,0.02);
+      box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+    }
+    .header__back {
+      position: absolute;
+      left: 12px;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+      font-size: 1.1rem;
+      transition: background 0.2s;
+    }
+    .header__back:active { background: var(--border); }
+    .header__settings {
+      position: absolute;
+      right: 12px;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+      font-size: 1.1rem;
+    }
+    .header__settings:active { background: var(--border); }
+    .header__title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* ===== SEGMENTED CONTROL (replaces inbox-stats + inbox-tabs) ===== */
+    .segmented-wrap {
+      padding: 4px 16px 12px;
+      background: var(--bg);
+    }
+    .segmented {
+      display: flex;
+      background: #EDEAE2;
+      border-radius: 14px;
+      padding: 3px;
+      gap: 2px;
+    }
+    .segmented__btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      padding: 10px 6px;
+      border-radius: 11px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      background: transparent;
+      transition: all 0.25s ease;
+      white-space: nowrap;
+      min-width: 0;
+    }
+    .segmented__btn i { font-size: 0.7rem; }
+    .segmented__btn .seg-count {
+      font-size: 0.62rem;
+      font-weight: 700;
+      background: rgba(0,0,0,0.06);
+      padding: 1px 6px;
+      border-radius: 8px;
+      color: var(--text-tertiary);
+    }
+    .segmented__btn.active {
+      background: var(--card-bg);
+      color: var(--text);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      font-weight: 600;
+    }
+    .segmented__btn.active .seg-count {
+      background: var(--accent);
+      color: #FFF;
+    }
+    .segmented__btn:active:not(.active) {
+      background: rgba(0,0,0,0.01);
+    }
+
+    /* ===== INBOX CONTENT ===== */
+    .inbox-content {
+      padding: 0 16px 16px;
+    }
+
+    /* ===== NOTIFICATION ITEMS (liquid glass cards) ===== */
+    .inbox-item {
+      display: flex;
+      gap: 14px;
+      padding: 18px 16px;
+      margin-bottom: 10px;
+      background: rgba(0,0,0,0.02);
+      -webkit-border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.8);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .inbox-item:active {
+      transform: scale(0.98);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+    .inbox-item:last-child { margin-bottom: 0; }
+
+    /* Product emoji avatar — larger, more expressive */
+    .inbox-item__icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.4rem;
+    }
+    /* Category background tints for product emojis */
+    .inbox-item__icon.cat-music   { background: rgba(255,106,53,0.12); }
+    .inbox-item__icon.cat-bike    { background: rgba(0,184,184,0.12); }
+    .inbox-item__icon.cat-tech    { background: rgba(92,107,192,0.12); }
+    .inbox-item__icon.cat-phone   { background: rgba(245,166,35,0.12); }
+    .inbox-item__icon.cat-gaming  { background: rgba(231,76,60,0.12); }
+    .inbox-item__icon.cat-camera  { background: rgba(39,174,96,0.12); }
+    .inbox-item__icon.cat-audio   { background: rgba(155,89,182,0.12); }
+    .inbox-item__icon.cat-helmet  { background: rgba(52,152,219,0.12); }
+    .inbox-item__icon.cat-watch   { background: rgba(149,165,166,0.12); }
+    .inbox-item__icon.cat-default { background: rgba(136,136,136,0.08); }
+
+    .inbox-item__body {
+      flex: 1;
+      min-width: 0;
+    }
+    .inbox-item__title {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 3px;
+    }
+    .inbox-item__text {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .inbox-item__meta {
+      font-size: 0.65rem;
+      color: var(--text-tertiary);
+      margin-top: 5px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* ===== QUICK-REPLY INLINE ===== */
+    .inbox-item__actions {
+      display: flex;
+      align-items: flex-start;
+      gap: 4px;
+      flex-shrink: 0;
+      margin-top: 4px;
+    }
+    .inbox-item__responder {
+      padding: 6px 12px;
+      border-radius: 10px;
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: var(--accent);
+      background: rgba(0,0,0,0.02);
+      -webkit-border: 1px solid rgba(255,255,255,0.9);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      white-space: nowrap;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .inbox-item__responder:active {
+      transform: scale(0.93);
+      background: rgba(255,106,53,0.12);
+    }
+    .inbox-item__responder i { font-size: 0.6rem; }
+
+    /* Inline reply form — compact, appears inside card */
+    .quick-reply-wrap {
+      display: none;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px dashed var(--border);
+    }
+    .quick-reply-wrap.visible { display: block; }
+    .quick-reply-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .quick-reply-input {
+      flex: 1;
+      padding: 9px 12px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 0.78rem;
+      font-family: inherit;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 36px;
+      transition: border-color 0.2s;
+    }
+    .quick-reply-input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .quick-reply-send {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--accent);
+      color: #FFF;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+      transition: all 0.2s;
+    }
+    .quick-reply-send:active { transform: scale(0.9); opacity: 0.85; }
+    .quick-reply-send.done { background: var(--success); }
+    .quick-reply-char {
+      font-size: 0.6rem;
+      color: var(--text-tertiary);
+      text-align: right;
+      margin-top: 3px;
+    }
+
+    /* ===== MODAL REPLY (fallback for long replies) ===== */
+    .reply-form {
+      padding: 0 16px 16px;
+    }
+    .reply-form__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .reply-form__header button {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-tertiary);
+    }
+    .reply-form__textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-family: inherit;
+      resize: vertical;
+      background: var(--card-bg);
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+    .reply-form__textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .reply-form__btn {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      background: var(--accent);
+      color: #FFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .reply-form__btn:active { opacity: 0.9; }
+
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+      z-index: 200;
+      display: none; align-items: flex-end; justify-content: center;
+    }
+    .modal-overlay.visible { display: flex; }
+    .modal-card {
+      background: var(--card-bg); border-radius: 24px 24px 0 0;
+      width: 100%; max-height: 80vh; overflow: hidden;
+      animation: slideUp .3s ease;
+    }
+    @keyframes slideUp { from{transform:translateY(100%)} to{transform:translateY(0)} }
+    .modal-card__header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 16px 20px 12px; border-bottom: 1px solid var(--border);
+    }
+    .modal-card__title { font-size: 1rem; font-weight: 600; color: var(--text); }
+    .modal-card__close {
+      width: 32px; height: 32px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-secondary); font-size: .9rem;
+    }
+    .modal-card__close:active { background: var(--border); }
+    .modal-card__body { padding: 16px 20px; max-height: 50vh; overflow-y: auto; }
+    .modal-card__preview {
+      background: var(--bg); border-radius: 10px; padding: 12px; margin-bottom: 12px;
+    }
+    .modal-card__preview-label {
+      font-size: .65rem; color: var(--text-tertiary); margin-bottom: 4px; display: block;
+    }
+    .modal-card__preview-text { font-size: .85rem; color: var(--text); font-style: italic; }
+    .modal-card__footer {
+      display: flex; gap: 10px; padding: 12px 20px 20px; border-top: 1px solid var(--border);
+    }
+    .btn {
+      flex: 1; padding: 12px; border-radius: 10px; font-size: .85rem; font-weight: 600;
+      display: flex; align-items: center; justify-content: center; gap: 6px; transition: all .2s;
+    }
+    .btn--primary { background: var(--accent); color: #FFF; }
+    .btn--primary:active { opacity: .9; }
+    .btn--secondary { background: var(--card-bg); border: 1px solid var(--border); color: var(--text); }
+    .btn--secondary:active { background: var(--border); }
+
+    /* ===== EMPTY STATE ===== */
+    .empty-state {
+      text-align: center;
+      padding: 60px 32px;
+      color: var(--text-tertiary);
+    }
+    .empty-state i {
+      font-size: 4rem;
+      margin-bottom: 20px;
+      opacity: 0.3;
+    }
+    .empty-state h3 {
+      font-size: 1.1rem;
+      color: var(--text);
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+    .empty-state p {
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+    /* ===== RESPONSIVE ===== */
+    
+    @media (min-width: 600px) {
+      .header, .segmented-wrap, .inbox-content { max-width: 600px; margin: 0 auto; }
+      .inbox-content { padding: 0 24px 16px; }
+    }
+    /* ===== BOTTOM NAV ===== */
+    
+    
+    
+    
+    
+    
+    
+    
+
+      .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0,0,0,0.04);
+      -webkit-border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      padding: 0;
+      height: 72px;
+      padding-bottom: 12px;
+      z-index: 100;
+      isolation: isolate;
+    }
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      font-size: 0.65rem;
+      font-weight: 500;
+      color: var(--text-tertiary);
+      transition: color 0.2s;
+      padding: 4px 0;
+      flex: 1;
+      max-width: 80px;
+      position: relative;
+      border: none;
+      background: none;
+      cursor: pointer;
+      font-family: inherit;
+      text-decoration: none;
+    }
+    .nav-item i { font-size: 1.3rem; }
+    .nav-item.active { color: var(--accent); }
+    .nav-add { position: relative; top: 0; }
+    .nav-add-btn {
+      width: 48px;
+      height: 48px;
+      background: var(--accent);
+      color: #FFFFFF;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      margin-bottom: 2px;
+    }
+    .nav-add-btn i { font-size: 1.1rem; }
+    .nav-badge {
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      position: absolute;
+      top: 2px;
+      right: 12px;
+    }
+    
+</style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <div class="header">
+    <button class="header__back" onclick="goToDiscover()" aria-label="Atrás"><i class="fas fa-chevron-left"></i></button>
+    <span class="header__title">Avisos</span>
+  </div>
+
+  <!-- ===== INBOX CONTENT (lista plana sin tabs) ===== -->
+  <div class="inbox-content">
+    <div style="padding: 6px 16px 14px; font-size: 0.72rem; color: var(--text-secondary); display: flex; align-items: center; gap: 8px;">
+      <span style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,106,53,0.12);padding:4px 12px;border-radius:20px;font-weight:600;color:var(--accent);">
+        <i class="fas fa-circle" style="font-size: 0.4rem;"></i> 9 avisos nuevos
+      </span>
+      <span style="color:var(--text-tertiary);">hoy</span>
+    </div>
+
+        <!-- 0. 🔄 Solicitud de trueque (ejemplo) -->
+    <div class="inbox-item" style="border-left:3px solid var(--accent);padding-left:10px;">
+      <div class="inbox-item__icon" style="background: rgba(255,106,53,0.12);">🔄</div>
+      <div class="inbox-item__body">
+        <div class="inbox-item__title">Solicitud de trueque enviada</div>
+        <div class="inbox-item__text">Has solicitado un trueque por iPhone 15 Pro. Te notificaremos cuando sea posible hacer el intercambio.</div>
+        <div class="inbox-item__meta"><i class="far fa-clock"></i> Ahora · <span style="color:var(--accent);font-weight:600;">Pendiente</span></div>
+      </div>
+      <div class="inbox-item__actions">
+        <button class="inbox-item__responder" onclick="goToDetail(3)"><i class="fas fa-eye"></i> Ver</button>
+      </div>
+    </div>
+
+    <!-- 1. 👀 Alguien quiere tu artículo (intercambio, sin match aún) -->
+    <div class="inbox-item">
+      <div class="inbox-item__icon cat-music" style="background: rgba(255,106,53,0.15);">👀</div>
+      <div class="inbox-item__body">
+        <div class="inbox-item__title">Carlos quiere tu Fender Stratocaster</div>
+        <div class="inbox-item__text">Ha ofrecido su MacBook Air M3 + 300€. El algoritmo busca completar el círculo. Te avisaremos cuando haya match.</div>
+        <div class="inbox-item__meta"><i class="far fa-clock"></i> Hace 10 min · <span style="color:var(--text-tertiary);font-weight:500;">En espera</span></div>
+      </div>
+    </div>
+
+    <!-- 2. 💰 Bajada de precio en guardado -->
+    <div class="inbox-item">
+      <div class="inbox-item__icon cat-tech" style="background: rgba(245,166,35,0.15);">💰</div>
+      <div class="inbox-item__body">
+        <div class="inbox-item__title">El iPhone 15 Pro que guardaste bajó de precio</div>
+        <div class="inbox-item__text">Ahora cuesta 820€ (antes 890€). Sigue disponible para compra directa o intercambio. Aprovecha la oferta antes de que desaparezca.</div>
+        <div class="inbox-item__meta"><i class="far fa-clock"></i> Hace 2 h</div>
+      </div>
+      <div class="inbox-item__actions">
+        <button class="inbox-item__responder" onclick="goToDetail('iphone')"><i class="fas fa-eye"></i> Ver</button>
+      </div>
+    </div>
+
+    <!-- 3. ❌ Match roto — artículo liberado -->
+    <div class="inbox-item">
+      <div class="inbox-item__icon cat-helmet" style="background: rgba(231,76,60,0.12);">❌</div>
+      <div class="inbox-item__body">
+        <div class="inbox-item__title">Match #TRX-7841 cancelado</div>
+        <div class="inbox-item__text">Bruno rechazó el intercambio. Tu Casco Shoei NXR2 vuelve a estar disponible para nuevos matches y compra directa. Ya puedes ofrecerlo a otros interesados.</div>
+        <div class="inbox-item__meta"><i class="far fa-clock"></i> Hace 1 h · <span style="color:var(--success);font-weight:600;">Artículo liberado</span></div>
+      </div>
+      <div class="inbox-item__actions">
+        <button class="inbox-item__responder" onclick="goToDetail('casco')"><i class="fas fa-eye"></i> Ver artículo</button>
+      </div>
+    </div>
+
+    <!-- 4. 🔔 Nuevo artículo publicado coincide con búsqueda guardada -->
+    <div class="inbox-item">
+      <div class="inbox-item__icon cat-camera" style="background: rgba(39,174,96,0.12);">🔔</div>
+      <div class="inbox-item__body">
+        <div class="inbox-item__title">Nueva Canon EOS R publicada en Barcelona</div>
+        <div class="inbox-item__text">Coincide con tu búsqueda guardada "cámaras réflex". Disponible para compra directa (650€) o intercambio. Publicado hace 30 minutos.</div>
+        <div class="inbox-item__meta"><i class="far fa-clock"></i> Hace 30 min · Barcelona</div>
+      </div>
+      <div class="inbox-item__actions">
+        <button class="inbox-item__responder" onclick="goToDetail('canon')"><i class="fas fa-eye"></i> Ver artículo</button>
+      </div>
+    </div>
+
+    <!-- 5. 📈 Oferta mejorada (sin match aún) -->
+    <div class="inbox-item">
+      <div class="inbox-item__icon cat-bike" style="background: rgba(0,184,184,0.12);">📈</div>
+      <div class="inbox-item__body">
+        <div class="inbox-item__title">Ana ha mejorado su oferta por tu Trek Marlin 7</div>
+        <div class="inbox-item__text">Ahora ofrece su Canon EOS R + 50€ (antes 30€). El algoritmo sigue buscando el círculo con su nueva oferta.</div>
+        <div class="inbox-item__meta"><i class="far fa-clock"></i> Hace 3 h · <span style="color:var(--text-tertiary);font-weight:500;">Actualizada</span></div>
+      </div>
+    </div>
+
+    <!-- 6. 🔗 Círculo cerca de cerrarse -->
+    <div class="inbox-item">
+      <div class="inbox-item__icon cat-music" style="background: rgba(92,107,192,0.12);">🔗</div>
+      <div class="inbox-item__body">
+        <div class="inbox-item__title">Tu Fender Stratocaster está cerca de cerrar un círculo</div>
+        <div class="inbox-item__text">Solo falta 1 persona para completar la cadena. Si alguien más ofrece un artículo compatible con las ofertas actuales, tendrás match automáticamente.</div>
+        <div class="inbox-item__meta"><i class="far fa-clock"></i> Hace 5 h · <span style="color:var(--warning);font-weight:600;">Casi listo</span></div>
+      </div>
+      <div class="inbox-item__actions">
+        <button class="inbox-item__responder" onclick="goToDetail('fender')"><i class="fas fa-eye"></i> Ver</button>
+      </div>
+    </div>
+
+    <!-- 7. 💶 Crédito pendiente -->
+    <div class="inbox-item">
+      <div class="inbox-item__icon cat-default" style="background: rgba(0,184,184,0.12);">💶</div>
+      <div class="inbox-item__body">
+        <div class="inbox-item__title">Tienes 40€ pendientes del intercambio #TRX-7839</div>
+        <div class="inbox-item__text">Se liberarán cuando Carlos confirme que ha recibido tu AirPods Max. Recibirás el ingreso en tu monedero Treqe en las siguientes 24h tras la confirmación.</div>
+        <div class="inbox-item__meta"><i class="far fa-clock"></i> Pendiente desde hace 2 d</div>
+      </div>
+      <div class="inbox-item__actions">
+        <button class="inbox-item__responder" onclick="goToTrades()"><i class="fas fa-eye"></i> Ver estado</button>
+      </div>
+    </div>
+
+    <!-- 8. 🔄 Artículo guardado ahora acepta intercambio -->
+    <div class="inbox-item">
+      <div class="inbox-item__icon cat-tech" style="background: rgba(245,166,35,0.12);">🔄</div>
+      <div class="inbox-item__body">
+        <div class="inbox-item__title">La Canon EOS R que guardaste ahora acepta intercambio</div>
+        <div class="inbox-item__text">Antes solo estaba disponible para compra directa. El dueño acaba de activar la opción de trueque. Puedes ofrecer tus artículos a cambio.</div>
+        <div class="inbox-item__meta"><i class="far fa-clock"></i> Hace 6 h</div>
+      </div>
+      <div class="inbox-item__actions">
+        <button class="inbox-item__responder" onclick="goToDetail('canon')"><i class="fas fa-eye"></i> Ver</button>
+      </div>
+    </div>
+
+    <!-- 9. ⭐ Recordatorio valoración -->
+    <div class="inbox-item">
+      <div class="inbox-item__icon cat-default" style="background: rgba(155,89,182,0.12);">⭐</div>
+      <div class="inbox-item__body">
+        <div class="inbox-item__title">¿Qué tal fue tu intercambio #TRX-7839?</div>
+        <div class="inbox-item__text">Canon EOS R por AirPods Max + 270€ se completó hace 3 días. Valora a los participantes para ayudar a la comunidad. Si no valoras en 7 días, se cerrará automáticamente.</div>
+        <div class="inbox-item__meta"><i class="far fa-clock"></i> Hace 3 d · <span style="color:var(--warning);font-weight:600;">Quedan 4 días</span></div>
+      </div>
+      <div class="inbox-item__actions">
+        <button class="inbox-item__responder" onclick="goToTrades()"><i class="fas fa-star"></i> Valorar</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ===== BOTTOM NAV ===== -->
+
+  <script>
+    // ─── Navigation ───
+    function goToHome()      { window.parent.location.href = '../v1-catalogo/'; }
+    function goToSearch()    { window.parent.location.href = '../v1-catalogo/'; }
+    function goToUpload()    { window.parent.location.href = '../v3-subir/'; }
+    function goToMatches()   { window.parent.location.href = '../v12-mis-matches/'; }
+    function goToNotifs()    { window.parent.location.href = '../v11-notificaciones/'; }
+    function goToProfile()   { window.parent.location.href = '../v4-perfil/'; }
+    function goToCatalog()   { window.parent.location.href = '../v1-catalogo/'; }
+    function goToDetail(id)  { window.parent.location.href = '../v2-detalle/?id=' + id; }
+    function goToDiscover()  { window.parent.location.href = '../v1-catalogo/'; }
+    function goToTrades()    { window.parent.location.href = '../v12-mis-matches/'; }
+    function goToInbox()     { window.parent.location.href = '../v11-notificaciones/'; }
+
+    // ─── Marcar como leído ───
+    document.querySelectorAll('.inbox-item').forEach((item, i) => {
+      if (i < 3) {
+        item.style.borderLeft = '3px solid var(--accent)';
+        item.style.paddingLeft = '10px';
+      }
+    });
+
+    console.log('🔔 TREQE v11 — Avisos');
+    console.log('🧪 9 notificaciones no redundantes · Sin chat');
+
+    // Load trade request notifications from localStorage
+    (function(){
+      var notifs = JSON.parse(localStorage.getItem('treqe_notifications') || '[]');
+      if (!notifs.length) return;
+      var inbox = document.querySelector('.inbox-item');
+      if (!inbox) return;
+      var parent = inbox.parentNode;
+      notifs.forEach(function(n) {
+        var item = document.createElement('div');
+        item.className = 'inbox-item';
+        item.style.cssText = 'border-left:3px solid var(--accent);padding-left:10px;';
+        item.innerHTML =
+          '<div class="inbox-item__icon" style="background:rgba(255,106,53,0.12);">🔄</div>' +
+          '<div class="inbox-item__body">' +
+          '<div class="inbox-item__title">Solicitud de trueque enviada</div>' +
+          '<div class="inbox-item__text">' + n.text + '. Te notificaremos cuando sea posible hacer el intercambio.</div>' +
+          '<div class="inbox-item__meta"><i class="far fa-clock"></i> ' + n.time + ' · <span style="color:var(--accent);font-weight:600;">Pendiente</span></div>' +
+          '</div>' +
+          '<div class="inbox-item__actions">' +
+          '<button class="inbox-item__responder" onclick="goToDetail(\'' + n.productId + '\')"><i class="fas fa-eye"></i> Ver</button>' +
+          '</div>';
+        parent.insertBefore(item, inbox);
+      });
+    })();
+  </script>
+    <nav class="bottom-nav">
+    <a href="../v1-catalogo/" class="nav-item"><i class="fas fa-search"></i><span>Buscar</span></a>
+    <a href="../v12-mis-matches/" class="nav-item"><i class="fas fa-exchange-alt"></i><span>Treqes</span></a>
+    <a href="../v3-subir/" class="nav-item nav-add"><div class="nav-add-btn"><i class="fas fa-plus"></i></div></a>
+    <a href="../v11-notificaciones/" class="nav-item active"><i class="fas fa-bell"></i><span>Avisos</span><span class="nav-badge"></span></a>
+    <a href="../v4-perfil/" class="nav-item"><i class="fas fa-user"></i><span>Perfil</span></a>
+  </nav>
+
+
+
+</body>
+</html>

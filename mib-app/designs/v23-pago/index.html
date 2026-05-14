@@ -1,0 +1,265 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pago seguro — Treqe</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{font-size:16px;background:#FAFAF8}
+    body{font-family:'Inter',sans-serif;background:#FAFAF8;color:#141414;min-height:100vh;-webkit-font-smoothing:antialiased}
+
+    /* Header */
+    .top-bar{display:flex;align-items:center;justify-content:center;padding:16px 24px;background:rgba(248,246,240,.8);border-bottom:1px solid #E0E0D8;position:sticky;top:0;z-index:10}
+    .top-bar .logo{font-size:1.2rem;font-weight:800;letter-spacing:-.5px}
+    .top-bar .logo span{color:#141414}
+    .top-bar .secure-badge{margin-left:auto;display:flex;align-items:center;gap:6px;font-size:.75rem;color:#141414;font-weight:600;background:rgba(0,184,184,.08);padding:6px 14px;border-radius:20px}
+    .top-bar .secure-badge i{font-size:.85rem}
+    .top-bar .logo{display:flex;align-items:center}
+    .top-bar .logo .treqe-logo{height:60px;width:auto}
+
+    /* Container */
+    .container{max-width:800px;margin:0 auto;padding:24px 16px 60px;display:grid;grid-template-columns:1fr 340px;gap:24px}
+    @media(max-width:720px){.container{grid-template-columns:1fr;gap:16px;padding:16px 12px 40px}}
+
+    /* Left: Form */
+    .form-section{background:#FFF;border-radius:20px;padding:28px;box-shadow:0 2px 12px rgba(0,0,0,.04)}
+    .form-section h2{font-size:1.1rem;font-weight:700;margin-bottom:20px}
+    .form-section .step-num{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:#141414;color:#FFF;font-size:.7rem;font-weight:700;margin-right:8px}
+
+    /* Address block */
+    .address-card{background:#FAFAF8;border-radius:14px;padding:16px;margin-bottom:20px}
+    .address-card__label{font-size:.7rem;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.3px;margin-bottom:6px}
+    .address-card__name{font-size:.9rem;font-weight:600;margin-bottom:2px}
+    .address-card__dir{font-size:.82rem;color:#666;line-height:1.5}
+    .address-card__edit{font-size:.75rem;color:#141414;font-weight:500;cursor:pointer;margin-top:4px;display:inline-block}
+
+    /* Form fields */
+    .form-group{margin-bottom:18px}
+    .form-group label{display:block;font-size:.82rem;font-weight:600;color:#141414;margin-bottom:6px}
+    .form-group .hint{font-size:.72rem;color:#888;font-weight:400;margin-left:4px}
+    .form-group input,.form-group select{width:100%;padding:14px 16px;border:1.5px solid #E0E0D8;border-radius:12px;font-size:.9rem;font-family:inherit;background:#FFF;transition:border-color .2s,box-shadow .2s;outline:none}
+    .form-group input:focus{border-color:#141414;box-shadow:0 0 0 3px rgba(255,106,53,.1)}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .card-input{position:relative}
+    .card-input input{padding-left:48px}
+    .card-input .card-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#999999;font-size:1.2rem}
+    .card-input .card-icons{position:absolute;right:12px;top:50%;transform:translateY(-50%);display:flex;gap:4px;color:#999999;font-size:.9rem}
+
+    /* Payment methods */
+    .payment-tabs{display:flex;gap:8px;margin-bottom:20px}
+    .payment-tab{flex:1;padding:14px;border:1.5px solid #E0E0D8;border-radius:12px;text-align:center;cursor:pointer;transition:all .2s;background:#FFF}
+    .payment-tab.active{border-color:#141414;background:rgba(255,106,53,.04)}
+    .payment-tab i{font-size:1.3rem;display:block;margin-bottom:4px;color:#666}
+    .payment-tab.active i{color:#141414}
+    .payment-tab span{font-size:.72rem;font-weight:500;color:#888}
+    .payment-tab.active span{color:#141414;font-weight:600}
+
+    /* Right: Summary */
+    .summary-section{position:sticky;top:88px}
+    .summary-card{background:#FFF;border-radius:20px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,.04)}
+    .summary-card h3{font-size:.95rem;font-weight:700;margin-bottom:16px}
+    .summary-item{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid #E0E0D8}
+    .summary-item:last-child{border-bottom:none}
+    .summary-item__img{width:48px;height:48px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+    .summary-item__info{flex:1}
+    .summary-item__name{font-size:.82rem;font-weight:600}
+    .summary-item__meta{font-size:.7rem;color:#888;margin-top:2px}
+    .summary-item__price{font-size:.85rem;font-weight:600;text-align:right}
+    .summary-row{display:flex;justify-content:space-between;padding:8px 0;font-size:.85rem;color:#666}
+    .summary-row.total{border-top:2px solid #E0E0D8;margin-top:4px;padding-top:12px;font-size:1.05rem;font-weight:700;color:#141414}
+    .summary-row.total span:last-child{color:#141414;font-size:1.15rem}
+
+    /* Submit */
+    .submit-wrap{margin-top:20px}
+    .btn-pagar{width:100%;padding:16px;background:#141414;color:#FFF;border:none;border-radius:14px;font-size:1rem;font-weight:700;cursor:pointer;transition:all .2s;box-shadow:0 4px 16px rgba(255,106,53,.25);display:flex;align-items:center;justify-content:center;gap:8px}
+    .btn-pagar:active{transform:scale(.98)}
+    .btn-pagar:disabled{opacity:.4;cursor:not-allowed;box-shadow:none}
+    .btn-pagar i{font-size:.9rem}
+    .secure-note{text-align:center;font-size:.72rem;color:#888;margin-top:12px;display:flex;align-items:center;justify-content:center;gap:6px}
+    .secure-note i{color:#141414}
+
+    /* Back button */
+    .back-link{display:inline-flex;align-items:center;gap:6px;color:#888;font-size:.82rem;text-decoration:none;padding:12px 0;margin-bottom:4px}
+    .back-link:hover{color:#141414}
+
+    /* Toast */
+    .toast{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.9);background:#FFF;border-radius:24px;padding:32px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.15);z-index:100;opacity:0;pointer-events:none;transition:all .3s;max-width:380px;width:90%}
+    .toast.show{opacity:1;pointer-events:auto;transform:translate(-50%,-50%) scale(1)}
+    .toast__icon{width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 16px}
+    .toast__icon.success{background:rgba(0,184,184,.1);color:#141414}
+    .toast__title{font-size:1.1rem;font-weight:700;margin-bottom:6px}
+    .toast__text{font-size:.85rem;color:#888;margin-bottom:20px;line-height:1.5}
+    .toast__btn{padding:12px 32px;background:#141414;color:#FFF;border:none;border-radius:12px;font-size:.9rem;font-weight:600;cursor:pointer}
+    .toast-overlay{position:fixed;inset:0;background:rgba(0,0,0,.3);z-index:99;opacity:0;pointer-events:none;transition:opacity .3s}
+    .toast-overlay.show{opacity:1;pointer-events:auto}
+  
+</style>
+</head>
+<body>
+
+  <div class="top-bar">
+    <div class="logo"><img class="treqe-logo" src="../v1-catalogo/logo-treqe.png" alt="MIB"></div>
+    <div class="secure-badge"><i class="fas fa-lock"></i> Pago seguro</div>
+  </div>
+
+  <a class="back-link" href="../v12-mis-matches/" style="display:flex;max-width:800px;margin:16px auto 0;padding:0 16px;"><i class="fas fa-chevron-left"></i> Volver a Mis Treqes</a>
+
+  <div class="container">
+
+    <!-- LEFT: Formulario de pago -->
+    <div class="form-section">
+      <h2><span class="step-num">1</span> Recibirás de</h2>
+      <div class="address-card">
+        <div class="address-card__label"><i class="fas fa-location-dot" style="margin-right:4px;"></i> Recibirás de Ana</div>
+        <div class="address-card__name">Ana García López</div>
+        <div class="address-card__dir">Avda. Diagonal 345, 3º 2ª<br>08037 Barcelona</div>
+        <a class="address-card__edit"><i class="fas fa-pen"></i> Cambiar dirección</a>
+      </div>
+      
+      </div>
+
+      <h2 style="margin-top:24px;"><span class="step-num">2</span> Método de pago</h2>
+      <div class="payment-tabs">
+        <div class="payment-tab active" onclick="selectPayTab(this)">
+          <i class="fas fa-credit-card"></i>
+          <span>Tarjeta</span>
+        </div>
+        <div class="payment-tab" onclick="selectPayTab(this)">
+          <i class="fab fa-paypal"></i>
+          <span>PayPal</span>
+        </div>
+        <div class="payment-tab" onclick="selectPayTab(this)">
+          <i class="fas fa-mobile-alt"></i>
+          <span>Bizum</span>
+        </div>
+      </div>
+
+      <div id="cardForm">
+        <div class="form-group">
+          <label>Número de tarjeta</label>
+          <div class="card-input">
+            <i class="far fa-credit-card card-icon"></i>
+            <input type="text" placeholder="4242 4242 4242 4242" maxlength="19">
+            <div class="card-icons">
+              <i class="fab fa-cc-visa"></i>
+              <i class="fab fa-cc-mastercard"></i>
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Caducidad</label>
+            <input type="text" placeholder="MM/AA" maxlength="5">
+          </div>
+          <div class="form-group">
+            <label>CVC</label>
+            <input type="text" placeholder="123" maxlength="4">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Titular de la tarjeta</label>
+          <input type="text" placeholder="Como aparece en la tarjeta">
+        </div>
+      </div>
+
+        <div id="paypalForm" style="display:none;">
+    <div style="padding:20px;background:#FAFAF8;border-radius:14px;text-align:center;">
+      <i class="fab fa-paypal" style="font-size:3rem;color:#003087;margin-bottom:12px;display:block;"></i>
+      <p style="font-size:.9rem;color:#666;margin-bottom:16px;">Serás redirigido a PayPal para completar el pago de forma segura.</p>
+      <div style="display:flex;align-items:center;gap:8px;padding:12px;background:#FFF;border-radius:10px;font-size:.82rem;color:#888;">
+        <i class="fas fa-envelope" style="color:#003087;"></i>
+        <span>usuario@email.com</span>
+      </div>
+    </div>
+  </div>
+  <div id="bizumForm" style="display:none;">
+    <div style="padding:20px;background:#FAFAF8;border-radius:14px;text-align:center;">
+      <i class="fas fa-mobile-alt" style="font-size:3rem;color:#5C6BC0;margin-bottom:12px;display:block;"></i>
+      <p style="font-size:.9rem;color:#666;margin-bottom:16px;">Recibirás una solicitud de pago en tu app de Bizum.</p>
+      <div style="display:flex;align-items:center;gap:8px;max-width:240px;margin:0 auto;">
+        <input type="tel" placeholder="Tu número de teléfono" style="flex:1;padding:14px;border:1.5px solid #E0E0D8;border-radius:12px;font-size:.9rem;text-align:center;outline:none;font-family:inherit;">
+      </div>
+    </div>
+  </div><div class="submit-wrap">
+        <button class="btn-pagar" onclick="processPayment()">
+          <i class="fas fa-lock"></i> Pagar 276,95€
+        </button>
+        <div class="secure-note">
+          <i class="fas fa-shield-alt"></i> Pago procesado por Stripe. Tus datos están seguros.
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Resumen -->
+    <div class="summary-section">
+      <div class="summary-card">
+        <h3>Resumen del intercambio</h3>
+        <div class="summary-item">
+          <div class="summary-item__img" style="background:#1A2A3A;"><span style="font-size:1.3rem;">📷</span></div>
+          <div class="summary-item__info">
+            <div class="summary-item__name">Canon EOS R</div>
+            <div class="summary-item__meta">de Ana · Como nueva</div>
+          </div>
+          <div class="summary-item__price">650€</div>
+        </div>
+        <div class="summary-item">
+          <div class="summary-item__img" style="background:#2A1A2A;"><span style="font-size:1.3rem;">🎧</span></div>
+          <div class="summary-item__info">
+            <div class="summary-item__name">AirPods Max</div>
+            <div class="summary-item__meta">tú das · Azul cielo</div>
+          </div>
+          <div class="summary-item__price">380€</div>
+        </div>
+        <div style="margin-top:12px;">
+          <div class="summary-row"><span>Diferencia</span><span>270€</span></div>
+          <div class="summary-row"><span>Envío</span><span>6,95€</span></div>
+          <div class="summary-row"><span>Comisión Treqe (5%)</span><span>13,50€</span></div>
+          <div class="summary-row total"><span>Total</span><span>276,95€</span></div>
+        </div>
+        <div style="margin-top:16px;padding:12px;background:rgba(0,184,184,.05);border-radius:12px;display:flex;align-items:center;gap:10px;font-size:.78rem;color:#666;">
+          <i class="fas fa-shield-alt" style="color:#141414;font-size:1.2rem;"></i>
+          El importe se retiene mediante escrow. Se libera cuando todos reciben sus artículos.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Toast -->
+  <div class="toast-overlay" id="toastOverlay"></div>
+  <div class="toast" id="toast">
+    <div class="toast__icon success"><i class="fas fa-check"></i></div>
+    <div class="toast__title">¡Pago realizado!</div>
+    <div class="toast__text">Los 276,95€ se han retenido mediante escrow. Cuando todos los participantes reciban sus artículos, el importe se liberará automáticamente.</div>
+    <button class="toast__btn" onclick="window.location.href='../v12-mis-matches/'">Volver a Mis Treqes</button>
+  </div>
+
+  <script>
+    function selectPayTab(el) {
+      document.querySelectorAll('.payment-tab').forEach(function(t) { t.classList.remove('active'); });
+      el.classList.add('active');
+      var method = el.querySelector('span').textContent.trim();
+      var cardForm = document.getElementById('cardForm');
+      var paypalForm = document.getElementById('paypalForm');
+      var bizumForm = document.getElementById('bizumForm');
+      cardForm.style.display = 'none';
+      paypalForm.style.display = 'none';
+      bizumForm.style.display = 'none';
+      if (method === 'Tarjeta') { cardForm.style.display = 'block'; }
+      else if (method === 'PayPal') { paypalForm.style.display = 'block'; }
+      else if (method === 'Bizum') { bizumForm.style.display = 'block'; }
+    }
+
+    function processPayment() {
+      document.getElementById('toastOverlay').classList.add('show');
+      document.getElementById('toast').classList.add('show');
+    }
+  </script>
+
+</body>
+</html>

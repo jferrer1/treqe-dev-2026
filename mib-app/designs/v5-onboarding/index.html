@@ -1,0 +1,481 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>MIB — Onboarding</title>
+    <meta name="robots" content="noindex, nofollow">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #FAFAF8;
+      color: #141414;
+      height: 100vh;
+      overflow: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      display: flex;
+      flex-direction: column;
+    }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+    :root {
+      --bg: #FAFAF8;
+      --text: #141414;
+      --text-secondary: #5C5C5C;
+      --text-tertiary: #999999;
+      --border: #E0E0D8;
+      --accent: #141414;
+      --accent-hover: #5C5C5C;
+    }
+
+    /* ===== SKIP ===== */
+    .skip-btn {
+      position: fixed;
+      top: 16px;
+      right: 20px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text-tertiary);
+      padding: 8px 12px;
+      border-radius: 10px;
+      transition: all 0.2s;
+      z-index: 10;
+    }
+    .skip-btn:active { background: var(--border); }
+
+    /* ===== CAROUSEL ===== */
+    .carousel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .slides {
+      flex: 1;
+      display: flex;
+      overflow: hidden;
+    }
+    .slides-inner {
+      display: flex;
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      will-change: transform;
+    }
+
+    /* ===== SLIDE ===== */
+    .slide {
+      width: 100vw;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 32px 24px;
+      position: relative;
+    }
+
+    /* ===== BEFORE / AFTER LAYOUT ===== */
+    .ba-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 24px;
+      width: 100%;
+      max-width: 340px;
+      justify-content: center;
+    }
+    .ba-item {
+      flex: none;
+      text-align: center;
+      width: 130px;
+    }
+    .ba-item .label {
+      font-size: 0.55rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--text-tertiary);
+      margin-bottom: 10px;
+    }
+    .ba-item .label.before { color: #C0B8A8; }
+    .ba-item .label.after { color: var(--accent); }
+    .ba-arrow {
+      font-size: 1.2rem;
+      color: var(--accent);
+      flex-shrink: 0;
+      opacity: 0.4;
+      margin: 0 4px;
+      margin-top: -20px;
+    }
+
+    /* ===== ILLUSTRATION IMAGE ===== */
+    .ill-img {
+      width: 130px;
+      height: 130px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin: 0 auto 8px;
+      display: block;
+      background: #FFF;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+    .ill-item-name {
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+
+    /* ===== SLIDE TEXT ===== */
+    .slide h1 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      text-align: center;
+      line-height: 1.4;
+      margin-bottom: 8px;
+      color: var(--text);
+      padding: 0 16px;
+    }
+    .slide h1 .big {
+      font-size: 1.35rem;
+      font-weight: 800;
+      display: block;
+      letter-spacing: -0.3px;
+    }
+    .slide h1 .big span { color: var(--accent); }
+    .slide p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      text-align: center;
+      line-height: 1.5;
+      max-width: 290px;
+    }
+
+    /* ===== SINGLE ILLUSTRATION SLIDE ===== */
+    .single-ill {
+      width: 190px;
+      height: 190px;
+      object-fit: cover;
+      border-radius: 50%;
+      background: #FFF;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      margin-bottom: 20px;
+    }
+
+    /* ===== BRAND BADGE ===== */
+    .brand-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 20px;
+      opacity: 0.5;
+    }
+    .brand-badge img {
+      height: 18px;
+    }
+    .brand-badge span {
+      font-size: 0.65rem;
+      font-weight: 500;
+      color: var(--text-tertiary);
+      letter-spacing: 0.5px;
+    }
+
+    /* ===== DOTS ===== */
+    .dots {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      padding: 12px 16px 10px;
+    }
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 8px;
+      background: var(--border);
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    .dot.active {
+      width: 28px;
+      background: var(--accent);
+    }
+
+    /* ===== CTA ===== */
+    .cta-bottom {
+      padding: 0 32px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .cta-primary {
+      width: 100%;
+      padding: 16px;
+      background: var(--accent);
+      color: #FFF;
+      border-radius: 18px;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: all 0.2s;
+      box-shadow: 0 4px 16px rgba(255,106,53,0.25);
+    }
+    .cta-primary:active {
+      transform: scale(0.98);
+      background: var(--accent-hover);
+      box-shadow: 0 2px 8px rgba(255,106,53,0.15);
+    }
+    .cta-secondary {
+      width: 100%;
+      padding: 12px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: color 0.2s;
+    }
+    .cta-secondary:active { color: var(--text); }
+    .cta-secondary.hidden { display: none; }
+
+    /* ===== DEMO ===== */
+    .demo-tag {
+      position: fixed;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.55rem;
+      color: rgba(0,0,0,0.10);
+      z-index: 5;
+      white-space: nowrap;
+    }
+
+    /* ===== ANIMATION ===== */
+    @keyframes fadeUp {
+      0% { opacity: 0; transform: translateY(14px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    .slide.active-anim h1,
+    .slide.active-anim p {
+      animation: fadeUp 0.5s ease forwards;
+    }
+    .slide.active-anim h1 { animation-delay: 0.15s; }
+    .slide.active-anim p { animation-delay: 0.25s; }
+
+    @keyframes popIn {
+      0% { opacity: 0; transform: scale(0.7); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+    .slide.active-anim .ba-wrap,
+    .slide.active-anim .single-ill {
+      animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      opacity: 0;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (min-height: 700px) {
+      .ill-img, .single-ill { width: 150px; height: 150px; }
+      .ba-item { width: 150px; }
+    }
+    @media (min-height: 800px) {
+      .ill-img, .single-ill { width: 170px; height: 170px; }
+      .ba-item { width: 170px; }
+    }
+    @media (min-width: 600px) {
+      .slide { max-width: 480px; margin: 0 auto; }
+      .cta-bottom { max-width: 480px; margin: 0 auto; }
+      .dots { max-width: 480px; margin: 0 auto; }
+    }
+  
+</style>
+</head>
+<body>
+
+  <button class="skip-btn" id="skipBtn" onclick="finishOnboarding()">Saltar</button>
+
+  <div class="carousel">
+    <div class="slides">
+      <div class="slides-inner" id="slidesInner">
+
+        <!-- ===== SLIDE 1: BICI → GUITARRA ===== -->
+        <div class="slide" data-index="0">
+          <div class="ba-wrap">
+            <div class="ba-item">
+              <div class="label before">ANTES TENÍA</div>
+              <img src="../../assets/illustrations/slide1_antes_bici.png" alt="Bicicleta" class="ill-img">
+              <div class="ill-item-name">bici estática</div>
+            </div>
+            <div class="ba-arrow"><i class="fas fa-arrow-right"></i></div>
+            <div class="ba-item">
+              <div class="label after">AHORA TENGO</div>
+              <img src="../../assets/illustrations/slide1_ahora_guitarra.png" alt="Guitarra" class="ill-img">
+              <div class="ill-item-name">guitarra eléctrica</div>
+            </div>
+          </div>
+          <h1>
+            Consigue lo que quieres<br>
+            con lo que ya no usas
+          </h1>
+          <p>
+            Cambia tus cosas por otras que te gusten más. Paga la diferencia si hace falta.
+          </p>
+        </div>
+
+        <!-- ===== SLIDE 2: CÁMARA → SKATE ===== -->
+        <div class="slide" data-index="1">
+          <div class="ba-wrap">
+            <div class="ba-item">
+              <div class="label before">ANTES TENÍA</div>
+              <img src="../../assets/illustrations/slide2_antes_camara.png" alt="Cámara" class="ill-img">
+              <div class="ill-item-name">una cámara</div>
+            </div>
+            <div class="ba-arrow"><i class="fas fa-arrow-right"></i></div>
+            <div class="ba-item">
+              <div class="label after">AHORA TENGO</div>
+              <img src="../../assets/illustrations/slide2_ahora_skate.png" alt="Skate" class="ill-img">
+              <div class="ill-item-name">un skate</div>
+            </div>
+          </div>
+          <h1>
+            <span class="big">Tú pones el <span>precio</span></span>
+          </h1>
+          <p>
+            Tus artículos valen lo que tú decidas. Sin valoraciones automáticas ni tasaciones.
+          </p>
+        </div>
+
+        <!-- ===== SLIDE 3: SOFÁ → PORTÁTIL ===== -->
+        <div class="slide" data-index="2">
+          <div class="ba-wrap">
+            <div class="ba-item">
+              <div class="label before">ANTES TENÍA</div>
+              <img src="../../assets/illustrations/slide3_antes_sofa.png" alt="Sofá" class="ill-img">
+              <div class="ill-item-name">un sofá</div>
+            </div>
+            <div class="ba-arrow"><i class="fas fa-arrow-right"></i></div>
+            <div class="ba-item">
+              <div class="label after">AHORA TENGO</div>
+              <img src="../../assets/illustrations/slide3_ahora_portatil.png" alt="Portátil" class="ill-img">
+              <div class="ill-item-name">este portátil</div>
+            </div>
+          </div>
+          <h1>
+            <span class="big">Dale una <span>segunda vida</span></span>
+            a tus cosas
+          </h1>
+          <p>
+            Nosotros gestionamos la logística. Tú solo solicita, espera y recibe.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ===== DOTS ===== -->
+    <div class="dots" id="dots">
+      <span class="dot active" data-index="0"></span>
+      <span class="dot" data-index="1"></span>
+      <span class="dot" data-index="2"></span>
+    </div>
+
+    <!-- ===== CTA ===== -->
+    <div class="cta-bottom">
+      <button class="cta-primary" id="ctaBtn" onclick="ctaAction()">
+        <i class="fas fa-arrow-right"></i> Siguiente
+      </button>
+      <button class="cta-secondary" id="ctaSecondary" onclick="alert('📝 Formulario de registro (demo)')">
+        ¿Ya tienes cuenta? Inicia sesión
+      </button>
+    </div>
+  </div>
+
+  <span class="demo-tag"><i class="fas fa-flask"></i> Treqe Prototype — v5 Onboarding — Apr 2026</span>
+
+  <script>
+    let currentSlide = 0;
+    const totalSlides = 3;
+    const slidesInner = document.getElementById('slidesInner');
+    const dots = document.querySelectorAll('.dot');
+    const ctaBtn = document.getElementById('ctaBtn');
+    const ctaSecondary = document.getElementById('ctaSecondary');
+    const skipBtn = document.getElementById('skipBtn');
+    const slidesContainer = document.querySelector('.slides');
+
+    let touchStartX = 0;
+    let touchEndX = 0;
+    let isDragging = false;
+
+    slidesContainer.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+      isDragging = true;
+    }, { passive: true });
+
+    slidesContainer.addEventListener('touchmove', (e) => {
+      if (!isDragging) return;
+      touchEndX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    slidesContainer.addEventListener('touchend', () => {
+      if (!isDragging) return;
+      isDragging = false;
+      const diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > 50) {
+        if (diff > 0 && currentSlide < totalSlides - 1) goToSlide(currentSlide + 1);
+        else if (diff < 0 && currentSlide > 0) goToSlide(currentSlide - 1);
+      }
+    }, { passive: true });
+
+    function goToSlide(index) {
+      currentSlide = index;
+      slidesInner.style.transform = `translateX(-${index * 100}vw)`;
+
+      dots.forEach((d, i) => d.classList.toggle('active', i === index));
+
+      if (index === totalSlides - 1) {
+        ctaBtn.innerHTML = '<i class="fas fa-eye"></i> ¡Ver catálogo!';
+        skipBtn.style.opacity = '0';
+        skipBtn.style.pointerEvents = 'none';
+        ctaSecondary.classList.add('hidden');
+      } else {
+        ctaBtn.innerHTML = '<i class="fas fa-arrow-right"></i> Siguiente';
+        skipBtn.style.opacity = '1';
+        skipBtn.style.pointerEvents = 'auto';
+        ctaSecondary.classList.remove('hidden');
+      }
+
+      // Animate current slide
+      document.querySelectorAll('.slide').forEach(s => s.classList.remove('active-anim'));
+      setTimeout(() => {
+        document.querySelectorAll('.slide')[index].classList.add('active-anim');
+      }, 50);
+    }
+
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => goToSlide(parseInt(dot.dataset.index)));
+    });
+
+    function ctaAction() {
+      if (currentSlide === totalSlides - 1) finishOnboarding();
+      else goToSlide(currentSlide + 1);
+    }
+
+    function finishOnboarding() {
+      alert('🏠 Onboarding completado → Catálogo (demo)');
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' && currentSlide < totalSlides - 1) goToSlide(currentSlide + 1);
+      else if (e.key === 'ArrowLeft' && currentSlide > 0) goToSlide(currentSlide - 1);
+    });
+
+    // Initial animation
+    setTimeout(() => {
+      document.querySelectorAll('.slide')[0].classList.add('active-anim');
+    }, 200);
+
+    console.log('🎨 TREQE v5 — Onboarding (ilustraciones reales del PDF de marca)');
+    console.log('🧪 24 Abril 2026');
+  </script>
+</body>
+</html>
