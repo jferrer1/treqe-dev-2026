@@ -1,16 +1,16 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>MIB — Registro</title>
+  <title>treqe — Registro</title>
   <meta name="robots" content="noindex, nofollow">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
-/* ===== MIB Design System - Taylor Penton Editorial ===== */
+/* ===== treqe Design System - Taylor Penton Editorial ===== */
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -53,45 +53,45 @@ body.dark p { color: #A0998F; }
 body.dark .label-mono, body.dark label, body.dark .mono-label, body.dark .tag { color: #6B6560; }
 
 /* ===== Header ===== */
-.mib-header {
+.treqe-header {
   position: sticky; top: 0; z-index: 100;
   display: flex; align-items: center; justify-content: space-between;
   padding: 14px 16px;
   background: #F9F7F2; border-bottom: 1px solid #E5E0D8;
   transition: background 0.2s, border-color 0.2s;
 }
-body.dark .mib-header { background: #130B00; border-color: #3A3630; }
-.mib-logo { font-family: 'IBM Plex Sans', sans-serif; font-size: 1.3rem; font-weight: 700; font-style: italic; letter-spacing: -0.03em; color: #1C1915; }
-body.dark .mib-logo { color: #E8E2D6; }
-.mib-header-right { display: flex; align-items: center; gap: 8px; }
-.mib-nav-pill { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 6px 12px; border: 1px solid #E5E0D8; border-radius: 2px; color: #6B6560; cursor: pointer; background: transparent; transition: all 0.15s; }
-body.dark .mib-nav-pill { border-color: #3A3630; color: #A0998F; }
-.mib-nav-pill:hover, .mib-nav-pill.active { background: #1C1915; color: #FFF; border-color: #1C1915; }
-body.dark .mib-nav-pill:hover { background: #E8E2D6; color: #130B00; border-color: #E8E2D6; }
-.mib-dark-toggle { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; padding: 6px 10px; border: 1px solid #E5E0D8; border-radius: 2px; color: #6B6560; cursor: pointer; background: transparent; }
-body.dark .mib-dark-toggle { border-color: #3A3630; color: #A0998F; }
+body.dark .treqe-header { background: #130B00; border-color: #3A3630; }
+.treqe-logo { font-family: 'IBM Plex Sans', sans-serif; font-size: 1.3rem; font-weight: 700; font-style: italic; letter-spacing: -0.03em; color: #1C1915; }
+body.dark .treqe-logo { color: #E8E2D6; }
+.treqe-header-right { display: flex; align-items: center; gap: 8px; }
+.treqe-nav-pill { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 6px 12px; border: 1px solid #E5E0D8; border-radius: 2px; color: #6B6560; cursor: pointer; background: transparent; transition: all 0.15s; }
+body.dark .treqe-nav-pill { border-color: #3A3630; color: #A0998F; }
+.treqe-nav-pill:hover, .treqe-nav-pill.active { background: #1C1915; color: #FFF; border-color: #1C1915; }
+body.dark .treqe-nav-pill:hover { background: #E8E2D6; color: #130B00; border-color: #E8E2D6; }
+.treqe-dark-toggle { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; padding: 6px 10px; border: 1px solid #E5E0D8; border-radius: 2px; color: #6B6560; cursor: pointer; background: transparent; }
+body.dark .treqe-dark-toggle { border-color: #3A3630; color: #A0998F; }
 
 /* ===== Bottom Nav ===== */
-.mib-bottom-nav {
+.treqe-bottom-nav {
   position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
   display: flex; align-items: center; justify-content: space-around;
   padding: 8px 0 max(8px, env(safe-area-inset-bottom));
   background: #F9F7F2; border-top: 1px solid #E5E0D8;
   transition: background 0.2s, border-color 0.2s;
 }
-body.dark .mib-bottom-nav { background: #130B00; border-color: #3A3630; }
-.mib-nav-item { display: flex; flex-direction: column; align-items: center; gap: 2px; font-family: 'IBM Plex Mono', monospace; font-size: 0.5rem; text-transform: uppercase; letter-spacing: 0.12em; color: #A09A94; text-decoration: none; padding: 4px 8px; transition: color 0.15s; }
-.mib-nav-item i { font-size: 0.9rem; color: #6B6560; }
-body.dark .mib-nav-item { color: #6B6560; }
-body.dark .mib-nav-item i { color: #A0998F; }
-.mib-nav-item.active { color: #1C1915; }
-.mib-nav-item.active i { color: #1C1915; }
-body.dark .mib-nav-item.active { color: #E8E2D6; }
-body.dark .mib-nav-item.active i { color: #E8E2D6; }
+body.dark .treqe-bottom-nav { background: #130B00; border-color: #3A3630; }
+.treqe-nav-item { display: flex; flex-direction: column; align-items: center; gap: 2px; font-family: 'IBM Plex Mono', monospace; font-size: 0.5rem; text-transform: uppercase; letter-spacing: 0.12em; color: #A09A94; text-decoration: none; padding: 4px 8px; transition: color 0.15s; }
+.treqe-nav-item i { font-size: 0.9rem; color: #6B6560; }
+body.dark .treqe-nav-item { color: #6B6560; }
+body.dark .treqe-nav-item i { color: #A0998F; }
+.treqe-nav-item.active { color: #1C1915; }
+.treqe-nav-item.active i { color: #1C1915; }
+body.dark .treqe-nav-item.active { color: #E8E2D6; }
+body.dark .treqe-nav-item.active i { color: #E8E2D6; }
 
 /* ===== Cards ===== */
-.mib-card { border: 1px solid #E5E0D8; border-radius: 2px; background: #FFF; padding: 16px; }
-body.dark .mib-card { border-color: #3A3630; background: #1A1206; }
+.treqe-card { border: 1px solid #E5E0D8; border-radius: 2px; background: #FFF; padding: 16px; }
+body.dark .treqe-card { border-color: #3A3630; background: #1A1206; }
 
 /* ===== Utility ===== */
 .text-center { text-align: center; }
@@ -120,8 +120,8 @@ body.dark .text-dim { color: #6B6560; }
 .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 
 /* ===== Footer ===== */
-.mib-footer { padding: 24px 16px; font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.12em; color: #A09A94; text-align: center; border-top: 1px solid #E5E0D8; margin-top: 24px; }
-body.dark .mib-footer { border-color: #3A3630; color: #6B6560; }
+.treqe-footer { padding: 24px 16px; font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.12em; color: #A09A94; text-align: center; border-top: 1px solid #E5E0D8; margin-top: 24px; }
+body.dark .treqe-footer { border-color: #3A3630; color: #6B6560; }
 
 /* ===== Status bar mock ===== */
 .status-bar { display: flex; justify-content: space-between; align-items: center; padding: 6px 16px 2px; font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; color: #A09A94; }
@@ -130,43 +130,43 @@ body.dark .status-bar { color: #6B6560; }
 .status-bar .icons { display: flex; gap: 4px; }
 
 /* ===== Form elements ===== */
-.mib-input { font-family: 'IBM Plex Sans', sans-serif; font-size: 0.9rem; border: 1px solid #E5E0D8; border-radius: 2px; padding: 10px 12px; background: #FFF; color: #1C1915; outline: none; width: 100%; }
-body.dark .mib-input { background: #1A1206; border-color: #3A3630; color: #E8E2D6; }
-.mib-input:focus { border-color: #1C1915; }
-body.dark .mib-input:focus { border-color: #E8E2D6; }
+.treqe-input { font-family: 'IBM Plex Sans', sans-serif; font-size: 0.9rem; border: 1px solid #E5E0D8; border-radius: 2px; padding: 10px 12px; background: #FFF; color: #1C1915; outline: none; width: 100%; }
+body.dark .treqe-input { background: #1A1206; border-color: #3A3630; color: #E8E2D6; }
+.treqe-input:focus { border-color: #1C1915; }
+body.dark .treqe-input:focus { border-color: #E8E2D6; }
 
-.mib-select { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; border: 1px solid #E5E0D8; border-radius: 2px; padding: 8px 12px; background: #FFF; color: #1C1915; outline: none; }
-body.dark .mib-select { background: #1A1206; border-color: #3A3630; color: #E8E2D6; }
+.treqe-select { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; border: 1px solid #E5E0D8; border-radius: 2px; padding: 8px 12px; background: #FFF; color: #1C1915; outline: none; }
+body.dark .treqe-select { background: #1A1206; border-color: #3A3630; color: #E8E2D6; }
 
-.mib-checkbox { -webkit-appearance: none; appearance: none; width: 16px; height: 16px; border: 1px solid #E5E0D8; border-radius: 2px; cursor: pointer; flex-shrink: 0; position: relative; background: #FFF; }
-body.dark .mib-checkbox { border-color: #3A3630; background: #1A1206; }
-.mib-checkbox:checked { background: #1C1915; border-color: #1C1915; }
-body.dark .mib-checkbox:checked { background: #E8E2D6; border-color: #E8E2D6; }
-.mib-checkbox:checked::after { content: '\2713'; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); color: #FFF; font-size: 0.6rem; font-weight: 700; }
-body.dark .mib-checkbox:checked::after { color: #130B00; }
+.treqe-checkbox { -webkit-appearance: none; appearance: none; width: 16px; height: 16px; border: 1px solid #E5E0D8; border-radius: 2px; cursor: pointer; flex-shrink: 0; position: relative; background: #FFF; }
+body.dark .treqe-checkbox { border-color: #3A3630; background: #1A1206; }
+.treqe-checkbox:checked { background: #1C1915; border-color: #1C1915; }
+body.dark .treqe-checkbox:checked { background: #E8E2D6; border-color: #E8E2D6; }
+.treqe-checkbox:checked::after { content: '\2713'; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); color: #FFF; font-size: 0.6rem; font-weight: 700; }
+body.dark .treqe-checkbox:checked::after { color: #130B00; }
 
 /* ===== Separator ===== */
-.mib-hr { border: none; border-top: 1px solid #E5E0D8; margin: 16px 0; }
-body.dark .mib-hr { border-color: #3A3630; }
+.treqe-hr { border: none; border-top: 1px solid #E5E0D8; margin: 16px 0; }
+body.dark .treqe-hr { border-color: #3A3630; }
 
 /* ===== Alert / Notice ===== */
-.mib-notice { border: 1px solid #E5E0D8; border-radius: 2px; padding: 12px 16px; font-size: 0.8rem; color: #6B6560; }
-body.dark .mib-notice { border-color: #3A3630; color: #A0998F; }
+.treqe-notice { border: 1px solid #E5E0D8; border-radius: 2px; padding: 12px 16px; font-size: 0.8rem; color: #6B6560; }
+body.dark .treqe-notice { border-color: #3A3630; color: #A0998F; }
 
 /* ===== Pill tag ===== */
-.mib-tag { display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 0.5rem; text-transform: uppercase; letter-spacing: 0.12em; border: 1px solid #E5E0D8; border-radius: 2px; padding: 3px 8px; color: #6B6560; }
-body.dark .mib-tag { border-color: #3A3630; color: #A0998F; }
+.treqe-tag { display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 0.5rem; text-transform: uppercase; letter-spacing: 0.12em; border: 1px solid #E5E0D8; border-radius: 2px; padding: 3px 8px; color: #6B6560; }
+body.dark .treqe-tag { border-color: #3A3630; color: #A0998F; }
 
 /* ===== Demo tag ===== */
 .demo-tag { font-family: 'IBM Plex Mono', monospace; font-size: 0.45rem; color: #C5C0B8; text-align: center; padding: 4px; }
 body.dark .demo-tag { color: #5A5650; }
 
 /* ===== Empty state ===== */
-.mib-empty { text-align: center; padding: 48px 16px; color: #A09A94; }
-body.dark .mib-empty { color: #6B6560; }
-.mib-empty i { font-size: 2rem; margin-bottom: 12px; color: #C5C0B8; }
-body.dark .mib-empty i { color: #5A5650; }
-.mib-empty p { font-size: 0.85rem; }
+.treqe-empty { text-align: center; padding: 48px 16px; color: #A09A94; }
+body.dark .treqe-empty { color: #6B6560; }
+.treqe-empty i { font-size: 2rem; margin-bottom: 12px; color: #C5C0B8; }
+body.dark .treqe-empty i { color: #5A5650; }
+.treqe-empty p { font-size: 0.85rem; }
 
 /* ===== Fade animation ===== */
 @keyframes fadeUp { 0% { opacity: 0; transform: translateY(12px); } 100% { opacity: 1; transform: translateY(0); } }
@@ -174,12 +174,12 @@ body.dark .mib-empty i { color: #5A5650; }
   </style>
 </head>
 <body>
-<div class="mib-header">
-  <a href="../v1-catalogo/" class="mib-logo">MIB</a>
-  <div class="mib-header-right">
-    <a href="../v13-blog/" class="mib-nav-pill"><i class="fas fa-pen"></i> Blog</a>
-    <a href="../v1-catalogo/" class="mib-nav-pill"><i class="fas fa-th"></i> Catalogo</a>
-    <button class="mib-dark-toggle" onclick="toggleDark()"><i class="fas fa-moon"></i></button>
+<div class="treqe-header">
+  <a href="../v1-catalogo/" class="treqe-logo">treqe</a>
+  <div class="treqe-header-right">
+    <a href="../v13-blog/" class="treqe-nav-pill"><i class="fas fa-pen"></i> Blog</a>
+    <a href="../v1-catalogo/" class="treqe-nav-pill"><i class="fas fa-th"></i> Catalogo</a>
+    <button class="treqe-dark-toggle" onclick="toggleDark()"><i class="fas fa-moon"></i></button>
   </div>
 </div>
 
@@ -198,8 +198,8 @@ body.dark .mib-empty i { color: #5A5650; }
 
       <!-- HEADER -->
       <div class="auth-header">
-        <a href="../v16-portada/index.html" class="mib-logo-link"><img class="auth-header__logo" src="../v1-catalogo/logo-treqe.png" alt="TREQE"></a>
-        <div class="auth-header__title" id="pageTitle"><a href="../v16-portada/index.html" class="mib-logo-link"><svg class="mib-logo" viewBox="0 0 76 24" fill="none" xmlns="http://www.w3.org/2000/svg"><text x="0" y="19" font-family="Inter, sans-serif" font-weight="700" font-size="22" letter-spacing="-1.5" fill="#1C1915">MIB<text x="60" y="19" fill="#1C1915">.</text></text></svg></a></div>
+        <a href="../v16-portada/index.html" class="treqe-logo-link"><img class="auth-header__logo" src="../v1-catalogo/logo-treqe.png" alt="TREQE"></a>
+        <div class="auth-header__title" id="pageTitle"><a href="../v16-portada/index.html" class="treqe-logo-link"><svg class="treqe-logo" viewBox="0 0 76 24" fill="none" xmlns="http://www.w3.org/2000/svg"><text x="0" y="19" font-family="Inter, sans-serif" font-weight="700" font-size="22" letter-spacing="-1.5" fill="#1C1915">treqe<text x="60" y="19" fill="#1C1915">.</text></text></svg></a></div>
         <div class="auth-header__sub" id="pageSubtitle">Crea tu cuenta para empezar a intercambiar</div>
       </div>
 
@@ -367,14 +367,14 @@ body.dark .mib-empty i { color: #5A5650; }
 
     applyMode();
   </script>
-<div class="mib-footer">(c) 2026 MIB - Todos los derechos reservados</div>
+<div class="treqe-footer">(c) 2026 treqe - Todos los derechos reservados</div>
 
-<div class="demo-tag"><i class="fas fa-flask"></i> MIB Prototype -- v10-registro -- May 2026</div>
+<div class="demo-tag"><i class="fas fa-flask"></i> treqe Prototype -- v10-registro -- May 2026</div>
 
 <script>
 function toggleDark() {
   document.body.classList.toggle("dark");
-  var btn = document.querySelector(".mib-dark-toggle i");
+  var btn = document.querySelector(".treqe-dark-toggle i");
   if (btn) {
     if (document.body.classList.contains("dark")) {
       btn.className = "fas fa-sun";
@@ -383,7 +383,7 @@ function toggleDark() {
     }
   }
 }
-console.log("MIB Design System - Taylor Penton Editorial");
+console.log("treqe Design System - Taylor Penton Editorial");
 </script>
 </body>
 </html>

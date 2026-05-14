@@ -1,24 +1,24 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MIB — Blog | Intercambio inteligente</title>
-  <meta name="description" content="Blog de MIB. Historias de intercambio, guías para principiantes, el algoritmo de intercambio circular y reflexiones sobre economía sostenible.">
-  <meta property="og:title" content="MIB — Blog | Intercambio inteligente">
+  <title>treqe — Blog | Intercambio inteligente</title>
+  <meta name="description" content="Blog de treqe. Historias de intercambio, guías para principiantes, el algoritmo de intercambio circular y reflexiones sobre economía sostenible.">
+  <meta property="og:title" content="treqe — Blog | Intercambio inteligente">
   <meta property="og:description" content="Descubre cómo funciona el intercambio circular. Guías, historias y el algoritmo que hace posible lo imposible.">
-  <meta property="og:image" content="https://jferrer1.github.io/mib-app/designs/v13-blog/og-image.png">
-  <meta property="og:url" content="https://mib.es/blog">
+  <meta property="og:image" content="https://jferrer1.github.io/treqe-app/designs/v13-blog/og-image.png">
+  <meta property="og:url" content="https://treqe.es/blog">
   <meta property="og:type" content="blog">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="canonical" href="https://mib.es/blog">
+  <link rel="canonical" href="https://treqe.es/blog">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Blog",
-    "name": "Blog de MIB",
+    "name": "Blog de treqe",
     "description": "Intercambio inteligente y circular",
-    "url": "https://mib.es/blog"
+    "url": "https://treqe.es/blog"
   }
   </script>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -43,8 +43,8 @@
     a { text-decoration: none; color: inherit; }
     input { font-family: inherit; font-size: inherit; }
 
-    /* ===== MIB DESKTOP HEADER ===== */
-    .mib-header {
+    /* ===== treqe DESKTOP HEADER ===== */
+    .treqe-header {
       display: flex; align-items: center; justify-content: space-between;
       padding: 10px 16px;
       background: #F9F7F2;
@@ -52,26 +52,26 @@
       position: sticky; top: 0; z-index: 100;
       transition: background .3s, border-color .3s;
     }
-    body.dark .mib-header { background: #130B00; border-color: #3A3630; }
-    .mib-header__left { display: flex; align-items: center; gap: 8px; }
-    .mib-header__logo {
+    body.dark .treqe-header { background: #130B00; border-color: #3A3630; }
+    .treqe-header__left { display: flex; align-items: center; gap: 8px; }
+    .treqe-header__logo {
       font-family: 'IBM Plex Mono', monospace;
       font-size: .85rem; font-weight: 600;
       letter-spacing: .12em; text-transform: uppercase;
       color: #1C1915;
     }
-    body.dark .mib-header__logo { color: #E8E2D6; }
-    .mib-header__right { display: flex; align-items: center; gap: 8px; }
-    .mib-header__toggle {
+    body.dark .treqe-header__logo { color: #E8E2D6; }
+    .treqe-header__right { display: flex; align-items: center; gap: 8px; }
+    .treqe-header__toggle {
       width: 30px; height: 30px;
       display: flex; align-items: center; justify-content: center;
       font-size: .7rem; color: #6B6560;
       border: 1px solid #E5E0D8; border-radius: 2px;
     }
-    body.dark .mib-header__toggle { color: #A0998F; border-color: #3A3630; }
-    .mib-header__toggle:active { background: #E5E0D8; }
-    body.dark .mib-header__toggle:active { background: #3A3630; }
-    .mib-pill {
+    body.dark .treqe-header__toggle { color: #A0998F; border-color: #3A3630; }
+    .treqe-header__toggle:active { background: #E5E0D8; }
+    body.dark .treqe-header__toggle:active { background: #3A3630; }
+    .treqe-pill {
       font-family: 'IBM Plex Mono', monospace;
       font-size: .55rem; font-weight: 500;
       text-transform: uppercase; letter-spacing: .12em;
@@ -79,13 +79,13 @@
       padding: 4px 10px;
       border: 1px solid #E5E0D8; border-radius: 2px;
     }
-    body.dark .mib-pill { color: #A0998F; border-color: #3A3630; }
-    .mib-pill:active { background: #E5E0D8; color: #1C1915; }
-    body.dark .mib-pill:active { background: #3A3630; color: #E8E2D6; }
-    .mib-nav {
+    body.dark .treqe-pill { color: #A0998F; border-color: #3A3630; }
+    .treqe-pill:active { background: #E5E0D8; color: #1C1915; }
+    body.dark .treqe-pill:active { background: #3A3630; color: #E8E2D6; }
+    .treqe-nav {
       display: flex; gap: 4px;
     }
-    .mib-nav a {
+    .treqe-nav a {
       font-family: 'IBM Plex Mono', monospace;
       font-size: .55rem; font-weight: 500;
       text-transform: uppercase; letter-spacing: .1em;
@@ -95,11 +95,11 @@
       border-radius: 2px;
       transition: all .2s;
     }
-    body.dark .mib-nav a { color: #A0998F; }
-    .mib-nav a:active { background: #E5E0D8; }
-    body.dark .mib-nav a:active { background: #3A3630; }
-    .mib-nav a.active { border-color: #E5E0D8; color: #1C1915; }
-    body.dark .mib-nav a.active { border-color: #3A3630; color: #E8E2D6; }
+    body.dark .treqe-nav a { color: #A0998F; }
+    .treqe-nav a:active { background: #E5E0D8; }
+    body.dark .treqe-nav a:active { background: #3A3630; }
+    .treqe-nav a.active { border-color: #E5E0D8; color: #1C1915; }
+    body.dark .treqe-nav a.active { border-color: #3A3630; color: #E8E2D6; }
 
     /* ===== HERO ===== */
     .blog-wrapper { max-width: 1200px; margin: 0 auto; padding: 24px; }
@@ -604,18 +604,18 @@
 </head>
 <body>
 
-  <!-- ===== MIB HEADER (desktop) ===== -->
-  <div class="mib-header">
-    <div class="mib-header__left">
-      <span class="mib-header__logo">MIB.BLOG</span>
+  <!-- ===== treqe HEADER (desktop) ===== -->
+  <div class="treqe-header">
+    <div class="treqe-header__left">
+      <span class="treqe-header__logo">treqe.blog</span>
     </div>
-    <div class="mib-header__right">
-      <button class="mib-header__toggle" id="darkToggle" onclick="toggleDarkMode()" aria-label="Dark mode"><i class="fas fa-moon"></i></button>
-      <span class="mib-header__pills">
-        <a href="../v1-catalogo/" class="mib-pill">Catálogo</a>
-        <a href="../v13-blog/" class="mib-pill active">Blog</a>
+    <div class="treqe-header__right">
+      <button class="treqe-header__toggle" id="darkToggle" onclick="toggleDarkMode()" aria-label="Dark mode"><i class="fas fa-moon"></i></button>
+      <span class="treqe-header__pills">
+        <a href="../v1-catalogo/" class="treqe-pill">Catálogo</a>
+        <a href="../v13-blog/" class="treqe-pill active">Blog</a>
       </span>
-      <nav class="mib-nav">
+      <nav class="treqe-nav">
         <a href="../v1-catalogo/">Catálogo</a>
       </nav>
     </div>
@@ -628,7 +628,7 @@
     <div class="hero-blog">
       <div class="hero-blog__tag">Primera entrega</div>
       <h1>Por qué el intercambio es más inteligente que comprar</h1>
-      <p>Intercambiamos desde antes de inventar el dinero. MIB recupera lo mejor de esa idea con un algoritmo que hace posible lo imposible.</p>
+      <p>Intercambiamos desde antes de inventar el dinero. treqe recupera lo mejor de esa idea con un algoritmo que hace posible lo imposible.</p>
       <a class="hero-blog__cta" href="posts/primera-entrega.html">
         Leer artículo <i class="fas fa-arrow-right"></i>
       </a>
@@ -658,7 +658,7 @@
         <!-- Featured -->
         <div class="featured-article" onclick="window.location.href='posts/primera-entrega.html'">
           <div class="featured-article__image">
-            <img src="assets/primera-entrega.png" alt="MIB no es Wallapop" style="display:none;">
+            <img src="assets/primera-entrega.png" alt="treqe no es Wallapop" style="display:none;">
             <span class="featured-badge">Nuevo</span>
             <i class="fas fa-arrows-spin icon-overlay"></i>
           </div>
@@ -668,7 +668,7 @@
               <span class="dot"></span>
               <span>5 min lectura</span>
             </div>
-            <div class="featured-article__title">MIB no es Wallapop: el intercambio estructurado llegó para quedarse</div>
+            <div class="featured-article__title">treqe no es Wallapop: el intercambio estructurado llegó para quedarse</div>
             <div class="featured-article__excerpt">Comprar y vender es el modelo más obvio, pero no el más eficiente. Detrás de cada objeto que acumulas en tu casa hay una oportunidad de intercambio que estás desperdiciando.</div>
             <div class="featured-article__read">Seguir leyendo <i class="fas fa-arrow-right"></i></div>
           </div>
@@ -690,7 +690,7 @@
                 <span class="tag">Tecnología</span>
               </div>
               <div class="article-card__title">El algoritmo que hace posible el intercambio circular</div>
-              <div class="article-card__excerpt">Cómo resuelve MIB el problema matemático del intercambio múltiple sin volverse loco en el intento.</div>
+              <div class="article-card__excerpt">Cómo resuelve treqe el problema matemático del intercambio múltiple sin volverse loco en el intento.</div>
             </div>
           </div>
 
@@ -713,7 +713,7 @@
                 <span>3 may 2026</span>
                 <span class="tag">Guía</span>
               </div>
-              <div class="article-card__title">Guía para principiantes: cómo funciona el intercambio en MIB</div>
+              <div class="article-card__title">Guía para principiantes: cómo funciona el intercambio en treqe</div>
               <div class="article-card__excerpt">Todo lo que necesitas saber para hacer tu primer intercambio.</div>
             </div>
           </div>
@@ -742,14 +742,14 @@
             </div>
           </div>
 
-          <div class="article-card" data-cat="sostenibilidad" onclick="window.location.href='posts/mib-economia-circular.html'">
+          <div class="article-card" data-cat="sostenibilidad" onclick="window.location.href='posts/treqe-economia-circular.html'">
             <div class="article-card__thumb teal"><img src="assets/economia-circular.png" alt="" style="display:none;"></div>
             <div class="article-card__content">
               <div class="article-card__meta">
                 <span>25 abr 2026</span>
                 <span class="tag">Sostenibilidad</span>
               </div>
-              <div class="article-card__title">MIB y la economía circular: cómo tus objetos pueden tener mil vidas</div>
+              <div class="article-card__title">treqe y la economía circular: cómo tus objetos pueden tener mil vidas</div>
               <div class="article-card__excerpt">Cada vez que intercambias algo, alargas su ciclo de vida.</div>
             </div>
           </div>
@@ -790,8 +790,8 @@
           <div class="sidebar-card">
             <h3>Más leídos</h3>
             <ul>
-              <li onclick="window.location.href='posts/primera-entrega.html'"><i class="fas fa-arrow-right"></i> MIB no es Wallapop</li>
-              <li onclick="window.location.href='posts/algoritmo-intercambio-circular.html'"><i class="fas fa-arrow-right"></i> Cómo MIB encuentra tu intercambio</li>
+              <li onclick="window.location.href='posts/primera-entrega.html'"><i class="fas fa-arrow-right"></i> treqe no es Wallapop</li>
+              <li onclick="window.location.href='posts/algoritmo-intercambio-circular.html'"><i class="fas fa-arrow-right"></i> Cómo treqe encuentra tu intercambio</li>
               <li onclick="window.location.href='posts/guia-principiantes.html'"><i class="fas fa-arrow-right"></i> Guía para principiantes</li>
               <li onclick="window.location.href='posts/sistema-reputacion.html'"><i class="fas fa-arrow-right"></i> Sistema de reputación</li>
             </ul>
@@ -806,7 +806,7 @@
   <!-- Footer -->
   <footer class="site-footer">
     <div class="footer-inner">
-      <span>&copy; 2026 MIB. Intercambia, no compres.</span>
+      <span>&copy; 2026 treqe. Intercambia, no compres.</span>
       <div class="social-links">
         <a href="#" onclick="alert('Twitter (demo)')"><i class="fab fa-twitter"></i></a>
         <a href="#" onclick="alert('Instagram (demo)')"><i class="fab fa-instagram"></i></a>
@@ -827,14 +827,14 @@
 
   <!-- Legal footer -->
   <div style="padding:24px 16px 80px;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:.45rem;color:#A09A94;line-height:2;">
-    <div style="margin-bottom:4px;"><span style="font-weight:600;color:#1C1915;">MIB</span><span style="color:#6B6560;">.blog</span></div>
+    <div style="margin-bottom:4px;"><span style="font-weight:600;color:#1C1915;">treqe</span><span style="color:#6B6560;">.blog</span></div>
     <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;">
       <a href="../v17-aviso-legal/" style="color:#A09A94;text-decoration:none;">Aviso Legal</a>
       <a href="../v18-privacidad/" style="color:#A09A94;text-decoration:none;">Privacidad</a>
       <a href="../v19-terminos/" style="color:#A09A94;text-decoration:none;">Términos</a>
       <a href="../v20-cookies/" style="color:#A09A94;text-decoration:none;">Cookies</a>
     </div>
-    <div style="margin-top:6px;color:#6B6560;">© 2026 MIB. Todos los derechos reservados.</div>
+    <div style="margin-top:6px;color:#6B6560;">© 2026 treqe. Todos los derechos reservados.</div>
   </div>
 
   <script>
@@ -843,9 +843,9 @@
       document.body.classList.toggle('dark');
       var icon = document.getElementById('darkToggle').querySelector('i');
       icon.className = document.body.classList.contains('dark') ? 'fas fa-sun' : 'fas fa-moon';
-      try { localStorage.setItem('mib-dark-mode', document.body.classList.contains('dark') ? '1' : '0'); } catch(e) {}
+      try { localStorage.setItem('treqe-dark-mode', document.body.classList.contains('dark') ? '1' : '0'); } catch(e) {}
     }
-    try { if (localStorage.getItem('mib-dark-mode') === '1') document.body.classList.add('dark'); } catch(e) {}
+    try { if (localStorage.getItem('treqe-dark-mode') === '1') document.body.classList.add('dark'); } catch(e) {}
     if (document.body.classList.contains('dark')) {
       var icon = document.getElementById('darkToggle').querySelector('i');
       if (icon) icon.className = 'fas fa-sun';

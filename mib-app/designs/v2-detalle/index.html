@@ -1,18 +1,18 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Fender Stratocaster · Intercambio o compra en MIB · Barcelona</title>
-  <meta name="description" content="Fender Stratocaster de segunda mano en Barcelona. Consíguela en MIB mediante intercambio circular o compra directa. Muy buen estado, incluye funda.">
-  <meta property="og:title" content="Fender Stratocaster · MIB">
-  <meta property="og:description" content="Guitarra eléctrica Fender Stratocaster en muy buen estado. Consíguela en MIB mediante intercambio o compra directa.">
+  <title>Fender Stratocaster · Intercambio o compra en treqe · Barcelona</title>
+  <meta name="description" content="Fender Stratocaster de segunda mano en Barcelona. Consíguela en treqe mediante intercambio circular o compra directa. Muy buen estado, incluye funda.">
+  <meta property="og:title" content="Fender Stratocaster · treqe">
+  <meta property="og:description" content="Guitarra eléctrica Fender Stratocaster en muy buen estado. Consíguela en treqe mediante intercambio o compra directa.">
   <meta property="og:image" content="https://jferrer1.github.io/treqe-dev-2026/treqe-app/designs/v2-detalle/og-product.png">
-  <meta property="og:url" content="https://mib.es/producto/fender-stratocaster">
+  <meta property="og:url" content="https://treqe.es/producto/fender-stratocaster">
   <meta property="og:type" content="product">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="robots" content="noindex, nofollow">
-  <link rel="canonical" href="https://mib.es/producto/fender-stratocaster">
+  <link rel="canonical" href="https://treqe.es/producto/fender-stratocaster">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -32,7 +32,7 @@
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
-    /* ===== MIB DESIGN SYSTEM ===== */
+    /* ===== treqe DESIGN SYSTEM ===== */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { font-size: 16px; -webkit-text-size-adjust: 100%; overflow-y: scroll; }
     body {
@@ -1180,7 +1180,7 @@
       </div>
       <div class="info-help-modal__body">
         <p>Esta <strong>no es una comunicación directa</strong> con la persona que publicó el artículo.</p>
-        <p>Tu mensaje se envía <strong>a través de MIB</strong> para solicitar que el vendedor mejore la información publicada: más fotos, detalles del estado, medidas, especificaciones técnicas o cualquier dato que ayude a tomar una decisión.</p>
+        <p>Tu mensaje se envía <strong>a través de treqe</strong> para solicitar que el vendedor mejore la información publicada: más fotos, detalles del estado, medidas, especificaciones técnicas o cualquier dato que ayude a tomar una decisión.</p>
         <p>El vendedor recibirá la solicitud y podrá actualizar la publicación con la información que necesitas.</p>
       </div>
     </div>
@@ -1189,7 +1189,7 @@
   <!-- ===== BOTTOM NAV ===== -->
   <nav class="bottom-nav">
     <a href="../v1-catalogo/" class="nav-item"><i class="fas fa-search"></i><span>Buscar</span></a>
-    <a href="../v12-mis-matches/" class="nav-item"><i class="fas fa-exchange-alt"></i><span>Treqes</span></a>
+    <a href="../v12-mis-matches/" class="nav-item"><i class="fas fa-exchange-alt"></i><span>treqes</span></a>
     <a href="../v3-subir/" class="nav-item nav-add"><div class="nav-add-btn"><i class="fas fa-plus"></i></div></a>
     <a href="../v11-notificaciones/" class="nav-item"><i class="fas fa-bell"></i><span>Avisos</span><span class="nav-badge"></span></a>
     <a href="../v4-perfil/" class="nav-item"><i class="fas fa-user"></i><span>Perfil</span></a>
@@ -1468,7 +1468,7 @@
     function goToTracking() { window.parent.location.href = "../v7-seguimiento/"; }
     function goToDetail(id) { window.parent.location.href = '../v2-detalle/?id=' + id; }
 
-    console.log('🎸 MIB v2 — Detalle artículo');
+    console.log('🎸 treqe v2 — Detalle artículo');
 
     // ===== LIGHTBOX =====
     function openLightbox() {
@@ -1519,11 +1519,11 @@
       if (condEl) condEl.innerHTML = '<i class="fas fa-check-circle"></i> ' + product.condition;
       var iconEl = document.querySelector('.gallery-slide .main-icon');
       if (iconEl) iconEl.className = product.fa + ' main-icon';
-      document.title = 'MIB \u2014 ' + product.name;
+      document.title = 'treqe \u2014 ' + product.name;
       var ogTitle = document.querySelector('meta[property="og:title"]');
-      if (ogTitle) ogTitle.setAttribute('content', product.name + ' \u00b7 MIB');
+      if (ogTitle) ogTitle.setAttribute('content', product.name + ' \u00b7 treqe');
       var ogDesc = document.querySelector('meta[name="description"]');
-      if (ogDesc) ogDesc.setAttribute('content', product.name + ' - ' + product.condition + '. Consigue en MIB mediante intercambio circular.');
+      if (ogDesc) ogDesc.setAttribute('content', product.name + ' - ' + product.condition + '. Consigue en treqe mediante intercambio circular.');
       var receiveIcon = document.getElementById('receiveIcon');
       var receiveName = document.getElementById('receiveName');
       var receivePrice = document.getElementById('receivePrice');
