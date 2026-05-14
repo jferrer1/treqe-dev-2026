@@ -896,6 +896,32 @@
   right: 4px;
 }
 
+.scoring-modal-overlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100vw !important;
+  height: 100dvh !important;
+  background: rgba(0,0,0,0.5) !important;
+  z-index: 9999 !important;
+  display: none;
+  align-items: flex-end;
+  justify-content: center;
+}
+.scoring-modal-overlay.visible {
+  display: flex !important;
+}
+
+
+
+
+/* MIB overlay fix */
+.filter-modal-overlay { position: fixed !important; inset: 0 !important; z-index: 9999 !important; }
+.filter-modal-overlay.visible, .filter-modal-overlay.open, .filter-modal-overlay.active { display: flex !important; }
+.modal-overlay { position: fixed !important; inset: 0 !important; z-index: 9999 !important; }
+.modal-overlay.visible, .modal-overlay.open, .modal-overlay.active { display: flex !important; }
 </style>
 </head>
 <body>
