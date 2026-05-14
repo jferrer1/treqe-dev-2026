@@ -1,716 +1,722 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MIB — Marketplace inteligente</title>
-<meta name="description" content="Intercambio circular. Consigue lo que quieres con lo que tienes. Treqe conecta a la comunidad para intercambiar objetos con o sin dinero.">
+<meta name="description" content="MIB — Intercambio circular. Consigue lo que quieres con lo que tienes.">
 <meta property="og:title" content="MIB — Intercambio circular">
-<meta property="og:description" content="Consigue lo que quieres con lo que tienes. Treqe cierra el circulo de intercambio perfecta para ti.">
+<meta property="og:description" content="Consigue lo que quieres con lo que tienes. MIB cierra el circulo.">
 <meta property="og:image" content="https://jferrer1.github.io/treqe-dev-2026/treqe-app/designs/v16-portada/og-image.png">
 <meta property="og:url" content="https://treqe.es">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://treqe.es">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "Treqe",
-  "description": "Intercambio circular. Consigue lo que quieres con lo que tienes.",
-  "applicationCategory": "Marketplace",
-  "operatingSystem": "Web",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "EUR"
-  }
-}
-</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
-
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --bg: #FAFAF8; --card-bg: #FFFFFF; --text: #141414;
-    --text-secondary: #5C5C5C; --text-tertiary: #999999; --border: #E0E0D8; --accent: #141414;
-    --navy: #141414; --yellow: #D0D0C8; --teal: #D0D0C8;
-    --pink: #D0D0C8; --cream: #FAFAF8;
-    --shadow: 0 4px 20px rgba(0,0,0,0.05);
-    --shadow-lg: 0 8px 32px rgba(0,0,0,0.07);
-  }
-  html { background: var(--bg); font-family: 'Inter','Segoe UI',system-ui,-apple-system,sans-serif; overflow-y: scroll; overscroll-behavior: contain; }
-  body { max-width: 100vw; overflow-x: hidden; color: var(--text); -webkit-font-smoothing: antialiased; padding-bottom: 80px; background: var(--bg); }
-  a { text-decoration: none; color: inherit; }
 
-  /* ── Header ── */
+  :root {
+    --bg:        #F9F7F2;
+    --surface:   #FFFFFF;
+    --text:      #1C1915;
+    --text-sub:  #6B6560;
+    --text-dim:  #A09A94;
+    --border:    #E5E0D8;
+    --border-strong: #C5C0B8;
+    --accent:    #1C1915;
+    --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+    --font-sans: 'IBM Plex Sans', 'Inter', 'Segoe UI', sans-serif;
+  }
+
+  /* ── DARK MODE ── */
+  body.dark {
+    --bg:        #130B00;
+    --surface:   #1A1206;
+    --text:      #E8E2D6;
+    --text-sub:  #A0998F;
+    --text-dim:  #6B6560;
+    --border:    #3A3630;
+    --border-strong: #5A5650;
+    --accent:    #E8E2D6;
+  }
+
+  html {
+    background: var(--bg);
+    font-family: var(--font-sans);
+    overflow-y: scroll;
+    overscroll-behavior: contain;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    max-width: 100vw;
+    overflow-x: hidden;
+    color: var(--text);
+    background: var(--bg);
+    padding-bottom: 90px;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  a { text-decoration: none; color: inherit; }
+  img { max-width: 100%; display: block; }
+
+  /* ── HEADER ── */
   .header {
-    display: flex; align-items: center;
-    padding: 12px 16px; min-height: 80px;
-    background: rgba(248,246,240,0.35);
-    -webkit-border-bottom: 1px solid rgba(0,0,0,0.01);
-    position: sticky; top: 0; z-index: 100;
-    box-sizing: border-box;
-    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    min-height: 64px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
   }
-  .treqe-logo {
-    height: 60px;
-    width: auto;
-    flex-shrink: 0;
-    display: block;
-    margin-left: -6px;
+
+  .header-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
-    .logo-link { display: inline-flex; text-decoration: none; line-height: 0; }
-  .search-icon {
-    position: absolute;
-    right: 16px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 38px; height: 38px;
-    border-radius: 14px;
-    display: flex; align-items: center; justify-content: center;
-    background: rgba(0,0,0,0.02);
-    -webkit-border: 1px solid rgba(0,0,0,0.02);
-    cursor: pointer; z-index: 2;
-    color: #888;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-    transition: opacity 0.2s;
+
+  .header-logo-svg {
+    width: 32px;
+    height: 32px;
   }
-  .search-icon i { font-size: 0.9rem; }
-  .search-expand {
-    position: absolute;
-    right: 16px;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex; align-items: center;
-    background: rgba(0,0,0,0.03);
-    -webkit-border-radius: 14px;
-    border: 1px solid rgba(0,0,0,0.02);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-    width: 0; overflow: hidden;
-    opacity: 0;
-    transition: width 0.3s ease, opacity 0.2s ease, padding 0.3s ease;
-    z-index: 3;
-    padding: 0;
-    height: 40px;
+
+  .header-logo-text {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text);
   }
-  .search-expand.open {
-    width: 220px;
-    opacity: 1;
-    padding: 0 8px 0 14px;
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
   }
-  .search-expand input {
-    border: none; outline: none; background: transparent;
-    font-family: inherit; font-size: 0.85rem;
-    color: var(--text); width: 100%;
-    white-space: nowrap;
-  }
-  .search-expand input::placeholder { color: #B0B8C8; }
-  .search-close {
-    width: 32px; height: 32px;
-    border-radius: 10px; border: none;
+
+  .header-pill {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border: 1px solid var(--border-strong);
+    border-radius: 2px;
+    color: var(--text-sub);
     background: transparent;
-    color: var(--text-secondary);
     cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0; font-size: 0.8rem;
+    transition: all 0.15s;
+    text-decoration: none;
   }
+
+  .header-pill:hover {
+    background: var(--text);
+    color: var(--bg);
+    border-color: var(--text);
+  }
+
+  .dm-toggle {
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    border: 1px solid var(--border-strong);
+    border-radius: 2px;
+    color: var(--text-sub);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .dm-toggle:hover {
+    background: var(--text);
+    color: var(--bg);
+    border-color: var(--text);
+  }
+
   /* ── HERO ── */
   .hero {
-    background: var(--navy); color: #FFF;
-    padding: 80px 24px 100px; text-align: center;
-    position: relative; overflow: hidden;
-    isolation: isolate;
-  }
-  /* Liquid glass blobs */
-  .hero 
-  .hero .blob.b1 {
-    width: 320px; height: 320px; top: -120px; right: -60px;
-    background: radial-gradient(circle, rgba(0,0,0,0.04) 0%, transparent 70%);
-    animation: blobFloat 8s ease-in-out infinite;
-  }
-  .hero .blob.b2 {
-    width: 240px; height: 240px; bottom: -80px; left: -40px;
-    background: radial-gradient(circle, rgba(0,0,0,0.04) 0%, transparent 70%);
-    animation: blobFloat 10s ease-in-out infinite reverse;
-  }
-  .hero .blob.b3 {
-    width: 180px; height: 180px; top: 50%; left: 30%;
-    background: radial-gradient(circle, rgba(0,0,0,0.04) 0%, transparent 70%);
-    animation: blobFloat 12s ease-in-out infinite 2s;
-  }
-  
-    33% { transform: translate(30px,-20px) scale(1.15); }
-    66% { transform: translate(-20px,15px) scale(0.9); }
-  }
-  .hero-badge {
-    display: inline-block;
-    background: rgba(0,0,0,0.02); -webkit-padding: 8px 20px; border-radius: 24px;
-    font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px;
-    margin-bottom: 32px; border: 1px solid rgba(0,0,0,0.02);
-  }
-  .hero h1 {
-    font-size: clamp(3rem, 8vw, 5.5rem); font-weight: 900;
-    line-height: 1; letter-spacing: -2px;
-    position: relative; z-index: 1;
-    text-shadow: 0 4px 32px rgba(0,0,0,0.15);
-  }
-  .hero .tagline {
-    font-size: clamp(1.1rem, 2.8vw, 1.5rem); font-weight: 600;
-    opacity: 0.85; margin-top: 16px;
-    letter-spacing: -0.5px; position: relative; z-index: 1;
-  }
-  .hero .tagline em { font-style: normal; color: var(--yellow); }
-
-    .blog-link {
-      position: absolute;
-      right: 62px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 38px; height: 38px;
-      border-radius: 14px;
-      display: flex; align-items: center; justify-content: center;
-      background: rgba(0,0,0,0.02);
-      -webkit-border: 1px solid rgba(0,0,0,0.02);
-      cursor: pointer; z-index: 2;
-      color: var(--text-secondary);
-      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-      text-decoration: none;
-      transition: opacity 0.2s;
-    }
-    .blog-link:active { background: rgba(0,0,0,0.02); }
-    .blog-link i { font-size: 0.85rem; }
-
-  /* ── EXCHANGE CARD ── */
-  /* ===== CIRCULAR EXCHANGE ===== */
-  .exchange-section {
-    background: var(--bg);
-    padding: 60px 16px 80px;
-    position: relative;
+    padding: 96px 24px 80px;
     text-align: center;
-  }
-  .exchange-section::before {
-    content: ''; position: absolute;
-    width: 350px; height: 350px; top: -40px; left: -100px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(0,0,0,0.04) 0%, transparent 70%) 40%, transparent 70%);
-    filter: blur(60px); opacity: 0.4;
-    pointer-events: none;
-  }
-  .exchange-section::after {
-    content: ''; position: absolute;
-    width: 300px; height: 300px; bottom: 20px; right: -80px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(0,0,0,0.04) 0%, transparent 70%) 40%, transparent 70%);
-    filter: blur(60px); opacity: 0.4;
-    pointer-events: none;
-  }
-  .exchange-headline {
-    font-family: 'Crimson Text', 'Georgia', serif;
-    font-weight: 700; font-size: 1.6rem; line-height: 1.3;
-    color: var(--text); margin: 8px 0 32px;
-    letter-spacing: -0.3px;
-  }
-  .exchange-card {
-    background: rgba(0,0,0,0.02);
-    -webkit-border-radius: 28px;
-    padding: 36px 28px 32px;
-    max-width: 440px; margin: 0 auto;
-    position: relative; z-index: 2;
-    box-shadow:
-      0 4px 24px rgba(0,20,50,0.05),
-      0 0 0 1px rgba(0,0,0,0.02),
-      inset 0 1px 0 rgba(0,0,0,0.02);
-  }
-  .exchange-card::before {
-    content: ''; position: absolute; inset: -1px; z-index: -1;
-    border-radius: 33px;
-    background: linear-gradient(135deg, #E0E0D8, #D0D0C8, #C0C0B8);
-    padding: 1px;
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor; mask-composite: exclude;
-    opacity: 0.7;
-  }
-  
-  /* Chain Cycle */
-  .chain-stage {
-    display: flex; align-items: center; justify-content: center;
-    gap: 16px; margin-bottom: 4px;
-  }
-  .chain-item {
-    display: flex; flex-direction: column; align-items: center; gap: 8px;
-    text-align: center; flex: 1; max-width: 130px;
-  }
-  .chain-icon {
-    width: 76px; height: 76px; border-radius: 24px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 2.4rem; transition: transform 0.3s, opacity 0.3s;
-  }
-  .chain-before .chain-icon {
-    background: rgba(0,0,0,0.04);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-    border: 1px solid rgba(0,0,0,0.05);
-  }
-  .chain-after .chain-icon {
-    background: rgba(0,0,0,0.04);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-    border: 1px solid rgba(0,0,0,0.05);
-  }
-  .chain-label {
-    font-size: 0.62rem; text-transform: uppercase; letter-spacing: 1.8px;
-    font-weight: 700; color: var(--text-tertiary);
-  }
-  .chain-name {
-    font-family: 'Crimson Text','Georgia',serif; font-style: italic;
-    font-weight: 700; font-size: 0.9rem; color: var(--text);
-    line-height: 1.3; max-width: 120px;
-  }
-  .chain-arrow {
-    font-size: 1.3rem; color: var(--accent); font-weight: 700;
-    flex-shrink: 0; opacity: 0.7;
-  }
-    /* Insight */
-  .exchange-insight {
-    margin: 24px 0 0;
-    padding: 18px 20px;
-    background: linear-gradient(135deg, rgba(0,0,0,0.02), rgba(0,0,0,0.02));
-    border-radius: 18px;
-    border: 1px solid rgba(0,0,0,0.02);
-  }
-  .exchange-insight .insight-icon {
-    font-size: 1rem; color: var(--accent); margin-bottom: 6px; opacity: 0.7;
-  }
-  .exchange-insight p {
-    font-size: 0.88rem; color: var(--text); line-height: 1.7; margin: 0;
-    font-weight: 500;
-  }
-  .exchange-insight strong { color: var(--accent); font-weight: 700; }
-  .exchange-insight em { font-style: italic; color: var(--text); font-weight: 600; }
-  
-  /* Steps */
-  .exchange-steps {
-    display: flex; flex-direction: column; gap: 12px;
-  }
-  .ex-step {
-    display: flex; align-items: center; gap: 12px;
-    font-size: 0.85rem; color: var(--text-secondary);
-    padding: 12px 16px;
-    background: rgba(0,0,0,0.02);
-    border-radius: 14px;
-    border: 1px solid rgba(0,0,0,0.02);
-    transition: background 0.2s;
-  }
-  .ex-num {
-    width: 28px; height: 28px; border-radius: 50%;
-    background: var(--accent); color: #FFF;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.75rem; font-weight: 700; flex-shrink: 0;
-  }  /* ── HOW IT WORKS ── */
-  .how-section {
-    background: linear-gradient(180deg, #F5F5F3 0%, #EDEDE8 100%) 100%);
-    padding: 64px 24px; text-align: center;
-    position: relative; overflow: hidden;
-  }
-  .how-section::before {
-    content: ''; position: absolute;
-    width: 600px; height: 600px;
-    top: -200px; left: -150px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(0,0,0,0.04) 0%, transparent 70%) 30%, transparent 70%);
-    filter: blur(60px); opacity: 0.5;
-  }
-  .how-section::after {
-    content: ''; position: absolute;
-    width: 400px; height: 400px;
-    bottom: -100px; right: -100px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(0,0,0,0.04) 0%, transparent 70%) 30%, transparent 70%);
-    filter: blur(60px); opacity: 0.4;
-  }
-  .how-section .section-label {
-    font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px;
-    font-weight: 700; color: rgba(0,0,0,0.15); margin-bottom: 32px;
-    position: relative; z-index: 1;
-  }
-  .steps {
-    display: flex; flex-direction: column; gap: 20px;
-    max-width: 440px; margin: 0 auto;
-  }
-  .step {
-    background: rgba(0,0,0,0.02);
-    -webkit-border-radius: 24px; padding: 28px 24px; display: flex;
-    align-items: flex-start; gap: 18px; text-align: left;
-    position: relative; z-index: 1; overflow: hidden;
-    box-shadow:
-      0 4px 24px rgba(0,20,50,0.04),
-      0 0 0 1px rgba(0,0,0,0.02),
-      inset 0 1px 0 rgba(0,0,0,0.02);
-    transform: translateY(24px) translateZ(0); will-change: transform, opacity;
-    opacity: 0;
-    transition: opacity 0.7s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94);
-  }
-  .step.visible {
-    opacity: 1;
-    transform: translateY(0) translateZ(0);
-  }
-  .step:nth-child(2) { transition-delay: 0s; }
-  .step:nth-child(2).visible { transition-delay: 0.15s; }
-  .step:nth-child(3) { transition-delay: 0s; }
-  .step:nth-child(3).visible { transition-delay: 0.3s; }
-  .step::after {
-    content: ''; position: absolute; top: -50%; left: -50%;
-    width: 200%; height: 200%;
-    background: radial-gradient(circle at 25% 15%,
-      rgba(255,255,255,0.25) 0%, transparent 45%);
-    pointer-events: none;
-  }
-  .step:active { transform: scale(0.98); }
-  .cta-btn-secondary:active { transform: scale(0.96); }
-  .step-circle {
-    width: 56px; height: 56px; border-radius: 18px; flex-shrink: 0;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.5rem; font-weight: 800;
-  }
-  .step:nth-child(1) .step-circle {
-    background: rgba(0,34,77,0.9); -webkit-color: #FFF;
-  }
-  .step:nth-child(2) .step-circle {
-    background: rgba(0,0,0,0.9); -webkit-color: #FFF;
-  }
-  .step:nth-child(3) .step-circle {
-    background: rgba(0,34,77,0.9); -webkit-color: #FFF;
-  }
-  .step-content h3 { font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
-  .step-content p { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5; }
-  .step-extra {
-    margin-top: 28px; display: flex; align-items: center; justify-content: center;
-    gap: 8px; font-size: 0.85rem; font-weight: 600; color: var(--text);
-    opacity: 0.6; position: relative; z-index: 1;
+    max-width: 720px;
+    margin: 0 auto;
   }
 
-  /* ── CIRCULAR EXCHANGE ILLUSTRATION ── */
+  .hero-label {
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 32px;
+  }
+
+  .hero h1 {
+    font-family: var(--font-sans);
+    font-size: clamp(2.4rem, 6vw, 4.2rem);
+    font-weight: 300;
+    line-height: 1.08;
+    letter-spacing: -1.5px;
+    color: var(--text);
+    margin-bottom: 20px;
+  }
+
+  .hero h1 strong {
+    font-weight: 700;
+  }
+
+  .hero .sub {
+    font-size: 1.05rem;
+    font-weight: 400;
+    color: var(--text-sub);
+    line-height: 1.6;
+    max-width: 460px;
+    margin: 0 auto;
+    font-style: italic;
+  }
+
+  /* ── EXCHANGE VISUAL ── */
+  .exchange-section {
+    padding: 0 24px 80px;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .exchange-card {
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 40px 32px;
+    text-align: center;
+    background: var(--surface);
+  }
+
+  .exchange-label {
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 24px;
+  }
+
+  .exchange-flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 28px;
+  }
+
+  .exchange-item {
+    text-align: center;
+    flex: 1;
+    max-width: 160px;
+  }
+
+  .exchange-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 2px;
+    margin: 0 auto 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+  }
+
+  .exchange-item-label {
+    font-family: var(--font-mono);
+    font-size: 0.52rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 4px;
+  }
+
+  .exchange-item-name {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text);
+    font-style: italic;
+  }
+
+  .exchange-arrow {
+    font-size: 1.2rem;
+    color: var(--text-dim);
+    flex-shrink: 0;
+  }
+
+  .exchange-insight {
+    font-size: 0.88rem;
+    color: var(--text-sub);
+    line-height: 1.7;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+
+  .exchange-insight strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  /* ── HOW IT WORKS ── */
+  .how-section {
+    padding: 80px 24px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .how-section .section-label {
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  .step {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    padding: 24px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    background: var(--surface);
+  }
+
+  .step-num {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-dim);
+    flex-shrink: 0;
+    width: 28px;
+  }
+
+  .step-content h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .step-content p {
+    font-size: 0.82rem;
+    color: var(--text-sub);
+    line-height: 1.5;
+  }
+
+  /* ── CIRCLE ILLUSTRATION ── */
   .circle-section {
-    background: linear-gradient(180deg, #F5F5F3 0%, #EDEDE8 100%) 100%);
-    padding: 64px 24px; text-align: center;
-    position: relative; overflow: hidden; isolation: isolate;
+    padding: 80px 24px;
+    text-align: center;
+    background: var(--surface);
   }
-  .circle-section 
-  .circle-section .bg-glass.g1 {
-    width: 400px; height: 400px; top: -120px; right: -100px;
-    background: radial-gradient(circle, rgba(0,0,0,0.04) 0%, transparent 70%) 40%, transparent 70%);
-    filter: blur(50px); opacity: 0.6;
-  }
-  .circle-section .bg-glass.g2 {
-    width: 300px; height: 300px; bottom: -80px; left: -80px;
-    background: radial-gradient(circle, rgba(0,0,0,0.04) 0%, transparent 70%) 40%, transparent 70%);
-    filter: blur(50px); opacity: 0.5;
-  }
+
   .circle-illustration {
-    position: relative; width: 220px; height: 220px;
-    margin: 0 auto 36px; z-index: 1;
+    position: relative;
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 40px;
   }
+
   .circle-ring {
-    position: absolute; inset: 0; border-radius: 50%;
-    border: 3px dashed rgba(0,0,0,0.02);
-    animation: spin 25s linear infinite;
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1px solid var(--border-strong);
   }
-  @keyframes spin { to { transform: rotate(360deg); } }
-  .circle-nodes { position: absolute; inset: 22px; border-radius: 50%; }
+
   .circle-node {
-    position: absolute; width: 48px; height: 48px; border-radius: 16px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.4rem;
-    background: rgba(0,0,0,0.03);
-    -webkit-border: 1px solid rgba(0,0,0,0.02);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-    }
-  .circle-node.n1 { top: -8px; left: 50%; transform: translateX(-50%); }
-  .circle-node.n2 { top: 50%; right: -8px; transform: translateY(-50%); }
-  .circle-node.n3 { bottom: -8px; left: 50%; transform: translateX(-50%); }
-  .circle-node.n4 { top: 50%; left: -8px; transform: translateY(-50%); }
+    position: absolute;
+    width: 44px;
+    height: 44px;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+  }
+
+  .circle-node.n1 { top: -6px; left: 50%; transform: translateX(-50%); }
+  .circle-node.n2 { top: 50%; right: -6px; transform: translateY(-50%); }
+  .circle-node.n3 { bottom: -6px; left: 50%; transform: translateX(-50%); }
+  .circle-node.n4 { top: 50%; left: -6px; transform: translateY(-50%); }
+
   .circle-center {
-    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
-    width: 68px; height: 68px; border-radius: 20px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.8rem;
-    background: rgba(0,34,77,0.75);
-    -webkit-color: #FFF;
-    border: 1px solid rgba(0,0,0,0.02);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-    transform: translate(-50%,-50%) translateZ(0);
-    will-change: transform;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 56px;
+    height: 56px;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    background: var(--text);
+    color: var(--bg);
   }
+
   .circle-section h2 {
-    font-size: clamp(1.4rem, 4vw, 2rem); font-weight: 800;
-    letter-spacing: -0.5px; color: var(--navy);
-    margin-bottom: 8px; position: relative; z-index: 1;
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+    color: var(--text);
   }
+
+  .circle-section h2 strong {
+    font-weight: 700;
+  }
+
   .circle-section p {
-    font-size: 0.9rem; color: rgba(0,0,0,0.35);
-    max-width: 340px; margin: 0 auto;
-    line-height: 1.6; position: relative; z-index: 1;
+    font-size: 0.88rem;
+    color: var(--text-sub);
+    max-width: 380px;
+    margin: 0 auto;
+    line-height: 1.6;
   }
 
   /* ── GUIDE ── */
   .guide-section {
-    padding: 64px 24px;
-    background: var(--cream);
-    position: relative;
+    padding: 80px 24px;
   }
+
+  .guide-section .section-label {
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-align: center;
+    margin-bottom: 12px;
+  }
+
   .guide-section h2 {
-    text-align: center; font-size: clamp(1.3rem,3.5vw,1.8rem);
-    font-weight: 800; color: var(--navy);
-    margin-bottom: 8px; letter-spacing: -0.5px;
+    text-align: center;
+    font-size: clamp(1.3rem, 3vw, 1.7rem);
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
   }
+
+  .guide-section h2 strong {
+    font-weight: 700;
+  }
+
   .guide-sub {
-    text-align: center; font-size: 0.9rem;
-    color: rgba(0,35,78,0.6);
-    margin-bottom: 40px; max-width: 500px; margin-left: auto; margin-right: auto;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--text-sub);
+    margin-bottom: 48px;
+    font-style: italic;
   }
+
   .guide-grid {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 20px; max-width: 720px; margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    max-width: 720px;
+    margin: 0 auto;
   }
-  @media (max-width: 600px) { .guide-grid { grid-template-columns: 1fr; } }
+
+  @media (max-width: 600px) {
+    .guide-grid { grid-template-columns: 1fr; }
+  }
+
   .guide-card {
-    background: rgba(0,0,0,0.04);
-    -webkit-border-radius: 20px; padding: 24px;
-    border: 1px solid rgba(255,255,255,0.9);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 28px 24px;
+    background: var(--surface);
   }
-  .guide-card__icon {
-    width: 48px; height: 48px; border-radius: 14px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.3rem; margin-bottom: 14px;
+
+  .guide-card__tag {
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+    display: inline-block;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 4px;
   }
-  .guide-card h3 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
-  .guide-card p { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.6; }
-  .guide-card ol { padding-left: 18px; font-size: 0.82rem; color: var(--text-secondary); line-height: 2; margin-top: 8px; }
-  .guide-card ol li::marker { color: var(--accent); font-weight: 700; }
-  .guide-card .tag {
-    display: inline-block; font-size: 0.65rem; font-weight: 700;
-    padding: 3px 10px; border-radius: 20px; margin-bottom: 10px;
+
+  .guide-card h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 8px;
   }
-  .guide-card .tag.buy { background: rgba(0,0,0,0.05); color: var(--success); }
-  .guide-card .tag.swap { background: rgba(0,0,0,0.05); color: var(--accent); }
-  .guide-card .tag.how { background: rgba(0,0,0,0.05); color: #5C6BC0; }
+
+  .guide-card p {
+    font-size: 0.82rem;
+    color: var(--text-sub);
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+
+  .guide-card ol {
+    padding-left: 16px;
+    font-size: 0.78rem;
+    color: var(--text-sub);
+    line-height: 2;
+  }
+
+  .guide-card ol li::marker {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    color: var(--text-dim);
+  }
+
   .guide-link {
-    text-align: center; margin-top: 32px;
+    text-align: center;
+    margin-top: 40px;
   }
+
   .guide-link a {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 14px 28px; background: var(--navy); color: #FFF;
-    border-radius: 14px; font-size: 0.9rem; font-weight: 600;
-    text-decoration: none; transition: transform 0.2s;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text);
+    padding: 12px 24px;
+    border: 1px solid var(--border-strong);
+    border-radius: 2px;
+    transition: all 0.15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
   }
-  .guide-link a:active { transform: scale(0.97); }  /* ── CTA ── */
+
+  .guide-link a:hover {
+    background: var(--text);
+    color: var(--bg);
+    border-color: var(--text);
+  }
+
+  /* ── CTA ── */
   .cta-section {
-    background: linear-gradient(180deg, #FAFAF8 0%, #F0F0EC 100%) 100%);
-    padding: 64px 24px; text-align: center;
-    position: relative; overflow: hidden;
+    padding: 80px 24px;
+    text-align: center;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
   }
-  .cta-section::before {
-    content: ''; position: absolute; width: 300px; height: 300px;
-    top: -80px; right: -80px; border-radius: 50%;
-    background: rgba(0,0,0,0.02); filter: blur(40px);
-  }
+
   .cta-section h2 {
-    font-size: clamp(1.7rem, 5vw, 2.8rem); font-weight: 900;
-    letter-spacing: -1px; line-height: 1.15; margin-bottom: 10px;
-    position: relative; z-index: 1;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 300;
+    letter-spacing: -1px;
+    line-height: 1.2;
+    margin-bottom: 12px;
   }
+
   .cta-section .cta-sub {
-    font-size: 0.95rem; opacity: 0.7; margin-bottom: 32px;
-    font-family: 'Crimson Text','Georgia',serif; font-style: italic;
-    position: relative; z-index: 1;
+    font-size: 0.9rem;
+    color: var(--text-sub);
+    margin-bottom: 36px;
+    font-style: italic;
   }
+
   .cta-btn {
-    display: inline-flex; align-items: center; gap: 12px;
-    background: rgba(0,0,0,0.85);
-    -webkit-color: #FFF; font-family: inherit; font-size: 1.05rem;
-    font-weight: 700; padding: 18px 48px; border-radius: 20px;
-    border: 1px solid rgba(0,0,0,0.02);
-    cursor: pointer; text-decoration: none;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-    transition: transform 0.3s, box-shadow 0.3s;
-    position: relative; z-index: 1;
-    transform: translateZ(0); will-change: transform;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 16px 40px;
+    background: var(--text);
+    color: var(--bg);
+    border: 1px solid var(--text);
+    border-radius: 2px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.2s;
   }
-  .cta-btn::after {
-    content: ''; position: absolute; top: -50%; left: -50%;
-    width: 200%; height: 200%;
-    background: radial-gradient(circle at 30% 15%,
-      rgba(0,0,0,0.02) 0%, transparent 40%);
-    pointer-events: none;
+
+  .cta-btn:hover {
+    background: transparent;
+    color: var(--text);
   }
-  .cta-btn:active { transform: scale(0.96); }
-  .cta-btn i { font-size: 0.9rem; }
 
   /* ── BOTTOM NAV ── */
-        
-        
-        
-    
-  
-  
-  
-  
-  
+  .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 68px;
+    padding-bottom: 6px;
+    z-index: 100;
+  }
 
-  /* ── RESPONSIVE ── */
-    
-    @media (min-width: 600px) {
-    .header { padding: 12px 24px; }
-    .search-icon { right: 24px; }
-    .search-expand { right: 24px; }
-    
-    .hero { padding: 100px 32px 120px; }
-    .hero .blob.b1 { width: 500px; height: 500px; }
-    .steps { max-width: 640px; flex-direction: row; }
-    .step { flex: 1; flex-direction: column; align-items: center; text-align: center; }
+  .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    font-family: var(--font-mono);
+    font-size: 0.5rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    transition: color 0.15s;
+    padding: 4px 0;
+    flex: 1;
+    max-width: 80px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    text-decoration: none;
   }
-  @media (min-width: 1024px) {
-    .header { max-width: 1200px; margin: 0 auto; padding: 16px 32px; }
-    .portada-content { max-width: 1200px; margin: 0 auto; }
-    
-    .hero { padding: 120px 32px 140px; }
-    .hero h1 { font-size: 5.5rem; }
-    .exchange-card { max-width: 500px; }
-    .steps { gap: 24px; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .step, .cta-btn,
-    .step { opacity: 1; transform: none; }
-  }
-    /* ===== BOTTOM NAV ===== */
-    
-    
-    
-    
-    
-    
-    
-    
 
-    .bottom-nav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: rgba(0,0,0,0.04);
-      -webkit-border-top: 1px solid var(--border);
-      display: flex;
-      justify-content: space-evenly;
-      align-items: center;
-      padding: 0;
-      height: 72px;
-      padding-bottom: 12px;
-      z-index: 100;
-      isolation: isolate;
-    }
-    .nav-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 2px;
-      font-size: 0.65rem;
-      font-weight: 500;
-      color: var(--text-tertiary);
-      transition: color 0.2s;
-      padding: 4px 0;
-      flex: 1;
-      max-width: 80px;
-      position: relative;
-      border: none;
-      background: none;
-      cursor: pointer;
-      font-family: inherit;
-      text-decoration: none;
-    }
-    .nav-item i { font-size: 1.3rem; }
-    .nav-item.active { color: var(--accent); }
-    .nav-add { position: relative; top: 0; }
-    .nav-add-btn {
-      width: 48px;
-      height: 48px;
-      background: var(--accent);
-      color: #FFFFFF;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-      margin-bottom: 2px;
-    }
-    .nav-add-btn i { font-size: 1.1rem; }
-    .nav-badge {
-      width: 6px;
-      height: 6px;
-      background: var(--accent);
-      border-radius: 50%;
-      position: absolute;
-      top: 2px;
-      right: 12px;
-    }
-    
+  .nav-item i { font-size: 1.1rem; }
+
+  .nav-item.active { color: var(--text); }
+
+  .nav-add-btn {
+    width: 42px;
+    height: 42px;
+    background: var(--text);
+    color: var(--bg);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2px;
+  }
+
+  .nav-badge {
+    width: 5px;
+    height: 5px;
+    background: var(--text);
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    right: 14px;
+  }
+
+  /* ── FOOTER ── */
+  .legal-footer {
+    padding: 32px 24px 20px;
+    text-align: center;
+    border-top: 1px solid var(--border);
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    line-height: 2.8;
+  }
+
+  .legal-footer .footer-brand {
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .legal-footer a {
+    color: var(--text-sub);
+    transition: color 0.15s;
+  }
+
+  .legal-footer a:hover {
+    color: var(--text);
+  }
+
+  .legal-footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
 </style>
 </head>
 <body>
 
-<!-- ══════ HEADER (liquid glass) ══════ -->
+<!-- ══════ HEADER ══════ -->
 <header class="header">
-  <a href="./index.html" class="logo-link"><img class="treqe-logo" src="chars/treqe_logo_official.png" alt="MIB"></a>
-  <div class="search-icon" id="searchIcon" onclick="toggleSearch()">
-    <i class="fas fa-search"></i>
+  <a href="./" class="header-logo">
+    <svg class="header-logo-svg" viewBox="0 0 32 32" fill="none">
+      <rect x="1" y="1" width="30" height="30" rx="2" stroke="currentColor" stroke-width="1.5"/>
+      <text x="16" y="22" text-anchor="middle" font-family="IBM Plex Mono" font-size="13" font-weight="600" fill="currentColor">M</text>
+    </svg>
+    <span class="header-logo-text">MIB</span>
+  </a>
+  <div class="header-right">
+    <a href="../v13-blog/" class="header-pill">Blog</a>
+    <a href="../v1-catalogo/" class="header-pill">Catálogo</a>
+    <button class="dm-toggle" onclick="document.body.classList.toggle('dark')" aria-label="Toggle dark mode">Dark</button>
   </div>
-  <a href="../v13-blog/index.html" class="blog-link" style="position:absolute;right:62px;top:50%;transform:translateY(-50%);display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:20px;font-size:.75rem;font-weight:600;color:#141414;background:rgba(0,0,0,0.04);border:1px solid rgba(0,0,0,0.03);text-decoration:none;transition:background .2s;"><i class="fas fa-book-open" style="font-size:.7rem;"></i> Blog</a>
-  <div class="search-expand" id="searchExpand">
-    <input type="text" placeholder="Buscar artículos..." id="searchInput">
-    <button class="search-close" onclick="toggleSearch()"><i class="fas fa-times"></i></button>
-  </div></header>
+</header>
 
-<!-- ══════ HERO (liquid glass blobs) ══════ -->
-<div class="portada-content">
-
+<!-- ══════ HERO ══════ -->
 <section class="hero">
-  <div class="blob b1"></div>
-  <div class="blob b2"></div>
-  <div class="blob b3"></div>
-  <div class="hero-badge">✦ Intercambia en comunidad</div>
-  <h1>Intercambio<br>circular</h1>
-  <p class="tagline"><em>Con o sin dinero.</em> Tú decides.</p>
-  
+  <div class="hero-label">Intercambio circular</div>
+  <h1>Consigue<br><strong>lo que quieres</strong><br>con lo que tienes</h1>
+  <p class="sub"><em>Sin dinero.</em> O con dinero. Como tú decidas.</p>
 </section>
 
-<!-- ══════ EXCHANGE CARD (liquid glass) ══════ -->
+<!-- ══════ EXCHANGE CARD ══════ -->
 <section class="exchange-section">
-  <div class="section-label">El intercambio circular</div>
-  <h2 class="exchange-headline">Tú das algo que ya no usas.<br>Alguien recibe lo que necesita.</h2>
-  
   <div class="exchange-card">
-    <div class="swap-visual">
-      <div class="chain-stage">
-        <div class="chain-item chain-before">
-          <span class="chain-label">Antes tenía</span>
-          <div class="chain-icon">👶</div>
-          <span class="chain-name">un carrito de bebé</span>
-        </div>
-        <div class="chain-arrow">→</div>
-        <div class="chain-item chain-after">
-          <span class="chain-label">Ahora tengo</span>
-          <div class="chain-icon">📱</div>
-          <span class="chain-name">este iPhone</span>
-        </div>
+    <div class="exchange-label">Así funciona</div>
+    <div class="exchange-flow">
+      <div class="exchange-item">
+        <div class="exchange-icon">👶</div>
+        <div class="exchange-item-label">Tú das</div>
+        <div class="exchange-item-name">un carrito de bebé</div>
+      </div>
+      <div class="exchange-arrow">→</div>
+      <div class="exchange-item">
+        <div class="exchange-icon">📱</div>
+        <div class="exchange-item-label">Recibes</div>
+        <div class="exchange-item-name">este iPhone</div>
       </div>
     </div>
-    
     <div class="exchange-insight">
-      <div class="insight-icon">✦</div>
-      <p>Tú no cambias con <strong>alguien</strong>. Cambias con <em>la comunidad</em>.</p>
+      No cambias con <strong>alguien</strong>. Cambias con <em>la comunidad</em>.
     </div>
-    
   </div>
 </section>
 
@@ -719,186 +725,118 @@
   <div class="section-label">En 3 pasos</div>
   <div class="steps">
     <div class="step">
-      <div class="step-circle">①</div>
+      <div class="step-num">01</div>
       <div class="step-content">
-        <h3>Subes lo que no usas</h3>
+        <h3>Publica lo que no usas</h3>
         <p>Rápido, sin complicaciones. Dale salida a lo que ya no necesitas.</p>
       </div>
     </div>
     <div class="step">
-      <div class="step-circle">②</div>
+      <div class="step-num">02</div>
       <div class="step-content">
-        <h3>Pides lo que quieres</h3>
+        <h3>Elige lo que quieres</h3>
         <p>Lo que sea. Sin límites. Tú marcas el destino.</p>
       </div>
     </div>
     <div class="step">
-      <div class="step-circle">③</div>
+      <div class="step-num">03</div>
       <div class="step-content">
-        <h3>Treqe cierra el circulo</h3>
-        <p>Treqe te lo encuentra y te notifica para hacer el intercambio.</p>
+        <h3>MIB cierra el círculo</h3>
+        <p>Nosotros lo encontramos y te notificamos para hacer el intercambio.</p>
       </div>
     </div>
   </div>
-  <div class="step-extra">Nadie se queda sin lo suyo ▸▸▸</div>
 </section>
 
-<!-- ══════ CIRCLE (liquid glass nodes) ══════ -->
+<!-- ══════ CIRCLE ══════ -->
 <section class="circle-section">
-  <div class="bg-glass g1"></div>
-  <div class="bg-glass g2"></div>
   <div class="circle-illustration">
     <div class="circle-ring"></div>
-    <div class="circle-nodes">
-      <div class="circle-node n1">📚</div>
-      <div class="circle-node n2">🎧</div>
-      <div class="circle-node n3">👟</div>
-      <div class="circle-node n4">🎸</div>
-    </div>
+    <div class="circle-node n1">📚</div>
+    <div class="circle-node n2">🎧</div>
+    <div class="circle-node n3">👟</div>
+    <div class="circle-node n4">🎸</div>
     <div class="circle-center">⟳</div>
   </div>
-        <h2>Así funciona el intercambio circular</h2>
-  <p>4 personas, 4 objetos, un solo circulo.<br>Con o sin dinero, solo comunidad.</p>
-  <a href="../v10-registro/" class="cta-btn-secondary" style="display:inline-flex;align-items:center;gap:10px;margin-top:32px;background:rgba(0,0,0,0.04);-webkit-color:var(--navy);font-family:inherit;font-size:0.95rem;font-weight:700;padding:16px 36px;border-radius:18px;border:1px solid rgba(0,0,0,0.05);cursor:pointer;text-decoration:none;box-shadow: 0 1px 3px rgba(0,0,0,0.04);transition:transform 0.3s,box-shadow 0.3s;position:relative;z-index:1;transform:translateZ(0);">
-    Empieza tu primer círculo <i class="fas fa-arrow-right" style="font-size:0.8rem;"></i>
-  </a>
+  <h2><strong>4 personas, 4 objetos,</strong><br>un solo círculo</h2>
+  <p>Con o sin dinero. Solo comunidad.</p>
+  <div class="guide-link" style="margin-top: 32px;">
+    <a href="../v10-registro/">Empezar <i class="fas fa-arrow-right" style="font-size:0.6rem;"></i></a>
+  </div>
 </section>
 
-<!-- ══════ QUICK GUIDE ══════ -->
+<!-- ══════ GUIDE ══════ -->
 <section class="guide-section">
-  <h2>Cómo funciona Treqe</h2>
-  <p class="guide-sub">Dos formas de conseguir lo que quieres, una sola comunidad.</p>
+  <div class="section-label">Cómo funciona</div>
+  <h2>Dos formas de conseguir<br><strong>lo que quieres</strong></h2>
+  <p class="guide-sub">Una sola comunidad.</p>
   <div class="guide-grid">
     <div class="guide-card">
-      <div class="guide-card__icon" style="background:rgba(0,0,0,0.05);"><span style="font-size:1.3rem;">🛒</span></div>
-      <span class="tag buy">Compra directa</span>
+      <div class="guide-card__tag">Compra directa</div>
       <h3>Como en cualquier tienda</h3>
       <p>Ves algo que te gusta, pagas y lo recibes en casa. Rápido, sencillo, sin complicaciones.</p>
       <ol>
         <li>Busca en el catálogo</li>
         <li>Haz clic en "Comprar ahora"</li>
         <li>El vendedor acepta</li>
-        <li>Pagas con tarjeta, PayPal o Bizum</li>
-        <li>Recibes el artículo en casa 🚚</li>
+        <li>Pagas y recibes en casa</li>
       </ol>
     </div>
     <div class="guide-card">
-      <div class="guide-card__icon" style="background:rgba(0,0,0,0.05);"><span style="font-size:1.3rem;">🔄</span></div>
-      <span class="tag swap">Intercambio circular</span>
-      <h3>Nada de dinero, puro trueque</h3>
+      <div class="guide-card__tag">Intercambio circular</div>
+      <h3>Trueque entre varios</h3>
       <p>Ofreces algo a cambio y nosotros nos encargamos de que te llegue lo que quieres. No hace falta que sea directo.</p>
       <ol>
         <li>Busca en el catálogo</li>
-        <li>Pulsa "Quiero esto" y ofrece algo a cambio</li>
-        <li>Nosotros nos encargamos de que te llegue lo que quieres</li>
-        <li>Todos aceptan el match</li>
-        <li>Solo tienes que enviar tu artículo</li>
+        <li>Pulsa "Quiero esto"</li>
+        <li>MIB te encuentra el match</li>
+        <li>Solo envías tu artículo</li>
       </ol>
     </div>
     <div class="guide-card" style="grid-column:1/-1;">
-      <div class="guide-card__icon" style="background:rgba(0,0,0,0.05);"><span style="font-size:1.3rem;">❓</span></div>
-      <span class="tag how">¿Y si no es exacto?</span>
-      <h3>Puedes combinar ambas</h3>
-      <p>Si tu artículo vale menos que el que quieres, puedes pagar la diferencia en efectivo. El intercambio circular también admite dinero para ajustar valores. Con o sin dinero, como prefieras.</p>
+      <div class="guide-card__tag">Modo híbrido</div>
+      <h3>Combina ambas</h3>
+      <p>Si tu artículo vale menos que el que quieres, puedes pagar la diferencia. El intercambio circular también admite dinero para ajustar valores.</p>
     </div>
   </div>
   <div class="guide-link">
     <a href="../v13-blog/posts/guia-principiantes.html">
-      Guía completa para principiantes <i class="fas fa-arrow-right"></i>
+      Guía completa <i class="fas fa-arrow-right" style="font-size:0.6rem;"></i>
     </a>
   </div>
 </section>
+
 <!-- ══════ CTA ══════ -->
 <section class="cta-section">
-  <h2>Paga lo que quieres<br>con lo que tienes</h2>
+  <h2>Paga lo que quieras<br>con lo que tengas</h2>
   <p class="cta-sub">Dale una segunda vida a tus cosas</p>
   <a href="../v10-registro/" class="cta-btn">
-    Empieza ahora <i class="fas fa-arrow-right"></i>
+    Empieza ahora <i class="fas fa-arrow-right" style="font-size:0.6rem;"></i>
   </a>
 </section>
 
 <!-- ══════ BOTTOM NAV ══════ -->
+<nav class="bottom-nav">
+  <a href="../v1-catalogo/" class="nav-item"><i class="fas fa-search"></i><span>Buscar</span></a>
+  <a href="../v12-mis-matches/" class="nav-item"><i class="fas fa-exchange-alt"></i><span>Treqes</span></a>
+  <a href="../v3-subir/" class="nav-item"><div class="nav-add-btn"><i class="fas fa-plus"></i></div><span>Subir</span></a>
+  <a href="../v11-notificaciones/" class="nav-item"><i class="fas fa-bell"></i><span>Avisos</span><span class="nav-badge"></span></a>
+  <a href="../v4-perfil/" class="nav-item"><i class="fas fa-user"></i><span>Perfil</span></a>
+</nav>
+
+<!-- ══════ FOOTER ══════ -->
+<div class="legal-footer">
+  <div class="footer-brand">MIB</div>
+  <div class="legal-footer-links">
+    <a href="../v17-aviso-legal/">Aviso Legal</a>
+    <a href="../v18-privacidad/">Privacidad</a>
+    <a href="../v19-terminos/">Términos</a>
+    <a href="../v20-cookies/">Cookies</a>
+    <a href="../v21-pagos-escrow/">Pagos</a>
+    <a href="../v22-envios-costes/">Envíos</a>
+  </div>
+  <div style="margin-top:12px;">&copy; 2026 MIB</div>
 </div>
 
-
-<script>
-function toggleSearch() {
-  var icon = document.getElementById('searchIcon');
-  var expand = document.getElementById('searchExpand');
-  var input = document.getElementById('searchInput');
-  if (expand.classList.contains('open')) {
-    expand.classList.remove('open');
-    setTimeout(function() { icon.style.opacity = '1';
-        var blog = document.querySelector('.blog-link'); if(blog) blog.style.opacity = '1'; }, 200);
-    if (input.value.trim()) {
-      window.location.href = '../v1-catalogo/?search=' + encodeURIComponent(input.value.trim());
-    }
-  } else {
-    icon.style.opacity = '0';
-        var blog = document.querySelector('.blog-link'); if(blog) blog.style.opacity = '0';
-    expand.classList.add('open');
-    setTimeout(function() { input.focus(); }, 300);
-  }
-}
-document.getElementById('searchInput').addEventListener('keydown', function(e) {
-  if (e.key === 'Enter' && this.value.trim()) {
-    window.location.href = '../v1-catalogo/?search=' + encodeURIComponent(this.value.trim());
-  }
-});
-
-// ── Scroll-triggered step animation ──
-(function() {
-  var steps = document.querySelectorAll('.step');
-  if (!steps.length) return;
-  if ('IntersectionObserver' in window) {
-    var observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.2 });
-    steps.forEach(function(s) { observer.observe(s); });
-  } else {
-    // Fallback: show all immediately
-    steps.forEach(function(s) { s.classList.add('visible'); });
-  }
-})();
-
-function goToProfile(){window.location.href="../v1-catalogo/";}
-
-function goToInbox(){window.location.href="../v1-catalogo/";}
-
-function goToUpload(){window.location.href="../v1-catalogo/";}
-
-function goToTrades(){window.location.href="../v1-catalogo/";}
-
-function goToDiscover(){window.location.href="../v1-catalogo/";}
-</script>
-    <nav class="bottom-nav">
-    <a href="../v1-catalogo/" class="nav-item"><i class="fas fa-search"></i><span>Buscar</span></a>
-    <a href="../v12-mis-matches/" class="nav-item"><i class="fas fa-exchange-alt"></i><span>Treqes</span></a>
-    <a href="../v3-subir/" class="nav-item nav-add"><div class="nav-add-btn"><i class="fas fa-plus"></i></div></a>
-    <a href="../v11-notificaciones/" class="nav-item"><i class="fas fa-bell"></i><span>Avisos</span><span class="nav-badge"></span></a>
-    <a href="../v4-perfil/" class="nav-item"><i class="fas fa-user"></i><span>Perfil</span></a>
-  </nav>
-
-
-
-
-      <!-- ===== LEGAL FOOTER ===== -->
-  <div style="padding:24px 16px 100px;text-align:center;font-size:.72rem;color:#888;line-height:2.2;">
-    <div style="margin-bottom:4px;"><span style="font-weight:700;color:#141414;">MIB</span><span style="color:#999999;"> &mdash; Intercambio en cadena</span></div>
-    <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;">
-      <a href="../v17-aviso-legal/" style="color:#888;text-decoration:none;">Aviso Legal</a>
-      <a href="../v18-privacidad/" style="color:#888;text-decoration:none;">Privacidad</a>
-      <a href="../v19-terminos/" style="color:#888;text-decoration:none;">T&eacute;rminos</a>
-      <a href="../v20-cookies/" style="color:#888;text-decoration:none;">Cookies</a>
-      <a href="../v21-pagos-escrow/" style="color:#888;text-decoration:none;">Pagos</a>
-      <a href="../v22-envios-costes/" style="color:#888;text-decoration:none;">Env&iacute;os</a>
-    </div>
-    <div style="margin-top:8px;color:#999999;">&copy; 2026 MIB. Todos los derechos reservados.</div>
-  </div>
 </body>
 </html>
