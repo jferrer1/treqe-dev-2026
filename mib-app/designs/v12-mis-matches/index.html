@@ -589,58 +589,97 @@
     .btn-r--secondary { background: #F9F7F2; color: #6B6560; }
     body.dark .btn-r--secondary { background: #130B00; color: #A0998F; }
 
-    /* ===== BOTTOM NAV ===== */
-    .bottom-nav {
-      position: fixed; bottom: 0; left: 0; right: 0;
-      background: #FFFFFF;
-      border-top: 1px solid #E5E0D8;
-      display: flex;
-      justify-content: space-evenly;
-      align-items: center;
-      height: 64px;
-      padding-bottom: 8px;
-      z-index: 100;
-    }
-    body.dark .bottom-nav { background: #1A1206; border-color: #3A3630; }
-    .nav-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 2px;
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: .45rem; font-weight: 500;
-      text-transform: uppercase; letter-spacing: .1em;
-      color: #A09A94;
-      padding: 4px 0; flex: 1;
-      max-width: 80px; position: relative;
-      text-decoration: none;
-    }
-    body.dark .nav-item { color: #6B6560; }
-    .nav-item i { font-size: 1.1rem; }
-    .nav-item.active { color: #1C1915; }
-    body.dark .nav-item.active { color: #E8E2D6; }
-    .nav-item .nav-badge {
-      width: 5px; height: 5px;
-      background: #1C1915; border-radius: 50%;
-      position: absolute; top: 2px; right: 14px;
-    }
-    body.dark .nav-item .nav-badge { background: #E8E2D6; }
-    .nav-add { position: relative; top: 0; }
-    .nav-add-btn {
-      width: 44px; height: 44px;
-      background: #1C1915;
-      color: #F9F7F2;
-      border-radius: 2px;
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 2px;
-    }
-    body.dark .nav-add-btn { background: #E8E2D6; color: #130B00; }
-    .nav-add-btn i { font-size: 1rem; }
+    
+    
+    body.dark 
+    
+    body.dark 
+    
+    
+    body.dark 
+    .nav-item 
+    body.dark .nav-item 
+    
+    
+    body.dark 
+    
 
     @media (min-width: 600px) {
       .treqe-header, .tabs, .match-section { max-width: 600px; margin-left: auto; margin-right: auto; }
     }
-  </style>
+  /* ══════ BOTTOM NAV (standardized across all MIB pages) ══════ */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 68px;
+  padding-bottom: max(6px, env(safe-area-inset-bottom));
+  z-index: 100;
+}
+
+.nav-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  transition: color 0.15s;
+  padding: 4px 0;
+  flex: 1;
+  max-width: 80px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.nav-item i { font-size: 1.1rem; }
+
+.nav-item.active { color: var(--text); }
+.nav-item.active i { color: var(--text); }
+
+.nav-item .nav-add-btn,
+.nav-add-btn {
+  width: 42px;
+  height: 42px;
+  background: var(--text);
+  color: var(--bg);
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2px;
+}
+
+.nav-item .nav-add-btn i,
+.nav-add-btn i {
+  font-size: 1rem;
+  color: var(--bg);
+}
+
+.nav-badge {
+  width: 5px;
+  height: 5px;
+  background: var(--text);
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  right: 4px;
+}
+
+</style>
 </head>
 <body>
 
