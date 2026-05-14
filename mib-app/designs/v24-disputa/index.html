@@ -2,59 +2,188 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Abrir disputa — Treqe</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Abrir disputa — MIB</title>
   <meta name="robots" content="noindex, nofollow">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
+/* ===== MIB Design System - Taylor Penton Editorial ===== */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html{font-size:16px;background:#FAFAF8}
-    body{font-family:'Inter',sans-serif;background:#FAFAF8;color:#141414;min-height:100vh;-webkit-font-smoothing:antialiased;padding-bottom:60px}
-    .top-bar{display:flex;align-items:center;gap:12px;padding:14px 16px;background:rgba(248,246,240,.8);border-bottom:1px solid #E0E0D8;position:sticky;top:0;z-index:10}
-    .top-bar .back{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#141414;font-size:1.1rem;cursor:pointer}
-    .top-bar h1{font-size:1.05rem;font-weight:600;flex:1}
-    .container{max-width:600px;margin:0 auto;padding:20px 16px 40px}
-    .card{background:#FFF;border-radius:20px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,.04);margin-bottom:16px}
-    .card h2{font-size:1rem;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px}
-    .order-info{display:flex;align-items:center;gap:12px;padding:12px 14px;background:#FAFAF8;border-radius:12px;margin-bottom:20px}
-    .order-info__icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem}
-    .order-info__text{flex:1}
-    .order-info__id{font-size:.72rem;color:#888;font-weight:500}
-    .order-info__name{font-size:.85rem;font-weight:600;margin-top:1px}
-    .order-info__price{font-size:.78rem;color:#888;margin-top:1px}
-    .form-group{margin-bottom:16px}
-    .form-group label{display:block;font-size:.82rem;font-weight:600;color:#141414;margin-bottom:8px}
-    .radio-group{display:flex;flex-direction:column;gap:8px}
-    .radio-option{display:flex;align-items:center;gap:10px;padding:12px 14px;border:1.5px solid #E0E0D8;border-radius:12px;cursor:pointer;transition:all .2s;font-size:.85rem}
-    .radio-option.selected{border-color:#141414;background:rgba(255,106,53,.04)}
-    .radio-option input[type=radio]{accent-color:#141414;width:16px;height:16px}
-    textarea{width:100%;padding:14px;border:1.5px solid #E0E0D8;border-radius:12px;font-size:.85rem;font-family:inherit;resize:vertical;min-height:100px;outline:none;transition:border-color .2s}
-    textarea:focus{border-color:#141414}
-    .photo-upload{display:flex;gap:8px;flex-wrap:wrap}
-    .photo-slot{width:72px;height:72px;border:1.5px dashed #E0E0D8;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#999999;font-size:1.3rem;cursor:pointer;transition:all .2s}
-    .photo-slot:active{border-color:#141414;color:#141414}
-    .btn{width:100%;padding:16px;border:none;border-radius:14px;font-size:.95rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .2s}
-    .btn:active{transform:scale(.98)}
-    .btn--primary{background:#141414;color:#FFF;box-shadow:0 4px 16px rgba(255,106,53,.25)}
-    .btn--secondary{background:#FFF;color:#888;border:1.5px solid #E0E0D8;margin-top:8px}
-    .info-box{padding:12px 14px;background:rgba(0,184,184,.05);border-radius:12px;font-size:.78rem;color:#666;display:flex;align-items:center;gap:8px;margin-bottom:16px}
-    .info-box i{color:#141414;font-size:.9rem}
-    /* Toast */
-    .toast-overlay{position:fixed;inset:0;background:rgba(0,0,0,.3);z-index:99;opacity:0;pointer-events:none;transition:opacity .3s}
-    .toast-overlay.show{opacity:1;pointer-events:auto}
-    .toast{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.9);background:#FFF;border-radius:24px;padding:32px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.15);z-index:100;opacity:0;pointer-events:none;transition:all .3s;max-width:360px;width:90%}
-    .toast.show{opacity:1;pointer-events:auto;transform:translate(-50%,-50%) scale(1)}
-    .toast__icon{width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 16px;background:rgba(0,184,184,.1);color:#141414}
-    .toast__title{font-size:1.1rem;font-weight:700;margin-bottom:6px}
-    .toast__text{font-size:.85rem;color:#888;margin-bottom:20px;line-height:1.5}
-    .toast__btn{padding:12px 32px;background:#141414;color:#FFF;border:none;border-radius:12px;font-size:.9rem;font-weight:600;cursor:pointer}
-  
-</style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #F9F7F2;
+  color: #1C1915;
+  min-height: 100dvh;
+  padding-bottom: 90px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background 0.2s, color 0.2s;
+}
+img { max-width: 100%; display: block; }
+button { font-family: 'IBM Plex Mono', monospace; cursor: pointer; border: 1px solid #E5E0D8; background: transparent; border-radius: 2px; color: #1C1915; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.12em; padding: 10px 20px; transition: all 0.15s; }
+button:hover { background: #1C1915; color: #FFF; border-color: #1C1915; }
+button:active { opacity: 0.7; }
+a { text-decoration: none; color: inherit; }
+input, textarea, select { font-family: 'IBM Plex Sans', sans-serif; font-size: 0.9rem; border: 1px solid #E5E0D8; border-radius: 2px; padding: 10px 12px; background: #FFF; color: #1C1915; outline: none; transition: border-color 0.15s; width: 100%; }
+input:focus, textarea:focus { border-color: #1C1915; }
+input::placeholder, textarea::placeholder { color: #A09A94; }
+
+/* ===== Dark Mode ===== */
+body.dark { background: #130B00; color: #E8E2D6; }
+body.dark input, body.dark textarea, body.dark select { background: #1A1206; border-color: #3A3630; color: #E8E2D6; }
+body.dark button { border-color: #3A3630; color: #E8E2D6; }
+body.dark button:hover { background: #E8E2D6; color: #130B00; border-color: #E8E2D6; }
+
+/* ===== Typography ===== */
+h1, h2, h3, h4 { font-family: 'IBM Plex Sans', sans-serif; font-weight: 400; letter-spacing: -0.02em; line-height: 1.2; }
+h1 { font-size: 1.6rem; }
+h2 { font-size: 1.2rem; }
+h3 { font-size: 1rem; }
+p { font-size: 0.9rem; line-height: 1.5; color: #6B6560; }
+body.dark p { color: #A0998F; }
+
+/* ===== Labels / Meta ===== */
+.label-mono, label, .mono-label, .tag, .badge, .chip { font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.16em; color: #A09A94; }
+body.dark .label-mono, body.dark label, body.dark .mono-label, body.dark .tag { color: #6B6560; }
+
+/* ===== Header ===== */
+.mib-header {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 16px;
+  background: #F9F7F2; border-bottom: 1px solid #E5E0D8;
+  transition: background 0.2s, border-color 0.2s;
+}
+body.dark .mib-header { background: #130B00; border-color: #3A3630; }
+.mib-logo { font-family: 'IBM Plex Sans', sans-serif; font-size: 1.3rem; font-weight: 700; font-style: italic; letter-spacing: -0.03em; color: #1C1915; }
+body.dark .mib-logo { color: #E8E2D6; }
+.mib-header-right { display: flex; align-items: center; gap: 8px; }
+.mib-nav-pill { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 6px 12px; border: 1px solid #E5E0D8; border-radius: 2px; color: #6B6560; cursor: pointer; background: transparent; transition: all 0.15s; }
+body.dark .mib-nav-pill { border-color: #3A3630; color: #A0998F; }
+.mib-nav-pill:hover, .mib-nav-pill.active { background: #1C1915; color: #FFF; border-color: #1C1915; }
+body.dark .mib-nav-pill:hover { background: #E8E2D6; color: #130B00; border-color: #E8E2D6; }
+.mib-dark-toggle { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; padding: 6px 10px; border: 1px solid #E5E0D8; border-radius: 2px; color: #6B6560; cursor: pointer; background: transparent; }
+body.dark .mib-dark-toggle { border-color: #3A3630; color: #A0998F; }
+
+/* ===== Bottom Nav ===== */
+.mib-bottom-nav {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-around;
+  padding: 8px 0 max(8px, env(safe-area-inset-bottom));
+  background: #F9F7F2; border-top: 1px solid #E5E0D8;
+  transition: background 0.2s, border-color 0.2s;
+}
+body.dark .mib-bottom-nav { background: #130B00; border-color: #3A3630; }
+.mib-nav-item { display: flex; flex-direction: column; align-items: center; gap: 2px; font-family: 'IBM Plex Mono', monospace; font-size: 0.5rem; text-transform: uppercase; letter-spacing: 0.12em; color: #A09A94; text-decoration: none; padding: 4px 8px; transition: color 0.15s; }
+.mib-nav-item i { font-size: 0.9rem; color: #6B6560; }
+body.dark .mib-nav-item { color: #6B6560; }
+body.dark .mib-nav-item i { color: #A0998F; }
+.mib-nav-item.active { color: #1C1915; }
+.mib-nav-item.active i { color: #1C1915; }
+body.dark .mib-nav-item.active { color: #E8E2D6; }
+body.dark .mib-nav-item.active i { color: #E8E2D6; }
+
+/* ===== Cards ===== */
+.mib-card { border: 1px solid #E5E0D8; border-radius: 2px; background: #FFF; padding: 16px; }
+body.dark .mib-card { border-color: #3A3630; background: #1A1206; }
+
+/* ===== Utility ===== */
+.text-center { text-align: center; }
+.text-sub { color: #6B6560; }
+body.dark .text-sub { color: #A0998F; }
+.text-dim { color: #A09A94; }
+body.dark .text-dim { color: #6B6560; }
+.mono { font-family: 'IBM Plex Mono', monospace; }
+.uppercase { text-transform: uppercase; }
+.small { font-size: 0.7rem; }
+.gap-8 { gap: 8px; }
+.gap-16 { gap: 16px; }
+.mt-8 { margin-top: 8px; }
+.mt-16 { margin-top: 16px; }
+.mt-24 { margin-top: 24px; }
+.mb-8 { margin-bottom: 8px; }
+.mb-16 { margin-bottom: 16px; }
+.p-16 { padding: 16px; }
+.px-16 { padding-left: 16px; padding-right: 16px; }
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.w-full { width: 100%; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+/* ===== Footer ===== */
+.mib-footer { padding: 24px 16px; font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.12em; color: #A09A94; text-align: center; border-top: 1px solid #E5E0D8; margin-top: 24px; }
+body.dark .mib-footer { border-color: #3A3630; color: #6B6560; }
+
+/* ===== Status bar mock ===== */
+.status-bar { display: flex; justify-content: space-between; align-items: center; padding: 6px 16px 2px; font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; color: #A09A94; }
+body.dark .status-bar { color: #6B6560; }
+.status-bar .time { font-weight: 600; }
+.status-bar .icons { display: flex; gap: 4px; }
+
+/* ===== Form elements ===== */
+.mib-input { font-family: 'IBM Plex Sans', sans-serif; font-size: 0.9rem; border: 1px solid #E5E0D8; border-radius: 2px; padding: 10px 12px; background: #FFF; color: #1C1915; outline: none; width: 100%; }
+body.dark .mib-input { background: #1A1206; border-color: #3A3630; color: #E8E2D6; }
+.mib-input:focus { border-color: #1C1915; }
+body.dark .mib-input:focus { border-color: #E8E2D6; }
+
+.mib-select { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; border: 1px solid #E5E0D8; border-radius: 2px; padding: 8px 12px; background: #FFF; color: #1C1915; outline: none; }
+body.dark .mib-select { background: #1A1206; border-color: #3A3630; color: #E8E2D6; }
+
+.mib-checkbox { -webkit-appearance: none; appearance: none; width: 16px; height: 16px; border: 1px solid #E5E0D8; border-radius: 2px; cursor: pointer; flex-shrink: 0; position: relative; background: #FFF; }
+body.dark .mib-checkbox { border-color: #3A3630; background: #1A1206; }
+.mib-checkbox:checked { background: #1C1915; border-color: #1C1915; }
+body.dark .mib-checkbox:checked { background: #E8E2D6; border-color: #E8E2D6; }
+.mib-checkbox:checked::after { content: '\2713'; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); color: #FFF; font-size: 0.6rem; font-weight: 700; }
+body.dark .mib-checkbox:checked::after { color: #130B00; }
+
+/* ===== Separator ===== */
+.mib-hr { border: none; border-top: 1px solid #E5E0D8; margin: 16px 0; }
+body.dark .mib-hr { border-color: #3A3630; }
+
+/* ===== Alert / Notice ===== */
+.mib-notice { border: 1px solid #E5E0D8; border-radius: 2px; padding: 12px 16px; font-size: 0.8rem; color: #6B6560; }
+body.dark .mib-notice { border-color: #3A3630; color: #A0998F; }
+
+/* ===== Pill tag ===== */
+.mib-tag { display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 0.5rem; text-transform: uppercase; letter-spacing: 0.12em; border: 1px solid #E5E0D8; border-radius: 2px; padding: 3px 8px; color: #6B6560; }
+body.dark .mib-tag { border-color: #3A3630; color: #A0998F; }
+
+/* ===== Demo tag ===== */
+.demo-tag { font-family: 'IBM Plex Mono', monospace; font-size: 0.45rem; color: #C5C0B8; text-align: center; padding: 4px; }
+body.dark .demo-tag { color: #5A5650; }
+
+/* ===== Empty state ===== */
+.mib-empty { text-align: center; padding: 48px 16px; color: #A09A94; }
+body.dark .mib-empty { color: #6B6560; }
+.mib-empty i { font-size: 2rem; margin-bottom: 12px; color: #C5C0B8; }
+body.dark .mib-empty i { color: #5A5650; }
+.mib-empty p { font-size: 0.85rem; }
+
+/* ===== Fade animation ===== */
+@keyframes fadeUp { 0% { opacity: 0; transform: translateY(12px); } 100% { opacity: 1; transform: translateY(0); } }
+@keyframes popIn { 0% { opacity: 0; transform: scale(0.8); } 100% { opacity: 1; transform: scale(1); } }
+  </style>
 </head>
 <body>
-  <div class="top-bar">
+<div class="mib-header">
+  <a href="../v1-catalogo/" class="mib-logo">MIB</a>
+  <div class="mib-header-right">
+    <a href="../v13-blog/" class="mib-nav-pill"><i class="fas fa-pen"></i> Blog</a>
+    <a href="../v1-catalogo/" class="mib-nav-pill"><i class="fas fa-th"></i> Catalogo</a>
+    <button class="mib-dark-toggle" onclick="toggleDark()"><i class="fas fa-moon"></i></button>
+  </div>
+</div>
+
+<div class="top-bar">
     <a class="back" href="../v12-mis-matches/"><i class="fas fa-chevron-left"></i></a>
     <h1>Abrir disputa</h1>
   </div>
@@ -94,7 +223,7 @@
     </div>
 
     <div class="card">
-      <h2><i class="fas fa-camera" style="color:#141414;"></i> Añade fotos y vídeos</h2>
+      <h2><i class="fas fa-camera" style="color:#1C1915;"></i> Añade fotos y vídeos</h2>
       <div class="form-group">
         <div class="photo-upload">
           <div class="photo-slot" onclick="addPhoto(this)"><i class="fas fa-plus"></i></div>
@@ -106,16 +235,16 @@
           <div class="photo-slot" onclick="addPhoto(this)"><i class="fas fa-plus"></i></div>
           <div class="photo-slot" onclick="addPhoto(this)"><i class="fas fa-plus"></i></div>
         </div>
-        <p style="font-size:.72rem;color:#999999;margin-top:8px;">Máximo 8 fotos. Sube fotos del artículo dañado o del embalaje.</p>
+        <p style="font-size:.72rem;color:#1C1915;margin-top:8px;">Máximo 8 fotos. Sube fotos del artículo dañado o del embalaje.</p>
         <div style="margin-top:16px;">
-          <label style="font-size:.82rem;font-weight:600;color:#141414;margin-bottom:8px;display:block;">Vídeos (opcional)</label>
+          <label style="font-size:.82rem;font-weight:600;color:#1A1A1A;margin-bottom:8px;display:block;">Vídeos (opcional)</label>
           <div class="photo-upload">
             <div class="photo-slot" onclick="addPhoto(this)"><i class="fas fa-video"></i></div>
             <div class="photo-slot" onclick="addPhoto(this)"><i class="fas fa-video"></i></div>
             <div class="photo-slot" onclick="addPhoto(this)"><i class="fas fa-video"></i></div>
             <div class="photo-slot" onclick="addPhoto(this)"><i class="fas fa-video"></i></div>
           </div>
-          <p style="font-size:.72rem;color:#999999;margin-top:8px;">Máximo 4 vídeos.</p>
+          <p style="font-size:.72rem;color:#1C1915;margin-top:8px;">Máximo 4 vídeos.</p>
         </div>
       </div>
     </div>
@@ -128,8 +257,8 @@
   <div class="toast" id="toast">
     <div class="toast__icon"><i class="fas fa-check"></i></div>
     <div class="toast__title">Disputa abierta</div>
-    <div class="toast__text">Hemos recibido tu reclamación. Revisaremos el caso y te daremos una respuesta en menos de 48 horas. Puedes ver el estado desde Mis Treqes.</div>
-    <button class="toast__btn" onclick="window.location.href='../v12-mis-matches/'">Volver a Mis Treqes</button>
+    <div class="toast__text">Hemos recibido tu reclamación. Revisaremos el caso y te daremos una respuesta en menos de 48 horas. Puedes ver el estado desde Mis MIBs.</div>
+    <button class="toast__btn" onclick="window.location.href='../v12-mis-matches/'">Volver a Mis MIBs</button>
   </div>
 
   <script>
@@ -149,5 +278,30 @@
       document.getElementById('toast').classList.add('show');
     }
   </script>
+<div class="mib-bottom-nav">
+  <a href="../v1-catalogo/" class="mib-nav-item"><i class="fas fa-th"></i> Catalogo</a>
+  <a href="../v12-mis-matches/" class="mib-nav-item"><i class="fas fa-exchange-alt"></i> Intercambios</a>
+  <a href="../v13-favoritos/" class="mib-nav-item"><i class="fas fa-heart"></i> Favoritos</a>
+  <a href="../v4-perfil/" class="mib-nav-item"><i class="fas fa-user"></i> Perfil</a>
+</div>
+
+<div class="mib-footer">(c) 2026 MIB - Todos los derechos reservados</div>
+
+<div class="demo-tag"><i class="fas fa-flask"></i> MIB Prototype -- v24-disputa -- May 2026</div>
+
+<script>
+function toggleDark() {
+  document.body.classList.toggle("dark");
+  var btn = document.querySelector(".mib-dark-toggle i");
+  if (btn) {
+    if (document.body.classList.contains("dark")) {
+      btn.className = "fas fa-sun";
+    } else {
+      btn.className = "fas fa-moon";
+    }
+  }
+}
+console.log("MIB Design System - Taylor Penton Editorial");
+</script>
 </body>
 </html>

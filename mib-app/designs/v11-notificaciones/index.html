@@ -1,508 +1,189 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>MIB — Notificaciones</title>
   <meta name="robots" content="noindex, nofollow">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
+/* ===== MIB Design System - Taylor Penton Editorial ===== */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
-    /* ===== RESET & BASE ===== */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { font-size: 16px; -webkit-text-size-adjust: 100%;   overflow-y: scroll; }
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: linear-gradient(160deg, #FAFAF8 0%, #F0EDE6 30%, #E0E0D8 70%, #F0EDE6 100%);
-      background-attachment: fixed;
-      color: #141414;
-      min-height: 100vh;
-      padding-bottom: 80px;
-      -webkit-font-smoothing: antialiased;
-    }
-    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #F9F7F2;
+  color: #1C1915;
+  min-height: 100dvh;
+  padding-bottom: 90px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background 0.2s, color 0.2s;
+}
+img { max-width: 100%; display: block; }
+button { font-family: 'IBM Plex Mono', monospace; cursor: pointer; border: 1px solid #E5E0D8; background: transparent; border-radius: 2px; color: #1C1915; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.12em; padding: 10px 20px; transition: all 0.15s; }
+button:hover { background: #1C1915; color: #FFF; border-color: #1C1915; }
+button:active { opacity: 0.7; }
+a { text-decoration: none; color: inherit; }
+input, textarea, select { font-family: 'IBM Plex Sans', sans-serif; font-size: 0.9rem; border: 1px solid #E5E0D8; border-radius: 2px; padding: 10px 12px; background: #FFF; color: #1C1915; outline: none; transition: border-color 0.15s; width: 100%; }
+input:focus, textarea:focus { border-color: #1C1915; }
+input::placeholder, textarea::placeholder { color: #A09A94; }
 
-    /* ===== COLORS ===== */
-    :root {
-      --bg: #FAFAF8;
-      --text: #141414;
-      --text-secondary: #5C5C5C;
-      --text-tertiary: #999999;
-      --border: #E0E0D8;
-      --accent: #141414;
-      --accent-hover: #5C5C5C;
-      --success: #141414;
-      --warning: #F5A623;
-      --danger: #E74C3C;
-      --card-bg: #FFFFFF;
-      --shadow: 0 4px 20px rgba(0,0,0,0.05);
-    }
+/* ===== Dark Mode ===== */
+body.dark { background: #130B00; color: #E8E2D6; }
+body.dark input, body.dark textarea, body.dark select { background: #1A1206; border-color: #3A3630; color: #E8E2D6; }
+body.dark button { border-color: #3A3630; color: #E8E2D6; }
+body.dark button:hover { background: #E8E2D6; color: #130B00; border-color: #E8E2D6; }
 
-    /* ===== STATUS BAR ===== */
-    .status-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 8px 20px 4px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--text-secondary);
-      background: var(--bg);
-    }
-    .status-bar .time { font-weight: 700; color: var(--text); }
-    .status-bar .icons { display: flex; gap: 6px; font-size: 0.7rem; }
+/* ===== Typography ===== */
+h1, h2, h3, h4 { font-family: 'IBM Plex Sans', sans-serif; font-weight: 400; letter-spacing: -0.02em; line-height: 1.2; }
+h1 { font-size: 1.6rem; }
+h2 { font-size: 1.2rem; }
+h3 { font-size: 1rem; }
+p { font-size: 0.9rem; line-height: 1.5; color: #6B6560; }
+body.dark p { color: #A0998F; }
 
-    /* ===== HEADER (liquid glass) ===== */
-    .header {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 14px 16px 10px;
-      background: rgba(248,246,240,0.6);
-      -webkit-position: sticky;
-      top: 0;
-      z-index: 50;
-      border-bottom: 1px solid rgba(0,0,0,0.02);
-      box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
-    }
-    .header__back {
-      position: absolute;
-      left: 12px;
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text);
-      font-size: 1.1rem;
-      transition: background 0.2s;
-    }
-    .header__back:active { background: var(--border); }
-    .header__settings {
-      position: absolute;
-      right: 12px;
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text);
-      font-size: 1.1rem;
-    }
-    .header__settings:active { background: var(--border); }
-    .header__title {
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: var(--text);
-    }
+/* ===== Labels / Meta ===== */
+.label-mono, label, .mono-label, .tag, .badge, .chip { font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.16em; color: #A09A94; }
+body.dark .label-mono, body.dark label, body.dark .mono-label, body.dark .tag { color: #6B6560; }
 
-    /* ===== SEGMENTED CONTROL (replaces inbox-stats + inbox-tabs) ===== */
-    .segmented-wrap {
-      padding: 4px 16px 12px;
-      background: var(--bg);
-    }
-    .segmented {
-      display: flex;
-      background: #EDEAE2;
-      border-radius: 14px;
-      padding: 3px;
-      gap: 2px;
-    }
-    .segmented__btn {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 5px;
-      padding: 10px 6px;
-      border-radius: 11px;
-      font-size: 0.72rem;
-      font-weight: 500;
-      color: var(--text-secondary);
-      background: transparent;
-      transition: all 0.25s ease;
-      white-space: nowrap;
-      min-width: 0;
-    }
-    .segmented__btn i { font-size: 0.7rem; }
-    .segmented__btn .seg-count {
-      font-size: 0.62rem;
-      font-weight: 700;
-      background: rgba(0,0,0,0.06);
-      padding: 1px 6px;
-      border-radius: 8px;
-      color: var(--text-tertiary);
-    }
-    .segmented__btn.active {
-      background: var(--card-bg);
-      color: var(--text);
-      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-      font-weight: 600;
-    }
-    .segmented__btn.active .seg-count {
-      background: var(--accent);
-      color: #FFF;
-    }
-    .segmented__btn:active:not(.active) {
-      background: rgba(0,0,0,0.01);
-    }
+/* ===== Header ===== */
+.mib-header {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 16px;
+  background: #F9F7F2; border-bottom: 1px solid #E5E0D8;
+  transition: background 0.2s, border-color 0.2s;
+}
+body.dark .mib-header { background: #130B00; border-color: #3A3630; }
+.mib-logo { font-family: 'IBM Plex Sans', sans-serif; font-size: 1.3rem; font-weight: 700; font-style: italic; letter-spacing: -0.03em; color: #1C1915; }
+body.dark .mib-logo { color: #E8E2D6; }
+.mib-header-right { display: flex; align-items: center; gap: 8px; }
+.mib-nav-pill { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 6px 12px; border: 1px solid #E5E0D8; border-radius: 2px; color: #6B6560; cursor: pointer; background: transparent; transition: all 0.15s; }
+body.dark .mib-nav-pill { border-color: #3A3630; color: #A0998F; }
+.mib-nav-pill:hover, .mib-nav-pill.active { background: #1C1915; color: #FFF; border-color: #1C1915; }
+body.dark .mib-nav-pill:hover { background: #E8E2D6; color: #130B00; border-color: #E8E2D6; }
+.mib-dark-toggle { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; padding: 6px 10px; border: 1px solid #E5E0D8; border-radius: 2px; color: #6B6560; cursor: pointer; background: transparent; }
+body.dark .mib-dark-toggle { border-color: #3A3630; color: #A0998F; }
 
-    /* ===== INBOX CONTENT ===== */
-    .inbox-content {
-      padding: 0 16px 16px;
-    }
+/* ===== Bottom Nav ===== */
+.mib-bottom-nav {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-around;
+  padding: 8px 0 max(8px, env(safe-area-inset-bottom));
+  background: #F9F7F2; border-top: 1px solid #E5E0D8;
+  transition: background 0.2s, border-color 0.2s;
+}
+body.dark .mib-bottom-nav { background: #130B00; border-color: #3A3630; }
+.mib-nav-item { display: flex; flex-direction: column; align-items: center; gap: 2px; font-family: 'IBM Plex Mono', monospace; font-size: 0.5rem; text-transform: uppercase; letter-spacing: 0.12em; color: #A09A94; text-decoration: none; padding: 4px 8px; transition: color 0.15s; }
+.mib-nav-item i { font-size: 0.9rem; color: #6B6560; }
+body.dark .mib-nav-item { color: #6B6560; }
+body.dark .mib-nav-item i { color: #A0998F; }
+.mib-nav-item.active { color: #1C1915; }
+.mib-nav-item.active i { color: #1C1915; }
+body.dark .mib-nav-item.active { color: #E8E2D6; }
+body.dark .mib-nav-item.active i { color: #E8E2D6; }
 
-    /* ===== NOTIFICATION ITEMS (liquid glass cards) ===== */
-    .inbox-item {
-      display: flex;
-      gap: 14px;
-      padding: 18px 16px;
-      margin-bottom: 10px;
-      background: rgba(0,0,0,0.02);
-      -webkit-border-radius: 18px;
-      border: 1px solid rgba(255,255,255,0.8);
-      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .inbox-item:active {
-      transform: scale(0.98);
-      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-    }
-    .inbox-item:last-child { margin-bottom: 0; }
+/* ===== Cards ===== */
+.mib-card { border: 1px solid #E5E0D8; border-radius: 2px; background: #FFF; padding: 16px; }
+body.dark .mib-card { border-color: #3A3630; background: #1A1206; }
 
-    /* Product emoji avatar — larger, more expressive */
-    .inbox-item__icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      font-size: 1.4rem;
-    }
-    /* Category background tints for product emojis */
-    .inbox-item__icon.cat-music   { background: rgba(255,106,53,0.12); }
-    .inbox-item__icon.cat-bike    { background: rgba(0,184,184,0.12); }
-    .inbox-item__icon.cat-tech    { background: rgba(92,107,192,0.12); }
-    .inbox-item__icon.cat-phone   { background: rgba(245,166,35,0.12); }
-    .inbox-item__icon.cat-gaming  { background: rgba(231,76,60,0.12); }
-    .inbox-item__icon.cat-camera  { background: rgba(39,174,96,0.12); }
-    .inbox-item__icon.cat-audio   { background: rgba(155,89,182,0.12); }
-    .inbox-item__icon.cat-helmet  { background: rgba(52,152,219,0.12); }
-    .inbox-item__icon.cat-watch   { background: rgba(149,165,166,0.12); }
-    .inbox-item__icon.cat-default { background: rgba(136,136,136,0.08); }
+/* ===== Utility ===== */
+.text-center { text-align: center; }
+.text-sub { color: #6B6560; }
+body.dark .text-sub { color: #A0998F; }
+.text-dim { color: #A09A94; }
+body.dark .text-dim { color: #6B6560; }
+.mono { font-family: 'IBM Plex Mono', monospace; }
+.uppercase { text-transform: uppercase; }
+.small { font-size: 0.7rem; }
+.gap-8 { gap: 8px; }
+.gap-16 { gap: 16px; }
+.mt-8 { margin-top: 8px; }
+.mt-16 { margin-top: 16px; }
+.mt-24 { margin-top: 24px; }
+.mb-8 { margin-bottom: 8px; }
+.mb-16 { margin-bottom: 16px; }
+.p-16 { padding: 16px; }
+.px-16 { padding-left: 16px; padding-right: 16px; }
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.w-full { width: 100%; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 
-    .inbox-item__body {
-      flex: 1;
-      min-width: 0;
-    }
-    .inbox-item__title {
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 3px;
-    }
-    .inbox-item__text {
-      font-size: 0.78rem;
-      color: var(--text-secondary);
-      line-height: 1.5;
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-    .inbox-item__meta {
-      font-size: 0.65rem;
-      color: var(--text-tertiary);
-      margin-top: 5px;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
+/* ===== Footer ===== */
+.mib-footer { padding: 24px 16px; font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.12em; color: #A09A94; text-align: center; border-top: 1px solid #E5E0D8; margin-top: 24px; }
+body.dark .mib-footer { border-color: #3A3630; color: #6B6560; }
 
-    /* ===== QUICK-REPLY INLINE ===== */
-    .inbox-item__actions {
-      display: flex;
-      align-items: flex-start;
-      gap: 4px;
-      flex-shrink: 0;
-      margin-top: 4px;
-    }
-    .inbox-item__responder {
-      padding: 6px 12px;
-      border-radius: 10px;
-      font-size: 0.68rem;
-      font-weight: 600;
-      color: var(--accent);
-      background: rgba(0,0,0,0.02);
-      -webkit-border: 1px solid rgba(255,255,255,0.9);
-      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-      white-space: nowrap;
-      transition: all 0.2s;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-    }
-    .inbox-item__responder:active {
-      transform: scale(0.93);
-      background: rgba(255,106,53,0.12);
-    }
-    .inbox-item__responder i { font-size: 0.6rem; }
+/* ===== Status bar mock ===== */
+.status-bar { display: flex; justify-content: space-between; align-items: center; padding: 6px 16px 2px; font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; color: #A09A94; }
+body.dark .status-bar { color: #6B6560; }
+.status-bar .time { font-weight: 600; }
+.status-bar .icons { display: flex; gap: 4px; }
 
-    /* Inline reply form — compact, appears inside card */
-    .quick-reply-wrap {
-      display: none;
-      margin-top: 10px;
-      padding-top: 10px;
-      border-top: 1px dashed var(--border);
-    }
-    .quick-reply-wrap.visible { display: block; }
-    .quick-reply-row {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-    }
-    .quick-reply-input {
-      flex: 1;
-      padding: 9px 12px;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      font-size: 0.78rem;
-      font-family: inherit;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 36px;
-      transition: border-color 0.2s;
-    }
-    .quick-reply-input:focus {
-      outline: none;
-      border-color: var(--accent);
-    }
-    .quick-reply-send {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--accent);
-      color: #FFF;
-      font-size: 0.85rem;
-      flex-shrink: 0;
-      transition: all 0.2s;
-    }
-    .quick-reply-send:active { transform: scale(0.9); opacity: 0.85; }
-    .quick-reply-send.done { background: var(--success); }
-    .quick-reply-char {
-      font-size: 0.6rem;
-      color: var(--text-tertiary);
-      text-align: right;
-      margin-top: 3px;
-    }
+/* ===== Form elements ===== */
+.mib-input { font-family: 'IBM Plex Sans', sans-serif; font-size: 0.9rem; border: 1px solid #E5E0D8; border-radius: 2px; padding: 10px 12px; background: #FFF; color: #1C1915; outline: none; width: 100%; }
+body.dark .mib-input { background: #1A1206; border-color: #3A3630; color: #E8E2D6; }
+.mib-input:focus { border-color: #1C1915; }
+body.dark .mib-input:focus { border-color: #E8E2D6; }
 
-    /* ===== MODAL REPLY (fallback for long replies) ===== */
-    .reply-form {
-      padding: 0 16px 16px;
-    }
-    .reply-form__header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--text);
-    }
-    .reply-form__header button {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text-tertiary);
-    }
-    .reply-form__textarea {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      font-size: 0.85rem;
-      font-family: inherit;
-      resize: vertical;
-      background: var(--card-bg);
-      color: var(--text);
-      margin-bottom: 10px;
-    }
-    .reply-form__textarea:focus {
-      outline: none;
-      border-color: var(--accent);
-    }
-    .reply-form__btn {
-      width: 100%;
-      padding: 12px;
-      border-radius: 10px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      background: var(--accent);
-      color: #FFF;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-    .reply-form__btn:active { opacity: 0.9; }
+.mib-select { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; border: 1px solid #E5E0D8; border-radius: 2px; padding: 8px 12px; background: #FFF; color: #1C1915; outline: none; }
+body.dark .mib-select { background: #1A1206; border-color: #3A3630; color: #E8E2D6; }
 
-    .modal-overlay {
-      position: fixed; inset: 0; background: rgba(0,0,0,0.5);
-      z-index: 200;
-      display: none; align-items: flex-end; justify-content: center;
-    }
-    .modal-overlay.visible { display: flex; }
-    .modal-card {
-      background: var(--card-bg); border-radius: 24px 24px 0 0;
-      width: 100%; max-height: 80vh; overflow: hidden;
-      animation: slideUp .3s ease;
-    }
-    @keyframes slideUp { from{transform:translateY(100%)} to{transform:translateY(0)} }
-    .modal-card__header {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 16px 20px 12px; border-bottom: 1px solid var(--border);
-    }
-    .modal-card__title { font-size: 1rem; font-weight: 600; color: var(--text); }
-    .modal-card__close {
-      width: 32px; height: 32px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      color: var(--text-secondary); font-size: .9rem;
-    }
-    .modal-card__close:active { background: var(--border); }
-    .modal-card__body { padding: 16px 20px; max-height: 50vh; overflow-y: auto; }
-    .modal-card__preview {
-      background: var(--bg); border-radius: 10px; padding: 12px; margin-bottom: 12px;
-    }
-    .modal-card__preview-label {
-      font-size: .65rem; color: var(--text-tertiary); margin-bottom: 4px; display: block;
-    }
-    .modal-card__preview-text { font-size: .85rem; color: var(--text); font-style: italic; }
-    .modal-card__footer {
-      display: flex; gap: 10px; padding: 12px 20px 20px; border-top: 1px solid var(--border);
-    }
-    .btn {
-      flex: 1; padding: 12px; border-radius: 10px; font-size: .85rem; font-weight: 600;
-      display: flex; align-items: center; justify-content: center; gap: 6px; transition: all .2s;
-    }
-    .btn--primary { background: var(--accent); color: #FFF; }
-    .btn--primary:active { opacity: .9; }
-    .btn--secondary { background: var(--card-bg); border: 1px solid var(--border); color: var(--text); }
-    .btn--secondary:active { background: var(--border); }
+.mib-checkbox { -webkit-appearance: none; appearance: none; width: 16px; height: 16px; border: 1px solid #E5E0D8; border-radius: 2px; cursor: pointer; flex-shrink: 0; position: relative; background: #FFF; }
+body.dark .mib-checkbox { border-color: #3A3630; background: #1A1206; }
+.mib-checkbox:checked { background: #1C1915; border-color: #1C1915; }
+body.dark .mib-checkbox:checked { background: #E8E2D6; border-color: #E8E2D6; }
+.mib-checkbox:checked::after { content: '\2713'; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); color: #FFF; font-size: 0.6rem; font-weight: 700; }
+body.dark .mib-checkbox:checked::after { color: #130B00; }
 
-    /* ===== EMPTY STATE ===== */
-    .empty-state {
-      text-align: center;
-      padding: 60px 32px;
-      color: var(--text-tertiary);
-    }
-    .empty-state i {
-      font-size: 4rem;
-      margin-bottom: 20px;
-      opacity: 0.3;
-    }
-    .empty-state h3 {
-      font-size: 1.1rem;
-      color: var(--text);
-      margin-bottom: 8px;
-      font-weight: 600;
-    }
-    .empty-state p {
-      font-size: 0.85rem;
-      line-height: 1.5;
-    }
-    /* ===== RESPONSIVE ===== */
-    
-    @media (min-width: 600px) {
-      .header, .segmented-wrap, .inbox-content { max-width: 600px; margin: 0 auto; }
-      .inbox-content { padding: 0 24px 16px; }
-    }
-    /* ===== BOTTOM NAV ===== */
-    
-    
-    
-    
-    
-    
-    
-    
+/* ===== Separator ===== */
+.mib-hr { border: none; border-top: 1px solid #E5E0D8; margin: 16px 0; }
+body.dark .mib-hr { border-color: #3A3630; }
 
-      .bottom-nav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: rgba(0,0,0,0.04);
-      -webkit-border-top: 1px solid var(--border);
-      display: flex;
-      justify-content: space-evenly;
-      align-items: center;
-      padding: 0;
-      height: 72px;
-      padding-bottom: 12px;
-      z-index: 100;
-      isolation: isolate;
-    }
-    .nav-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 2px;
-      font-size: 0.65rem;
-      font-weight: 500;
-      color: var(--text-tertiary);
-      transition: color 0.2s;
-      padding: 4px 0;
-      flex: 1;
-      max-width: 80px;
-      position: relative;
-      border: none;
-      background: none;
-      cursor: pointer;
-      font-family: inherit;
-      text-decoration: none;
-    }
-    .nav-item i { font-size: 1.3rem; }
-    .nav-item.active { color: var(--accent); }
-    .nav-add { position: relative; top: 0; }
-    .nav-add-btn {
-      width: 48px;
-      height: 48px;
-      background: var(--accent);
-      color: #FFFFFF;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-      margin-bottom: 2px;
-    }
-    .nav-add-btn i { font-size: 1.1rem; }
-    .nav-badge {
-      width: 6px;
-      height: 6px;
-      background: var(--accent);
-      border-radius: 50%;
-      position: absolute;
-      top: 2px;
-      right: 12px;
-    }
-    
-</style>
+/* ===== Alert / Notice ===== */
+.mib-notice { border: 1px solid #E5E0D8; border-radius: 2px; padding: 12px 16px; font-size: 0.8rem; color: #6B6560; }
+body.dark .mib-notice { border-color: #3A3630; color: #A0998F; }
+
+/* ===== Pill tag ===== */
+.mib-tag { display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 0.5rem; text-transform: uppercase; letter-spacing: 0.12em; border: 1px solid #E5E0D8; border-radius: 2px; padding: 3px 8px; color: #6B6560; }
+body.dark .mib-tag { border-color: #3A3630; color: #A0998F; }
+
+/* ===== Demo tag ===== */
+.demo-tag { font-family: 'IBM Plex Mono', monospace; font-size: 0.45rem; color: #C5C0B8; text-align: center; padding: 4px; }
+body.dark .demo-tag { color: #5A5650; }
+
+/* ===== Empty state ===== */
+.mib-empty { text-align: center; padding: 48px 16px; color: #A09A94; }
+body.dark .mib-empty { color: #6B6560; }
+.mib-empty i { font-size: 2rem; margin-bottom: 12px; color: #C5C0B8; }
+body.dark .mib-empty i { color: #5A5650; }
+.mib-empty p { font-size: 0.85rem; }
+
+/* ===== Fade animation ===== */
+@keyframes fadeUp { 0% { opacity: 0; transform: translateY(12px); } 100% { opacity: 1; transform: translateY(0); } }
+@keyframes popIn { 0% { opacity: 0; transform: scale(0.8); } 100% { opacity: 1; transform: scale(1); } }
+  </style>
 </head>
 <body>
+<div class="mib-header">
+  <a href="../v1-catalogo/" class="mib-logo">MIB</a>
+  <div class="mib-header-right">
+    <a href="../v13-blog/" class="mib-nav-pill"><i class="fas fa-pen"></i> Blog</a>
+    <a href="../v1-catalogo/" class="mib-nav-pill"><i class="fas fa-th"></i> Catalogo</a>
+    <button class="mib-dark-toggle" onclick="toggleDark()"><i class="fas fa-moon"></i></button>
+  </div>
+</div>
 
-  <!-- ===== HEADER ===== -->
+<!-- ===== HEADER ===== -->
   <div class="header">
     <button class="header__back" onclick="goToDiscover()" aria-label="Atrás"><i class="fas fa-chevron-left"></i></button>
     <span class="header__title">Avisos</span>
@@ -511,7 +192,7 @@
   <!-- ===== INBOX CONTENT (lista plana sin tabs) ===== -->
   <div class="inbox-content">
     <div style="padding: 6px 16px 14px; font-size: 0.72rem; color: var(--text-secondary); display: flex; align-items: center; gap: 8px;">
-      <span style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,106,53,0.12);padding:4px 12px;border-radius:20px;font-weight:600;color:var(--accent);">
+      <span style="display:inline-flex;align-items:center;gap:5px;background: transparent;padding:4px 12px;border-radius:20px;font-weight:600;color:var(--accent);">
         <i class="fas fa-circle" style="font-size: 0.4rem;"></i> 9 avisos nuevos
       </span>
       <span style="color:var(--text-tertiary);">hoy</span>
@@ -519,7 +200,7 @@
 
         <!-- 0. 🔄 Solicitud de trueque (ejemplo) -->
     <div class="inbox-item" style="border-left:3px solid var(--accent);padding-left:10px;">
-      <div class="inbox-item__icon" style="background: rgba(255,106,53,0.12);">🔄</div>
+      <div class="inbox-item__icon" style="background: transparent;">🔄</div>
       <div class="inbox-item__body">
         <div class="inbox-item__title">Solicitud de trueque enviada</div>
         <div class="inbox-item__text">Has solicitado un trueque por iPhone 15 Pro. Te notificaremos cuando sea posible hacer el intercambio.</div>
@@ -532,7 +213,7 @@
 
     <!-- 1. 👀 Alguien quiere tu artículo (intercambio, sin match aún) -->
     <div class="inbox-item">
-      <div class="inbox-item__icon cat-music" style="background: rgba(255,106,53,0.15);">👀</div>
+      <div class="inbox-item__icon cat-music" style="background: transparent;">👀</div>
       <div class="inbox-item__body">
         <div class="inbox-item__title">Carlos quiere tu Fender Stratocaster</div>
         <div class="inbox-item__text">Ha ofrecido su MacBook Air M3 + 300€. El algoritmo busca completar el círculo. Te avisaremos cuando haya match.</div>
@@ -542,7 +223,7 @@
 
     <!-- 2. 💰 Bajada de precio en guardado -->
     <div class="inbox-item">
-      <div class="inbox-item__icon cat-tech" style="background: rgba(245,166,35,0.15);">💰</div>
+      <div class="inbox-item__icon cat-tech" style="background: transparent;">💰</div>
       <div class="inbox-item__body">
         <div class="inbox-item__title">El iPhone 15 Pro que guardaste bajó de precio</div>
         <div class="inbox-item__text">Ahora cuesta 820€ (antes 890€). Sigue disponible para compra directa o intercambio. Aprovecha la oferta antes de que desaparezca.</div>
@@ -555,7 +236,7 @@
 
     <!-- 3. ❌ Match roto — artículo liberado -->
     <div class="inbox-item">
-      <div class="inbox-item__icon cat-helmet" style="background: rgba(231,76,60,0.12);">❌</div>
+      <div class="inbox-item__icon cat-helmet" style="background: transparent;">❌</div>
       <div class="inbox-item__body">
         <div class="inbox-item__title">Match #TRX-7841 cancelado</div>
         <div class="inbox-item__text">Bruno rechazó el intercambio. Tu Casco Shoei NXR2 vuelve a estar disponible para nuevos matches y compra directa. Ya puedes ofrecerlo a otros interesados.</div>
@@ -568,7 +249,7 @@
 
     <!-- 4. 🔔 Nuevo artículo publicado coincide con búsqueda guardada -->
     <div class="inbox-item">
-      <div class="inbox-item__icon cat-camera" style="background: rgba(39,174,96,0.12);">🔔</div>
+      <div class="inbox-item__icon cat-camera" style="background: transparent;">🔔</div>
       <div class="inbox-item__body">
         <div class="inbox-item__title">Nueva Canon EOS R publicada en Barcelona</div>
         <div class="inbox-item__text">Coincide con tu búsqueda guardada "cámaras réflex". Disponible para compra directa (650€) o intercambio. Publicado hace 30 minutos.</div>
@@ -581,7 +262,7 @@
 
     <!-- 5. 📈 Oferta mejorada (sin match aún) -->
     <div class="inbox-item">
-      <div class="inbox-item__icon cat-bike" style="background: rgba(0,184,184,0.12);">📈</div>
+      <div class="inbox-item__icon cat-bike" style="background: transparent;">📈</div>
       <div class="inbox-item__body">
         <div class="inbox-item__title">Ana ha mejorado su oferta por tu Trek Marlin 7</div>
         <div class="inbox-item__text">Ahora ofrece su Canon EOS R + 50€ (antes 30€). El algoritmo sigue buscando el círculo con su nueva oferta.</div>
@@ -591,7 +272,7 @@
 
     <!-- 6. 🔗 Círculo cerca de cerrarse -->
     <div class="inbox-item">
-      <div class="inbox-item__icon cat-music" style="background: rgba(92,107,192,0.12);">🔗</div>
+      <div class="inbox-item__icon cat-music" style="background: transparent;">🔗</div>
       <div class="inbox-item__body">
         <div class="inbox-item__title">Tu Fender Stratocaster está cerca de cerrar un círculo</div>
         <div class="inbox-item__text">Solo falta 1 persona para completar la cadena. Si alguien más ofrece un artículo compatible con las ofertas actuales, tendrás match automáticamente.</div>
@@ -604,10 +285,10 @@
 
     <!-- 7. 💶 Crédito pendiente -->
     <div class="inbox-item">
-      <div class="inbox-item__icon cat-default" style="background: rgba(0,184,184,0.12);">💶</div>
+      <div class="inbox-item__icon cat-default" style="background: transparent;">💶</div>
       <div class="inbox-item__body">
         <div class="inbox-item__title">Tienes 40€ pendientes del intercambio #TRX-7839</div>
-        <div class="inbox-item__text">Se liberarán cuando Carlos confirme que ha recibido tu AirPods Max. Recibirás el ingreso en tu monedero Treqe en las siguientes 24h tras la confirmación.</div>
+        <div class="inbox-item__text">Se liberarán cuando Carlos confirme que ha recibido tu AirPods Max. Recibirás el ingreso en tu monedero MIB en las siguientes 24h tras la confirmación.</div>
         <div class="inbox-item__meta"><i class="far fa-clock"></i> Pendiente desde hace 2 d</div>
       </div>
       <div class="inbox-item__actions">
@@ -617,7 +298,7 @@
 
     <!-- 8. 🔄 Artículo guardado ahora acepta intercambio -->
     <div class="inbox-item">
-      <div class="inbox-item__icon cat-tech" style="background: rgba(245,166,35,0.12);">🔄</div>
+      <div class="inbox-item__icon cat-tech" style="background: transparent;">🔄</div>
       <div class="inbox-item__body">
         <div class="inbox-item__title">La Canon EOS R que guardaste ahora acepta intercambio</div>
         <div class="inbox-item__text">Antes solo estaba disponible para compra directa. El dueño acaba de activar la opción de trueque. Puedes ofrecer tus artículos a cambio.</div>
@@ -630,7 +311,7 @@
 
     <!-- 9. ⭐ Recordatorio valoración -->
     <div class="inbox-item">
-      <div class="inbox-item__icon cat-default" style="background: rgba(155,89,182,0.12);">⭐</div>
+      <div class="inbox-item__icon cat-default" style="background: transparent;">⭐</div>
       <div class="inbox-item__body">
         <div class="inbox-item__title">¿Qué tal fue tu intercambio #TRX-7839?</div>
         <div class="inbox-item__text">Canon EOS R por AirPods Max + 270€ se completó hace 3 días. Valora a los participantes para ayudar a la comunidad. Si no valoras en 7 días, se cerrará automáticamente.</div>
@@ -667,12 +348,12 @@
       }
     });
 
-    console.log('🔔 TREQE v11 — Avisos');
+    console.log('🔔 MIB v11 — Avisos');
     console.log('🧪 9 notificaciones no redundantes · Sin chat');
 
     // Load trade request notifications from localStorage
     (function(){
-      var notifs = JSON.parse(localStorage.getItem('treqe_notifications') || '[]');
+      var notifs = JSON.parse(localStorage.getItem('mib_notifications') || '[]');
       if (!notifs.length) return;
       var inbox = document.querySelector('.inbox-item');
       if (!inbox) return;
@@ -682,7 +363,7 @@
         item.className = 'inbox-item';
         item.style.cssText = 'border-left:3px solid var(--accent);padding-left:10px;';
         item.innerHTML =
-          '<div class="inbox-item__icon" style="background:rgba(255,106,53,0.12);">🔄</div>' +
+          '<div class="inbox-item__icon" style="background: transparent;">🔄</div>' +
           '<div class="inbox-item__body">' +
           '<div class="inbox-item__title">Solicitud de trueque enviada</div>' +
           '<div class="inbox-item__text">' + n.text + '. Te notificaremos cuando sea posible hacer el intercambio.</div>' +
@@ -697,13 +378,35 @@
   </script>
     <nav class="bottom-nav">
     <a href="../v1-catalogo/" class="nav-item"><i class="fas fa-search"></i><span>Buscar</span></a>
-    <a href="../v12-mis-matches/" class="nav-item"><i class="fas fa-exchange-alt"></i><span>Treqes</span></a>
+    <a href="../v12-mis-matches/" class="nav-item"><i class="fas fa-exchange-alt"></i><span>MIBs</span></a>
     <a href="../v3-subir/" class="nav-item nav-add"><div class="nav-add-btn"><i class="fas fa-plus"></i></div></a>
     <a href="../v11-notificaciones/" class="nav-item active"><i class="fas fa-bell"></i><span>Avisos</span><span class="nav-badge"></span></a>
     <a href="../v4-perfil/" class="nav-item"><i class="fas fa-user"></i><span>Perfil</span></a>
   </nav>
+<div class="mib-bottom-nav">
+  <a href="../v1-catalogo/" class="mib-nav-item"><i class="fas fa-th"></i> Catalogo</a>
+  <a href="../v12-mis-matches/" class="mib-nav-item"><i class="fas fa-exchange-alt"></i> Intercambios</a>
+  <a href="../v13-favoritos/" class="mib-nav-item"><i class="fas fa-heart"></i> Favoritos</a>
+  <a href="../v4-perfil/" class="mib-nav-item"><i class="fas fa-user"></i> Perfil</a>
+</div>
 
+<div class="mib-footer">(c) 2026 MIB - Todos los derechos reservados</div>
 
+<div class="demo-tag"><i class="fas fa-flask"></i> MIB Prototype -- v11-notificaciones -- May 2026</div>
 
+<script>
+function toggleDark() {
+  document.body.classList.toggle("dark");
+  var btn = document.querySelector(".mib-dark-toggle i");
+  if (btn) {
+    if (document.body.classList.contains("dark")) {
+      btn.className = "fas fa-sun";
+    } else {
+      btn.className = "fas fa-moon";
+    }
+  }
+}
+console.log("MIB Design System - Taylor Penton Editorial");
+</script>
 </body>
 </html>
