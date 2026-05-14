@@ -3,138 +3,99 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>TREQE - Catálogo</title>
-    <meta name="robots" content="noindex, nofollow">
+  <title>treqe — Catálogo</title>
+  <meta name="robots" content="noindex, nofollow">
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
-
-/* ══════ MIB Design System ══════ */
-:root {
-  --bg: #F9F7F2; --surface: #FFF; --text: #1C1915;
-  --text-sub: #6B6560; --text-dim: #A09A94;
-  --border: #E5E0D8; --border-strong: #C5C0B8; --accent: #1C1915;
-}
-body.dark {
-  --bg: #130B00; --surface: #1A1206; --text: #E8E2D6;
-  --text-sub: #A0998F; --text-dim: #6B6560;
-  --border: #3A3630; --border-strong: #5A5650; --accent: #E8E2D6;
-}
-
-
-    /* ===== RESET & BASE ===== */
-    .treqe-logo {
-      height: 60px;
-      width: auto;
-      flex-shrink: 0;
-      display: block;
-      margin-left: -6px;
-    }
-    .logo-link { display: inline-flex; text-decoration: none; line-height: 0; }
+    /* ===== treqe DESIGN SYSTEM ===== */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html {
       font-size: 16px;
       -webkit-text-size-adjust: 100%;
       scroll-behavior: smooth;
-      overflow-y: scroll; }
+      overflow-y: scroll;
+    }
     body {
       font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       background: #F9F7F2;
       color: #1C1915;
       min-height: 100dvh;
-      padding-bottom: 80px;
+      padding-bottom: 90px;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       overscroll-behavior: contain;
       scrollbar-gutter: stable;
     }
+    body.dark {
+      background: #130B00;
+      color: #E8E2D6;
+    }
     img { max-width: 100%; display: block; }
-    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+    button { cursor: pointer; border: none; background: none; font-family: 'IBM Plex Mono', monospace; }
     a { text-decoration: none; color: inherit; }
-    input, select { font-family: inherit; font-size: inherit; }
+    input, select { font-family: 'IBM Plex Sans', sans-serif; font-size: inherit; }
 
-    /* ===== COLORS ===== */
     :root {
       --bg: #F9F7F2;
+      --surface: #FFF;
       --text: #1C1915;
-      --text-secondary: #6B6560;
-      --text-tertiary: #A09A94;
+      --text-sub: #6B6560;
+      --text-dim: #A09A94;
       --border: #E5E0D8;
+      --border-strong: #C5C0B8;
       --accent: #1C1915;
-      --accent-hover: #6B6560;
-      --success: #1C1915;
-      --card-bg: #FFFFFF;
-      --shadow: 0 4px 20px rgba(0,0,0,0.05);
     }
-
-    /* ===== STATUS BAR (mock) ===== */
-    .status-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 8px 20px 4px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--text-secondary);
-      background: var(--bg);
+    body.dark {
+      --bg: #130B00;
+      --text: #E8E2D6;
+      --border: #3A3630;
     }
-    .status-bar .time { font-weight: 700; color: var(--text); }
-    .status-bar .icons { display: flex; gap: 6px; font-size: 0.7rem; }
 
     /* ===== HEADER ===== */
     .header {
-      position: relative;
       display: flex;
       align-items: center;
-      min-height: 80px;
-      padding: 12px 16px;
+      justify-content: space-between;
+      padding: 24px 24px 12px;
       background: var(--bg);
-      box-sizing: border-box;
       width: 100%;
     }
     .header .logo {
-      position: absolute;
-      left: 16px;
-      font-size: 1.2rem;
-      font-weight: 800;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 1.1rem;
+      font-weight: 600;
       letter-spacing: -0.5px;
       color: var(--text);
-      flex-shrink: 0;
-      z-index: 1;
+      text-transform: uppercase;
     }
-    .header .logo span { color: var(--accent); }
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
     .search-icon {
-      position: absolute;
-      right: 16px;
-      top: 50%;
-      transform: translateY(-50%);
       width: 38px; height: 38px;
-      border-radius: 14px;
       display: flex; align-items: center; justify-content: center;
-      background: rgba(255,255,255,0.7);
-      -webkit-border: 1px solid rgba(255,255,255,0.5);
-      cursor: pointer; z-index: 2;
-      color: var(--text-secondary);
-      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-      transition: opacity 0.2s;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      cursor: pointer;
+      color: var(--text-sub);
+      background: var(--surface);
+      transition: background 0.2s;
     }
-    .search-icon i { font-size: 0.9rem; }
+    .search-icon:hover { background: var(--border); }
+    .search-icon i { font-size: 0.85rem; }
     .search-expand {
-      position: absolute;
-      right: 16px;
-      top: 50%;
-      transform: translateY(-50%);
       display: flex; align-items: center;
-      background: rgba(255,255,255,0.75);
-      -webkit-border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.5);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      background: var(--surface);
       width: 0; overflow: hidden;
       opacity: 0;
       transition: width 0.3s ease, opacity 0.2s ease, padding 0.3s ease;
-      z-index: 3;
       padding: 0;
-      height: 40px;
+      height: 38px;
     }
     .search-expand.open {
       width: 220px;
@@ -143,71 +104,65 @@ body.dark {
     }
     .search-expand input {
       border: none; outline: none; background: transparent;
-      font-family: inherit; font-size: 0.85rem;
+      font-family: 'IBM Plex Sans', sans-serif; font-size: 0.85rem;
       color: var(--text); width: 100%;
-      white-space: nowrap;
     }
-    .search-expand input::placeholder { color: #B0B8C8; }
+    .search-expand input::placeholder { color: var(--text-dim); }
     .search-close {
       width: 32px; height: 32px;
-      border-radius: 10px; border: none;
-      background: transparent;
-      color: var(--text-secondary);
-      cursor: pointer;
       display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0; font-size: 0.8rem;
+      color: var(--text-sub);
+      font-size: 0.8rem;
+      font-family: 'IBM Plex Mono', monospace;
     }
-
     .blog-link {
-      position: absolute;
-      right: 62px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 38px; height: 38px;
-      border-radius: 14px;
-      display: flex; align-items: center; justify-content: center;
-      background: rgba(255,255,255,0.7);
-      -webkit-border: 1px solid rgba(255,255,255,0.5);
-      cursor: pointer; z-index: 2;
-      color: var(--text-secondary);
-      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.6rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-sub);
       text-decoration: none;
-      transition: opacity 0.2s;
+      padding: 8px 14px;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      transition: background 0.2s;
     }
-    .blog-link:active { background: rgba(255,255,255,0.5); }
-    .blog-link i { font-size: 0.85rem; }
+    .blog-link:hover { background: var(--border); }
+    .blog-link i { font-size: 0.65rem; margin-right: 6px; }
 
-    /* Toolbar */
+    /* ===== TOOLBAR ===== */
     .toolbar {
       display: flex; gap: 8px;
-      padding: 5px 16px;
+      padding: 8px 24px 4px;
       align-items: center;
-      justify-content: center;
     }
     .tool-btn {
       display: flex; align-items: center; gap: 6px;
-      padding: 7px 14px;
-      border-radius: 14px;
-      font-size: 0.78rem; font-weight: 600;
-      font-family: inherit;
-      background: rgba(255,255,255,0.65);
-      -webkit-border: 1px solid rgba(255,255,255,0.5);
+      padding: 8px 16px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.6rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      background: var(--surface);
       color: var(--text);
       cursor: pointer;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
-      transition: transform 0.2s;
+      transition: background 0.2s;
     }
-    .tool-btn:active { transform: scale(0.97); }
-    .tool-btn i { font-size: 0.75rem; color: var(--accent); }
+    .tool-btn:hover { background: var(--border); }
+    .tool-btn:active { opacity: 0.8; }
+    .tool-btn i { font-size: 0.7rem; color: var(--text-sub); }
 
     .sort-wrapper { position: relative; }
     .sort-dropdown {
       position: absolute; top: calc(100% + 4px); left: 0;
-      background: rgba(255,255,255,0.9);
-      -webkit-border-radius: 16px;
-      border: 1px solid rgba(255,255,255,0.6);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
-      padding: 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      padding: 4px;
       min-width: 200px;
       display: none; flex-direction: column; gap: 2px;
       z-index: 60;
@@ -216,164 +171,77 @@ body.dark {
     .sort-option {
       display: block; width: 100%; text-align: left;
       padding: 10px 14px;
-      border-radius: 12px;
-      border: none;
-      background: transparent;
-      font-family: inherit; font-size: 0.82rem; font-weight: 500;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.6rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
       color: var(--text);
       cursor: pointer;
+      background: transparent;
       transition: background 0.15s;
     }
-    .sort-option:hover { background: rgba(0,0,0,0.03); }
-    .sort-option.active { background: rgba(0,0,0,0.06); color: var(--accent); font-weight: 700; }
-    
+    .sort-option:hover { background: var(--border); }
+    .sort-option.active { background: var(--accent); color: var(--surface); }
+
     @media (min-width: 600px) {
-      .toolbar { padding: 5px 24px; }
-      .search-icon { right: 24px; }
-      .search-expand { right: 24px; }
+      .header { padding: 24px 32px 12px; }
+      .toolbar { padding: 8px 32px 4px; }
     }
     @media (min-width: 1024px) {
-      .toolbar { max-width: 1200px; margin: 0 auto; padding: 5px 32px; }
+      .header { max-width: 1200px; margin: 0 auto; padding: 32px 48px 16px; }
+      .toolbar { max-width: 1200px; margin: 0 auto; padding: 8px 48px 4px; }
     }
-    .search-bar__filter:active { background: var(--border); }
-    /* Notification Badge */
-    .notification-btn {
-      position: relative;
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text-secondary);
-      font-size: 1rem;
-      background: transparent;
-      flex-shrink: 0;
-    }
-    .notification-btn:active { background: var(--border); }
-    .notification-badge {
-      position: absolute;
-      top: 0px;
-      right: 0px;
-      width: 16px;
-      height: 16px;
-      background: #E74C3C;
-      color: #FFF;
-      font-size: 0.6rem;
-      font-weight: 700;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 2px solid var(--bg);
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-    }
-
-    /* Floating Match Banner */
-    .match-banner { display: none !important;
-      position: fixed;
-      top: 80px;
-      z-index: 90;
-      left: 16px;
-      right: 16px;
-      background: linear-gradient(135deg, #1C1915 0%, #6B6560 100%);
-      border-radius: 20px;
-      padding: 16px 20px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.06);
-      z-index: 90;
-      transform: translateY(-150%);
-      transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-    .match-banner.show {
-      transform: translateY(0);
-    }
-    .match-banner__icon {
-      width: 44px;
-      height: 44px;
-      background: rgba(255,255,255,0.2);
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #FFF;
-      font-size: 1.3rem;
-    }
-    .match-banner__content { flex: 1; }
-    .match-banner__title {
-      color: #FFF;
-      font-weight: 700;
-      font-size: 1rem;
-      margin-bottom: 2px;
-    }
-    .match-banner__text {
-      color: rgba(255,255,255,0.9);
-      font-size: 0.8rem;
-    }
-    .match-banner__close {
-      width: 32px;
-      height: 32px;
-      background: rgba(255,255,255,0.2);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #FFF;
-      font-size: 0.9rem;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    .match-banner__close:active { background: rgba(255,255,255,0.3); }
 
     /* ===== SECTION TITLE ===== */
     .section-title {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      padding: 4px 16px 10px;
+      padding: 16px 24px 12px;
     }
     .section-title h2 {
-      font-size: 1.05rem;
-      font-weight: 600;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 500;
       color: var(--text);
+      letter-spacing: -0.3px;
     }
     .section-title span {
-      font-size: 0.75rem;
-      color: var(--text-tertiary);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.6rem;
       font-weight: 400;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    @media (min-width: 600px) {
+      .section-title { padding: 16px 32px 12px; }
+    }
+    @media (min-width: 1024px) {
+      .section-title { max-width: 1200px; margin: 0 auto; padding: 20px 48px 16px; }
     }
 
     /* ===== CATALOG GRID ===== */
     .catalog {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      padding: 0 16px 16px;
+      gap: 16px;
+      padding: 0 24px 24px;
     }
 
-    .item-card__video-badge { position:absolute;top:8px;right:8px;background:rgba(0,0,0,.7);color:#FFF;font-size:.6rem;font-weight:600;padding:3px 8px;border-radius:6px;z-index:2;display:flex;align-items:center;gap:4px; } .item-card__video-badge i { font-size:.55rem; }
-    .item-card__video-badge { position:absolute;top:8px;right:8px;background:rgba(0,0,0,.7);color:#FFF;font-size:.6rem;font-weight:600;padding:3px 8px;border-radius:6px;z-index:2;display:flex;align-items:center;gap:4px; }
-    .item-card__video-badge i { font-size:.55rem; }
     /* ===== ITEM CARD ===== */
     .item-card {
-      background: var(--card-bg);
-      border-radius: 18px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 2px;
       overflow: hidden;
-      box-shadow: var(--shadow);
-      transition: transform 0.3s, box-shadow 0.3s;
       cursor: pointer;
-      contain: layout style;
+      transition: border-color 0.2s;
     }
-    .item-card:active {
-      transform: scale(0.98);
-      box-shadow: 0 1px 6px rgba(0,0,0,0.04);
-    }
+    .item-card:hover { border-color: var(--border-strong); }
+    .item-card:active { opacity: 0.9; }
+
     .item-card__image {
       position: relative;
       aspect-ratio: 1 / 1;
@@ -385,20 +253,22 @@ body.dark {
     }
     .item-card__image .placeholder-icon {
       font-size: 2.5rem;
-      color: var(--text-tertiary);
+      color: var(--text-dim);
       opacity: 0.5;
     }
+    .item-card__image .placeholder-icon.white { color: rgba(255,255,255,0.3); }
     .item-card__image .price-tag {
       position: absolute;
       bottom: 8px;
       left: 8px;
-      background: rgba(26,26,26,0.85);
-      color: #FFFFFF;
-      font-size: 0.8rem;
-      font-weight: 700;
+      background: var(--accent);
+      color: #FFF;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 500;
       padding: 4px 10px;
-      border-radius: 8px;
-      letter-spacing: -0.3px;
+      border-radius: 2px;
+      letter-spacing: 0.5px;
     }
     .item-card__image .like-btn {
       position: absolute;
@@ -406,25 +276,46 @@ body.dark {
       left: 8px;
       width: 32px;
       height: 32px;
-      background: rgba(255,255,255,0.95);
-      border-radius: 50%;
+      background: var(--surface);
+      border: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.85rem;
-      color: var(--text-tertiary);
+      font-size: 0.8rem;
+      color: var(--text-dim);
       cursor: pointer;
       transition: all 0.2s;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       z-index: 2;
     }
     .item-card__image .like-btn:active { transform: scale(0.9); }
     .item-card__image .like-btn.liked { color: var(--accent); }
     .item-card__image .like-btn.liked i { font-weight: 900; }
+
+    .item-card__video-badge {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: rgba(0,0,0,0.7);
+      color: #FFF;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.55rem;
+      font-weight: 500;
+      padding: 3px 8px;
+      border-radius: 2px;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .item-card__video-badge i { font-size: 0.5rem; }
+
     .item-card__info {
-      padding: 10px 12px 12px;
+      padding: 12px 14px 14px;
     }
     .item-card__title {
+      font-family: 'IBM Plex Sans', sans-serif;
       font-size: 0.82rem;
       font-weight: 500;
       color: var(--text);
@@ -435,17 +326,20 @@ body.dark {
       overflow: hidden;
     }
     .item-card__meta {
-      font-size: 0.7rem;
-      color: var(--text-tertiary);
-      margin-top: 4px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--text-dim);
+      margin-top: 6px;
       display: flex;
       align-items: center;
       gap: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
-    .item-card__meta i { font-size: 0.6rem; }
+    .item-card__meta i { font-size: 0.55rem; }
 
-    /* ===== ITEM CARD COLOR VARIANTS (for demo) ===== */
-        .item-card:nth-child(1) .item-card__image { background: #2D2D2D; }
+    /* ===== ITEM CARD BG VARIANTS ===== */
+    .item-card:nth-child(1) .item-card__image { background: #2D2D2D; }
     .item-card:nth-child(2) .item-card__image { background: #3A2A1A; }
     .item-card:nth-child(3) .item-card__image { background: #1A2A3A; }
     .item-card:nth-child(4) .item-card__image { background: #2A1A2A; }
@@ -472,7 +366,7 @@ body.dark {
     .item-card:nth-child(25) .item-card__image { background: #1A2A2A; }
     .item-card:nth-child(26) .item-card__image { background: #2D2A3A; }
     .item-card:nth-child(27) .item-card__image { background: #3A2D1A; }
-    .item-card:nth-child(28) .item-card__image { background: #1C1915; }
+    .item-card:nth-child(28) .item-card__image { background: #1A1A1A; }
     .item-card:nth-child(29) .item-card__image { background: #2A3D2A; }
     .item-card:nth-child(30) .item-card__image { background: #3A1A3A; }
     .item-card:nth-child(31) .item-card__image { background: #1A3D3A; }
@@ -504,7 +398,7 @@ body.dark {
     .item-card:nth-child(57) .item-card__image { background: #1A2A2A; }
     .item-card:nth-child(58) .item-card__image { background: #2D2A3A; }
     .item-card:nth-child(59) .item-card__image { background: #3A2D1A; }
-    .item-card:nth-child(60) .item-card__image { background: #1C1915; }
+    .item-card:nth-child(60) .item-card__image { background: #1A1A1A; }
     .item-card:nth-child(61) .item-card__image { background: #2A3D2A; }
     .item-card:nth-child(62) .item-card__image { background: #3A1A3A; }
     .item-card:nth-child(63) .item-card__image { background: #1A3D3A; }
@@ -516,70 +410,29 @@ body.dark {
     .item-card:nth-child(69) .item-card__image { background: #1A3A2A; }
     .item-card:nth-child(70) .item-card__image { background: #3A3A1A; }
 
-.item-card .placeholder-icon.white { color: rgba(255,255,255,0.3); }
-    .nav-item
-    .nav-item.nav-add
-    .nav-item 
-
-    /* ===== TABLET / DESKTOP ===== */
+    /* ===== RESPONSIVE GRID ===== */
     @media (min-width: 600px) {
       .catalog {
         grid-template-columns: repeat(3, 1fr);
-        gap: 16px;
-        padding: 0 24px 24px;
+        gap: 20px;
+        padding: 0 32px 32px;
       }
-      .header { padding: 12px 24px; }
-      .section-title { padding: 12px 24px; }
-      .status-bar { padding: 10px 28px 6px; }
     }
     @media (min-width: 1024px) {
       .catalog {
         grid-template-columns: repeat(4, 1fr);
-        gap: 20px;
+        gap: 24px;
         max-width: 1200px;
         margin: 0 auto;
-        padding: 0 32px 32px;
+        padding: 0 48px 48px;
       }
-      .header { max-width: 1200px; margin: 0 auto; padding: 16px 32px; }
-      .section-title { max-width: 1200px; margin: 0 auto; padding: 16px 32px; }
     }
-
-    /* ===== SORT / FILTER BAR ===== */
-    /* ===== SCORING TOOLTIP (sutil) ===== */
-    .scoring-info {
-      cursor: pointer;
-      position: relative;
+    @media (max-width: 380px) {
+      .catalog { gap: 12px; padding: 0 16px 16px; }
+      .item-card__info { padding: 10px 12px 12px; }
+      .item-card__title { font-size: 0.78rem; }
+      .item-card__image .price-tag { font-size: 0.7rem; padding: 3px 8px; }
     }
-    .scoring-info .tooltip {
-      display: none;
-      position: absolute;
-      bottom: 100%;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--text);
-      color: #FFF;
-      font-size: 0.7rem;
-      padding: 8px 12px;
-      border-radius: 8px;
-      white-space: nowrap;
-      margin-bottom: 8px;
-      pointer-events: none;
-    }
-    .scoring-info:hover .tooltip,
-    .scoring-info:focus .tooltip {
-      display: block;
-    }
-
-    /* ===== DEMO NOTICE ===== */
-    .demo-notice {
-      text-align: center;
-      padding: 6px 16px;
-      font-size: 0.65rem;
-      color: var(--text-tertiary);
-      background: #F0EDE6;
-      letter-spacing: 0.3px;
-    }
-    .demo-notice i { margin-right: 4px; }
 
     /* ===== EMPTY STATE ===== */
     .empty-state {
@@ -587,66 +440,66 @@ body.dark {
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 60px 24px;
+      padding: 80px 24px;
       text-align: center;
     }
     .empty-state__icon {
       width: 80px;
       height: 80px;
-      background: rgba(0,0,0,0.05);
-      border-radius: 50%;
+      border: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 2rem;
-      color: var(--text-tertiary);
-      margin-bottom: 20px;
+      color: var(--text-dim);
+      margin-bottom: 24px;
     }
     .empty-state__title {
+      font-family: 'IBM Plex Sans', sans-serif;
       font-size: 1.1rem;
       font-weight: 600;
       color: var(--text);
       margin-bottom: 8px;
     }
     .empty-state__text {
+      font-family: 'IBM Plex Sans', sans-serif;
       font-size: 0.85rem;
-      color: var(--text-secondary);
-      margin-bottom: 20px;
+      color: var(--text-sub);
+      margin-bottom: 24px;
       max-width: 280px;
     }
     .empty-state__btn {
-      padding: 12px 20px;
-      background: var(--accent);
-      color: #fff;
-      border-radius: 10px;
-      font-size: 0.85rem;
+      padding: 12px 24px;
+      border: 1px solid var(--border);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.6rem;
       font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text);
       display: flex;
       align-items: center;
-      gap: 6px;
-      transition: all 0.2s;
+      gap: 8px;
+      background: var(--surface);
+      transition: background 0.2s;
     }
-    .empty-state__btn:active { transform: scale(0.98); }
+    .empty-state__btn:hover { background: var(--border); }
 
     /* ===== FILTER MODAL ===== */
     .filter-modal-overlay {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0,0,0,0.5);
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.4);
       z-index: 200;
       display: none;
       align-items: flex-end;
       justify-content: center;
     }
-    .filter-modal-overlay.visible {
-      display: flex;
-    }
+    .filter-modal-overlay.visible { display: flex; }
     .filter-modal {
-      background: var(--card-bg);
-      border-radius: 24px 24px 0 0;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-top: none;
       width: 100%;
       max-height: 80vh;
       overflow: hidden;
@@ -660,34 +513,38 @@ body.dark {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px;
+      padding: 20px 24px;
       border-bottom: 1px solid var(--border);
     }
     .filter-modal__title {
-      font-size: 1.1rem;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 1rem;
       font-weight: 600;
+      color: var(--text);
     }
     .filter-modal__header button {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
+      width: 36px; height: 36px;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text-secondary);
+      align-items: center; justify-content: center;
+      color: var(--text-sub);
+      font-family: 'IBM Plex Mono', monospace;
     }
     .filter-modal__content {
-      padding: 20px;
+      padding: 24px;
       max-height: 60vh;
       overflow-y: auto;
     }
     .filter-group {
-      margin-bottom: 20px;
+      margin-bottom: 24px;
     }
+    .filter-group:last-child { margin-bottom: 0; }
     .filter-group__title {
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--text);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.6rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-sub);
       margin-bottom: 12px;
     }
     .filter-range {
@@ -697,18 +554,23 @@ body.dark {
     }
     .filter-input {
       flex: 1;
-      padding: 12px;
+      padding: 10px 12px;
       border: 1px solid var(--border);
-      border-radius: 10px;
-      font-size: 0.9rem;
+      border-radius: 2px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--text);
+      background: var(--surface);
     }
     .filter-select {
       width: 100%;
-      padding: 12px;
+      padding: 10px 12px;
       border: 1px solid var(--border);
-      border-radius: 10px;
-      font-size: 0.9rem;
-      background: var(--card-bg);
+      border-radius: 2px;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 0.85rem;
+      color: var(--text);
+      background: var(--surface);
     }
     .filter-chips {
       display: flex;
@@ -718,48 +580,53 @@ body.dark {
     .filter-chip {
       padding: 8px 16px;
       border: 1px solid var(--border);
-      border-radius: 20px;
-      font-size: 0.8rem;
-      background: var(--card-bg);
+      border-radius: 2px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.6rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      background: var(--surface);
+      color: var(--text);
       transition: all 0.2s;
     }
+    .filter-chip:hover { border-color: var(--border-strong); }
     .filter-chip.active {
       background: var(--accent);
-      color: #fff;
+      color: var(--surface);
       border-color: var(--accent);
     }
     .filter-modal__footer {
       display: flex;
       gap: 12px;
-      padding: 20px;
+      padding: 20px 24px;
       border-top: 1px solid var(--border);
     }
     .filter-btn {
       flex: 1;
-      padding: 14px;
-      border-radius: 14px;
-      font-size: 0.9rem;
-      font-weight: 600;
+      padding: 12px 20px;
+      border-radius: 2px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.6rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
     .filter-btn--primary {
       background: var(--accent);
-      color: #fff;
+      color: var(--surface);
+      border: 1px solid var(--accent);
     }
     .filter-btn--secondary {
-      background: var(--card-bg);
+      background: var(--surface);
       border: 1px solid var(--border);
       color: var(--text);
     }
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        transition-duration: 0.01ms !important;
-      }
-    }
-     ===== */
-    .active-filters { display: none; padding: 10px 20px 10px 20px; background: var(--bg); border-bottom: 1px solid var(--border); }
+    .filter-btn--secondary:hover { background: var(--border); }
+
+    /* ===== ACTIVE FILTERS ===== */
+    .active-filters { display: none; padding: 10px 24px; background: var(--bg); border-bottom: 1px solid var(--border); }
     .active-filters.visible { display: flex !important; flex-wrap: wrap; gap: 8px; align-items: center; }
-    .active-filters::-webkit-scrollbar { display: none; }
     .active-filter {
       display: inline-flex;
       align-items: center;
@@ -767,26 +634,27 @@ body.dark {
       padding: 6px 12px;
       background: var(--accent);
       color: #FFF;
-      border-radius: 20px;
-      font-size: 0.75rem;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.55rem;
       font-weight: 500;
-      white-space: nowrap; 
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      white-space: nowrap;
       flex-shrink: 0;
     }
     .active-filter button {
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
+      width: 16px; height: 16px;
+      display: flex;
+      align-items: center; justify-content: center;
       background: rgba(255,255,255,0.3);
       color: #FFF;
-      font-size: 0.6rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      font-size: 0.55rem;
+      font-family: 'IBM Plex Mono', monospace;
     }
     .clear-all-filters {
-      font-size: 0.75rem;
-      color: var(--text-secondary);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.55rem;
+      color: var(--text-sub);
       text-decoration: underline;
       white-space: nowrap;
       padding: 6px 8px;
@@ -802,16 +670,16 @@ body.dark {
       left: 10px;
       top: 50%;
       transform: translateY(-50%);
-      color: var(--text-tertiary);
-      font-size: 0.85rem;
+      color: var(--text-dim);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.8rem;
       font-weight: 500;
     }
     .filter-input--price {
       padding-left: 22px !important;
-      font-size: 0.85rem !important;
     }
     .filter-range-separator {
-      color: var(--text-tertiary);
+      color: var(--text-dim);
       font-weight: 500;
       padding: 0 4px;
     }
@@ -822,16 +690,20 @@ body.dark {
       margin-top: 10px;
     }
     .filter-quick-btn {
-      padding: 6px 10px;
-      border-radius: 18px;
+      padding: 6px 12px;
       border: 1px solid var(--border);
-      background: var(--card-bg);
-      font-size: 0.7rem;
+      border-radius: 2px;
+      background: var(--surface);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.55rem;
       font-weight: 500;
-      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-sub);
       transition: all 0.2s;
     }
-    .filter-quick-btn:active, .filter-quick-btn.active {
+    .filter-quick-btn:hover { border-color: var(--border-strong); }
+    .filter-quick-btn.active {
       background: var(--accent);
       color: #FFF;
       border-color: var(--accent);
@@ -841,124 +713,208 @@ body.dark {
       grid-template-columns: repeat(2, 1fr);
       gap: 8px;
     }
-    .filter-chip {
+    .filter-chip { text-align: center; }
+
+    /* ===== PAGING SENTINEL ===== */
+    #pagingSentinel {
+      height: 20px;
       text-align: center;
+      padding: 24px;
+      color: var(--text-dim);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
+    #pagingSentinel i { font-size: 0.7rem; }
 
-    /* ===== RESPONSIVE TOUCH ===== */
-    @media (max-width: 380px) {
-      .catalog { gap: 8px; padding: 0 8px 12px; }
-      .item-card__info { padding: 8px 10px 10px; }
-      .item-card__title { font-size: 0.78rem; }
-      .item-card__image .price-tag { font-size: 0.72rem; padding: 3px 8px; }
-    }
-    /* ===== BOTTOM NAV ===== */
-    
-    
-    
-    
-    
-    
-    
-    
-
-      .bottom-nav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: rgba(255,255,255,0.85);
-      -webkit-border-top: 1px solid var(--border);
-      display: flex;
-      justify-content: space-evenly;
-      align-items: center;
-      padding: 0;
-      height: 72px;
-      padding-bottom: 12px;
-      z-index: 100;
-      isolation: isolate;
-    }
-    .nav-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 2px;
-      font-size: 0.65rem;
-      font-weight: 500;
-      color: var(--text-tertiary);
-      transition: color 0.2s;
-      padding: 4px 0;
-      flex: 1;
-      max-width: 80px;
-      position: relative;
-      border: none;
-      background: none;
-      cursor: pointer;
-      font-family: inherit;
-      text-decoration: none;
-    }
-    .nav-item i { font-size: 1.3rem; }
-    .nav-item.active { color: var(--accent); }
-    .nav-add { position: relative; top: 0; }
-    .nav-add-btn {
-      width: 48px;
-      height: 48px;
-      background: var(--accent);
-      color: #FFFFFF;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-      margin-bottom: 2px;
-    }
-    .nav-add-btn i { font-size: 1.1rem; }
-    .nav-badge {
-      width: 6px;
-      height: 6px;
-      background: var(--accent);
-      border-radius: 50%;
+    /* ===== SCORING TOOLTIP ===== */
+    .scoring-info { cursor: pointer; position: relative; }
+    .scoring-info .tooltip {
+      display: none;
       position: absolute;
-      top: 2px;
-      right: 12px;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent);
+      color: #FFF;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.55rem;
+      padding: 8px 12px;
+      white-space: nowrap;
+      margin-bottom: 8px;
+      pointer-events: none;
     }
-    
-    /* Trade request button */
-    .trade-btn { position: absolute; bottom: 8px; right: 8px; z-index: 5; width: 34px; height: 34px; border-radius: 10px; border: none; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.25); color: #FFF; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; }
-    .trade-btn.requested { background: var(--accent); color: #FFF; }
+    .scoring-info:hover .tooltip,
+    .scoring-info:focus .tooltip { display: block; }
 
-/* ══════ BOTTOM NAV (standardized) ══════ */
-.bottom-nav { position:fixed; bottom:0; left:0; right:0; background:var(--surface); border-top:1px solid var(--border); display:flex; justify-content:space-evenly; align-items:center; height:68px; padding-bottom:max(6px,env(safe-area-inset-bottom)); z-index:100; }
-.nav-item { position:relative; display:flex; flex-direction:column; align-items:center; gap:3px; font-family:'IBM Plex Mono',monospace; font-size:0.5rem; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-dim); transition:color 0.15s; padding:4px 0; flex:1; max-width:80px; border:none; background:none; cursor:pointer; text-decoration:none; }
-.nav-item i { font-size:1.1rem; }
-.nav-item.active { color:var(--text); }
-.nav-item.active i { color:var(--text); }
-.nav-add-btn { width:42px; height:42px; background:var(--text); color:var(--bg); border-radius:2px; display:flex; align-items:center; justify-content:center; margin-bottom:2px; }
-.nav-add-btn i { font-size:1rem; color:var(--bg); }
-.nav-badge { width:5px; height:5px; background:var(--text); border-radius:50%; position:absolute; top:2px; right:4px; }
+    /* ===== DEMO NOTICE ===== */
+    .demo-notice {
+      text-align: center;
+      padding: 8px 24px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.55rem;
+      color: var(--text-dim);
+      background: var(--bg);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--border);
+    }
+    .demo-notice i { margin-right: 6px; }
+
+    /* ===== TRADE REQUEST BUTTON ===== */
+    .trade-btn {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      z-index: 5;
+      width: 34px; height: 34px;
+      border: 1px solid rgba(255,255,255,0.3);
+      display: flex;
+      align-items: center; justify-content: center;
+      background: rgba(0,0,0,0.25);
+      color: #FFF;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+    .trade-btn.requested { background: var(--accent); color: #FFF; border-color: var(--accent); }
+
+    /* ===== NOTIFICATION BADGE ===== */
+    .notification-btn {
+      position: relative;
+      width: 36px; height: 36px;
+      display: flex;
+      align-items: center; justify-content: center;
+      color: var(--text-sub);
+      font-size: 1rem;
+      background: transparent;
+    }
+    .notification-badge {
+      position: absolute;
+      top: 0; right: 0;
+      width: 16px; height: 16px;
+      background: #E74C3C;
+      color: #FFF;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.55rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center; justify-content: center;
+      border: 2px solid var(--bg);
+    }
+
+    /* ===== MATCH BANNER ===== */
+    .match-banner { display: none !important; }
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  /* ══════ BOTTOM NAV (standardized across all MIB pages) ══════ */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 68px;
+  padding-bottom: max(6px, env(safe-area-inset-bottom));
+  z-index: 100;
+}
+
+.nav-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  transition: color 0.15s;
+  padding: 4px 0;
+  flex: 1;
+  max-width: 80px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.nav-item i { font-size: 1.1rem; }
+
+.nav-item.active { color: var(--text); }
+.nav-item.active i { color: var(--text); }
+
+.nav-item .nav-add-btn,
+.nav-add-btn {
+  width: 42px;
+  height: 42px;
+  background: var(--text);
+  color: var(--bg);
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2px;
+}
+
+.nav-item .nav-add-btn i,
+.nav-add-btn i {
+  font-size: 1rem;
+  color: var(--bg);
+}
+
+.nav-badge {
+  width: 5px;
+  height: 5px;
+  background: var(--text);
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  right: 4px;
+}
 
 </style>
 </head>
 <body>
-
-  <!-- ===== DEMO NOTICE ===== -->
-
-  <!-- ===== STATUS BAR ===== -->
-
   <!-- ===== HEADER ===== -->
   <div class="header">
-      <a href="../v16-portada/index.html" class="logo-link"><a href="../v16-portada/index.html" class="logo-link"><img class="treqe-logo" src="logo-treqe.png" alt="treqe"></a></a>
-    <button class="dm-toggle" onclick="document.body.classList.toggle('dark')" style="position:absolute;right:62px;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:2px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);background:transparent;color:var(--text-sub);cursor:pointer;font-size:0.8rem;">◐</button><div class="search-icon" id="searchIcon" onclick="toggleSearch()">
-      <i class="fas fa-search"></i>
-    </div>
-  <a href="../v13-blog/index.html" class="blog-link" style="right:110px" style="position:absolute;right:62px;top:50%;transform:translateY(-50%);display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:20px;font-size:.75rem;font-weight:600;color:#1C1915;background:rgba(0,35,78,0.06);border:1px solid rgba(0,35,78,0.08);text-decoration:none;transition:background .2s;"><i class="fas fa-book-open" style="font-size:.7rem;"></i> Blog</a>
-    <div class="search-expand" id="searchExpand">
-      <input type="text" placeholder="Buscar artículos..." id="searchInput">
-      <button class="search-close" onclick="toggleSearch()"><i class="fas fa-times"></i></button>
+    <a href="../v16-portada/" class="logo-link"><div class="logo">treqe</div></a>
+    <div class="header-right">
+      <a href="../v13-blog/index.html" class="blog-link"><i class="fas fa-book-open"></i>Blog</a>
+      <div class="search-icon" id="searchIcon" onclick="toggleSearch()">
+        <i class="fas fa-search"></i>
+      </div>
+      <div class="search-expand" id="searchExpand">
+        <input type="text" placeholder="Buscar artículos..." id="searchInput">
+        <button class="search-close" onclick="toggleSearch()"><i class="fas fa-times"></i></button>
+      </div>
     </div>
   </div>
 
-  <!-- ===== TOOLBAR (Sort + Filter) ===== -->
+  <!-- ===== TOOLBAR ===== -->
   <div class="toolbar">
     <button class="tool-btn" onclick="openFilters()">
       <i class="fas fa-sliders-h"></i> Filtrar
@@ -976,10 +932,8 @@ body.dark {
     </div>
   </div>
 
-  <!-- ===== ACTIVE FILTERS BAR (debajo del buscador) ===== -->
-  <div class="active-filters" id="activeFilters">
-    <!-- Se llena dinámicamente al aplicar filtros -->
-  </div>
+  <!-- ===== ACTIVE FILTERS ===== -->
+  <div class="active-filters" id="activeFilters"></div>
 
   <!-- ===== SECTION TITLE ===== -->
   <div class="section-title">
@@ -999,7 +953,6 @@ body.dark {
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Fender Stratocaster · Muy buen estado</div>
-
       </div>
     </div>
     <!-- Item 2 -->
@@ -1011,43 +964,42 @@ body.dark {
       </div>
       <div class="item-card__info">
         <div class="item-card__title">G-SHOCK Mudmaster · Edición limitada</div>
-
       </div>
     </div>
     <!-- Item 3 -->
     <div class="item-card" data-category="electronica" data-subcategory="moviles" data-price="890" onclick="goToDetail(3)">
       <div class="item-card__image">
-        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button><span class="item-card__video-badge"><i class="fas fa-video"></i></span>
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <span class="item-card__video-badge"><i class="fas fa-video"></i></span>
         <i class="fas fa-mobile-alt placeholder-icon white"></i>
         <span class="price-tag">€890</span>
       </div>
       <div class="item-card__info">
         <div class="item-card__title">iPhone 15 Pro · 256GB · Titanio natural</div>
-
       </div>
     </div>
     <!-- Item 4 -->
     <div class="item-card" data-category="electronica" data-subcategory="consolas" data-price="480" onclick="goToDetail(4)">
       <div class="item-card__image">
-        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button><span class="item-card__video-badge"><i class="fas fa-video"></i></span>
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <span class="item-card__video-badge"><i class="fas fa-video"></i></span>
         <i class="fas fa-gamepad placeholder-icon white"></i>
         <span class="price-tag">€480</span>
       </div>
       <div class="item-card__info">
         <div class="item-card__title">PlayStation 5 · Edición digital · 2 mandos</div>
-
       </div>
     </div>
     <!-- Item 5 -->
     <div class="item-card" data-category="electronica" data-subcategory="camaras" data-price="650" onclick="goToDetail(5)">
       <div class="item-card__image">
-        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button><span class="item-card__video-badge"><i class="fas fa-video"></i></span>
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <span class="item-card__video-badge"><i class="fas fa-video"></i></span>
         <i class="fas fa-camera placeholder-icon white"></i>
         <span class="price-tag">€650</span>
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Canon EOS R · Objetivo 24-70mm · Como nueva</div>
-
       </div>
     </div>
     <!-- Item 6 -->
@@ -1059,7 +1011,6 @@ body.dark {
       </div>
       <div class="item-card__info">
         <div class="item-card__title">MacBook Air M3 · 16GB · 512GB · Medianoche</div>
-
       </div>
     </div>
     <!-- Item 7 -->
@@ -1071,19 +1022,18 @@ body.dark {
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Casco Shoei NXR2 · Talla M · Carbono</div>
-
       </div>
     </div>
     <!-- Item 8 -->
     <div class="item-card" data-category="deporte" data-subcategory="bicicletas" data-price="420" onclick="goToDetail(8)">
       <div class="item-card__image">
-        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button><span class="item-card__video-badge"><i class="fas fa-video"></i></span>
+        <button class="like-btn" onclick="event.stopPropagation(); this.classList.toggle('liked');"><i class="far fa-heart"></i></button>
+        <span class="item-card__video-badge"><i class="fas fa-video"></i></span>
         <i class="fas fa-bicycle placeholder-icon white"></i>
         <span class="price-tag">€420</span>
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Trek Marlin 7 · Mtb · Talla L · 2023</div>
-
       </div>
     </div>
     <!-- Item 9 -->
@@ -1095,7 +1045,6 @@ body.dark {
       </div>
       <div class="item-card__info">
         <div class="item-card__title">AirPods Max · Azul cielo · Como nuevos</div>
-
       </div>
     </div>
     <!-- Item 10 -->
@@ -1107,7 +1056,6 @@ body.dark {
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Bajo Fender Jazz Bass · Sunrise · 2019</div>
-
       </div>
     </div>
     <!-- Item 11 -->
@@ -1119,7 +1067,6 @@ body.dark {
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Samsung Galaxy S25 Ultra · 512GB · Titanium</div>
-
       </div>
     </div>
     <!-- Item 12 -->
@@ -1131,7 +1078,6 @@ body.dark {
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Apple Watch Ultra 2 · Naranja · 49mm</div>
-
       </div>
     </div>
     <!-- Item 13 -->
@@ -1143,7 +1089,6 @@ body.dark {
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Sofá IKEA Kivik · 3 plazas · Gris claro</div>
-
       </div>
     </div>
     <!-- Item 14 -->
@@ -1155,7 +1100,6 @@ body.dark {
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Nespresso Vertuo Next · Plata · Poco uso</div>
-
       </div>
     </div>
     <!-- Item 15 -->
@@ -1167,7 +1111,6 @@ body.dark {
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Lámpara de pie IKEA · Nordviken · Blanca</div>
-
       </div>
     </div>
     <!-- Item 16 -->
@@ -1179,7 +1122,6 @@ body.dark {
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Kindle Paperwhite · 11a gen · 32GB · Sin marcas</div>
-
       </div>
     </div>
     <!-- Item 17 -->
@@ -1191,7 +1133,6 @@ body.dark {
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Mochila The North Face · Borealis · Negra</div>
-
       </div>
     </div>
     <!-- Item 18 -->
@@ -1203,7 +1144,6 @@ body.dark {
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Nike Air Max 90 · Talla 42 · Muy buen estado</div>
-
       </div>
     </div>
     <!-- Item 19 -->
@@ -1215,7 +1155,6 @@ body.dark {
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Palas Bullpadel · Pack 2 uds. · Usadas 3 meses</div>
-
       </div>
     </div>
     <!-- Item 20 -->
@@ -1227,7 +1166,6 @@ body.dark {
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Set pesas 20kg · Con mancuernas · Hierro fundido</div>
-
       </div>
     </div>
     <!-- Item 21 -->
@@ -1239,7 +1177,6 @@ body.dark {
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Guitarra acústica Yamaha F310 · Clásica · 6 cuerdas</div>
-
       </div>
     </div>
     <!-- Item 22 -->
@@ -1251,7 +1188,6 @@ body.dark {
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Vinilos Beatles · Colección 5 LP · Edición original</div>
-
       </div>
     </div>
     <!-- Item 23 -->
@@ -1263,7 +1199,6 @@ body.dark {
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Batería electrónica Roland TD-1DMK · Completa</div>
-
       </div>
     </div>
     <!-- Item 24 -->
@@ -1275,7 +1210,6 @@ body.dark {
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Cien años de soledad · Gabriel García Márquez · Tapa dura</div>
-
       </div>
     </div>
     <!-- Item 25 -->
@@ -1287,7 +1221,6 @@ body.dark {
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Harry Potter · 7 libros · Tapa blanda · Casi nuevos</div>
-
       </div>
     </div>
     <!-- Item 26 -->
@@ -1299,7 +1232,6 @@ body.dark {
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Nintendo Switch OLED · Blanco · Como nueva</div>
-
       </div>
     </div>
     <!-- Item 27 -->
@@ -1311,7 +1243,6 @@ body.dark {
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Logitech MX Mechanical · Inalámbrico · Táctil</div>
-
       </div>
     </div>
     <!-- Item 28 -->
@@ -1323,7 +1254,6 @@ body.dark {
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Vestido Zara · Talla S · Floral · Puesto 2 veces</div>
-
       </div>
     </div>
     <!-- Item 29 -->
@@ -1335,7 +1265,6 @@ body.dark {
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Patines en línea · Talla 42 · Ajustables · Poco uso</div>
-
       </div>
     </div>
     <!-- Item 30 -->
@@ -1347,7 +1276,6 @@ body.dark {
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Silla oficina IKEA Markus · Negro · Muy cuidada</div>
-
       </div>
     </div>
     <!-- Item 31 -->
@@ -1359,7 +1287,6 @@ body.dark {
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Enciclopedia Salvat · 12 tomos · Completa · 2005</div>
-
       </div>
     </div>
     <!-- Item 32 -->
@@ -1371,10 +1298,8 @@ body.dark {
       </div>
       <div class="item-card__info">
         <div class="item-card__title">Batman Year One · Frank Miller · Edición Deluxe</div>
-
       </div>
     </div>
-
 
     <div class="item-card" data-category="bicicletas" data-subcategory="bicis-electricas" data-price="890" onclick="goToDetail(33)">
       <div class="item-card__image">
@@ -1757,11 +1682,12 @@ body.dark {
       </div>
     </div>
   </div>
-  <div id="pagingSentinel" style="height:20px;text-align:center;padding:20px;color:var(--text-tertiary);font-size:0.8rem;">
-    <span id="pagingLoader"><i class="fas fa-spinner fa-pulse"></i> Cargando mas articulos...</span>
+
+  <div id="pagingSentinel">
+    <span id="pagingLoader"><i class="fas fa-spinner fa-pulse"></i> Cargando más artículos...</span>
   </div>
 
-  <!-- ===== EMPTY STATE (hidden by default) ===== -->
+  <!-- ===== EMPTY STATE ===== -->
   <div class="empty-state" id="emptyState" style="display: none;">
     <div class="empty-state__icon"><i class="fas fa-search"></i></div>
     <div class="empty-state__title">No encontramos resultados</div>
@@ -1771,19 +1697,98 @@ body.dark {
     </button>
   </div>
 
-  <!-- ===== FLOATING MATCH BANNER ===== -->
-  <div class="match-banner" id="matchBanner">
-    <div class="match-banner__icon"><i class="fas fa-star"></i></div>
-    <div class="match-banner__content">
-      <div class="match-banner__title">Tienes 1 match pendiente</div>
-      <div class="match-banner__text">Fender Stratocaster ↔ Trek Marlin 7</div>
-    </div>
-    <button class="match-banner__close" onclick="closeBanner()">
-      <i class="fas fa-times"></i>
-    </button>
-  </div>
-
   <!-- ===== BOTTOM NAV ===== -->
+  <nav class="bottom-nav">
+    <a href="../v1-catalogo/" class="nav-item active"><i class="fas fa-search"></i><span>Buscar</span></a>
+    <a href="../v12-mis-matches/" class="nav-item"><i class="fas fa-exchange-alt"></i><span>treqes</span></a>
+    <a href="../v3-subir/" class="nav-item nav-add"><div class="nav-add-btn"><i class="fas fa-plus"></i></div></a>
+    <a href="../v11-notificaciones/" class="nav-item"><i class="fas fa-bell"></i><span>Avisos</span><span class="nav-badge"></span></a>
+    <a href="../v4-perfil/" class="nav-item"><i class="fas fa-user"></i><span>Perfil</span></a>
+  </nav>
+
+  <!-- ===== FILTER MODAL ===== -->
+  <div class="filter-modal-overlay" id="filterModal" onclick="closeFilters()">
+    <div class="filter-modal" onclick="event.stopPropagation()">
+      <div class="filter-modal__header">
+        <span class="filter-modal__title">Filtros</span>
+        <button onclick="closeFilters()"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="filter-modal__content">
+        <div class="filter-group">
+          <div class="filter-group__title">Ordenar por</div>
+          <div class="filter-chips filter-chips--sort">
+            <button class="filter-chip active" data-sort="relevance" onclick="pickSort(this)">Relevancia</button>
+            <button class="filter-chip" data-sort="price-asc" onclick="pickSort(this)">Precio ↑</button>
+            <button class="filter-chip" data-sort="price-desc" onclick="pickSort(this)">Precio ↓</button>
+            <button class="filter-chip" data-sort="newest" onclick="pickSort(this)">Más reciente</button>
+          </div>
+        </div>
+        <div class="filter-group">
+          <div class="filter-group__title">Categoría</div>
+          <select class="filter-select" id="categorySelect" onchange="updateSubcategories()">
+            <option value="">Todas</option>
+            <option value="electronica">Electrónica</option>
+            <option value="moda">Moda</option>
+            <option value="deporte">Deporte</option>
+            <option value="musica">Música</option>
+            <option value="hogar">Hogar</option>
+            <option value="libros">Libros</option>
+            <option value="motor">Motor</option>
+            <option value="inmuebles">Inmuebles</option>
+            <option value="bicicletas">Bicicletas</option>
+            <option value="electrodomesticos">Electrodomésticos</option>
+            <option value="bebes">Bebés y niños</option>
+            <option value="coleccionismo">Coleccionismo</option>
+            <option value="construccion">Construcción</option>
+            <option value="industria">Industria</option>
+            <option value="empleo">Empleo</option>
+            <option value="servicios">Servicios</option>
+            <option value="otros">Otros</option>
+          </select>
+        </div>
+        <div class="filter-group" id="subcategoryGroup" style="display: none;">
+          <div class="filter-group__title">Subcategoría</div>
+          <select class="filter-select" id="subcategorySelect">
+            <option value="">Todas</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <div class="filter-group__title">Precio (€)</div>
+          <div class="filter-range">
+            <div class="filter-price-input">
+              <span class="filter-price-symbol">€</span>
+              <input type="number" placeholder="0" class="filter-input filter-input--price" id="priceMin" min="0">
+            </div>
+            <span class="filter-range-separator">-</span>
+            <div class="filter-price-input">
+              <span class="filter-price-symbol">€</span>
+              <input type="number" placeholder="Max" class="filter-input filter-input--price" id="priceMax" min="0">
+            </div>
+          </div>
+          <div class="filter-quick-prices">
+            <button class="filter-quick-btn" onclick="setPriceRange(0, 50, this)">Hasta €50</button>
+            <button class="filter-quick-btn" onclick="setPriceRange(50, 200, this)">€50-200</button>
+            <button class="filter-quick-btn" onclick="setPriceRange(200, 500, this)">€200-500</button>
+            <button class="filter-quick-btn" onclick="setPriceRange(500, null, this)">+€500</button>
+          </div>
+        </div>
+        <div class="filter-group">
+          <div class="filter-group__title">Condición</div>
+          <div class="filter-chips">
+            <button class="filter-chip active" data-condition="any" onclick="pickCondition(this)">Cualquiera</button>
+            <button class="filter-chip" data-condition="new" onclick="pickCondition(this)">Nuevo</button>
+            <button class="filter-chip" data-condition="like-new" onclick="pickCondition(this)">Como nuevo</button>
+            <button class="filter-chip" data-condition="good" onclick="pickCondition(this)">Buen estado</button>
+            <button class="filter-chip" data-condition="used" onclick="pickCondition(this)">Usado</button>
+          </div>
+        </div>
+      </div>
+      <div class="filter-modal__footer">
+        <button class="filter-btn filter-btn--secondary" onclick="resetFilters()">Restablecer</button>
+        <button class="filter-btn filter-btn--primary" onclick="applyFilters()">Aplicar filtros</button>
+      </div>
+    </div>
+  </div>
 
   <!-- ===== JAVASCRIPT ===== -->
   <script>
@@ -1828,31 +1833,26 @@ body.dark {
         var matchesPrice = itemPrice >= priceMin && itemPrice <= priceMax;
         if (matchesCategory && matchesSearch && matchesModalCat && matchesModalSub && matchesPrice) visible++;
       });
-      document.getElementById('articleCount').textContent = visible + ' art' + String.fromCharCode(237) + 'culos';
+      document.getElementById('articleCount').textContent = visible + ' artículos';
     }
 
-function filterByCategory(category) {
+    function filterByCategory(category) {
       activeCategory = category;
-
-      // Update pill styles
       document.querySelectorAll('.filter-pill').forEach(p => {
         p.classList.toggle('active', p.dataset.category === category);
       });
-
       applyCurrentFilters();
     }
 
-    // ===== APPLY ALL FILTERS (search + category) =====
+    // ===== APPLY ALL FILTERS =====
     function applyCurrentFilters() {
       const query = searchInput.value.toLowerCase().trim();
       let visibleCount = 0;
-
       items.forEach(item => {
         const cat = item.dataset.category || '';
         const title = item.querySelector('.item-card__title').textContent.toLowerCase();
         const matchesCategory = activeCategory === 'all' || cat === activeCategory;
         const matchesSearch = !query || title.includes(query);
-
         if (matchesCategory && matchesSearch) {
           item.style.display = '';
           visibleCount++;
@@ -1860,8 +1860,6 @@ function filterByCategory(category) {
           item.style.display = 'none';
         }
       });
-
-      // Sort visible items
       var sortChip = document.querySelector('[data-sort].active');
       if (sortChip && sortChip.dataset.sort !== 'relevance') {
         var order = sortChip.dataset.sort;
@@ -1876,8 +1874,6 @@ function filterByCategory(category) {
         }
         visibleItems.forEach(function(item) { catEl.appendChild(item); });
       }
-
-      // Show/hide empty state
       if (visibleCount === 0) {
         emptyState.style.display = 'flex';
         catalog.style.display = 'none';
@@ -1885,38 +1881,30 @@ function filterByCategory(category) {
         emptyState.style.display = 'none';
         catalog.style.display = 'grid';
       }
-
       updateArticleCount();
     }
 
     // ===== SEARCH =====
     searchInput.addEventListener('input', applyCurrentFilters);
-
     function clearSearch() {
       searchInput.value = '';
       applyCurrentFilters();
       searchInput.focus();
     }
 
-    // ===== MATCH BANNER =====
-    // match banner removed
-
-    
-
     // ===== NAVIGATION =====
     function goToNotifs() { window.parent.location.href = '../v11-notificaciones/'; }
     function goToProfile() { window.parent.location.href = '../v4-perfil/'; }
     function goToHome() { window.parent.location.href = '../v1-catalogo/'; }
     function goToSearch() { window.parent.location.href = '../v1-catalogo/'; }
-    function goToUpload() { window.parent.location.href = '../v3-subir/'; }    function goToNotifs() { window.parent.location.href = '../v11-notificaciones/'; }
-    function goToProfile() { window.parent.location.href = '../v4-perfil/'; }
+    function goToUpload() { window.parent.location.href = '../v3-subir/'; }
     function goToCatalog() { window.parent.location.href = '../v1-catalogo/'; }
     function goToDetail(id) { window.parent.location.href = '../v2-detalle/?id=' + id; }
     function goToMatches() { window.parent.location.href = '../v12-mis-matches/'; }
 
-    console.log('📱 TREQE v1 - Catálogo · 32 productos demo');
+    console.log('📱 treqe v1 - Catálogo · 70 productos demo');
 
-    // ===== ADVANCED SEARCH FILTERS (modal) =====
+    // ===== FILTERS =====
     function openFilters() {
       const modal = document.getElementById('filterModal');
       if (modal) {
@@ -1926,7 +1914,6 @@ function filterByCategory(category) {
         alert('Filtros disponibles en versión completa');
       }
     }
-
     function closeFilters() {
       const modal = document.getElementById('filterModal');
       if (modal) {
@@ -1935,7 +1922,6 @@ function filterByCategory(category) {
       }
     }
 
-    // Subcategorías por categoría (desde API Wallapop)
     const subcategories = {
       electronica: ['Móviles', 'Portátiles', 'Tablets', 'Cámaras', 'Audio', 'Consolas', 'Accesorios', 'TV y Proyectores', 'Smartwatches', 'Componentes PC', 'Periféricos'],
       moda: ['Ropa hombre', 'Ropa mujer', 'Zapatos', 'Bolsos', 'Relojes', 'Joyería', 'Vintage', 'Accesorios', 'Belleza'],
@@ -1960,7 +1946,6 @@ function filterByCategory(category) {
       const category = document.getElementById('categorySelect').value;
       const subGroup = document.getElementById('subcategoryGroup');
       const subSelect = document.getElementById('subcategorySelect');
-
       if (category && subcategories[category]) {
         subGroup.style.display = 'block';
         subSelect.innerHTML = '<option value="">Todas</option>' +
@@ -1979,7 +1964,6 @@ function filterByCategory(category) {
       el.classList.add('active');
     }
 
-    // Sort chips selection
     function getVisibleCount() {
       let count = 0;
       items.forEach(item => { if (item.style.display !== 'none') count++; });
@@ -1988,10 +1972,7 @@ function filterByCategory(category) {
 
     function applyFilters() {
       closeFilters();
-
-      // Sync: reset pill state (pills removed, modal is the source of truth)
       activeCategory = 'all';
-
       const category = document.getElementById('categorySelect').value;
       const subcategory = document.getElementById('subcategorySelect').value;
       const priceMin = parseFloat(document.getElementById('priceMin').value) || 0;
@@ -1999,7 +1980,6 @@ function filterByCategory(category) {
       const condition = document.querySelector('[data-condition].active')?.dataset.condition || 'any';
       const query = searchInput.value.toLowerCase().trim();
 
-      // --- Apply all modal filters + search to items ---
       let visibleCount = 0;
       items.forEach(item => {
         const itemPrice = parseFloat(item.dataset.price) || 0;
@@ -2010,7 +1990,6 @@ function filterByCategory(category) {
         const matchesSubcategory = !subcategory || itemSubcat === subcategory;
         const matchesPrice = itemPrice >= priceMin && itemPrice <= priceMax;
         const matchesSearch = !query || title.includes(query);
-
         if (matchesCategory && matchesSubcategory && matchesPrice && matchesSearch) {
           item.style.display = '';
           visibleCount++;
@@ -2019,7 +1998,6 @@ function filterByCategory(category) {
         }
       });
 
-      // Sort visible items
       var sortChip = document.querySelector('[data-sort].active');
       if (sortChip && sortChip.dataset.sort !== 'relevance') {
         var order = sortChip.dataset.sort;
@@ -2035,7 +2013,6 @@ function filterByCategory(category) {
         visibleItems.forEach(function(item) { catEl.appendChild(item); });
       }
 
-      // Show/hide empty state
       if (visibleCount === 0) {
         emptyState.style.display = 'flex';
         catalog.style.display = 'none';
@@ -2043,25 +2020,23 @@ function filterByCategory(category) {
         emptyState.style.display = 'none';
         catalog.style.display = 'grid';
       }
-
       updateArticleCount();
 
-      // Show active filters bar
       const activeFiltersEl = document.getElementById('activeFilters');
       let filtersHTML = '';
-
-      if (category) filtersHTML += `<div class="active-filter" data-filter="category" ><span>${document.getElementById('categorySelect').options[document.getElementById('categorySelect').selectedIndex].text}</span><button onclick="removeFilter('category')"><i class="fas fa-times"></i></button></div>`;
-      if (priceMin > 0 || priceMax < Infinity) filtersHTML += `<div class="active-filter" data-filter="price" ><span>€${priceMin || 0} - €${priceMax === Infinity ? '∞' : priceMax}</span><button onclick="removeFilter('price')"><i class="fas fa-times"></i></button></div>`;
+      if (category) filtersHTML += `<div class="active-filter" data-filter="category"><span>${document.getElementById('categorySelect').options[document.getElementById('categorySelect').selectedIndex].text}</span><button onclick="removeFilter('category')"><i class="fas fa-times"></i></button></div>`;
+      if (priceMin > 0 || priceMax < Infinity) filtersHTML += `<div class="active-filter" data-filter="price"><span>€${priceMin || 0} - €${priceMax === Infinity ? '∞' : priceMax}</span><button onclick="removeFilter('price')"><i class="fas fa-times"></i></button></div>`;
       if (condition !== 'any') filtersHTML += `<div class="active-filter" data-filter="condition"><span>${document.querySelector('[data-condition].active').textContent}</span><button onclick="removeFilter('condition')"><i class="fas fa-times"></i></button></div>`;
 
       if (filtersHTML) {
         activeFiltersEl.innerHTML = filtersHTML + '<button class="clear-all-filters" onclick="clearAllFilters()">Limpiar todo</button>';
-        activeFiltersEl.classList.add('visible'); activeFiltersEl.style.padding = '10px ' + (window.innerWidth >= 1024 ? '32px' : window.innerWidth >= 600 ? '24px' : '16px') + ' 14px ' + (window.innerWidth >= 1024 ? '32px' : window.innerWidth >= 600 ? '24px' : '16px'); if (window.innerWidth >= 1024) { activeFiltersEl.style.maxWidth = '1200px'; activeFiltersEl.style.margin = '0 auto'; } else { activeFiltersEl.style.maxWidth = ''; activeFiltersEl.style.margin = ''; }
+        activeFiltersEl.classList.add('visible');
+        activeFiltersEl.style.padding = '10px ' + (window.innerWidth >= 1024 ? '48px' : window.innerWidth >= 600 ? '32px' : '24px') + ' 14px ' + (window.innerWidth >= 1024 ? '48px' : window.innerWidth >= 600 ? '32px' : '24px');
+        if (window.innerWidth >= 1024) { activeFiltersEl.style.maxWidth = '1200px'; activeFiltersEl.style.margin = '0 auto'; } else { activeFiltersEl.style.maxWidth = ''; activeFiltersEl.style.margin = ''; }
       } else {
         activeFiltersEl.innerHTML = '';
         activeFiltersEl.classList.remove('visible');
       }
-
       console.log('Filtros aplicados:', { category, subcategory, priceMin, priceMax, condition, resultados: getVisibleCount() });
     }
 
@@ -2078,43 +2053,39 @@ function filterByCategory(category) {
       if (filterType === 'price') {
         document.getElementById('priceMin').value = '';
         document.getElementById('priceMax').value = '';
-        var qbs = document.querySelectorAll('.filter-quick-btn'); for(var i=0;i<qbs.length;i++) qbs[i].classList.remove('active');
+        document.querySelectorAll('.filter-quick-btn').forEach(b => b.classList.remove('active'));
       }
       if (filterType === 'condition') {
-        var cds = document.querySelectorAll('[data-condition]'); for(var i=0;i<cds.length;i++) cds[i].classList.remove('active');
+        document.querySelectorAll('[data-condition]').forEach(c => c.classList.remove('active'));
         var ac = document.querySelector('[data-condition="any"]'); if(ac) ac.classList.add('active');
       }
       applyFilters();
-      // Limpiar barra si no hay tags visibles
       var af = document.getElementById('activeFilters');
       if (af && af.querySelectorAll('.active-filter').length === 0) {
         af.innerHTML = '';
         af.classList.remove('visible');
       }
-    }function clearAllFilters() {
+    }
+    function clearAllFilters() {
       var cs=document.getElementById('categorySelect'),ss=document.getElementById('subcategorySelect');
       if(cs)cs.value='';if(ss)ss.value='';updateSubcategories();
       var pm=document.getElementById('priceMin'),px=document.getElementById('priceMax');
       if(pm)pm.value='';if(px)px.value='';
-      var qb=document.querySelectorAll('.filter-quick-btn');for(var i=0;i<qb.length;i++)qb[i].classList.remove('active');
-      var cd=document.querySelectorAll('[data-condition]');for(var i=0;i<cd.length;i++)cd[i].classList.remove('active');
+      document.querySelectorAll('.filter-quick-btn').forEach(b=>b.classList.remove('active'));
+      document.querySelectorAll('[data-condition]').forEach(c=>c.classList.remove('active'));
       var ac=document.querySelector('[data-condition="any"]');if(ac)ac.classList.add('active');
-      var sc=document.querySelectorAll('.filter-chips--sort .filter-chip');for(var i=0;i<sc.length;i++)sc[i].classList.remove('active');
+      document.querySelectorAll('.filter-chips--sort .filter-chip').forEach(c=>c.classList.remove('active'));
       var rs=document.querySelector('[data-sort="relevance"]');if(rs)rs.classList.add('active');
-      var it=document.querySelectorAll('.item-card');for(var i=0;i<it.length;i++)it[i].style.display='';
+      document.querySelectorAll('.item-card').forEach(i=>i.style.display='');
       var af=document.getElementById('activeFilters');if(af){af.innerHTML='';af.style.padding = ''; af.style.maxWidth = ''; af.style.margin = '';}
       document.getElementById('filterModal').classList.remove('visible');
       document.body.style.overflow='';
       activeCategory='all';
-      var fp=document.querySelectorAll('.filter-pill');for(var i=0;i<fp.length;i++)fp[i].classList.remove('active');
-      var ap=document.querySelector('.filter-pill[data-category="all"]');if(ap)ap.classList.add('active');
       applyCurrentFilters();
-    }function resetFilters() {
-      clearAllFilters();
     }
+    function resetFilters() { clearAllFilters(); }
 
-    // ===== INIT =====
-    // ===== STORY SCROLLING =====
+    // ===== PAGING =====
     const BATCH_SIZE = 20;
     let currentBatch = 0;
     const pageItems = Array.from(document.querySelectorAll('.item-card'));
@@ -2169,7 +2140,6 @@ function filterByCategory(category) {
     };
 
     showChunk(0);
-
     updateItemCounts();
     updateArticleCount();
 
@@ -2178,9 +2148,15 @@ function filterByCategory(category) {
     function goToInbox() { window.parent.location.href = '../v11-notificaciones/'; }
     function goToUpload() { window.parent.location.href = '../v3-subir/'; }
     function goToProfile() { window.parent.location.href = '../v4-perfil/'; }
-    function goToDetail(id) { window.parent.location.href = '../v2-detalle/?id=' + id; }
-function pickSort(chip){chip.parentElement.parentElement.querySelectorAll(".filter-chip").forEach(function(c){c.classList.remove("active")});chip.classList.add("active");}
-function pickCondition(chip){chip.parentElement.querySelectorAll(".filter-chip").forEach(function(c){c.classList.remove("active")});chip.classList.add("active");}
+
+    function pickSort(chip){
+      chip.parentElement.parentElement.querySelectorAll(".filter-chip").forEach(function(c){c.classList.remove("active")});
+      chip.classList.add("active");
+    }
+    function pickCondition(chip){
+      chip.parentElement.querySelectorAll(".filter-chip").forEach(function(c){c.classList.remove("active")});
+      chip.classList.add("active");
+    }
 
     function toggleSearch() {
       var icon = document.getElementById('searchIcon');
@@ -2207,7 +2183,6 @@ function pickCondition(chip){chip.parentElement.querySelectorAll(".filter-chip")
       dd.querySelectorAll('.sort-option').forEach(function(o) { o.classList.remove('active'); });
       btn.classList.add('active');
       dd.classList.remove('open');
-      // Apply sort to visible items
       var items = Array.from(document.querySelectorAll('.item-card'));
       var visible = items.filter(function(i) { return i.style.display !== 'none'; });
       var catalog = document.getElementById('catalog');
@@ -2218,10 +2193,8 @@ function pickCondition(chip){chip.parentElement.querySelectorAll(".filter-chip")
       } else if (sort === 'recent') {
         visible.reverse();
       }
-      // relevance = default order, do nothing
       visible.forEach(function(item) { catalog.appendChild(item); });
     }
-    // Close sort dropdown when clicking outside
     document.addEventListener('click', function(e) {
       var dd = document.getElementById('sortDropdown');
       var wrapper = document.querySelector('.sort-wrapper');
@@ -2230,7 +2203,6 @@ function pickCondition(chip){chip.parentElement.querySelectorAll(".filter-chip")
       }
     });
 
-    // Read search query from URL params
     (function() {
       var params = new URLSearchParams(window.location.search);
       var q = params.get('search');
@@ -2241,132 +2213,31 @@ function pickCondition(chip){chip.parentElement.querySelectorAll(".filter-chip")
       }
     })();
 
-  /* ─── Trade Request Buttons ─── */
-  (function(){
-    var requested = JSON.parse(localStorage.getItem('treqe_trade_requests') || '[]');
-    document.querySelectorAll('.item-card').forEach(function(card){
-      var onclick = card.getAttribute('onclick');
-      var idMatch = onclick && onclick.match(/goToDetail\((\d+)\)/);
-      if (!idMatch) return;
-      var id = idMatch[1];
-      var isReq = requested.indexOf(id) !== -1;
-      
-      var btn = document.createElement('button');
-      btn.className = 'trade-btn' + (isReq ? ' requested' : '');
-      btn.innerHTML = '<i class="fas fa-exchange-alt"></i>';
-      btn.setAttribute('aria-label', 'Solicitar trueque');
-      btn.addEventListener('click', function(e){
-        e.stopPropagation();
-        // Navigate to detail page (same as item card)
-        if (window.parent && window.parent.location) {
-          window.parent.location.href = '../v2-detalle/?id=' + id;
-        } else {
-          window.location.href = '../v2-detalle/?id=' + id;
-        }
+    // Trade Request Buttons
+    (function(){
+      var requested = JSON.parse(localStorage.getItem('treqe_trade_requests') || '[]');
+      document.querySelectorAll('.item-card').forEach(function(card){
+        var onclick = card.getAttribute('onclick');
+        var idMatch = onclick && onclick.match(/goToDetail\((\d+)\)/);
+        if (!idMatch) return;
+        var id = idMatch[1];
+        var isReq = requested.indexOf(id) !== -1;
+        var btn = document.createElement('button');
+        btn.className = 'trade-btn' + (isReq ? ' requested' : '');
+        btn.innerHTML = '<i class="fas fa-exchange-alt"></i>';
+        btn.setAttribute('aria-label', 'Solicitar trueque');
+        btn.addEventListener('click', function(e){
+          e.stopPropagation();
+          if (window.parent && window.parent.location) {
+            window.parent.location.href = '../v2-detalle/?id=' + id;
+          } else {
+            window.location.href = '../v2-detalle/?id=' + id;
+          }
+        });
+        var img = card.querySelector(".item-card__image");
+        if (img) { img.style.position = "relative"; img.appendChild(btn); }
       });
-      
-      var img = card.querySelector(".item-card__image"); if (img) { img.style.position = "relative"; img.appendChild(btn); }
-    });
-  })();
-</script>
-
-  <!-- ===== FILTER MODAL ===== -->
-  <div class="filter-modal-overlay" id="filterModal" onclick="closeFilters()">
-    <div class="filter-modal" onclick="event.stopPropagation()">
-      <div class="filter-modal__header">
-        <span class="filter-modal__title">Filtros</span>
-        <button onclick="closeFilters()"><i class="fas fa-times"></i></button>
-      </div>
-      <div class="filter-modal__content">
-        <!-- Ordenar -->
-        <div class="filter-group">
-          <div class="filter-group__title">Ordenar por</div>
-          <div class="filter-chips filter-chips--sort">
-            <button class="filter-chip active" data-sort="relevance" onclick="pickSort(this)">Relevancia</button>
-            <button class="filter-chip" data-sort="price-asc" onclick="pickSort(this)">Precio ↑</button>
-            <button class="filter-chip" data-sort="price-desc" onclick="pickSort(this)">Precio ↓</button>
-            <button class="filter-chip" data-sort="newest" onclick="pickSort(this)">Más reciente</button>
-          </div>
-        </div>
-        <!-- Categoría -->
-        <div class="filter-group">
-          <div class="filter-group__title">Categoría</div>
-          <select class="filter-select" id="categorySelect" onchange="updateSubcategories()">
-            <option value="">Todas</option>
-            <option value="electronica">Electrónica</option>
-            <option value="moda">Moda</option>
-            <option value="deporte">Deporte</option>
-            <option value="musica">Música</option>
-            <option value="hogar">Hogar</option>
-            <option value="libros">Libros</option>
-            <option value="motor">Motor</option>
-            <option value="inmuebles">Inmuebles</option>
-            <option value="bicicletas">Bicicletas</option>
-            <option value="electrodomesticos">Electrodomésticos</option>
-            <option value="bebes">Bebés y niños</option>
-            <option value="coleccionismo">Coleccionismo</option>
-            <option value="construccion">Construcción</option>
-            <option value="industria">Industria</option>
-            <option value="empleo">Empleo</option>
-            <option value="servicios">Servicios</option>
-            <option value="otros">Otros</option>
-          </select>
-        </div>
-        <!-- Subcategoría -->
-        <div class="filter-group" id="subcategoryGroup" style="display: none;">
-          <div class="filter-group__title">Subcategoría</div>
-          <select class="filter-select" id="subcategorySelect">
-            <option value="">Todas</option>
-          </select>
-        </div>
-        <!-- Precio -->
-        <div class="filter-group">
-          <div class="filter-group__title">Precio (€)</div>
-          <div class="filter-range">
-            <div class="filter-price-input">
-              <span class="filter-price-symbol">€</span>
-              <input type="number" placeholder="0" class="filter-input filter-input--price" id="priceMin" min="0">
-            </div>
-            <span class="filter-range-separator">-</span>
-            <div class="filter-price-input">
-              <span class="filter-price-symbol">€</span>
-              <input type="number" placeholder="Max" class="filter-input filter-input--price" id="priceMax" min="0">
-            </div>
-          </div>
-          <div class="filter-quick-prices">
-            <button class="filter-quick-btn" onclick="setPriceRange(0, 50, this)">Hasta €50</button>
-            <button class="filter-quick-btn" onclick="setPriceRange(50, 200, this)">€50-200</button>
-            <button class="filter-quick-btn" onclick="setPriceRange(200, 500, this)">€200-500</button>
-            <button class="filter-quick-btn" onclick="setPriceRange(500, null, this)">+€500</button>
-          </div>
-        </div>
-        <!-- Condición -->
-        <div class="filter-group">
-          <div class="filter-group__title">Condición</div>
-          <div class="filter-chips">
-            <button class="filter-chip active" data-condition="any" onclick="pickCondition(this)">Cualquiera</button>
-            <button class="filter-chip" data-condition="new" onclick="pickCondition(this)">Nuevo</button>
-            <button class="filter-chip" data-condition="like-new" onclick="pickCondition(this)">Como nuevo</button>
-            <button class="filter-chip" data-condition="good" onclick="pickCondition(this)">Buen estado</button>
-            <button class="filter-chip" data-condition="used" onclick="pickCondition(this)">Usado</button>
-          </div>
-        </div>
-      </div>
-      <div class="filter-modal__footer">
-        <button class="filter-btn filter-btn--secondary" onclick="resetFilters()">Restablecer</button>
-        <button class="filter-btn filter-btn--primary" onclick="applyFilters()">Aplicar filtros</button>
-      </div>
-    </div>
-  </div>
-    <nav class="bottom-nav">
-    <a href="../v1-catalogo/" class="nav-item active"><i class="fas fa-search"></i><span>Buscar</span></a>
-    <a href="../v12-mis-matches/" class="nav-item"><i class="fas fa-exchange-alt"></i><span>Treqes</span></a>
-    <a href="../v3-subir/" class="nav-item nav-add"><div class="nav-add-btn"><i class="fas fa-plus"></i></div></a>
-    <a href="../v11-notificaciones/" class="nav-item"><i class="fas fa-bell"></i><span>Avisos</span><span class="nav-badge"></span></a>
-    <a href="../v4-perfil/" class="nav-item"><i class="fas fa-user"></i><span>Perfil</span></a>
-  </nav>
-
-
-
+    })();
+  </script>
 </body>
 </html>

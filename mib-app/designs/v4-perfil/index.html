@@ -3,157 +3,122 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>TREQE — Mi perfil</title>
-    <meta name="robots" content="noindex, nofollow">
+  <title>treqe — Mi perfil</title>
+  <meta name="robots" content="noindex, nofollow">
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
+  :root {
+    --bg:        #F9F7F2;
+    --surface:   #FFFFFF;
+    --text:      #1C1915;
+    --text-sub:  #6B6560;
+    --text-dim:  #A09A94;
+    --border:    #E5E0D8;
+    --border-strong: #C5C0B8;
+    --accent:    #1C1915;
+    --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+    --font-sans: 'IBM Plex Sans', 'Inter', 'Segoe UI', sans-serif;
+  }
 
-/* ══════ MIB Design System ══════ */
-:root {
-  --bg: #F9F7F2; --surface: #FFF; --text: #1C1915;
-  --text-sub: #6B6560; --text-dim: #A09A94;
-  --border: #E5E0D8; --border-strong: #C5C0B8; --accent: #1C1915;
-}
-body.dark {
-  --bg: #130B00; --surface: #1A1206; --text: #E8E2D6;
-  --text-sub: #A0998F; --text-dim: #6B6560;
-  --border: #3A3630; --border-strong: #5A5650; --accent: #E8E2D6;
-}
-
-
-    /* ===== RESET & BASE ===== */
-    /* ===== HEADER (unified) ===== */
-    .header {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 12px 16px;
-      background: var(--bg);
-      width: 100%;
-      position: relative;
-    }
-    .header__back {
-      position: absolute;
-      left: 12px;
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text);
-      font-size: 1.1rem;
-      transition: background 0.2s;
-    }
-    .header__back:active { background: var(--border); }
-    .header__title {
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: var(--text);
-    }
-    .header__settings {
-      position: absolute;
-      right: 12px;
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text);
-      font-size: 1.1rem;
-    }
-    .header__settings:active { background: var(--border); }
-
-    .treqe-logo { height: 24px; width: 76px; flex-shrink: 0; vertical-align: middle; }
+  body.dark {
+    --bg:        #130B00;
+    --surface:   #1A1206;
+    --text:      #E8E2D6;
+    --text-sub:  #A0998F;
+    --text-dim:  #6B6560;
+    --border:    #3A3630;
+    --border-strong: #5A5650;
+    --accent:    #E8E2D6;
+  }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { font-size: 16px; -webkit-text-size-adjust: 100%;   overflow-y: scroll; }
+    html { font-size: 16px; -webkit-text-size-adjust: 100%; overflow-y: scroll; }
     body {
       font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       background: #F9F7F2;
       color: #1C1915;
       min-height: 100vh;
-      padding-bottom: 80px;
+      padding-bottom: 90px;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      transition: background .3s, color .3s;
     }
-    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+    body.dark { background: #130B00; color: #E8E2D6; }
+    button { font-family: 'IBM Plex Mono', monospace; cursor: pointer; border: none; background: none; }
     a { text-decoration: none; color: inherit; }
     input { font-family: inherit; font-size: inherit; }
 
-    :root {
-      --bg: #F9F7F2;
-      --text: #1C1915;
-      --text-secondary: #6B6560;
-      --text-tertiary: #A09A94;
-      --border: #E5E0D8;
-      --accent: #1C1915;
-      --accent-hover: #6B6560;
-      --success: #1C1915;
-      --warning: #F5A623;
-      --card-bg: #FFFFFF;
-      --shadow: 0 4px 20px rgba(0,0,0,0.05);
-    }
+    body.dark ::-webkit-scrollbar-track { background: #1A1206; }
+    body.dark ::-webkit-scrollbar-thumb { background: #3A3630; }
 
-    /* ===== STATUS BAR ===== */
-    .status-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 8px 20px 4px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--text-secondary);
-      background: var(--bg);
-    }
-    .status-bar .time { font-weight: 700; color: var(--text); }
-    .status-bar .icons { display: flex; gap: 6px; font-size: 0.7rem; }
-
-    /* ===== DEMO NOTICE ===== */
-    .demo-notice {
-      text-align: center;
-      padding: 6px 16px;
-      font-size: 0.65rem;
-      color: var(--text-tertiary);
-      background: #F0EDE6;
-      letter-spacing: 0.3px;
-    }
-    .demo-notice i { margin-right: 4px; }
-
-    
-    .profile-header {
+    /* ===== treqe HEADER ===== */
+    .treqe-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 8px 16px 4px;
-      background: var(--bg);
+      padding: 10px 16px;
+      background: #F9F7F2;
+      border-bottom: 1px solid #E5E0D8;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      transition: background .3s, border-color .3s;
     }
-    .profile-header button {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text);
-      font-size: 1.1rem;
-      transition: background 0.2s;
+    body.dark .treqe-header { background: #130B00; border-color: #3A3630; }
+    .treqe-header__left { display: flex; align-items: center; gap: 8px; }
+    .treqe-header__back {
+      width: 32px; height: 32px;
+      display: flex; align-items: center; justify-content: center;
+      color: #6B6560; font-size: .9rem;
+      border-radius: 2px; border: 1px solid #E5E0D8;
+      transition: background .2s;
     }
-    .profile-header button:active { background: var(--border); }
-    .profile-header__title {
-      font-size: 1rem;
-      font-weight: 600;
+    body.dark .treqe-header__back { color: #A0998F; border-color: #3A3630; }
+    .treqe-header__back:active { background: #E5E0D8; }
+    body.dark .treqe-header__back:active { background: #3A3630; }
+    .treqe-header__logo {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: .85rem; font-weight: 600;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: #1C1915;
     }
+    body.dark .treqe-header__logo { color: #E8E2D6; }
+    .treqe-header__right { display: flex; align-items: center; gap: 8px; }
+    .treqe-header__toggle {
+      width: 30px; height: 30px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .7rem; color: #6B6560;
+      border: 1px solid #E5E0D8; border-radius: 2px;
+      transition: background .2s;
+    }
+    body.dark .treqe-header__toggle { color: #A0998F; border-color: #3A3630; }
+    .treqe-header__toggle:active { background: #E5E0D8; }
+    body.dark .treqe-header__toggle:active { background: #3A3630; }
+    .treqe-pill {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: .55rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: .12em;
+      color: #6B6560;
+      padding: 4px 10px;
+      border: 1px solid #E5E0D8; border-radius: 2px;
+      transition: all .2s;
+    }
+    body.dark .treqe-pill { color: #A0998F; border-color: #3A3630; }
+    .treqe-pill:active { background: #E5E0D8; color: #1C1915; }
+    body.dark .treqe-pill:active { background: #3A3630; color: #E8E2D6; }
+
+    /* ===== PROFILE WRAP ===== */
+    .profile-wrap { max-width: 640px; margin: 0 auto; padding: 0 16px; }
 
     /* ===== SCORING CARD ===== */
     .scoring-card {
-      margin: 4px 16px 16px;
+      margin: 16px 0;
       padding: 20px;
-      background: var(--card-bg);
-      border-radius: 20px;
-      box-shadow: var(--shadow);
+      background: #FFFFFF;
+      border: 1px solid #E5E0D8;
+      border-radius: 2px;
     }
+    body.dark .scoring-card { background: #1A1206; border-color: #3A3630; }
     .scoring-card__top {
       display: flex;
       justify-content: space-between;
@@ -161,110 +126,109 @@ body.dark {
       margin-bottom: 12px;
     }
     .scoring-card__label {
-      font-size: 0.72rem;
-      font-weight: 600;
-      color: var(--text-tertiary);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: .55rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: .12em;
+      color: #A09A94;
     }
+    body.dark .scoring-card__label { color: #6B6560; }
     .scoring-card__score {
-      font-size: 1.6rem;
-      font-weight: 800;
-      color: var(--text);
-      letter-spacing: -0.5px;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 1.6rem; font-weight: 400;
+      color: #1C1915;
+      letter-spacing: -1px;
     }
-    .scoring-card__score small {
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: var(--text-tertiary);
-    }
+    body.dark .scoring-card__score { color: #E8E2D6; }
+    .scoring-card__score small { font-size: .8rem; font-weight: 300; color: #A09A94; }
+    body.dark .scoring-card__score small { color: #6B6560; }
     .scoring-card__bar {
-      width: 100%;
-      height: 6px;
-      background: #F0EDE6;
-      border-radius: 6px;
+      width: 100%; height: 4px;
+      background: #E5E0D8;
+      border-radius: 2px;
       overflow: hidden;
       margin-bottom: 8px;
     }
+    body.dark .scoring-card__bar { background: #3A3630; }
     .scoring-card__bar-fill {
-      height: 100%;
-      width: 82%;
-      background: linear-gradient(90deg, var(--accent), #FF8A5C);
-      border-radius: 6px;
-      transition: width 0.6s ease;
+      height: 100%; width: 82%;
+      background: #1C1915;
+      border-radius: 2px;
+      transition: width .6s ease;
     }
+    body.dark .scoring-card__bar-fill { background: #E8E2D6; }
     .scoring-card__info {
       display: flex;
       justify-content: space-between;
-      font-size: 0.75rem;
-      color: var(--text-secondary);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: .55rem; font-weight: 400;
+      color: #6B6560;
+      text-transform: uppercase;
+      letter-spacing: .08em;
     }
-    .scoring-card__info .next-level {
-      color: var(--accent);
-      font-weight: 500;
-    }
+    body.dark .scoring-card__info { color: #A0998F; }
+    .scoring-card__info .next-level { color: #1C1915; font-weight: 500; }
+    body.dark .scoring-card__info .next-level { color: #E8E2D6; }
     .scoring-card__info button {
-      font-size: 0.72rem;
-      color: var(--text-tertiary);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: .55rem; font-weight: 500;
+      color: #6B6560;
       text-decoration: underline;
       text-underline-offset: 2px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      padding: 0;
     }
-    .scoring-card__info button:active { color: var(--text); }
+    body.dark .scoring-card__info button { color: #A0998F; }
 
     /* ===== PROFILE ACTIONS ===== */
     .profile-actions {
-      padding: 16px;
       display: flex;
       flex-direction: column;
       gap: 8px;
+      margin: 12px 0;
     }
     .profile-action {
       display: flex;
       align-items: center;
       gap: 14px;
       padding: 14px;
-      background: var(--card-bg);
-      border-radius: 18px;
-      border: 1px solid var(--border);
-      transition: all 0.2s;
+      background: #FFFFFF;
+      border: 1px solid #E5E0D8;
+      border-radius: 2px;
+      transition: all .2s;
     }
-    .profile-action:active { background: var(--border); }
+    body.dark .profile-action { background: #1A1206; border-color: #3A3630; }
+    .profile-action:active { background: #E5E0D8; }
+    body.dark .profile-action:active { background: #3A3630; }
     .profile-action__icon {
-      width: 40px;
-      height: 40px;
-      background: rgba(0,0,0,0.06);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--accent);
-      font-size: 1rem;
+      width: 36px; height: 36px;
+      border: 1px solid #E5E0D8; border-radius: 2px;
+      display: flex; align-items: center; justify-content: center;
+      color: #1C1915; font-size: .9rem;
     }
-    .profile-action__icon.verified {
-      background: rgba(34,197,94,0.12);
-      color: var(--success);
-    }
+    body.dark .profile-action__icon { border-color: #3A3630; color: #E8E2D6; }
+    .profile-action__icon.verified { border-color: #5A5650; }
+    body.dark .profile-action__icon.verified { border-color: #C5C0B8; }
     .profile-action__text { flex: 1; text-align: left; }
     .profile-action__title {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--text);
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: .85rem; font-weight: 500;
+      color: #1C1915;
     }
+    body.dark .profile-action__title { color: #E8E2D6; }
     .profile-action__sub {
-      font-size: 0.72rem;
-      color: var(--text-secondary);
-      margin-top: 2px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: .55rem; font-weight: 400;
+      color: #A09A94;
+      text-transform: uppercase; letter-spacing: .08em;
+      margin-top: 3px;
     }
-    .profile-action > .fa-chevron-right {
-      color: var(--text-tertiary);
-      font-size: 0.8rem;
-    }
+    body.dark .profile-action__sub { color: #6B6560; }
+    .profile-action > .fa-chevron-right { color: #A09A94; font-size: .75rem; }
+    body.dark .profile-action > .fa-chevron-right { color: #6B6560; }
 
     /* ===== SECTION ===== */
-    .section {
-      padding: 0 16px;
-      margin-bottom: 20px;
-    }
+    .section { margin-bottom: 20px; }
     .section__header {
       display: flex;
       justify-content: space-between;
@@ -272,33 +236,72 @@ body.dark {
       margin-bottom: 12px;
     }
     .section__title {
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--text);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: .55rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: .12em;
+      color: #6B6560;
     }
+    body.dark .section__title { color: #A0998F; }
     .section__action {
-      font-size: 0.75rem;
-      color: var(--accent);
-      font-weight: 500;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: .5rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: .1em;
+      color: #6B6560;
+      padding: 4px 10px;
+      border: 1px solid #E5E0D8; border-radius: 2px;
     }
-    .section__action:active { opacity: 0.7; }
+    body.dark .section__action { color: #A0998F; border-color: #3A3630; }
+    .section__action:active { background: #E5E0D8; }
+    body.dark .section__action:active { background: #3A3630; }
 
-    /* ===== MY ITEMS GRID ===== */
+    /* ===== STATS ROW ===== */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .stat-card {
+      background: #FFFFFF;
+      border: 1px solid #E5E0D8;
+      border-radius: 2px;
+      padding: 12px 8px;
+      text-align: center;
+    }
+    body.dark .stat-card { background: #1A1206; border-color: #3A3630; }
+    .stat-card__number {
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 1.3rem; font-weight: 700;
+      font-style: italic;
+      color: #1C1915;
+      letter-spacing: -.5px;
+    }
+    body.dark .stat-card__number { color: #E8E2D6; }
+    .stat-card__label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: .5rem; font-weight: 400;
+      text-transform: uppercase; letter-spacing: .1em;
+      color: #A09A94;
+      margin-top: 3px;
+    }
+    body.dark .stat-card__label { color: #6B6560; }
+
+    /* ===== ITEMS GRID ===== */
     .my-items {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
+      gap: 8px;
     }
     .my-item {
-      background: var(--card-bg);
-      border-radius: 14px;
+      background: #FFFFFF;
+      border: 1px solid #E5E0D8;
+      border-radius: 2px;
       overflow: hidden;
-      box-shadow: var(--shadow);
       cursor: pointer;
-      transition: transform 0.2s;
+      transition: all .2s;
       position: relative;
     }
-    .my-item:active { transform: scale(0.98); }
+    body.dark .my-item { background: #1A1206; border-color: #3A3630; }
+    .my-item:active { opacity: .7; }
     .my-item__image {
       aspect-ratio: 1;
       display: flex;
@@ -312,53 +315,51 @@ body.dark {
     .my-item:nth-child(4) .my-item__image { background: #1A2A3A; }
     .my-item:nth-child(5) .my-item__image { background: #2A1A2A; }
     .my-item:nth-child(6) .my-item__image { background: #3A3A1A; }
-    .my-item .my-item__image i { color: rgba(255,255,255,0.25); }
+    .my-item .my-item__image i { color: rgba(255,255,255,0.3); }
     .my-item__info {
       padding: 8px 10px 10px;
     }
     .my-item__title {
-      font-size: 0.72rem;
-      font-weight: 500;
-      color: var(--text);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      font-size: .72rem; font-weight: 500;
+      color: #1C1915;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
+    body.dark .my-item__title { color: #E8E2D6; }
     .my-item__price {
-      font-size: 0.7rem;
-      font-weight: 600;
-      color: var(--text-secondary);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: .6rem; font-weight: 500;
+      color: #6B6560;
       margin-top: 2px;
     }
+    body.dark .my-item__price { color: #A0998F; }
     .my-item__status {
       position: absolute;
-      top: 6px;
-      right: 6px;
-      font-size: 0.5rem;
-      font-weight: 700;
-      padding: 3px 7px;
-      border-radius: 6px;
+      top: 6px; right: 6px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: .45rem; font-weight: 500;
+      padding: 2px 7px;
+      border: 1px solid #E5E0D8;
+      border-radius: 2px;
       text-transform: uppercase;
-      letter-spacing: 0.3px;
+      letter-spacing: .08em;
     }
+    body.dark .my-item__status { border-color: #3A3630; }
     .my-item__status.active {
-      background: var(--success);
-      color: #FFF;
+      background: #1C1915; color: #F9F7F2; border-color: #1C1915;
     }
+    body.dark .my-item__status.active { background: #E8E2D6; color: #130B00; border-color: #E8E2D6; }
     .my-item__status.pending {
-      background: var(--warning);
-      color: #FFF;
+      background: #F9F7F2; color: #6B6560; border-color: #C5C0B8;
     }
-    .my-item__status.accepted {
-      background: var(--success);
-      color: #FFF;
-    }
+    body.dark .my-item__status.pending { background: #1A1206; color: #A0998F; border-color: #5A5650; }
+    .my-item__status.accepted { background: #1C1915; color: #F9F7F2; border-color: #1C1915; }
+    body.dark .my-item__status.accepted { background: #E8E2D6; color: #130B00; border-color: #E8E2D6; }
     .my-item__status.rejected {
-      background: #E5E0D8;
-      color: var(--text-secondary);
+      background: #F9F7F2; color: #A09A94; border-color: #E5E0D8;
     }
+    body.dark .my-item__status.rejected { background: #1A1206; color: #6B6560; border-color: #3A3630; }
 
-    /* ===== LIKED ITEM PREVIEWS (emoji + overlay) ===== */
+    /* ===== LIKED ITEM ===== */
     .my-item__image--liked {
       position: relative;
       display: flex;
@@ -373,279 +374,192 @@ body.dark {
     }
     .my-item__overlay {
       position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
+      bottom: 0; left: 0; right: 0;
       padding: 6px 8px;
-      background: linear-gradient(transparent, rgba(0,0,0,0.7));
+      background: linear-gradient(transparent, rgba(0,0,0,.7));
       color: #fff;
-      font-size: 0.6rem;
+      font-size: .6rem;
       font-weight: 500;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
       text-align: left;
       z-index: 2;
     }
 
-    /* ===== ACTIVITY FEED ===== */
-    .activity-feed {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .activity-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px 14px;
-      background: var(--card-bg);
-      border-radius: 14px;
-      box-shadow: var(--shadow);
-      transition: transform 0.2s;
-      cursor: pointer;
-    }
-    .activity-item:active { transform: scale(0.98); }
-    .activity-item__icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-      flex-shrink: 0;
-    }
-    .activity-item__icon.done { background: rgba(0,184,184,0.1); color: var(--success); }
-    .activity-item__icon.pending { background: rgba(0,0,0,0.06); color: var(--accent); }
-    .activity-item__icon.waiting { background: rgba(245,166,35,0.1); color: var(--warning); }
-    .activity-item__content {
-      flex: 1;
-      min-width: 0;
-    }
-    .activity-item__title {
-      font-size: 0.82rem;
-      font-weight: 500;
-      color: var(--text);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .activity-item__meta {
-      font-size: 0.7rem;
-      color: var(--text-tertiary);
-      margin-top: 2px;
-    }
-    .activity-item__status-badge {
-      font-size: 0.65rem;
-      font-weight: 600;
-      padding: 4px 10px;
-      border-radius: 20px;
-      flex-shrink: 0;
-    }
-    .activity-item__status-badge.done {
-      background: rgba(0,184,184,0.1);
-      color: var(--success);
-    }
-    .activity-item__status-badge.pending {
-      background: rgba(0,0,0,0.06);
-      color: var(--accent);
-    }
-    .activity-item__status-badge.waiting {
-      background: rgba(245,166,35,0.1);
-      color: var(--warning);
-    }
-
-    /* ===== STATS ROW ===== */
-    .stats-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      margin-bottom: 20px;
-    }
-    .stat-card {
-      background: var(--card-bg);
-      border-radius: 50px;
-      padding: 10px 8px;
-      text-align: center;
-      box-shadow: var(--shadow);
-    }
-    .stat-card__number {
-      font-size: 1.3rem;
-      font-weight: 800;
-      color: var(--text);
-      letter-spacing: -0.5px;
-    }
-    .stat-card__label {
-      font-size: 0.62rem;
-      color: var(--text-tertiary);
-      font-weight: 500;
-      margin-top: 1px;
-    }
-    .stat-card__number.accent { color: var(--accent); }
-    .stat-card__number.success { color: var(--success); }
-
-    /* ===== EMPTY STATE ===== */
-    .empty-state {
-      text-align: center;
-      padding: 32px 16px;
-      color: var(--text-tertiary);
-    }
-    .empty-state i {
-      font-size: 2.5rem;
-      margin-bottom: 12px;
-      opacity: 0.4;
-    }
-    .empty-state p {
-      font-size: 0.85rem;
-      line-height: 1.5;
-    }
-
-    /* ===== BOTTOM NAV ===== */
-    
-    .nav-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 2px;
-      font-size: 0.65rem;
-      font-weight: 500;
-      color: var(--text-tertiary);
-      transition: color 0.2s;
-      padding: 4px 0;
-      flex: 1;
-      max-width: 80px;
-      position: relative;
-    }
-    .nav-item i {
-      font-size: 1.3rem;
-    }
-    .nav-item.active {
-      color: var(--accent);
-    }
-    .nav-item.active i {
-      transform: scale(1.05);
-    }
-    .nav-item .nav-badge {
-      width: 6px;
-      height: 6px;
-      background: var(--accent);
-      border-radius: 50%;
-      position: absolute;
-      top: 2px;
-      right: 12px;
-    }
-    .nav-item.nav-add { position: relative; top: 0; }
-    .nav-add-btn {
-      width: 48px;
-      height: 48px;
-      background: var(--accent);
-      color: #FFFFFF;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-      margin-bottom: 2px;
-    }
-    .nav-add-btn i { font-size: 1.1rem; }
-
-    .bottom-nav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: rgba(255,255,255,0.85);
-      -webkit-border-top: 1px solid var(--border);
-      display: flex;
-      justify-content: space-evenly;
-      align-items: center;
-      padding: 0;
-      height: 72px;
-      padding-bottom: 12px;
-      z-index: 100;
-    isolation: isolate;
-    }
     
     
+    body.dark 
+    
+    body.dark 
     
     
+    body.dark 
+    .nav-item 
+    body.dark .nav-item 
+    .nav-item
     
+    body.dark 
     
 
-    /* ===== RESPONSIVE ===== */
-    @media (min-width: 600px) {
-      .scoring-card { margin: 8px 24px 20px; padding: 24px; }
-      .section { padding: 0 24px; }
-      .my-items { grid-template-columns: repeat(4, 1fr); }
-      .stats-row { grid-template-columns: repeat(3, 1fr); max-width: 400px; }
-      .profile-wrap { max-width: 640px; margin: 0 auto; }
-    }
-    @media (min-width: 1024px) {
-      .profile-wrap { max-width: 720px; }
-      .my-items { grid-template-columns: repeat(4, 1fr); }
-    }
-  
+    /* ===== SCORING MODAL ===== */
     .scoring-modal-overlay {
-      position: fixed; inset: 0; background: rgba(0,0,0,0.5);
-      z-index: 200;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.4); z-index: 200;
       display: none; align-items: flex-end; justify-content: center;
     }
     .scoring-modal-overlay.visible { display: flex; }
     .scoring-modal {
-      background: var(--card-bg); border-radius: 24px 24px 0 0;
-      width: 100%; max-height: 75vh; overflow: hidden;
-      animation: slideUp .3s ease;
+      background: #FFFFFF;
+      border: 1px solid #E5E0D8;
+      border-radius: 2px 2px 0 0;
+      width: 100%; max-height: 70vh;
+      overflow: hidden;
     }
-    @keyframes slideUp { from{transform:translateY(100%)} to{transform:translateY(0)} }
+    body.dark .scoring-modal { background: #1A1206; border-color: #3A3630; }
     .scoring-modal__header {
       display: flex; justify-content: space-between; align-items: center;
-      padding: 16px 20px 12px; border-bottom: 1px solid var(--border);
+      padding: 16px 20px 12px;
+      border-bottom: 1px solid #E5E0D8;
     }
-    .scoring-modal__title { font-size: 1rem; font-weight: 600; color: var(--text); }
+    body.dark .scoring-modal__header { border-color: #3A3630; }
+    .scoring-modal__title {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: .55rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: .12em;
+      color: #1C1915;
+    }
+    body.dark .scoring-modal__title { color: #E8E2D6; }
     .scoring-modal__close {
-      width: 32px; height: 32px; border-radius: 50%;
+      width: 30px; height: 30px;
       display: flex; align-items: center; justify-content: center;
-      color: var(--text-secondary); font-size: .9rem;
+      color: #6B6560; font-size: .8rem;
+      border: 1px solid #E5E0D8; border-radius: 2px;
     }
-    .scoring-modal__close:active { background: var(--border); }
+    body.dark .scoring-modal__close { color: #A0998F; border-color: #3A3630; }
+    .scoring-modal__close:active { background: #E5E0D8; }
+    body.dark .scoring-modal__close:active { background: #3A3630; }
     .scoring-modal__body { padding: 16px 20px 20px; max-height: 55vh; overflow-y: auto; }
-    .score-item { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 14px; }
+    .score-item { display: flex; gap: 12px; margin-bottom: 14px; }
     .score-item__icon {
-      width: 36px; height: 36px; border-radius: 10px;
+      width: 36px; height: 36px;
+      border: 1px solid #E5E0D8; border-radius: 2px;
       display: flex; align-items: center; justify-content: center;
-      font-size: .9rem; flex-shrink: 0; background: var(--bg); color: var(--accent);
+      font-size: .85rem; flex-shrink: 0; color: #1C1915;
     }
+    body.dark .score-item__icon { border-color: #3A3630; color: #E8E2D6; }
     .score-item__text { flex: 1; }
-    .score-item__title { font-size: .82rem; font-weight: 600; color: var(--text); margin-bottom: 2px; }
-    .score-item__desc { font-size: .72rem; color: var(--text-secondary); line-height: 1.4; }
-    .score-item__points { font-size: .7rem; font-weight: 600; color: var(--success); white-space: nowrap; }
+    .score-item__title {
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: .82rem; font-weight: 500; color: #1C1915;
+      margin-bottom: 2px;
+    }
+    body.dark .score-item__title { color: #E8E2D6; }
+    .score-item__desc {
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: .72rem; color: #6B6560; line-height: 1.4;
+    }
+    body.dark .score-item__desc { color: #A0998F; }
+    .score-item__points {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: .6rem; font-weight: 500;
+      color: #1C1915; white-space: nowrap;
+    }
+    body.dark .score-item__points { color: #E8E2D6; }
 
-  
+    /* ===== RESPONSIVE ===== */
+    @media (min-width: 600px) {
+      .profile-wrap { max-width: 640px; margin: 0 auto; }
+      .my-items { grid-template-columns: repeat(4, 1fr); }
+      .stats-row { max-width: 400px; }
+    }
+  /* ══════ BOTTOM NAV (standardized across all MIB pages) ══════ */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 68px;
+  padding-bottom: max(6px, env(safe-area-inset-bottom));
+  z-index: 100;
+}
 
-/* ══════ BOTTOM NAV (standardized) ══════ */
-.bottom-nav { position:fixed; bottom:0; left:0; right:0; background:var(--surface); border-top:1px solid var(--border); display:flex; justify-content:space-evenly; align-items:center; height:68px; padding-bottom:max(6px,env(safe-area-inset-bottom)); z-index:100; }
-.nav-item { position:relative; display:flex; flex-direction:column; align-items:center; gap:3px; font-family:'IBM Plex Mono',monospace; font-size:0.5rem; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-dim); transition:color 0.15s; padding:4px 0; flex:1; max-width:80px; border:none; background:none; cursor:pointer; text-decoration:none; }
-.nav-item i { font-size:1.1rem; }
-.nav-item.active { color:var(--text); }
-.nav-item.active i { color:var(--text); }
-.nav-add-btn { width:42px; height:42px; background:var(--text); color:var(--bg); border-radius:2px; display:flex; align-items:center; justify-content:center; margin-bottom:2px; }
-.nav-add-btn i { font-size:1rem; color:var(--bg); }
-.nav-badge { width:5px; height:5px; background:var(--text); border-radius:50%; position:absolute; top:2px; right:4px; }
+.nav-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  transition: color 0.15s;
+  padding: 4px 0;
+  flex: 1;
+  max-width: 80px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.nav-item i { font-size: 1.1rem; }
+
+.nav-item.active { color: var(--text); }
+.nav-item.active i { color: var(--text); }
+
+.nav-item .nav-add-btn,
+.nav-add-btn {
+  width: 42px;
+  height: 42px;
+  background: var(--text);
+  color: var(--bg);
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2px;
+}
+
+.nav-item .nav-add-btn i,
+.nav-add-btn i {
+  font-size: 1rem;
+  color: var(--bg);
+}
+
+.nav-badge {
+  width: 5px;
+  height: 5px;
+  background: var(--text);
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  right: 4px;
+}
 
 </style>
 </head>
 <body>
 
-  <!-- ===== DEMO NOTICE ===== -->
-  
-  <!-- ===== STATUS BAR ===== -->
-  
-  <!-- ===== PROFILE HEADER ===== -->
-  <div class="header" style="justify-content:center;">
-    <button class="header__back" onclick="goToDiscover()" aria-label="Atrás"><i class="fas fa-chevron-left"></i></button>
-    <span class="header__title">Mi perfil</span>
-    <button class="header__settings" onclick="goToSettings()" aria-label="Ajustes"><i class="fas fa-cog"></i></button>
+  <!-- ===== treqe HEADER ===== -->
+  <div class="treqe-header">
+    <div class="treqe-header__left">
+      <button class="treqe-header__back" onclick="goToDiscover()" aria-label="Atrás"><i class="fas fa-chevron-left"></i></button>
+      <span class="treqe-header__title">Perfil</span>
+    </div>
+    <div class="treqe-header__right">
+      <button class="treqe-header__toggle" id="darkToggle" onclick="toggleDarkMode()" aria-label="Dark mode"><i class="fas fa-moon"></i></button>
+      <span class="treqe-header__pills">
+        <a href="../v1-catalogo/" class="treqe-pill">Catálogo</a>
+        <a href="../v13-blog/" class="treqe-pill">Blog</a>
+      </span>
+    </div>
   </div>
 
   <div class="profile-wrap">
@@ -653,14 +567,14 @@ body.dark {
     <!-- ===== SCORING CARD ===== -->
     <div class="scoring-card">
       <div class="scoring-card__top">
-        <span class="scoring-card__label">Scoring <i class="fas fa-info-circle" onclick="openScoringInfo()" style="font-size:.75rem;color:var(--text-tertiary);cursor:pointer;margin-left:4px;"></i></span>
+        <span class="scoring-card__label">Scoring <i class="fas fa-info-circle" onclick="openScoringInfo()" style="font-size:.65rem;color:var(--text-dim);cursor:pointer;margin-left:3px;"></i></span>
         <span class="scoring-card__score">82 <small>/ 100</small></span>
       </div>
       <div class="scoring-card__bar">
         <div class="scoring-card__bar-fill" id="scoreFill" style="width:82%"></div>
       </div>
       <div class="scoring-card__info">
-        <button onclick="openScoringInfo()" style="background:none;border:none;cursor:pointer;font-size:0.72rem;color:var(--accent);font-weight:500;text-decoration:underline;text-underline-offset:2px;padding:0;">¿Cómo aumentar? <i class="fas fa-info-circle" style="font-size:0.65rem;margin-left:2px;"></i></button>
+        <button onclick="openScoringInfo()" style="background:none;border:none;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-size:.55rem;font-weight:500;color:var(--text-dim);text-decoration:underline;text-underline-offset:2px;padding:0;text-transform:uppercase;letter-spacing:.08em;">¿Cómo aumentar?</button>
         <span class="next-level">95 para nivel Avanzado</span>
       </div>
     </div>
@@ -675,7 +589,7 @@ body.dark {
         </div>
         <i class="fas fa-chevron-right"></i>
       </button>
-      
+
       <button class="profile-action" onclick="goToVerify()">
         <div class="profile-action__icon verified"><i class="fas fa-shield-alt"></i></div>
         <div class="profile-action__text">
@@ -690,7 +604,7 @@ body.dark {
     <div class="section">
       <div class="stats-row">
         <div class="stat-card">
-          <div class="stat-card__number success">12</div>
+          <div class="stat-card__number">12</div>
           <div class="stat-card__label">intercambios</div>
         </div>
         <div class="stat-card">
@@ -698,8 +612,8 @@ body.dark {
           <div class="stat-card__label">artículos</div>
         </div>
         <div class="stat-card">
-          <div class="stat-card__number accent">1</div>
-          <div class="stat-card__label">mes en Treqe</div>
+          <div class="stat-card__number">1</div>
+          <div class="stat-card__label">mes en treqe</div>
         </div>
       </div>
     </div>
@@ -707,7 +621,7 @@ body.dark {
     <!-- ===== LIKED ITEMS ===== -->
     <div class="section">
       <div class="section__header">
-        <span class="section__title"><i class="fas fa-heart" style="color:var(--accent);margin-right:6px;"></i>Me gustan</span>
+        <span class="section__title"><i class="fas fa-heart" style="margin-right:5px;"></i>Me gustan</span>
         <button class="section__action" onclick="goToFavorites()">Ver todo</button>
       </div>
       <div class="my-items">
@@ -802,10 +716,10 @@ body.dark {
       </div>
     </div>
 
-    <!-- ===== SOLICITUDES DE TRUEQUE ===== -->
+    <!-- ===== SOLICITUDES DE INTERCAMBIO ===== -->
     <div class="section">
       <div class="section__header">
-        <span class="section__title"><i class="fas fa-exchange-alt" style="color:var(--accent);margin-right:6px;"></i>Solicitudes de trueque</span>
+        <span class="section__title"><i class="fas fa-exchange-alt" style="margin-right:5px;"></i>Solicitudes de intercambio</span>
         <button class="section__action" onclick="window.parent.location.href='../v17-mis-solicitudes/'">Ver todas</button>
       </div>
       <div class="my-items">
@@ -845,34 +759,98 @@ body.dark {
       </div>
     </div>
 
-    <!-- ===== BOTTOM NAV ===== -->
-  
-  
-  
   </div>
 
-
-    <nav class="bottom-nav">
+  <!-- ===== BOTTOM NAV ===== -->
+  <nav class="bottom-nav">
     <a href="../v1-catalogo/" class="nav-item"><i class="fas fa-search"></i><span>Buscar</span></a>
-    <a href="../v12-mis-matches/" class="nav-item"><i class="fas fa-exchange-alt"></i><span>Treqes</span></a>
+    <a href="../v12-mis-matches/" class="nav-item"><i class="fas fa-exchange-alt"></i><span>treqes</span></a>
     <a href="../v3-subir/" class="nav-item nav-add"><div class="nav-add-btn"><i class="fas fa-plus"></i></div></a>
     <a href="../v11-notificaciones/" class="nav-item"><i class="fas fa-bell"></i><span>Avisos</span><span class="nav-badge"></span></a>
     <a href="../v4-perfil/" class="nav-item active"><i class="fas fa-user"></i><span>Perfil</span></a>
   </nav>
 
+  <!-- ===== SCORING INFO MODAL ===== -->
+  <div class="scoring-modal-overlay" id="scoringModal" onclick="if(event.target===this)closeScoringInfo()">
+    <div class="scoring-modal">
+      <div class="scoring-modal__header">
+        <span class="scoring-modal__title"><i class="fas fa-chart-line" style="margin-right:8px;"></i> Cómo funciona el Scoring</span>
+        <button class="scoring-modal__close" onclick="closeScoringInfo()"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="scoring-modal__body">
+        <div class="score-item">
+          <div class="score-item__icon"><i class="fas fa-exchange-alt"></i></div>
+          <div class="score-item__text">
+            <div class="score-item__title">Intercambios completados</div>
+            <div class="score-item__desc">Cada intercambio completado con éxito suma puntos. Cuantos más completas, más sube tu scoring.</div>
+          </div>
+          <div class="score-item__points">+5 c/u</div>
+        </div>
+        <div class="score-item">
+          <div class="score-item__icon"><i class="fas fa-clock"></i></div>
+          <div class="score-item__text">
+            <div class="score-item__title">Tiempo de respuesta</div>
+            <div class="score-item__desc">Responder rápido a las consultas y propuestas de intercambio mejora tu puntuación. Menos de 1h suma el máximo.</div>
+          </div>
+          <div class="score-item__points">+1 a +3</div>
+        </div>
+        <div class="score-item">
+          <div class="score-item__icon"><i class="fas fa-star"></i></div>
+          <div class="score-item__text">
+            <div class="score-item__title">Valoraciones recibidas</div>
+            <div class="score-item__desc">Las valoraciones positivas de otros usuarios aumentan tu reputación. Cada estrella cuenta.</div>
+          </div>
+          <div class="score-item__points">+1 a +5</div>
+        </div>
+        <div class="score-item">
+          <div class="score-item__icon"><i class="fas fa-shield-alt"></i></div>
+          <div class="score-item__text">
+            <div class="score-item__title">Verificación de identidad</div>
+            <div class="score-item__desc">Verificar tu identidad con DNI y selfie sube tu scoring considerablemente y genera más confianza.</div>
+          </div>
+          <div class="score-item__points">+15</div>
+        </div>
+        <div class="score-item">
+          <div class="score-item__icon"><i class="fas fa-calendar-check"></i></div>
+          <div class="score-item__text">
+            <div class="score-item__title">Antigüedad en treqe</div>
+            <div class="score-item__desc">Los usuarios con más tiempo en la plataforma obtienen una bonificación por permanencia.</div>
+          </div>
+          <div class="score-item__points">+1/mes</div>
+        </div>
+        <div class="score-item">
+          <div class="score-item__icon"><i class="fas fa-box-open"></i></div>
+          <div class="score-item__text">
+            <div class="score-item__title">Artículos publicados</div>
+            <div class="score-item__desc">Tener artículos activos y bien descritos contribuye positivamente a tu perfil.</div>
+          </div>
+          <div class="score-item__points">+2 c/u</div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script>
-    // Scoring bar animation on scroll
+    // Dark mode toggle
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark');
+      var icon = document.getElementById('darkToggle').querySelector('i');
+      icon.className = document.body.classList.contains('dark') ? 'fas fa-sun' : 'fas fa-moon';
+      try { localStorage.setItem('treqe-dark-mode', document.body.classList.contains('dark') ? '1' : '0'); } catch(e) {}
+    }
+    try { if (localStorage.getItem('treqe-dark-mode') === '1') document.body.classList.add('dark'); } catch(e) {}
+    if (document.body.classList.contains('dark')) {
+      var icon = document.getElementById('darkToggle').querySelector('i');
+      if (icon) icon.className = 'fas fa-sun';
+    }
+
+    // Scoring bar animation
     const scoreFill = document.getElementById('scoreFill');
     let score = 82;
 
-    function animateScore() {
-      scoreFill.style.transition = 'width 0.6s ease';
-    }
-
     // Click scoring card to increment (demo gamification)
     document.querySelector('.scoring-card').addEventListener('click', function(e) {
-      if (e.target.tagName === 'BUTTON') return; // ignore link clicks
+      if (e.target.tagName === 'BUTTON') return;
       score = Math.min(100, score + 1);
       scoreFill.style.width = score + '%';
       this.querySelector('.scoring-card__score').innerHTML = score + ' <small>/ 100</small>';
@@ -882,42 +860,22 @@ body.dark {
       `;
     });
 
-    function goToMatches() {
-      window.parent.location.href = '../v12-mis-matches/';
-    }
-
-    function goToMatchDetail() {
-      window.parent.location.href = '../v6-match-notification/';
-    }
-
+    function goToMatches() { window.parent.location.href = '../v12-mis-matches/'; }
+    function goToMatchDetail() { window.parent.location.href = '../v6-match-notification/'; }
     function goToDiscover() { window.parent.location.href = '../v1-catalogo/'; }
-    function goToHome() {
-      window.parent.location.href = '../v1-catalogo/';
-    }
+    function goToHome() { window.parent.location.href = '../v1-catalogo/'; }
+    function goToSearch() { window.parent.location.href = '../v1-catalogo/'; }
+    function goToUpload() { window.parent.location.href = '../v3-subir/'; }
+    function goToSettings() { window.parent.location.href = '../v8-ajustes/'; }
 
-    function goToSearch() {
-      window.parent.location.href = '../v1-catalogo/';
-    }
-
-    function goToUpload() {
-      window.parent.location.href = '../v3-subir/';
-    }
-
-    function goToSettings() {
-      window.parent.location.href = '../v8-ajustes/';
-    }
-
-    // Edit profile modal
     function editProfile() {
       alert('📝 Editar perfil\n\nEn la versión completa podrás:\n• Cambiar foto de perfil\n• Editar nombre\n• Actualizar bio\n• Cambiar ubicación');
     }
 
-    // Notification settings
     function notificationSettings() {
       alert('🔔 Configuración de notificaciones\n\nEn la versión completa podrás:\n• Activar/desactivar notificaciones push\n• Elegir tipos de notificaciones\n• Configurar horarios');
     }
 
-    // Identity verification
     function verifyIdentity() {
       const verified = confirm('¿Verificar identidad?\n\nEn la versión completa:\n• Subir DNI/passport\n• Verificación facial\n• Más confianza en intercambios');
       if (verified) {
@@ -925,17 +883,17 @@ body.dark {
       }
     }
 
-    console.log('👤 TREQE v4 — Perfil');
-    console.log('🧪 Treqe Prototype — Apr 2026');
-  
+    console.log('👤 treqe v4 — Perfil');
+    console.log('🧪 treqe Prototype — May 2026');
+
     function goToVerify() { window.parent.location.href = "../v15-verificar-identidad/"; }
     function goToEditProfile() { window.parent.location.href = "../v14-editar-perfil/"; }
     function goToFavorites() { window.parent.location.href = '../v13-favoritos/'; }
     function goToTrades() { window.parent.location.href = '../v12-mis-matches/'; }
     function goToInbox() { window.parent.location.href = '../v11-notificaciones/'; }
-    function goToUpload() { window.parent.location.href = '../v3-subir/'; }
     function goToProfile() { window.parent.location.href = '../v4-perfil/'; }
     function goToDetail(id) { window.parent.location.href = '../v2-detalle/?id=' + id; }
+
     function openScoringInfo() {
       document.getElementById("scoringModal").classList.add("visible");
       document.body.style.overflow = "hidden";
@@ -944,68 +902,7 @@ body.dark {
       document.getElementById("scoringModal").classList.remove("visible");
       document.body.style.overflow = "";
     }
-
-</script>
-
-  <!-- ===== SCORING INFO MODAL ===== -->
-  <div class="scoring-modal-overlay" id="scoringModal" onclick="if(event.target===this)closeScoringInfo()">
-    <div class="scoring-modal">
-      <div class="scoring-modal__header">
-        <span class="scoring-modal__title"><i class="fas fa-chart-line" style="color:var(--accent);margin-right:8px;"></i>Como funciona el Scoring</span>
-        <button class="scoring-modal__close" onclick="closeScoringInfo()"><i class="fas fa-times"></i></button>
-      </div>
-      <div class="scoring-modal__body">
-        <div class="score-item">
-          <div class="score-item__icon"><i class="fas fa-exchange-alt"></i></div>
-          <div class="score-item__text">
-            <div class="score-item__title">Intercambios completados</div>
-            <div class="score-item__desc">Cada intercambio completado con exito suma puntos. Cuantos mas completas, mas sube tu scoring.</div>
-          </div>
-          <div class="score-item__points">+5 c/u</div>
-        </div>
-        <div class="score-item">
-          <div class="score-item__icon"><i class="fas fa-clock"></i></div>
-          <div class="score-item__text">
-            <div class="score-item__title">Tiempo de respuesta</div>
-            <div class="score-item__desc">Responder rapido a las consultas y propuestas de trueque mejora tu puntuacion. Menos de 1h suma el maximo.</div>
-          </div>
-          <div class="score-item__points">+1 a +3</div>
-        </div>
-        <div class="score-item">
-          <div class="score-item__icon"><i class="fas fa-star"></i></div>
-          <div class="score-item__text">
-            <div class="score-item__title">Valoraciones recibidas</div>
-            <div class="score-item__desc">Las valoraciones positivas de otros usuarios aumentan tu reputacion. Cada estrella cuenta.</div>
-          </div>
-          <div class="score-item__points">+1 a +5</div>
-        </div>
-        <div class="score-item">
-          <div class="score-item__icon"><i class="fas fa-shield-alt"></i></div>
-          <div class="score-item__text">
-            <div class="score-item__title">Verificacion de identidad</div>
-            <div class="score-item__desc">Verificar tu identidad con DNI y selfie sube tu scoring considerablemente y genera mas confianza.</div>
-          </div>
-          <div class="score-item__points">+15</div>
-        </div>
-        <div class="score-item">
-          <div class="score-item__icon"><i class="fas fa-calendar-check"></i></div>
-          <div class="score-item__text">
-            <div class="score-item__title">Antiguedad en Treqe</div>
-            <div class="score-item__desc">Los usuarios con mas tiempo en la plataforma obtienen una bonificacion por permanencia.</div>
-          </div>
-          <div class="score-item__points">+1/mes</div>
-        </div>
-        <div class="score-item">
-          <div class="score-item__icon"><i class="fas fa-box-open"></i></div>
-          <div class="score-item__text">
-            <div class="score-item__title">Articulos publicados</div>
-            <div class="score-item__desc">Tener articulos activos y bien descritos contribuye positivamente a tu perfil.</div>
-          </div>
-          <div class="score-item__points">+2 c/u</div>
-        </div>
-      </div>
-    </div>
-  </div>
+  </script>
 
 </body>
 </html>

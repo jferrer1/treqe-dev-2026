@@ -3,731 +3,340 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>TREQE — Notificaciones</title>
+  <title>treqe — Avisos</title>
   <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <style>
-
-/* ══════ MIB Design System ══════ */
-:root {
-  --bg: #F9F7F2; --surface: #FFF; --text: #1C1915;
-  --text-sub: #6B6560; --text-dim: #A09A94;
-  --border: #E5E0D8; --border-strong: #C5C0B8; --accent: #1C1915;
-}
-body.dark {
-  --bg: #130B00; --surface: #1A1206; --text: #E8E2D6;
-  --text-sub: #A0998F; --text-dim: #6B6560;
-  --border: #3A3630; --border-strong: #5A5650; --accent: #E8E2D6;
-}
-
-
-    /* ===== RESET & BASE ===== */
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+/* ===== treqe Design System (catalog base) ===== */
+/* ===== treqe DESIGN SYSTEM ===== */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { font-size: 16px; -webkit-text-size-adjust: 100%;   overflow-y: scroll; }
+    html {
+      font-size: 16px;
+      -webkit-text-size-adjust: 100%;
+      scroll-behavior: smooth;
+      overflow-y: scroll;
+    }
     body {
       font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: linear-gradient(160deg, #F9F7F2 0%, #F0EDE6 30%, #E5E0D8 70%, #F0EDE6 100%);
-      background-attachment: fixed;
+      background: #F9F7F2;
       color: #1C1915;
-      min-height: 100vh;
-      padding-bottom: 80px;
+      min-height: 100dvh;
+      padding-bottom: 90px;
       -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overscroll-behavior: contain;
+      scrollbar-gutter: stable;
     }
-    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+    body.dark {
+      background: #130B00;
+      color: #E8E2D6;
+    }
+    img { max-width: 100%; display: block; }
+    button { cursor: pointer; border: none; background: none; font-family: 'IBM Plex Mono', monospace; }
+    a { text-decoration: none; color: inherit; }
+    input, select { font-family: 'IBM Plex Sans', sans-serif; font-size: inherit; }
 
-    /* ===== COLORS ===== */
     :root {
       --bg: #F9F7F2;
+      --surface: #FFF;
       --text: #1C1915;
-      --text-secondary: #6B6560;
-      --text-tertiary: #A09A94;
+      --text-sub: #6B6560;
+      --text-dim: #A09A94;
       --border: #E5E0D8;
+      --border-strong: #C5C0B8;
       --accent: #1C1915;
-      --accent-hover: #6B6560;
-      --success: #1C1915;
-      --warning: #F5A623;
-      --danger: #E74C3C;
-      --card-bg: #FFFFFF;
-      --shadow: 0 4px 20px rgba(0,0,0,0.05);
+    }
+    body.dark {
+      --bg: #130B00;
+      --text: #E8E2D6;
+      --border: #3A3630;
     }
 
-    /* ===== STATUS BAR ===== */
-    .status-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 8px 20px 4px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--text-secondary);
-      background: var(--bg);
-    }
-    .status-bar .time { font-weight: 700; color: var(--text); }
-    .status-bar .icons { display: flex; gap: 6px; font-size: 0.7rem; }
 
-    /* ===== HEADER (liquid glass) ===== */
-    .header {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 14px 16px 10px;
-      background: rgba(248,246,240,0.6);
-      -webkit-position: sticky;
-      top: 0;
-      z-index: 50;
-      border-bottom: 1px solid rgba(255,255,255,0.4);
-      box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset;
-    }
-    .header__back {
-      position: absolute;
-      left: 12px;
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text);
-      font-size: 1.1rem;
-      transition: background 0.2s;
-    }
-    .header__back:active { background: var(--border); }
-    .header__settings {
-      position: absolute;
-      right: 12px;
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text);
-      font-size: 1.1rem;
-    }
-    .header__settings:active { background: var(--border); }
-    .header__title {
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: var(--text);
-    }
+/* ── Header ── */
+.header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 16px; background: var(--bg); width: 100%;
+  position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--border);
+}
+body.dark .header { background: var(--bg); border-color: var(--border); }
+/* ── Notification list ── */
+.notif-header { padding: 10px 16px 14px; display: flex; align-items: center; gap: 8px; }
+.notif-header__badge {
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.52rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 10px;
+  border: 1px solid var(--text); border-radius: 2px; color: var(--text);
+  display: inline-flex; align-items: center; gap: 4px;
+}
+.notif-header__badge i { font-size: 0.35rem; }
+.notif-header__date {
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem;
+  color: var(--text-dim); letter-spacing: 0.06em;
+}
+.notif-list { padding: 0; }
+.notif-item {
+  display: flex; align-items: flex-start; gap: 14px; padding: 16px;
+  border-bottom: 1px solid var(--border); transition: background 0.1s;
+}
+.notif-item:hover { background: rgba(0,0,0,0.01); }
+.notif-item--highlight { border-left: 2px solid var(--text); padding-left: 14px; }
+.notif-item__icon {
+  width: 40px; height: 40px; border-radius: 2px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; background: var(--bg); border: 1px solid var(--border); flex-shrink: 0;
+}
+.notif-item__body { flex: 1; min-width: 0; }
+.notif-item__title { font-size: 0.85rem; font-weight: 600; color: var(--text); margin-bottom: 3px; letter-spacing: -0.2px; }
+.notif-item__text { font-size: 0.78rem; color: var(--text-sub); line-height: 1.5; }
+.notif-item__meta {
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; letter-spacing: 0.06em;
+  color: var(--text-dim); margin-top: 6px; display: flex; align-items: center; gap: 6px;
+}
+.notif-item__meta .status { font-weight: 600; }
+.notif-item__meta .status--pending { color: var(--text); }
+.notif-item__meta .status--done { color: var(--text-sub); }
+.notif-item__btn {
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase; padding: 6px 12px;
+  border: 1px solid var(--border-strong); border-radius: 2px; color: var(--text-sub);
+  cursor: pointer; background: transparent; white-space: nowrap; transition: all 0.15s; margin-top: 2px;
+}
+.notif-item__btn:hover { background: var(--text); color: var(--bg); border-color: var(--text); }
+.footer { padding: 24px 16px; font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-dim); text-align: center; border-top: 1px solid var(--border); margin-top: 16px; }
+body.dark .footer { border-color: var(--border); }
+.header__back {
+  width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--border); border-radius: 2px; color: var(--text-sub);
+  cursor: pointer; background: transparent; font-size: 0.8rem; transition: all 0.15s; flex-shrink: 0;
+}
+.header__back:hover { border-color: var(--text); color: var(--text); }
+.header__title { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.3px; color: var(--text); flex: 1; }
+.header__right { display: flex; align-items: center; gap: 8px; }
+.header__pill {
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 10px;
+  border: 1px solid var(--border); border-radius: 2px; color: var(--text-sub);
+  cursor: pointer; transition: all 0.15s; text-decoration: none;
+}
+.header__pill:hover { background: var(--text); color: var(--bg); border-color: var(--text); }
+.dm-toggle { font-size: 0.7rem; padding: 5px 8px; border: 1px solid var(--border); border-radius: 2px; color: var(--text-sub); cursor: pointer; background: transparent; transition: all 0.15s; }
+.dm-toggle:hover { background: var(--text); color: var(--bg); border-color: var(--text); }
 
-    /* ===== SEGMENTED CONTROL (replaces inbox-stats + inbox-tabs) ===== */
-    .segmented-wrap {
-      padding: 4px 16px 12px;
-      background: var(--bg);
-    }
-    .segmented {
-      display: flex;
-      background: #EDEAE2;
-      border-radius: 14px;
-      padding: 3px;
-      gap: 2px;
-    }
-    .segmented__btn {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 5px;
-      padding: 10px 6px;
-      border-radius: 11px;
-      font-size: 0.72rem;
-      font-weight: 500;
-      color: var(--text-secondary);
-      background: transparent;
-      transition: all 0.25s ease;
-      white-space: nowrap;
-      min-width: 0;
-    }
-    .segmented__btn i { font-size: 0.7rem; }
-    .segmented__btn .seg-count {
-      font-size: 0.62rem;
-      font-weight: 700;
-      background: rgba(0,0,0,0.06);
-      padding: 1px 6px;
-      border-radius: 8px;
-      color: var(--text-tertiary);
-    }
-    .segmented__btn.active {
-      background: var(--card-bg);
-      color: var(--text);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-      font-weight: 600;
-    }
-    .segmented__btn.active .seg-count {
-      background: var(--accent);
-      color: #FFF;
-    }
-    .segmented__btn:active:not(.active) {
-      background: rgba(255,255,255,0.3);
-    }
+/* â•â•â•â•â•â• BOTTOM NAV (standardized across all MIB pages) â•â•â•â•â•â• */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 68px;
+  padding-bottom: max(6px, env(safe-area-inset-bottom));
+  z-index: 100;
+}
 
-    /* ===== INBOX CONTENT ===== */
-    .inbox-content {
-      padding: 0 16px 16px;
-    }
+.nav-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  transition: color 0.15s;
+  padding: 4px 0;
+  flex: 1;
+  max-width: 80px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  text-decoration: none;
+}
 
-    /* ===== NOTIFICATION ITEMS (liquid glass cards) ===== */
-    .inbox-item {
-      display: flex;
-      gap: 14px;
-      padding: 18px 16px;
-      margin-bottom: 10px;
-      background: rgba(255,255,255,0.7);
-      -webkit-border-radius: 18px;
-      border: 1px solid rgba(255,255,255,0.8);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.03), 0 0 0 1px rgba(255,255,255,0.5) inset;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .inbox-item:active {
-      transform: scale(0.98);
-      box-shadow: 0 1px 4px rgba(0,0,0,0.03);
-    }
-    .inbox-item:last-child { margin-bottom: 0; }
+.nav-item i { font-size: 1.1rem; }
 
-    /* Product emoji avatar — larger, more expressive */
-    .inbox-item__icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      font-size: 1.4rem;
-    }
-    /* Category background tints for product emojis */
-    .inbox-item__icon.cat-music   { background: rgba(0,0,0,0.06); }
-    .inbox-item__icon.cat-bike    { background: rgba(0,184,184,0.12); }
-    .inbox-item__icon.cat-tech    { background: rgba(92,107,192,0.12); }
-    .inbox-item__icon.cat-phone   { background: rgba(245,166,35,0.12); }
-    .inbox-item__icon.cat-gaming  { background: rgba(231,76,60,0.12); }
-    .inbox-item__icon.cat-camera  { background: rgba(39,174,96,0.12); }
-    .inbox-item__icon.cat-audio   { background: rgba(155,89,182,0.12); }
-    .inbox-item__icon.cat-helmet  { background: rgba(52,152,219,0.12); }
-    .inbox-item__icon.cat-watch   { background: rgba(149,165,166,0.12); }
-    .inbox-item__icon.cat-default { background: rgba(136,136,136,0.08); }
+.nav-item.active { color: var(--text); }
+.nav-item.active i { color: var(--text); }
 
-    .inbox-item__body {
-      flex: 1;
-      min-width: 0;
-    }
-    .inbox-item__title {
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 3px;
-    }
-    .inbox-item__text {
-      font-size: 0.78rem;
-      color: var(--text-secondary);
-      line-height: 1.5;
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-    .inbox-item__meta {
-      font-size: 0.65rem;
-      color: var(--text-tertiary);
-      margin-top: 5px;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
+.nav-item .nav-add-btn,
+.nav-add-btn {
+  width: 42px;
+  height: 42px;
+  background: var(--text);
+  color: var(--bg);
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2px;
+}
 
-    /* ===== QUICK-REPLY INLINE ===== */
-    .inbox-item__actions {
-      display: flex;
-      align-items: flex-start;
-      gap: 4px;
-      flex-shrink: 0;
-      margin-top: 4px;
-    }
-    .inbox-item__responder {
-      padding: 6px 12px;
-      border-radius: 10px;
-      font-size: 0.68rem;
-      font-weight: 600;
-      color: var(--accent);
-      background: rgba(255,255,255,0.7);
-      -webkit-border: 1px solid rgba(255,255,255,0.9);
-      box-shadow: 0 1px 4px rgba(0,0,0,0.03);
-      white-space: nowrap;
-      transition: all 0.2s;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-    }
-    .inbox-item__responder:active {
-      transform: scale(0.93);
-      background: rgba(0,0,0,0.06);
-    }
-    .inbox-item__responder i { font-size: 0.6rem; }
+.nav-item .nav-add-btn i,
+.nav-add-btn i {
+  font-size: 1rem;
+  color: var(--bg);
+}
 
-    /* Inline reply form — compact, appears inside card */
-    .quick-reply-wrap {
-      display: none;
-      margin-top: 10px;
-      padding-top: 10px;
-      border-top: 1px dashed var(--border);
-    }
-    .quick-reply-wrap.visible { display: block; }
-    .quick-reply-row {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-    }
-    .quick-reply-input {
-      flex: 1;
-      padding: 9px 12px;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      font-size: 0.78rem;
-      font-family: inherit;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 36px;
-      transition: border-color 0.2s;
-    }
-    .quick-reply-input:focus {
-      outline: none;
-      border-color: var(--accent);
-    }
-    .quick-reply-send {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--accent);
-      color: #FFF;
-      font-size: 0.85rem;
-      flex-shrink: 0;
-      transition: all 0.2s;
-    }
-    .quick-reply-send:active { transform: scale(0.9); opacity: 0.85; }
-    .quick-reply-send.done { background: var(--success); }
-    .quick-reply-char {
-      font-size: 0.6rem;
-      color: var(--text-tertiary);
-      text-align: right;
-      margin-top: 3px;
-    }
-
-    /* ===== MODAL REPLY (fallback for long replies) ===== */
-    .reply-form {
-      padding: 0 16px 16px;
-    }
-    .reply-form__header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--text);
-    }
-    .reply-form__header button {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text-tertiary);
-    }
-    .reply-form__textarea {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      font-size: 0.85rem;
-      font-family: inherit;
-      resize: vertical;
-      background: var(--card-bg);
-      color: var(--text);
-      margin-bottom: 10px;
-    }
-    .reply-form__textarea:focus {
-      outline: none;
-      border-color: var(--accent);
-    }
-    .reply-form__btn {
-      width: 100%;
-      padding: 12px;
-      border-radius: 10px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      background: var(--accent);
-      color: #FFF;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-    .reply-form__btn:active { opacity: 0.9; }
-
-    .modal-overlay {
-      position: fixed; inset: 0; background: rgba(0,0,0,0.5);
-      z-index: 200;
-      display: none; align-items: flex-end; justify-content: center;
-    }
-    .modal-overlay.visible { display: flex; }
-    .modal-card {
-      background: var(--card-bg); border-radius: 24px 24px 0 0;
-      width: 100%; max-height: 80vh; overflow: hidden;
-      animation: slideUp .3s ease;
-    }
-    @keyframes slideUp { from{transform:translateY(100%)} to{transform:translateY(0)} }
-    .modal-card__header {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 16px 20px 12px; border-bottom: 1px solid var(--border);
-    }
-    .modal-card__title { font-size: 1rem; font-weight: 600; color: var(--text); }
-    .modal-card__close {
-      width: 32px; height: 32px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      color: var(--text-secondary); font-size: .9rem;
-    }
-    .modal-card__close:active { background: var(--border); }
-    .modal-card__body { padding: 16px 20px; max-height: 50vh; overflow-y: auto; }
-    .modal-card__preview {
-      background: var(--bg); border-radius: 10px; padding: 12px; margin-bottom: 12px;
-    }
-    .modal-card__preview-label {
-      font-size: .65rem; color: var(--text-tertiary); margin-bottom: 4px; display: block;
-    }
-    .modal-card__preview-text { font-size: .85rem; color: var(--text); font-style: italic; }
-    .modal-card__footer {
-      display: flex; gap: 10px; padding: 12px 20px 20px; border-top: 1px solid var(--border);
-    }
-    .btn {
-      flex: 1; padding: 12px; border-radius: 10px; font-size: .85rem; font-weight: 600;
-      display: flex; align-items: center; justify-content: center; gap: 6px; transition: all .2s;
-    }
-    .btn--primary { background: var(--accent); color: #FFF; }
-    .btn--primary:active { opacity: .9; }
-    .btn--secondary { background: var(--card-bg); border: 1px solid var(--border); color: var(--text); }
-    .btn--secondary:active { background: var(--border); }
-
-    /* ===== EMPTY STATE ===== */
-    .empty-state {
-      text-align: center;
-      padding: 60px 32px;
-      color: var(--text-tertiary);
-    }
-    .empty-state i {
-      font-size: 4rem;
-      margin-bottom: 20px;
-      opacity: 0.3;
-    }
-    .empty-state h3 {
-      font-size: 1.1rem;
-      color: var(--text);
-      margin-bottom: 8px;
-      font-weight: 600;
-    }
-    .empty-state p {
-      font-size: 0.85rem;
-      line-height: 1.5;
-    }
-    /* ===== RESPONSIVE ===== */
-    
-    @media (min-width: 600px) {
-      .header, .segmented-wrap, .inbox-content { max-width: 600px; margin: 0 auto; }
-      .inbox-content { padding: 0 24px 16px; }
-    }
-    /* ===== BOTTOM NAV ===== */
-    
-    
-    
-    
-    
-    
-    
-    
-
-      .bottom-nav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: rgba(255,255,255,0.85);
-      -webkit-border-top: 1px solid var(--border);
-      display: flex;
-      justify-content: space-evenly;
-      align-items: center;
-      padding: 0;
-      height: 72px;
-      padding-bottom: 12px;
-      z-index: 100;
-      isolation: isolate;
-    }
-    .nav-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 2px;
-      font-size: 0.65rem;
-      font-weight: 500;
-      color: var(--text-tertiary);
-      transition: color 0.2s;
-      padding: 4px 0;
-      flex: 1;
-      max-width: 80px;
-      position: relative;
-      border: none;
-      background: none;
-      cursor: pointer;
-      font-family: inherit;
-      text-decoration: none;
-    }
-    .nav-item i { font-size: 1.3rem; }
-    .nav-item.active { color: var(--accent); }
-    .nav-add { position: relative; top: 0; }
-    .nav-add-btn {
-      width: 48px;
-      height: 48px;
-      background: var(--accent);
-      color: #FFFFFF;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-      margin-bottom: 2px;
-    }
-    .nav-add-btn i { font-size: 1.1rem; }
-    .nav-badge {
-      width: 6px;
-      height: 6px;
-      background: var(--accent);
-      border-radius: 50%;
-      position: absolute;
-      top: 2px;
-      right: 12px;
-    }
-    
-
-/* ══════ BOTTOM NAV (standardized) ══════ */
-.bottom-nav { position:fixed; bottom:0; left:0; right:0; background:var(--surface); border-top:1px solid var(--border); display:flex; justify-content:space-evenly; align-items:center; height:68px; padding-bottom:max(6px,env(safe-area-inset-bottom)); z-index:100; }
-.nav-item { position:relative; display:flex; flex-direction:column; align-items:center; gap:3px; font-family:'IBM Plex Mono',monospace; font-size:0.5rem; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-dim); transition:color 0.15s; padding:4px 0; flex:1; max-width:80px; border:none; background:none; cursor:pointer; text-decoration:none; }
-.nav-item i { font-size:1.1rem; }
-.nav-item.active { color:var(--text); }
-.nav-item.active i { color:var(--text); }
-.nav-add-btn { width:42px; height:42px; background:var(--text); color:var(--bg); border-radius:2px; display:flex; align-items:center; justify-content:center; margin-bottom:2px; }
-.nav-add-btn i { font-size:1rem; color:var(--bg); }
-.nav-badge { width:5px; height:5px; background:var(--text); border-radius:50%; position:absolute; top:2px; right:4px; }
+.nav-badge {
+  width: 5px;
+  height: 5px;
+  background: var(--text);
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  right: 4px;
+}
 
 </style>
 </head>
 <body>
 
-  <!-- ===== HEADER ===== -->
-  <div class="header">
-    <button class="header__back" onclick="goToDiscover()" aria-label="Atrás"><i class="fas fa-chevron-left"></i></button>
-    <span class="header__title">Avisos</span>
+<!-- ══════ HEADER ══════ -->
+<div class="header">
+  <button class="header__back" onclick="goToDiscover()" aria-label="Atrás"><i class="fas fa-chevron-left"></i></button>
+  <a href="../v16-portada/" class="header__title" style="text-decoration:none;color:inherit;">Avisos</a>
+  <div class="header__right">
+    <a href="../v13-blog/" class="header__pill">Blog</a>
+    <button class="dm-toggle" onclick="document.body.classList.toggle('dark')">◐</button>
+  </div>
+</div>
+
+<!-- ══════ NOTIFICATIONS ══════ -->
+<div class="notif-list">
+
+  <div class="notif-header">
+    <span class="notif-header__badge"><i class="fas fa-circle"></i> 9 avisos</span>
+    <span class="notif-header__date">hoy</span>
   </div>
 
-  <!-- ===== INBOX CONTENT (lista plana sin tabs) ===== -->
-  <div class="inbox-content">
-    <div style="padding: 6px 16px 14px; font-size: 0.72rem; color: var(--text-secondary); display: flex; align-items: center; gap: 8px;">
-      <span style="display:inline-flex;align-items:center;gap:5px;background:rgba(0,0,0,0.06);padding:4px 12px;border-radius:20px;font-weight:600;color:var(--accent);">
-        <i class="fas fa-circle" style="font-size: 0.4rem;"></i> 9 avisos nuevos
-      </span>
-      <span style="color:var(--text-tertiary);">hoy</span>
+  <!-- 0. Solicitud de trueque -->
+  <div class="notif-item notif-item--highlight">
+    <div class="notif-item__icon">🔄</div>
+    <div class="notif-item__body">
+      <div class="notif-item__title">Solicitud de trueque enviada</div>
+      <div class="notif-item__text">Has solicitado un trueque por iPhone 15 Pro. Te notificaremos cuando sea posible hacer el intercambio.</div>
+      <div class="notif-item__meta"><i class="far fa-clock"></i> Ahora · <span class="status status--pending">Pendiente</span></div>
     </div>
-
-        <!-- 0. 🔄 Solicitud de trueque (ejemplo) -->
-    <div class="inbox-item" style="border-left:3px solid var(--accent);padding-left:10px;">
-      <div class="inbox-item__icon" style="background: rgba(0,0,0,0.06);">🔄</div>
-      <div class="inbox-item__body">
-        <div class="inbox-item__title">Solicitud de trueque enviada</div>
-        <div class="inbox-item__text">Has solicitado un trueque por iPhone 15 Pro. Te notificaremos cuando sea posible hacer el intercambio.</div>
-        <div class="inbox-item__meta"><i class="far fa-clock"></i> Ahora · <span style="color:var(--accent);font-weight:600;">Pendiente</span></div>
-      </div>
-      <div class="inbox-item__actions">
-        <button class="inbox-item__responder" onclick="goToDetail(3)"><i class="fas fa-eye"></i> Ver</button>
-      </div>
-    </div>
-
-    <!-- 1. 👀 Alguien quiere tu artículo (intercambio, sin match aún) -->
-    <div class="inbox-item">
-      <div class="inbox-item__icon cat-music" style="background: rgba(0,0,0,0.06);">👀</div>
-      <div class="inbox-item__body">
-        <div class="inbox-item__title">Carlos quiere tu Fender Stratocaster</div>
-        <div class="inbox-item__text">Ha ofrecido su MacBook Air M3 + 300€. El algoritmo busca completar el círculo. Te avisaremos cuando haya match.</div>
-        <div class="inbox-item__meta"><i class="far fa-clock"></i> Hace 10 min · <span style="color:var(--text-tertiary);font-weight:500;">En espera</span></div>
-      </div>
-    </div>
-
-    <!-- 2. 💰 Bajada de precio en guardado -->
-    <div class="inbox-item">
-      <div class="inbox-item__icon cat-tech" style="background: rgba(245,166,35,0.15);">💰</div>
-      <div class="inbox-item__body">
-        <div class="inbox-item__title">El iPhone 15 Pro que guardaste bajó de precio</div>
-        <div class="inbox-item__text">Ahora cuesta 820€ (antes 890€). Sigue disponible para compra directa o intercambio. Aprovecha la oferta antes de que desaparezca.</div>
-        <div class="inbox-item__meta"><i class="far fa-clock"></i> Hace 2 h</div>
-      </div>
-      <div class="inbox-item__actions">
-        <button class="inbox-item__responder" onclick="goToDetail('iphone')"><i class="fas fa-eye"></i> Ver</button>
-      </div>
-    </div>
-
-    <!-- 3. ❌ Match roto — artículo liberado -->
-    <div class="inbox-item">
-      <div class="inbox-item__icon cat-helmet" style="background: rgba(231,76,60,0.12);">❌</div>
-      <div class="inbox-item__body">
-        <div class="inbox-item__title">Match #TRX-7841 cancelado</div>
-        <div class="inbox-item__text">Bruno rechazó el intercambio. Tu Casco Shoei NXR2 vuelve a estar disponible para nuevos matches y compra directa. Ya puedes ofrecerlo a otros interesados.</div>
-        <div class="inbox-item__meta"><i class="far fa-clock"></i> Hace 1 h · <span style="color:var(--success);font-weight:600;">Artículo liberado</span></div>
-      </div>
-      <div class="inbox-item__actions">
-        <button class="inbox-item__responder" onclick="goToDetail('casco')"><i class="fas fa-eye"></i> Ver artículo</button>
-      </div>
-    </div>
-
-    <!-- 4. 🔔 Nuevo artículo publicado coincide con búsqueda guardada -->
-    <div class="inbox-item">
-      <div class="inbox-item__icon cat-camera" style="background: rgba(39,174,96,0.12);">🔔</div>
-      <div class="inbox-item__body">
-        <div class="inbox-item__title">Nueva Canon EOS R publicada en Barcelona</div>
-        <div class="inbox-item__text">Coincide con tu búsqueda guardada "cámaras réflex". Disponible para compra directa (650€) o intercambio. Publicado hace 30 minutos.</div>
-        <div class="inbox-item__meta"><i class="far fa-clock"></i> Hace 30 min · Barcelona</div>
-      </div>
-      <div class="inbox-item__actions">
-        <button class="inbox-item__responder" onclick="goToDetail('canon')"><i class="fas fa-eye"></i> Ver artículo</button>
-      </div>
-    </div>
-
-    <!-- 5. 📈 Oferta mejorada (sin match aún) -->
-    <div class="inbox-item">
-      <div class="inbox-item__icon cat-bike" style="background: rgba(0,184,184,0.12);">📈</div>
-      <div class="inbox-item__body">
-        <div class="inbox-item__title">Ana ha mejorado su oferta por tu Trek Marlin 7</div>
-        <div class="inbox-item__text">Ahora ofrece su Canon EOS R + 50€ (antes 30€). El algoritmo sigue buscando el círculo con su nueva oferta.</div>
-        <div class="inbox-item__meta"><i class="far fa-clock"></i> Hace 3 h · <span style="color:var(--text-tertiary);font-weight:500;">Actualizada</span></div>
-      </div>
-    </div>
-
-    <!-- 6. 🔗 Círculo cerca de cerrarse -->
-    <div class="inbox-item">
-      <div class="inbox-item__icon cat-music" style="background: rgba(92,107,192,0.12);">🔗</div>
-      <div class="inbox-item__body">
-        <div class="inbox-item__title">Tu Fender Stratocaster está cerca de cerrar un círculo</div>
-        <div class="inbox-item__text">Solo falta 1 persona para completar la cadena. Si alguien más ofrece un artículo compatible con las ofertas actuales, tendrás match automáticamente.</div>
-        <div class="inbox-item__meta"><i class="far fa-clock"></i> Hace 5 h · <span style="color:var(--warning);font-weight:600;">Casi listo</span></div>
-      </div>
-      <div class="inbox-item__actions">
-        <button class="inbox-item__responder" onclick="goToDetail('fender')"><i class="fas fa-eye"></i> Ver</button>
-      </div>
-    </div>
-
-    <!-- 7. 💶 Crédito pendiente -->
-    <div class="inbox-item">
-      <div class="inbox-item__icon cat-default" style="background: rgba(0,184,184,0.12);">💶</div>
-      <div class="inbox-item__body">
-        <div class="inbox-item__title">Tienes 40€ pendientes del intercambio #TRX-7839</div>
-        <div class="inbox-item__text">Se liberarán cuando Carlos confirme que ha recibido tu AirPods Max. Recibirás el ingreso en tu monedero Treqe en las siguientes 24h tras la confirmación.</div>
-        <div class="inbox-item__meta"><i class="far fa-clock"></i> Pendiente desde hace 2 d</div>
-      </div>
-      <div class="inbox-item__actions">
-        <button class="inbox-item__responder" onclick="goToTrades()"><i class="fas fa-eye"></i> Ver estado</button>
-      </div>
-    </div>
-
-    <!-- 8. 🔄 Artículo guardado ahora acepta intercambio -->
-    <div class="inbox-item">
-      <div class="inbox-item__icon cat-tech" style="background: rgba(245,166,35,0.12);">🔄</div>
-      <div class="inbox-item__body">
-        <div class="inbox-item__title">La Canon EOS R que guardaste ahora acepta intercambio</div>
-        <div class="inbox-item__text">Antes solo estaba disponible para compra directa. El dueño acaba de activar la opción de trueque. Puedes ofrecer tus artículos a cambio.</div>
-        <div class="inbox-item__meta"><i class="far fa-clock"></i> Hace 6 h</div>
-      </div>
-      <div class="inbox-item__actions">
-        <button class="inbox-item__responder" onclick="goToDetail('canon')"><i class="fas fa-eye"></i> Ver</button>
-      </div>
-    </div>
-
-    <!-- 9. ⭐ Recordatorio valoración -->
-    <div class="inbox-item">
-      <div class="inbox-item__icon cat-default" style="background: rgba(155,89,182,0.12);">⭐</div>
-      <div class="inbox-item__body">
-        <div class="inbox-item__title">¿Qué tal fue tu intercambio #TRX-7839?</div>
-        <div class="inbox-item__text">Canon EOS R por AirPods Max + 270€ se completó hace 3 días. Valora a los participantes para ayudar a la comunidad. Si no valoras en 7 días, se cerrará automáticamente.</div>
-        <div class="inbox-item__meta"><i class="far fa-clock"></i> Hace 3 d · <span style="color:var(--warning);font-weight:600;">Quedan 4 días</span></div>
-      </div>
-      <div class="inbox-item__actions">
-        <button class="inbox-item__responder" onclick="goToTrades()"><i class="fas fa-star"></i> Valorar</button>
-      </div>
-    </div>
-
+    <button class="notif-item__btn" onclick="goToDetail(3)">Ver</button>
   </div>
 
-  <!-- ===== BOTTOM NAV ===== -->
+  <!-- 1. Alguien quiere tu artículo -->
+  <div class="notif-item">
+    <div class="notif-item__icon">👀</div>
+    <div class="notif-item__body">
+      <div class="notif-item__title">Carlos quiere tu Fender Stratocaster</div>
+      <div class="notif-item__text">Ha ofrecido su MacBook Air M3 + 300€. El algoritmo busca completar el círculo. Te avisaremos cuando haya match.</div>
+      <div class="notif-item__meta"><i class="far fa-clock"></i> Hace 10 min · <span class="status">En espera</span></div>
+    </div>
+  </div>
 
-  <script>
-    // ─── Navigation ───
-    function goToHome()      { window.parent.location.href = '../v1-catalogo/'; }
-    function goToSearch()    { window.parent.location.href = '../v1-catalogo/'; }
-    function goToUpload()    { window.parent.location.href = '../v3-subir/'; }
-    function goToMatches()   { window.parent.location.href = '../v12-mis-matches/'; }
-    function goToNotifs()    { window.parent.location.href = '../v11-notificaciones/'; }
-    function goToProfile()   { window.parent.location.href = '../v4-perfil/'; }
-    function goToCatalog()   { window.parent.location.href = '../v1-catalogo/'; }
-    function goToDetail(id)  { window.parent.location.href = '../v2-detalle/?id=' + id; }
-    function goToDiscover()  { window.parent.location.href = '../v1-catalogo/'; }
-    function goToTrades()    { window.parent.location.href = '../v12-mis-matches/'; }
-    function goToInbox()     { window.parent.location.href = '../v11-notificaciones/'; }
+  <!-- 2. Bajada de precio -->
+  <div class="notif-item">
+    <div class="notif-item__icon">💰</div>
+    <div class="notif-item__body">
+      <div class="notif-item__title">El iPhone 15 Pro que guardaste bajó de precio</div>
+      <div class="notif-item__text">Ahora cuesta 820€ (antes 890€). Sigue disponible para compra directa o intercambio.</div>
+      <div class="notif-item__meta"><i class="far fa-clock"></i> Hace 2 h</div>
+    </div>
+    <button class="notif-item__btn" onclick="goToDetail('iphone')">Ver</button>
+  </div>
 
-    // ─── Marcar como leído ───
-    document.querySelectorAll('.inbox-item').forEach((item, i) => {
-      if (i < 3) {
-        item.style.borderLeft = '3px solid var(--accent)';
-        item.style.paddingLeft = '10px';
-      }
-    });
+  <!-- 3. Match cancelado -->
+  <div class="notif-item">
+    <div class="notif-item__icon">❌</div>
+    <div class="notif-item__body">
+      <div class="notif-item__title">Match #TRX-7841 cancelado</div>
+      <div class="notif-item__text">Bruno rechazó el intercambio. Tu Casco Shoei NXR2 vuelve a estar disponible para nuevos matches.</div>
+      <div class="notif-item__meta"><i class="far fa-clock"></i> Hace 1 h · <span class="status status--done">Artículo liberado</span></div>
+    </div>
+    <button class="notif-item__btn" onclick="goToDetail('casco')">Ver</button>
+  </div>
 
-    console.log('🔔 TREQE v11 — Avisos');
-    console.log('🧪 9 notificaciones no redundantes · Sin chat');
+  <!-- 4. Nuevo artículo matching -->
+  <div class="notif-item">
+    <div class="notif-item__icon">🔔</div>
+    <div class="notif-item__body">
+      <div class="notif-item__title">Nuevo artículo: Nintendo Switch OLED</div>
+      <div class="notif-item__text">Coincide con tu búsqueda guardada "consolas". Ya puedes pedirlo por 280€ o solicitar trueque.</div>
+      <div class="notif-item__meta"><i class="far fa-clock"></i> Hace 3 h</div>
+    </div>
+    <button class="notif-item__btn" onclick="goToDetail('switch')">Ver</button>
+  </div>
 
-    // Load trade request notifications from localStorage
-    (function(){
-      var notifs = JSON.parse(localStorage.getItem('treqe_notifications') || '[]');
-      if (!notifs.length) return;
-      var inbox = document.querySelector('.inbox-item');
-      if (!inbox) return;
-      var parent = inbox.parentNode;
-      notifs.forEach(function(n) {
-        var item = document.createElement('div');
-        item.className = 'inbox-item';
-        item.style.cssText = 'border-left:3px solid var(--accent);padding-left:10px;';
-        item.innerHTML =
-          '<div class="inbox-item__icon" style="background:rgba(0,0,0,0.06);">🔄</div>' +
-          '<div class="inbox-item__body">' +
-          '<div class="inbox-item__title">Solicitud de trueque enviada</div>' +
-          '<div class="inbox-item__text">' + n.text + '. Te notificaremos cuando sea posible hacer el intercambio.</div>' +
-          '<div class="inbox-item__meta"><i class="far fa-clock"></i> ' + n.time + ' · <span style="color:var(--accent);font-weight:600;">Pendiente</span></div>' +
-          '</div>' +
-          '<div class="inbox-item__actions">' +
-          '<button class="inbox-item__responder" onclick="goToDetail(\'' + n.productId + '\')"><i class="fas fa-eye"></i> Ver</button>' +
-          '</div>';
-        parent.insertBefore(item, inbox);
-      });
-    })();
-  </script>
-    <nav class="bottom-nav">
-    <a href="../v1-catalogo/" class="nav-item"><i class="fas fa-search"></i><span>Buscar</span></a>
-    <a href="../v12-mis-matches/" class="nav-item"><i class="fas fa-exchange-alt"></i><span>Treqes</span></a>
-    <a href="../v3-subir/" class="nav-item nav-add"><div class="nav-add-btn"><i class="fas fa-plus"></i></div></a>
-    <a href="../v11-notificaciones/" class="nav-item active"><i class="fas fa-bell"></i><span>Avisos</span><span class="nav-badge"></span></a>
-    <a href="../v4-perfil/" class="nav-item"><i class="fas fa-user"></i><span>Perfil</span></a>
-  </nav>
+  <!-- 5. Match encontrado -->
+  <div class="notif-item notif-item--highlight">
+    <div class="notif-item__icon">🎯</div>
+    <div class="notif-item__body">
+      <div class="notif-item__title">¡Match encontrado! #TRX-7892</div>
+      <div class="notif-item__text">Círculo de 3 personas listo. Tu G-SHOCK Mudmaster → AirPods Max. Tienes 24h para aceptar.</div>
+      <div class="notif-item__meta"><i class="far fa-clock"></i> Hace 5 h · <span class="status status--pending">Quedan 19h 23min</span></div>
+    </div>
+    <button class="notif-item__btn" onclick="goToDetail('match')">Aceptar</button>
+  </div>
+
+  <!-- 6. Recordatorio envío -->
+  <div class="notif-item">
+    <div class="notif-item__icon">📦</div>
+    <div class="notif-item__body">
+      <div class="notif-item__title">Recuerda enviar tu artículo</div>
+      <div class="notif-item__text">Match #TRX-7845 activo. Tienes 48h para enviar tu Trek Marlin 7. El comprador ya ha pagado.</div>
+      <div class="notif-item__meta"><i class="far fa-clock"></i> Hace 6 h · <span class="status status--pending">Quedan 42h</span></div>
+    </div>
+    <button class="notif-item__btn" onclick="goToDetail('envio')">Enviar</button>
+  </div>
+
+  <!-- 7. Valoración pendiente -->
+  <div class="notif-item">
+    <div class="notif-item__icon">⭐</div>
+    <div class="notif-item__body">
+      <div class="notif-item__title">Valora tu experiencia</div>
+      <div class="notif-item__text">Has recibido la PlayStation 5 de María. Ayuda a la comunidad valorando el intercambio.</div>
+      <div class="notif-item__meta"><i class="far fa-clock"></i> Hace 8 h</div>
+    </div>
+    <button class="notif-item__btn" onclick="goToDetail('valorar')">Valorar</button>
+  </div>
+
+  <!-- 8. Sistema -->
+  <div class="notif-item">
+    <div class="notif-item__icon">ℹ️</div>
+    <div class="notif-item__body">
+      <div class="notif-item__title">Bienvenido a treqe</div>
+      <div class="notif-item__text">Tu perfil está verificado. Ya puedes publicar artículos y empezar a intercambiar con la comunidad.</div>
+      <div class="notif-item__meta"><i class="far fa-clock"></i> Ayer</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════ FOOTER ══════ -->
+<div class="footer">&copy; 2026 treqe</div>
+
+<!-- ══════ BOTTOM NAV ══════ -->
+<nav class="bottom-nav">
+  <a href="../v1-catalogo/" class="nav-item"><i class="fas fa-search"></i><span>Buscar</span></a>
+  <a href="../v12-mis-matches/" class="nav-item"><i class="fas fa-exchange-alt"></i><span>treqes</span></a>
+  <a href="../v3-subir/" class="nav-item"><div class="nav-add-btn"><i class="fas fa-plus"></i></div></a>
+  <a href="../v11-notificaciones/" class="nav-item active"><i class="fas fa-bell"></i><span>Avisos</span><span class="nav-badge"></span></a>
+  <a href="../v4-perfil/" class="nav-item"><i class="fas fa-user"></i><span>Perfil</span></a>
+</nav>
+
+<script>
+function goToDiscover() { window.location.href = '../v1-catalogo/'; }
+function goToDetail(id) { window.location.href = '../v2-detalle/?id=' + id; }
+</script>
 
 
+</html>
 
 </body>
 </html>
