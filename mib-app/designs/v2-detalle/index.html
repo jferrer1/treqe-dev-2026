@@ -1481,6 +1481,33 @@
 
     let mouseDown = false;
     let mouseStartX = 0;
+        // Touch events for mobile swipe
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    gallery.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+
+    gallery.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    });
+
+    function handleSwipe() {
+      const swipeThreshold = 50;
+      const diff = touchStartX - touchEndX;
+
+      if (Math.abs(diff) > swipeThreshold) {
+        if (diff > 0) {
+          nextSlide();
+        } else {
+          prevSlide();
+        }
+      }
+    }
+
+
     gallery.addEventListener('mousedown', (e) => { mouseDown = true; mouseStartX = e.screenX; });
     gallery.addEventListener('mouseup', (e) => {
       if (!mouseDown) return;
