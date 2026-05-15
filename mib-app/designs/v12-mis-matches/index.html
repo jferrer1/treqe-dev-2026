@@ -73,13 +73,7 @@
       color: #1C1915;
     }
     body.dark .treqe-header__logo { color: #E8E2D6; }
-    .treqe-header__title {
-      font-family: 'IBM Plex Sans', sans-serif;
-      font-size: .9rem; font-weight: 400;
-      color: #1C1915;
-    }
-    body.dark .treqe-header__title { color: #E8E2D6; }
-    .treqe-header__right { display: flex; align-items: center; gap: 8px; }
+    body.dark .treqe-header__right { display: flex; align-items: center; gap: 8px; }
     .treqe-header__toggle {
       width: 30px; height: 30px;
       display: flex; align-items: center; justify-content: center;
@@ -713,6 +707,8 @@
 .rate-overlay { position: fixed !important; inset: 0 !important; z-index: 9999 !important; display: none !important; }
 .rate-overlay.visible, .rate-overlay.open, .rate-overlay.active { display: flex !important; }
 
+.treqe-header__title { font-family: "IBM Plex Sans", sans-serif; font-size: 1.1rem; font-weight: 600; letter-spacing: -0.3px; color: var(--text); }
+body.dark .treqe-header__title { color: #E8E2D6; }
 </style>
 </head>
 <body>
