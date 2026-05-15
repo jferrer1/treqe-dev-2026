@@ -728,16 +728,33 @@
   body.dark .dm-toggle { border-color: #3A3630; color: #A0998F; }
   body.dark .dm-toggle:hover { background: #E8E2D6; color: #130B00; border-color: #E8E2D6; }
 
-  .logo { font-family: 'IBM Plex Mono', monospace; font-size: 1.1rem; font-weight: 600; letter-spacing: -0.5px; color: var(--text); text-transform: uppercase; }
-  .logo-link { display: inline-flex; text-decoration: none; line-height: 0; }
-  body.dark .logo { color: #E8E2D6; }
+  
+  
+  body.dark 
+
+  .header__back {
+    width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--border); border-radius: 2px;
+    color: var(--text-sub); cursor: pointer;
+    background: transparent; font-size: 0.8rem;
+    transition: all 0.15s; flex-shrink: 0;
+  }
+  .header__back:hover { border-color: var(--text); color: var(--text); }
+  .header__title {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 1.1rem; font-weight: 600;
+    letter-spacing: -0.3px; color: var(--text);
+  }
+
 </style>
 </head>
 <body>
 
   <!-- ===== treqe HEADER ===== -->
   <div class="header">
-    <a href="../v16-portada/" class="logo-link"><div class="logo">Treqes</div></a>
+    <button class="header__back" onclick="goToDiscover()" aria-label="Atras"><i class="fas fa-chevron-left"></i></button>
+    <span class="header__title">Treqes</span>
     <div class="header-right">
       <button class="dm-toggle" onclick="document.body.classList.toggle('dark')">Dark</button>
     </div>
