@@ -917,9 +917,6 @@
   display: flex !important;
 }
 
-
-
-
 .filter-modal-overlay.visible, .filter-modal-overlay.open, .filter-modal-overlay.active { display: flex !important; }
 .modal-overlay { position: fixed !important; inset: 0 !important; z-index: 9999 !important; }
 .modal-overlay.visible, .modal-overlay.open, .modal-overlay.active { display: flex !important; }
@@ -963,10 +960,11 @@
 
 
 /* MIB overlay fix */
-.filter-modal-overlay { position: fixed !important; inset: 0 !important; z-index: 9999 !important; }
+.filter-modal-overlay { position: fixed !important; inset: 0 !important; z-index: 9999 !important; display: none !important; }
 .filter-modal-overlay.visible, .filter-modal-overlay.open, .filter-modal-overlay.active { display: flex !important; }
-.modal-overlay { position: fixed !important; inset: 0 !important; z-index: 9999 !important; }
+.modal-overlay { position: fixed !important; inset: 0 !important; z-index: 9999 !important; display: none !important; }
 .modal-overlay.visible, .modal-overlay.open, .modal-overlay.active { display: flex !important; }
+
 </style>
 </head>
 <body>

@@ -702,50 +702,16 @@
   right: 4px;
 }
 
-
-
-
-
 .feedback-overlay.visible, .feedback-overlay.open, .feedback-overlay.active { display: flex !important; }
 .rate-overlay { position: fixed !important; inset: 0 !important; z-index: 9999 !important; }
 .rate-overlay.visible, .rate-overlay.open, .rate-overlay.active { display: flex !important; }
+
 
 /* MIB overlay fix */
-.feedback-overlay { position: fixed !important; inset: 0 !important; z-index: 9999 !important; }
+.feedback-overlay { position: fixed !important; inset: 0 !important; z-index: 9999 !important; display: none !important; }
 .feedback-overlay.visible, .feedback-overlay.open, .feedback-overlay.active { display: flex !important; }
-.rate-overlay { position: fixed !important; inset: 0 !important; z-index: 9999 !important; }
+.rate-overlay { position: fixed !important; inset: 0 !important; z-index: 9999 !important; display: none !important; }
 .rate-overlay.visible, .rate-overlay.open, .rate-overlay.active { display: flex !important; }
-
-  .header {
-    position: relative;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 24px 24px 12px;
-    background: var(--bg); width: 100%;
-  }
-
-  .dm-toggle { font-family: "IBM Plex Mono", monospace; font-size: 0.6rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; padding: 6px 10px; border: 1px solid var(--border); border-radius: 2px; color: var(--text-sub); background: transparent; cursor: pointer; transition: all 0.15s; }
-  .dm-toggle:hover { background: var(--text); color: var(--bg); border-color: var(--text); }
-  body.dark .dm-toggle { border-color: #3A3630; color: #A0998F; }
-  body.dark .dm-toggle:hover { background: #E8E2D6; color: #130B00; border-color: #E8E2D6; }
-
-  
-  
-  body.dark 
-
-  .header__back {
-    width: 36px; height: 36px;
-    display: flex; align-items: center; justify-content: center;
-    border: 1px solid var(--border); border-radius: 2px;
-    color: var(--text-sub); cursor: pointer;
-    background: transparent; font-size: 0.8rem;
-    transition: all 0.15s; flex-shrink: 0;
-  }
-  .header__back:hover { border-color: var(--text); color: var(--text); }
-  .header__title {
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 1.1rem; font-weight: 600;
-    letter-spacing: -0.3px; color: var(--text);
-  }
 
 </style>
 </head>
