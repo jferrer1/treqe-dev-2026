@@ -75,6 +75,7 @@
   }
   .logo-link { display: inline-flex; text-decoration: none; line-height: 0; }
   .header {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -680,12 +681,12 @@
   }
   .search-icon:hover { border-color: var(--text); color: var(--text); }
   .search-expand {
-    position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
+    position: absolute; right: 24px; top: 50%; transform: translateY(-50%);
     display: flex; align-items: center;
     background: var(--surface); border: 1px solid var(--border-strong);
     border-radius: 2px; width: 0; overflow: hidden; opacity: 0;
     transition: width 0.25s ease, opacity 0.2s ease;
-    z-index: 3; padding: 0; height: 38px;
+    z-index: 10; padding: 0; height: 38px;
   }
   .search-expand.open { width: 220px; opacity: 1; padding: 0 8px 0 14px; }
   .search-expand input {
