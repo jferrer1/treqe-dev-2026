@@ -752,15 +752,17 @@
 <body>
 
   <!-- ===== treqe HEADER ===== -->
-  <div class="header">
-    <button class="header__back" onclick="goToDiscover()" aria-label="Atras"><i class="fas fa-chevron-left"></i></button>
-    <span class="header__title">Treqes</span>
-    <div class="header-right">
+  <div class="treqe-header">
+    <div class="treqe-header__left">
+      <button class="treqe-header__back" onclick="goToDiscover()" aria-label="Atras"><i class="fas fa-chevron-left"></i></button>
+      <span class="treqe-header__title">Treqes</span>
+    </div>
+    <div class="treqe-header__right">
       <button class="dm-toggle" onclick="document.body.classList.toggle('dark')">Dark</button>
     </div>
   </div>
 
-  <!-- ===== TABS ===== -->
+<!-- ===== TABS ===== -->
   <div class="tabs">
     <button class="tab active" onclick="switchTab(this, 'active')">
       Activos <span class="count">1</span>
