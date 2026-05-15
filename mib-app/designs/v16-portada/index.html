@@ -658,6 +658,51 @@
   right: 4px;
 }
 
+
+  .blog-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--text-sub);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    text-decoration: none; transition: all 0.15s;
+  }
+  .blog-link:hover { background: var(--text); color: var(--bg); border-color: var(--text); }
+  .search-icon {
+    width: 38px; height: 38px;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--border); border-radius: 2px;
+    cursor: pointer; color: var(--text-sub); background: var(--surface);
+    font-size: 0.9rem; transition: all 0.15s;
+  }
+  .search-icon:hover { border-color: var(--text); color: var(--text); }
+  .search-expand {
+    position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
+    display: flex; align-items: center;
+    background: var(--surface); border: 1px solid var(--border-strong);
+    border-radius: 2px; width: 0; overflow: hidden; opacity: 0;
+    transition: width 0.25s ease, opacity 0.2s ease;
+    z-index: 3; padding: 0; height: 38px;
+  }
+  .search-expand.open { width: 220px; opacity: 1; padding: 0 8px 0 14px; }
+  .search-expand input {
+    border: none; outline: none; background: transparent;
+    font-family: 'IBM Plex Sans', sans-serif; font-size: 0.85rem;
+    color: var(--text); width: 100%;
+  }
+  .search-expand input::placeholder { color: var(--text-dim); }
+  .search-close {
+    width: 32px; height: 32px; border-radius: 2px; border: none;
+    background: transparent; color: var(--text-sub); cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; font-size: 0.8rem;
+  }
+
+  .dm-toggle { font-family: "IBM Plex Mono", monospace; font-size: 0.6rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; padding: 6px 10px; border: 1px solid var(--border); border-radius: 2px; color: var(--text-sub); background: transparent; cursor: pointer; transition: all 0.15s; }
+  .dm-toggle:hover { background: var(--text); color: var(--bg); border-color: var(--text); }
 </style>
 </head>
 <body>
@@ -666,7 +711,16 @@
 <div class="header">
     <a href="../v16-portada/" class="logo-link"><div class="logo">treqe</div></a>
     <div class="header-right">
+      <button class="dm-toggle" onclick="document.body.classList.toggle('dark')">Dark</button>
       <a href="../v13-blog/index.html" class="blog-link"><i class="fas fa-book-open"></i>Blog</a>
+      <div class="search-icon" id="searchIcon" onclick="toggleSearch()">
+        <i class="fas fa-search"></i>
+      </div>
+    </div>
+    <div class="search-expand" id="searchExpand">
+      <input type="text" placeholder="Buscar articulos..." id="searchInput">
+      <button class="search-close" onclick="toggleSearch()"><i class="fas fa-times"></i></button>
+    </div>
       <button class="dm-toggle" onclick="document.body.classList.toggle('dark')" style="font-family:'IBM Plex Mono',monospace;font-size:.7rem;padding:6px 10px;border:1px solid var(--border);border-radius:2px;color:var(--text-sub);cursor:pointer;background:transparent;">Dark</button>
     </div>
   </div></header>
@@ -839,6 +893,32 @@
     steps.forEach(function(s) { s.classList.add('visible'); });
   }
 })();
+
+function toggleSearch() {
+  var icon = document.getElementById('searchIcon');
+  var expand = document.getElementById('searchExpand');
+  var input = document.getElementById('searchInput');
+  if (expand.classList.contains('open')) {
+    expand.classList.remove('open');
+    setTimeout(function() { icon.style.opacity = '1'; }, 200);
+    if (input.value.trim()) {
+      window.location.href = '../v1-catalogo/?search=' + encodeURIComponent(input.value.trim());
+    }
+  } else {
+    icon.style.opacity = '0';
+    expand.classList.add('open');
+    setTimeout(function() { input.focus(); }, 300);
+  }
+}
+document.addEventListener('DOMContentLoaded', function() {
+  var si = document.getElementById('searchInput');
+  if (si) si.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && this.value.trim()) {
+      window.location.href = '../v1-catalogo/?search=' + encodeURIComponent(this.value.trim());
+    }
+  });
+});
+
 </script>
 </body>
 </html>
