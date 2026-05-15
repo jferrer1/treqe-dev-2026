@@ -658,16 +658,11 @@
   <!-- ===== treqe HEADER ===== -->
   <div class="treqe-header">
     <div class="treqe-header__left">
-      <button class="treqe-header__back" onclick="history.back()" aria-label="Atrás"><i class="fas fa-times"></i></button>
-      <a href="../v16-portada/" class="treqe-header__title" style="text-decoration:none;color:inherit;">Subir artículo</a>
+      <button class="treqe-header__back" onclick="history.back()" aria-label="Atras"><i class="fas fa-chevron-left"></i></button>
+      <span class="treqe-header__title">Subir articulo</span>
     </div>
     <div class="treqe-header__right">
-      <button class="treqe-header__toggle" id="darkToggle" onclick="toggleDarkMode()" aria-label="Dark mode"><i class="fas fa-moon"></i></button>
-      <span class="treqe-header__pills">
-        <a href="../v1-catalogo/" class="treqe-pill">Catálogo</a>
-        <a href="../v13-blog/" class="treqe-pill">Blog</a>
-      </span>
-      <button aria-label="Ayuda" onclick="openHelpModal()" style="font-family:'IBM Plex Mono',monospace;font-size:.5rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-dim);border:1px solid var(--border);border-radius:2px;padding:4px 8px;background:transparent;">Ayuda</button>
+      <button class="dm-toggle" onclick="document.body.classList.toggle('dark')">Dark</button>
     </div>
   </div>
 
