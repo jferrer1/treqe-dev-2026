@@ -351,21 +351,18 @@
       justify-content: center;
       gap: 8px;
       cursor: pointer;
+    
+      background: #1C1915; color: #F9F7F2; border: 1px solid #1C1915;
     }
-    body.dark .submit-btn { border-color: #E8E2D6; background: #E8E2D6; color: #130B00; }
+    body.dark body.dark .submit-btn { border-color: #E8E2D6; background: #E8E2D6; color: #130B00; 
+      background: #1C1915; color: #F9F7F2; border: 1px solid #1C1915;
+    }
     .submit-btn:active { opacity: .8; }
     .submit-btn:disabled {
       opacity: .3;
       cursor: not-allowed;
     }
-    .submit-btn--ghost {
-      background: transparent;
-      color: #1C1915;
-      border-color: #E5E0D8;
-    }
-    body.dark .submit-btn--ghost { color: #E8E2D6; border-color: #3A3630; }
-
-    /* ===== PREVIEW MODAL ===== */
+    body.dark /* ===== PREVIEW MODAL ===== */
     .preview-modal {
       display: none;
       position: fixed; top: 0; left: 0;
@@ -862,7 +859,7 @@
 
     <!-- Preview & Submit -->
     <div style="display:flex;gap:10px;margin-top:8px;">
-      <button type="button" class="submit-btn submit-btn--ghost" style="flex:1;" onclick="showPreview()">
+      <button type="button" class="submit-btn" style="flex:1;" onclick="showPreview()">
         <i class="fas fa-eye"></i> Vista previa
       </button>
       <button type="submit" class="submit-btn" id="submitBtn" style="flex:2;">
