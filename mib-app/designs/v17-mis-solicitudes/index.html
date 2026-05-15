@@ -69,11 +69,6 @@
       color: var(--text);
       text-transform: uppercase;
     }
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
     .dark-toggle {
       width: 38px; height: 38px;
       display: flex; align-items: center; justify-content: center;
@@ -289,30 +284,6 @@
     .empty-state__btn:hover { background: var(--border); }
 
     /* ===== PAGE-SPECIFIC: Solicitudes ===== */
-    .header__back {
-      width: 38px; height: 38px;
-      display: flex; align-items: center; justify-content: center;
-      border: 1px solid var(--border);
-      border-radius: 2px;
-      cursor: pointer;
-      color: var(--text-sub);
-      background: var(--surface);
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.85rem;
-      transition: background 0.2s;
-      flex-shrink: 0;
-    }
-    .header__back:hover { background: var(--border); }
-    .page-title {
-      font-family: 'IBM Plex Sans', sans-serif;
-      font-size: 1rem;
-      font-weight: 500;
-      color: var(--text);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
@@ -391,18 +362,43 @@
   top: 2px;
   right: 4px;
 }
+
+  .treqe-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 16px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 50;
+  }
+  body.dark .treqe-header { background: #130B00; border-color: #3A3630; }
+  .treqe-header__left { display: flex; align-items: center; gap: 8px; }
+  .treqe-header__back {
+    width: 32px; height: 32px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text-sub); font-size: .9rem;
+    border-radius: 2px; border: 1px solid var(--border);
+    background: transparent; cursor: pointer;
+  }
+  body.dark .treqe-header__back { color: #A0998F; border-color: #3A3630; }
+  .treqe-header__right { display: flex; align-items: center; gap: 8px; }
+  body.dark .treqe-header__title { color: #E8E2D6; }
+
+  .dm-toggle { font-family: "IBM Plex Mono", monospace; font-size: 0.6rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; padding: 6px 10px; border: 1px solid var(--border); border-radius: 2px; color: var(--text-sub); background: transparent; cursor: pointer; transition: all 0.15s; }
+  .dm-toggle:hover { background: var(--text); color: var(--bg); border-color: var(--text); }
+  body.dark .dm-toggle { border-color: #3A3630; color: #A0998F; }
+  body.dark .dm-toggle:hover { background: #E8E2D6; color: #130B00; border-color: #E8E2D6; }
+
 </style>
 </head>
 <body>
   <!-- ===== HEADER ===== -->
-  <div class="header">
-    <div style="display:flex;align-items:center;gap:12px;">
-      <button class="header__back" onclick="goToProfile()" aria-label="Atrás"><i class="fas fa-chevron-left"></i></button>
-      <span class="page-title"><i class="fas fa-exchange-alt" style="color:var(--accent);"></i>Solicitudes</span>
+  <div class="treqe-header">
+    <div class="treqe-header__left">
+      <button class="treqe-header__back" onclick="goToProfile()" aria-label="Atras"><i class="fas fa-chevron-left"></i></button>
+      <span class="treqe-header__title">Solicitudes</span>
     </div>
-    <div class="header-right">
-      <a href="../v13-blog/index.html" class="dark-toggle" style="text-decoration:none;font-size:0.6rem;text-transform:uppercase;letter-spacing:1px;width:auto;padding:0 14px;font-family:'IBM Plex Mono',monospace;"><i class="fas fa-book-open"></i> Blog</a>
-      <button class="dark-toggle" onclick="toggleDark()"><i class="fas fa-moon"></i></button>
+    <div class="treqe-header__right">
+      <button class="dm-toggle" onclick="document.body.classList.toggle('dark')">Dark</button>
     </div>
   </div>
 
