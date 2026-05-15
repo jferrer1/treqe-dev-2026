@@ -107,9 +107,6 @@ body.dark .header { background: var(--bg); border-color: var(--border); }
 .notif-item__btn:hover { background: var(--text); color: var(--bg); border-color: var(--text); }
 .footer { padding: 24px 16px; font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-dim); text-align: center; border-top: 1px solid var(--border); margin-top: 16px; }
 body.dark .footer { border-color: var(--border); }
-.dm-toggle { font-size: 0.7rem; padding: 5px 8px; border: 1px solid var(--border); border-radius: 2px; color: var(--text-sub); cursor: pointer; background: transparent; transition: all 0.15s; }
-.dm-toggle:hover { background: var(--text); color: var(--bg); border-color: var(--text); }
-
 /* â•â•â•â•â•â• BOTTOM NAV (standardized across all MIB pages) â•â•â•â•â•â• */
 .bottom-nav {
   position: fixed;
@@ -203,6 +200,11 @@ body.dark .footer { border-color: var(--border); }
   body.dark .treqe-header__right { display: flex; align-items: center; gap: 8px; }
 
 body.dark body.dark .treqe-header__title { color: #E8E2D6; }
+  .dm-toggle { font-family: "IBM Plex Mono", monospace; font-size: 0.6rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; padding: 6px 10px; border: 1px solid var(--border); border-radius: 2px; color: var(--text-sub); background: transparent; cursor: pointer; transition: all 0.15s; }
+  .dm-toggle:hover { background: var(--text); color: var(--bg); border-color: var(--text); }
+  body.dark .dm-toggle { border-color: #3A3630; color: #A0998F; }
+  body.dark .dm-toggle:hover { background: #E8E2D6; color: #130B00; border-color: #E8E2D6; }
+
 </style>
 </head>
 <body>
