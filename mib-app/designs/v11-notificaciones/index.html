@@ -107,21 +107,6 @@ body.dark .header { background: var(--bg); border-color: var(--border); }
 .notif-item__btn:hover { background: var(--text); color: var(--bg); border-color: var(--text); }
 .footer { padding: 24px 16px; font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-dim); text-align: center; border-top: 1px solid var(--border); margin-top: 16px; }
 body.dark .footer { border-color: var(--border); }
-.header__back {
-  width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
-  border: 1px solid var(--border); border-radius: 2px; color: var(--text-sub);
-  cursor: pointer; background: transparent; font-size: 0.8rem; transition: all 0.15s; flex-shrink: 0;
-}
-.header__back:hover { border-color: var(--text); color: var(--text); }
-.header__title { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.3px; color: var(--text); flex: 1; }
-.header__right { display: flex; align-items: center; gap: 8px; }
-.header__pill {
-  font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; font-weight: 500;
-  letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 10px;
-  border: 1px solid var(--border); border-radius: 2px; color: var(--text-sub);
-  cursor: pointer; transition: all 0.15s; text-decoration: none;
-}
-.header__pill:hover { background: var(--text); color: var(--bg); border-color: var(--text); }
 .dm-toggle { font-size: 0.7rem; padding: 5px 8px; border: 1px solid var(--border); border-radius: 2px; color: var(--text-sub); cursor: pointer; background: transparent; transition: all 0.15s; }
 .dm-toggle:hover { background: var(--text); color: var(--bg); border-color: var(--text); }
 
@@ -197,19 +182,46 @@ body.dark .footer { border-color: var(--border); }
   right: 4px;
 }
 
+
+  .treqe-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 16px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 50;
+  }
+  body.dark .treqe-header { background: #130B00; border-color: #3A3630; }
+  .treqe-header__left { display: flex; align-items: center; gap: 8px; }
+  .treqe-header__back {
+    width: 32px; height: 32px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text-sub); font-size: .9rem;
+    border-radius: 2px; border: 1px solid var(--border);
+    background: transparent; cursor: pointer;
+  }
+  body.dark .treqe-header__back { color: #A0998F; border-color: #3A3630; }
+  .treqe-header__title {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 1.1rem; font-weight: 600;
+    letter-spacing: -0.3px; color: var(--text);
+  }
+  body.dark .treqe-header__title { color: #E8E2D6; }
+  .treqe-header__right { display: flex; align-items: center; gap: 8px; }
+
 </style>
 </head>
 <body>
 
 <!-- ══════ HEADER ══════ -->
-<div class="header">
-  <button class="header__back" onclick="goToDiscover()" aria-label="Atrás"><i class="fas fa-chevron-left"></i></button>
-  <a href="../v16-portada/" class="header__title" style="text-decoration:none;color:inherit;">Avisos</a>
-  <div class="header__right">
-    <a href="../v13-blog/" class="header__pill">Blog</a>
-    <button class="dm-toggle" onclick="document.body.classList.toggle('dark')">◐</button>
+<div class="treqe-header">
+    <div class="treqe-header__left">
+      <button class="treqe-header__back" onclick="goToDiscover()" aria-label="Atras"><i class="fas fa-chevron-left"></i></button>
+      <span class="treqe-header__title">Avisos</span>
+    </div>
+    <div class="treqe-header__right">
+      <button class="dm-toggle" onclick="document.body.classList.toggle('dark')">Dark</button>
+    </div>
   </div>
-</div>
 
 <!-- ══════ NOTIFICATIONS ══════ -->
 <div class="notif-list">
