@@ -59,7 +59,8 @@
       overscroll-behavior: contain;
       scrollbar-gutter: stable;
       transition: background .3s, color .3s;
-    }
+    
+  overscroll-behavior: none;}
     body.dark { background: #130B00; color: #E8E2D6; }
     img { max-width: 100%; display: block; }
     button { font-family: 'IBM Plex Mono', monospace; cursor: pointer; border: none; background: none; }
@@ -291,7 +292,8 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-    }
+    
+  overscroll-behavior: none;}
     .featured-article__meta {
       display: flex; align-items: center; gap: 6px;
       font-family: 'IBM Plex Mono', monospace;
@@ -562,7 +564,8 @@
         min-height: 160px;
       }
       .article-card__thumb { width: 60px; height: 60px; }
-      .featured-article__body { padding: 16px; }
+      .featured-article__body { padding: 16px; 
+  overscroll-behavior: none;}
       .article-grid {
         grid-template-columns: 1fr;
         padding: 0 16px;
@@ -602,7 +605,7 @@
   justify-content: space-evenly;
   align-items: center;
   height: 68px;
-  padding-bottom: max(6px, env(safe-area-inset-bottom));
+  padding-bottom: 12px;
   z-index: 100;
   isolation: isolate;
   overflow: hidden;

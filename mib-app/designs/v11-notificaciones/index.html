@@ -29,7 +29,8 @@
       -moz-osx-font-smoothing: grayscale;
       overscroll-behavior: contain;
       scrollbar-gutter: stable;
-    }
+    
+  overscroll-behavior: none;}
     body.dark {
       background: #130B00;
       color: #E8E2D6;
@@ -88,7 +89,8 @@ body.dark .header { background: var(--bg); border-color: var(--border); }
   display: flex; align-items: center; justify-content: center;
   font-size: 1.1rem; background: var(--bg); border: 1px solid var(--border); flex-shrink: 0;
 }
-.notif-item__body { flex: 1; min-width: 0; }
+.notif-item__body { flex: 1; min-width: 0; 
+  overscroll-behavior: none;}
 .notif-item__title { font-size: 0.85rem; font-weight: 600; color: var(--text); margin-bottom: 3px; letter-spacing: -0.2px; }
 .notif-item__text { font-size: 0.78rem; color: var(--text-sub); line-height: 1.5; }
 .notif-item__meta {
@@ -119,7 +121,7 @@ body.dark .footer { border-color: var(--border); }
   justify-content: space-evenly;
   align-items: center;
   height: 68px;
-  padding-bottom: max(6px, env(safe-area-inset-bottom));
+  padding-bottom: 12px;
   z-index: 100;
   isolation: isolate;
   overflow: hidden;
