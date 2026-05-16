@@ -151,7 +151,7 @@
       letter-spacing: 1px;
       border: 1px solid var(--border);
       border-radius: 2px;
-      background: var(--surface);
+      background: var(--bg);
       color: var(--text);
       cursor: pointer;
       transition: background 0.2s;
@@ -249,7 +249,7 @@
     .item-card__image {
       position: relative;
       aspect-ratio: 1 / 1;
-      background: #F0EDE6;
+      background: var(--bg);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -316,6 +316,7 @@
     .item-card__video-badge i { font-size: 0.5rem; }
 
     .item-card__info {
+      background: var(--bg);
       padding: 12px 14px 14px;
     }
     .item-card__title {
@@ -433,7 +434,8 @@
     }
     @media (max-width: 380px) {
       .catalog { gap: 12px; padding: 0 16px 16px; }
-      .item-card__info { padding: 10px 12px 12px; }
+      .item-card__info {
+      background: var(--bg); padding: 10px 12px 12px; }
       .item-card__title { font-size: 0.78rem; }
       .item-card__image .price-tag { font-size: 0.7rem; padding: 3px 8px; }
     }
@@ -931,7 +933,8 @@
 
   body.dark .item-card__image { background: #1A1206; }
   body.dark .item-card { background: #1A1206; border-color: #3A3630; }
-  body.dark .item-card__info { background: #1A1206; }
+  body.dark .item-card__info {
+      background: var(--bg); background: #1A1206; }
   body.dark .item-card__title { color: #E8E2D6; }
   body.dark .item-card__sub { color: #B0A9A0; }
   body.dark .price-tag { background: #1A1206; color: #E8E2D6; border-color: #3A3630; }
