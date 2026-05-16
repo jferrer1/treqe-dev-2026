@@ -77,21 +77,14 @@ body.dark p { color: #B0A9A0; }
 body.dark .label-mono, body.dark label, body.dark .mono-label, body.dark .tag { color: #55504B; }
 
 /* ===== Header ===== */
-.treqe-header {
-  position: sticky; top: 0; z-index: 100;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 14px 16px;
-  background: #F9F7F2; border-bottom: 1px solid #E5E0D8;
-  transition: background 0.2s, border-color 0.2s;
-}
-body.dark .treqe-header { background: #130B00; border-color: #3A3630; }
+
+body.dark 
 .treqe-logo { font-family: 'IBM Plex Sans', sans-serif; font-size: 1.3rem; font-weight: 700; font-style: italic; letter-spacing: -0.03em; color: #1C1915; }
 body.dark .treqe-logo { color: #E8E2D6; }
-.treqe-header-right { display: flex; align-items: center; gap: 8px; }
-.treqe-nav-pill { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 6px 12px; border: 1px solid #E5E0D8; border-radius: 2px; color: #55504B; cursor: pointer; background: transparent; transition: all 0.15s; }
-body.dark .treqe-nav-pill { border-color: #3A3630; color: #B0A9A0; }
-.treqe-nav-pill:hover, .treqe-nav-pill.active { background: #1C1915; color: #FFF; border-color: #1C1915; }
-body.dark .treqe-nav-pill:hover { background: #E8E2D6; color: #130B00; border-color: #E8E2D6; }
+
+
+
+body.dark 
 .treqe-dark-toggle { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; padding: 6px 10px; border: 1px solid #E5E0D8; border-radius: 2px; color: #55504B; cursor: pointer; background: transparent; }
 body.dark .treqe-dark-toggle { border-color: #3A3630; color: #B0A9A0; }
 
@@ -272,17 +265,38 @@ body.dark .treqe-empty i { color: #5A5650; }
   right: 4px;
 }
 
+
+  .treqe-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 16px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 50;
+  }
+  body.dark .treqe-header { background: #130B00; border-color: #3A3630; }
+  .treqe-header__left { display: flex; align-items: center; gap: 8px; }
+  .treqe-header__back {
+    width: 32px; height: 32px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text-sub); font-size: .9rem;
+    border-radius: 2px; border: 1px solid var(--border);
+    background: transparent; cursor: pointer;
+  }
+  body.dark .treqe-header__back { color: #A0998F; border-color: #3A3630; }
+  .treqe-header__right { display: flex; align-items: center; gap: 8px; }
+  body.dark .treqe-header__title { color: #E8E2D6; }
+
 </style>
 </head>
 <body>
 <div class="treqe-header">
-  <span class="treqe-header__title">Verificar</span>
-  <div class="treqe-header-right">
-    <a href="../v13-blog/" class="treqe-nav-pill"><i class="fas fa-pen"></i> Blog</a>
-    <a href="../v1-catalogo/" class="treqe-nav-pill"><i class="fas fa-th"></i> Catalogo</a>
-    <button class="treqe-dark-toggle" onclick="toggleDark()"><i class="fas fa-moon"></i></button>
+    <div class="treqe-header__left">
+      <button class="treqe-header__back" onclick="goToProfile()" aria-label="Atras"><i class="fas fa-chevron-left"></i></button>
+      <span class="treqe-header__title">Verificar</span>
+    </div>
+    <div class="treqe-header__right">
+    </div>
   </div>
-</div>
 
 <div class="header">
     <button class="header__back" onclick="goToProfile()" aria-label="Atras"><i class="fas fa-chevron-left"></i></button>
