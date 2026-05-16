@@ -1283,7 +1283,14 @@ body.dark body.dark .treqe-header__title { color: #E8E2D6; }
 
     console.log('⭐ treqe v12 — Mis treqes (prototipo completo)');
     console.log('🧪 9 cards | 4 tabs | timers | May 2026');
-  </script>
+  
+(function() {
+  if (localStorage.getItem('treqe-darkmode') === 'true') {
+    document.body.classList.add('dark');
+  }
+})();
+
+</script>
 
 </body>
 </html>

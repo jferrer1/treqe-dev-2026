@@ -2317,6 +2317,13 @@
         if (img) { img.style.position = "relative"; img.appendChild(btn); }
       });
     })();
-  </script>
+  
+(function() {
+  if (localStorage.getItem('treqe-darkmode') === 'true') {
+    document.body.classList.add('dark');
+  }
+})();
+
+</script>
 </body>
 </html>

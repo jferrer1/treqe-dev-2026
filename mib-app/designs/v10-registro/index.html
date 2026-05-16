@@ -467,7 +467,14 @@ body.dark .treqe-empty i { color: #5A5650; }
     }
 
     applyMode();
-  </script>
+  
+(function() {
+  if (localStorage.getItem('treqe-darkmode') === 'true') {
+    document.body.classList.add('dark');
+  }
+})();
+
+</script>
 <div class="treqe-footer">(c) 2026 treqe - Todos los derechos reservados</div>
 
 <div class="demo-tag"><i class="fas fa-flask"></i> treqe Prototype -- v10-registro -- May 2026</div>
@@ -485,6 +492,13 @@ function toggleDark() {
   }
 }
 console.log("treqe Design System - Taylor Penton Editorial");
+
+(function() {
+  if (localStorage.getItem('treqe-darkmode') === 'true') {
+    document.body.classList.add('dark');
+  }
+})();
+
 </script>
 </body>
 </html>

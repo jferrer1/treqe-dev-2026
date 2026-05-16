@@ -342,6 +342,13 @@
     var btn = document.querySelector(".dark-toggle i");
     if (btn) btn.className = document.body.classList.contains("dark") ? "fas fa-sun" : "fas fa-moon";
   }
-  </script>
+  
+(function() {
+  if (localStorage.getItem('treqe-darkmode') === 'true') {
+    document.body.classList.add('dark');
+  }
+})();
+
+</script>
 </body>
 </html>

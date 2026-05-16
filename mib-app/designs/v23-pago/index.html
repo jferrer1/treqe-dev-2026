@@ -738,6 +738,13 @@
         }
       }
     }
-  </script>
+  
+(function() {
+  if (localStorage.getItem('treqe-darkmode') === 'true') {
+    document.body.classList.add('dark');
+  }
+})();
+
+</script>
 </body>
 </html>

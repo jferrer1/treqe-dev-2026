@@ -1083,7 +1083,14 @@
 
     function openHelpModal() { document.getElementById('helpModal').classList.add('visible'); }
     function closeHelpModal() { document.getElementById('helpModal').classList.remove('visible'); }
-  </script>
+  
+(function() {
+  if (localStorage.getItem('treqe-darkmode') === 'true') {
+    document.body.classList.add('dark');
+  }
+})();
+
+</script>
 
   <!-- ===== HELP MODAL ===== -->
   <div class="help-modal-overlay" id="helpModal" onclick="closeHelpModal()">

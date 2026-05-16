@@ -533,6 +533,13 @@ body.dark .treqe-empty i { color: #5A5650; }
     function goToUpload() { window.parent.location.href = "../v3-subir/"; }
     function goToProfile() { window.parent.location.href = "../v4-perfil/"; }
 
+
+(function() {
+  if (localStorage.getItem('treqe-darkmode') === 'true') {
+    document.body.classList.add('dark');
+  }
+})();
+
 </script>
 
     <nav class="bottom-nav">
@@ -566,6 +573,13 @@ function toggleDark() {
   }
 }
 console.log("treqe Design System - Taylor Penton Editorial");
+
+(function() {
+  if (localStorage.getItem('treqe-darkmode') === 'true') {
+    document.body.classList.add('dark');
+  }
+})();
+
 </script>
 </body>
 </html>

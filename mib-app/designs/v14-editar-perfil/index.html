@@ -509,6 +509,13 @@ body.dark .treqe-empty i { color: #5A5650; }
   window.saveProfile   = saveProfile;
 
 })();
+
+(function() {
+  if (localStorage.getItem('treqe-darkmode') === 'true') {
+    document.body.classList.add('dark');
+  }
+})();
+
 </script>
 <div class="treqe-bottom-nav">
   <a href="../v1-catalogo/" class="treqe-nav-item"><i class="fas fa-th"></i> Catalogo</a>
@@ -534,6 +541,13 @@ function toggleDark() {
   }
 }
 console.log("treqe Design System - Taylor Penton Editorial");
+
+(function() {
+  if (localStorage.getItem('treqe-darkmode') === 'true') {
+    document.body.classList.add('dark');
+  }
+})();
+
 </script>
 </body>
 </html>
