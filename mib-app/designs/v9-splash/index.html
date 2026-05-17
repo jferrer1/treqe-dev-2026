@@ -87,11 +87,10 @@ body.dark .label-mono, body.dark label, body.dark .mono-label, body.dark .tag { 
 body.dark .treqe-header { background: #130B00; border-color: #3A3630; }
 .treqe-logo { font-family: 'IBM Plex Sans', sans-serif; font-size: 1.3rem; font-weight: 700; font-style: italic; letter-spacing: -0.03em; color: #1C1915; }
 body.dark .treqe-logo { color: #E8E2D6; }
-.treqe-header-right { display: flex; align-items: center; gap: 8px; }
-.treqe-nav-pill { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 6px 12px; border: 1px solid #E5E0D8; border-radius: 2px; color: #55504B; cursor: pointer; background: transparent; transition: all 0.15s; }
-body.dark .treqe-nav-pill { border-color: #3A3630; color: #B0A9A0; }
-.treqe-nav-pill:hover, .treqe-nav-pill.active { background: #1C1915; color: #FFF; border-color: #1C1915; }
-body.dark .treqe-nav-pill:hover { background: #E8E2D6; color: #130B00; border-color: #E8E2D6; }
+
+
+
+body.dark 
 .treqe-dark-toggle { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; padding: 6px 10px; border: 1px solid #E5E0D8; border-radius: 2px; color: #55504B; cursor: pointer; background: transparent; }
 body.dark .treqe-dark-toggle { border-color: #3A3630; color: #B0A9A0; }
 
@@ -276,13 +275,13 @@ body.dark .treqe-empty i { color: #5A5650; }
 </head>
 <body>
 <div class="treqe-header">
-  <a href="../v1-catalogo/" class="treqe-logo" href="../v16-portada/">treqe</a>
-  <div class="treqe-header-right">
-    <a href="../v13-blog/" class="treqe-nav-pill"><i class="fas fa-pen"></i> Blog</a>
-    <a href="../v1-catalogo/" class="treqe-nav-pill"><i class="fas fa-th"></i> Catalogo</a>
-    <button class="treqe-dark-toggle" onclick="toggleDark()"><i class="fas fa-moon"></i></button>
+    <div class="treqe-header__left">
+      <button class="treqe-header__back" onclick="history.back()" aria-label="Atras"><i class="fas fa-chevron-left"></i></button>
+      <span class="treqe-header__title">Splash</span>
+    </div>
+    <div class="treqe-header__right">
+    </div>
   </div>
-</div>
 
 <div class="splash" id="splash">
 
