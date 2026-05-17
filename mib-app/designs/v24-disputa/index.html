@@ -55,14 +55,7 @@
     }
 
     /* ===== HEADER ===== */
-    .header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 24px 24px 12px;
-      background: var(--bg);
-      width: 100%;
-    }
+    
     .header .logo {
       font-family: 'IBM Plex Mono', monospace;
       font-size: 1.1rem;
@@ -71,11 +64,7 @@
       color: var(--text);
       text-transform: uppercase;
     }
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
+    
     .dark-toggle {
       width: 38px; height: 38px;
       display: flex; align-items: center; justify-content: center;
@@ -90,10 +79,10 @@
     .dark-toggle i { font-size: 0.85rem; }
 
     @media (min-width: 600px) {
-      .header { padding: 24px 32px 12px; }
+      
     }
     @media (min-width: 1024px) {
-      .header { max-width: 1200px; margin: 0 auto; padding: 32px 48px 16px; }
+      
     }
 
     /* ===== PAGE-SPECIFIC: Disputa ===== */
@@ -479,18 +468,26 @@
 .toast-overlay.visible, .toast-overlay.open, .toast-overlay.active { display: flex !important; }
 
 body.dark .bottom-nav{background:#1A1206;border-color:#3A3630;}body.dark .nav-item{color:#7A7570;}body.dark .nav-item i{color:#7A7570;}body.dark .nav-item.active{color:#E8E2D6;}body.dark .nav-item.active i{color:#E8E2D6;}body.dark .nav-add-btn{background:#E8E2D6;color:#130B00;}body.dark .nav-add-btn i{color:#130B00;}
+
+.treqe-header{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:var(--bg);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50;}
+body.dark .treqe-header{background:#130B00;border-color:#3A3630;}
+.treqe-header__left{display:flex;align-items:center;gap:8px;}
+.treqe-header__back{width:32px;height:32px;display:flex;align-items:center;justify-content:center;color:var(--text-sub);font-size:.9rem;border-radius:2px;border:1px solid var(--border);background:transparent;cursor:pointer;}
+body.dark .treqe-header__back{color:#B0A9A0;border-color:#3A3630;}
+.treqe-header__title{font-family:"IBM Plex Sans",sans-serif;font-size:1rem;font-weight:600;letter-spacing:-0.3px;color:var(--text);}
+body.dark .treqe-header__title{color:#E8E2D6;}
+.treqe-header__right{display:flex;align-items:center;gap:8px;}
+
 </style>
 </head>
 <body>
   <!-- ===== HEADER ===== -->
-  <div class="header">
-    <div style="display:flex;align-items:center;gap:12px;">
-      <a class="back-link" style="padding:0;margin:0;display:flex;" href="../v12-mis-matches/"><i class="fas fa-chevron-left"></i></a>
-      <span class="page-title-disputa" style="padding:0;font-size:1rem;"><i class="fas fa-exclamation-triangle" style="color:var(--warning);"></i> Disputa</span>
+  <div class="treqe-header">
+    <div class="treqe-header__left">
+      <button class="treqe-header__back" onclick="goToDiscover()" aria-label="Atras"><i class="fas fa-chevron-left"></i></button>
+      <span class="treqe-header__title">Disputa</span>
     </div>
-    <div class="header-right">
-      <a href="../v13-blog/index.html" class="dark-toggle" style="text-decoration:none;font-size:0.6rem;text-transform:uppercase;letter-spacing:1px;width:auto;padding:0 14px;font-family:'IBM Plex Mono',monospace;"><i class="fas fa-book-open"></i> Blog</a>
-      <button class="dark-toggle" onclick="toggleDark()"><i class="fas fa-moon"></i></button>
+    <div class="treqe-header__right">
     </div>
   </div>
 
