@@ -862,7 +862,6 @@ body.dark .treqe-header__title { color: #E8E2D6; }
   </div>
 
   <script>
-
 function toggleDark() {
   document.body.classList.toggle('dark');
   localStorage.setItem('treqe-darkmode', document.body.classList.contains('dark'));
@@ -873,23 +872,15 @@ function toggleDark() {
   }
 })();
 
-// Dark mode toggle
-    catch(e) {}
-    }
-    // Scoring bar animation
     const scoreFill = document.getElementById('scoreFill');
     let score = 82;
 
-    // Click scoring card to increment (demo gamification)
     document.querySelector('.scoring-card').addEventListener('click', function(e) {
       if (e.target.tagName === 'BUTTON') return;
       score = Math.min(100, score + 1);
       scoreFill.style.width = score + '%';
       this.querySelector('.scoring-card__score').innerHTML = score + ' <small>/ 100</small>';
-      this.querySelector('.scoring-card__info').innerHTML = `
-        <span>Has ganado <strong>+1</strong> por actividad</span>
-        <span class="next-level">${100 - score} para nivel Avanzado</span>
-      `;
+      this.querySelector('.scoring-card__info').innerHTML = '<span>Has ganado <strong>+1</strong> por actividad</span><span class="next-level">' + (100 - score) + ' para nivel Avanzado</span>';
     });
 
     function goToMatches() { window.parent.location.href = '../v12-mis-matches/'; }
@@ -899,27 +890,8 @@ function toggleDark() {
     function goToSearch() { window.parent.location.href = '../v1-catalogo/'; }
     function goToUpload() { window.parent.location.href = '../v3-subir/'; }
     function goToSettings() { window.parent.location.href = '../v8-ajustes/'; }
-
-    function editProfile() {
-      alert('📝 Editar perfil\n\nEn la versión completa podrás:\n• Cambiar foto de perfil\n• Editar nombre\n• Actualizar bio\n• Cambiar ubicación');
-    }
-
-    function notificationSettings() {
-      alert('🔔 Configuración de notificaciones\n\nEn la versión completa podrás:\n• Activar/desactivar notificaciones push\n• Elegir tipos de notificaciones\n• Configurar horarios');
-    }
-
-    function verifyIdentity() {
-      const verified = confirm('¿Verificar identidad?\n\nEn la versión completa:\n• Subir DNI/passport\n• Verificación facial\n• Más confianza en intercambios');
-      if (verified) {
-        alert('✅ Verificación iniciada\n\nTe guiaremos paso a paso para verificar tu identidad.');
-      }
-    }
-
-    console.log('👤 treqe v4 — Perfil');
-    console.log('🧪 treqe Prototype — May 2026');
-
-    function goToVerify() { window.parent.location.href = "../v15-verificar-identidad/"; }
-    function goToEditProfile() { window.parent.location.href = "../v14-editar-perfil/"; }
+    function goToVerify() { window.parent.location.href = '../v15-verificar-identidad/'; }
+    function goToEditProfile() { window.parent.location.href = '../v14-editar-perfil/'; }
     function goToFavorites() { window.parent.location.href = '../v13-favoritos/'; }
     function goToTrades() { window.parent.location.href = '../v12-mis-matches/'; }
     function goToInbox() { window.parent.location.href = '../v11-notificaciones/'; }
@@ -927,19 +899,13 @@ function toggleDark() {
     function goToDetail(id) { window.parent.location.href = '../v2-detalle/?id=' + id; }
 
     function openScoringInfo() {
-      document.getElementById("scoringModal").classList.add("visible");
-      document.body.style.overflow = "hidden";
+      document.getElementById('scoringModal').classList.add('visible');
+      document.body.style.overflow = 'hidden';
     }
     function closeScoringInfo() {
-      document.getElementById("scoringModal").classList.remove("visible");
-      document.body.style.overflow = "";
+      document.getElementById('scoringModal').classList.remove('visible');
+      document.body.style.overflow = '';
     }
-  
-(function() {
-  if (localStorage.getItem('treqe-darkmode') === 'true') {
-    document.body.classList.add('dark');
-  }
-})();
 </script>
 
 </body>
