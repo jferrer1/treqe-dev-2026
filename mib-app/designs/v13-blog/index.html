@@ -57,6 +57,7 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { font-size: 17px; scroll-behavior: smooth; }
     body {
+      padding-bottom: 90px;
       font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       background: #F9F7F2;
       color: #1C1915;
@@ -294,6 +295,7 @@
     }
     body.dark .featured-article__image .featured-badge { background: #E8E2D6; color: #130B00; }
     .featured-article__body {
+      padding-bottom: 90px;
       padding: 24px 28px;
       flex: 1;
       display: flex;
@@ -571,7 +573,8 @@
         min-height: 160px;
       }
       .article-card__thumb { width: 60px; height: 60px; }
-      .featured-article__body { padding: 16px; 
+      .featured-article__body {
+      padding-bottom: 90px; padding: 16px; 
   overscroll-behavior: none;}
       .article-grid {
         grid-template-columns: 1fr;
@@ -600,7 +603,7 @@
     
     body.dark 
     
-  /* ══════ BOTTOM NAV (standardized across all MIB pages) ══════ */
+  /* ══════ BOTTOM NAV (standardized across all treqe pages) ══════ */
 .bottom-nav {
   position: fixed;
   bottom: 0;
