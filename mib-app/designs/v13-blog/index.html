@@ -695,6 +695,8 @@ body.dark [class*="-card"] p, body.dark [class*="-card"] span[class*="sub"], bod
 body.dark{--bg:#130B00;--surface:#1A1206;--text:#E8E2D6;--text-sub:#B0A9A0;--text-dim:#7A7570;--border:#3A3630;--border-strong:#5A5650;--accent:#E8E2D6;background:#130B00;color:#E8E2D6;}
 
 .logo { font-family: "IBM Plex Mono", monospace; font-size: 1.1rem; font-weight: 600; letter-spacing: -0.5px; color: var(--text); text-transform: uppercase; } .logo-link { display: inline-flex; text-decoration: none; line-height: 0; } body.dark .logo { color: #E8E2D6; }
+.treqe-logo { height: 36px; width: auto; flex-shrink: 0; }
+body.dark .treqe-logo text { fill: #E8E2D6; }
 </style>
 </head>
 <body>
@@ -702,8 +704,13 @@ body.dark{--bg:#130B00;--surface:#1A1206;--text:#E8E2D6;--text-sub:#B0A9A0;--tex
   <!-- ===== treqe HEADER (desktop) ===== -->
   <div class="treqe-header">
     <div class="treqe-header__left">
-      <a href="../v16-portada/" class="logo-link"><div class="logo">treqe<span style="color:var(--text-sub);font-weight:400;">.blog</span></div></a>
-    </div>
+      <a href="../v16-portada/" class="logo-link" style="display:flex;align-items:center;gap:6px;">
+        <svg class="treqe-logo" viewBox="0 0 76 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <text x="0" y="20" font-family="IBM Plex Sans, sans-serif" font-weight="700" font-size="22" letter-spacing="-1" fill="#1C1915">treqe</text>
+        </svg>
+        <span style="font-family:IBM Plex Sans,sans-serif;font-size:1rem;color:#8A8580;margin-left:2px;">.blog</span>
+      </a>
+    </div></div>
     <div class="treqe-header__right">
       
     </div>
