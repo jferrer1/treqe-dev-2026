@@ -1802,15 +1802,7 @@ body.dark{--bg:#130B00;--surface:#1A1206;--text:#E8E2D6;--text-sub:#B0A9A0;--tex
         <button onclick="closeFilters()"><i class="fas fa-times"></i></button>
       </div>
       <div class="filter-modal__content">
-        <div class="filter-group">
-          <div class="filter-group__title">Ordenar por</div>
-          <div class="filter-chips filter-chips--sort">
-            <button class="filter-chip active" data-sort="relevance" onclick="pickSort(this)">Relevancia</button>
-            <button class="filter-chip" data-sort="price-asc" onclick="pickSort(this)">Precio ↑</button>
-            <button class="filter-chip" data-sort="price-desc" onclick="pickSort(this)">Precio ↓</button>
-            <button class="filter-chip" data-sort="newest" onclick="pickSort(this)">Más reciente</button>
-          </div>
-        </div>
+        
         <div class="filter-group">
           <div class="filter-group__title">Categoría</div>
           <select class="filter-select" id="categorySelect" onchange="updateSubcategories()">
