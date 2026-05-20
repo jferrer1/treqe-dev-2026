@@ -63,7 +63,7 @@
       background: var(--bg);
       width: 100%;
     }
-    .header .treqe-logo { height: 40px; width: auto; } .logo {
+    .header .treqe-logo { height: 36px; width: auto; } body.dark .treqe-logo { filter: brightness(0) invert(0.85); } .logo {
       font-family: 'IBM Plex Mono', monospace;
       font-size: 1.1rem;
       font-weight: 600;
@@ -965,7 +965,7 @@
   body.dark .like-btn { color: #B0A9A0; }
   body.dark .dm-toggle { border-color: #3A3630; color: #B0A9A0; }
   body.dark .dm-toggle:hover { background: #E8E2D6; color: #130B00; border-color: #E8E2D6; }
-  body.dark .treqe-logo { height: 40px; width: auto; } .logo { color: #E8E2D6; }
+  body.dark .treqe-logo { height: 36px; width: auto; } body.dark .treqe-logo { filter: brightness(0) invert(0.85); } .logo { color: #E8E2D6; }
 
 
 /* overlay fix */
@@ -982,16 +982,13 @@ body.dark [class*="-card"] h3, body.dark [class*="-card"] .title, body.dark [cla
 body.dark [class*="-card"] p, body.dark [class*="-card"] span[class*="sub"], body.dark [class*="settings-item"] [class*="sub"] { color: #B0A9A0 !important; }
 
 body.dark{--bg:#130B00;--surface:#1A1206;--text:#E8E2D6;--text-sub:#B0A9A0;--text-dim:#7A7570;--border:#3A3630;--border-strong:#5A5650;--accent:#E8E2D6;background:#130B00;color:#E8E2D6;}
-body.dark .treqe-logo text { fill: #E8E2D6; } body.dark .treqe-logo circle { fill: #E8E2D6; }
+ body.dark .treqe-logo circle { fill: #E8E2D6; }
 </style>
 </head>
 <body>
   <!-- ===== HEADER ===== -->
   <div class="header">
-    <a href="../v16-portada/" class="logo-link"><svg class="treqe-logo" viewBox="0 0 76 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <text x="0" y="20" font-family="IBM Plex Sans, sans-serif" font-weight="700" font-size="22" letter-spacing="-1" fill="#1C1915">treqe</text>
-  
-</svg></a>
+    <a href="../v16-portada/" class="logo-link"><img class="treqe-logo" src="../../assets/treqe-logo-mib.png" alt="treqe"></a>
     <div class="header-right">
       
       <a href="../v13-blog/index.html" class="blog-link"><i class="fas fa-book-open"></i>Blog</a>
