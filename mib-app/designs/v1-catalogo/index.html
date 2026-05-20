@@ -2238,8 +2238,10 @@ body.dark{--bg:#130B00;--surface:#1A1206;--text:#E8E2D6;--text-sub:#B0A9A0;--tex
     function goToProfile() { window.parent.location.href = '../v4-perfil/'; }
 
     function pickSort(chip){
+      var sort = chip.dataset.sort;
       chip.parentElement.parentElement.querySelectorAll(".filter-chip").forEach(function(c){c.classList.remove("active")});
       chip.classList.add("active");
+      pickSortFromDropdown(chip, sort);
     }
     function pickCondition(chip){
       chip.parentElement.querySelectorAll(".filter-chip").forEach(function(c){c.classList.remove("active")});
