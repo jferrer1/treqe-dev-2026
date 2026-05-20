@@ -27,18 +27,18 @@ body.dark{background:#130B00;color:#E8E2D6;}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{font-size:16px;scroll-behavior:smooth}body{font-family:'IBM Plex Sans',sans-serif;background:#F9F7F2;color:#1C1915;min-height:100dvh;-webkit-font-smoothing:antialiased;overscroll-behavior:contain}
 :root{--bg:#F9F7F2;--text:#1C1915;--text-sec:#888;--text-ter:#8A8580;--border:#E5E0D8;--accent:#1C1915;--success:#1C1915;--card:#FFF;--shadow:0 2px 12px rgba(0,0,0,.06);--shadow-h:0 6px 24px rgba(0,0,0,.1);--radius:18px}
 img{max-width:100%;display:block}button{font-family:inherit;cursor:pointer;border:none;background:none}a{text-decoration:none;color:inherit}
-.treqe-logo{height:60px;width:auto;flex-shrink:0}
+
 .site-header{background:var(--bg);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
 .header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;padding:0 24px;height:80px;gap:24px}
 .header-inner .logo{display:flex;align-items:center;gap:0;flex-shrink:0}
-.header-inner .logo .blog-suffix{font-size:1.1rem;font-weight:500;color:var(--text-sec);margin-left:-2px;line-height:1}
+.header-inner .logo 
 .back-link{padding:8px 16px;border-radius:8px;font-size:.85rem;font-weight:500;color:var(--text-sec);transition:all .2s;margin-left:auto}
 .back-link:hover{background:#FFF;color:var(--text)}.back-link i{margin-right:6px}
-.mobile-header{display:none;align-items:center;gap:10px;padding:8px 12px 12px 16px;background:var(--bg)}
+
 .mobile-header .back-btn{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--text);font-size:1.1rem}
-.mobile-header .mob-logo{display:flex;align-items:center;gap:0}
-.mobile-header .mob-logo .treqe-logo{height:40px}
-.mobile-header .mob-logo .blog-suffix{font-size:.9rem;font-weight:500;color:var(--text-sec);margin-left:-1px;line-height:1}
+.mobile-header 
+.mobile-header .mob-logo 
+.mobile-header .mob-logo 
 .post-hero{height:320px;background:#1A1A2E;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
 .post-hero i{font-size:6rem;color:rgba(255,255,255,.15)}
 .post-hero .post-tag{position:absolute;bottom:20px;left:24px;background:rgba(0,0,0,.4);color:#FFF;font-size:.75rem;font-weight:700;padding:6px 16px;border-radius:8px}
@@ -99,7 +99,7 @@ img{max-width:100%;display:block}button{font-family:inherit;cursor:pointer;borde
 .footer-inner .social-links a:hover{background:var(--accent);color:#FFF;border-color:var(--accent)}
 @media(max-width:900px){.related-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:767px){
-body{padding-bottom:80px}.site-header{display:none}.mobile-header{display:flex}.bottom-nav{display:flex}
+body{padding-bottom:80px}.site-header{display:none}.bottom-nav{display:flex}
 .post-hero{height:200px}.post-hero i{font-size:3.5rem}.post-container{padding:0 16px}
 .post-body{padding:24px 0 32px}.post-cta{padding:24px 20px}.post-footer{padding:16px}
 .post-footer span{width:100%;text-align:center}.share-buttons{justify-content:center;width:100%}
@@ -110,15 +110,9 @@ body{padding-bottom:80px}.site-header{display:none}.mobile-header{display:flex}.
 
 body.dark .back-btn { border-color: #3A3630; color: #B0A9A0; }
 </style></head><body>
-
-<div class="detail-header">
+  <div class="detail-header">
     <a href="../index.html" class="back-btn" style="width:36px;height:36px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:2px;color:var(--text-sub);font-size:0.8rem;text-decoration:none;"><i class="fas fa-chevron-left"></i></a>
   </div>
-
-<div class="mobile-header">
-  <div class="mob-logo"><img class="treqe-logo" src="../../assets/treqe-logo-mib.png" alt="treqe"><span class="blog-suffix">.blog</span></div>
-</div>
-
 <div class="post-hero"><img src="../assets/historia-ipad.png" style="position:absolute;width:100%;height:100%;object-fit:cover;opacity:0.4" alt=""><div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,26,46,0.7),rgba(0,0,0,0.3));z-index:1"></div><i class="fas fa-guitar"></i><span class="post-tag">Historias</span></div>
 
 <article class="post-container"><div class="post-body">

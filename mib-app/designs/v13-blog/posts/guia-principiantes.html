@@ -88,13 +88,7 @@
       color: var(--text);
       text-transform: uppercase;
     }
-    .header .logo .blog-suffix {
-      font-weight: 400;
-      color: var(--text-dim);
-      font-size: 0.9rem;
-      text-transform: none;
-      letter-spacing: 0;
-    }
+    .header .logo 
     .header-right {
       display: flex;
       align-items: center;
@@ -591,17 +585,10 @@ body.dark .back-btn { border-color: #3A3630; color: #B0A9A0; }
 </style>
 </head>
 <body>
-  <!-- ===== HEADER ===== -->
-  <div class="header">
-    <a href="../../v16-portada/" class="logo">treqe<span class="blog-suffix">.blog</span></a>
-    <div class="header-right">
-      <a href="../index.html" class="dark-toggle" style="text-decoration:none;font-size:0.6rem;text-transform:uppercase;letter-spacing:1px;width:auto;padding:0 14px;font-family:'IBM Plex Mono',monospace;"><i class="fas fa-arrow-left"></i> Volver</a>
-      <button class="dark-toggle" onclick="toggleDark()"><i class="fas fa-moon"></i></button>
-    </div>
+  <div class="detail-header">
+    <a href="../index.html" class="back-btn" style="width:36px;height:36px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:2px;color:var(--text-sub);font-size:0.8rem;text-decoration:none;"><i class="fas fa-chevron-left"></i></a>
   </div>
-
-  <!-- ===== HERO ===== -->
-  <div class="post-hero">
+<div class="post-hero">
     <img src="../assets/guia.png" alt="Guía de Treqe">
     <div class="hero-overlay"></div>
     <i class="fas fa-compass"></i>
