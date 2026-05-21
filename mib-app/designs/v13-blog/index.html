@@ -348,6 +348,8 @@
     .article-card:active { border-color: #C5C0B8; }
     body.dark .article-card:active { border-color: #5A5650; }
     .article-card__thumb {
+      position: relative;
+      overflow: hidden;
       width: 68px;
       height: 68px;
       border: 1px solid #E5E0D8;
@@ -356,7 +358,9 @@
       overflow: hidden;
       position: relative;
     }
-    body.dark .article-card__thumb { border-color: #3A3630; }
+    body.dark .article-card__thumb {
+      position: relative;
+      overflow: hidden; border-color: #3A3630; }
     .article-card__thumb img { width: 100%; height: 100%; object-fit: cover; }
     
     
@@ -563,14 +567,18 @@
         width: 100%;
         min-height: 160px;
       }
-      .article-card__thumb { width: 60px; height: 60px; padding: 16px;}
+      .article-card__thumb {
+      position: relative;
+      overflow: hidden; width: 60px; height: 60px; padding: 16px;}
       .article-grid {
         grid-template-columns: 1fr;
         padding: 0 16px;
         gap: 8px;
       }
       .article-card { padding: 12px; }
-      .article-card__thumb { width: 60px; height: 60px; }
+      .article-card__thumb {
+      position: relative;
+      overflow: hidden; width: 60px; height: 60px; }
       .load-more { padding: 8px 0 16px; }
       .site-footer { padding: 20px 16px; }
       .footer-inner { flex-direction: column; text-align: center; }
@@ -738,7 +746,7 @@ body.dark{--bg:#130B00;--surface:#1A1206;--text:#E8E2D6;--text-sub:#B0A9A0;--tex
         <!-- Featured -->
         <div class="featured-article" onclick="window.location.href='posts/primera-entrega.html'">
           <div class="featured-article__image">
-            <img src="assets/primera-entrega.png" alt="treqe no es Wallapop" style="width:100%;height:100%;object-fit:cover;">
+            <img src="assets/primera-entrega.png" alt="treqe no es Wallapop" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;top:0;left:0;">
             <span class="featured-badge">Nuevo</span>
             
           </div>
@@ -763,7 +771,7 @@ body.dark{--bg:#130B00;--surface:#1A1206;--text:#E8E2D6;--text-sub:#B0A9A0;--tex
         <div class="article-grid">
 
           <div class="article-card" data-cat="tecnologia" onclick="window.location.href='posts/algoritmo-intercambio-circular.html'">
-            <div class="article-card__thumb"><img src="assets/algoritmo.png" alt="" style="width:100%;height:100%;object-fit:cover;"></div>
+            <div class="article-card__thumb"><img src="assets/algoritmo.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;top:0;left:0;"></div>
             <div class="article-card__content">
               <div class="article-card__meta">
                 <span>7 may 2026</span>
@@ -775,7 +783,7 @@ body.dark{--bg:#130B00;--surface:#1A1206;--text:#E8E2D6;--text-sub:#B0A9A0;--tex
           </div>
 
           <div class="article-card" data-cat="historias" onclick="window.location.href='posts/historia-ipad-guitarra.html'">
-            <div class="article-card__thumb"><img src="assets/historia-ipad.png" alt="" style="width:100%;height:100%;object-fit:cover;"></div>
+            <div class="article-card__thumb"><img src="assets/historia-ipad.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;top:0;left:0;"></div>
             <div class="article-card__content">
               <div class="article-card__meta">
                 <span>5 may 2026</span>
@@ -787,7 +795,7 @@ body.dark{--bg:#130B00;--surface:#1A1206;--text:#E8E2D6;--text-sub:#B0A9A0;--tex
           </div>
 
           <div class="article-card" data-cat="guia" onclick="window.location.href='posts/guia-principiantes.html'">
-            <div class="article-card__thumb"><img src="assets/guia.png" alt="" style="width:100%;height:100%;object-fit:cover;"></div>
+            <div class="article-card__thumb"><img src="assets/guia.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;top:0;left:0;"></div>
             <div class="article-card__content">
               <div class="article-card__meta">
                 <span>3 may 2026</span>
@@ -799,7 +807,7 @@ body.dark{--bg:#130B00;--surface:#1A1206;--text:#E8E2D6;--text-sub:#B0A9A0;--tex
           </div>
 
           <div class="article-card" data-cat="economia" onclick="window.location.href='posts/anti-consumismo-inteligente.html'">
-            <div class="article-card__thumb dark"><img src="assets/anti-consumismo.png" alt="" style="width:100%;height:100%;object-fit:cover;"></div>
+            <div class="article-card__thumb dark"><img src="assets/anti-consumismo.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;top:0;left:0;"></div>
             <div class="article-card__content">
               <div class="article-card__meta">
                 <span>1 may 2026</span>
@@ -811,7 +819,7 @@ body.dark{--bg:#130B00;--surface:#1A1206;--text:#E8E2D6;--text-sub:#B0A9A0;--tex
           </div>
 
           <div class="article-card" data-cat="guia" onclick="window.location.href='posts/sistema-reputacion.html'">
-            <div class="article-card__thumb"><img src="assets/reputacion.png" alt="" style="width:100%;height:100%;object-fit:cover;"></div>
+            <div class="article-card__thumb"><img src="assets/reputacion.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;top:0;left:0;"></div>
             <div class="article-card__content">
               <div class="article-card__meta">
                 <span>28 abr 2026</span>
@@ -823,7 +831,7 @@ body.dark{--bg:#130B00;--surface:#1A1206;--text:#E8E2D6;--text-sub:#B0A9A0;--tex
           </div>
 
           <div class="article-card" data-cat="sostenibilidad" onclick="window.location.href='posts/treqe-economia-circular.html'">
-            <div class="article-card__thumb"><img src="assets/economia-circular.png" alt="" style="width:100%;height:100%;object-fit:cover;"></div>
+            <div class="article-card__thumb"><img src="assets/economia-circular.png" alt="" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;top:0;left:0;"></div>
             <div class="article-card__content">
               <div class="article-card__meta">
                 <span>25 abr 2026</span>
