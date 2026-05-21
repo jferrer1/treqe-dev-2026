@@ -27,20 +27,20 @@ body.dark{background:#130B00;color:#E8E2D6;}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{font-size:16px;scroll-behavior:smooth}body{font-family:'IBM Plex Sans',sans-serif;background:#F9F7F2;color:#1C1915;min-height:100dvh;-webkit-font-smoothing:antialiased;overscroll-behavior:contain}
 :root{--bg:#F9F7F2;--text:#1C1915;--text-sec:#888;--text-ter:#8A8580;--border:#E5E0D8;--accent:#1C1915;--success:#1C1915;--card:#FFF;--shadow:0 2px 12px rgba(0,0,0,.06);--shadow-h:0 6px 24px rgba(0,0,0,.1);--radius:18px}
 img{max-width:100%;display:block}button{font-family:inherit;cursor:pointer;border:none;background:none}a{text-decoration:none;color:inherit}
-.treqe-logo{height:60px;width:auto;flex-shrink:0}
+
 .site-header{background:var(--bg);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
 .header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;padding:0 24px;height:80px;gap:24px}
 .header-inner .logo{display:flex;align-items:center;gap:0;flex-shrink:0}
-.header-inner .logo .blog-suffix{font-size:1.1rem;font-weight:500;color:var(--text-sec);margin-left:-2px;line-height:1}
+.header-inner .logo 
 .back-link{padding:8px 16px;border-radius:8px;font-size:.85rem;font-weight:500;color:var(--text-sec);transition:all .2s;margin-left:auto}
 .back-link:hover{background:#FFF;color:var(--text)}.back-link i{margin-right:6px}
-.mobile-header{display:none;align-items:center;gap:10px;padding:8px 12px 12px 16px;background:var(--bg)}
+
 .mobile-header .back-btn{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--text);font-size:1.1rem}
-.mobile-header .mob-logo{display:flex;align-items:center;gap:0}
-.mobile-header .mob-logo .treqe-logo{height:40px}
-.mobile-header .mob-logo .blog-suffix{font-size:.9rem;font-weight:500;color:var(--text-sec);margin-left:-1px;line-height:1}
+.mobile-header 
+.mobile-header .mob-logo 
+.mobile-header .mob-logo 
 .post-hero{height:320px;background:#1A1A2E;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-.post-hero i{font-size:6rem;color:rgba(0,0,0,0.02)}.post-hero .post-tag{position:absolute;bottom:20px;left:24px;background:rgba(0,0,0,.4);color:#FFF;font-size:.75rem;font-weight:700;padding:6px 16px;border-radius:8px}
+.post-hero i{font-size:6rem;color:rgba(255,255,255,.15)}.post-hero .post-tag{position:absolute;bottom:20px;left:24px;background:rgba(0,0,0,.4);color:#FFF;font-size:.75rem;font-weight:700;padding:6px 16px;border-radius:8px}
 .post-container{max-width:720px;margin:0 auto;padding:0 24px}
 .post-body{padding:32px 0 48px}
 .post-meta{display:flex;align-items:center;gap:10px;font-size:.8rem;color:var(--text-ter);margin-bottom:20px;flex-wrap:wrap}
@@ -63,7 +63,7 @@ img{max-width:100%;display:block}button{font-family:inherit;cursor:pointer;borde
 .post-body .kpi-card .label{font-size:.7rem;color:var(--text-sec);margin-top:4px}
 .post-cta{margin-top:36px;padding:32px;background:linear-gradient(135deg,#1A1A2E,#2A2A4E);border-radius:var(--radius);text-align:center}
 .post-cta h3{color:#FFF;font-size:clamp(1rem,1.8vw,1.15rem);font-weight:700;margin-bottom:8px}
-.post-cta p{color:rgba(0,0,0,0.02);font-size:.85rem;margin-bottom:18px}
+.post-cta p{color:rgba(255,255,255,.65);font-size:.85rem;margin-bottom:18px}
 .post-cta .cta-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 32px;background:var(--accent);color:#FFF;border-radius:10px;font-size:.9rem;font-weight:600;cursor:pointer;transition:background .2s}
 .post-footer{max-width:720px;margin:0 auto;padding:20px 24px 40px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
 .post-footer span{font-size:.82rem;color:var(--text-ter)}
@@ -75,7 +75,7 @@ img{max-width:100%;display:block}button{font-family:inherit;cursor:pointer;borde
 .related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .related-card{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);cursor:pointer;transition:transform .3s,box-shadow .3s}
 .related-card:hover{transform:scale(1.02);box-shadow:var(--shadow-h)}
-.related-card__thumb{width:100%;height:120px;border-radius:8px;margin-bottom:12px;display:flex;align-items:center;justify-content:center;font-size:2rem;color:rgba(0,0,0,0.02)}
+.related-card__thumb{width:100%;height:120px;border-radius:8px;margin-bottom:12px;display:flex;align-items:center;justify-content:center;font-size:2rem;color:rgba(255,255,255,.3)}
 .related-card__thumb.dark{background:linear-gradient(135deg,#1A1A2E,#2A2A4E)}
 .related-card__thumb.orange{background:linear-gradient(135deg,#1C1915,#FF8A5C)}
 .related-card__thumb.purple{background:linear-gradient(135deg,#6C63FF,#8A84FF)}
@@ -88,7 +88,7 @@ img{max-width:100%;display:block}button{font-family:inherit;cursor:pointer;borde
     .related-card[onclick*="treqe-economia-circular"] .related-card__thumb{background-image:url("../assets/economia-circular.png") !important;background-size:cover;background-position:center}
 .related-card__title{font-size:.88rem;font-weight:600;color:var(--text);line-height:1.3;margin-bottom:4px}
 .related-card__excerpt{font-size:.75rem;color:var(--text-sec);line-height:1.4}
-.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(0,0,0,0.02);border-top:1px solid var(--border);justify-content:space-evenly;align-items:center;padding:0;height:72px;padding-bottom:12px;z-index:100}
+.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.85);border-top:1px solid var(--border);justify-content:space-evenly;align-items:center;padding:0;height:72px;padding-bottom:12px;z-index:100}
 .nav-item{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:.65rem;font-weight:500;color:var(--text-ter);padding:4px 0;flex:1;max-width:80px;position:relative}
 .nav-item i{font-size:1.3rem}.nav-item.active{color:var(--accent)}
 .nav-item.nav-add .nav-add-btn{width:48px;height:48px;background:var(--accent);color:#FFF;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;box-shadow:0 4px 16px rgba(0,0,0,0.06)}
@@ -101,7 +101,7 @@ img{max-width:100%;display:block}button{font-family:inherit;cursor:pointer;borde
 .footer-inner .social-links a:hover{background:var(--accent);color:#FFF;border-color:var(--accent)}
 @media(max-width:900px){.related-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:767px){
-body{padding-bottom:80px}.site-header{display:none}.mobile-header{display:flex}.bottom-nav{display:flex}
+body{padding-bottom:80px}.site-header{display:none}.bottom-nav{display:flex}
 .post-hero{height:200px}.post-hero i{font-size:3.5rem}.post-container{padding:0 16px}
 .post-body{padding:24px 0 32px}.post-cta{padding:24px 20px}.post-footer{padding:16px}
 .post-footer span{width:100%;text-align:center}.share-buttons{justify-content:center;width:100%}
@@ -110,13 +110,16 @@ body{padding-bottom:80px}.site-header{display:none}.mobile-header{display:flex}.
 }
 @media(min-width:768px){.site-header{display:block}.bottom-nav{display:none}}
 
+body.dark .back-btn { border-color: #3A3630; color: #B0A9A0; }
+.detail-header { padding: 12px 16px; background: var(--bg); position: relative; z-index: 10; } body.dark .detail-header { background: #130B00; }
 </style></head><body>
-<div class="detail-header" style="padding:12px 16px;background:var(--bg);position:relative;z-index:10;">
+  <div class="detail-header" style="position:relative;z-index:10;">
     <a href="../index.html" class="back-btn" style="width:36px;height:36px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:2px;color:var(--text-sub);font-size:0.8rem;text-decoration:none;"><i class="fas fa-chevron-left"></i></a>
   </div>
 <div class="post-hero"><i class="fas fa-recycle"></i><span class="post-tag">Sostenibilidad</span></div>
 
-<article class="post-container"><div class="post-body">
+<img src="../assets/economia-circular.png" style="width:100%;max-height:400px;object-fit:cover;margin-bottom:24px;" alt="">
+  <article class="post-container"><div class="post-body">
   <div class="post-meta"><span>25 de abril de 2026</span><span class="dot"></span><span>6 min de lectura</span><span class="category">Sostenibilidad</span></div>
   <h1>Treqe y la economia circular: como tus objetos pueden tener mil vidas</h1>
   <p class="subhead">El intercambio no solo ahorra dinero. Es la herramienta mas infravalorada para reducir el impacto ambiental del consumo. Y no, no hace falta ser un activista ecologico para participar.</p>
@@ -143,7 +146,6 @@ body{padding-bottom:80px}.site-header{display:none}.mobile-header{display:flex}.
     <p>"El objeto mas sostenible no es el que se recicla. Es el que ya existe y sigue usandose."</p>
     <span>- Principio basico de la economia circular</span>
   </div>
-  <img src="../assets/economia-circular.png" style="width:100%;max-height:400px;object-fit:cover;margin:16px 0;" alt="">
 
   <h2>Como Treqe contribuye a la economia circular</h2>
 
@@ -203,17 +205,17 @@ body{padding-bottom:80px}.site-header{display:none}.mobile-header{display:flex}.
 <div class="related-section">
   <h2>Articulos relacionados</h2>
   <div class="related-grid">
-    <div class="related-card" onclick="window.location.href="anti-consumismo-inteligente.html"">
+    <div class="related-card" onclick="window.location.href='anti-consumismo-inteligente.html'">
       <div class="related-card__thumb dark"><i class="fas fa-brain"></i></div>
       <div class="related-card__title">Anti-consumismo inteligente</div>
       <div class="related-card__excerpt">Intercambiar mejor, no comprar menos.</div>
     </div>
-    <div class="related-card" onclick="window.location.href="historia-ipad-guitarra.html"">
+    <div class="related-card" onclick="window.location.href='historia-ipad-guitarra.html'">
       <div class="related-card__thumb orange"><i class="fas fa-guitar"></i></div>
       <div class="related-card__title">Intercambie un iPad por clases de guitarra</div>
       <div class="related-card__excerpt">Una historia real de economía circular en acción.</div>
     </div>
-    <div class="related-card" onclick="window.location.href="guia-principiantes.html"">
+    <div class="related-card" onclick="window.location.href='guia-principiantes.html'">
       <div class="related-card__thumb purple"><i class="fas fa-compass"></i></div>
       <div class="related-card__title">Guia para principiantes</div>
       <div class="related-card__excerpt">Empieza a intercambiar en 7 pasos.</div>
