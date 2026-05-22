@@ -11,172 +11,172 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root { --bg:#F9F7F2; --surface:#FFF; --text:#1C1915; --text-sub:#55504B; --text-dim:#8A8580; --border:#E5E0D8; --accent:#1C1915; --font-mono:"IBM Plex Mono",monospace; --font-sans:"IBM Plex Sans",sans-serif; }
+
+:root { --bg:#F9F7F2; --surface:#FFF; --text:#1C1915; --text-sub:#55504B; --text-dim:#8A8580; --border:#E5E0D8; --accent:#1C1915; }
 body.dark { --bg:#130B00; --surface:#1A1206; --text:#E8E2D6; --text-sub:#B0A9A0; --text-dim:#7A7570; --border:#3A3630; --accent:#E8E2D6; }
 
-html { font-size: 17px; overflow: hidden; height: 100%; }
+html { font-size: 17px; height: 100%; overflow: hidden; }
 body {
   font-family: 'IBM Plex Sans', sans-serif;
   background: var(--bg); color: var(--text);
   height: 100dvh; overflow: hidden;
   -webkit-font-smoothing: antialiased;
   overscroll-behavior: none;
-  transition: background 0.5s, color 0.5s;
-}
-body.dark { background: #130B00; color: #E8E2D6; }
-
-.splash-container {
-  display: flex; flex-direction: column;
-  height: 100%; width: 100%;
-  overflow: hidden;
+  transition: background 0.4s, color 0.4s;
 }
 
-/* Logo */
-.logo-area {
-  padding: 48px 24px 24px;
-  text-align: center;
-  flex-shrink: 0;
-}
-.logo-area img { height: 48px; width: auto; }
+.splash { display: flex; flex-direction: column; height: 100%; width: 100%; }
 
-/* Slides wrapper */
-.slides-wrapper {
-  flex: 1; position: relative; overflow: hidden;
-}
+/* Top logo row */
+.top-bar { padding: 20px 24px; flex-shrink: 0; }
+.top-bar img { height: 36px; width: auto; }
+body.dark .top-bar img { filter: brightness(0) invert(0.85); }
+
+/* Slides */
+.slides-wrap { flex: 1; position: relative; overflow: hidden; }
 .slides-track {
   display: flex; height: 100%;
-  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   will-change: transform;
 }
+
 .slide {
   flex: 0 0 100%; width: 100%;
   display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  padding: 32px 32px 48px;
-  text-align: center;
+  justify-content: center;
+  padding: 0 32px calc(32px + env(safe-area-inset-bottom, 0px));
 }
 
-.slide-number {
+.slide-eyebrow {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.55rem; letter-spacing: 0.16em;
+  font-size: 0.52rem; letter-spacing: 0.2em;
   text-transform: uppercase; color: var(--text-dim);
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
-body.dark .slide-number { color: #7A7570; }
 
-.slide-icon {
-  width: 80px; height: 80px;
-  border-radius: 2px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 2.2rem; margin-bottom: 24px;
+.slide h1 {
+  font-size: clamp(2rem, 7vw, 3.2rem);
+  font-weight: 600; letter-spacing: -2px;
+  line-height: 1.08; margin-bottom: 8px;
 }
-body.dark .slide-icon { background: #1A1206; border-color: #3A3630; }
 
-.slide h2 {
-  font-size: clamp(1.4rem, 4vw, 2rem);
-  font-weight: 600; letter-spacing: -0.5px;
-  margin-bottom: 12px; color: var(--text);
+.slide h1 em {
+  font-style: italic; font-weight: 400;
+  display: block; font-size: 0.85em;
+  letter-spacing: -1px; color: var(--text-sub);
+  margin-top: 4px;
 }
-body.dark .slide h2 { color: #E8E2D6; }
+body.dark .slide h1 em { color: #B0A9A0; }
 
 .slide p {
-  font-size: 0.92rem; color: var(--text-sub);
-  line-height: 1.6; max-width: 320px;
+  font-size: 0.88rem; color: var(--text-sub);
+  line-height: 1.6; max-width: 300px;
+  margin-top: 16px;
 }
 body.dark .slide p { color: #B0A9A0; }
 
-/* CTA slide */
-.slide-cta .cta-btn {
-  display: inline-flex; align-items: center; gap: 10px;
-  padding: 16px 40px;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.65rem; font-weight: 600;
-  letter-spacing: 0.08em; text-transform: uppercase;
-  background: var(--text); color: var(--bg);
-  border: 1px solid var(--text); border-radius: 2px;
-  cursor: pointer; text-decoration: none;
-  margin-top: 32px; transition: all 0.2s;
+/* Grid decoration — mmddyyyy-inspired */
+.slide-grid {
+  display: grid; grid-template-columns: repeat(7, 1fr);
+  gap: 4px; margin: 32px 0 0;
+  max-width: 280px;
 }
-.slide-cta .cta-btn:active { transform: scale(0.96); opacity: 0.85; }
-body.dark .slide-cta .cta-btn { background: #E8E2D6; color: #130B00; border-color: #E8E2D6; }
+.slide-grid .cell {
+  aspect-ratio: 1; border-radius: 1px;
+  background: var(--border);
+}
+body.dark .slide-grid .cell { background: #2A2520; }
+.slide-grid .cell.filled { background: var(--text); }
+body.dark .slide-grid .cell.filled { background: #E8E2D6; }
+.slide-grid .cell.highlight { background: var(--text); opacity: 0.3; }
 
-/* Dots */
-.dots {
-  display: flex; justify-content: center; gap: 8px;
-  padding: 20px 0 32px; flex-shrink: 0;
+/* CTA */
+.slide-cta-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-top: 32px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.6rem; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--text); text-decoration: none;
+  padding: 14px 28px; border: 1px solid var(--text);
+  border-radius: 2px; transition: all 0.2s;
 }
+.slide-cta-link:active { background: var(--text); color: var(--bg); }
+body.dark .slide-cta-link { color: #E8E2D6; border-color: #E8E2D6; }
+
+/* Bottom bar: dots + skip */
+.bottom-bar {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  padding: 0 24px 24px; flex-shrink: 0;
+}
+
+.dots { display: flex; gap: 6px; }
 .dot {
-  width: 6px; height: 6px; border-radius: 50%;
-  background: var(--border-strong);
-  transition: background 0.3s;
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--border-strong); transition: all 0.3s;
 }
-.dot.active { background: var(--text); }
+.dot.active { background: var(--text); width: 16px; border-radius: 3px; }
 body.dark .dot.active { background: #E8E2D6; }
 
-/* Skip */
-.skip-link {
-  text-align: center; padding-bottom: 24px; flex-shrink: 0;
-}
-.skip-link a {
+.skip {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.6rem; letter-spacing: 0.08em;
+  font-size: 0.55rem; letter-spacing: 0.1em;
   text-transform: uppercase; color: var(--text-dim);
   text-decoration: none;
 }
-body.dark .skip-link a { color: #7A7570; }
-body.dark .treqe-logo { filter: brightness(0) invert(0.85); }
+body.dark .skip { color: #7A7570; }
 </style>
 </head>
 <body>
 
-<div class="splash-container">
-  
-  <div class="logo-area">
-    <img class="treqe-logo" src="../../assets/treqe-logo-mib.png" alt="treqe">
+<div class="splash">
+
+  <div class="top-bar">
+    <img src="../../assets/treqe-logo-mib.png" alt="treqe">
   </div>
 
-  <div class="slides-wrapper" id="slidesWrapper">
-    <div class="slides-track" id="slidesTrack">
-      
-      <!-- Slide 1: Qué es -->
+  <div class="slides-wrap" id="wrap">
+    <div class="slides-track" id="track">
+
+      <!-- Slide 1 -->
       <div class="slide">
-        <div class="slide-number">1 de 3</div>
-        <div class="slide-icon">⟳</div>
-        <h2>Intercambio circular</h2>
-        <p>Consigue lo que quieres con lo que tienes. Sin dinero. O con dinero. Tú decides.</p>
+        <div class="slide-eyebrow">Intercambio circular</div>
+        <h1>Lo que ya<br>no usas<br><em>es lo que otro<br>necesita.</em></h1>
+        <p>Con o sin dinero. Tú decides cómo intercambiar.</p>
       </div>
 
-      <!-- Slide 2: Cómo funciona -->
+      <!-- Slide 2 -->
       <div class="slide">
-        <div class="slide-number">2 de 3</div>
-        <div class="slide-icon">📦</div>
-        <h2>En 3 pasos</h2>
-        <p>Publica lo que no usas, elige lo que quieres y treqe cierra el círculo por ti.</p>
+        <div class="slide-eyebrow">En 3 pasos</div>
+        <h1>Publica.<br>Elige.<br><em>Recibe.</em></h1>
+        <p>Tú solo tienes que publicar y elegir. treqe encuentra el círculo perfecto.</p>
+        <div class="slide-grid">
+          <div class="cell filled"></div><div class="cell filled"></div><div class="cell filled"></div><div class="cell filled"></div><div class="cell filled"></div><div class="cell filled"></div><div class="cell filled"></div>
+          <div class="cell"></div><div class="cell"></div><div class="cell highlight"></div><div class="cell highlight"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+        </div>
       </div>
 
-      <!-- Slide 3: CTA -->
-      <div class="slide slide-cta">
-        <div class="slide-number">3 de 3</div>
-        <div class="slide-icon">🚀</div>
-        <h2>Empieza ahora</h2>
-        <p>Únete a la comunidad. Dale una segunda vida a tus cosas.</p>
-        <a href="../v10-registro/" class="cta-btn">Crear cuenta <i class="fas fa-arrow-right"></i></a>
+      <!-- Slide 3 — CTA -->
+      <div class="slide">
+        <div class="slide-eyebrow">Empieza ahora</div>
+        <h1>Dale una<br>segunda vida<br><em>a tus cosas.</em></h1>
+        <p>Únete a la comunidad de intercambio.</p>
+        <a href="../v10-registro/" class="slide-cta-link">Crear cuenta <i class="fas fa-arrow-right" style="font-size:0.55rem;"></i></a>
       </div>
 
     </div>
   </div>
 
-  <div class="dots" id="dots">
-    <div class="dot active"></div>
-    <div class="dot"></div>
-    <div class="dot"></div>
+  <div class="bottom-bar">
+    <div class="dots" id="dots">
+      <div class="dot active"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+    <a href="../v1-catalogo/" class="skip">Saltar</a>
   </div>
 
-  <div class="skip-link">
-    <a href="../v1-catalogo/">Saltar</a>
-  </div>
 </div>
 
 <script>
@@ -186,32 +186,23 @@ body.dark .treqe-logo { filter: brightness(0) invert(0.85); }
   }
 })();
 
-const track = document.getElementById('slidesTrack');
+const track = document.getElementById('track');
 const dots = document.querySelectorAll('.dot');
-let current = 0;
-const total = 3;
-let touchStartX = 0;
-let touchEndX = 0;
+let current = 0, total = 3, startX = 0;
 
-function goToSlide(index) {
-  current = Math.max(0, Math.min(total - 1, index));
+function go(n) {
+  current = Math.max(0, Math.min(total - 1, n));
   track.style.transform = `translateX(-${current * 100}%)`;
   dots.forEach((d, i) => d.classList.toggle('active', i === current));
 }
 
-function nextSlide() { goToSlide(current + 1); }
-function prevSlide() { goToSlide(current - 1); }
-
-// Touch swipe
-track.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; });
+track.addEventListener('touchstart', e => { startX = e.changedTouches[0].screenX; });
 track.addEventListener('touchend', e => {
-  touchEndX = e.changedTouches[0].screenX;
-  const diff = touchStartX - touchEndX;
-  if (Math.abs(diff) > 50) { diff > 0 ? nextSlide() : prevSlide(); }
+  const diff = startX - e.changedTouches[0].screenX;
+  if (Math.abs(diff) > 40) { diff > 0 ? go(current + 1) : go(current - 1); }
 });
 
-// Auto advance after 4 seconds on first slide
-let autoAdvance = setTimeout(() => { if (current === 0) nextSlide(); }, 4000);
+setTimeout(() => { if (current === 0) go(1); }, 4000);
 </script>
 </body>
 </html>
