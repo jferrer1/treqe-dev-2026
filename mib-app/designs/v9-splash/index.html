@@ -196,13 +196,13 @@ function go(n) {
   dots.forEach((d, i) => d.classList.toggle('active', i === current));
 }
 
-track.addEventListener('touchstart', e => { startX = e.changedTouches[0].screenX; });
-track.addEventListener('touchend', e => {
-  const diff = startX - e.changedTouches[0].screenX;
-  if (Math.abs(diff) > 40) { diff > 0 ? go(current + 1) : go(current - 1); }
-});
+wrap.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, {passive: true});
+wrap.addEventListener('touchend', function(e) {
+  var diff = startX - e.changedTouches[0].clientX;
+  if (Math.abs(diff) > 30) { diff > 0 ? go(current + 1) : go(current - 1); }
+}, {passive: true});
 
-setTimeout(() => { if (current === 0) go(1); }, 4000);
+setTimeout(function() { if (current === 0) go(1); }, 4000);
 </script>
 </body>
 </html>
