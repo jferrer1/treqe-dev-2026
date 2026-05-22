@@ -167,24 +167,7 @@
       border-radius: 2px;
       letter-spacing: 0.5px;
     }
-    .item-card__image .like-btn {
-      position: absolute;
-      top: 8px;
-      left: 8px;
-      width: 32px;
-      height: 32px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.8rem;
-      color: var(--text-dim);
-      cursor: pointer;
-      transition: all 0.2s;
-      z-index: 2;
-      font-family: 'IBM Plex Mono', monospace;
-    }
+    .item-card__image .like-btn { position: absolute; top: 8px; left: 8px; font-size: 1.1rem; color: #C0392B; cursor: pointer; transition: all 0.2s; z-index: 2; background: none; border: none; }
     .item-card__image .like-btn:active { transform: scale(0.9); }
     .item-card__image .like-btn.liked { color: #E74C3C; }
 
@@ -402,6 +385,7 @@ body.dark [class*="-card"] h3, body.dark [class*="-card"] .title, body.dark [cla
 body.dark [class*="-card"] p, body.dark [class*="-card"] span[class*="sub"], body.dark [class*="settings-item"] [class*="sub"] { color: #B0A9A0 !important; }
 
 body.dark{--bg:#130B00;--surface:#1A1206;--text:#E8E2D6;--text-sub:#B0A9A0;--text-dim:#7A7570;--border:#3A3630;--border-strong:#5A5650;--accent:#E8E2D6;background:#130B00;color:#E8E2D6;}
+body.dark .like-btn { color: #E74C3C; }
 </style>
 </head>
 <body>
