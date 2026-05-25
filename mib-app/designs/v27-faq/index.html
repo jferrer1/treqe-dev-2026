@@ -14,7 +14,7 @@
 :root{--bg:#F9F7F2;--surface:#FFF;--text:#1C1915;--text-sub:#55504B;--text-dim:#8A8580;--border:#E5E0D8;--border-strong:#C5C0B8;--accent:#1C1915}
 body.dark{--bg:#130B00;--surface:#1A1206;--text:#E8E2D6;--text-sub:#B0A9A0;--text-dim:#7A7570;--border:#3A3630;--border-strong:#5A5650;--accent:#E8E2D6}
 html{font-size:17px;-webkit-text-size-adjust:100%;overflow-y:scroll}
-body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100dvh;padding-bottom:90px;-webkit-font-smoothing:antialiased;overscroll-behavior:none}
+body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100dvh;-webkit-font-smoothing:antialiased;overscroll-behavior:none}
 .treqe-header{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:var(--bg);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50}
 body.dark .treqe-header{background:#130B00;border-color:#3A3630}
 .treqe-header__left{display:flex;align-items:center;gap:8px}
@@ -118,13 +118,7 @@ body.dark .nav-add-btn{background:#E8E2D6;color:#130B00}body.dark .nav-add-btn i
   </div>
 </div>
 
-<nav class="bottom-nav">
-  <a href="../v1-catalogo/" class="nav-item"><i class="fas fa-search"></i><span>Buscar</span></a>
-  <a href="../v12-mis-matches/" class="nav-item"><i class="fas fa-exchange-alt"></i><span>treqes</span></a>
-  <a href="../v3-subir/" class="nav-item"><div class="nav-add-btn"><i class="fas fa-plus"></i></div></a>
-  <a href="../v11-notificaciones/" class="nav-item"><i class="fas fa-bell"></i><span>Avisos</span><span class="nav-badge"></span></a>
-  <a href="../v4-perfil/" class="nav-item"><i class="fas fa-user"></i><span>Perfil</span></a>
-</nav>
+
 
 <script>
 (function(){if(localStorage.getItem('treqe-darkmode')==='true'){document.body.classList.add('dark');}})();
