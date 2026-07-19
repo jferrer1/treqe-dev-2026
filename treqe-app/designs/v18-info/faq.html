@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ — Treqe</title>
+  <meta name="description" content="Preguntas frecuentes sobre Treqe, el marketplace de intercambio circular.">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg:#F9F7F2; --surface:#FFFFFF; --text:#1C1915; --text-sub:#6B6560; --text-muted:#55504B; --border:#E5E0D8; --accent:#1C1915; --mono:'IBM Plex Mono',monospace; --sans:'IBM Plex Sans',sans-serif; }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:100vh}
+    .back{display:inline-block;padding:8px 16px;font-family:var(--mono);font-size:.55rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);text-decoration:none;border:1px solid var(--border);border-radius:2px;background:var(--surface);margin:24px 0 0 24px}
+    .wrap{max-width:720px;margin:0 auto;padding:32px 24px 80px}
+    h1{font-size:1.8rem;font-weight:400;letter-spacing:-.5px;margin-bottom:8px}
+    .sub{font-size:.95rem;color:var(--text-sub);margin-bottom:36px}
+    .faq-list{border:1px solid var(--border);border-radius:2px;overflow:hidden}
+    .faq-item{background:var(--surface);border-bottom:1px solid var(--border)}
+    .faq-item:last-child{border-bottom:none}
+    .faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border:none;background:none;cursor:pointer;font-family:var(--sans);font-size:.9rem;font-weight:500;color:var(--text);text-align:left;gap:16px}
+    .faq-icon{font-family:var(--mono);font-size:1rem;color:var(--text-muted);flex-shrink:0}
+    .faq-a{display:none;padding:0 20px 18px;margin:0 20px;border-top:1px solid var(--border)}
+    .faq-a.open{display:block}
+    .faq-a p{font-size:.85rem;color:var(--text-sub);line-height:1.7;padding-top:14px}
+    .cta{margin-top:40px;text-align:center;font-size:.85rem;color:var(--text-sub)}
+    .cta a{color:var(--text);font-weight:500;font-family:var(--mono);font-size:.7rem}
+  </style>
+</head>
+<body>
+<a href="../../index.html" class="back">← Hub</a>
+<main class="wrap">
+  <h1>Preguntas frecuentes</h1>
+  <p class="sub">Todo lo que necesitas saber sobre el intercambio circular en Treqe.</p>
+  <div class="faq-list">
+    <div class="faq-item"><button class="faq-q" onclick="this.nextElementSibling.classList.toggle('open');this.querySelector('.faq-icon').textContent=this.nextElementSibling.classList.contains('open')?'−':'+'"><span>¿Qué es Treqe?</span><span class="faq-icon">+</span></button><div class="faq-a"><p>Treqe es un marketplace de intercambio circular inteligente. En lugar de comprar y vender, publicas lo que tienes y lo que quieres, y nuestro algoritmo encuentra círculos de intercambio donde todos ganan sin que intervenga el dinero.</p></div></div>
+    <div class="faq-item"><button class="faq-q" onclick="this.nextElementSibling.classList.toggle('open');this.querySelector('.faq-icon').textContent=this.nextElementSibling.classList.contains('open')?'−':'+'"><span>¿Cómo funciona el intercambio circular?</span><span class="faq-icon">+</span></button><div class="faq-a"><p>Publicas un artículo que ya no usas y marcas lo que te gustaría recibir. El algoritmo busca a otras personas cuyas preferencias encajen formando un círculo. Por ejemplo: A da a B, B da a C, y C da a A. Los tres recibís algo que queréis sin gastar dinero.</p></div></div>
+    <div class="faq-item"><button class="faq-q" onclick="this.nextElementSibling.classList.toggle('open');this.querySelector('.faq-icon').textContent=this.nextElementSibling.classList.contains('open')?'−':'+'"><span>¿Es gratis?</span><span class="faq-icon">+</span></button><div class="faq-a"><p>Publicar artículos y recibir matches es gratis. Treqe cobra una pequeña comisión (del 4% al 8%) solo cuando se completa un intercambio. La comisión depende de tu reputación.</p></div></div>
+    <div class="faq-item"><button class="faq-q" onclick="this.nextElementSibling.classList.toggle('open');this.querySelector('.faq-icon').textContent=this.nextElementSibling.classList.contains('open')?'−':'+'"><span>¿Cómo protegéis mis envíos?</span><span class="faq-icon">+</span></button><div class="faq-a"><p>Usamos un sistema de escrow: el valor de garantía se retiene hasta que todas las partes confirman la recepción. Si algo sale mal, nuestro equipo de mediación interviene.</p></div></div>
+    <div class="faq-item"><button class="faq-q" onclick="this.nextElementSibling.classList.toggle('open');this.querySelector('.faq-icon').textContent=this.nextElementSibling.classList.contains('open')?'−':'+'"><span>¿Qué pasa si el artículo no es como lo describían?</span><span class="faq-icon">+</span></button><div class="faq-a"><p>Tienes 48 horas desde la recepción para reportar cualquier problema. Si procede, se cancela el intercambio y los artículos se devuelven.</p></div></div>
+    <div class="faq-item"><button class="faq-q" onclick="this.nextElementSibling.classList.toggle('open');this.querySelector('.faq-icon').textContent=this.nextElementSibling.classList.contains('open')?'−':'+'"><span>¿Puedo intercambiar cualquier cosa?</span><span class="faq-icon">+</span></button><div class="faq-a"><p>Casi cualquier artículo de segunda mano en buen estado: electrónica, ropa, libros, muebles, instrumentos... No se permiten artículos ilegales, perecederos o que requieran licencias especiales.</p></div></div>
+    <div class="faq-item"><button class="faq-q" onclick="this.nextElementSibling.classList.toggle('open');this.querySelector('.faq-icon').textContent=this.nextElementSibling.classList.contains('open')?'−':'+'"><span>¿Cómo se calculan los valores?</span><span class="faq-icon">+</span></button><div class="faq-a"><p>Tú mismo estableces el valor estimado de tu artículo. No es un precio de mercado: es una referencia para que el algoritmo encuentre intercambios equilibrados.</p></div></div>
+    <div class="faq-item"><button class="faq-q" onclick="this.nextElementSibling.classList.toggle('open');this.querySelector('.faq-icon').textContent=this.nextElementSibling.classList.contains('open')?'−':'+'"><span>¿En qué países está disponible?</span><span class="faq-icon">+</span></button><div class="faq-a"><p>Actualmente Treqe está disponible en España. Estamos trabajando para expandirnos a más países europeos próximamente.</p></div></div>
+    <div class="faq-item"><button class="faq-q" onclick="this.nextElementSibling.classList.toggle('open');this.querySelector('.faq-icon').textContent=this.nextElementSibling.classList.contains('open')?'−':'+'"><span>¿Cómo contacto con soporte?</span><span class="faq-icon">+</span></button><div class="faq-a"><p>Puedes escribirnos a través de la <a href="contactar.html">página de contacto</a> o directamente a soporte@treqe.es.</p></div></div>
+  </div>
+  <p class="cta">¿No encuentras lo que buscas? <a href="contactar.html">Escríbenos</a></p>
+</main>
+</body>
+</html>
