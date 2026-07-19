@@ -473,7 +473,9 @@
   </nav>
 
   <script>
-    function handleSubmit() {
+    const API_URL = 'https://treqe-production-8518.up.railway.app/api';
+    
+    async function handleSubmit() {
       const email = document.getElementById('regEmail').value.trim();
       const pass = document.getElementById('regPass').value;
       const errDiv = document.getElementById('loginError');
@@ -485,23 +487,66 @@
       }
       
       if (isLogin) {
-        // Simular login - en producción esto iría al backend
-        if (pass.length < 4) {
+        // Login real contra Railway
+        try {
+          errDiv.style.display = 'none';
+          const res = await fetch(API_URL + '/auth/login', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({email, password: pass})
+          });
+          if (!res.ok) {
+            const err = await res.json();
+            errDiv.style.display = 'block';
+            errDiv.innerHTML = '⚠️ <strong>Credenciales incorrectas.</strong> Revisa tu email y contraseña.<br><br><a href="#" onclick="alert(\'📧 Se ha enviado un enlace a \'+document.getElementById(\'regEmail\').value)" style="color:#1C1915;font-weight:500">¿Olvidaste tu contraseña? Recuperar acceso</a><br><br><a href="#" onclick="toggleMode()" style="color:#6B6560;font-size:.8rem">¿No tienes cuenta? Regístrate aquí</a>';
+            return;
+          }
+          const data = await res.json();
+          localStorage.setItem('treqe_tokens', JSON.stringify(data.tokens));
+          localStorage.setItem('treqe_user', JSON.stringify(data.user));
+          alert('✅ Bienvenido, ' + data.user.full_name + '!');
+          window.location.href = '../../index.html#products';
+        } catch(e) {
           errDiv.style.display = 'block';
-          errDiv.innerHTML = '⚠️ <strong>Credenciales incorrectas.</strong> Revisa tu email y contraseña.<br><br><a href="#" onclick="alert(\'📧 Se ha enviado un enlace de recuperación a \'+document.getElementById(\'regEmail\').value)" style="color:#1C1915;font-weight:500">¿Olvidaste tu contraseña? Recuperar acceso</a><br><br><a href="#" onclick="toggleMode()" style="color:#6B6560;font-size:.8rem">¿No tienes cuenta? Regístrate aquí</a>';
+          errDiv.innerHTML = '⚠️ Error de conexión con el servidor. Inténtalo de nuevo.';
+        }
+      } else {
+        // Registro real contra Railway
+        const nameField = document.getElementById('regName');
+        const fullName = nameField ? (nameField.value + ' ' + (document.getElementById('regLast')?.value || '')).trim() : '';
+        if (!fullName || fullName.length < 2) {
+          errDiv.style.display = 'block';
+          errDiv.innerHTML = '⚠️ El nombre es obligatorio.';
           return;
         }
-        alert('✅ Inicio de sesión correcto → Catálogo (demo)\n\nEn producción: JWT token + redirect a catálogo');
-        window.location.href = '../../index.html#products';
-      } else {
-        // Registro
         if (pass.length < 8) {
           errDiv.style.display = 'block';
           errDiv.innerHTML = '⚠️ La contraseña debe tener al menos 8 caracteres.';
           return;
         }
-        alert('✅ Cuenta creada → Catálogo (demo)\n\nEn producción: email de verificación enviado');
-        window.location.href = '../../index.html#products';
+        try {
+          errDiv.style.display = 'none';
+          const username = email.split('@')[0];
+          const res = await fetch(API_URL + '/auth/register', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({username, email, password: pass, full_name: fullName})
+          });
+          if (!res.ok) {
+            const err = await res.json();
+            errDiv.style.display = 'block';
+            errDiv.innerHTML = '⚠️ ' + (err.detail || 'Error al crear la cuenta.');
+            return;
+          }
+          const data = await res.json();
+          localStorage.setItem('treqe_tokens', JSON.stringify(data.tokens));
+          localStorage.setItem('treqe_user', JSON.stringify(data.user));
+          alert('✅ Cuenta creada! Bienvenido a Treqe, ' + fullName + '!');
+          window.location.href = '../../index.html#products';
+        } catch(e) {
+          errDiv.style.display = 'block';
+          errDiv.innerHTML = '⚠️ Error de conexión con el servidor.';
+        }
       }
     }
 
